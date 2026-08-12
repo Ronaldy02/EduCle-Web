@@ -1,0 +1,10 @@
+[build]
+  publish = "dist"
+  command = "npm install && npm run build"
+
+# Nécessaire pour que Vue Router (mode history) fonctionne
+# Sans ça, un refresh sur /quiz donne une 404
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

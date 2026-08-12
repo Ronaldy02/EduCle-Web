@@ -1,0 +1,33 @@
+# Render.com — backend FastAPI + PostgreSQL uniquement
+# Le frontend Vue 3 est déployé séparément sur Netlify.
+#
+# Avant de déployer :
+#   1. Pousser ce dossier sur GitHub
+#   2. Sur render.com → New → Blueprint → pointer vers ce dépôt
+#   3. Render crée le backend et la base automatiquement
+
+services:
+
+  # ── Backend FastAPI ──────────────────────────────────────────────────────────
+  - type: web
+    name: educle-api
+    runtime: docker
+    rootDir: backend
+    dockerfilePath: Dockerfile
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: educle-db
+          property: connectionString
+      # Mettre l'URL Netlify du frontend (ex: https://educle.netlify.app)
+      - key: CORS_ORIGINS
+        value: https://educle.netlify.app
+    healthCheckPath: /health
+
+# ── Base de données PostgreSQL ───────────────────────────────────────────────
+databases:
+  - name: educle-db
+    plan: free
+    databaseName: educle
+    user: educle_user

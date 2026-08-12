@@ -1,0 +1,100 @@
+/* Reset minimal + variables globales EduClé */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #B45309;
+  --primary-light: #FEF3C7;
+  --success: #059669;
+  --danger: #DC2626;
+  --surface: #FFFFFF;
+  --bg: #F9FAFB;
+  --border: #E5E7EB;
+  --text: #111827;
+  --text-muted: #6B7280;
+  --radius: 12px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --font: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100dvh;
+}
+
+a { color: inherit; text-decoration: none; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius);
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+button:active { transform: scale(0.97); }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.btn-secondary {
+  background: var(--border);
+  color: var(--text);
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1rem 1rem 4rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav h1 { font-size: 1.25rem; font-weight: 900; color: var(--primary); }
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.fade-in { animation: fadeIn 0.25s ease; }
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+}
+.shake { animation: shake 0.4s ease; }
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  40% { transform: scale(1.05); }
+  70% { transform: scale(0.98); }
+}
+.pulse { animation: pulse 0.45s ease; }
