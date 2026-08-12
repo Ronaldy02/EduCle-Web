@@ -221,3 +221,4 @@ Le certificat HTTPS est généré automatiquement.
 | `DatabaseHelper`              | `models/` + `database.py`             |
 | `ResultatScreen`              | `ResultatView.vue`                    |
 | `quiz_screen.dart`            | `QuizView.vue`                        |
+"# EduCle-Web" 
