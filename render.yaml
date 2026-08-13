@@ -22,7 +22,7 @@ services:
           property: connectionString
       # Mettre l'URL Netlify du frontend (ex: https://educle.netlify.app)
       - key: CORS_ORIGINS
-        value: https://educle.netlify.app
+        value: https://educle.netlify.app  # URL Netlify de production
     healthCheckPath: /health
 
 # ── Base de données PostgreSQL ───────────────────────────────────────────────
