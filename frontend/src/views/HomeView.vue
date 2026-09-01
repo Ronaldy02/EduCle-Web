@@ -46,12 +46,10 @@
       <div class="modal card">
         <h3>{{ matiereSelectionnee.nom }}</h3>
         <div class="chapitres-list">
-          <button
-            v-for="chap in chapitres"
-            :key="chap.id"
-            class="chapitre-btn"
-            @click="choisirChapitre(chap)"
-          >{{ chap.titre }}</button>
+          <div v-for="chap in chapitres" :key="chap.id" class="chapitre-row">
+            <button class="chapitre-btn" @click="choisirChapitre(chap)">{{ chap.titre }}</button>
+            <button class="cartes-btn" @click="voirCartes(chap)" title="Cartes mentales">📚</button>
+          </div>
           <button class="chapitre-btn chapitre-tout" @click="choisirChapitre({ id: -1, titre: 'Tous les chapitres' })">
             ✨ Tous les chapitres
           </button>
@@ -115,6 +113,16 @@ async function choisirMatiere(mat) {
   chapitres.value = detail.chapitres
 }
 
+function voirCartes(chap) {
+  const mat = matiereSelectionnee.value
+  matiereSelectionnee.value = null
+  router.push({
+    name: 'cartes',
+    params: { matiereId: mat.id, chapitreId: chap.id },
+    query: { matiere: mat.nom },
+  })
+}
+
 async function choisirChapitre(chap) {
   quiz.configurer({
     chapitreId: chap.id === -1 ? matiereSelectionnee.value.id * -1 : chap.id,
@@ -165,13 +173,21 @@ async function choisirChapitre(chap) {
 .modal { width: min(480px, 94vw); max-height: 85dvh; overflow-y: auto; }
 .modal h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 1rem; }
 .chapitres-list { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+.chapitre-row { display: flex; gap: 0.4rem; }
 .chapitre-btn {
-  background: var(--bg); border: 1px solid var(--border);
+  flex: 1; background: var(--bg); border: 1px solid var(--border);
   padding: 0.6rem 1rem; text-align: left; border-radius: 8px;
   font-weight: 600; font-size: 0.9rem;
 }
 .chapitre-btn:hover { background: var(--primary-light); }
 .chapitre-tout { color: var(--primary); border-color: var(--primary); }
+.cartes-btn {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 0.6rem 0.75rem;
+  font-size: 1rem; cursor: pointer; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.cartes-btn:hover { background: var(--primary-light); }
 .modal-modes { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem; }
 .modal-modes label { font-size: 0.85rem; font-weight: 600; }
 .modal-modes select { padding: 0.4rem 0.6rem; border-radius: 8px; border: 1px solid var(--border); font-family: inherit; }
