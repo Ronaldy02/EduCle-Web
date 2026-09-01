@@ -234,55 +234,86 @@ class Parser:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# 3. INSERTION POSTGRESQL
+# 3. INSERTION POSTGRESQL  (bulk, keepalive, un commit par matière)
 # ──────────────────────────────────────────────────────────────────────────────
 
 def inserer(matieres: list[dict]) -> None:
-    from config import settings  # noqa
-    from database import Base, engine, SessionLocal
-    from models import Matiere, Chapitre, CarteMentale, Question
+    import os
+    from sqlalchemy import create_engine, text
+    from sqlalchemy.orm import sessionmaker
 
+    from config import settings
+    from models import matiere as mat_mod, question as q_mod
+    from models.matiere import Matiere, Chapitre, CarteMentale
+    from models.question import Question
+
+    # Connexion avec keepalive TCP pour éviter les coupures Render (plan gratuit)
+    db_url = settings.database_url
+    engine = create_engine(
+        db_url,
+        pool_pre_ping=True,
+        connect_args={
+            'keepalives': 1,
+            'keepalives_idle': 20,
+            'keepalives_interval': 10,
+            'keepalives_count': 5,
+            'connect_timeout': 30,
+        },
+    )
+
+    # Créer les tables si elles n'existent pas encore
+    from database import Base
     Base.metadata.create_all(bind=engine)
 
-    with SessionLocal() as db:
-        total_q = 0
-        for mat_data in matieres:
-            # Éviter les doublons de matière (par nom + niveau)
-            mat = db.query(Matiere).filter_by(nom=mat_data['nom'], niveau=mat_data['niveau']).first()
-            if not mat:
-                mat = Matiere(nom=mat_data['nom'], niveau=mat_data['niveau'])
-                db.add(mat)
-                db.flush()
+    Session = sessionmaker(bind=engine)
+
+    # Vider les tables pour repartir d'une base propre
+    print("🗑  Nettoyage des tables existantes …")
+    with Session() as db:
+        db.execute(text(
+            "TRUNCATE questions, cartes_mentales, chapitres, matieres RESTART IDENTITY CASCADE"
+        ))
+        db.commit()
+
+    total_q = 0
+
+    for mat_data in matieres:
+        with Session() as db:
+            mat = Matiere(nom=mat_data['nom'], niveau=mat_data['niveau'])
+            db.add(mat)
+            db.flush()
 
             for chap_data in mat_data['chapitres']:
-                chap = db.query(Chapitre).filter_by(matiere_id=mat.id, titre=chap_data['titre']).first()
-                if not chap:
-                    chap = Chapitre(matiere_id=mat.id, titre=chap_data['titre'])
-                    db.add(chap)
-                    db.flush()
+                chap = Chapitre(matiere_id=mat.id, titre=chap_data['titre'])
+                db.add(chap)
+                db.flush()
 
-                for contenu in chap_data.get('cartes', []):
-                    exists = db.query(CarteMentale).filter_by(chapitre_id=chap.id, contenu=contenu).first()
-                    if not exists:
-                        db.add(CarteMentale(chapitre_id=chap.id, contenu=contenu))
+                cartes = [
+                    CarteMentale(chapitre_id=chap.id, contenu=c)
+                    for c in chap_data.get('cartes', [])
+                ]
+                if cartes:
+                    db.add_all(cartes)
 
-                for q_data in chap_data.get('questions', []):
-                    exists = db.query(Question).filter_by(
-                        chapitre_id=chap.id, enonce=q_data['enonce']
-                    ).first()
-                    if not exists:
-                        db.add(Question(
-                            chapitre_id=chap.id,
-                            enonce=q_data['enonce'],
-                            choix=q_data['choix'],
-                            bonne_reponse=q_data['bonne_reponse'],
-                            explication=q_data['explication'],
-                            niveau_complexite=q_data['niveau_complexite'],
-                        ))
-                        total_q += 1
+                questions = [
+                    Question(
+                        chapitre_id=chap.id,
+                        enonce=q['enonce'],
+                        choix=q['choix'],
+                        bonne_reponse=q['bonne_reponse'],
+                        explication=q['explication'],
+                        niveau_complexite=q['niveau_complexite'],
+                    )
+                    for q in chap_data.get('questions', [])
+                ]
+                if questions:
+                    db.add_all(questions)
+                    total_q += len(questions)
 
-        db.commit()
-        print(f"\n✅ {total_q} question(s) insérée(s) dans PostgreSQL.")
+            db.commit()
+            print(f"  ✓ {mat_data['nom']} ({mat_data['niveau']}) insérée.")
+
+    print(f"\n✅ {total_q} question(s) insérée(s) dans PostgreSQL.")
 
 
 # ──────────────────────────────────────────────────────────────────────────────

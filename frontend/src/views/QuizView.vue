@@ -18,8 +18,17 @@
       </div>
       <div class="progress-label">{{ indexCourant + 1 }} / {{ total }}  ·  {{ modeNom }}</div>
 
-      <!-- Chronomètre (Rush / Révision) -->
-      <div v-if="tempsMax" class="timer" :class="{ critique: tempsRestant <= seuilCritique }">
+      <!-- Chronomètre global (Bombardement) -->
+      <div v-if="modeNom === 'Bombardement'" class="timer-global" :class="{ critique: tempsGlobal <= 10 }">
+        <span class="timer-global-val">{{ tempsGlobal }}</span>
+        <span class="timer-global-label">s restantes</span>
+        <div class="timer-global-bar-wrap">
+          <div class="timer-global-bar" :style="{ width: (tempsGlobal / 60 * 100) + '%' }"></div>
+        </div>
+      </div>
+
+      <!-- Chronomètre par question (Rush / Révision) -->
+      <div v-else-if="tempsMax" class="timer" :class="{ critique: tempsRestant <= seuilCritique }">
         ⏱ {{ tempsRestant }}s
       </div>
 
@@ -72,9 +81,13 @@ const showExplication = ref(false)
 const animShake = ref(false)
 const animPulse = ref(false)
 
-// Chrono
+// Chrono par question (Rush / Révision)
 const tempsRestant = ref(0)
 let timerInterval = null
+
+// Chrono global (Bombardement)
+const tempsGlobal = ref(60)
+let timerGlobal = null
 
 const modeNom = computed(() => quizStore.modeNom)
 const total   = computed(() => quizStore.questions.length)
@@ -96,13 +109,17 @@ onMounted(async () => {
   }
   await quizStore.demarrer()
   chargement.value = false
-  demarrerChrono()
-  // Raccourcis clavier 1/2/3/4
+  if (modeNom.value === 'Bombardement') {
+    demarrerChronoGlobal()
+  } else {
+    demarrerChrono()
+  }
   window.addEventListener('keydown', onKey)
 })
 
 onBeforeUnmount(() => {
   clearInterval(timerInterval)
+  clearInterval(timerGlobal)
   window.removeEventListener('keydown', onKey)
 })
 
@@ -110,6 +127,17 @@ function onKey(e) {
   if (reponduIndex.value !== null) return
   const map = { '1': 0, '2': 1, '3': 2, '4': 3 }
   if (map[e.key] !== undefined) repondre(map[e.key])
+}
+
+function demarrerChronoGlobal() {
+  tempsGlobal.value = 60
+  timerGlobal = setInterval(() => {
+    tempsGlobal.value--
+    if (tempsGlobal.value <= 0) {
+      clearInterval(timerGlobal)
+      finirQuiz()
+    }
+  }, 1000)
 }
 
 function demarrerChrono() {
@@ -141,6 +169,18 @@ function repondre(choixIndex) {
 
   quizStore.enregistrerReponse(q.id, reponseTexte, tempsRestant.value)
 
+  if (modeNom.value === 'Bombardement') {
+    if (correcte) {
+      animPulse.value = true
+      setTimeout(() => { animPulse.value = false }, 300)
+    } else {
+      animShake.value = true
+      setTimeout(() => { animShake.value = false }, 300)
+    }
+    setTimeout(suivant, 350)
+    return
+  }
+
   if (correcte) {
     animPulse.value = true
     setTimeout(() => { animPulse.value = false }, 500)
@@ -169,11 +209,12 @@ function suivant() {
     finirQuiz()
   } else {
     indexCourant.value++
-    demarrerChrono()
+    if (modeNom.value !== 'Bombardement') demarrerChrono()
   }
 }
 
 async function finirQuiz() {
+  clearInterval(timerGlobal)
   envoi.value = true
   await quizStore.terminer()
   router.replace('/resultat')
@@ -200,6 +241,29 @@ function etatChoix(i) {
   font-weight: 800; font-size: 1rem; margin-bottom: 1rem; transition: color 0.3s, border-color 0.3s;
 }
 .timer.critique { color: #DC2626; border-color: #DC2626; }
+
+.timer-global {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 0.75rem 1rem;
+  margin-bottom: 1rem; transition: border-color 0.3s;
+}
+.timer-global.critique { border-color: #DC2626; }
+.timer-global.critique .timer-global-val { color: #DC2626; }
+.timer-global.critique .timer-global-bar { background: #DC2626; }
+.timer-global-val {
+  font-size: 2rem; font-weight: 900; font-variant-numeric: tabular-nums;
+  line-height: 1; transition: color 0.3s;
+}
+.timer-global-label {
+  font-size: 0.8rem; color: var(--text-muted); font-weight: 600; margin-left: 0.4rem;
+}
+.timer-global-bar-wrap {
+  height: 5px; background: var(--border); border-radius: 99px; overflow: hidden; margin-top: 0.5rem;
+}
+.timer-global-bar {
+  height: 100%; background: var(--primary); border-radius: 99px;
+  transition: width 1s linear, background 0.3s;
+}
 
 .enonce { font-size: 1.05rem; font-weight: 600; line-height: 1.5; margin-bottom: 1rem; }
 
