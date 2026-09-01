@@ -1,80 +1,114 @@
 <template>
-  <div class="page fade-in">
+  <div class="home-wrap fade-in">
+    <div class="home-inner">
 
-    <!-- Niveau / XP -->
-    <div v-if="niveau" class="niveau-card card">
-      <div class="niveau-top">
-        <span class="rang-badge" :style="{ background: niveau.rang_couleur + '22', color: niveau.rang_couleur }">
-          {{ niveau.rang_emoji }} {{ niveau.rang_nom }}
-        </span>
-        <span class="niveau-num">Niveau {{ niveau.niveau }}</span>
+      <!-- ─── Hero bento grid ─────────────────────────────────── -->
+      <div class="bento-grid">
+
+        <!-- Carte principale bleue -->
+        <div class="hero-card">
+          <div class="hero-deco-1"></div>
+          <div class="hero-deco-2"></div>
+          <div class="hero-content">
+            <h2 class="hero-titre">Prêt à réviser ?</h2>
+            <p class="hero-sous">Continue ton apprentissage et débloque de nouvelles récompenses aujourd'hui.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="hero-btn hero-btn-primary" @click="ouvrirJouerTout">
+              <span class="material-symbols-outlined filled">play_arrow</span>
+              Jouer — Tout
+            </button>
+            <button class="hero-btn hero-btn-ghost" @click="jouerAleatoire">
+              <span class="material-symbols-outlined">shuffle</span>
+              Jouer — Aléatoire
+            </button>
+          </div>
+        </div>
+
+        <!-- Carte Reprendre -->
+        <div class="reprendre-card">
+          <div class="reprendre-top">
+            <div class="reprendre-label">
+              <span class="material-symbols-outlined">history</span>
+              Reprendre
+            </div>
+            <template v-if="dernierJeu">
+              <div class="reprendre-matiere">
+                <div class="reprendre-icon" :style="{ background: iconBgPour(dernierJeu.matNom), color: iconColorPour(dernierJeu.matNom) }">
+                  <span class="material-symbols-outlined filled">{{ iconPour(dernierJeu.matNom) }}</span>
+                </div>
+                <div>
+                  <p class="reprendre-mat-nom">{{ dernierJeu.matNom }}</p>
+                  <p class="reprendre-chap">{{ dernierJeu.chapTitre }}</p>
+                </div>
+              </div>
+            </template>
+            <template v-else>
+              <p class="reprendre-vide">Lance un premier quiz pour le retrouver ici.</p>
+            </template>
+          </div>
+          <button v-if="dernierJeu" class="reprendre-btn" @click="rejouer">
+            <span class="material-symbols-outlined">replay</span>
+            Rejouer
+          </button>
+        </div>
       </div>
-      <div class="xp-bar-wrap">
-        <div class="xp-bar" :style="{ width: (niveau.progression * 100) + '%', background: niveau.rang_couleur }"></div>
+
+      <!-- ─── Section thématiques ────────────────────────────── -->
+      <div class="section-header">
+        <div>
+          <h2 class="section-titre">Thématiques</h2>
+          <p class="section-sous">Choisis ta matière et ton chapitre pour démarrer un quiz adapté.</p>
+        </div>
+        <div class="search-wrap">
+          <span class="material-symbols-outlined search-icon">search</span>
+          <input v-model="recherche" type="text" placeholder="Rechercher une matière…" class="search-input" />
+        </div>
       </div>
-      <p class="xp-label">{{ niveau.xp_dans_niveau }} / {{ niveau.xp_pour_suivant }} XP · 🪙 {{ niveau.pieces_total }}</p>
-    </div>
 
-    <!-- Hero banner -->
-    <div class="hero-banner">
-      <span class="hero-badge">SANS COMPTE REQUIS</span>
-      <h2 class="hero-titre">Prêt à réviser ?</h2>
-      <p class="hero-sous">Choisis ta matière et ton chapitre pour démarrer un quiz adapté.</p>
-    </div>
-
-    <!-- Titre + barre de recherche -->
-    <div class="section-header">
-      <h2 class="section-title">Thématiques</h2>
-    </div>
-    <div class="search-wrap">
-      <span class="search-icon">🔍</span>
-      <input
-        v-model="recherche"
-        class="search-input"
-        type="text"
-        placeholder="Rechercher une matière…"
-      />
-    </div>
-
-    <!-- Filtre par niveau scolaire -->
-    <div class="filtres">
-      <button
-        v-for="niv in niveaux"
-        :key="niv"
-        class="filtre-btn"
-        :class="{ active: niveauActif === niv }"
-        @click="filtrer(niv)"
-      >{{ niv }}</button>
-    </div>
-
-    <!-- Grille des matières -->
-    <div v-if="chargement" class="loading">Chargement…</div>
-    <div v-else-if="matieresFiltrées.length === 0 && recherche" class="vide">
-      Aucune matière ne correspond à « {{ recherche }} ».
-    </div>
-    <div v-else class="matieres-grid">
-      <div
-        v-for="mat in matieresFiltrées"
-        :key="mat.id"
-        class="matiere-card"
-        @click="choisirMatiere(mat)"
-      >
-        <span class="matiere-emoji">{{ emojiPour(mat.nom) }}</span>
-        <span class="matiere-nom" :style="{ color: couleurPour(mat.nom) }">{{ mat.nom }}</span>
+      <!-- Filtres niveau -->
+      <div class="filtres">
+        <button v-for="niv in niveaux" :key="niv"
+          class="filtre-btn" :class="{ active: niveauActif === niv }"
+          @click="filtrer(niv)">{{ niv }}</button>
       </div>
-    </div>
 
-    <!-- Modal choix chapitre -->
+      <!-- Grille matières -->
+      <div v-if="chargement" class="loading">Chargement…</div>
+      <div v-else-if="matieresFiltrées.length === 0 && recherche" class="vide">
+        Aucune matière ne correspond à « {{ recherche }} ».
+      </div>
+      <div v-else class="matieres-grid">
+        <div v-for="mat in matieresFiltrées" :key="mat.id"
+          class="mat-card" @click="choisirMatiere(mat)">
+          <div class="mat-icon-wrap" :style="{ background: iconBgPour(mat.nom) }">
+            <span class="material-symbols-outlined filled mat-icon" :style="{ color: iconColorPour(mat.nom) }">
+              {{ iconPour(mat.nom) }}
+            </span>
+          </div>
+          <p class="mat-nom" :style="{ color: iconColorPour(mat.nom) }">{{ mat.nom }}</p>
+        </div>
+      </div>
+
+    </div><!-- /home-inner -->
+
+    <!-- ─── Modal chapitre ─────────────────────────────────── -->
     <div v-if="matiereSelectionnee" class="modal-overlay" @click.self="matiereSelectionnee = null">
       <div class="modal card">
         <div class="modal-header">
-          <span class="modal-emoji">{{ emojiPour(matiereSelectionnee.nom) }}</span>
-          <h3>{{ matiereSelectionnee.nom }}</h3>
+          <div class="mat-icon-wrap-sm" :style="{ background: iconBgPour(matiereSelectionnee.nom) }">
+            <span class="material-symbols-outlined filled" :style="{ color: iconColorPour(matiereSelectionnee.nom) }">
+              {{ iconPour(matiereSelectionnee.nom) }}
+            </span>
+          </div>
+          <h3 class="modal-titre">{{ matiereSelectionnee.nom }}</h3>
         </div>
         <div class="chapitres-list">
           <div v-for="chap in chapitres" :key="chap.id" class="chapitre-row">
             <button class="chapitre-btn" @click="choisirChapitre(chap)">{{ chap.titre }}</button>
-            <button class="cartes-btn" @click="voirCartes(chap)" title="Cartes mentales">📚</button>
+            <button class="cartes-btn" @click="voirCartes(chap)" title="Cartes mentales">
+              <span class="material-symbols-outlined">style</span>
+            </button>
           </div>
           <button class="chapitre-btn chapitre-tout" @click="choisirChapitre({ id: -1, titre: 'Tous les chapitres' })">
             ✨ Tous les chapitres
@@ -86,19 +120,41 @@
             <option v-for="m in modes" :key="m">{{ m }}</option>
           </select>
           <label>Questions</label>
-          <select v-model.number="nbQuestions">
+          <select v-model.number="nbQuestions" :disabled="modeNom === 'Bombardement'">
             <option v-for="n in [5, 10, 15, 20]" :key="n">{{ n }}</option>
           </select>
         </div>
       </div>
     </div>
+
+    <!-- ─── Modal Jouer Tout ──────────────────────────────── -->
+    <div v-if="showJouerTout" class="modal-overlay" @click.self="showJouerTout = false">
+      <div class="modal card">
+        <h3 class="modal-titre">Jouer — Toutes matières</h3>
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem">Un quiz mixte à travers toutes les matières.</p>
+        <div class="modal-modes">
+          <label>Mode</label>
+          <select v-model="modeNom">
+            <option v-for="m in modes" :key="m">{{ m }}</option>
+          </select>
+          <label>Questions</label>
+          <select v-model.number="nbQuestions" :disabled="modeNom === 'Bombardement'">
+            <option v-for="n in [5, 10, 15, 20]" :key="n">{{ n }}</option>
+          </select>
+        </div>
+        <button class="btn-primary" style="margin-top:1rem;width:100%" @click="lancerJouerTout">
+          <span class="material-symbols-outlined filled">play_arrow</span> Lancer
+        </button>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { getMatieres, getNiveaux, getMatiere, getNiveau } from '../api/client.js'
+import { getMatieres, getNiveaux, getMatiere } from '../api/client.js'
 import { useQuizStore } from '../stores/quiz.js'
 
 const router = useRouter()
@@ -108,8 +164,8 @@ const niveaux = ref([])
 const niveauActif = ref(null)
 const matieres = ref([])
 const chargement = ref(true)
-const niveau = ref(null)
 const recherche = ref('')
+const showJouerTout = ref(false)
 
 const matiereSelectionnee = ref(null)
 const chapitres = ref([])
@@ -117,71 +173,65 @@ const modeNom = ref('Révision')
 const nbQuestions = ref(10)
 const modes = ['Révision', 'Rush', 'Bombardement']
 
-const EMOJIS = {
-  'mathématiques': '🧮', 'mathematiques': '🧮',
-  'communication française': '📖', 'communication francaise': '📖',
-  'français': '📖', 'francais': '📖',
-  'communication créole': '🗣️', 'communication creole': '🗣️',
-  'biologie': '🧬',
-  'géologie': '🪨', 'geologie': '🪨',
-  'sciences sociales': '🗺️',
-  "histoire d'haïti": '📜', "histoire d'haiti": '📜',
-  'histoire universelle': '🌍',
-  'littérature haïtienne': '🪶', 'litterature haitienne': '🪶',
-  'littérature universelle': '📚', 'litterature universelle': '📚',
-  'chimie': '⚗️',
-  'physique': '⚛️',
-  'connaissances générales': '💡', 'connaissances generales': '💡',
-  'culture générale': '💡', 'culture generale': '💡',
-  'eps': '🏃', 'éducation physique et sportive': '🏃',
-  'eea': '🎨', 'éducation esthétique et artistique': '🎨',
-  'etap': '🛠️', 'éducation à la technologie et aux activités productives': '🛠️',
-  'ec': '⚖️', 'éducation à la citoyenneté': '⚖️',
-  'svt': '🔬',
-  'astronomie': '🔭',
-  'espagnol': '🌎',
-  'anglais': '🇬🇧',
-  'informatique': '💻',
-  'économie': '📊',
-  'philosophie': '🧐',
+// ── Dernier jeu (localStorage) ──────────────────────────────────
+const LS_KEY = 'educle_dernier_jeu'
+const dernierJeu = ref(JSON.parse(localStorage.getItem(LS_KEY) || 'null'))
+
+function sauvegarderDernierJeu(matNom, chapTitre, matId, chapId) {
+  const data = { matNom, chapTitre, matId, chapId, modeNom: modeNom.value, nbQuestions: nbQuestions.value }
+  localStorage.setItem(LS_KEY, JSON.stringify(data))
+  dernierJeu.value = data
 }
 
-const COULEURS = {
-  'mathématiques': '#2F6FED', 'mathematiques': '#2F6FED',
-  'communication française': '#1E3A8A', 'communication francaise': '#1E3A8A',
-  'français': '#1E3A8A', 'francais': '#1E3A8A',
-  'communication créole': '#5E35B1', 'communication creole': '#5E35B1',
-  'biologie': '#2E7D32',
-  'géologie': '#795548', 'geologie': '#795548',
-  'sciences sociales': '#1565C0',
-  "histoire d'haïti": '#7B241C', "histoire d'haiti": '#7B241C',
-  'histoire universelle': '#5E35B1',
-  'littérature haïtienne': '#8E24AA', 'litterature haitienne': '#8E24AA',
-  'littérature universelle': '#6A1B9A', 'litterature universelle': '#6A1B9A',
-  'chimie': '#6A1B9A',
-  'physique': '#5E35B1',
-  'connaissances générales': '#B45309', 'connaissances generales': '#B45309',
-  'culture générale': '#B45309', 'culture generale': '#B45309',
-  'eps': '#EF6C00', 'éducation physique et sportive': '#EF6C00',
-  'eea': '#2E7D32', 'éducation esthétique et artistique': '#2E7D32',
-  'etap': '#455A64', 'éducation à la technologie et aux activités productives': '#455A64',
-  'ec': '#00695C', 'éducation à la citoyenneté': '#00695C',
-  'svt': '#00695C',
-  'astronomie': '#283593',
-  'espagnol': '#D32F2F',
-  'anglais': '#37474F',
-  'informatique': '#1565C0',
-  'économie': '#2E7D32',
-  'philosophie': '#4A148C',
+function rejouer() {
+  if (!dernierJeu.value) return
+  const d = dernierJeu.value
+  quiz.configurer({ chapitreId: d.chapId, matiereId: d.matId, modeNom: d.modeNom, nbQuestions: d.nbQuestions })
+  router.push('/quiz')
 }
 
-function emojiPour(nom) {
-  return EMOJIS[nom.toLowerCase().trim()] ?? '📚'
-}
-function couleurPour(nom) {
-  return COULEURS[nom.toLowerCase().trim()] ?? '#2F6FED'
+// ── Icon / couleur par matière ───────────────────────────────────
+const MAT_MAP = {
+  'mathématiques':                   { icon: 'calculate',     bg: '#DBEAFE', color: '#1D4ED8' },
+  'communication française':         { icon: 'book_2',        bg: '#EDE9FE', color: '#7C3AED' },
+  'communication créole':            { icon: 'record_voice_over', bg: '#EDE9FE', color: '#6D28D9' },
+  'éducation à la citoyenneté':      { icon: 'balance',       bg: '#CCFBF1', color: '#0D9488' },
+  'éducation esthétique et artistique': { icon: 'palette',    bg: '#FFEDD5', color: '#C2410C' },
+  'éducation physique et sportive':  { icon: 'directions_run',bg: '#FEF3C7', color: '#B45309' },
+  'éducation à la technologie et aux activités productives': { icon: 'build', bg: '#D1FAE5', color: '#059669' },
+  'biologie':                        { icon: 'biotech',       bg: '#CCFBF1', color: '#065F46' },
+  'géologie':                        { icon: 'terrain',       bg: '#FEF3C7', color: '#92400E' },
+  'sciences sociales':               { icon: 'groups',        bg: '#FEF3C7', color: '#D97706' },
+  "histoire d'haïti":                { icon: 'account_balance', bg: '#FEE2E2', color: '#B91C1C' },
+  'histoire universelle':            { icon: 'public',        bg: '#DCFCE7', color: '#15803D' },
+  'économie':                        { icon: 'bar_chart',     bg: '#DCFCE7', color: '#16A34A' },
+  'philosophie':                     { icon: 'psychology',    bg: '#FEF3C7', color: '#B45309' },
+  'informatique':                    { icon: 'computer',      bg: '#DBEAFE', color: '#2563EB' },
+  'littérature haïtienne':           { icon: 'auto_stories',  bg: '#FCE7F3', color: '#9D174D' },
+  'littérature universelle':         { icon: 'auto_stories',  bg: '#EDE9FE', color: '#6B21A8' },
+  'chimie':                          { icon: 'science',       bg: '#EDE9FE', color: '#7C3AED' },
+  'physique':                        { icon: 'bolt',          bg: '#DBEAFE', color: '#1D4ED8' },
+  'connaissances générales':         { icon: 'lightbulb',     bg: '#FEF3C7', color: '#D97706' },
+  'culture générale':                { icon: 'lightbulb',     bg: '#FEF3C7', color: '#D97706' },
+  'svt':                             { icon: 'biotech',       bg: '#CCFBF1', color: '#047857' },
+  'astronomie':                      { icon: 'stars',         bg: '#DBEAFE', color: '#1E40AF' },
+  'espagnol':                        { icon: 'translate',     bg: '#FEE2E2', color: '#DC2626' },
+  'anglais':                         { icon: 'translate',     bg: '#E0E7FF', color: '#4338CA' },
+  'français':                        { icon: 'book_2',        bg: '#EDE9FE', color: '#7C3AED' },
 }
 
+function _lookup(nom) {
+  const key = nom.toLowerCase().trim()
+  return MAT_MAP[key]
+    ?? MAT_MAP[key.replace(/[éèê]/g,'e').replace(/[àâ]/g,'a').replace(/[ûù]/g,'u').replace(/î/g,'i').replace(/ô/g,'o')]
+    ?? { icon: 'menu_book', bg: '#DBEAFE', color: '#2563EB' }
+}
+
+function iconPour(nom) { return _lookup(nom).icon }
+function iconBgPour(nom) { return _lookup(nom).bg }
+function iconColorPour(nom) { return _lookup(nom).color }
+
+// ── Données ──────────────────────────────────────────────────────
 const matieresFiltrées = computed(() =>
   recherche.value.trim()
     ? matieres.value.filter(m => m.nom.toLowerCase().includes(recherche.value.toLowerCase()))
@@ -189,8 +239,7 @@ const matieresFiltrées = computed(() =>
 )
 
 onMounted(async () => {
-  const [niv, nivList] = await Promise.all([getNiveau(), getNiveaux()])
-  niveau.value = niv
+  const nivList = await getNiveaux()
   niveaux.value = nivList
   niveauActif.value = nivList[0] ?? null
   await filtrer(niveauActif.value)
@@ -213,153 +262,176 @@ async function choisirMatiere(mat) {
 function voirCartes(chap) {
   const mat = matiereSelectionnee.value
   matiereSelectionnee.value = null
-  router.push({
-    name: 'cartes',
-    params: { matiereId: mat.id, chapitreId: chap.id },
-    query: { matiere: mat.nom },
-  })
+  router.push({ name: 'cartes', params: { matiereId: mat.id, chapitreId: chap.id }, query: { matiere: mat.nom } })
 }
 
-async function choisirChapitre(chap) {
-  quiz.configurer({
-    chapitreId: chap.id === -1 ? matiereSelectionnee.value.id * -1 : chap.id,
-    matiereId: matiereSelectionnee.value.id,
-    modeNom: modeNom.value,
-    nbQuestions: nbQuestions.value,
-  })
+function choisirChapitre(chap) {
+  const mat = matiereSelectionnee.value
+  const chapId = chap.id === -1 ? mat.id * -1 : chap.id
+  sauvegarderDernierJeu(mat.nom, chap.titre, mat.id, chapId)
+  quiz.configurer({ chapitreId: chapId, matiereId: mat.id, modeNom: modeNom.value, nbQuestions: nbQuestions.value })
   matiereSelectionnee.value = null
+  router.push('/quiz')
+}
+
+// Jouer tout
+function ouvrirJouerTout() { showJouerTout.value = true }
+
+function lancerJouerTout() {
+  if (!matieres.value.length) return
+  const mat = matieres.value[Math.floor(Math.random() * matieres.value.length)]
+  const chapId = mat.id * -1
+  quiz.configurer({ chapitreId: chapId, matiereId: mat.id, modeNom: modeNom.value, nbQuestions: nbQuestions.value })
+  showJouerTout.value = false
+  router.push('/quiz')
+}
+
+// Jouer aléatoire
+async function jouerAleatoire() {
+  if (!matieres.value.length) return
+  const mat = matieres.value[Math.floor(Math.random() * matieres.value.length)]
+  const detail = await getMatiere(mat.id)
+  if (!detail.chapitres.length) return
+  const chap = detail.chapitres[Math.floor(Math.random() * detail.chapitres.length)]
+  sauvegarderDernierJeu(mat.nom, chap.titre, mat.id, chap.id)
+  quiz.configurer({ chapitreId: chap.id, matiereId: mat.id, modeNom: modeNom.value, nbQuestions: nbQuestions.value })
   router.push('/quiz')
 }
 </script>
 
 <style scoped>
-/* ── Niveau XP ──────────────────────────────────────────────────── */
-.niveau-card { margin-bottom: 1rem; padding: 1rem 1.25rem; }
-.niveau-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem; }
-.rang-badge { font-weight: 700; padding: 0.2rem 0.65rem; border-radius: 99px; font-size: 0.82rem; }
-.niveau-num { font-weight: 700; font-size: 0.82rem; color: var(--text-muted); }
-.xp-bar-wrap { height: 5px; background: var(--border); border-radius: 99px; overflow: hidden; }
-.xp-bar { height: 100%; border-radius: 99px; transition: width 0.4s ease; }
-.xp-label { margin-top: 0.4rem; font-size: 0.75rem; color: var(--text-muted); }
+.home-wrap { min-height: calc(100dvh - 64px); background: var(--bg); }
+.home-inner { max-width: 1024px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
 
-/* ── Hero banner ────────────────────────────────────────────────── */
-.hero-banner {
-  background: linear-gradient(135deg, #101B33, #1F3A66);
-  border-radius: 18px;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.25rem;
-}
-.hero-badge {
-  display: inline-block;
-  background: rgba(255,255,255,0.12);
-  color: #93C5FD;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 0.2rem 0.6rem;
-  border-radius: 99px;
-  margin-bottom: 0.6rem;
-}
-.hero-titre {
-  color: #fff;
-  font-size: 1.35rem;
-  font-weight: 800;
-  margin-bottom: 0.35rem;
-  line-height: 1.2;
-}
-.hero-sous {
-  color: rgba(255,255,255,0.65);
-  font-size: 0.82rem;
-  line-height: 1.45;
-}
+/* ── Bento hero ────────────────────────────────────────────────── */
+.bento-grid { display: grid; grid-template-columns: 1fr; gap: 0.85rem; margin-bottom: 2rem; }
+@media (min-width: 640px) { .bento-grid { grid-template-columns: 2fr 1fr; } }
 
-/* ── Barre recherche ────────────────────────────────────────────── */
-.section-header { margin-bottom: 0.75rem; }
-.section-title { font-size: 1.05rem; font-weight: 800; }
+.hero-card {
+  background: linear-gradient(135deg, #0058BE, #1A7AEF);
+  border-radius: 18px; padding: 1.5rem;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 220px;
+}
+.hero-deco-1 { position: absolute; bottom: -30px; right: -30px; width: 200px; height: 200px; background: rgba(255,255,255,0.08); border-radius: 50%; pointer-events: none; }
+.hero-deco-2 { position: absolute; top: 20px; left: 20px; width: 80px; height: 80px; background: rgba(255,255,255,0.05); border-radius: 50%; pointer-events: none; }
+
+.hero-content { position: relative; z-index: 1; margin-bottom: 1.25rem; }
+.hero-titre { font-size: 1.75rem; font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 0.5rem; }
+.hero-sous { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5; max-width: 400px; }
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; position: relative; z-index: 1; }
+.hero-btn {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.6rem 1.1rem; border-radius: 10px;
+  font-weight: 700; font-size: 0.875rem; cursor: pointer;
+  transition: all 0.15s; border: none;
+}
+.hero-btn-primary { background: #fff; color: var(--primary); }
+.hero-btn-primary:hover { background: #f0f3ff; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.hero-btn-ghost { background: rgba(255,255,255,0.18); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+.hero-btn-ghost:hover { background: rgba(255,255,255,0.28); }
+
+/* Reprendre card */
+.reprendre-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 18px; padding: 1.25rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 160px;
+}
+.reprendre-top { flex: 1; }
+.reprendre-label {
+  display: flex; align-items: center; gap: 0.35rem;
+  font-size: 0.72rem; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.85rem;
+}
+.reprendre-matiere { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+.reprendre-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.reprendre-mat-nom { font-weight: 700; font-size: 0.95rem; line-height: 1.2; }
+.reprendre-chap { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.1rem; }
+.reprendre-vide { font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
+.reprendre-btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+  width: 100%; padding: 0.55rem;
+  background: var(--surface-low); color: var(--primary);
+  border: 1px solid var(--border); border-radius: 8px;
+  font-weight: 700; font-size: 0.875rem; cursor: pointer;
+  transition: background 0.12s;
+}
+.reprendre-btn:hover { background: var(--primary-light-solid); }
+
+/* ── Section header ────────────────────────────────────────────── */
+.section-header { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 0.85rem; }
+@media (min-width: 640px) { .section-header { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
+.section-titre { font-size: 1.15rem; font-weight: 800; }
+.section-sous { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem; }
 
 .search-wrap {
-  display: flex; align-items: center; gap: 0.5rem;
+  display: flex; align-items: center; gap: 0.4rem;
   background: var(--surface); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 0.5rem 0.9rem;
-  margin-bottom: 0.75rem;
+  min-width: 220px;
 }
-.search-icon { font-size: 0.9rem; opacity: 0.5; }
-.search-input {
-  border: none; outline: none; background: transparent;
-  font-family: inherit; font-size: 0.88rem; width: 100%; color: var(--text);
-}
+.search-icon { font-size: 18px; color: var(--text-muted); }
+.search-input { border: none; outline: none; background: transparent; font-family: inherit; font-size: 0.875rem; width: 100%; color: var(--text); }
 
-/* ── Filtres niveau ─────────────────────────────────────────────── */
-.filtres { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-.filtre-btn {
-  padding: 0.35rem 0.85rem; border-radius: 99px;
-  background: var(--border); font-weight: 600; font-size: 0.82rem;
-  color: var(--text-muted); border: none; cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-}
+/* ── Filtres ───────────────────────────────────────────────────── */
+.filtres { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.filtre-btn { padding: 0.3rem 0.8rem; border-radius: 99px; background: var(--border); font-weight: 600; font-size: 0.8rem; color: var(--text-muted); border: none; cursor: pointer; transition: background 0.15s, color 0.15s; }
 .filtre-btn.active { background: var(--primary); color: white; }
 
-/* ── Grille matières ────────────────────────────────────────────── */
-.loading { text-align: center; color: var(--text-muted); padding: 2rem; }
+.loading { text-align: center; color: var(--text-muted); padding: 3rem; }
 .vide { text-align: center; color: var(--text-muted); padding: 2rem; font-style: italic; }
 
-.matieres-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.65rem;
-}
+/* ── Grille matières ───────────────────────────────────────────── */
+.matieres-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; padding-bottom: 2rem; }
+@media (min-width: 640px) { .matieres-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 900px)  { .matieres-grid { grid-template-columns: repeat(4, 1fr); } }
 
-.matiere-card {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 0.45rem; padding: 0.9rem 0.5rem;
+.mat-card {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 1rem 0.75rem; gap: 0.6rem;
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 14px; cursor: pointer;
-  transition: box-shadow 0.15s, border-color 0.15s;
-  min-height: 88px;
+  transition: box-shadow 0.15s, transform 0.15s;
 }
-.matiere-card:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  border-color: #C7D4F0;
+.mat-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.1); transform: translateY(-2px); }
+
+.mat-icon-wrap {
+  width: 60px; height: 60px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.15s;
 }
-.matiere-emoji { font-size: 1.75rem; line-height: 1; }
-.matiere-nom {
-  font-size: 0.72rem; font-weight: 800; text-align: center;
-  line-height: 1.25; max-width: 100%;
+.mat-card:hover .mat-icon-wrap { transform: scale(1.08); }
+.mat-icon { font-size: 28px !important; }
+
+.mat-nom {
+  font-size: 0.82rem; font-weight: 800; line-height: 1.25;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 
-/* ── Modal ──────────────────────────────────────────────────────── */
-.modal-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.45);
-  display: flex; align-items: center; justify-content: center; z-index: 100;
-}
+/* ── Modal ─────────────────────────────────────────────────────── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; z-index: 100; }
 .modal { width: min(480px, 94vw); max-height: 85dvh; overflow-y: auto; }
-.modal-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; }
-.modal-emoji { font-size: 1.4rem; }
-.modal h3 { font-size: 1.05rem; font-weight: 800; }
+.modal-header { display: flex; align-items: center; gap: 0.65rem; margin-bottom: 1rem; }
+.mat-icon-wrap-sm { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.modal-titre { font-size: 1.05rem; font-weight: 800; }
 .chapitres-list { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
 .chapitre-row { display: flex; gap: 0.4rem; }
 .chapitre-btn {
   flex: 1; background: var(--bg); border: 1px solid var(--border);
   padding: 0.6rem 1rem; text-align: left; border-radius: 10px;
-  font-weight: 600; font-size: 0.88rem; cursor: pointer;
-  transition: background 0.12s;
+  font-weight: 600; font-size: 0.875rem; cursor: pointer; transition: background 0.12s;
 }
 .chapitre-btn:hover { background: var(--primary-light-solid); }
 .chapitre-tout { color: var(--primary); border-color: var(--primary); }
-.cartes-btn {
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: 10px; padding: 0.6rem 0.75rem;
-  font-size: 1rem; cursor: pointer; flex-shrink: 0;
-  transition: background 0.12s;
-}
+.cartes-btn { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 0.6rem 0.75rem; cursor: pointer; flex-shrink: 0; transition: background 0.12s; display: flex; align-items: center; }
 .cartes-btn:hover { background: var(--primary-light-solid); }
-
 .modal-modes { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem; }
 .modal-modes label { font-size: 0.82rem; font-weight: 700; }
-.modal-modes select {
-  padding: 0.4rem 0.6rem; border-radius: 8px;
-  border: 1px solid var(--border); font-family: inherit; font-size: 0.85rem;
-  background: var(--bg); color: var(--text);
-}
+.modal-modes select { padding: 0.4rem 0.6rem; border-radius: 8px; border: 1px solid var(--border); font-family: inherit; font-size: 0.85rem; background: var(--bg); color: var(--text); }
 </style>

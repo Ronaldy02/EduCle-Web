@@ -1,6 +1,19 @@
 /* Reset minimal + variables globales EduClé */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Material Symbols */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal; font-style: normal; font-size: 20px;
+  line-height: 1; letter-spacing: normal; text-transform: none;
+  display: inline-block; white-space: nowrap; word-wrap: normal;
+  direction: ltr; -webkit-font-feature-settings: 'liga'; font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased; vertical-align: middle;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+}
+.material-symbols-outlined.filled { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
 :root {
   --primary: #2F6FED;
   --primary-dark: #1A4FBB;
@@ -15,7 +28,8 @@
   --text-muted: #6B7280;
   --radius: 14px;
   --shadow: 0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
-  --font: 'Roboto', 'Segoe UI', system-ui, sans-serif;
+  --font: 'Inter', 'Roboto', system-ui, sans-serif;
+  --surface-low: #F0F3FF;
 }
 
 body {
