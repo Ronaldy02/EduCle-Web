@@ -13,8 +13,8 @@
 
 <style scoped>
 .nav { display: flex; align-items: center; justify-content: space-between; }
-.nav-logo { font-size: 1.25rem; font-weight: 900; color: var(--primary); }
+.nav-logo { font-size: 1.2rem; font-weight: 900; color: var(--primary); letter-spacing: -0.02em; }
 .nav-links { display: flex; gap: 1.25rem; }
-.nav-links a { font-weight: 600; color: var(--text-muted); font-size: 0.9rem; }
+.nav-links a { font-weight: 600; color: var(--text-muted); font-size: 0.88rem; }
 .nav-links a.router-link-active { color: var(--primary); }
 </style>

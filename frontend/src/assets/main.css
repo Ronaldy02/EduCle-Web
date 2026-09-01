@@ -2,18 +2,20 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --primary: #B45309;
-  --primary-light: #FEF3C7;
-  --success: #059669;
+  --primary: #2F6FED;
+  --primary-dark: #1A4FBB;
+  --primary-light: rgba(47, 111, 237, 0.08);
+  --primary-light-solid: #EEF3FD;
+  --success: #16A34A;
   --danger: #DC2626;
   --surface: #FFFFFF;
-  --bg: #F9FAFB;
-  --border: #E5E7EB;
-  --text: #111827;
+  --bg: #F7F8FA;
+  --border: #E3E6EC;
+  --text: #10131A;
   --text-muted: #6B7280;
-  --radius: 12px;
-  --shadow: 0 2px 12px rgba(0,0,0,0.08);
-  --font: 'Segoe UI', system-ui, sans-serif;
+  --radius: 14px;
+  --shadow: 0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+  --font: 'Roboto', 'Segoe UI', system-ui, sans-serif;
 }
 
 body {
@@ -39,7 +41,7 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 .card {
   background: var(--surface);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
   padding: 1.5rem;
 }
 
