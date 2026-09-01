@@ -18,6 +18,13 @@
       </div>
       <div class="progress-label">{{ indexCourant + 1 }} / {{ total }}  ·  {{ modeNom }}</div>
 
+      <!-- Badge série -->
+      <transition name="serie-pop">
+        <div v-if="serie >= 3 && modeNom !== 'Bombardement'" class="serie-badge" :class="{ palier: animPalier }">
+          🔥 {{ serie }}
+        </div>
+      </transition>
+
       <!-- Chronomètre global (Bombardement) -->
       <div v-if="modeNom === 'Bombardement'" class="timer-global" :class="{ critique: tempsGlobal <= 10 }">
         <span class="timer-global-val">{{ tempsGlobal }}</span>
@@ -80,6 +87,11 @@ const bonneIndex   = ref(null)    // indice de la bonne réponse
 const showExplication = ref(false)
 const animShake = ref(false)
 const animPulse = ref(false)
+const animPalier = ref(false)
+
+// Série
+const serie = ref(0)
+const _PALIERS = [5, 10, 15, 20]
 
 // Chrono par question (Rush / Révision)
 const tempsRestant = ref(0)
@@ -168,6 +180,17 @@ function repondre(choixIndex) {
   const reponseTexte = choixIndex !== null ? q.choix[choixIndex] : ''
 
   quizStore.enregistrerReponse(q.id, reponseTexte, tempsRestant.value)
+
+  // Mise à jour série
+  if (correcte) {
+    serie.value++
+    if (_PALIERS.includes(serie.value)) {
+      animPalier.value = true
+      setTimeout(() => { animPalier.value = false }, 800)
+    }
+  } else {
+    serie.value = 0
+  }
 
   if (modeNom.value === 'Bombardement') {
     if (correcte) {
@@ -264,6 +287,28 @@ function etatChoix(i) {
   height: 100%; background: var(--primary); border-radius: 99px;
   transition: width 1s linear, background 0.3s;
 }
+
+.serie-badge {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  background: #FEF3C7; color: #B45309;
+  border: 2px solid #F59E0B;
+  padding: 0.3rem 0.8rem; border-radius: 99px;
+  font-weight: 900; font-size: 1rem;
+  margin-bottom: 0.75rem;
+  transition: transform 0.15s;
+}
+.serie-badge.palier {
+  animation: palier-flash 0.8s ease;
+}
+@keyframes palier-flash {
+  0%   { transform: scale(1); background: #FEF3C7; }
+  30%  { transform: scale(1.35); background: #F59E0B; color: white; border-color: #D97706; }
+  60%  { transform: scale(1.15); }
+  100% { transform: scale(1); background: #FEF3C7; }
+}
+.serie-pop-enter-active { animation: palier-flash 0.5s ease; }
+.serie-pop-leave-active { transition: opacity 0.2s, transform 0.2s; }
+.serie-pop-leave-to    { opacity: 0; transform: scale(0.8); }
 
 .enonce { font-size: 1.05rem; font-weight: 600; line-height: 1.5; margin-bottom: 1rem; }
 

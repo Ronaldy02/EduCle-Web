@@ -10,6 +10,9 @@
         <div class="gains">
           <span>+{{ res.xp_gagne }} XP</span>
           <span>+{{ res.pieces_gagnees }} 🪙</span>
+          <span v-if="res.serie_max >= 5" class="gains-serie">
+            🔥 Série ×{{ res.serie_max }} +{{ res.serie_bonus }} 🪙
+          </span>
         </div>
       </div>
 
@@ -96,6 +99,7 @@ function accueil() {
 .score-mode { color: var(--text-muted); margin-top: 0.5rem; }
 .gains { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; }
 .gains span { font-weight: 800; font-size: 1.1rem; color: var(--success); }
+.gains-serie { color: #B45309 !important; }
 
 .niveau-up {
   text-align: center; font-weight: 800; font-size: 1rem;

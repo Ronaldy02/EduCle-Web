@@ -94,6 +94,31 @@ class TerminerQuizRequest(BaseModel):
     reponses: list[ReponseUtilisateur]
 
 
+_PALIERS_SERIE = {5: 5, 10: 10, 15: 18, 20: 25}
+
+
+def _calculer_bonus_serie(correctes: list[bool], mode_nom: str) -> tuple[int, int]:
+    """Retourne (pièces_bonus, série_max). Uniquement pour Rush et Révision."""
+    if mode_nom == "Bombardement":
+        return 0, 0
+    serie = 0
+    serie_max = 0
+    paliers_atteints: set[int] = set()
+    bonus_total = 0
+    for c in correctes:
+        if c:
+            serie += 1
+            serie_max = max(serie_max, serie)
+            for palier, bonus in _PALIERS_SERIE.items():
+                if serie >= palier and palier not in paliers_atteints:
+                    paliers_atteints.add(palier)
+                    bonus_total += bonus
+        else:
+            serie = 0
+            paliers_atteints.clear()
+    return bonus_total, serie_max
+
+
 @router.post("/terminer", response_model=ResultatQuizSchema)
 def terminer_quiz(body: TerminerQuizRequest, db: Session = Depends(get_db)):
     """Corrige les réponses, met à jour les stats et retourne le résultat."""
@@ -149,6 +174,11 @@ def terminer_quiz(body: TerminerQuizRequest, db: Session = Depends(get_db)):
         if correcte:
             stat_orm.last_correct_at = now_iso
 
+    # ── Bonus de série ────────────────────────────────────────────────────────
+    ordre_correctes = [r.correcte for r in resultats]
+    serie_bonus, serie_max = _calculer_bonus_serie(ordre_correctes, body.mode_nom)
+    pieces_totales_gagnees += serie_bonus
+
     # ── Mise à jour XP / pièces utilisateur ──────────────────────────────────
     user = db.get(UserPreferences, 1)
     if not user:
@@ -180,6 +210,8 @@ def terminer_quiz(body: TerminerQuizRequest, db: Session = Depends(get_db)):
         questions=resultats,
         xp_gagne=xp_total_gagne,
         pieces_gagnees=pieces_totales_gagnees,
+        serie_bonus=serie_bonus,
+        serie_max=serie_max,
         xp_total=user.xp_total,
         pieces_total=user.pieces_total,
         niveau_avant=niveau_avant,

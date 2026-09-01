@@ -32,6 +32,8 @@ class ResultatQuizSchema(BaseModel):
     questions: list[QuestionResultatSchema]
     xp_gagne: int
     pieces_gagnees: int
+    serie_bonus: int = 0   # pièces bonus des paliers de série
+    serie_max: int = 0     # meilleure série atteinte
     # État après le quiz
     xp_total: int
     pieces_total: int
