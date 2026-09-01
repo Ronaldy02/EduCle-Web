@@ -47,11 +47,16 @@
           <div class="xp-bar-wrap">
             <div class="xp-bar" :style="{ width: (niveau.progression * 100) + '%', background: niveau.rang_couleur }"></div>
           </div>
-          <p class="xp-label">{{ niveau.xp_dans_niveau }} / {{ niveau.xp_pour_suivant }} XP · 🪙 {{ niveau.pieces_total }}</p>
+          <p class="xp-label-sm">{{ niveau.xp_dans_niveau }} / {{ niveau.xp_pour_suivant }} XP · 🪙 {{ niveau.pieces_total }}</p>
         </div>
+
         <router-link to="/profil" class="nav-link">
           <span class="material-symbols-outlined">settings</span> Paramètres
         </router-link>
+        <button class="nav-link nav-link-btn" @click="toggleConnexion">
+          <span class="material-symbols-outlined">{{ connecte ? 'logout' : 'login' }}</span>
+          {{ connecte ? 'Déconnexion' : 'Connexion' }}
+        </button>
       </div>
     </nav>
 
@@ -64,18 +69,28 @@
             {{ niveau.niveau }}
           </div>
           <div>
-            <p class="dtb-rang">Niveau {{ niveau.niveau }} — {{ niveau.rang_nom }}</p>
+            <p class="dtb-rang">{{ niveau.rang_emoji }} {{ niveau.rang_nom }}</p>
             <div class="dtb-xp-row">
-              <div class="xp-bar-wrap" style="width:160px">
+              <div class="xp-bar-wrap" style="width:140px">
                 <div class="xp-bar" :style="{ width: (niveau.progression * 100) + '%', background: niveau.rang_couleur }"></div>
               </div>
-              <span class="xp-label">{{ niveau.xp_dans_niveau }}/{{ niveau.xp_pour_suivant }} XP</span>
+              <span class="dtb-xp-label">{{ niveau.xp_dans_niveau }}/{{ niveau.xp_pour_suivant }} XP</span>
             </div>
           </div>
         </div>
         <div class="dtb-right">
           <div class="stat-pill">
-            <span class="material-symbols-outlined filled" style="color:#D97706">monetization_on</span>
+            <span class="material-symbols-outlined" style="color:#EF4444;font-size:18px">local_fire_department</span>
+            <span>0</span>
+            <span class="pill-sub">Séries</span>
+          </div>
+          <div class="stat-pill">
+            <span class="material-symbols-outlined" style="color:#6366F1;font-size:18px">task_alt</span>
+            <span>0</span>
+            <span class="pill-sub">Tâches</span>
+          </div>
+          <div class="stat-pill">
+            <span class="material-symbols-outlined filled" style="color:#D97706;font-size:18px">monetization_on</span>
             {{ niveau.pieces_total }}
           </div>
           <div class="mh-avatar">🎓</div>
@@ -97,9 +112,14 @@ import { getNiveau } from './api/client.js'
 
 const route = useRoute()
 const niveau = ref(null)
+const connecte = ref(true)
 
 const NO_NAV = ['quiz', 'resultat']
 const showNav = computed(() => !NO_NAV.includes(route.name))
+
+function toggleConnexion() {
+  connecte.value = !connecte.value
+}
 
 async function chargerNiveau() {
   try { niveau.value = await getNiveau() } catch {}
@@ -145,7 +165,7 @@ watch(() => route.name, (n) => { if (n && !NO_NAV.includes(n)) chargerNiveau() }
 .logo-text { font-size: 1.2rem; font-weight: 900; color: var(--primary); display: block; }
 .sidebar-tagline { font-size: 0.68rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.2rem; display: block; }
 
-.sidebar-links { flex: 1; display: flex; flex-direction: column; gap: 0.15rem; padding: 0.5rem 0.5rem; }
+.sidebar-links { flex: 1; display: flex; flex-direction: column; gap: 0.15rem; padding: 0.5rem; }
 
 .nav-link {
   display: flex; align-items: center; gap: 0.65rem;
@@ -157,12 +177,34 @@ watch(() => route.name, (n) => { if (n && !NO_NAV.includes(n)) chargerNiveau() }
 .nav-link.active { background: var(--primary-light-solid); color: var(--primary); font-weight: 700; }
 .nav-link.active .material-symbols-outlined { color: var(--primary); }
 
-.sidebar-foot { padding: 0.75rem 0.5rem 1rem; border-top: 1px solid var(--border); margin-top: auto; display: flex; flex-direction: column; gap: 0.5rem; }
+/* Button-style nav link (no router-link underline behavior) */
+.nav-link-btn {
+  background: none; border: none; cursor: pointer;
+  width: 100%; text-align: left; font-family: inherit;
+}
+.nav-link-btn:active { transform: none; }
 
-.sidebar-xp { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem; margin-bottom: 0.25rem; }
+.sidebar-foot { padding: 0.75rem 0.5rem 1rem; border-top: 1px solid var(--border); margin-top: auto; display: flex; flex-direction: column; gap: 0.25rem; }
+
+/* ── XP card in sidebar ────────────────────────────────────────────── */
+.sidebar-xp { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem; margin-bottom: 0.35rem; }
 .sxp-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
-.sxp-level { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); }
-.rang-badge { font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 99px; }
+.sxp-level { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); }
+.rang-badge { font-size: 0.72rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 99px; }
+
+/* ── XP bar (shared) ───────────────────────────────────────────────── */
+.xp-bar-wrap {
+  height: 6px; background: var(--border); border-radius: 99px;
+  overflow: hidden; flex-shrink: 0;
+}
+.xp-bar {
+  height: 100%; border-radius: 99px;
+  background: var(--primary);
+  transition: width 0.4s ease;
+  min-width: 4px;
+}
+
+.xp-label-sm { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.35rem; font-weight: 500; }
 
 /* ── Desktop top bar ───────────────────────────────────────────────── */
 .main-area { flex: 1; min-width: 0; display: flex; flex-direction: column; }
@@ -176,18 +218,20 @@ watch(() => route.name, (n) => { if (n && !NO_NAV.includes(n)) chargerNiveau() }
 @media (min-width: 768px) { .desktop-topbar { display: flex; } }
 
 .dtb-niveau { display: flex; align-items: center; gap: 0.75rem; }
-.niveau-circle { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; flex-shrink: 0; }
-.dtb-rang { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+.niveau-circle { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; flex-shrink: 0; }
+.dtb-rang { font-size: 0.8rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; line-height: 1; }
 .dtb-xp-row { display: flex; align-items: center; gap: 0.5rem; }
-.dtb-right { display: flex; align-items: center; gap: 0.75rem; }
+.dtb-xp-label { font-size: 0.72rem; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+.dtb-right { display: flex; align-items: center; gap: 0.5rem; }
 
 /* ── Stat pill ─────────────────────────────────────────────────────── */
 .stat-pill {
-  display: flex; align-items: center; gap: 0.3rem;
+  display: flex; align-items: center; gap: 0.25rem;
   background: var(--bg); border: 1px solid var(--border);
-  border-radius: 99px; padding: 0.3rem 0.75rem;
-  font-size: 0.875rem; font-weight: 700;
+  border-radius: 99px; padding: 0.3rem 0.65rem;
+  font-size: 0.82rem; font-weight: 700;
 }
+.pill-sub { font-size: 0.68rem; font-weight: 600; color: var(--text-muted); margin-left: 0.1rem; }
 
 /* ── Page content scroll ───────────────────────────────────────────── */
 .page-content { flex: 1; }

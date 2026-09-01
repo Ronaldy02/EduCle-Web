@@ -21,7 +21,7 @@ router = APIRouter(prefix="/user", tags=["Utilisateur"])
 def _get_or_create_user(db: Session) -> UserPreferences:
     user = db.get(UserPreferences, 1)
     if not user:
-        user = UserPreferences(id=1)
+        user = UserPreferences(id=1, pieces_total=100)
         db.add(user)
         db.commit()
         db.refresh(user)
