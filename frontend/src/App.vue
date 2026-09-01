@@ -37,6 +37,9 @@
         <router-link to="/taches" class="nav-link" :class="{ active: $route.name === 'taches' }">
           <span class="material-symbols-outlined">task_alt</span> Tâches
         </router-link>
+        <router-link to="/realisations" class="nav-link" :class="{ active: $route.name === 'realisations' }">
+          <span class="material-symbols-outlined">military_tech</span> Réalisations
+        </router-link>
       </div>
 
       <div class="sidebar-foot">
