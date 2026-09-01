@@ -34,22 +34,12 @@
         <router-link to="/profil" class="nav-link" :class="{ active: $route.name === 'profil' }">
           <span class="material-symbols-outlined">person</span> Profil
         </router-link>
+        <router-link to="/taches" class="nav-link" :class="{ active: $route.name === 'taches' }">
+          <span class="material-symbols-outlined">task_alt</span> Tâches
+        </router-link>
       </div>
 
       <div class="sidebar-foot">
-        <div v-if="niveau" class="sidebar-xp">
-          <div class="sxp-top">
-            <span class="rang-badge" :style="{ background: niveau.rang_couleur + '22', color: niveau.rang_couleur }">
-              {{ niveau.rang_emoji }} {{ niveau.rang_nom }}
-            </span>
-            <span class="sxp-level">Niv.&nbsp;{{ niveau.niveau }}</span>
-          </div>
-          <div class="xp-bar-wrap">
-            <div class="xp-bar" :style="{ width: (niveau.progression * 100) + '%', background: niveau.rang_couleur }"></div>
-          </div>
-          <p class="xp-label-sm">{{ niveau.xp_dans_niveau }} / {{ niveau.xp_pour_suivant }} XP · 🪙 {{ niveau.pieces_total }}</p>
-        </div>
-
         <router-link to="/profil" class="nav-link">
           <span class="material-symbols-outlined">settings</span> Paramètres
         </router-link>
