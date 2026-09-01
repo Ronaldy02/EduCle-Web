@@ -36,5 +36,7 @@ export const getNiveau = () => api.get('/user/niveau').then(r => r.data)
 export const getScores = (matiereId) =>
   api.get('/user/scores', { params: matiereId ? { matiere_id: matiereId } : {} }).then(r => r.data)
 
+export const getStats = () => api.get('/user/stats').then(r => r.data)
+
 // ─── Réalisations ─────────────────────────────────────────────────────────────
 export const getRealisations = () => api.get('/realisations/').then(r => r.data)

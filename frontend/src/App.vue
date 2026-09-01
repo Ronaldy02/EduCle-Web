@@ -4,6 +4,7 @@
     <div class="nav-links">
       <router-link to="/">Accueil</router-link>
       <router-link to="/scores">Scores</router-link>
+      <router-link to="/stats">Stats</router-link>
       <router-link to="/profil">Profil</router-link>
     </div>
   </nav>

@@ -5,6 +5,7 @@ import ResultatView from '../views/ResultatView.vue'
 import ProfilView from '../views/ProfilView.vue'
 import ScoresView from '../views/ScoresView.vue'
 import CartesMentalesView from '../views/CartesMentalesView.vue'
+import StatsView from '../views/StatsView.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -14,6 +15,7 @@ export default createRouter({
     { path: '/resultat', name: 'resultat',component: ResultatView },
     { path: '/profil',   name: 'profil',  component: ProfilView },
     { path: '/scores',   name: 'scores',  component: ScoresView },
+    { path: '/stats',    name: 'stats',   component: StatsView },
     { path: '/cartes/:matiereId/:chapitreId', name: 'cartes', component: CartesMentalesView },
   ],
 })
