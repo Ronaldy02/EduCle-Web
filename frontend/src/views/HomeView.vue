@@ -34,8 +34,9 @@
             </div>
             <template v-if="dernierJeu">
               <div class="reprendre-matiere">
-                <div class="reprendre-icon" :style="{ background: iconBgPour(dernierJeu.matNom), color: iconColorPour(dernierJeu.matNom) }">
-                  <span class="material-symbols-outlined filled">{{ iconPour(dernierJeu.matNom) }}</span>
+                <div class="reprendre-icon">
+                  <img v-if="imagePour(dernierJeu.matNom)" :src="imagePour(dernierJeu.matNom)" class="reprendre-img" :alt="dernierJeu.matNom" />
+                  <span v-else class="material-symbols-outlined filled" :style="{ color: iconColorPour(dernierJeu.matNom) }">{{ iconPour(dernierJeu.matNom) }}</span>
                 </div>
                 <div>
                   <p class="reprendre-mat-nom">{{ dernierJeu.matNom }}</p>
@@ -81,7 +82,10 @@
       <div v-else class="matieres-grid">
         <div v-for="mat in matieresFiltrées" :key="mat.id"
           class="mat-card" @click="choisirMatiere(mat)">
-          <div class="mat-icon-wrap" :style="{ background: iconBgPour(mat.nom) }">
+          <div v-if="imagePour(mat.nom)" class="mat-img-wrap">
+            <img :src="imagePour(mat.nom)" :alt="mat.nom" class="mat-img" />
+          </div>
+          <div v-else class="mat-icon-wrap" :style="{ background: iconBgPour(mat.nom) }">
             <span class="material-symbols-outlined filled mat-icon" :style="{ color: iconColorPour(mat.nom) }">
               {{ iconPour(mat.nom) }}
             </span>
@@ -188,6 +192,34 @@ function rejouer() {
   const d = dernierJeu.value
   quiz.configurer({ chapitreId: d.chapId, matiereId: d.matId, modeNom: d.modeNom, nbQuestions: d.nbQuestions })
   router.push('/quiz')
+}
+
+// ── Image par matière (dossier /matieres/ dans public/) ──────────
+const MAT_IMAGES = {
+  'mathématiques':                   '/matieres/Maths.jpg',
+  'communication française':         '/matieres/comm_francaise.webp',
+  'communication créole':            '/matieres/Creole.webp',
+  'éducation à la citoyenneté':      '/matieres/citoyennete.webp',
+  'éducation esthétique et artistique': '/matieres/artist_palette_3d.png',
+  'éducation physique et sportive':  '/matieres/eps.jpg',
+  'éducation à la technologie et aux activités productives': '/matieres/etap.jpg',
+  'biologie':                        '/matieres/biologie.jpg',
+  'géologie':                        '/matieres/geologie.jpg',
+  'sciences sociales':               '/matieres/Geographie.jpg',
+  "histoire d'haïti":                '/matieres/Histoire_Haiti.webp',
+  'histoire universelle':            '/matieres/Histoire_Uni.jpg',
+  'économie':                        '/matieres/economie.webp',
+  'philosophie':                     '/matieres/philosophie.jpg',
+  'informatique':                    '/matieres/informatique.jpg',
+  'littérature haïtienne':           '/matieres/Litterature_Haiti.webp',
+  'littérature universelle':         '/matieres/Litterature_Uni.jpg',
+  'chimie':                          '/matieres/chimie.webp',
+  'physique':                        '/matieres/physique.jpg',
+  'culture générale':                '/matieres/Culture_gen.webp',
+}
+
+function imagePour(nom) {
+  return MAT_IMAGES[nom.toLowerCase().trim()] ?? MAT_IMAGES[nom.trim()] ?? null
 }
 
 // ── Icon / couleur par matière ───────────────────────────────────
@@ -350,7 +382,9 @@ async function jouerAleatoire() {
 .reprendre-icon {
   width: 44px; height: 44px; border-radius: 12px;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  overflow: hidden;
 }
+.reprendre-img { width: 100%; height: 100%; object-fit: cover; }
 .reprendre-mat-nom { font-weight: 700; font-size: 0.95rem; line-height: 1.2; }
 .reprendre-chap { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.1rem; }
 .reprendre-vide { font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
@@ -401,8 +435,15 @@ async function jouerAleatoire() {
 }
 .mat-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.1); transform: translateY(-2px); }
 
+.mat-img-wrap {
+  width: 56px; height: 56px; border-radius: 12px; overflow: hidden;
+  transition: transform 0.15s;
+}
+.mat-card:hover .mat-img-wrap { transform: scale(1.08); }
+.mat-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 .mat-icon-wrap {
-  width: 60px; height: 60px; border-radius: 50%;
+  width: 56px; height: 56px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   transition: transform 0.15s;
 }
