@@ -1,7 +1,12 @@
 <template>
   <!-- Mobile header -->
   <header v-if="showNav" class="mobile-header">
-    <span class="logo-text">🔑 EduClé</span>
+    <div class="mh-left">
+      <button class="hamburger-btn" @click="sidebarOuvert = !sidebarOuvert" aria-label="Menu">
+        <span class="material-symbols-outlined">{{ sidebarOuvert ? 'close' : 'menu' }}</span>
+      </button>
+      <span class="logo-text">🔑 EduClé</span>
+    </div>
     <div class="mh-right">
       <div class="stat-pill" v-if="niveau">
         <span class="material-symbols-outlined filled" style="color:#D97706">monetization_on</span>
@@ -11,39 +16,44 @@
     </div>
   </header>
 
+  <!-- Mobile sidebar overlay -->
+  <transition name="fade">
+    <div v-if="showNav && sidebarOuvert" class="sidebar-overlay" @click="sidebarOuvert = false"></div>
+  </transition>
+
   <!-- Shell -->
   <div :class="['body-shell', { 'body-shell--nav': showNav }]">
 
-    <!-- Desktop sidebar -->
-    <nav v-if="showNav" class="sidebar">
+    <!-- Sidebar (desktop always visible, mobile slide-in) -->
+    <nav v-if="showNav" :class="['sidebar', { 'sidebar--open': sidebarOuvert }]">
       <div class="sidebar-logo">
         <span class="logo-text">🔑 EduClé</span>
         <span class="sidebar-tagline">Apprentissage Académique</span>
       </div>
 
       <div class="sidebar-links">
-        <router-link to="/" class="nav-link" :class="{ active: $route.name === 'home' }">
+        <router-link to="/" class="nav-link" :class="{ active: $route.name === 'home' }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">home</span> Accueil
         </router-link>
-        <router-link to="/stats" class="nav-link" :class="{ active: $route.name === 'stats' }">
+        <router-link to="/stats" class="nav-link" :class="{ active: $route.name === 'stats' }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">bar_chart</span> Statistiques
         </router-link>
-        <router-link to="/scores" class="nav-link" :class="{ active: $route.name === 'scores' }">
+        <router-link to="/scores" class="nav-link" :class="{ active: $route.name === 'scores' }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">emoji_events</span> Classement
         </router-link>
-        <router-link to="/profil" class="nav-link" :class="{ active: $route.name === 'profil' }">
+        <router-link to="/profil" class="nav-link" :class="{ active: $route.name === 'profil' }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">person</span> Profil
         </router-link>
-        <router-link to="/taches" class="nav-link" :class="{ active: $route.name === 'taches' }">
+        <router-link to="/taches" class="nav-link" :class="{ active: $route.name === 'taches' }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">task_alt</span> Tâches
         </router-link>
-        <router-link to="/realisations" class="nav-link" :class="{ active: $route.name === 'realisations' }">
+        <router-link to="/realisations" class="nav-link" :class="{ active: $route.name === 'realisations' }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">military_tech</span> Réalisations
         </router-link>
       </div>
 
       <div class="sidebar-foot">
-        <router-link to="/profil" class="nav-link">
+        <router-link to="/profil" class="nav-link" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">settings</span> Paramètres
         </router-link>
         <button class="nav-link nav-link-btn" @click="toggleConnexion">
@@ -72,15 +82,15 @@
           </div>
         </div>
         <div class="dtb-right">
-          <div class="stat-pill">
-            <span class="material-symbols-outlined" style="color:#EF4444;font-size:18px">local_fire_department</span>
+          <!-- Séries : icône seule -->
+          <div class="icon-pill" title="Séries">
+            <span class="material-symbols-outlined" style="color:#EF4444">local_fire_department</span>
             <span>0</span>
-            <span class="pill-sub">Séries</span>
           </div>
-          <div class="stat-pill">
-            <span class="material-symbols-outlined" style="color:#6366F1;font-size:18px">task_alt</span>
+          <!-- Tâches : icône seule -->
+          <div class="icon-pill" title="Tâches">
+            <span class="material-symbols-outlined" style="color:#6366F1">task_alt</span>
             <span>0</span>
-            <span class="pill-sub">Tâches</span>
           </div>
           <div class="stat-pill">
             <span class="material-symbols-outlined filled" style="color:#D97706;font-size:18px">monetization_on</span>
@@ -106,6 +116,7 @@ import { getNiveau } from './api/client.js'
 const route = useRoute()
 const niveau = ref(null)
 const connecte = ref(true)
+const sidebarOuvert = ref(false)
 
 const NO_NAV = ['quiz', 'resultat']
 const showNav = computed(() => !NO_NAV.includes(route.name))
@@ -119,7 +130,10 @@ async function chargerNiveau() {
 }
 
 onMounted(chargerNiveau)
-watch(() => route.name, (n) => { if (n && !NO_NAV.includes(n)) chargerNiveau() })
+watch(() => route.name, (n) => {
+  if (n && !NO_NAV.includes(n)) chargerNiveau()
+  sidebarOuvert.value = false
+})
 </script>
 
 <style>
@@ -133,26 +147,54 @@ watch(() => route.name, (n) => { if (n && !NO_NAV.includes(n)) chargerNiveau() }
 /* ── Mobile header ─────────────────────────────────────────────────── */
 .mobile-header {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 1.25rem; height: 64px;
+  padding: 0 1rem; height: 64px;
   background: var(--surface); border-bottom: 1px solid var(--border);
   position: sticky; top: 0; z-index: 50;
 }
 @media (min-width: 768px) { .mobile-header { display: none; } }
+
+.mh-left { display: flex; align-items: center; gap: 0.5rem; }
 .mh-right { display: flex; align-items: center; gap: 0.75rem; }
+
+.hamburger-btn {
+  background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 10px;
+  color: var(--text-muted);
+  transition: background 0.12s;
+}
+.hamburger-btn:hover { background: var(--primary-light-solid); color: var(--text); }
+.hamburger-btn:active { transform: scale(0.95); }
+
 .mh-avatar {
   width: 36px; height: 36px; border-radius: 50%;
   background: var(--primary-light-solid); border: 2px solid var(--primary);
   display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
 }
 
+/* ── Sidebar overlay (mobile) ──────────────────────────────────────── */
+.sidebar-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.35);
+  z-index: 45; backdrop-filter: blur(2px);
+}
+@media (min-width: 768px) { .sidebar-overlay { display: none; } }
+
+.fade-enter-active, .fade-leave-active { transition: opacity 0.2s; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
 /* ── Sidebar ───────────────────────────────────────────────────────── */
 .sidebar {
-  display: none; width: 256px;
+  width: 256px;
   position: fixed; left: 0; top: 0; bottom: 0;
   background: var(--surface); border-right: 1px solid var(--border);
-  flex-direction: column; z-index: 40; overflow-y: auto;
+  display: flex; flex-direction: column; z-index: 46; overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.22s cubic-bezier(0.4,0,0.2,1);
 }
-@media (min-width: 768px) { .sidebar { display: flex; } }
+.sidebar--open { transform: translateX(0); }
+@media (min-width: 768px) {
+  .sidebar { transform: translateX(0); z-index: 40; }
+}
 
 .sidebar-logo { padding: 1.25rem 1rem 0.75rem; }
 .logo-text { font-size: 1.2rem; font-weight: 900; color: var(--primary); display: block; }
@@ -170,7 +212,6 @@ watch(() => route.name, (n) => { if (n && !NO_NAV.includes(n)) chargerNiveau() }
 .nav-link.active { background: var(--primary-light-solid); color: var(--primary); font-weight: 700; }
 .nav-link.active .material-symbols-outlined { color: var(--primary); }
 
-/* Button-style nav link (no router-link underline behavior) */
 .nav-link-btn {
   background: none; border: none; cursor: pointer;
   width: 100%; text-align: left; font-family: inherit;
@@ -178,12 +219,6 @@ watch(() => route.name, (n) => { if (n && !NO_NAV.includes(n)) chargerNiveau() }
 .nav-link-btn:active { transform: none; }
 
 .sidebar-foot { padding: 0.75rem 0.5rem 1rem; border-top: 1px solid var(--border); margin-top: auto; display: flex; flex-direction: column; gap: 0.25rem; }
-
-/* ── XP card in sidebar ────────────────────────────────────────────── */
-.sidebar-xp { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 0.75rem; margin-bottom: 0.35rem; }
-.sxp-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
-.sxp-level { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); }
-.rang-badge { font-size: 0.72rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 99px; }
 
 /* ── XP bar (shared) ───────────────────────────────────────────────── */
 .xp-bar-wrap {
@@ -196,8 +231,6 @@ watch(() => route.name, (n) => { if (n && !NO_NAV.includes(n)) chargerNiveau() }
   transition: width 0.4s ease;
   min-width: 4px;
 }
-
-.xp-label-sm { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.35rem; font-weight: 500; }
 
 /* ── Desktop top bar ───────────────────────────────────────────────── */
 .main-area { flex: 1; min-width: 0; display: flex; flex-direction: column; }
@@ -224,7 +257,16 @@ watch(() => route.name, (n) => { if (n && !NO_NAV.includes(n)) chargerNiveau() }
   border-radius: 99px; padding: 0.3rem 0.65rem;
   font-size: 0.82rem; font-weight: 700;
 }
-.pill-sub { font-size: 0.68rem; font-weight: 600; color: var(--text-muted); margin-left: 0.1rem; }
+
+/* ── Icon pill (icône + chiffre, sans label texte) ─────────────────── */
+.icon-pill {
+  display: flex; align-items: center; gap: 0.2rem;
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 99px; padding: 0.3rem 0.55rem;
+  font-size: 0.82rem; font-weight: 700;
+  cursor: default;
+}
+.icon-pill .material-symbols-outlined { font-size: 18px; }
 
 /* ── Page content scroll ───────────────────────────────────────────── */
 .page-content { flex: 1; }
