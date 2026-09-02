@@ -53,7 +53,7 @@
       </div>
 
       <div class="sidebar-foot">
-        <router-link to="/profil" class="nav-link" @click="sidebarOuvert = false">
+        <router-link to="/reglages" class="nav-link" :class="{ active: $route.name === 'reglages' }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">settings</span> Paramètres
         </router-link>
         <button class="nav-link nav-link-btn" @click="toggleConnexion">
