@@ -1,9 +1,5 @@
 <template>
-  <!-- Page plein-écran avec fond dégradé -->
   <div class="rt-shell">
-    <!-- Orbes décoratifs -->
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
 
     <div v-if="!res" class="rt-loading">Chargement…</div>
     <main v-else class="rt-main">
@@ -45,15 +41,9 @@
       <!-- ── Anneau de score ────────────────────────────────────────── -->
       <div class="rt-ring-wrap">
         <svg class="rt-ring-svg" viewBox="0 0 120 120">
-          <defs>
-            <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#22d3ee"/>
-              <stop offset="100%" stop-color="#3b82f6"/>
-            </linearGradient>
-          </defs>
-          <circle cx="60" cy="60" r="50" fill="transparent" stroke="rgba(255,255,255,0.08)" stroke-width="8"/>
+          <circle cx="60" cy="60" r="50" fill="transparent" stroke="#E3E6EC" stroke-width="8"/>
           <circle class="ring-arc" cx="60" cy="60" r="50" fill="transparent"
-            stroke="url(#sg)" stroke-width="8" stroke-linecap="round"
+            stroke="#2F6FED" stroke-width="8" stroke-linecap="round"
             stroke-dasharray="314"
             :stroke-dashoffset="314 - (pct / 100) * 314"/>
         </svg>
@@ -66,8 +56,8 @@
       <!-- ── Récompenses ─────────────────────────────────────────────── -->
       <div class="rt-rewards">
         <div class="rt-reward rt-reward-xp">
-          <div class="rt-reward-icon" style="background:rgba(96,165,250,0.15);border-color:rgba(96,165,250,0.3)">
-            <span class="material-symbols-outlined" style="font-size:28px;color:#60a5fa;filter:drop-shadow(0 0 8px rgba(96,165,250,0.8))">star</span>
+          <div class="rt-reward-icon">
+            <span class="material-symbols-outlined" style="font-size:26px;color:#2F6FED">star</span>
           </div>
           <div>
             <p class="rt-reward-val">+{{ res.xp_gagne }} XP</p>
@@ -75,18 +65,17 @@
           </div>
         </div>
         <div class="rt-reward rt-reward-coins">
-          <div class="rt-reward-icon" style="background:rgba(253,230,138,0.15);border-color:rgba(253,230,138,0.3)">
-            <span class="material-symbols-outlined" style="font-size:28px;color:#fbbf24;filter:drop-shadow(0 0 8px rgba(251,191,36,0.8))">monetization_on</span>
+          <div class="rt-reward-icon">
+            <span class="material-symbols-outlined" style="font-size:26px;color:#D97706">monetization_on</span>
           </div>
           <div>
             <p class="rt-reward-val">+{{ res.pieces_gagnees }} 🪙</p>
             <p class="rt-reward-sub">Pièces</p>
           </div>
         </div>
-        <!-- Bonus série si applicable -->
         <div v-if="res.serie_max >= 5" class="rt-reward rt-reward-serie" style="grid-column:1/-1">
-          <div class="rt-reward-icon" style="background:rgba(239,68,68,0.15);border-color:rgba(239,68,68,0.3)">
-            <span class="material-symbols-outlined" style="font-size:28px;color:#f87171">local_fire_department</span>
+          <div class="rt-reward-icon">
+            <span class="material-symbols-outlined" style="font-size:26px;color:#DC2626">local_fire_department</span>
           </div>
           <div>
             <p class="rt-reward-val">Série ×{{ res.serie_max }} · +{{ res.serie_bonus }} 🪙</p>
@@ -227,37 +216,21 @@ function accueil()  { quizStore.reset(); router.push('/') }
 </script>
 
 <style scoped>
-/* ── Shell plein-écran ────────────────────────────────────────────── */
+/* ── Shell ───────────────────────────────────────────────────────── */
 .rt-shell {
-  position: fixed; inset: 0; overflow-y: auto;
-  background: linear-gradient(135deg, #0f172a 0%, #31135e 50%, #1e3a8a 100%);
-  background-attachment: fixed;
-  color: #f1f5f9;
-  font-family: 'Inter', sans-serif;
-}
-
-.orb {
-  position: fixed; border-radius: 50%;
-  pointer-events: none; z-index: 0;
-}
-.orb-1 {
-  top: -20%; left: -10%; width: 60vw; height: 60vw;
-  background: radial-gradient(circle, rgba(139,92,246,0.22) 0%, transparent 60%);
-}
-.orb-2 {
-  bottom: -20%; right: -10%; width: 70vw; height: 70vw;
-  background: radial-gradient(circle, rgba(56,189,248,0.2) 0%, transparent 60%);
+  min-height: calc(100dvh - 64px);
+  background: var(--bg);
+  color: var(--text);
 }
 
 .rt-loading {
   display: flex; align-items: center; justify-content: center;
-  height: 100dvh; color: rgba(255,255,255,0.5);
+  height: 60dvh; color: var(--text-muted);
 }
 
 .rt-main {
-  position: relative; z-index: 1;
-  max-width: 48rem; margin: 0 auto;
-  padding: 2rem 1.25rem 5rem;
+  max-width: 44rem; margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
   display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
 }
 
@@ -266,21 +239,20 @@ function accueil()  { quizStore.reset(); router.push('/') }
 
 .rt-breadcrumb-pill {
   display: inline-flex; align-items: center; gap: 0.4rem;
-  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  background: var(--surface); border: 1px solid var(--border);
   border-radius: 999px; padding: 0.35rem 0.9rem;
-  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em;
-  color: #cbd5e1; margin-bottom: 0.75rem;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+  color: var(--text-muted); margin-bottom: 0.75rem;
   text-transform: uppercase;
 }
+.rt-breadcrumb-pill .material-symbols-outlined { color: var(--primary) !important; }
 
 .rt-title {
-  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  font-size: clamp(2rem, 7vw, 3rem);
   font-weight: 800; line-height: 1.1; letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #fcd34d, #f59e0b);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text);
 }
-.rt-subtitle { font-size: 1rem; color: #94a3b8; margin-top: 0.35rem; }
+.rt-subtitle { font-size: 0.95rem; color: var(--text-muted); margin-top: 0.35rem; }
 
 /* ── Score ring ──────────────────────────────────────────────────── */
 .rt-ring-wrap {
@@ -288,8 +260,8 @@ function accueil()  { quizStore.reset(); router.push('/') }
   align-items: center; justify-content: center;
 }
 .rt-ring-svg {
-  width: clamp(10rem, 40vw, 16rem); height: clamp(10rem, 40vw, 16rem);
-  filter: drop-shadow(0 0 28px rgba(6,182,212,0.35));
+  width: clamp(10rem, 40vw, 14rem); height: clamp(10rem, 40vw, 14rem);
+  filter: drop-shadow(0 4px 16px rgba(0,88,190,0.15));
 }
 .ring-arc {
   transform: rotate(-90deg); transform-origin: 50% 50%;
@@ -300,12 +272,12 @@ function accueil()  { quizStore.reset(); router.push('/') }
   display: flex; flex-direction: column; align-items: center;
 }
 .rt-ring-score {
-  font-size: clamp(1.8rem, 6vw, 2.75rem);
-  font-weight: 800; color: #fff; line-height: 1;
+  font-size: clamp(1.8rem, 6vw, 2.5rem);
+  font-weight: 800; color: var(--text); line-height: 1;
 }
 .rt-ring-label {
   font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
-  text-transform: uppercase; color: #67e8f9; margin-top: 0.25rem;
+  text-transform: uppercase; color: var(--text-muted); margin-top: 0.25rem;
 }
 
 /* ── Récompenses ─────────────────────────────────────────────────── */
@@ -315,42 +287,31 @@ function accueil()  { quizStore.reset(); router.push('/') }
 }
 .rt-reward {
   display: flex; align-items: center; gap: 0.85rem;
+  background: var(--surface); border: 1px solid var(--border);
   border-radius: 14px; padding: 1rem 1.1rem;
-  border: 1px solid rgba(255,255,255,0.12);
   transition: transform 0.15s;
 }
-.rt-reward:hover { transform: scale(1.03); }
-.rt-reward-xp {
-  background: linear-gradient(135deg, rgba(37,99,235,0.55), rgba(67,56,202,0.7));
-  box-shadow: 0 0 20px rgba(37,99,235,0.3);
-}
-.rt-reward-coins {
-  background: linear-gradient(135deg, rgba(217,119,6,0.55), rgba(180,83,9,0.7));
-  box-shadow: 0 0 20px rgba(245,158,11,0.3);
-}
-.rt-reward-serie {
-  background: linear-gradient(135deg, rgba(185,28,28,0.5), rgba(127,29,29,0.65));
-  box-shadow: 0 0 20px rgba(239,68,68,0.3);
-}
+.rt-reward:hover { transform: translateY(-2px); }
 .rt-reward-icon {
-  width: 52px; height: 52px; flex-shrink: 0;
-  border-radius: 50%; border: 1px solid transparent;
+  width: 48px; height: 48px; flex-shrink: 0;
+  border-radius: 50%; border: 1.5px solid var(--border);
   display: flex; align-items: center; justify-content: center;
+  background: var(--bg);
 }
-.rt-reward-val {
-  font-size: 1.1rem; font-weight: 800; color: #fff;
-}
-.rt-reward-sub {
+.rt-reward-xp   .rt-reward-icon { border-color: rgba(0,88,190,0.25); background: rgba(0,88,190,0.06); }
+.rt-reward-coins .rt-reward-icon { border-color: rgba(217,119,6,0.25); background: rgba(217,119,6,0.06); }
+.rt-reward-serie .rt-reward-icon { border-color: rgba(220,38,38,0.25); background: rgba(220,38,38,0.06); }
+.rt-reward-val  { font-size: 1.05rem; font-weight: 800; color: var(--text); }
+.rt-reward-sub  {
   font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.06em; color: rgba(255,255,255,0.6); margin-top: 0.1rem;
+  letter-spacing: 0.06em; color: var(--text-muted); margin-top: 0.1rem;
 }
 
 /* ── XP card ─────────────────────────────────────────────────────── */
 .rt-xp-card {
   width: 100%; max-width: 36rem;
-  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
-  backdrop-filter: blur(12px); border-radius: 16px;
-  padding: 1.1rem 1.25rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.1rem 1.25rem;
 }
 .rt-xp-head {
   display: flex; justify-content: space-between; align-items: flex-end;
@@ -358,26 +319,25 @@ function accueil()  { quizStore.reset(); router.push('/') }
 }
 .rt-xp-cap {
   font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.07em; color: #67e8f9;
+  letter-spacing: 0.07em; color: var(--primary);
 }
-.rt-xp-niveau { font-size: 1.2rem; font-weight: 800; color: #fff; }
-.rt-xp-chiffres { font-size: 0.82rem; font-weight: 600; color: #67e8f9; }
+.rt-xp-niveau { font-size: 1.1rem; font-weight: 800; color: var(--text); }
+.rt-xp-chiffres { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); }
 .rt-xp-bar-wrap {
-  height: 12px; background: rgba(15,23,42,0.6);
+  height: 8px; background: var(--border);
   border-radius: 99px; overflow: hidden;
 }
 .rt-xp-bar {
   height: 100%; border-radius: 99px;
-  background: linear-gradient(90deg, #22d3ee, #3b82f6);
-  box-shadow: 0 0 10px rgba(34,211,238,0.5);
+  background: var(--primary);
   position: relative; transition: width 0.8s cubic-bezier(0.22,1,0.36,1);
 }
 .rt-xp-bar-glow {
   position: absolute; inset: 0;
-  background: rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.3);
   animation: xp-pulse 2s ease-in-out infinite;
 }
-@keyframes xp-pulse { 0%,100%{opacity:0.3} 50%{opacity:0.7} }
+@keyframes xp-pulse { 0%,100%{opacity:0.2} 50%{opacity:0.5} }
 
 /* ── Actions ─────────────────────────────────────────────────────── */
 .rt-actions {
@@ -385,52 +345,46 @@ function accueil()  { quizStore.reset(); router.push('/') }
   width: 100%; max-width: 36rem;
 }
 .rt-btn {
-  flex: 1; min-width: 10rem; height: 48px; border-radius: 999px;
+  flex: 1; min-width: 9rem; height: 46px; border-radius: 999px;
   font-size: 0.875rem; font-weight: 700; display: flex;
   align-items: center; justify-content: center; gap: 0.4rem;
-  cursor: pointer; border: none; transition: all 0.15s;
+  cursor: pointer; border: none; transition: all 0.14s;
+  font-family: inherit;
 }
 .rt-btn .material-symbols-outlined { font-size: 20px; }
 .rt-btn-primary {
-  background: linear-gradient(135deg, #06b6d4, #3b82f6);
-  color: #fff;
-  box-shadow: 0 0 20px rgba(6,182,212,0.4);
+  background: var(--primary); color: #fff;
 }
-.rt-btn-primary:hover {
-  background: linear-gradient(135deg, #22d3ee, #60a5fa);
-  box-shadow: 0 0 28px rgba(6,182,212,0.6);
-  transform: translateY(-1px);
-}
+.rt-btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
 .rt-btn-glass {
-  background: rgba(255,255,255,0.1); color: #fff;
-  border: 1px solid rgba(255,255,255,0.2);
-  backdrop-filter: blur(8px);
+  background: var(--surface); color: var(--text);
+  border: 1.5px solid var(--border);
 }
-.rt-btn-glass:hover { background: rgba(255,255,255,0.2); }
+.rt-btn-glass:hover { background: var(--primary-light-solid); border-color: var(--primary); color: var(--primary); }
 
 /* ── Détail questions ─────────────────────────────────────────────── */
 .rt-questions { width: 100%; max-width: 36rem; }
 .rt-q-titre {
-  font-size: 0.8rem; font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.07em; color: rgba(255,255,255,0.5);
+  font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.07em; color: var(--text-muted);
   margin-bottom: 0.75rem;
 }
 .rt-q-item {
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  background: var(--surface); border: 1px solid var(--border);
   border-radius: 12px; padding: 0.9rem 1rem;
   margin-bottom: 0.6rem; border-left-width: 3px;
 }
-.rt-q-ok { border-left-color: #4ade80; }
-.rt-q-ko { border-left-color: #f87171; }
+.rt-q-ok { border-left-color: #16a34a; }
+.rt-q-ko { border-left-color: #dc2626; }
 .rt-q-header { display: flex; gap: 0.6rem; align-items: flex-start; margin-bottom: 0.4rem; }
 .rt-q-badge { font-weight: 900; font-size: 0.95rem; flex-shrink: 0; line-height: 1.4; }
-.rt-q-ok .rt-q-badge { color: #4ade80; }
-.rt-q-ko .rt-q-badge { color: #f87171; }
-.rt-q-enonce { font-weight: 600; font-size: 0.875rem; color: #e2e8f0; }
+.rt-q-ok .rt-q-badge { color: #16a34a; }
+.rt-q-ko .rt-q-badge { color: #dc2626; }
+.rt-q-enonce { font-weight: 600; font-size: 0.875rem; color: var(--text); }
 .rt-q-bonne, .rt-q-donnee, .rt-q-expl, .rt-q-xp {
-  font-size: 0.8rem; color: rgba(255,255,255,0.55); margin-top: 0.2rem;
+  font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;
 }
-.rt-q-xp { color: #4ade80; font-weight: 700; }
+.rt-q-xp { color: #16a34a; font-weight: 700; }
 .rt-q-expl { font-style: italic; }
 
 .detail-slide-enter-active { transition: opacity 0.25s, transform 0.25s; }
