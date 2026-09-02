@@ -106,9 +106,9 @@
           <span class="material-symbols-outlined">replay</span>
           Rejouer
         </button>
-        <button class="rt-btn rt-btn-glass" @click="voirDetail = !voirDetail">
-          <span class="material-symbols-outlined">{{ voirDetail ? 'expand_less' : 'visibility' }}</span>
-          {{ voirDetail ? 'Masquer' : 'Revoir les questions' }}
+        <button class="rt-btn rt-btn-glass" @click="router.push('/revision')">
+          <span class="material-symbols-outlined">visibility</span>
+          Revoir les questions
         </button>
         <button class="rt-btn rt-btn-glass" @click="accueil">
           <span class="material-symbols-outlined">home</span>
@@ -116,25 +116,6 @@
         </button>
       </div>
 
-      <!-- ── Détail questions (expandable) ─────────────────────────── -->
-      <transition name="detail-slide">
-        <div v-if="voirDetail" class="rt-questions">
-          <h3 class="rt-q-titre">Détail des réponses</h3>
-          <div v-for="q in res.questions" :key="q.question_id"
-            class="rt-q-item" :class="q.correcte ? 'rt-q-ok' : 'rt-q-ko'">
-            <div class="rt-q-header">
-              <span class="rt-q-badge">{{ q.correcte ? '✓' : '✗' }}</span>
-              <span class="rt-q-enonce">{{ q.enonce }}</span>
-            </div>
-            <p class="rt-q-bonne">Bonne réponse : <strong>{{ q.bonne_reponse }}</strong></p>
-            <p v-if="!q.correcte && q.reponse_donnee" class="rt-q-donnee">
-              Ta réponse : {{ q.reponse_donnee }}
-            </p>
-            <p v-if="q.explication" class="rt-q-expl">{{ q.explication }}</p>
-            <p v-if="q.xp_gagne > 0" class="rt-q-xp">+{{ q.xp_gagne }} XP</p>
-          </div>
-        </div>
-      </transition>
 
     </main>
   </div>
@@ -149,7 +130,6 @@ import { progressionNiveau, xpPourNiveau, rangDepuisNiveau, RANGS } from '../uti
 const router    = useRouter()
 const quizStore = useQuizStore()
 const res       = computed(() => quizStore.resultat)
-const voirDetail = ref(false)
 
 const pct = computed(() => res.value ? Math.round(res.value.score / res.value.total * 100) : 0)
 
@@ -361,36 +341,6 @@ function accueil()  { quizStore.reset(); router.push('/') }
   border: 1.5px solid var(--border);
 }
 .rt-btn-glass:hover { background: var(--primary-light-solid); border-color: var(--primary); color: var(--primary); }
-
-/* ── Détail questions ─────────────────────────────────────────────── */
-.rt-questions { width: 100%; max-width: 36rem; }
-.rt-q-titre {
-  font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.07em; color: var(--text-muted);
-  margin-bottom: 0.75rem;
-}
-.rt-q-item {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 0.9rem 1rem;
-  margin-bottom: 0.6rem; border-left-width: 3px;
-}
-.rt-q-ok { border-left-color: #16a34a; }
-.rt-q-ko { border-left-color: #dc2626; }
-.rt-q-header { display: flex; gap: 0.6rem; align-items: flex-start; margin-bottom: 0.4rem; }
-.rt-q-badge { font-weight: 900; font-size: 0.95rem; flex-shrink: 0; line-height: 1.4; }
-.rt-q-ok .rt-q-badge { color: #16a34a; }
-.rt-q-ko .rt-q-badge { color: #dc2626; }
-.rt-q-enonce { font-weight: 600; font-size: 0.875rem; color: var(--text); }
-.rt-q-bonne, .rt-q-donnee, .rt-q-expl, .rt-q-xp {
-  font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;
-}
-.rt-q-xp { color: #16a34a; font-weight: 700; }
-.rt-q-expl { font-style: italic; }
-
-.detail-slide-enter-active { transition: opacity 0.25s, transform 0.25s; }
-.detail-slide-enter-from   { opacity: 0; transform: translateY(-8px); }
-.detail-slide-leave-active { transition: opacity 0.2s; }
-.detail-slide-leave-to     { opacity: 0; }
 
 /* ── Overlay niveau supérieur ───────────────────────────────────── */
 .overlay {

@@ -118,7 +118,7 @@ const niveau = ref(null)
 const connecte = ref(true)
 const sidebarOuvert = ref(false)
 
-const NO_NAV = ['quiz', 'resultat']
+const NO_NAV = ['quiz', 'resultat', 'revision']
 const showNav = computed(() => !NO_NAV.includes(route.name))
 
 function toggleConnexion() {
