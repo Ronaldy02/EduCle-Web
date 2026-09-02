@@ -5,7 +5,7 @@
       <button class="hamburger-btn" @click="sidebarOuvert = !sidebarOuvert" aria-label="Menu">
         <span class="material-symbols-outlined">{{ sidebarOuvert ? 'close' : 'menu' }}</span>
       </button>
-      <span class="logo-text">🔑 EduClé</span>
+      <span class="logo-text" @click="logoClick" style="cursor:pointer;user-select:none">🔑 EduClé</span>
     </div>
     <div class="mh-right">
       <div class="stat-pill" v-if="niveau">
@@ -26,7 +26,7 @@
 
     <!-- Sidebar (desktop always visible, mobile slide-in) -->
     <nav v-if="showNav" :class="['sidebar', { 'sidebar--open': sidebarOuvert }]">
-      <div class="sidebar-logo">
+      <div class="sidebar-logo" @click="logoClick" style="cursor:pointer;user-select:none">
         <span class="logo-text">🔑 EduClé</span>
         <span class="sidebar-tagline">Apprentissage Académique</span>
       </div>
@@ -55,9 +55,6 @@
       <div class="sidebar-foot">
         <router-link to="/reglages" class="nav-link" :class="{ active: $route.name === 'reglages' }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">settings</span> Paramètres
-        </router-link>
-        <router-link to="/admin" class="nav-link" :class="{ active: $route.name === 'admin' }" @click="sidebarOuvert = false">
-          <span class="material-symbols-outlined">admin_panel_settings</span> Admin
         </router-link>
         <button class="nav-link nav-link-btn" @click="toggleConnexion">
           <span class="material-symbols-outlined">{{ connecte ? 'logout' : 'login' }}</span>
@@ -113,15 +110,16 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { getNiveau } from './api/client.js'
 
 const route = useRoute()
+const router = useRouter()
 const niveau = ref(null)
 const connecte = ref(true)
 const sidebarOuvert = ref(false)
 
-const NO_NAV = ['quiz', 'resultat', 'revision']
+const NO_NAV = ['quiz', 'resultat', 'revision', 'admin']
 const showNav = computed(() => !NO_NAV.includes(route.name))
 
 function toggleConnexion() {
@@ -137,6 +135,20 @@ watch(() => route.name, (n) => {
   if (n && !NO_NAV.includes(n)) chargerNiveau()
   sidebarOuvert.value = false
 })
+
+// Quintuple click sur le logo → page admin
+const logoClicks = ref(0)
+let logoClickTimer = null
+function logoClick() {
+  logoClicks.value++
+  clearTimeout(logoClickTimer)
+  if (logoClicks.value >= 5) {
+    logoClicks.value = 0
+    router.push('/admin')
+  } else {
+    logoClickTimer = setTimeout(() => { logoClicks.value = 0 }, 1500)
+  }
+}
 </script>
 
 <style>
