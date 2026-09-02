@@ -7,6 +7,7 @@ Flux :
                          → calcule le score, met à jour XP/pièces/stats
                          → retourne ResultatQuizSchema
 """
+import random
 from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
@@ -57,18 +58,19 @@ def demarrer_quiz(body: DemarrerQuizRequest, db: Session = Depends(get_db)):
     if not questions_orm:
         raise HTTPException(status_code=404, detail="Aucune question pour ce chapitre")
 
-    pool = [
-        {
+    pool = []
+    for q in questions_orm:
+        choix = list(q.choix)
+        random.shuffle(choix)
+        pool.append({
             "id": q.id,
             "chapitre_id": q.chapitre_id,
             "enonce": q.enonce,
-            "choix": q.choix,
+            "choix": choix,
             "bonne_reponse": q.bonne_reponse,
             "explication": q.explication,
             "niveau_complexite": q.niveau_complexite,
-        }
-        for q in questions_orm
-    ]
+        })
 
     stats = _get_stats(db, [q["id"] for q in pool])
     selected = selectionner(pool=pool, stats=stats, nb_voulu=body.nb_questions)
