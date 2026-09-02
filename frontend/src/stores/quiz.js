@@ -16,6 +16,8 @@ export const useQuizStore = defineStore('quiz', () => {
   const matiereId   = ref(null)
   const modeNom     = ref('Révision')
   const nbQuestions = ref(10)
+  const matNom      = ref('')
+  const chapNom     = ref('')
 
   // Déroulement
   const questions  = ref([])
@@ -31,6 +33,8 @@ export const useQuizStore = defineStore('quiz', () => {
     matiereId.value   = config.matiereId ?? null
     modeNom.value     = config.modeNom
     nbQuestions.value = config.nbQuestions ?? 10
+    matNom.value      = config.matNom  ?? ''
+    chapNom.value     = config.chapNom ?? ''
   }
 
   async function demarrer() {
@@ -65,7 +69,7 @@ export const useQuizStore = defineStore('quiz', () => {
   }
 
   return {
-    chapitreId, matiereId, modeNom, nbQuestions,
+    chapitreId, matiereId, modeNom, nbQuestions, matNom, chapNom,
     questions, indexCourant, reponses, en_cours, resultat,
     configurer, demarrer, enregistrerReponse, terminer, reset,
   }

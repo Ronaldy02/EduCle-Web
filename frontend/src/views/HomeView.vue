@@ -500,7 +500,7 @@ function demarrer() {
   const chap = chapitreChoisi.value
   const chapId = chap.id === -1 ? m.id * -1 : chap.id
   sauvegarder(m.nom, chap.titre, m.id, chapId)
-  quiz.configurer({ chapitreId: chapId, matiereId: m.id, modeNom: modeNom.value, nbQuestions: nbQuestions.value })
+  quiz.configurer({ chapitreId: chapId, matiereId: m.id, modeNom: modeNom.value, nbQuestions: nbQuestions.value, matNom: m.nom, chapNom: chap.titre })
   fermer()
   router.push('/quiz')
 }
@@ -511,7 +511,7 @@ function ouvrirJouerTout() { showJouerTout.value = true }
 function lancerJouerTout() {
   if (!matieres.value.length) return
   const m = matieres.value[Math.floor(Math.random() * matieres.value.length)]
-  quiz.configurer({ chapitreId: m.id * -1, matiereId: m.id, modeNom: modeNom.value, nbQuestions: nbQuestions.value })
+  quiz.configurer({ chapitreId: m.id * -1, matiereId: m.id, modeNom: modeNom.value, nbQuestions: nbQuestions.value, matNom: m.nom, chapNom: 'Tous les chapitres' })
   showJouerTout.value = false
   router.push('/quiz')
 }
@@ -523,7 +523,7 @@ async function jouerAleatoire() {
   if (!detail.chapitres.length) return
   const chap = detail.chapitres[Math.floor(Math.random() * detail.chapitres.length)]
   sauvegarder(m.nom, chap.titre, m.id, chap.id)
-  quiz.configurer({ chapitreId: chap.id, matiereId: m.id, modeNom: modeNom.value, nbQuestions: nbQuestions.value })
+  quiz.configurer({ chapitreId: chap.id, matiereId: m.id, modeNom: modeNom.value, nbQuestions: nbQuestions.value, matNom: m.nom, chapNom: chap.titre })
   router.push('/quiz')
 }
 </script>
