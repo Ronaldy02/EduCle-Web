@@ -10,7 +10,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from config import settings
-from routers import matieres, quiz, user, realisations
+from routers import matieres, quiz, user, realisations, admin
 
 app = FastAPI(
     title="EduClé API",
@@ -33,6 +33,7 @@ app.include_router(matieres.router)
 app.include_router(quiz.router)
 app.include_router(user.router)
 app.include_router(realisations.router)
+app.include_router(admin.router)
 
 
 @app.get("/", tags=["Santé"])

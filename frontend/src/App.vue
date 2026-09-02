@@ -56,6 +56,9 @@
         <router-link to="/reglages" class="nav-link" :class="{ active: $route.name === 'reglages' }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">settings</span> Paramètres
         </router-link>
+        <router-link to="/admin" class="nav-link" :class="{ active: $route.name === 'admin' }" @click="sidebarOuvert = false">
+          <span class="material-symbols-outlined">admin_panel_settings</span> Admin
+        </router-link>
         <button class="nav-link nav-link-btn" @click="toggleConnexion">
           <span class="material-symbols-outlined">{{ connecte ? 'logout' : 'login' }}</span>
           {{ connecte ? 'Déconnexion' : 'Connexion' }}
