@@ -1,0 +1,968 @@
+<title>EduClé — Documentation complète</title>
+<style>
+/* ── Tokens ────────────────────────────────────────────────────────────────── */
+:root {
+  --bg:         #F7F6F2;
+  --surface:    #FFFFFF;
+  --surface2:   #EEF0F5;
+  --border:     #DDE0E8;
+  --text:       #0F1A2E;
+  --text-muted: #5C6F85;
+  --primary:    #0D2348;
+  --accent:     #F0A000;
+  --accent-dim: #FEF3C7;
+  --success:    #059669;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body:    -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono:    'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --r: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:         #0B1422;
+    --surface:    #162035;
+    --surface2:   #1D2B44;
+    --border:     #2A3D5A;
+    --text:       #E8E5DC;
+    --text-muted: #8A9BB0;
+    --primary:    #4B82C8;
+    --accent:     #F0A000;
+    --accent-dim: #3D2A00;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:         #0B1422;
+  --surface:    #162035;
+  --surface2:   #1D2B44;
+  --border:     #2A3D5A;
+  --text:       #E8E5DC;
+  --text-muted: #8A9BB0;
+  --primary:    #4B82C8;
+  --accent:     #F0A000;
+  --accent-dim: #3D2A00;
+}
+
+/* ── Reset & Base ──────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3,h4 {
+  font-family: var(--font-display);
+  line-height: 1.2;
+  text-wrap: balance;
+  color: var(--text);
+}
+a { color: var(--accent); text-decoration: none; }
+img { max-width: 100%; }
+
+/* ── Nav ───────────────────────────────────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 56px;
+}
+.nav-brand { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--text); display: flex; align-items: center; gap: 0.5rem; }
+.nav-links { display: flex; gap: 1.5rem; }
+.nav-links a { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); }
+.nav-links a:hover { color: var(--accent); }
+
+/* ── Hero ──────────────────────────────────────────────────────────────────── */
+.hero {
+  background: var(--primary);
+  color: #E8E5DC;
+  padding: 7rem 2rem 5rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '🔑';
+  position: absolute; right: -2rem; top: 50%; transform: translateY(-50%);
+  font-size: clamp(12rem, 30vw, 22rem);
+  opacity: 0.06; pointer-events: none;
+  line-height: 1;
+}
+.hero-inner { max-width: 820px; margin: 0 auto; position: relative; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(240,160,0,0.18); color: var(--accent);
+  padding: 0.3rem 0.9rem; border-radius: 99px;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.hero h1 span { color: var(--accent); }
+.hero-sub {
+  font-size: 1.15rem; color: rgba(232,229,220,0.75); max-width: 560px;
+  line-height: 1.6; margin-bottom: 2.5rem;
+}
+.hero-stats {
+  display: flex; flex-wrap: wrap; gap: 2rem;
+}
+.hero-stat { }
+.hero-stat-num {
+  font-family: var(--font-display); font-size: 2.2rem; font-weight: 700;
+  color: var(--accent); line-height: 1;
+}
+.hero-stat-label { font-size: 0.82rem; color: rgba(232,229,220,0.6); margin-top: 0.2rem; }
+
+/* ── Section wrapper ───────────────────────────────────────────────────────── */
+.section {
+  padding: 5rem 2rem;
+  position: relative; overflow: hidden;
+}
+.section-inner { max-width: 900px; margin: 0 auto; }
+.section-alt { background: var(--surface); }
+.section-dark { background: var(--primary); color: #E8E5DC; }
+.section-dark h2, .section-dark h3, .section-dark .eyebrow { color: #FFFFFF; }
+.section-dark p, .section-dark li { color: rgba(232,229,220,0.8); }
+
+.watermark {
+  position: absolute; pointer-events: none; user-select: none;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(6rem, 18vw, 14rem);
+  color: currentColor; opacity: 0.04;
+  right: -0.5rem; top: 50%; transform: translateY(-50%);
+  letter-spacing: -0.04em; line-height: 1;
+  white-space: nowrap;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.73rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+.section-title { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 0.75rem; }
+.section-lead { font-size: 1.05rem; color: var(--text-muted); max-width: 580px; margin-bottom: 2.5rem; line-height: 1.7; }
+
+/* ── Mode cards ────────────────────────────────────────────────────────────── */
+.mode-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+.mode-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.75rem;
+  position: relative; overflow: hidden;
+}
+.section-alt .mode-card { background: var(--surface2); }
+.mode-card::before {
+  content: attr(data-wm);
+  position: absolute; bottom: -1rem; right: -0.5rem;
+  font-size: 5rem; opacity: 0.07; line-height: 1;
+  pointer-events: none;
+}
+.mode-badge {
+  display: inline-block; padding: 0.25rem 0.7rem; border-radius: 99px;
+  font-size: 0.7rem; font-weight: 800; letter-spacing: 0.06em;
+  text-transform: uppercase; margin-bottom: 1rem;
+}
+.badge-revision  { background: #D1FAE5; color: #065F46; }
+.badge-rush      { background: #FEE2E2; color: #991B1B; }
+.badge-bomb      { background: #EDE9FE; color: #4C1D95; }
+.mode-card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+.mode-card p  { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+.mode-stat-row {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem;
+}
+.mode-stat {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 0.4rem 0.75rem;
+  font-size: 0.78rem; font-weight: 700; color: var(--text-muted);
+  display: flex; align-items: center; gap: 0.35rem;
+}
+.section-alt .mode-stat { background: var(--bg); }
+
+/* ── Feature list ──────────────────────────────────────────────────────────── */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.feature-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  background: var(--surface2); border-radius: var(--r); padding: 1.25rem;
+}
+.feature-icon {
+  font-size: 1.5rem; flex-shrink: 0; width: 2.5rem; height: 2.5rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.feature-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.25rem; }
+.feature-desc  { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; }
+
+/* ── XP formula ────────────────────────────────────────────────────────────── */
+.formula-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.5rem 2rem;
+  font-family: var(--font-mono); font-size: 0.95rem; color: var(--text);
+  overflow-x: auto; margin-bottom: 1rem;
+}
+.formula-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem; }
+.var  { color: #3B82F6; }
+.num  { color: var(--accent); }
+.op   { color: var(--text-muted); }
+.comment { color: #64748B; font-style: italic; }
+
+.xp-bar-demo {
+  margin: 1.5rem 0;
+  display: flex; flex-direction: column; gap: 0.6rem;
+}
+.xp-row { display: flex; align-items: center; gap: 1rem; font-size: 0.85rem; }
+.xp-row-label { width: 120px; flex-shrink: 0; color: var(--text-muted); font-weight: 600; }
+.xp-bar-wrap { flex: 1; height: 10px; background: var(--surface2); border-radius: 99px; overflow: hidden; }
+.xp-bar-fill { height: 100%; border-radius: 99px; background: var(--accent); }
+.xp-row-val  { width: 60px; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ── Rangs timeline ────────────────────────────────────────────────────────── */
+.rangs-timeline { position: relative; padding: 2rem 0; }
+.rangs-track {
+  position: absolute; top: 50%; left: 0; right: 0; height: 3px;
+  background: var(--border); z-index: 0;
+}
+.rangs-row {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.5rem;
+  position: relative; z-index: 1;
+}
+.rang-item {
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  text-align: center;
+}
+.rang-bubble {
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; border: 3px solid;
+  background: var(--surface);
+  transition: transform 0.2s;
+}
+.rang-bubble:hover { transform: scale(1.12); }
+.rang-name { font-size: 0.65rem; font-weight: 700; line-height: 1.2; }
+.rang-level { font-size: 0.6rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+/* ── Achievement cards ─────────────────────────────────────────────────────── */
+.achievement-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; }
+.ach-card {
+  border: 1px solid var(--border); border-radius: var(--r);
+  padding: 1rem; background: var(--surface);
+}
+.section-alt .ach-card { background: var(--surface2); }
+.ach-rarete {
+  font-size: 0.65rem; font-weight: 800; letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 0.5rem;
+  display: inline-block; padding: 0.15rem 0.5rem; border-radius: 99px;
+}
+.r0 { background: #F3F4F6; color: #6B7280; }
+.r1 { background: #D1FAE5; color: #059669; }
+.r2 { background: #DBEAFE; color: #2563EB; }
+.r3 { background: #EDE9FE; color: #7C3AED; }
+.r4 { background: #FEF3C7; color: #B45309; }
+.ach-nom  { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.25rem; }
+.ach-desc { font-size: 0.78rem; color: var(--text-muted); }
+
+/* ── Animation demo ────────────────────────────────────────────────────────── */
+.anim-demo {
+  display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: flex-start;
+  margin: 1.5rem 0;
+}
+.anim-box {
+  flex: 1; min-width: 200px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.25rem; cursor: pointer;
+  position: relative; overflow: hidden;
+}
+.anim-box-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+.anim-choix {
+  background: var(--surface2); border: 2px solid var(--border);
+  border-radius: 8px; padding: 0.65rem 1rem; font-size: 0.9rem; font-weight: 600;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.lettre-badge {
+  width: 24px; height: 24px; border-radius: 5px;
+  background: var(--border); display: flex; align-items: center; justify-content: center;
+  font-size: 0.72rem; font-weight: 800;
+}
+.anim-note { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.75rem; }
+
+@keyframes shake {
+  0%,100%{transform:translateX(0)} 20%{transform:translateX(-10px)} 40%{transform:translateX(10px)} 60%{transform:translateX(-7px)} 80%{transform:translateX(7px)}
+}
+@keyframes pulse {
+  0%,100%{transform:scale(1)} 40%{transform:scale(1.05)} 70%{transform:scale(0.98)}
+}
+.do-shake { animation: shake 0.48s ease; }
+.do-pulse { animation: pulse 0.5s ease; }
+
+/* ── Keyboard shortcuts ────────────────────────────────────────────────────── */
+.kbd-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1rem 0; }
+.kbd-item { display: flex; align-items: center; gap: 0.5rem; }
+.kbd {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 7px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-bottom: 3px solid var(--border);
+  font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700;
+  color: var(--text);
+}
+.kbd-arrow { color: var(--text-muted); font-size: 0.9rem; }
+.kbd-label { font-size: 0.82rem; font-weight: 600; }
+
+/* ── Timer demo ────────────────────────────────────────────────────────────── */
+.timer-compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.timer-card {
+  border: 1px solid var(--border); border-radius: var(--r);
+  padding: 1.25rem; background: var(--surface);
+}
+.section-alt .timer-card { background: var(--surface2); }
+.timer-card h4 { font-size: 0.9rem; margin-bottom: 0.75rem; }
+.timer-display {
+  font-family: var(--font-mono); font-size: 2rem; font-weight: 700;
+  font-variant-numeric: tabular-nums; letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+.timer-bar-wrap { height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; margin-bottom: 0.5rem; }
+.timer-bar { height: 100%; border-radius: 99px; }
+.timer-note { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ── Series ────────────────────────────────────────────────────────────────── */
+.serie-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin: 1rem 0; }
+.serie-badge {
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 0.75rem 1.25rem; min-width: 80px;
+}
+.serie-num { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--accent); line-height: 1; }
+.serie-label { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem; }
+.serie-reward { font-size: 0.78rem; font-weight: 700; color: var(--success); margin-top: 0.3rem; }
+
+/* ── Screens overview ──────────────────────────────────────────────────────── */
+.screens-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+.screen-card {
+  border: 1px solid var(--border); border-radius: var(--r);
+  overflow: hidden; background: var(--surface);
+}
+.screen-preview {
+  background: var(--surface2);
+  height: 120px; display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem; border-bottom: 1px solid var(--border);
+}
+.screen-body { padding: 0.85rem; }
+.screen-name { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.25rem; }
+.screen-desc { font-size: 0.76rem; color: var(--text-muted); line-height: 1.5; }
+
+/* ── Tech stack ────────────────────────────────────────────────────────────── */
+.tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+@media (max-width: 600px) { .tech-grid { grid-template-columns: 1fr; } }
+.tech-col h3 { font-size: 1rem; margin-bottom: 1rem; }
+.tech-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.tech-item {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; padding: 0.6rem 1rem;
+}
+.tech-icon { font-size: 1.1rem; }
+.tech-name { font-size: 0.85rem; font-weight: 700; color: #E8E5DC; }
+.tech-role { font-size: 0.73rem; color: rgba(232,229,220,0.5); }
+
+/* ── Algo ──────────────────────────────────────────────────────────────────── */
+.algo-steps { display: flex; flex-direction: column; gap: 0.75rem; counter-reset: step; }
+.algo-step {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1rem 1.25rem; background: var(--surface2); border-radius: var(--r);
+  border-left: 3px solid var(--accent);
+}
+.algo-step-num {
+  font-family: var(--font-mono); font-size: 0.7rem; font-weight: 800;
+  color: var(--accent); flex-shrink: 0; width: 1.5rem; padding-top: 0.1rem;
+}
+.algo-step-text { font-size: 0.88rem; line-height: 1.55; }
+.algo-step-text strong { color: var(--text); }
+
+/* ── Divider ───────────────────────────────────────────────────────────────── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+/* ── Responsive ────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .rangs-row { grid-template-columns: repeat(4, 1fr); }
+  .rang-bubble { width: 40px; height: 40px; font-size: 1.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .do-shake, .do-pulse { animation: none; }
+}
+</style>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">🔑 EduClé</div>
+  <div class="nav-links">
+    <a href="#modes">Modes</a>
+    <a href="#adaptatif">Adaptatif</a>
+    <a href="#xp">XP & Rangs</a>
+    <a href="#feedback">Feedback</a>
+    <a href="#ecrans">Écrans</a>
+    <a href="#tech">Tech</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Coding Club ISTEAH · Haïti</div>
+    <h1>Edu<span>Clé</span></h1>
+    <p class="hero-sub">Quiz éducatif adaptatif pour élèves haïtiens. L'application apprend de chaque réponse et sélectionne les questions où l'élève a le plus à progresser.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">3</div>
+        <div class="hero-stat-label">modes de jeu</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">8</div>
+        <div class="hero-stat-label">rangs à débloquer</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">∞</div>
+        <div class="hero-stat-label">questions adaptatives</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label">plateformes (mobile + web)</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── MODES ─────────────────────────────────────────────────────────────── -->
+<section class="section" id="modes">
+  <div class="watermark">QUIZ</div>
+  <div class="section-inner">
+    <span class="eyebrow">Modes de jeu</span>
+    <h2 class="section-title">Trois façons d'apprendre</h2>
+    <p class="section-lead">Chaque mode crée une dynamique différente. Le même contenu, trois expériences d'apprentissage distinctes.</p>
+
+    <div class="mode-grid">
+      <!-- Révision -->
+      <div class="mode-card" data-wm="📖">
+        <span class="mode-badge badge-revision">Révision</span>
+        <h3>Mode Révision</h3>
+        <p>L'élève reçoit un feedback immédiat après chaque réponse — bonne ou mauvaise. Une explication pédagogique est affichée après chaque bonne réponse, permettant d'ancrer la connaissance.</p>
+        <div class="mode-stat-row">
+          <span class="mode-stat">⏱ 20s / question</span>
+          <span class="mode-stat">🔴 Critique ≤ 5s</span>
+          <span class="mode-stat">💡 Explications</span>
+          <span class="mode-stat">🔥 Séries actives</span>
+        </div>
+      </div>
+      <!-- Rush -->
+      <div class="mode-card" data-wm="⚡">
+        <span class="mode-badge badge-rush">Rush</span>
+        <h3>Mode Rush</h3>
+        <p>Pression temporelle maximale. Chaque question doit être répondue en 10 secondes. Pas d'explication automatique — l'objectif est la rapidité et la consolidation des acquis solides.</p>
+        <div class="mode-stat-row">
+          <span class="mode-stat">⚡ 10s / question</span>
+          <span class="mode-stat">🔴 Critique ≤ 3s</span>
+          <span class="mode-stat">✕ Pas d'explication</span>
+          <span class="mode-stat">🔥 Séries actives</span>
+          <span class="mode-stat">✕1.5 XP bonus</span>
+        </div>
+      </div>
+      <!-- Bombardement -->
+      <div class="mode-card" data-wm="💣">
+        <span class="mode-badge badge-bomb">Bombardement</span>
+        <h3>Mode Bombardement</h3>
+        <p>Un chrono global de 60 secondes pour 30 questions. Rythme intense, pas de séries. Le score final dépend du nombre de réponses correctes dans le temps imparti.</p>
+        <div class="mode-stat-row">
+          <span class="mode-stat">💣 60s global</span>
+          <span class="mode-stat">📋 30 questions</span>
+          <span class="mode-stat">✕ Pas de série</span>
+          <span class="mode-stat">✕1.5 XP bonus</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── SÉRIES ─────────────────────────────────────────────────────────────── -->
+<section class="section section-alt">
+  <div class="section-inner">
+    <span class="eyebrow">Récompenses</span>
+    <h2 class="section-title">Séries de bonnes réponses</h2>
+    <p class="section-lead">En Révision et Rush, enchaîner les bonnes réponses débloque des récompenses en pièces. Les séries s'interrompent à la première erreur.</p>
+
+    <div class="serie-row">
+      <div class="serie-badge">
+        <div class="serie-num">5</div>
+        <div class="serie-label">réponses</div>
+        <div class="serie-reward">+5 🪙</div>
+      </div>
+      <div class="serie-badge">
+        <div class="serie-num">10</div>
+        <div class="serie-label">réponses</div>
+        <div class="serie-reward">+10 🪙</div>
+      </div>
+      <div class="serie-badge">
+        <div class="serie-num">15</div>
+        <div class="serie-label">réponses</div>
+        <div class="serie-reward">+18 🪙</div>
+      </div>
+      <div class="serie-badge">
+        <div class="serie-num">20</div>
+        <div class="serie-label">réponses</div>
+        <div class="serie-reward">+25 🪙</div>
+      </div>
+    </div>
+
+    <p style="font-size:0.85rem;color:var(--text-muted);margin-top:0.5rem;">Le Bombardement ne compte pas de séries — le chrono global est la contrainte principale.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── ADAPTATIF ──────────────────────────────────────────────────────────── -->
+<section class="section" id="adaptatif">
+  <div class="watermark">ADAPT</div>
+  <div class="section-inner">
+    <span class="eyebrow">Apprentissage adaptatif</span>
+    <h2 class="section-title">L'algorithme qui apprend avec l'élève</h2>
+    <p class="section-lead">À chaque quiz, l'application analyse l'historique de l'élève et sélectionne les questions avec le plus fort potentiel d'apprentissage.</p>
+
+    <div class="algo-steps">
+      <div class="algo-step">
+        <div class="algo-step-num">1</div>
+        <div class="algo-step-text"><strong>Calcul du taux de maîtrise</strong> — Pour chaque question, le système maintient un taux de réussite entre 0.0 (jamais réussi) et 1.0 (toujours correct).</div>
+      </div>
+      <div class="algo-step">
+        <div class="algo-step-num">2</div>
+        <div class="algo-step-text"><strong>Poids de sélection</strong> — Le poids d'une question est <code style="font-family:var(--font-mono);background:var(--surface2);padding:0.1em 0.4em;border-radius:4px;">1 + 9 × (1 − maîtrise)</code>. Une question jamais réussie a un poids 10× supérieur à une question maîtrisée.</div>
+      </div>
+      <div class="algo-step">
+        <div class="algo-step-num">3</div>
+        <div class="algo-step-text"><strong>Pénalité temporelle</strong> — Une question répondue correctement il y a moins de 3 jours est pénalisée (×0.4 dans les 3 jours, ×0.1 dans les 24h). Cela force la variation.</div>
+      </div>
+      <div class="algo-step">
+        <div class="algo-step-num">4</div>
+        <div class="algo-step-text"><strong>Pénalité de session</strong> — Les questions déjà vues dans la session en cours sont légèrement défavorisées (×0.2) pour éviter les répétitions immédiates.</div>
+      </div>
+      <div class="algo-step">
+        <div class="algo-step-num">5</div>
+        <div class="algo-step-text"><strong>Tirage pondéré sans remise</strong> — Les questions sont sélectionnées par tirage aléatoire pondéré, garantissant diversité et priorité aux lacunes.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;">
+      <p class="formula-label">Formule du poids</p>
+      <div class="formula-box">
+        <span class="var">poids</span> <span class="op">=</span> <span class="num">1.0</span> <span class="op">+</span> <span class="num">9.0</span> <span class="op">×</span> (<span class="num">1</span> <span class="op">-</span> <span class="var">taux_reussite</span>)<br>
+        <span class="comment">-- Question jamais réussie  → poids = 10.0</span><br>
+        <span class="comment">-- Question toujours réussie → poids = 1.0</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── XP & NIVEAUX ────────────────────────────────────────────────────────── -->
+<section class="section section-alt" id="xp">
+  <div class="watermark">XP</div>
+  <div class="section-inner">
+    <span class="eyebrow">Progression</span>
+    <h2 class="section-title">XP, niveaux et formules</h2>
+    <p class="section-lead">Chaque bonne réponse rapporte des XP selon la maîtrise de la question. Plus la question était difficile pour l'élève, plus la récompense est grande.</p>
+
+    <div style="margin-bottom:1.5rem;">
+      <p class="formula-label">XP par bonne réponse</p>
+      <div class="formula-box">
+        <span class="var">xp</span> <span class="op">=</span> max(<span class="num">2</span>, round((<span class="num">2</span> <span class="op">+</span> <span class="num">8</span> <span class="op">×</span> (<span class="num">1</span> <span class="op">-</span> <span class="var">maîtrise</span>)) <span class="op">×</span> <span class="var">facteur</span>))<br>
+        <span class="comment">-- maîtrise : 0.0 = jamais réussi, 1.0 = toujours réussi</span><br>
+        <span class="comment">-- facteur   : 1.0 (Révision) ou 1.5 (Rush / Bombardement)</span><br>
+        <span class="comment">-- minimum garanti : 2 XP par bonne réponse</span>
+      </div>
+    </div>
+
+    <div class="xp-bar-demo">
+      <div class="xp-row">
+        <div class="xp-row-label">Maîtrise 0 %</div>
+        <div class="xp-bar-wrap"><div class="xp-bar-fill" style="width:100%"></div></div>
+        <div class="xp-row-val">10 XP</div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-row-label">Maîtrise 25 %</div>
+        <div class="xp-bar-wrap"><div class="xp-bar-fill" style="width:80%"></div></div>
+        <div class="xp-row-val">8 XP</div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-row-label">Maîtrise 50 %</div>
+        <div class="xp-bar-wrap"><div class="xp-bar-fill" style="width:60%"></div></div>
+        <div class="xp-row-val">6 XP</div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-row-label">Maîtrise 75 %</div>
+        <div class="xp-bar-wrap"><div class="xp-bar-fill" style="width:40%"></div></div>
+        <div class="xp-row-val">4 XP</div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-row-label">Maîtrise 100 %</div>
+        <div class="xp-bar-wrap"><div class="xp-bar-fill" style="width:20%"></div></div>
+        <div class="xp-row-val">2 XP</div>
+      </div>
+    </div>
+    <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:2rem;">Valeurs en Révision (facteur 1.0). Rush et Bombardement multiplient par 1.5.</p>
+
+    <div>
+      <p class="formula-label">Niveau depuis le total XP</p>
+      <div class="formula-box">
+        <span class="var">niveau</span> <span class="op">=</span> floor( (<span class="num">1</span> <span class="op">+</span> √(<span class="num">1</span> <span class="op">+</span> <span class="num">8</span> <span class="op">×</span> <span class="var">xp_total</span> <span class="op">/</span> <span class="num">100</span>)) <span class="op">/</span> <span class="num">2</span> )<br>
+        <span class="comment">-- Niveau 1 : 0 XP   · Niveau 10 : 450 XP</span><br>
+        <span class="comment">-- Niveau 20 : 1 900 XP · Niveau 50 : 12 250 XP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── RANGS ─────────────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="watermark">RANG</div>
+  <div class="section-inner">
+    <span class="eyebrow">Système de rangs</span>
+    <h2 class="section-title">Huit rangs, du débutant au Grand Maître</h2>
+    <p class="section-lead">Le rang est débloqué automatiquement quand l'élève atteint le niveau requis. Une animation spéciale célèbre chaque montée de rang.</p>
+
+    <div class="rangs-timeline">
+      <div class="rangs-track"></div>
+      <div class="rangs-row">
+        <div class="rang-item">
+          <div class="rang-bubble" style="border-color:#6B7280;color:#6B7280">🌱</div>
+          <div class="rang-name" style="color:#6B7280">Débutant</div>
+          <div class="rang-level">Niv. 1</div>
+        </div>
+        <div class="rang-item">
+          <div class="rang-bubble" style="border-color:#3B82F6;color:#3B82F6">📘</div>
+          <div class="rang-name" style="color:#3B82F6">Apprenti</div>
+          <div class="rang-level">Niv. 5</div>
+        </div>
+        <div class="rang-item">
+          <div class="rang-bubble" style="border-color:#10B981;color:#10B981">🔎</div>
+          <div class="rang-name" style="color:#10B981">Explorateur</div>
+          <div class="rang-level">Niv. 10</div>
+        </div>
+        <div class="rang-item">
+          <div class="rang-bubble" style="border-color:#8B5CF6;color:#8B5CF6">🧠</div>
+          <div class="rang-name" style="color:#8B5CF6">Confirmé</div>
+          <div class="rang-level">Niv. 20</div>
+        </div>
+        <div class="rang-item">
+          <div class="rang-bubble" style="border-color:#F59E0B;color:#F59E0B">🎓</div>
+          <div class="rang-name" style="color:#F59E0B">Avancé</div>
+          <div class="rang-level">Niv. 30</div>
+        </div>
+        <div class="rang-item">
+          <div class="rang-bubble" style="border-color:#EF4444;color:#EF4444">🏆</div>
+          <div class="rang-name" style="color:#EF4444">Expert</div>
+          <div class="rang-level">Niv. 50</div>
+        </div>
+        <div class="rang-item">
+          <div class="rang-bubble" style="border-color:#06B6D4;color:#06B6D4">💎</div>
+          <div class="rang-name" style="color:#06B6D4">Maître</div>
+          <div class="rang-level">Niv. 75</div>
+        </div>
+        <div class="rang-item">
+          <div class="rang-bubble" style="border-color:#F0A000;color:#F0A000;background:rgba(240,160,0,0.1)">👑</div>
+          <div class="rang-name" style="color:#F0A000">Grand Maître</div>
+          <div class="rang-level">Niv. 100</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:2rem;font-size:0.85rem;color:var(--text-muted);">Quand un rang change en même temps qu'un niveau, l'overlay affiche d'abord le nouveau niveau, puis le badge du nouveau rang avec une animation élastique distincte.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── FEEDBACK VISUEL ────────────────────────────────────────────────────── -->
+<section class="section section-alt" id="feedback">
+  <div class="section-inner">
+    <span class="eyebrow">Feedback visuel</span>
+    <h2 class="section-title">Animations de réponse</h2>
+    <p class="section-lead">Chaque réponse déclenche une animation distincte. Cliquer sur les exemples ci-dessous pour les voir en action.</p>
+
+    <div class="anim-demo">
+      <div class="anim-box" id="boxShake" onclick="triggerAnim('shake')">
+        <div class="anim-box-label">✗ Mauvaise réponse — Shake (480ms)</div>
+        <div class="anim-choix" id="choixShake">
+          <div class="lettre-badge">B</div>
+          <span>Réponse incorrecte</span>
+        </div>
+        <p class="anim-note">Secousse horizontale en 6 phases. La progression de l'amplitude diminue progressivement pour simuler un amortissement naturel.</p>
+      </div>
+      <div class="anim-box" id="boxPulse" onclick="triggerAnim('pulse')">
+        <div class="anim-box-label">✓ Bonne réponse — Pulse (500ms)</div>
+        <div class="anim-choix" id="choixPulse" style="border-color:#10B981;background:#D1FAE5;">
+          <div class="lettre-badge" style="background:#10B981;color:white">A</div>
+          <span>Bonne réponse !</span>
+        </div>
+        <p class="anim-note">Légère mise à l'échelle (+5 %, puis −2 %) pour signaler le succès sans distraction. Subtil mais distinct.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.1rem;margin:2rem 0 1rem;">Raccourcis clavier (PC)</h3>
+    <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:1rem;">Sur ordinateur, les touches 1/2/3/4 sélectionnent directement les réponses A/B/C/D. Le quiz reste utilisable sans souris.</p>
+    <div class="kbd-row">
+      <div class="kbd-item"><div class="kbd">1</div><span class="kbd-arrow">→</span><span class="kbd-label">Réponse A</span></div>
+      <div class="kbd-item"><div class="kbd">2</div><span class="kbd-arrow">→</span><span class="kbd-label">Réponse B</span></div>
+      <div class="kbd-item"><div class="kbd">3</div><span class="kbd-arrow">→</span><span class="kbd-label">Réponse C</span></div>
+      <div class="kbd-item"><div class="kbd">4</div><span class="kbd-arrow">→</span><span class="kbd-label">Réponse D</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── CHRONOMÈTRE ────────────────────────────────────────────────────────── -->
+<section class="section">
+  <div class="watermark">TEMPS</div>
+  <div class="section-inner">
+    <span class="eyebrow">Chronomètre</span>
+    <h2 class="section-title">La gestion du temps</h2>
+    <p class="section-lead">Chaque mode a sa propre logique temporelle. Le timer change de couleur quand le temps devient critique.</p>
+
+    <div class="timer-compare">
+      <div class="timer-card">
+        <h4>Révision</h4>
+        <div class="timer-display" style="color:var(--success)">12s</div>
+        <div class="timer-bar-wrap"><div class="timer-bar" style="width:60%;background:var(--success)"></div></div>
+        <p class="timer-note">20s par question. <strong>Critique ≤ 5s</strong> → affichage en rouge.</p>
+      </div>
+      <div class="timer-card">
+        <h4>Rush</h4>
+        <div class="timer-display" style="color:#EF4444">2s</div>
+        <div class="timer-bar-wrap"><div class="timer-bar" style="width:20%;background:#EF4444"></div></div>
+        <p class="timer-note">10s par question. <strong>Critique ≤ 3s</strong> → affichage en rouge. Pression maximale.</p>
+      </div>
+      <div class="timer-card">
+        <h4>Bombardement</h4>
+        <div class="timer-display" style="color:#8B5CF6">42s</div>
+        <div class="timer-bar-wrap"><div class="timer-bar" style="width:70%;background:#8B5CF6"></div></div>
+        <p class="timer-note">60s global pour 30 questions. Pas de timer individuel — chrono continu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── RÉALISATIONS ────────────────────────────────────────────────────────── -->
+<section class="section section-alt">
+  <div class="watermark">ACHIEV</div>
+  <div class="section-inner">
+    <span class="eyebrow">Réalisations</span>
+    <h2 class="section-title">Système d'achievements</h2>
+    <p class="section-lead">Les réalisations récompensent la régularité, la maîtrise et les exploits. Cinq niveaux de rareté, de la Commune à la Légendaire.</p>
+
+    <div class="achievement-grid">
+      <div class="ach-card">
+        <div class="ach-rarete r0">Commune</div>
+        <div class="ach-nom">Premier pas</div>
+        <div class="ach-desc">Terminer un premier quiz</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-rarete r1">Peu commune</div>
+        <div class="ach-nom">En série</div>
+        <div class="ach-desc">Atteindre une série de 10</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-rarete r2">Rare</div>
+        <div class="ach-nom">Perfectionniste</div>
+        <div class="ach-desc">Obtenir 100 % dans un quiz</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-rarete r3">Épique</div>
+        <div class="ach-nom">Encyclopédiste</div>
+        <div class="ach-desc">Répondre à 500 questions</div>
+      </div>
+      <div class="ach-card">
+        <div class="ach-rarete r4">Légendaire</div>
+        <div class="ach-nom">Grand Maître</div>
+        <div class="ach-desc">Atteindre le niveau 100</div>
+      </div>
+      <div class="ach-card" style="opacity:0.5">
+        <div class="ach-rarete r3">Épique</div>
+        <div class="ach-nom">??? (Secret)</div>
+        <div class="ach-desc">Les réalisations secrètes ne se révèlent qu'une fois débloquées</div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);">
+      <p style="font-size:0.85rem;color:var(--text-muted);">Quand une réalisation est débloquée en fin de quiz, un overlay apparaît avant l'overlay de montée de niveau. La rareté détermine l'animation : les Légendaires ont un effet plus spectaculaire que les Communes. Plusieurs réalisations débloquées simultanément s'affichent en séquence.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── ÉCRANS ─────────────────────────────────────────────────────────────── -->
+<section class="section" id="ecrans">
+  <div class="section-inner">
+    <span class="eyebrow">Interface</span>
+    <h2 class="section-title">Les écrans principaux</h2>
+    <p class="section-lead">L'application guide l'élève depuis le choix de la matière jusqu'au résultat détaillé, avec un profil persistant entre les sessions.</p>
+
+    <div class="screens-grid">
+      <div class="screen-card">
+        <div class="screen-preview">🏠</div>
+        <div class="screen-body">
+          <div class="screen-name">Accueil</div>
+          <div class="screen-desc">Sélection du niveau scolaire, de la matière et du chapitre. Bouton "Tout" pour mélanger toutes les matières.</div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-preview">📚</div>
+        <div class="screen-body">
+          <div class="screen-name">Sélection chapitre</div>
+          <div class="screen-desc">Liste des chapitres avec progression. Choix du mode de jeu et du nombre de questions (5, 10, 15, 20…).</div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-preview">❓</div>
+        <div class="screen-body">
+          <div class="screen-name">Quiz</div>
+          <div class="screen-desc">Énoncé, 4 choix (A/B/C/D), chronomètre, barre de progression. Feedback immédiat et explications en Révision.</div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-preview">🎯</div>
+        <div class="screen-body">
+          <div class="screen-name">Résultat</div>
+          <div class="screen-desc">Score final, XP et pièces gagnés, overlay de montée de niveau/rang. Détail question par question avec explications.</div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-preview">👤</div>
+        <div class="screen-body">
+          <div class="screen-name">Profil / Réglages</div>
+          <div class="screen-desc">Badge de rang, barre XP, pièces. Historique des scores, maîtrise par matière, réalisations débloquées.</div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-preview">🗺️</div>
+        <div class="screen-body">
+          <div class="screen-name">Cartes mentales</div>
+          <div class="screen-desc">Fiches de révision textuelles associées à chaque chapitre, consultables avant ou après le quiz.</div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-preview">📊</div>
+        <div class="screen-body">
+          <div class="screen-name">Statistiques</div>
+          <div class="screen-desc">Maîtrise globale et par matière, taux de réussite, nombre total de questions répondues.</div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-preview">🏅</div>
+        <div class="screen-body">
+          <div class="screen-name">Classement</div>
+          <div class="screen-desc">Scores triés par mode et par matière. Permet de se comparer dans le temps.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ── TECH DARK ──────────────────────────────────────────────────────────── -->
+<section class="section section-dark" id="tech">
+  <div class="watermark" style="opacity:0.05">TECH</div>
+  <div class="section-inner">
+    <span class="eyebrow" style="color:rgba(240,160,0,0.9)">Architecture</span>
+    <h2 class="section-title" style="color:#FFFFFF">Deux plateformes, une logique</h2>
+    <p class="section-lead">L'application mobile et la version web partagent les mêmes formules (XP, niveaux, rangs, algorithme adaptatif), implémentées dans deux langages différents.</p>
+
+    <div class="tech-grid">
+      <div class="tech-col">
+        <h3 style="color:rgba(232,229,220,0.9);margin-bottom:1rem;">📱 Application Mobile</h3>
+        <div class="tech-list">
+          <div class="tech-item">
+            <span class="tech-icon">🐦</span>
+            <div><div class="tech-name">Flutter / Dart</div><div class="tech-role">Framework UI cross-platform</div></div>
+          </div>
+          <div class="tech-item">
+            <span class="tech-icon">🗄️</span>
+            <div><div class="tech-name">SQLite (sqflite)</div><div class="tech-role">Base de données locale, hors-ligne</div></div>
+          </div>
+          <div class="tech-item">
+            <span class="tech-icon">🔄</span>
+            <div><div class="tech-name">Provider</div><div class="tech-role">Gestion d'état (QuizController)</div></div>
+          </div>
+          <div class="tech-item">
+            <span class="tech-icon">🎯</span>
+            <div><div class="tech-name">AdaptiveSelector</div><div class="tech-role">Algorithme de sélection pondérée</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tech-col">
+        <h3 style="color:rgba(232,229,220,0.9);margin-bottom:1rem;">🌐 Version Web</h3>
+        <div class="tech-list">
+          <div class="tech-item">
+            <span class="tech-icon">⚡</span>
+            <div><div class="tech-name">Vue 3 + Vite</div><div class="tech-role">Frontend SPA (Pinia, Vue Router)</div></div>
+          </div>
+          <div class="tech-item">
+            <span class="tech-icon">🐍</span>
+            <div><div class="tech-name">FastAPI (Python)</div><div class="tech-role">API REST, docs Swagger auto-générées</div></div>
+          </div>
+          <div class="tech-item">
+            <span class="tech-icon">🐘</span>
+            <div><div class="tech-name">PostgreSQL</div><div class="tech-role">Base partagée (migration depuis SQLite)</div></div>
+          </div>
+          <div class="tech-item">
+            <span class="tech-icon">🚀</span>
+            <div><div class="tech-name">Netlify + Render</div><div class="tech-role">Hébergement frontend + backend</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:2.5rem;padding:1.25rem 1.5rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r);">
+      <p style="font-size:0.85rem;color:rgba(232,229,220,0.65);margin-bottom:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;font-size:0.72rem;">Correspondance mobile ↔ web</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;font-size:0.82rem;font-family:var(--font-mono);overflow-x:auto;">
+        <div style="color:rgba(232,229,220,0.5);">niveau.dart</div><div style="color:var(--accent);">services/niveau.py + utils/niveau.js</div>
+        <div style="color:rgba(232,229,220,0.5);">adaptive_selector.dart</div><div style="color:var(--accent);">services/adaptive_selector.py</div>
+        <div style="color:rgba(232,229,220,0.5);">quiz_controller.dart</div><div style="color:var(--accent);">routers/quiz.py + stores/quiz.js</div>
+        <div style="color:rgba(232,229,220,0.5);">database_helper.dart</div><div style="color:var(--accent);">models/ + database.py</div>
+        <div style="color:rgba(232,229,220,0.5);">resultat_screen.dart</div><div style="color:var(--accent);">ResultatView.vue</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--surface);border-top:1px solid var(--border);padding:2rem;text-align:center;">
+  <p style="font-size:0.82rem;color:var(--text-muted);">EduClé — Coding Club ISTEAH · Haïti · Version mobile Flutter + Version web Vue 3 / FastAPI</p>
+  <p style="font-size:0.78rem;color:var(--text-muted);margin-top:0.25rem;"><a href="https://educle.netlify.app" style="color:var(--accent)">educle.netlify.app</a></p>
+</footer>
+
+<script>
+function triggerAnim(type) {
+  const el = document.getElementById(type === 'shake' ? 'choixShake' : 'choixPulse');
+  const cls = type === 'shake' ? 'do-shake' : 'do-pulse';
+  el.classList.remove(cls);
+  void el.offsetWidth; // reflow
+  el.classList.add(cls);
+  el.addEventListener('animationend', () => el.classList.remove(cls), { once: true });
+}
+</script>
