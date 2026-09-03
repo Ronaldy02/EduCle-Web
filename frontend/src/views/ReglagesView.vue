@@ -97,7 +97,7 @@
         <div class="rg-divider"></div>
         <div class="rg-ligne-info">
           <span class="rg-info-lib">Version</span>
-          <span class="rg-info-val" @click="versionClick" style="cursor:default;user-select:none">1.0.0</span>
+          <span class="rg-info-val">1.0.0</span>
         </div>
         <div class="rg-divider"></div>
         <div class="rg-ligne-info">
@@ -120,22 +120,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 import { getProfil, updateProfil } from '../api/client.js'
-
-const router = useRouter()
-const versionClicks = ref(0)
-let versionClickTimer = null
-function versionClick() {
-  versionClicks.value++
-  clearTimeout(versionClickTimer)
-  if (versionClicks.value >= 3) {
-    versionClicks.value = 0
-    router.push('/admin')
-  } else {
-    versionClickTimer = setTimeout(() => { versionClicks.value = 0 }, 1200)
-  }
-}
 
 // ── Pays & régions ────────────────────────────────────────────
 const PAYS = ['Haïti', 'Rép. Dominicaine', 'États-Unis', 'Canada', 'France', 'Belgique']
