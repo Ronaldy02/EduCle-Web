@@ -55,6 +55,10 @@ class ChapitreOut(BaseModel):
     titre: str
     nb_questions: int
 
+class MatiereIn(BaseModel):
+    niveau: str
+    nom: str
+
 class MatiereOut(BaseModel):
     id: int
     niveau: str
@@ -174,6 +178,14 @@ def get_activity(period: str = "7d", db: Session = Depends(get_db)):
 
 
 # ── Matières ──────────────────────────────────────────────────────────────────
+
+@router.post("/matieres", response_model=MatiereOut, status_code=201)
+def create_matiere(body: MatiereIn, db: Session = Depends(get_db)):
+    m = Matiere(niveau=body.niveau, nom=body.nom)
+    db.add(m)
+    db.commit()
+    db.refresh(m)
+    return MatiereOut(id=m.id, niveau=m.niveau, nom=m.nom, chapitres=[])
 
 @router.get("/matieres", response_model=list[MatiereOut])
 def list_matieres(db: Session = Depends(get_db)):

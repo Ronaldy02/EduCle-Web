@@ -7,6 +7,7 @@ Flux :
                          → calcule le score, met à jour XP/pièces/stats
                          → retourne ResultatQuizSchema
 """
+import re
 import random
 from datetime import datetime
 from fastapi import APIRouter, Depends, HTTPException
@@ -42,6 +43,32 @@ def _get_stats(db: Session, question_ids: list[int]) -> dict[int, dict]:
     }
 
 
+def _capitale_key(q: dict) -> str | None:
+    """Retourne la capitale associée à la question, clé de déduplication inter-types."""
+    if q["enonce"].startswith("Quelle est la capitale de "):
+        return q["bonne_reponse"]
+    m = re.match(r"Quel pays a pour capitale (.+) \?$", q["enonce"])
+    if m:
+        return m.group(1)
+    return None
+
+
+def _dedup_pool(pool: list[dict]) -> list[dict]:
+    """Pour chaque capitale, garde une seule question (type 1 ou 2) choisie au hasard."""
+    by_key: dict[str, list[dict]] = {}
+    no_key: list[dict] = []
+    for q in pool:
+        key = _capitale_key(q)
+        if key:
+            by_key.setdefault(key, []).append(q)
+        else:
+            no_key.append(q)
+    result = no_key[:]
+    for qs in by_key.values():
+        result.append(random.choice(qs))
+    return result
+
+
 def _questions_du_chapitre(db: Session, chapitre_id: int) -> list[Question]:
     if chapitre_id == -1:
         # Toutes les matières
@@ -72,6 +99,7 @@ def demarrer_quiz(body: DemarrerQuizRequest, db: Session = Depends(get_db)):
             "niveau_complexite": q.niveau_complexite,
         })
 
+    pool = _dedup_pool(pool)
     stats = _get_stats(db, [q["id"] for q in pool])
     selected = selectionner(pool=pool, stats=stats, nb_voulu=body.nb_questions)
     return [QuestionSchema(**q) for q in selected]
