@@ -40,3 +40,6 @@ export const getStats = () => api.get('/user/stats').then(r => r.data)
 
 // ─── Réalisations ─────────────────────────────────────────────────────────────
 export const getRealisations = () => api.get('/realisations/').then(r => r.data)
+
+// ─── Admin (lecture seule) ────────────────────────────────────────────────────
+export const getMatieresAvecChapitres = () => api.get('/admin/matieres').then(r => r.data)

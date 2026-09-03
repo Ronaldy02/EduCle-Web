@@ -60,7 +60,7 @@
         </div>
         <div class="search-wrap">
           <span class="material-symbols-outlined search-icon">search</span>
-          <input v-model="recherche" type="text" placeholder="Rechercher une matière…" class="search-input" />
+          <input v-model="recherche" type="text" placeholder="Rechercher une matière ou un chapitre…" class="search-input" />
         </div>
       </div>
 
@@ -70,24 +70,63 @@
           @click="filtrer(niv)">{{ niv }}</button>
       </div>
 
-      <div v-if="chargement" class="loading">Chargement…</div>
-      <div v-else-if="matieresFiltrées.length === 0 && recherche" class="vide">
-        Aucune matière ne correspond à « {{ recherche }} ».
-      </div>
-      <div v-else class="matieres-grid">
-        <div v-for="mat in matieresFiltrées" :key="mat.id"
-          class="mat-card" @click="choisirMatiere(mat)">
-          <div v-if="imagePour(mat.nom)" class="mat-img-wrap">
-            <img :src="imagePour(mat.nom)" :alt="mat.nom" class="mat-img" />
+      <!-- ── Résultats de recherche ──────────────────────────── -->
+      <template v-if="rechercheActive">
+        <template v-if="matieresFiltrées.length || chapitresFiltrés.length">
+          <div v-if="matieresFiltrées.length">
+            <div class="search-section-label">Matières</div>
+            <div class="matieres-grid">
+              <div v-for="m in matieresFiltrées" :key="m.id"
+                class="mat-card" @click="choisirMatiere(m)">
+                <div v-if="imagePour(m.nom)" class="mat-img-wrap">
+                  <img :src="imagePour(m.nom)" :alt="m.nom" class="mat-img" />
+                </div>
+                <div v-else class="mat-icon-wrap" :style="{ background: iconBgPour(m.nom) }">
+                  <span class="material-symbols-outlined filled mat-icon" :style="{ color: iconColorPour(m.nom) }">{{ iconPour(m.nom) }}</span>
+                </div>
+                <p class="mat-nom" :style="{ color: iconColorPour(m.nom) }">{{ m.nom }}</p>
+              </div>
+            </div>
           </div>
-          <div v-else class="mat-icon-wrap" :style="{ background: iconBgPour(mat.nom) }">
-            <span class="material-symbols-outlined filled mat-icon" :style="{ color: iconColorPour(mat.nom) }">
-              {{ iconPour(mat.nom) }}
-            </span>
+          <div v-if="chapitresFiltrés.length" :style="matieresFiltrées.length ? 'margin-top:1.25rem' : ''">
+            <div class="search-section-label">Chapitres</div>
+            <div class="chapitres-search-list">
+              <button v-for="c in chapitresFiltrés" :key="c.id"
+                class="chap-search-row" @click="choisirChapitre(c, c.matiere)">
+                <div class="chap-search-left">
+                  <div class="chap-search-icon" :style="{ background: iconBgPour(c.matiere.nom) }">
+                    <img v-if="imagePour(c.matiere.nom)" :src="imagePour(c.matiere.nom)" :alt="c.matiere.nom" class="mat-img" />
+                    <span v-else class="material-symbols-outlined filled" :style="{ color: iconColorPour(c.matiere.nom), fontSize:'15px' }">{{ iconPour(c.matiere.nom) }}</span>
+                  </div>
+                  <div>
+                    <div class="chap-search-titre">{{ c.titre }}</div>
+                    <div class="chap-search-mat">{{ c.matiere.nom }}</div>
+                  </div>
+                </div>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
           </div>
-          <p class="mat-nom" :style="{ color: iconColorPour(mat.nom) }">{{ mat.nom }}</p>
+        </template>
+        <div v-else class="vide">Aucun résultat pour « {{ recherche }} ».</div>
+      </template>
+
+      <!-- ── Grille normale ──────────────────────────────────── -->
+      <template v-else>
+        <div v-if="chargement" class="loading">Chargement…</div>
+        <div v-else class="matieres-grid">
+          <div v-for="m in matieres" :key="m.id"
+            class="mat-card" @click="choisirMatiere(m)">
+            <div v-if="imagePour(m.nom)" class="mat-img-wrap">
+              <img :src="imagePour(m.nom)" :alt="m.nom" class="mat-img" />
+            </div>
+            <div v-else class="mat-icon-wrap" :style="{ background: iconBgPour(m.nom) }">
+              <span class="material-symbols-outlined filled mat-icon" :style="{ color: iconColorPour(m.nom) }">{{ iconPour(m.nom) }}</span>
+            </div>
+            <p class="mat-nom" :style="{ color: iconColorPour(m.nom) }">{{ m.nom }}</p>
+          </div>
         </div>
-      </div>
+      </template>
 
     </div>
 
@@ -321,17 +360,18 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { getMatieres, getNiveaux, getMatiere, getStats } from '../api/client.js'
+import { getMatieres, getNiveaux, getMatiere, getStats, getMatieresAvecChapitres } from '../api/client.js'
 import { useQuizStore } from '../stores/quiz.js'
 
 const router = useRouter()
 const quiz = useQuizStore()
 
-const niveaux    = ref([])
-const niveauActif = ref(null)
-const matieres   = ref([])
-const chargement = ref(true)
-const recherche  = ref('')
+const niveaux        = ref([])
+const niveauActif    = ref(null)
+const matieres       = ref([])
+const chargement     = ref(true)
+const recherche      = ref('')
+const tousLesThemes  = ref([])   // [{ id, titre, matiere: {id, nom} }]
 
 // Étapes : null | 'chapitre' | 'mode'
 const etape         = ref(null)
@@ -438,19 +478,33 @@ function iconBgPour(nom) { return _lookup(nom).bg }
 function iconColorPour(nom) { return _lookup(nom).color }
 
 // ── Filtres & données ────────────────────────────────────────────
+const rechercheActive = computed(() => recherche.value.trim().length > 0)
+const q = computed(() => recherche.value.toLowerCase().trim())
+
 const matieresFiltrées = computed(() =>
-  recherche.value.trim()
-    ? matieres.value.filter(m => m.nom.toLowerCase().includes(recherche.value.toLowerCase()))
-    : matieres.value
+  q.value ? matieres.value.filter(m => m.nom.toLowerCase().includes(q.value)) : matieres.value
+)
+
+const chapitresFiltrés = computed(() =>
+  q.value ? tousLesThemes.value.filter(c => c.titre.toLowerCase().includes(q.value)) : []
 )
 
 onMounted(async () => {
-  const [nivList] = await Promise.all([getNiveaux(), chargerStats()])
-  niveaux.value = nivList
-  niveauActif.value = nivList[0] ?? null
-  await filtrer(niveauActif.value)
+  const [nivList] = await Promise.all([getNiveaux(), chargerStats(), chargerTousLesThemes()])
+  niveaux.value = ['Tout', ...nivList.filter(n => n !== 'Commun')]
+  niveauActif.value = 'Tout'
+  await filtrer('Tout')
   chargement.value = false
 })
+
+async function chargerTousLesThemes() {
+  try {
+    const data = await getMatieresAvecChapitres()
+    tousLesThemes.value = data.flatMap(m =>
+      m.chapitres.map(c => ({ id: c.id, titre: c.titre, matiere: { id: m.id, nom: m.nom } }))
+    )
+  } catch {}
+}
 
 async function chargerStats() {
   try {
@@ -468,11 +522,21 @@ async function chargerStats() {
 async function filtrer(niv) {
   niveauActif.value = niv
   chargement.value = true
-  matieres.value = await getMatieres(niv)
+  matieres.value = await getMatieres(niv === 'Tout' ? null : niv)
   chargement.value = false
 }
 
 // ── Flux sélection ───────────────────────────────────────────────
+async function choisirChapitre(chap, matiere) {
+  mat.value = matiere
+  chapitreChoisi.value = { id: chap.id, titre: chap.titre }
+  try {
+    const detail = await getMatiere(matiere.id)
+    chapitres.value = detail.chapitres
+  } catch { chapitres.value = [] }
+  etape.value = 'mode'
+}
+
 async function choisirMatiere(m) {
   mat.value = m
   chapitreChoisi.value = null
@@ -579,6 +643,29 @@ async function jouerAleatoire() {
 .filtre-btn.active { background: var(--primary); color: white; }
 .loading { text-align: center; color: var(--text-muted); padding: 3rem; }
 .vide { text-align: center; color: var(--text-muted); padding: 2rem; font-style: italic; }
+
+/* ── Recherche multi-type ────────────────────────────────────── */
+.search-section-label {
+  font-size: 0.7rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.07em; color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+.chapitres-search-list { display: flex; flex-direction: column; gap: 0.4rem; }
+.chap-search-row {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 0.7rem 0.9rem; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 12px;
+  cursor: pointer; transition: border-color 0.12s, background 0.12s;
+  color: var(--text);
+}
+.chap-search-row:hover { border-color: var(--primary); background: var(--primary-light-solid); }
+.chap-search-left { display: flex; align-items: center; gap: 0.65rem; text-align: left; }
+.chap-search-icon {
+  width: 32px; height: 32px; border-radius: 9px; flex-shrink: 0;
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
+}
+.chap-search-titre { font-weight: 700; font-size: 0.875rem; }
+.chap-search-mat { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.1rem; }
 
 /* ── Grille matières ─────────────────────────────────────────── */
 .matieres-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; padding-bottom: 2rem; }
