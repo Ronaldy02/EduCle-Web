@@ -5,7 +5,7 @@
       <button class="hamburger-btn" @click="sidebarOuvert = !sidebarOuvert" aria-label="Menu">
         <span class="material-symbols-outlined">{{ sidebarOuvert ? 'close' : 'menu' }}</span>
       </button>
-      <span class="logo-text" @click="logoClick" style="cursor:pointer;user-select:none">🔑 EduClé</span>
+      <span class="logo-text">🔑 EduClé</span>
     </div>
     <div class="mh-right">
       <div class="stat-pill" v-if="niveau">
@@ -26,7 +26,7 @@
 
     <!-- Sidebar (desktop always visible, mobile slide-in) -->
     <nav v-if="showNav" :class="['sidebar', { 'sidebar--open': sidebarOuvert }]">
-      <div class="sidebar-logo" @click="logoClick" style="cursor:pointer;user-select:none">
+      <div class="sidebar-logo">
         <span class="logo-text">🔑 EduClé</span>
         <span class="sidebar-tagline">Apprentissage Académique</span>
       </div>
@@ -110,11 +110,10 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { getNiveau } from './api/client.js'
 
 const route = useRoute()
-const router = useRouter()
 const niveau = ref(null)
 const connecte = ref(true)
 const sidebarOuvert = ref(false)
@@ -136,19 +135,6 @@ watch(() => route.name, (n) => {
   sidebarOuvert.value = false
 })
 
-// Quintuple click sur le logo → page admin
-const logoClicks = ref(0)
-let logoClickTimer = null
-function logoClick() {
-  logoClicks.value++
-  clearTimeout(logoClickTimer)
-  if (logoClicks.value >= 5) {
-    logoClicks.value = 0
-    router.push('/admin')
-  } else {
-    logoClickTimer = setTimeout(() => { logoClicks.value = 0 }, 1500)
-  }
-}
 </script>
 
 <style>
