@@ -7,6 +7,19 @@
   <!-- Quiz en cours -->
   <div v-else-if="question" class="qz-shell">
 
+    <!-- ── Overlay palier série ─────────────────────────────────── -->
+    <transition name="palier-anim">
+      <div v-if="palierVisible" class="palier-overlay" :class="`palier-lv${palierValue}`">
+        <div class="palier-box">
+          <span v-for="i in (palierValue >= 20 ? 12 : 0)" :key="i"
+            class="palier-particle" :style="palierParticleStyle(i)"></span>
+          <div class="palier-fire">🔥</div>
+          <div class="palier-label">SÉRIE DE {{ palierValue }} !</div>
+          <div class="palier-bonus">+{{ PALIER_BONUS[palierValue] }} 🪙</div>
+        </div>
+      </div>
+    </transition>
+
     <!-- ── Header ───────────────────────────────────────────────── -->
     <header class="qz-header">
       <div class="qz-header-inner">
@@ -24,8 +37,11 @@
             <span class="qz-score-val">{{ scoreLocal }}</span>
           </div>
           <transition name="serie-pop">
-            <div v-if="serie >= 3" class="qz-serie-pill">
-              🔥 <span>Série : {{ serie }}</span>
+            <div v-if="serie >= 3 && modeNom !== 'Bombardement'"
+              class="qz-serie-pill"
+              :class="{ 'qz-serie-bounce': serieBounce, 'qz-serie-hot': serie >= 10 }">
+              <span>🔥</span>
+              <span class="qz-serie-num">{{ serie }}</span>
             </div>
           </transition>
         </div>
@@ -150,7 +166,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useQuizStore } from '../stores/quiz.js'
 
@@ -168,11 +184,15 @@ const showExplication = ref(false)
 const showIndice      = ref(false)
 const animShake  = ref(false)
 const animPulse  = ref(false)
-const animPalier = ref(false)
 
-const serie       = ref(0)
-const scoreLocal  = ref(0)
-const _PALIERS    = [5, 10, 15, 20]
+const serie         = ref(0)
+const scoreLocal    = ref(0)
+const serieBounce   = ref(false)
+const palierVisible = ref(false)
+const palierValue   = ref(0)
+const _PALIERS      = [5, 10, 15, 20]
+const PALIER_BONUS    = { 5: 5, 10: 10, 15: 18, 20: 25 }
+const PALIER_DURATION = { 5: 1500, 10: 1800, 15: 2100, 20: 2600 }
 
 // Bonus
 const bonusUtilises = ref({ elimination: false, cinqCinq: false, indice: false })
@@ -273,9 +293,9 @@ function repondre(choixIndex) {
     serie.value++
     const bonus = Math.floor(serie.value / 3) * 5
     scoreLocal.value += 20 + bonus
-    if (_PALIERS.includes(serie.value)) {
-      animPalier.value = true
-      setTimeout(() => { animPalier.value = false }, 800)
+    if (modeNom.value !== 'Bombardement') {
+      triggerSerieBounce()
+      if (_PALIERS.includes(serie.value)) triggerPalier(serie.value)
     }
     animPulse.value = true
     setTimeout(() => { animPulse.value = false }, 500)
@@ -369,6 +389,55 @@ function utiliserBonus(type) {
     }
   }
 }
+
+function triggerSerieBounce() {
+  serieBounce.value = false
+  nextTick(() => {
+    serieBounce.value = true
+    setTimeout(() => { serieBounce.value = false }, 420)
+  })
+}
+
+function triggerPalier(n) {
+  palierValue.value = n
+  palierVisible.value = true
+  playSerieSound(n)
+  setTimeout(() => { palierVisible.value = false }, PALIER_DURATION[n])
+}
+
+function playSerieSound(n) {
+  try {
+    const ac = new AudioContext()
+    const plans = {
+      5:  [[523, 0], [659, 0.14]],
+      10: [[523, 0], [659, 0.12], [784, 0.24]],
+      15: [[523, 0], [659, 0.10], [784, 0.20], [1047, 0.33]],
+      20: [[523, 0], [659, 0.10], [784, 0.20], [1047, 0.32], [1319, 0.46]],
+    }
+    ;(plans[n] ?? []).forEach(([freq, t]) => {
+      const osc = ac.createOscillator()
+      const g   = ac.createGain()
+      osc.connect(g); g.connect(ac.destination)
+      osc.frequency.value = freq
+      osc.type = 'triangle'
+      const st = ac.currentTime + t
+      g.gain.setValueAtTime(0, st)
+      g.gain.linearRampToValueAtTime(0.2, st + 0.04)
+      g.gain.exponentialRampToValueAtTime(0.001, st + 0.55)
+      osc.start(st); osc.stop(st + 0.6)
+    })
+  } catch {}
+}
+
+function palierParticleStyle(i) {
+  return {
+    '--angle': (i / 12 * 360) + 'deg',
+    '--dist':  (90 + (i % 3) * 25) + 'px',
+    '--size':  (4 + (i % 3) * 3) + 'px',
+    '--hue':   (20 + i * 15) + 'deg',
+    '--delay': (i * 0.08).toFixed(2) + 's',
+  }
+}
 </script>
 
 <style scoped>
@@ -414,7 +483,21 @@ function utiliserBonus(type) {
   background: #fff8e1; border: 1.5px solid #ffe082;
   border-radius: 99px; padding: 0.3rem 0.75rem;
   font-size: 0.8rem; font-weight: 700; color: #ff8f00;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
+.qz-serie-num { font-size: 1rem; font-weight: 900; }
+.qz-serie-hot {
+  background: #fff3e0; border-color: #ff6d00;
+  color: #e65100;
+  box-shadow: 0 0 10px rgba(255,109,0,0.35);
+}
+@keyframes qz-serie-bounce {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.32); }
+  70%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+.qz-serie-bounce { animation: qz-serie-bounce 0.4s cubic-bezier(0.34,1.56,0.64,1); }
 
 .qz-progress-track { width: 100%; height: 4px; background: #dce2f3; }
 .qz-progress-fill  { height: 100%; transition: width 0.4s ease; }
@@ -585,17 +668,93 @@ function utiliserBonus(type) {
 }
 .qz-suivant-btn:hover { background: #004295; }
 
-/* Transitions */
-.serie-pop-enter-active { animation: palier-flash 0.5s ease; }
+/* Pill entrance */
+.serie-pop-enter-active { animation: serie-pop-in 0.45s cubic-bezier(0.34,1.56,0.64,1); }
 .serie-pop-leave-active { transition: opacity 0.2s, transform 0.2s; }
 .serie-pop-leave-to     { opacity: 0; transform: scale(0.8); }
-
-@keyframes palier-flash {
-  0%   { transform: scale(1); }
-  30%  { transform: scale(1.3); }
-  60%  { transform: scale(1.1); }
-  100% { transform: scale(1); }
+@keyframes serie-pop-in {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
 }
+
+/* ── Overlay palier série ────────────────────────────────────────── */
+.palier-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.palier-box {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+  background: linear-gradient(160deg, #1a0800, #2d1600);
+  border-radius: 24px; padding: 1.5rem 2.5rem;
+  box-shadow: 0 0 0 2px rgba(251,191,36,0.6), 0 10px 50px rgba(251,191,36,0.4);
+  animation: palier-glow 1.4s ease-in-out infinite alternate;
+}
+@keyframes palier-glow {
+  from { box-shadow: 0 0 0 2px rgba(251,191,36,0.6), 0 10px 40px rgba(251,191,36,0.35); }
+  to   { box-shadow: 0 0 0 3px rgba(251,191,36,0.9), 0 10px 65px rgba(251,191,36,0.55); }
+}
+.palier-lv10 .palier-box { animation: palier-glow-10 1.2s ease-in-out infinite alternate; }
+@keyframes palier-glow-10 {
+  from { box-shadow: 0 0 0 2px rgba(251,146,60,0.7), 0 10px 45px rgba(251,146,60,0.4); }
+  to   { box-shadow: 0 0 0 4px rgba(251,146,60,0.95), 0 12px 70px rgba(251,146,60,0.6); }
+}
+.palier-lv15 .palier-box { animation: palier-glow-15 1s ease-in-out infinite alternate; }
+@keyframes palier-glow-15 {
+  from { box-shadow: 0 0 0 2px rgba(239,68,68,0.7), 0 12px 50px rgba(239,68,68,0.45); }
+  to   { box-shadow: 0 0 0 5px rgba(239,68,68,1), 0 14px 80px rgba(239,68,68,0.65); }
+}
+.palier-lv20 .palier-box { animation: palier-glow-20 0.85s ease-in-out infinite alternate; }
+@keyframes palier-glow-20 {
+  from { box-shadow: 0 0 0 2px rgba(255,80,0,0.8), 0 12px 60px rgba(255,80,0,0.55); transform: scale(1); }
+  to   { box-shadow: 0 0 0 6px rgba(255,80,0,1), 0 18px 100px rgba(255,80,0,0.85); transform: scale(1.03); }
+}
+
+.palier-fire {
+  font-size: 2.8rem; line-height: 1;
+  animation: palier-fire-anim 0.5s ease-in-out infinite alternate;
+}
+@keyframes palier-fire-anim {
+  from { transform: scale(1) rotate(-5deg); }
+  to   { transform: scale(1.14) rotate(5deg); }
+}
+.palier-lv10 .palier-fire { font-size: 3.2rem; }
+.palier-lv15 .palier-fire { font-size: 3.6rem; }
+.palier-lv20 .palier-fire { font-size: 4.2rem; }
+
+.palier-label {
+  font-size: 1.45rem; font-weight: 900; letter-spacing: 0.05em;
+  color: #fff; white-space: nowrap; line-height: 1.1;
+  text-shadow: 0 0 20px rgba(255,160,0,0.9);
+}
+.palier-lv10 .palier-label { font-size: 1.6rem; }
+.palier-lv15 .palier-label { font-size: 1.75rem; text-shadow: 0 0 20px rgba(255,80,80,0.9); }
+.palier-lv20 .palier-label { font-size: 2rem; text-shadow: 0 0 30px rgba(255,60,0,1), 0 0 60px rgba(255,80,0,0.5); }
+
+.palier-bonus { font-size: 1rem; font-weight: 700; color: #fbbf24; }
+.palier-lv15 .palier-bonus,
+.palier-lv20 .palier-bonus { font-size: 1.1rem; color: #fde68a; }
+
+/* Particules série 20 */
+.palier-particle {
+  position: absolute; left: 50%; top: 50%;
+  width: var(--size); height: var(--size); border-radius: 50%;
+  background: hsl(var(--hue), 100%, 65%);
+  animation: palier-particle-burst 0.9s var(--delay) cubic-bezier(0.25,0.46,0.45,0.94) both infinite;
+  pointer-events: none;
+}
+@keyframes palier-particle-burst {
+  0%   { transform: translate(-50%,-50%) rotate(var(--angle)) translateX(0) scale(1); opacity: 1; }
+  80%  { opacity: 0.5; }
+  100% { transform: translate(-50%,-50%) rotate(var(--angle)) translateX(var(--dist)) scale(0); opacity: 0; }
+}
+
+/* Transition palier */
+.palier-anim-enter-active { transition: opacity 0.25s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+.palier-anim-leave-active  { transition: opacity 0.45s; }
+.palier-anim-enter-from    { opacity: 0; transform: scale(0.5); }
+.palier-anim-leave-to      { opacity: 0; }
 
 .expl-slide-enter-active { transition: opacity 0.25s, transform 0.25s; }
 .expl-slide-enter-from   { opacity: 0; transform: translateY(10px); }
