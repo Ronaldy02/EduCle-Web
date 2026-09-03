@@ -483,7 +483,7 @@
                 <div class="choices-grid">
                   <div v-for="(_, i) in modalForm.choix" :key="i"
                     :class="['choice-wrap', { 'choice-wrap--correct': modalForm.bonne_reponse && modalForm.bonne_reponse === modalForm.choix[i] && modalForm.choix[i] }]"
-                    @click="if (modalForm.choix[i]) modalForm.bonne_reponse = modalForm.choix[i]">
+                    @click="selectCorrectAnswer(i)">
                     <span class="choice-letter">{{ String.fromCharCode(65 + i) }}</span>
                     <input v-model="modalForm.choix[i]" class="choice-input"
                       :placeholder="`Réponse ${String.fromCharCode(65 + i)}`"
@@ -704,6 +704,7 @@ function openEdit(q) {
 function openView(q)         { modal.value = { type: 'view', question: q } }
 function openAddChapitre()   { chapitreForm.value = { matiere_id: null, titre: '' }; modal.value = { type: 'add-chapitre' } }
 function openEditChapitre(c) { chapitreForm.value = { id: c.id, matiere_id: c.matiere_id, titre: c.titre }; modal.value = { type: 'edit-chapitre' } }
+function selectCorrectAnswer(i) { if (modalForm.value.choix[i]) modalForm.value.bonne_reponse = modalForm.value.choix[i] }
 
 // Actions
 async function submitQuestion() {
