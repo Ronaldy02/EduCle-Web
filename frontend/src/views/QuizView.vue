@@ -213,16 +213,23 @@ const matNom   = computed(() => quizStore.matNom ?? '')
 const chapNom  = computed(() => quizStore.chapNom ?? '')
 
 const tempsMax = computed(() => {
-  if (modeNom.value === 'Rush')     return 10
-  if (modeNom.value === 'Révision') return 20
+  if (modeNom.value === 'Rush')     return 20
+  if (modeNom.value === 'Révision') return 30
+  if (modeNom.value === 'Génie')    return 10
   return 0
 })
-const seuilCritique = computed(() => modeNom.value === 'Rush' ? 3 : 5)
+const seuilCritique = computed(() => {
+  if (modeNom.value === 'Rush')     return 5
+  if (modeNom.value === 'Révision') return 8
+  if (modeNom.value === 'Génie')    return 3
+  return 5
+})
 
 const MODES_META = {
-  'Rush':         { color: '#f2705a', badge: 'Rush Mode' },
-  'Révision':     { color: '#2f6fed', badge: 'Révision' },
-  'Bombardement': { color: '#1e2a52', badge: 'Bombardement' },
+  'Rush':         { color: '#f2705a', badge: 'Rush Mode',    multi: 1.0 },
+  'Révision':     { color: '#2f6fed', badge: 'Révision',     multi: 0.5 },
+  'Génie':        { color: '#7c3aed', badge: 'Génie',        multi: 1.5 },
+  'Bombardement': { color: '#1e2a52', badge: 'Bombardement', multi: 2.0 },
 }
 const modeCouleur   = computed(() => MODES_META[modeNom.value]?.color ?? '#2f6fed')
 const modeBadgeStyle = computed(() => ({
@@ -291,8 +298,10 @@ function repondre(choixIndex) {
 
   if (correcte) {
     serie.value++
-    const bonus = Math.floor(serie.value / 3) * 5
-    scoreLocal.value += 20 + bonus
+    const meta    = MODES_META[modeNom.value] ?? { multi: 1 }
+    const base    = Math.round(10 * meta.multi)
+    const vitesse = tempsMax.value > 0 ? Math.round((tempsRestant.value / tempsMax.value) * 10) : 0
+    scoreLocal.value += base + vitesse
     if (modeNom.value !== 'Bombardement') {
       triggerSerieBounce()
       if (_PALIERS.includes(serie.value)) triggerPalier(serie.value)

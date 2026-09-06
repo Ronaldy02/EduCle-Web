@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 class DemarrerQuizRequest(BaseModel):
     chapitre_id: int       # -1 = toutes les matières
-    mode_nom: str          # "Révision" | "Rush" | "Bombardement"
+    mode_nom: str          # "Révision" | "Rush" | "Génie" | "Bombardement"
     nb_questions: int = 10
 
 

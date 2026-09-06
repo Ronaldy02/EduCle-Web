@@ -82,7 +82,7 @@ def calculer_xp_question(maitrise: float, mode_nom: str, double_xp: bool = False
     Minimum : 2 XP.
     Double XP double le résultat final.
     """
-    facteur = 1.5 if mode_nom in ("Rush", "Bombardement") else 1.0
+    facteur = 1.5 if mode_nom in ("Rush", "Génie", "Bombardement") else 1.0
     xp = (2 + 8 * (1 - maitrise)) * facteur
     xp = max(2, round(xp))
     return xp * 2 if double_xp else xp
@@ -92,4 +92,4 @@ def calculer_pieces_question(correcte: bool, mode_nom: str) -> int:
     """Pièces pour une réponse (base simple)."""
     if not correcte:
         return 0
-    return {"Rush": 3, "Bombardement": 3}.get(mode_nom, 2)
+    return {"Rush": 3, "Génie": 4, "Bombardement": 3}.get(mode_nom, 2)
