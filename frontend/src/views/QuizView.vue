@@ -198,6 +198,69 @@ const PALIER_DURATION = { 5: 1500, 10: 1800, 15: 2100, 20: 2600 }
 const bonusUtilises = ref({ elimination: false, cinqCinq: false, indice: false })
 const elimines      = ref([])  // indices de choix éliminés par bonus
 
+// ── Sons (Web Audio API, sans fichier) ────────────────────────────────────
+const _ac = (() => { try { return new (window.AudioContext || window.webkitAudioContext)() } catch { return null } })()
+
+function _jouerTone(freq, dur, vol = 0.4, type = 'sine') {
+  if (!_ac) return
+  const osc  = _ac.createOscillator()
+  const gain = _ac.createGain()
+  osc.connect(gain); gain.connect(_ac.destination)
+  osc.type = type; osc.frequency.value = freq
+  const t = _ac.currentTime
+  gain.gain.setValueAtTime(0, t)
+  gain.gain.linearRampToValueAtTime(vol, t + 0.005)
+  gain.gain.setValueAtTime(vol, t + dur - 0.025)
+  gain.gain.linearRampToValueAtTime(0, t + dur)
+  osc.start(t); osc.stop(t + dur)
+}
+
+function jouerTick(tempsRestant) {
+  if (!_ac) return
+  if (tempsRestant <= 3)      _jouerTone(880, 0.04, 0.35)
+  else if (tempsRestant <= 7) _jouerTone(660, 0.05, 0.22)
+  else                        _jouerTone(440, 0.05, 0.13)
+}
+
+function jouerBonneReponse() {
+  if (!_ac) return
+  const t = _ac.currentTime
+  [[523.25, 0], [659.25, 0.09], [783.99, 0.18]].forEach(([f, d]) => {
+    const osc = _ac.createOscillator(), g = _ac.createGain()
+    osc.connect(g); g.connect(_ac.destination)
+    osc.frequency.value = f
+    g.gain.setValueAtTime(0, t + d)
+    g.gain.linearRampToValueAtTime(0.35, t + d + 0.005)
+    g.gain.linearRampToValueAtTime(0, t + d + (d === 0.18 ? 0.22 : 0.07))
+    osc.start(t + d); osc.stop(t + d + 0.3)
+  })
+}
+
+function jouerMauvaiseReponse() {
+  if (!_ac) return
+  const osc = _ac.createOscillator(), g = _ac.createGain()
+  osc.connect(g); g.connect(_ac.destination)
+  osc.type = 'sawtooth'
+  osc.frequency.setValueAtTime(350, _ac.currentTime)
+  osc.frequency.linearRampToValueAtTime(150, _ac.currentTime + 0.22)
+  g.gain.setValueAtTime(0.4, _ac.currentTime)
+  g.gain.linearRampToValueAtTime(0, _ac.currentTime + 0.22)
+  osc.start(); osc.stop(_ac.currentTime + 0.22)
+}
+
+function jouerGong() {
+  if (!_ac) return
+  const t = _ac.currentTime
+  [[110, 0.5, 1.2], [176, 0.26, 2.0], [297, 0.14, 3.5]].forEach(([f, w, decay]) => {
+    const osc = _ac.createOscillator(), g = _ac.createGain()
+    osc.connect(g); g.connect(_ac.destination)
+    osc.frequency.value = f
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(w * 0.6, t + 0.005)
+    g.gain.setTargetAtTime(0, t + 0.005, decay * 0.4)
+    osc.start(t); osc.stop(t + 2.5)
+  })
+}
+
 // Chrono par question
 const tempsRestant = ref(0)
 let timerInterval  = null
@@ -275,7 +338,8 @@ function demarrerChrono() {
   tempsRestant.value = tempsMax.value
   timerInterval = setInterval(() => {
     tempsRestant.value--
-    if (tempsRestant.value <= 0) { clearInterval(timerInterval); repondre(null) }
+    if (reponduIndex.value === null) jouerTick(tempsRestant.value)
+    if (tempsRestant.value <= 0) { clearInterval(timerInterval); jouerGong(); repondre(null) }
   }, 1000)
 }
 
@@ -297,6 +361,7 @@ function repondre(choixIndex) {
   quizStore.enregistrerReponse(q.id, reponseTexte, tempsRestant.value)
 
   if (correcte) {
+    jouerBonneReponse()
     serie.value++
     const meta    = MODES_META[modeNom.value] ?? { multi: 1 }
     const base    = Math.round(10 * meta.multi)
@@ -309,6 +374,7 @@ function repondre(choixIndex) {
     animPulse.value = true
     setTimeout(() => { animPulse.value = false }, 500)
   } else {
+    if (choixIndex !== null) jouerMauvaiseReponse()
     serie.value = 0
     animShake.value = true
     setTimeout(() => { animShake.value = false }, 480)
