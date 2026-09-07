@@ -200,113 +200,94 @@ const elimines      = ref([])  // indices de choix éliminés par bonus
 
 // ── Sons (Web Audio API, sans fichier) ────────────────────────────────────
 let _ac = null
-let _extraTickTimeouts = []
 
-// Crée/réveille le contexte audio sur le premier clic utilisateur
 function _getAc() {
   if (!_ac) {
     try { _ac = new (window.AudioContext || window.webkitAudioContext)() } catch { return null }
   }
-  if (_ac.state === 'suspended') _ac.resume()
   return _ac
 }
 
-function _tone(freq, dur, vol = 0.35, type = 'sine') {
+// Joue un son, en reprenant le contexte si suspendu (resume est asynchrone,
+// on programme avec un offset de 80ms pour laisser le temps au contexte de reprendre)
+function _jouerAvecResume(fn) {
   const ac = _getAc(); if (!ac) return
-  try {
-    const osc = ac.createOscillator(), g = ac.createGain()
-    osc.connect(g); g.connect(ac.destination)
-    osc.type = type; osc.frequency.value = freq
-    const t = ac.currentTime
-    g.gain.setValueAtTime(0, t)
-    g.gain.linearRampToValueAtTime(vol, t + 0.006)
-    g.gain.setValueAtTime(vol, t + dur - 0.02)
-    g.gain.linearRampToValueAtTime(0, t + dur)
-    osc.start(t); osc.stop(t + dur + 0.01)
-  } catch {}
-}
-
-function _annulerExtraTicks() {
-  _extraTickTimeouts.forEach(clearTimeout)
-  _extraTickTimeouts = []
-}
-
-// Tick style QPUC : fréquence monte et tempo s'emballe à l'approche de 0
-function jouerTick(tempsRestant, tempsMax) {
-  _annulerExtraTicks()
-  const ratio = tempsMax > 0 ? tempsRestant / tempsMax : 0
-  // Fréquence progresse de 440 Hz (début) à 1000 Hz (fin)
-  const freq = 440 + (1000 - 440) * (1 - ratio)
-  const vol  = 0.12 + 0.35 * (1 - ratio)
-  _tone(freq, 0.05, vol)
-  // Ticks intermédiaires pour accélérer l'effet
-  if (tempsRestant <= 2) {
-    [250, 500, 750].forEach(ms => {
-      _extraTickTimeouts.push(setTimeout(() => _tone(freq * 1.1, 0.04, vol + 0.05), ms))
-    })
-  } else if (tempsRestant <= 5) {
-    _extraTickTimeouts.push(setTimeout(() => _tone(freq * 1.05, 0.045, vol + 0.03), 500))
+  if (ac.state === 'suspended') {
+    ac.resume().then(() => fn(ac, ac.currentTime + 0.08))
+  } else {
+    fn(ac, ac.currentTime + 0.01)
   }
+}
+
+// Tick style QPUC : fréquence monte progressivement à mesure que le temps s'écoule
+function jouerTick(tempsRestant, tempsMax) {
+  const ratio = tempsMax > 0 ? tempsRestant / tempsMax : 0
+  const freq  = 440 + (1000 - 440) * (1 - ratio)
+  const vol   = 0.12 + 0.35 * (1 - ratio)
+  const dur   = 0.055
+  _jouerAvecResume((ac, t) => {
+    try {
+      const osc = ac.createOscillator(), g = ac.createGain()
+      osc.connect(g); g.connect(ac.destination)
+      osc.frequency.value = freq
+      g.gain.setValueAtTime(0, t)
+      g.gain.linearRampToValueAtTime(vol, t + 0.006)
+      g.gain.linearRampToValueAtTime(0, t + dur)
+      osc.start(t); osc.stop(t + dur + 0.01)
+    } catch {}
+  })
 }
 
 // Arpège QPUC : Do5 → Mi5 → Sol5
 function jouerBonneReponse() {
-  const ac = _getAc(); if (!ac) return
-  try {
-    const t = ac.currentTime
-    [[523.25, 0, 0.28], [659.25, 0.10, 0.33], [783.99, 0.20, 0.38]].forEach(([f, d, vol]) => {
-      const osc = ac.createOscillator(), g = ac.createGain()
-      osc.connect(g); g.connect(ac.destination)
-      osc.frequency.value = f
-      g.gain.setValueAtTime(0, t + d)
-      g.gain.linearRampToValueAtTime(vol, t + d + 0.006)
-      g.gain.setValueAtTime(vol, t + d + 0.12)
-      g.gain.linearRampToValueAtTime(0, t + d + (d === 0.20 ? 0.30 : 0.09))
-      osc.start(t + d); osc.stop(t + d + 0.35)
-    })
-  } catch {}
+  _jouerAvecResume((ac, t) => {
+    try {
+      [[523.25, 0, 0.30], [659.25, 0.10, 0.35], [783.99, 0.20, 0.40]].forEach(([f, d, vol]) => {
+        const osc = ac.createOscillator(), g = ac.createGain()
+        osc.connect(g); g.connect(ac.destination)
+        osc.frequency.value = f
+        g.gain.setValueAtTime(0, t + d)
+        g.gain.linearRampToValueAtTime(vol, t + d + 0.008)
+        g.gain.setValueAtTime(vol, t + d + 0.10)
+        g.gain.linearRampToValueAtTime(0, t + d + (d === 0.20 ? 0.28 : 0.09))
+        osc.start(t + d); osc.stop(t + d + 0.32)
+      })
+    } catch {}
+  })
 }
 
 // Buzzer descendant
 function jouerMauvaiseReponse() {
-  const ac = _getAc(); if (!ac) return
-  try {
-    const osc = ac.createOscillator(), g = ac.createGain()
-    osc.connect(g); g.connect(ac.destination)
-    osc.type = 'sawtooth'
-    const t = ac.currentTime
-    osc.frequency.setValueAtTime(350, t)
-    osc.frequency.linearRampToValueAtTime(130, t + 0.25)
-    g.gain.setValueAtTime(0.45, t)
-    g.gain.linearRampToValueAtTime(0, t + 0.25)
-    osc.start(t); osc.stop(t + 0.26)
-  } catch {}
+  _jouerAvecResume((ac, t) => {
+    try {
+      const osc = ac.createOscillator(), g = ac.createGain()
+      osc.connect(g); g.connect(ac.destination)
+      osc.type = 'sawtooth'
+      osc.frequency.setValueAtTime(350, t)
+      osc.frequency.linearRampToValueAtTime(130, t + 0.25)
+      g.gain.setValueAtTime(0.45, t)
+      g.gain.linearRampToValueAtTime(0, t + 0.25)
+      osc.start(t); osc.stop(t + 0.26)
+    } catch {}
+  })
 }
 
-// Gong : ton continu 1 seconde (comme QPUC)
+// Gong : ton continu 1 seconde
 function jouerGong() {
-  const ac = _getAc(); if (!ac) return
-  try {
-    const t = ac.currentTime
-    // Ton principal grave soutenu
-    const osc = ac.createOscillator(), g = ac.createGain()
-    osc.connect(g); g.connect(ac.destination)
-    osc.frequency.value = 220; osc.type = 'sine'
-    g.gain.setValueAtTime(0, t)
-    g.gain.linearRampToValueAtTime(0.55, t + 0.02)
-    g.gain.setValueAtTime(0.55, t + 0.85)
-    g.gain.linearRampToValueAtTime(0, t + 1.0)
-    osc.start(t); osc.stop(t + 1.05)
-    // Harmonique pour richesse
-    const osc2 = ac.createOscillator(), g2 = ac.createGain()
-    osc2.connect(g2); g2.connect(ac.destination)
-    osc2.frequency.value = 440; osc2.type = 'sine'
-    g2.gain.setValueAtTime(0, t)
-    g2.gain.linearRampToValueAtTime(0.20, t + 0.02)
-    g2.gain.setValueAtTime(0.20, t + 0.85)
-    g2.gain.linearRampToValueAtTime(0, t + 1.0)
-    osc2.start(t); osc2.stop(t + 1.05)
-  } catch {}
+  _jouerAvecResume((ac, t) => {
+    try {
+      [[220, 0.55], [440, 0.20]].forEach(([freq, vol]) => {
+        const osc = ac.createOscillator(), g = ac.createGain()
+        osc.connect(g); g.connect(ac.destination)
+        osc.frequency.value = freq
+        g.gain.setValueAtTime(0, t)
+        g.gain.linearRampToValueAtTime(vol, t + 0.02)
+        g.gain.setValueAtTime(vol, t + 0.85)
+        g.gain.linearRampToValueAtTime(0, t + 1.0)
+        osc.start(t); osc.stop(t + 1.05)
+      })
+    } catch {}
+  })
 }
 
 // Chrono par question
