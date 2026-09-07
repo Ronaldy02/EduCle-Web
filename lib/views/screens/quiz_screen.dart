@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../../controllers/quiz_controller.dart';
 import '../../models/parametre_partie.dart';
 import '../../models/quiz.dart';
+import '../../services/sound_service.dart';
 import '../../theme/app_theme.dart';
 import 'resultat_screen.dart';
 
@@ -20,25 +21,58 @@ class QuizScreen extends StatefulWidget {
   State<QuizScreen> createState() => _QuizScreenState();
 }
 
-class _QuizScreenState extends State<QuizScreen> {
+class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
   Timer? _timer;
   bool _repondu = false;
   String? _reponseChoisie;
   bool? _correcte;
   bool _termine = false;
+  bool _tempsEcoule = false;
   List<String> _choixMelanges = [];
+
+  // Shake de la mauvaise réponse sélectionnée
+  late AnimationController _shakeCtrl;
+
+  // Slide + fade à chaque nouvelle question
+  late AnimationController _questionCtrl;
+  late Animation<double> _questionFade;
+  late Animation<Offset> _questionSlide;
+
+  // Pop "+N" score
+  int _dernierDelta = 0;
+  bool _montrerDelta = false;
+
+  final _sound = SoundService.instance;
 
   @override
   void initState() {
     super.initState();
     _melangerChoix();
+
+    _shakeCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+
+    _questionCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 280),
+    );
+    _questionFade = CurvedAnimation(parent: _questionCtrl, curve: Curves.easeOut);
+    _questionSlide = Tween<Offset>(
+      begin: const Offset(0.07, 0),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(parent: _questionCtrl, curve: Curves.easeOut));
+
+    _questionCtrl.forward();
+    _sound.initialiser();
     _demarrerTimer();
   }
 
   void _melangerChoix() {
-    final question = widget.quiz.questionCourante;
-    if (question == null) return;
-    _choixMelanges = List.of(question.choix)..shuffle(Random());
+    final q = widget.quiz.questionCourante;
+    if (q == null) return;
+    _choixMelanges = List.of(q.choix)..shuffle(Random());
   }
 
   void _demarrerTimer() {
@@ -47,14 +81,15 @@ class _QuizScreenState extends State<QuizScreen> {
       final quiz = widget.quiz;
       if (quiz.tempsRestant > 0) {
         setState(() => quiz.tempsRestant--);
-        if (quiz.tempsRestant == 0) {
-          _surTempsEcoule();
-        }
+        _sound.jouerTick(quiz.tempsRestant);
+        if (quiz.tempsRestant == 0) _surTempsEcoule();
       }
     });
   }
 
   void _surTempsEcoule() {
+    _tempsEcoule = true;
+    _sound.jouerGong();
     final modeGlobal = widget.mode.dureeTotale != null;
     if (modeGlobal) {
       widget.quiz.forcerFin();
@@ -71,8 +106,20 @@ class _QuizScreenState extends State<QuizScreen> {
     final question = quiz.questionCourante;
     if (question == null) return;
 
+    final scoreBefore = quiz.score;
     final tempsRestantAuClic = quiz.tempsRestant;
     final correcte = controller.repondre(quiz, question, reponse ?? '', tempsRestantAuClic);
+    final delta = quiz.score - scoreBefore;
+
+    if (correcte) {
+      _sound.jouerBonneReponse();
+      _afficherDelta(delta);
+    } else if (!_tempsEcoule) {
+      // Le gong a déjà été joué si le temps s'est écoulé
+      _sound.jouerMauvaiseReponse();
+      _shakeCtrl.forward(from: 0);
+    }
+    _tempsEcoule = false;
 
     if (widget.mode.feedbackImmediat) {
       setState(() {
@@ -85,6 +132,16 @@ class _QuizScreenState extends State<QuizScreen> {
     }
   }
 
+  void _afficherDelta(int delta) {
+    setState(() {
+      _dernierDelta = delta;
+      _montrerDelta = true;
+    });
+    Future.delayed(const Duration(milliseconds: 1000), () {
+      if (mounted) setState(() => _montrerDelta = false);
+    });
+  }
+
   void _passerQuestionSuivante() {
     final controller = context.read<QuizController>();
     final quiz = widget.quiz;
@@ -94,9 +151,13 @@ class _QuizScreenState extends State<QuizScreen> {
       _repondu = false;
       _reponseChoisie = null;
       _correcte = null;
+      _montrerDelta = false;
+      _tempsEcoule = false;
     });
     if (quiz.termine) {
       _finir();
+    } else {
+      _questionCtrl.forward(from: 0);
     }
   }
 
@@ -104,6 +165,7 @@ class _QuizScreenState extends State<QuizScreen> {
     if (_termine) return;
     _termine = true;
     _timer?.cancel();
+    _sound.stopTick();
     final controller = context.read<QuizController>();
     final resultat = await controller.terminerQuiz(widget.quiz);
     if (!mounted) return;
@@ -137,6 +199,8 @@ class _QuizScreenState extends State<QuizScreen> {
       ),
     );
     if (quitter == true && mounted) {
+      _timer?.cancel();
+      _sound.stopTick();
       Navigator.of(context).popUntil((route) => route.isFirst);
     }
   }
@@ -144,7 +208,27 @@ class _QuizScreenState extends State<QuizScreen> {
   @override
   void dispose() {
     _timer?.cancel();
+    _sound.stopTick();
+    _shakeCtrl.dispose();
+    _questionCtrl.dispose();
     super.dispose();
+  }
+
+  // Seuil visuel de criticité selon le mode
+  int get _seuilCritique {
+    if (widget.mode.dureeTotale != null) return 15;
+    return widget.mode.tempsParQuestion <= 10 ? 5 : 8;
+  }
+
+  Color get _modeCouleur {
+    switch (widget.mode.nom) {
+      case 'Rush':
+        return EduCleColors.rush;
+      case 'Bombardement':
+        return EduCleColors.bombardement;
+      default:
+        return EduCleColors.primary;
+    }
   }
 
   @override
@@ -162,6 +246,8 @@ class _QuizScreenState extends State<QuizScreen> {
         ? null
         : (quiz.indexCourant + 1) / quiz.questions.length;
     final lettres = ['A', 'B', 'C', 'D', 'E', 'F'];
+    final estCritique = quiz.tempsRestant <= _seuilCritique;
+    final couleurTimer = estCritique ? EduCleColors.error : _modeCouleur;
 
     return Scaffold(
       body: SafeArea(
@@ -170,6 +256,7 @@ class _QuizScreenState extends State<QuizScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              // ── En-tête ──────────────────────────────────────────────────
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -189,8 +276,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         Text(
                           estModeGlobal
                               ? 'Question ${quiz.indexCourant + 1}'
-                              : 'Question ${quiz.indexCourant + 1} / '
-                                    '${quiz.questions.length}',
+                              : 'Question ${quiz.indexCourant + 1} / ${quiz.questions.length}',
                           style: const TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 12,
@@ -199,17 +285,21 @@ class _QuizScreenState extends State<QuizScreen> {
                         const SizedBox(height: 6),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          child: LinearProgressIndicator(
-                            value: progression,
-                            minHeight: 6,
-                            backgroundColor: EduCleColors.border,
-                            color: EduCleColors.primary,
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            child: LinearProgressIndicator(
+                              value: progression,
+                              minHeight: 6,
+                              backgroundColor: EduCleColors.border,
+                              color: couleurTimer,
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(width: 12),
+                  // ── Zone timer + score ──
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -221,27 +311,73 @@ class _QuizScreenState extends State<QuizScreen> {
                         ),
                       ),
                       const SizedBox(height: 4),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 3,
-                        ),
-                        decoration: BoxDecoration(
-                          color: (quiz.tempsRestant <= 5
-                                  ? EduCleColors.error
-                                  : EduCleColors.primary)
-                              .withValues(alpha: 0.12),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Text(
-                          '${quiz.tempsRestant}s',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 12,
-                            color: quiz.tempsRestant <= 5
-                                ? EduCleColors.error
-                                : EduCleColors.primary,
+                      Stack(
+                        clipBehavior: Clip.none,
+                        alignment: Alignment.center,
+                        children: [
+                          // Badge timer avec pulse élastique à chaque tick critique
+                          TweenAnimationBuilder<double>(
+                            key: ValueKey(quiz.tempsRestant),
+                            tween: Tween(
+                              begin: estCritique ? 1.20 : 1.0,
+                              end: 1.0,
+                            ),
+                            duration: const Duration(milliseconds: 350),
+                            curve: Curves.elasticOut,
+                            builder: (_, scale, child) =>
+                                Transform.scale(scale: scale, child: child),
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 250),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 3),
+                              decoration: BoxDecoration(
+                                color: couleurTimer.withValues(alpha: 0.12),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                '${quiz.tempsRestant}s',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 12,
+                                  color: couleurTimer,
+                                ),
+                              ),
+                            ),
                           ),
+                          // "+N" score delta flottant
+                          Positioned(
+                            top: -18,
+                            right: 0,
+                            child: AnimatedOpacity(
+                              opacity: _montrerDelta ? 1.0 : 0.0,
+                              duration: Duration(
+                                  milliseconds: _montrerDelta ? 100 : 500),
+                              child: AnimatedSlide(
+                                offset: _montrerDelta
+                                    ? const Offset(0, -0.8)
+                                    : Offset.zero,
+                                duration: const Duration(milliseconds: 900),
+                                curve: Curves.easeOut,
+                                child: Text(
+                                  '+$_dernierDelta',
+                                  style: const TextStyle(
+                                    color: EduCleColors.success,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        '${quiz.score} pts',
+                        style: const TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w600,
+                          color: EduCleColors.textSecondary,
                         ),
                       ),
                     ],
@@ -252,74 +388,139 @@ class _QuizScreenState extends State<QuizScreen> {
               Wrap(
                 spacing: 8,
                 children: [
-                  _Badge(texte: utilisateur.matiereSelectionnee?.nom ?? quiz.chapitre.titre),
+                  _Badge(
+                      texte: utilisateur.matiereSelectionnee?.nom ??
+                          quiz.chapitre.titre),
                   if (utilisateur.niveau != null)
                     _Badge(texte: utilisateur.niveau!, claire: true),
                 ],
               ),
               const SizedBox(height: 16),
-              Text(
-                question.enonce,
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
+              // ── Énoncé avec slide-in à chaque changement de question ──────
+              FadeTransition(
+                opacity: _questionFade,
+                child: SlideTransition(
+                  position: _questionSlide,
+                  child: Text(
+                    question.enonce,
+                    key: ValueKey(quiz.indexCourant),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.w800),
+                  ),
+                ),
               ),
               const SizedBox(height: 20),
+              // ── Choix de réponse ─────────────────────────────────────────
               Expanded(
                 child: ListView.separated(
                   itemCount: _choixMelanges.length,
                   separatorBuilder: (_, __) => const SizedBox(height: 12),
                   itemBuilder: (context, index) {
                     final choix = _choixMelanges[index];
-                    return _BoutonChoix(
+                    final estBonne = choix == question.bonneReponse;
+                    final estMauvaiseSelectionnee =
+                        _repondu && !(_correcte ?? true) &&
+                            _reponseChoisie == choix;
+
+                    Widget btn = _BoutonChoix(
                       lettre: lettres[index % lettres.length],
                       texte: choix,
                       selectionne: _reponseChoisie == choix,
-                      estBonneReponse: choix == question.bonneReponse,
+                      estBonneReponse: estBonne,
                       montrerCorrection: _repondu,
                       onPressed: _repondu ? null : () => _traiterReponse(choix),
                     );
+
+                    // Pop élastique sur la bonne réponse quand révélée
+                    if (_repondu && estBonne) {
+                      btn = TweenAnimationBuilder<double>(
+                        tween: Tween(begin: 1.06, end: 1.0),
+                        duration: const Duration(milliseconds: 450),
+                        curve: Curves.elasticOut,
+                        builder: (_, scale, child) =>
+                            Transform.scale(scale: scale, child: child),
+                        child: btn,
+                      );
+                    }
+
+                    // Shake horizontal sur la mauvaise réponse choisie
+                    if (estMauvaiseSelectionnee) {
+                      btn = AnimatedBuilder(
+                        animation: _shakeCtrl,
+                        builder: (_, child) {
+                          final v  = _shakeCtrl.value;
+                          final dx = sin(v * pi * 5) * 8 * exp(-v * 4);
+                          return Transform.translate(
+                              offset: Offset(dx, 0), child: child);
+                        },
+                        child: btn,
+                      );
+                    }
+
+                    return btn;
                   },
                 ),
               ),
-              if (_repondu && widget.mode.feedbackImmediat) ...[
-                const SizedBox(height: 12),
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: (_correcte ?? false)
-                        ? EduCleColors.successBg
-                        : EduCleColors.errorBg,
-                    borderRadius: BorderRadius.circular(14),
-                    border: Border.all(
-                      color: (_correcte ?? false)
-                          ? EduCleColors.success
-                          : EduCleColors.error,
-                    ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        (_correcte ?? false)
-                            ? 'Bonne réponse !'
-                            : 'Réponse incorrecte',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          color: (_correcte ?? false)
-                              ? EduCleColors.success
-                              : EduCleColors.error,
+              // ── Feedback (mode Révision) avec slide-up animé ─────────────
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 220),
+                transitionBuilder: (child, anim) => SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 0.3),
+                    end: Offset.zero,
+                  ).animate(
+                      CurvedAnimation(parent: anim, curve: Curves.easeOut)),
+                  child: FadeTransition(opacity: anim, child: child),
+                ),
+                child: (_repondu && widget.mode.feedbackImmediat)
+                    ? KeyedSubtree(
+                        key: ValueKey(quiz.indexCourant),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            const SizedBox(height: 12),
+                            Container(
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: (_correcte ?? false)
+                                    ? EduCleColors.successBg
+                                    : EduCleColors.errorBg,
+                                borderRadius: BorderRadius.circular(14),
+                                border: Border.all(
+                                  color: (_correcte ?? false)
+                                      ? EduCleColors.success
+                                      : EduCleColors.error,
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    (_correcte ?? false)
+                                        ? 'Bonne réponse !'
+                                        : 'Réponse incorrecte',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w800,
+                                      color: (_correcte ?? false)
+                                          ? EduCleColors.success
+                                          : EduCleColors.error,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(question.explication),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            FilledButton(
+                              onPressed: _passerQuestionSuivante,
+                              child: const Text('Suivant'),
+                            ),
+                          ],
                         ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(question.explication),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 12),
-                FilledButton(
-                  onPressed: _passerQuestionSuivante,
-                  child: const Text('Suivant'),
-                ),
-              ],
+                      )
+                    : const SizedBox.shrink(key: ValueKey('vide')),
+              ),
             ],
           ),
         ),
@@ -327,6 +528,8 @@ class _QuizScreenState extends State<QuizScreen> {
     );
   }
 }
+
+// ─── Widgets internes ─────────────────────────────────────────────────────────
 
 class _Badge extends StatelessWidget {
   final String texte;
@@ -394,45 +597,52 @@ class _BoutonChoix extends StatelessWidget {
       couleurLettre = EduCleColors.primary;
     }
 
-    return Material(
-      color: fond,
-      borderRadius: BorderRadius.circular(14),
-      child: InkWell(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.easeOut,
+      decoration: BoxDecoration(
+        color: fond,
         borderRadius: BorderRadius.circular(14),
-        onTap: onPressed,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: bordure, width: 1.4),
-          ),
-          child: Row(
-            children: [
-              Container(
-                width: 28,
-                height: 28,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: couleurLettre, width: 1.4),
-                ),
-                child: Text(
-                  lettre,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    color: couleurLettre,
-                    fontSize: 13,
+        border: Border.all(color: bordure, width: 1.4),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(14),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(14),
+          onTap: onPressed,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+            child: Row(
+              children: [
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  curve: Curves.easeOut,
+                  width: 28,
+                  height: 28,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: couleurLettre, width: 1.4),
+                  ),
+                  child: Text(
+                    lettre,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      color: couleurLettre,
+                      fontSize: 13,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  texte,
-                  style: const TextStyle(fontWeight: FontWeight.w600),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    texte,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
