@@ -487,7 +487,13 @@
                     <span class="choice-letter">{{ String.fromCharCode(65 + i) }}</span>
                     <input v-model="modalForm.choix[i]" class="choice-input"
                       :placeholder="`Réponse ${String.fromCharCode(65 + i)}`"
+                      maxlength="60"
                       @click.stop @focus.stop />
+                    <span class="choice-count"
+                      :class="{ 'choice-count--warn': (modalForm.choix[i]?.length ?? 0) > 25 }"
+                      :title="(modalForm.choix[i]?.length ?? 0) > 25 ? 'Réponse trop longue — viser 1 à 2 mots' : ''">
+                      {{ modalForm.choix[i]?.length ?? 0 }}
+                    </span>
                     <span v-if="modalForm.bonne_reponse && modalForm.bonne_reponse === modalForm.choix[i] && modalForm.choix[i]"
                       class="material-symbols-outlined" style="color:#10B981;font-size:18px;flex-shrink:0">check_circle</span>
                   </div>
@@ -955,6 +961,8 @@ async function clearAllScores() {
 .choice-wrap--correct { border-color: #10B981; background: #F0FDF4; }
 .choice-letter { font-weight: 700; color: var(--text-muted); width: 16px; flex-shrink: 0; font-size: 0.82rem; }
 .choice-input { flex: 1; border: none; background: transparent; font-size: 0.875rem; color: var(--text); outline: none; cursor: pointer; }
+.choice-count { font-size: 0.7rem; color: var(--text-muted); flex-shrink: 0; min-width: 20px; text-align: right; }
+.choice-count--warn { color: #dc2626; font-weight: 700; }
 .diff-chips { display: flex; gap: 0.4rem; }
 .diff-chip { padding: 0.32rem 0.8rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; background: none; color: var(--text-muted); }
 .diff-chip.active { font-weight: 700; }

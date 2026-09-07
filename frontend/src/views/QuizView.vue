@@ -135,7 +135,7 @@
             :disabled="reponduIndex !== null || elimines.includes(i)"
             @click="repondre(i)">
             <div class="qz-lettre" :class="etatChoix(i)">{{ lettres[i] }}</div>
-            <span class="qz-choix-texte">{{ choix }}</span>
+            <span class="qz-choix-texte" :class="{ 'qz-choix-texte--long': choix.length > 20 }">{{ choix }}</span>
             <div class="qz-kbd">{{ i + 1 }}</div>
           </button>
         </div>
@@ -641,7 +641,8 @@ function palierParticleStyle(i) {
 .qz-lettre.correct   { background: #006c49; color: #fff; }
 .qz-lettre.incorrect { background: #ba1a1a; color: #fff; }
 
-.qz-choix-texte { flex: 1; font-size: 1.05rem; font-weight: 600; color: #151c27; line-height: 1.3; }
+.qz-choix-texte { flex: 1; font-size: 1.05rem; font-weight: 600; color: #151c27; line-height: 1.3; word-break: break-word; }
+.qz-choix-texte--long { font-size: 0.875rem; font-weight: 500; }
 
 .qz-kbd {
   display: none; align-items: center; justify-content: center;
