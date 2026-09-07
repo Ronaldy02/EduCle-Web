@@ -50,6 +50,11 @@
         <p class="rt-subtitle">{{ scoreSubtitle }}</p>
       </header>
 
+      <!-- ── Étoiles parfait ───────────────────────────────────────── -->
+      <div v-if="isPerfect" class="perfect-stars" aria-hidden="true">
+        <span v-for="i in 12" :key="i" class="pstar" :style="`--i:${i}`">★</span>
+      </div>
+
       <!-- ── Anneau de score ────────────────────────────────────────── -->
       <div class="rt-ring-wrap" :class="{ 'rt-ring-wrap--perfect': isPerfect }">
         <svg class="rt-ring-svg" viewBox="0 0 120 120">
@@ -312,20 +317,35 @@ function launchFireworks(canvas) {
 // ── Son de célébration (Web Audio API) ───────────────────────────
 function playPerfectSound() {
   try {
-    const ac = new AudioContext()
-    // Fanfare montante : Do-Mi-Sol-Do
-    [[523, 0], [659, 0.14], [784, 0.28], [1047, 0.44], [1319, 0.60]].forEach(([freq, t]) => {
-      const osc = ac.createOscillator()
-      const g   = ac.createGain()
-      osc.connect(g); g.connect(ac.destination)
-      osc.frequency.value = freq
-      osc.type = 'sine'
-      const st = ac.currentTime + t
-      g.gain.setValueAtTime(0, st)
-      g.gain.linearRampToValueAtTime(0.22, st + 0.04)
-      g.gain.exponentialRampToValueAtTime(0.001, st + 0.65)
-      osc.start(st); osc.stop(st + 0.7)
-    })
+    const ac = new (window.AudioContext || window.webkitAudioContext)()
+    const go = () => {
+      const t = ac.currentTime
+      // Fanfare montante Do-Mi-Sol-Do-Mi (5 notes, plus longue)
+      [[523.25, 0, 0.28], [659.25, 0.15, 0.32], [783.99, 0.30, 0.36],
+       [1046.5, 0.46, 0.40], [1318.5, 0.64, 0.44]].forEach(([freq, dt, vol]) => {
+        const osc = ac.createOscillator(), g = ac.createGain()
+        osc.connect(g); g.connect(ac.destination)
+        osc.frequency.value = freq; osc.type = 'sine'
+        const st = t + dt
+        g.gain.setValueAtTime(0, st)
+        g.gain.linearRampToValueAtTime(vol, st + 0.04)
+        g.gain.setValueAtTime(vol, st + 0.18)
+        g.gain.exponentialRampToValueAtTime(0.001, st + 0.75)
+        osc.start(st); osc.stop(st + 0.8)
+      })
+      // Couche harmonique basse (profondeur)
+      [[261.6, 0, 0.12], [329.6, 0.15, 0.12], [392, 0.30, 0.12]].forEach(([freq, dt, vol]) => {
+        const osc = ac.createOscillator(), g = ac.createGain()
+        osc.connect(g); g.connect(ac.destination)
+        osc.frequency.value = freq; osc.type = 'triangle'
+        const st = t + dt
+        g.gain.setValueAtTime(0, st)
+        g.gain.linearRampToValueAtTime(vol, st + 0.06)
+        g.gain.exponentialRampToValueAtTime(0.001, st + 0.6)
+        osc.start(st); osc.stop(st + 0.65)
+      })
+    }
+    if (ac.state === 'suspended') ac.resume().then(go); else go()
   } catch {}
 }
 
@@ -355,6 +375,23 @@ function accueil()  { quizStore.reset(); router.push('/') }
 .fw-canvas {
   position: fixed; inset: 0; z-index: 150;
   pointer-events: none; width: 100%; height: 100%;
+}
+
+/* ── Étoiles orbitales parfait ──────────────────────────────────── */
+.perfect-stars {
+  position: relative; width: 100%; height: 0; pointer-events: none;
+}
+.pstar {
+  position: absolute; left: 50%; top: -80px;
+  font-size: calc(0.7rem + var(--i) * 0.05rem);
+  color: hsl(calc(30 + var(--i) * 15), 90%, 55%);
+  animation: pstar-orbit calc(3s + var(--i) * 0.25s) calc(var(--i) * -0.4s) linear infinite;
+  transform-origin: 0 calc(60px + var(--i) * 5px);
+  opacity: 0.85;
+}
+@keyframes pstar-orbit {
+  from { transform: rotate(calc(var(--i) * 30deg)) translateY(calc(-60px - var(--i) * 4px)); }
+  to   { transform: rotate(calc(var(--i) * 30deg + 360deg)) translateY(calc(-60px - var(--i) * 4px)); }
 }
 
 /* ── Bannière score parfait ──────────────────────────────────────── */
