@@ -838,4 +838,35 @@ async function jouerAleatoire() {
   transition: background 0.15s;
 }
 .mode-demarrer:hover { background: #1d4fc4; }
+
+/* ── Mobile : modales en bottom-sheet (≤ 480 px) ──────────────── */
+@media (max-width: 480px) {
+  .modal-bg { padding: 0; align-items: flex-end; }
+  .sel-modal,
+  .mode-modal {
+    border-radius: 24px 24px 0 0;
+    max-height: 95dvh;
+    width: 100%;
+    max-width: 100%;
+  }
+  .sel-header { padding: 0.9rem 1rem; }
+  .mode-header { padding: 0.85rem 1rem; }
+  .sel-body { padding: 1rem 1rem 0.75rem; }
+  .mode-body { padding: 1rem 1rem 0.75rem; }
+  .sel-footer { padding: 0.85rem 1rem; }
+  .mode-footer {
+    padding: 0.85rem 1rem;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: stretch;
+  }
+  .mode-summary { text-align: center; }
+  .mode-demarrer { justify-content: center; }
+  .mode-card { padding: 0.85rem 0.9rem; gap: 0.85rem; }
+  .mode-card-icon { width: 42px; height: 42px; border-radius: 12px; font-size: 18px; }
+  .mode-card-label { font-size: 1rem; }
+  .mode-titre { font-size: 1.3rem; }
+  .chap-row { padding: 0.7rem 0.85rem; }
+  .sel-tout { padding: 0.75rem 0.85rem; }
+}
 </style>

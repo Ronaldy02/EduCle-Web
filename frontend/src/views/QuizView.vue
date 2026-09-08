@@ -876,4 +876,28 @@ function palierParticleStyle(i) {
 .expl-slide-enter-from   { opacity: 0; transform: translateY(10px); }
 .expl-slide-leave-active { transition: opacity 0.15s; }
 .expl-slide-leave-to     { opacity: 0; }
+
+/* ── Mobile compact (≤ 480 px) ─────────────────────────────────── */
+@media (max-width: 480px) {
+  .qz-main { padding: 0.85rem; gap: 0.85rem; }
+  .qz-timer-val { font-size: 2.4rem; }
+  .qz-bonus-list { gap: 0.3rem; }
+  .qz-bonus-btn {
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.3rem;
+    gap: 0.15rem;
+  }
+  .qz-bonus-icon { font-size: 15px; }
+  .qz-bonus-name { font-size: 0.65rem; text-align: center; }
+  .qz-bonus-cout { font-size: 0.6rem; }
+  .qz-question-card { padding: 1.5rem 1rem; }
+  .qz-question-text { font-size: clamp(1.1rem, 4.5vw, 1.8rem); }
+  .qz-choix-btn { padding: 0.85rem 0.9rem; gap: 0.65rem; }
+  .qz-lettre { width: 36px; height: 36px; font-size: 0.95rem; }
+  .qz-choix-texte { font-size: 0.95rem; }
+}
 </style>
