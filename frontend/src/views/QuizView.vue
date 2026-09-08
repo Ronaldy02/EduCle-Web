@@ -144,9 +144,9 @@
               <span class="qz-bonus-name">50/50</span>
               <span class="qz-bonus-cout">100 🪙</span>
             </button>
-            <button class="qz-bonus-btn" @click="utiliserBonus('indice')" :disabled="bonusUtilises.indice">
-              <span class="qz-bonus-icon">💡</span>
-              <span class="qz-bonus-name">Indice</span>
+            <button class="qz-bonus-btn" @click="utiliserBonus('remplacer')" :disabled="bonusUtilises.remplacer">
+              <span class="qz-bonus-icon">🔄</span>
+              <span class="qz-bonus-name">Remplacer</span>
               <span class="qz-bonus-cout">75 🪙</span>
             </button>
             <button class="qz-bonus-btn" @click="utiliserBonus('plusTemps')" :disabled="modeNom === 'Bombardement'">
@@ -177,8 +177,8 @@
                   <button class="qz-dc-bitem" @click="utiliserBonus('cinqCinq'); mobileShowBonus=false" :disabled="bonusUtilises.cinqCinq || reponduIndex !== null">
                     <span>½</span><span class="qz-dc-bname">50/50</span><span class="qz-dc-bcost">🪙100</span>
                   </button>
-                  <button class="qz-dc-bitem" @click="utiliserBonus('indice'); mobileShowBonus=false" :disabled="bonusUtilises.indice || reponduIndex !== null">
-                    <span>💡</span><span class="qz-dc-bname">Indice</span><span class="qz-dc-bcost">🪙75</span>
+                  <button class="qz-dc-bitem" @click="utiliserBonus('remplacer'); mobileShowBonus=false" :disabled="bonusUtilises.remplacer || reponduIndex !== null">
+                    <span>🔄</span><span class="qz-dc-bname">Remplacer</span><span class="qz-dc-bcost">🪙75</span>
                   </button>
                   <button class="qz-dc-bitem" @click="utiliserBonus('plusTemps'); mobileShowBonus=false" :disabled="modeNom === 'Bombardement' || reponduIndex !== null">
                     <span>⏱️</span><span class="qz-dc-bname">+Temps</span><span class="qz-dc-bcost">🪙150</span>
@@ -226,13 +226,6 @@
           </div>
         </transition>
 
-        <!-- Indice -->
-        <transition name="expl-slide">
-          <div v-if="showIndice && question.explication" class="qz-indice">
-            <span class="qz-expl-icon">💡</span>
-            <p class="qz-expl-texte">{{ question.explication }}</p>
-          </div>
-        </transition>
       </div>
 
     </main>
@@ -255,7 +248,6 @@ const indexCourant    = ref(0)
 const reponduIndex    = ref(null)
 const bonneIndex      = ref(null)
 const showExplication = ref(false)
-const showIndice      = ref(false)
 const animShake  = ref(false)
 const animPulse  = ref(false)
 
@@ -269,7 +261,7 @@ const PALIER_BONUS    = { 5: 5, 10: 10, 15: 18, 20: 25 }
 const PALIER_DURATION = { 5: 1500, 10: 1800, 15: 2100, 20: 2600 }
 
 // Bonus
-const bonusUtilises  = ref({ elimination: false, cinqCinq: false, indice: false })
+const bonusUtilises  = ref({ elimination: false, cinqCinq: false, remplacer: false })
 const elimines       = ref([])  // indices de choix éliminés par bonus
 const mobileShowBonus = ref(false)
 
@@ -477,7 +469,6 @@ function repondre(choixIndex) {
   if (reponduIndex.value !== null) return
   clearInterval(timerInterval)
   if (modeNom.value !== 'Bombardement') stopTick()
-  showIndice.value = false
 
   const q        = question.value
   const bonneRep = q.bonne_reponse
@@ -530,11 +521,10 @@ function passer() {
 
 function suivant() {
   showExplication.value = false
-  showIndice.value      = false
   reponduIndex.value    = null
   bonneIndex.value      = null
   elimines.value        = []
-  bonusUtilises.value   = { elimination: false, cinqCinq: false, indice: false }
+  bonusUtilises.value   = { elimination: false, cinqCinq: false, remplacer: false }
 
   if (indexCourant.value + 1 >= total.value) {
     finirQuiz()
@@ -573,7 +563,6 @@ function utiliserBonus(type) {
     const bonneIdx = q.choix.indexOf(q.bonne_reponse)
     const mauvais  = [0, 1, 2, 3].filter(i => i !== bonneIdx && !elimines.value.includes(i))
     if (mauvais.length > 0) elimines.value.push(mauvais[Math.floor(Math.random() * mauvais.length)])
-    if (mauvais.length > 1) elimines.value.push(mauvais.filter(i => !elimines.value.includes(i))[0])
 
   } else if (type === 'cinqCinq') {
     if (bonusUtilises.value.cinqCinq) return
@@ -584,10 +573,20 @@ function utiliserBonus(type) {
     const garder = mauvais[Math.floor(Math.random() * mauvais.length)]
     elimines.value = mauvais.filter(i => i !== garder)
 
-  } else if (type === 'indice') {
-    if (bonusUtilises.value.indice) return
-    bonusUtilises.value.indice = true
-    showIndice.value = true
+  } else if (type === 'remplacer') {
+    if (bonusUtilises.value.remplacer) return
+    bonusUtilises.value.remplacer = true
+    const arr = quizStore.questions
+    const restantes = arr.length - indexCourant.value - 1
+    if (restantes > 0) {
+      const swapIdx = indexCourant.value + 1 + Math.floor(Math.random() * restantes)
+      const temp = arr[indexCourant.value]
+      arr.splice(indexCourant.value, 1, arr[swapIdx])
+      arr.splice(swapIdx, 1, temp)
+      elimines.value = []
+      clearInterval(timerInterval)
+      if (modeNom.value !== 'Bombardement') demarrerChrono()
+    }
 
   } else if (type === 'plusTemps') {
     if (modeNom.value !== 'Bombardement') {
