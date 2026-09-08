@@ -164,3 +164,58 @@ def get_scores(matiere_id: int | None = None, db: Session = Depends(get_db)):
     if matiere_id is not None:
         q = q.where(Score.matiere_id == matiere_id)
     return db.scalars(q).all()
+
+
+class ClassementEntreeSchema(BaseModel):
+    rang: int
+    pseudo: str
+    zone: str
+    score: int
+    nb_correctes: int
+    nb_total: int
+    mode_nom: str
+    matiere_nom: str | None
+    date: str
+
+
+@router.get("/classement", response_model=list[ClassementEntreeSchema])
+def get_classement(
+    periode: str = "general",
+    matiere_id: int | None = None,
+    db: Session = Depends(get_db),
+):
+    """Classement des sessions de quiz triées par score décroissant."""
+    from datetime import datetime, timedelta, timezone
+
+    q = select(Score, Matiere.nom.label("matiere_nom")).outerjoin(
+        Matiere, Score.matiere_id == Matiere.id
+    ).order_by(Score.score.desc()).limit(50)
+
+    now = datetime.now(timezone.utc)
+    if periode == "semaine":
+        q = q.where(Score.date >= (now - timedelta(days=7)).isoformat())
+    elif periode == "mois":
+        q = q.where(Score.date >= (now - timedelta(days=30)).isoformat())
+    elif periode == "annee":
+        q = q.where(Score.date >= (now - timedelta(days=365)).isoformat())
+
+    if matiere_id is not None:
+        q = q.where(Score.matiere_id == matiere_id)
+
+    rows = db.execute(q).all()
+    user = _get_or_create_user(db)
+
+    return [
+        ClassementEntreeSchema(
+            rang=i + 1,
+            pseudo="Moi",
+            zone=user.zone or "—",
+            score=s.score,
+            nb_correctes=s.nb_correctes,
+            nb_total=s.nb_total,
+            mode_nom=s.mode_nom,
+            matiere_nom=matiere_nom,
+            date=s.date,
+        )
+        for i, (s, matiere_nom) in enumerate(rows)
+    ]
