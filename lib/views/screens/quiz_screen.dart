@@ -66,6 +66,7 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
 
     _questionCtrl.forward();
     _sound.initialiser().then((_) {
+      _sound.pauseMusiqueFond();
       final tempsMax = widget.mode.dureeTotale != null ? 0 : widget.mode.tempsParQuestion;
       _sound.jouerTickQuestion(tempsMax);
     });
@@ -172,6 +173,7 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
     _termine = true;
     _timer?.cancel();
     _sound.stopTick();
+    _sound.reprendreMusiqueFond();
     final controller = context.read<QuizController>();
     final resultat = await controller.terminerQuiz(widget.quiz);
     if (!mounted) return;

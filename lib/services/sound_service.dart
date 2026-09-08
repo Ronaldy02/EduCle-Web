@@ -19,7 +19,8 @@ class SoundService {
   bool mute = false;
   bool _ready = false;
 
-  final AudioPlayer _tickPlayer = AudioPlayer();
+  final AudioPlayer _tickPlayer    = AudioPlayer();
+  final AudioPlayer _musiquePlayer = AudioPlayer();
 
   Future<void> initialiser() async {
     if (_ready || kIsWeb) return;
@@ -52,6 +53,22 @@ class SoundService {
   }
 
   Future<void> stopTick() => _tickPlayer.stop();
+
+  // ── Musique de fond ────────────────────────────────────────────────────────
+
+  Future<void> jouerMusiqueFond() async {
+    if (mute) return;
+    await _musiquePlayer.setReleaseMode(ReleaseMode.loop);
+    await _musiquePlayer.setVolume(0.35);
+    unawaited(_musiquePlayer.play(AssetSource('sounds/musique_fond.mp3')));
+  }
+
+  Future<void> pauseMusiqueFond() => _musiquePlayer.pause();
+
+  Future<void> reprendreMusiqueFond() async {
+    if (mute) return;
+    await _musiquePlayer.resume();
+  }
 
   // ── Autres sons (synthèse PCM) ─────────────────────────────────────────────
 

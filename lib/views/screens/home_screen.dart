@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../controllers/quiz_controller.dart';
 import '../../models/chapitre.dart';
 import '../../models/matiere.dart';
+import '../../services/sound_service.dart';
 import '../../theme/app_theme.dart';
 import '../widgets/educle_logo.dart';
 import 'chapitre_screen.dart';
@@ -36,6 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
           MaterialPageRoute(builder: (_) => const OnboardingScreen()),
         );
       }
+      // Musique de fond (démarre après le premier geste utilisateur)
+      final sound = SoundService.instance;
+      await sound.initialiser();
+      sound.jouerMusiqueFond();
     });
   }
 
