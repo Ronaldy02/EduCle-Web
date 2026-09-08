@@ -83,8 +83,8 @@
           </div>
         </div>
         <div class="rt-reward rt-reward-coins">
-          <div class="rt-reward-icon">
-            <span class="material-symbols-outlined" style="font-size:26px;color:#D97706">monetization_on</span>
+          <div class="rt-reward-icon" style="font-size:26px">
+            🪙
           </div>
           <div>
             <p class="rt-reward-val">+{{ res.pieces_gagnees }} 🪙</p>

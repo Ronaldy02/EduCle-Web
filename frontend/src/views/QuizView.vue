@@ -55,11 +55,21 @@
             <span class="qz-dc-badge" :style="modeBadgeStyle">{{ modeNom }}</span>
           </div>
           <div class="qz-dc-hcenter">
-            <span class="qz-dc-mat">{{ matNom || 'Toutes matières' }}</span>
-            <span class="qz-dc-chap" v-if="chapNom">{{ chapNom }}</span>
+            <div class="qz-scroll-box">
+              <div :class="['qz-scroll-inner', { 'qz-scroll-run': matNomScroll }]">
+                <span class="qz-dc-mat">{{ matNom || 'Toutes matières' }}</span>
+                <span v-if="matNomScroll" class="qz-dc-mat" aria-hidden="true">{{ matNom || 'Toutes matières' }}</span>
+              </div>
+            </div>
+            <div v-if="chapNom" class="qz-scroll-box">
+              <div :class="['qz-scroll-inner', { 'qz-scroll-run': chapNomScroll }]">
+                <span class="qz-dc-chap">{{ chapNom }}</span>
+                <span v-if="chapNomScroll" class="qz-dc-chap" aria-hidden="true">{{ chapNom }}</span>
+              </div>
+            </div>
           </div>
           <div class="qz-dc-hright">
-            <span class="qz-dc-coins">🪙 {{ scoreLocal }}</span>
+            <span class="qz-dc-coins">🪙 {{ piecesTotal }}</span>
             <button class="qz-dc-quit" @click="router.back()">Quitter</button>
           </div>
         </div>
@@ -236,6 +246,7 @@
 import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useQuizStore } from '../stores/quiz.js'
+import { getNiveau } from '../api/client.js'
 
 const router    = useRouter()
 const quizStore = useQuizStore()
@@ -253,6 +264,7 @@ const animPulse  = ref(false)
 
 const serie         = ref(0)
 const scoreLocal    = ref(0)
+const piecesTotal   = ref(0)
 const serieBounce   = ref(false)
 const palierVisible = ref(false)
 const palierValue   = ref(0)
@@ -371,6 +383,8 @@ const total    = computed(() => quizStore.questions.length)
 const question = computed(() => quizStore.questions[indexCourant.value] ?? null)
 const matNom   = computed(() => quizStore.matNom ?? '')
 const chapNom  = computed(() => quizStore.chapNom ?? '')
+const matNomScroll  = computed(() => (matNom.value || 'Toutes matières').length > 16)
+const chapNomScroll = computed(() => (chapNom.value || '').length > 14)
 
 const tempsMax = computed(() => {
   if (modeNom.value === 'Rush')     return 20
@@ -423,6 +437,7 @@ const dcRingOffset = computed(() => {
 onMounted(async () => {
   if (!quizStore.chapitreId) { router.replace('/'); return }
   await quizStore.demarrer()
+  try { const n = await getNiveau(); piecesTotal.value = n.pieces_total ?? 0 } catch {}
   chargement.value = false
   if (modeNom.value === 'Bombardement') {
     demarrerChronoGlobal()
@@ -992,14 +1007,14 @@ function palierParticleStyle(i) {
     background: #fff;
   }
   .qz-dc-hgrid {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
     align-items: center;
-    gap: 8px;
     padding: 12px 16px;
+    position: relative;
+    min-height: 48px;
   }
   .qz-dc-hleft {
-    display: flex; align-items: center; gap: 6px; min-width: 0;
+    flex: 1; display: flex; align-items: center; gap: 6px; min-width: 0;
   }
   .qz-dc-logo {
     font-size: 15px; font-weight: 800; color: #2f6fed; letter-spacing: -0.01em;
@@ -1010,12 +1025,25 @@ function palierParticleStyle(i) {
     border-radius: 999px; white-space: nowrap;
   }
   .qz-dc-hcenter {
-    display: flex; flex-direction: column; align-items: center; min-width: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center;
+    max-width: 38%;
   }
-  .qz-dc-mat  { font-size: 11px; font-weight: 700; color: #1a1d24; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-  .qz-dc-chap { font-size: 10px; font-weight: 700; color: #9aa1ad; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  .qz-scroll-box { max-width: 100%; overflow: hidden; }
+  .qz-scroll-inner { display: flex; white-space: nowrap; }
+  .qz-scroll-run { animation: qz-marquee 6s linear infinite; }
+  .qz-scroll-run .qz-dc-mat,
+  .qz-scroll-run .qz-dc-chap { padding-right: 22px; flex-shrink: 0; }
+  @keyframes qz-marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .qz-dc-mat  { font-size: 11px; font-weight: 700; color: #1a1d24; white-space: nowrap; }
+  .qz-dc-chap { font-size: 10px; font-weight: 700; color: #9aa1ad; white-space: nowrap; }
   .qz-dc-hright {
-    display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-shrink: 0;
+    flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 8px;
   }
   .qz-dc-coins {
     display: flex; align-items: center; gap: 4px;

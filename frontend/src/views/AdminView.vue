@@ -86,8 +86,8 @@
             </div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-icon" style="background:#FFF7ED;color:#D97706">
-              <span class="material-symbols-outlined">monetization_on</span>
+            <div class="kpi-icon" style="background:#FFF7ED;font-size:22px">
+              🪙
             </div>
             <div>
               <div class="kpi-value">{{ stats.pieces_total }}</div>

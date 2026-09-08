@@ -9,8 +9,7 @@
     </div>
     <div class="mh-right">
       <div class="stat-pill" v-if="niveau">
-        <span class="material-symbols-outlined filled" style="color:#D97706">monetization_on</span>
-        {{ niveau.pieces_total }}
+        🪙 {{ niveau.pieces_total }}
       </div>
       <div class="mh-avatar">🎓</div>
     </div>
@@ -93,8 +92,7 @@
             <span>0</span>
           </div>
           <div class="stat-pill">
-            <span class="material-symbols-outlined filled" style="color:#D97706;font-size:18px">monetization_on</span>
-            {{ niveau.pieces_total }}
+            🪙 {{ niveau.pieces_total }}
           </div>
           <div class="mh-avatar">🎓</div>
         </div>
