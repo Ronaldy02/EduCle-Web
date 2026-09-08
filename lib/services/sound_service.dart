@@ -80,6 +80,13 @@ class SoundService {
     unawaited(p.play(BytesSource(_gong)));
   }
 
+  Future<void> jouerFanfare() async {
+    if (mute || !_ready) return;
+    final p = AudioPlayer();
+    await p.setReleaseMode(ReleaseMode.release);
+    unawaited(p.play(BytesSource(_wav(_fanfare()))));
+  }
+
   // ─── Génération WAV (PCM 16-bit mono) ──────────────────────────────────────
 
   List<int> _tone(double freq, double dur, {double vol = 0.5, int fadeMs = 30}) {
@@ -100,6 +107,21 @@ class SoundService {
     ..._tone(523.25, 0.09, vol: 0.45, fadeMs: 25),
     ..._tone(659.25, 0.09, vol: 0.55, fadeMs: 25),
     ..._tone(783.99, 0.22, vol: 0.65, fadeMs: 60),
+  ];
+
+  // Fanfare score parfait : montée rapide puis accord final tenu
+  List<int> _fanfare() => [
+    ..._tone(523.25, 0.07, vol: 0.55, fadeMs: 15),
+    ..._tone(659.25, 0.07, vol: 0.60, fadeMs: 15),
+    ..._tone(783.99, 0.07, vol: 0.65, fadeMs: 15),
+    ..._tone(1046.5, 0.07, vol: 0.70, fadeMs: 15),
+    ..._tone(1318.5, 0.38, vol: 0.75, fadeMs: 80),
+    // basse en dessous (harmonie)
+    ...(){
+      final bass = _tone(261.63, 0.38, vol: 0.30, fadeMs: 80);
+      final top  = _tone(1318.5, 0.38, vol: 0.75, fadeMs: 80);
+      return List.generate(bass.length, (i) => (bass[i] + top[i]).clamp(-32768, 32767));
+    }(),
   ];
 
   List<int> _buzzer() {
