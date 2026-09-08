@@ -66,8 +66,8 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
 
     _questionCtrl.forward();
     _sound.initialiser().then((_) {
-      // Mode Bombardement : tick QPUC en boucle dès le départ
-      if (widget.mode.dureeTotale != null) _sound.jouerTickBombardement();
+      final tempsMax = widget.mode.dureeTotale != null ? 0 : widget.mode.tempsParQuestion;
+      _sound.jouerTickQuestion(tempsMax);
     });
     _demarrerTimer();
   }
@@ -84,10 +84,6 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
       final quiz = widget.quiz;
       if (quiz.tempsRestant > 0) {
         setState(() => quiz.tempsRestant--);
-        // Bombardement : le tick tourne en boucle, pas d'appel par seconde
-        if (widget.mode.dureeTotale == null) {
-          _sound.jouerTick(quiz.tempsRestant, widget.mode.tempsParQuestion);
-        }
         if (quiz.tempsRestant == 0) _surTempsEcoule();
       }
     });
@@ -164,6 +160,10 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
       _finir();
     } else {
       _questionCtrl.forward(from: 0);
+      // Redémarre le son pour la nouvelle question (sauf Bombardement : boucle continue)
+      if (widget.mode.dureeTotale == null) {
+        _sound.jouerTickQuestion(widget.mode.tempsParQuestion);
+      }
     }
   }
 

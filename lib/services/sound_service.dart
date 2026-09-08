@@ -21,35 +21,38 @@ class SoundService {
   bool mute = false;
   bool _ready = false;
 
-  // Deux players dédiés aux ticks (un par type) pour éviter les coupures
   final AudioPlayer _tickPlayer = AudioPlayer();
 
   Future<void> initialiser() async {
     if (_ready || kIsWeb) return;
     _ready = true;
-    await _tickPlayer.setReleaseMode(ReleaseMode.stop);
     _bonneReponse    = _wav(_arpeggio());
     _mauvaiseReponse = _wav(_buzzer());
     _gong            = _wav(_buildGong());
   }
 
   // ── Tick minuteur ──────────────────────────────────────────────────────────
-  // bombardement : tick_qpuc.mp3 (en boucle pour toute la durée)
-  // autres modes : tick_timer.mp3 (joué une fois par seconde)
+  // Chaque son dure exactement le bon nombre de secondes → joué une seule fois
+  // au début de la question, arrêté quand l'utilisateur répond.
+  //
+  //  tempsMax == 0  → Bombardement → tick_qpuc.mp3 en boucle
+  //  tempsMax == 10 → Génie        → tick_timer.mp3
+  //  tempsMax == 20 → Rush         → tick_20s.mp3
+  //  tempsMax == 30 → Révision     → tick_30s.mp3
 
-  Future<void> jouerTickBombardement() async {
+  Future<void> jouerTickQuestion(int tempsMax) async {
     if (mute || !_ready) return;
     await _tickPlayer.stop();
-    await _tickPlayer.setReleaseMode(ReleaseMode.loop);
-    unawaited(_tickPlayer.play(AssetSource('sounds/tick_qpuc.mp3')));
-  }
-
-  Future<void> jouerTick(int tempsRestant, int tempsMax) async {
-    if (mute || !_ready) return;
-    // Joue tick_timer.mp3 une fois par seconde
-    await _tickPlayer.stop();
-    await _tickPlayer.setReleaseMode(ReleaseMode.stop);
-    unawaited(_tickPlayer.play(AssetSource('sounds/tick_timer.mp3')));
+    if (tempsMax == 0) {
+      await _tickPlayer.setReleaseMode(ReleaseMode.loop);
+      unawaited(_tickPlayer.play(AssetSource('sounds/tick_qpuc.mp3')));
+    } else {
+      await _tickPlayer.setReleaseMode(ReleaseMode.stop);
+      final fichier = tempsMax <= 10 ? 'tick_timer.mp3'
+                    : tempsMax <= 20 ? 'tick_20s.mp3'
+                    :                  'tick_30s.mp3';
+      unawaited(_tickPlayer.play(AssetSource('sounds/$fichier')));
+    }
   }
 
   Future<void> stopTick() => _tickPlayer.stop();
