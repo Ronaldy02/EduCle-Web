@@ -102,7 +102,7 @@
         <div class="rg-divider"></div>
         <div class="rg-ligne-info">
           <span class="rg-info-lib">Créé par</span>
-          <span class="rg-info-val">Coding Club ISTEAH</span>
+          <span class="rg-info-val">Ing. Ronaldy Faustin</span>
         </div>
       </div>
 

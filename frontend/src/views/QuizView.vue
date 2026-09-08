@@ -55,8 +55,8 @@
             <span class="qz-dc-badge" :style="modeBadgeStyle">{{ modeNom }}</span>
           </div>
           <div class="qz-dc-hcenter">
-            <span class="qz-dc-mat">{{ matNom || 'EduClé' }}</span>
-            <span class="qz-dc-chap">{{ chapNom }}</span>
+            <span class="qz-dc-mat">{{ matNom || 'Toutes matières' }}</span>
+            <span class="qz-dc-chap" v-if="chapNom">{{ chapNom }}</span>
           </div>
           <div class="qz-dc-hright">
             <span class="qz-dc-coins">🪙 {{ scoreLocal }}</span>
@@ -96,12 +96,11 @@
           {{ modeNom === 'Bombardement' ? tempsGlobal : (tempsRestant + ' s') }}
         </span>
       </div>
-      <!-- Streak -->
-      <div v-if="serie > 0" class="qz-dc-streak-card">
+      <!-- Streak (toujours affiché comme dans le dc.html) -->
+      <div class="qz-dc-streak-card">
         <div class="qz-dc-streak-val">🔥 {{ serie }}</div>
         <div class="qz-dc-stat-lbl">Série</div>
       </div>
-      <div v-else class="qz-dc-streak-placeholder"></div>
     </div>
 
     <!-- ── Main ─────────────────────────────────────────────────── -->
@@ -1066,13 +1065,12 @@ function palierParticleStyle(i) {
 
   .qz-dc-streak-card {
     background: #fff; border: 1px solid #ececf0;
-    border-radius: 10px; padding: 3px 5px;
-    text-align: center; min-height: 38px; justify-self: end;
-    display: flex; flex-direction: column; justify-content: center;
-    min-width: 63px;
+    border-radius: 10px; padding: 6px 10px;
+    text-align: center; min-height: 40px; justify-self: end;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    min-width: 70px;
   }
-  .qz-dc-streak-val { font-size: 12px; font-weight: 800; color: #c0472c; }
-  .qz-dc-streak-placeholder { justify-self: end; width: 63px; }
+  .qz-dc-streak-val { font-size: 17px; font-weight: 800; color: #c0472c; }
 
   /* ── Main ── */
   .qz-main { padding: 0 20px 36px; gap: 0; }
