@@ -52,6 +52,34 @@
       </div>
     </header>
 
+    <!-- ── Stats mobiles (≤ 640 px) ─────────────────────────────── -->
+    <div class="qz-mobile-stats">
+      <div class="qz-mstat">
+        <span class="qz-mstat-ico">⭐</span>
+        <span class="qz-mstat-val">{{ scoreLocal }}</span>
+        <span class="qz-mstat-lbl">Score</span>
+      </div>
+      <div class="qz-mstat qz-mstat--timer"
+        :class="{ 'qz-mstat-urgent': modeNom !== 'Bombardement' ? tempsRestant <= seuilCritique : tempsGlobal <= 10 }">
+        <div class="qz-arc-wrap">
+          <svg class="qz-arc-svg" viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="18" fill="none" stroke="#dce2f3" stroke-width="3"/>
+            <circle cx="24" cy="24" r="18" fill="none" class="qz-arc-path"
+              stroke-linecap="round" stroke-width="3"
+              :stroke-dasharray="mobileArcDash"
+              transform="rotate(-90 24 24)"/>
+          </svg>
+          <span class="qz-arc-num">{{ modeNom === 'Bombardement' ? tempsGlobal : tempsRestant }}</span>
+        </div>
+        <span class="qz-mstat-lbl">Temps</span>
+      </div>
+      <div class="qz-mstat">
+        <span class="qz-mstat-ico">🔥</span>
+        <span class="qz-mstat-val">{{ serie }}</span>
+        <span class="qz-mstat-lbl">Série</span>
+      </div>
+    </div>
+
     <!-- ── Main ─────────────────────────────────────────────────── -->
     <main class="qz-main">
 
@@ -113,11 +141,39 @@
         <!-- Nav question -->
         <div class="qz-question-nav">
           <span class="qz-question-num">Question {{ indexCourant + 1 }} sur {{ total }}</span>
-          <button class="qz-passer-btn" :disabled="reponduIndex !== null" @click="passer">
-            Passer
-            <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle">skip_next</span>
-          </button>
+          <div class="qz-nav-right">
+            <button class="qz-bonus-toggle" @click="mobileShowBonus = !mobileShowBonus">🎁 Bonus</button>
+            <button class="qz-passer-btn" :disabled="reponduIndex !== null" @click="passer">
+              Passer
+              <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle">skip_next</span>
+            </button>
+          </div>
         </div>
+        <!-- Panneau bonus mobile -->
+        <transition name="mobile-bonus">
+          <div v-if="mobileShowBonus" class="qz-mobile-bonus">
+            <button class="qz-bonus-btn" @click="utiliserBonus('elimination')" :disabled="bonusUtilises.elimination">
+              <span class="qz-bonus-icon">🧹</span>
+              <span class="qz-bonus-name">Élimination</span>
+              <span class="qz-bonus-cout">50 🪙</span>
+            </button>
+            <button class="qz-bonus-btn" @click="utiliserBonus('cinqCinq')" :disabled="bonusUtilises.cinqCinq">
+              <span class="qz-bonus-icon">½</span>
+              <span class="qz-bonus-name">50/50</span>
+              <span class="qz-bonus-cout">100 🪙</span>
+            </button>
+            <button class="qz-bonus-btn" @click="utiliserBonus('indice')" :disabled="bonusUtilises.indice">
+              <span class="qz-bonus-icon">💡</span>
+              <span class="qz-bonus-name">Indice</span>
+              <span class="qz-bonus-cout">75 🪙</span>
+            </button>
+            <button class="qz-bonus-btn" @click="utiliserBonus('plusTemps')" :disabled="modeNom === 'Bombardement'">
+              <span class="qz-bonus-icon">⏱️</span>
+              <span class="qz-bonus-name">+Temps</span>
+              <span class="qz-bonus-cout">150 🪙</span>
+            </button>
+          </div>
+        </transition>
 
         <!-- Carte question -->
         <div class="qz-question-card" :class="{ shake: animShake, pulse: animPulse }">
@@ -195,8 +251,9 @@ const PALIER_BONUS    = { 5: 5, 10: 10, 15: 18, 20: 25 }
 const PALIER_DURATION = { 5: 1500, 10: 1800, 15: 2100, 20: 2600 }
 
 // Bonus
-const bonusUtilises = ref({ elimination: false, cinqCinq: false, indice: false })
-const elimines      = ref([])  // indices de choix éliminés par bonus
+const bonusUtilises  = ref({ elimination: false, cinqCinq: false, indice: false })
+const elimines       = ref([])  // indices de choix éliminés par bonus
+const mobileShowBonus = ref(false)
 
 // ── Sons ──────────────────────────────────────────────────────────────────
 // Tick minuteur : HTML5 Audio (MP3 réels, 1 par mode, joué une fois par question)
@@ -332,6 +389,15 @@ const modeBadgeStyle = computed(() => ({
 
 // Choix visibles (tous, sauf éliminés masqués : on les grise)
 const choixVisibles = computed(() => question.value?.choix ?? [])
+
+const mobileArcDash = computed(() => {
+  const C = 2 * Math.PI * 18
+  if (modeNom.value === 'Bombardement') {
+    return `${Math.max(0, tempsGlobal.value / 60) * C} ${C}`
+  }
+  if (!tempsMax.value) return `${C} ${C}`
+  return `${Math.max(0, tempsRestant.value / tempsMax.value) * C} ${C}`
+})
 
 onMounted(async () => {
   if (!quizStore.chapitreId) { router.replace('/'); return }
@@ -877,27 +943,87 @@ function palierParticleStyle(i) {
 .expl-slide-leave-active { transition: opacity 0.15s; }
 .expl-slide-leave-to     { opacity: 0; }
 
-/* ── Mobile compact (≤ 480 px) ─────────────────────────────────── */
-@media (max-width: 480px) {
-  .qz-main { padding: 0.85rem; gap: 0.85rem; }
-  .qz-timer-val { font-size: 2.4rem; }
-  .qz-bonus-list { gap: 0.3rem; }
-  .qz-bonus-btn {
-    min-width: 0;
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 0.3rem;
-    gap: 0.15rem;
+/* ── Stats mobiles – cachés par défaut ──────────────────────────── */
+.qz-mobile-stats { display: none; }
+.qz-bonus-toggle { display: none; }
+.qz-mobile-bonus { display: none; }
+.qz-nav-right { display: contents; }
+
+/* ── Mobile (≤ 640 px) ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+
+  /* Cache l'aside, affiche la barre de stats */
+  .qz-aside { display: none; }
+
+  .qz-mobile-stats {
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.75rem 0.85rem 0;
   }
-  .qz-bonus-icon { font-size: 15px; }
-  .qz-bonus-name { font-size: 0.65rem; text-align: center; }
-  .qz-bonus-cout { font-size: 0.6rem; }
-  .qz-question-card { padding: 1.5rem 1rem; }
-  .qz-question-text { font-size: clamp(1.1rem, 4.5vw, 1.8rem); }
-  .qz-choix-btn { padding: 0.85rem 0.9rem; gap: 0.65rem; }
-  .qz-lettre { width: 36px; height: 36px; font-size: 0.95rem; }
-  .qz-choix-texte { font-size: 0.95rem; }
+
+  .qz-mstat {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.15rem;
+    background: #fff; border: 1.5px solid #c2c6d6; border-radius: 12px;
+    padding: 0.65rem 0.4rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .qz-mstat-ico  { font-size: 1.1rem; line-height: 1; }
+  .qz-mstat-val  { font-size: 1.3rem; font-weight: 800; color: #0058be; line-height: 1; font-variant-numeric: tabular-nums; }
+  .qz-mstat-lbl  { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #727785; }
+
+  /* Timer card arc */
+  .qz-mstat--timer { padding: 0.55rem 0.4rem; }
+  .qz-arc-wrap { position: relative; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
+  .qz-arc-svg  { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .qz-arc-path { stroke: #0058be; transition: stroke-dasharray 1s linear; }
+  .qz-arc-num  { position: relative; z-index: 1; font-size: 0.9rem; font-weight: 800; color: #151c27; font-variant-numeric: tabular-nums; }
+  .qz-mstat-urgent .qz-arc-path { stroke: #ba1a1a; }
+  .qz-mstat-urgent .qz-arc-num  { color: #ba1a1a; }
+  .qz-mstat-urgent { border-color: #ffdad6; background: #fff5f5; }
+
+  /* Question nav : bonus toggle visible */
+  .qz-nav-right { display: flex; align-items: center; gap: 0.5rem; }
+  .qz-bonus-toggle {
+    display: flex; align-items: center; gap: 0.25rem;
+    font-size: 0.8rem; font-weight: 700; color: #6b38d4;
+    background: #f0eaff; border: 1.5px solid #d4b8ff;
+    border-radius: 8px; padding: 0.3rem 0.65rem;
+    cursor: pointer; white-space: nowrap;
+    transition: background 0.12s;
+  }
+  .qz-bonus-toggle:hover { background: #e4d6ff; }
+
+  /* Panneau bonus mobile */
+  .qz-mobile-bonus {
+    display: flex; gap: 0.4rem; flex-wrap: wrap;
+    background: #fff; border: 1.5px solid #c2c6d6;
+    border-radius: 12px; padding: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .qz-mobile-bonus .qz-bonus-btn {
+    flex: 1 1 calc(50% - 0.2rem); min-width: 0;
+    flex-direction: column; align-items: center; justify-content: center;
+    padding: 0.55rem 0.3rem; gap: 0.1rem;
+  }
+  .qz-mobile-bonus .qz-bonus-name { font-size: 0.72rem; text-align: center; }
+  .qz-mobile-bonus .qz-bonus-cout { font-size: 0.65rem; }
+
+  /* Transitions panneau bonus */
+  .mobile-bonus-enter-active, .mobile-bonus-leave-active { transition: opacity 0.2s, transform 0.2s; }
+  .mobile-bonus-enter-from, .mobile-bonus-leave-to { opacity: 0; transform: translateY(-6px); }
+
+  /* Main layout */
+  .qz-main { padding: 0.85rem; gap: 0.75rem; }
+
+  /* Grille 2×2 sur mobile */
+  .qz-choix-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+  .qz-choix-btn { padding: 0.75rem 0.7rem; gap: 0.5rem; flex-direction: column; align-items: flex-start; }
+  .qz-lettre { width: 32px; height: 32px; font-size: 0.88rem; border-radius: 8px; }
+  .qz-choix-texte { font-size: 0.88rem; }
+  .qz-choix-texte--long { font-size: 0.78rem; }
+
+  /* Question card */
+  .qz-question-card { padding: 1.25rem 0.9rem; }
+  .qz-question-text { font-size: clamp(1rem, 4.5vw, 1.6rem); }
 }
 </style>
