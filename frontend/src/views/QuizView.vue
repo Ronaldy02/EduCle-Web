@@ -198,7 +198,31 @@ const PALIER_DURATION = { 5: 1500, 10: 1800, 15: 2100, 20: 2600 }
 const bonusUtilises = ref({ elimination: false, cinqCinq: false, indice: false })
 const elimines      = ref([])  // indices de choix éliminés par bonus
 
-// ── Sons (Web Audio API, sans fichier) ────────────────────────────────────
+// ── Sons ──────────────────────────────────────────────────────────────────
+// Tick minuteur : HTML5 Audio (MP3 réels)
+// Bonne/mauvaise réponse, gong : Web Audio API (synthèse)
+
+// Ticks MP3
+const _tickQpuc  = new Audio('/sounds/tick_qpuc.mp3')   // Bombardement : boucle
+const _tickTimer = new Audio('/sounds/tick_timer.mp3')  // autres modes : 1×/s
+_tickQpuc.loop = true
+
+function jouerTickBombardement() {
+  _tickQpuc.currentTime = 0
+  _tickQpuc.play().catch(() => {})
+}
+
+function jouerTick(tempsRestant, tempsMax) {
+  const clone = _tickTimer.cloneNode()
+  clone.play().catch(() => {})
+}
+
+function stopTick() {
+  _tickQpuc.pause()
+  _tickQpuc.currentTime = 0
+}
+
+// Web Audio API pour les sons synthétiques
 let _ac = null
 
 function _getAc() {
@@ -208,8 +232,6 @@ function _getAc() {
   return _ac
 }
 
-// Joue un son, en reprenant le contexte si suspendu (resume est asynchrone,
-// on programme avec un offset de 80ms pour laisser le temps au contexte de reprendre)
 function _jouerAvecResume(fn) {
   const ac = _getAc(); if (!ac) return
   if (ac.state === 'suspended') {
@@ -217,25 +239,6 @@ function _jouerAvecResume(fn) {
   } else {
     fn(ac, ac.currentTime + 0.01)
   }
-}
-
-// Tick style QPUC : fréquence monte progressivement à mesure que le temps s'écoule
-function jouerTick(tempsRestant, tempsMax) {
-  const ratio = tempsMax > 0 ? tempsRestant / tempsMax : 0
-  const freq  = 440 + (1000 - 440) * (1 - ratio)
-  const vol   = 0.12 + 0.35 * (1 - ratio)
-  const dur   = 0.055
-  _jouerAvecResume((ac, t) => {
-    try {
-      const osc = ac.createOscillator(), g = ac.createGain()
-      osc.connect(g); g.connect(ac.destination)
-      osc.frequency.value = freq
-      g.gain.setValueAtTime(0, t)
-      g.gain.linearRampToValueAtTime(vol, t + 0.006)
-      g.gain.linearRampToValueAtTime(0, t + dur)
-      osc.start(t); osc.stop(t + dur + 0.01)
-    } catch {}
-  })
 }
 
 // Arpège QPUC : Do5 → Mi5 → Sol5
@@ -336,14 +339,19 @@ onMounted(async () => {
   if (!quizStore.chapitreId) { router.replace('/'); return }
   await quizStore.demarrer()
   chargement.value = false
-  if (modeNom.value === 'Bombardement') demarrerChronoGlobal()
-  else demarrerChrono()
+  if (modeNom.value === 'Bombardement') {
+    demarrerChronoGlobal()
+    jouerTickBombardement()
+  } else {
+    demarrerChrono()
+  }
   window.addEventListener('keydown', onKey)
 })
 
 onBeforeUnmount(() => {
   clearInterval(timerInterval)
   clearInterval(timerGlobal)
+  stopTick()
   window.removeEventListener('keydown', onKey)
 })
 
@@ -444,6 +452,7 @@ function suivant() {
 
 async function finirQuiz() {
   clearInterval(timerGlobal)
+  stopTick()
   envoi.value = true
   await quizStore.terminer()
   router.replace('/resultat')
