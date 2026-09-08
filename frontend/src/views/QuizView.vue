@@ -240,7 +240,21 @@ function stopTick() {
   }
 }
 
-// Web Audio API pour les sons synthétiques
+// Bonne / mauvaise réponse : MP3 réels
+const _bonneReponseAudio    = new Audio('/sounds/bonne_reponse.mp3')
+const _mauvaiseReponseAudio = new Audio('/sounds/mauvaise_reponse.mp3')
+
+function jouerBonneReponse() {
+  const s = _bonneReponseAudio.cloneNode()
+  s.play().catch(() => {})
+}
+
+function jouerMauvaiseReponse() {
+  const s = _mauvaiseReponseAudio.cloneNode()
+  s.play().catch(() => {})
+}
+
+// Web Audio API uniquement pour le gong (synthèse)
 let _ac = null
 
 function _getAc() {
@@ -257,40 +271,6 @@ function _jouerAvecResume(fn) {
   } else {
     fn(ac, ac.currentTime + 0.01)
   }
-}
-
-// Arpège QPUC : Do5 → Mi5 → Sol5
-function jouerBonneReponse() {
-  _jouerAvecResume((ac, t) => {
-    try {
-      [[523.25, 0, 0.30], [659.25, 0.10, 0.35], [783.99, 0.20, 0.40]].forEach(([f, d, vol]) => {
-        const osc = ac.createOscillator(), g = ac.createGain()
-        osc.connect(g); g.connect(ac.destination)
-        osc.frequency.value = f
-        g.gain.setValueAtTime(0, t + d)
-        g.gain.linearRampToValueAtTime(vol, t + d + 0.008)
-        g.gain.setValueAtTime(vol, t + d + 0.10)
-        g.gain.linearRampToValueAtTime(0, t + d + (d === 0.20 ? 0.28 : 0.09))
-        osc.start(t + d); osc.stop(t + d + 0.32)
-      })
-    } catch {}
-  })
-}
-
-// Buzzer descendant
-function jouerMauvaiseReponse() {
-  _jouerAvecResume((ac, t) => {
-    try {
-      const osc = ac.createOscillator(), g = ac.createGain()
-      osc.connect(g); g.connect(ac.destination)
-      osc.type = 'sawtooth'
-      osc.frequency.setValueAtTime(350, t)
-      osc.frequency.linearRampToValueAtTime(130, t + 0.25)
-      g.gain.setValueAtTime(0.45, t)
-      g.gain.linearRampToValueAtTime(0, t + 0.25)
-      osc.start(t); osc.stop(t + 0.26)
-    } catch {}
-  })
 }
 
 // Gong : ton continu 1 seconde
