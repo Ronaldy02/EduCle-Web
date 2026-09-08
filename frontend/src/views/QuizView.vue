@@ -46,6 +46,26 @@
           </transition>
         </div>
       </div>
+
+      <!-- ── Mobile top bar : ← EduClé ⋯ ─────────────────── -->
+      <div class="qz-mob-topbar">
+        <button class="qz-mob-back" @click="router.back()" aria-label="Retour">
+          <span class="material-symbols-outlined" style="font-size:20px;line-height:1">arrow_back_ios</span>
+        </button>
+        <span class="qz-mob-app-title">EduClé</span>
+        <button class="qz-mob-more" aria-label="Options">···</button>
+      </div>
+
+      <!-- ── Mobile context sub-bar ─────────────────────────── -->
+      <div class="qz-mob-subbar">
+        <span class="qz-mob-chip qz-mob-chip--primary">EduClé</span>
+        <span class="qz-mob-chip" :style="modeChipStyle">{{ modeNom }}</span>
+        <span class="qz-mob-ctx-text">{{ matNom }}<template v-if="matNom"> · </template>{{ chapNom }}</span>
+        <span class="qz-mob-score-pill">⭐ {{ scoreLocal }}</span>
+        <button class="qz-mob-quit" @click="router.back()">Quitter</button>
+      </div>
+      <div class="qz-mob-divider"></div>
+
       <!-- Barre de progression pleine largeur -->
       <div class="qz-progress-track">
         <div class="qz-progress-fill" :style="{ width: (indexCourant / total * 100) + '%', background: modeCouleur }"></div>
@@ -140,7 +160,7 @@
 
         <!-- Nav question -->
         <div class="qz-question-nav">
-          <span class="qz-question-num">Question {{ indexCourant + 1 }} sur {{ total }}</span>
+          <span class="qz-question-num" :style="{ color: modeCouleur }">Question {{ indexCourant + 1 }} / {{ total }}</span>
           <div class="qz-nav-right">
             <button class="qz-bonus-toggle" @click="mobileShowBonus = !mobileShowBonus">🎁 Bonus</button>
             <button class="qz-passer-btn" :disabled="reponduIndex !== null" @click="passer">
@@ -398,6 +418,11 @@ const mobileArcDash = computed(() => {
   if (!tempsMax.value) return `${C} ${C}`
   return `${Math.max(0, tempsRestant.value / tempsMax.value) * C} ${C}`
 })
+
+const modeChipStyle = computed(() => ({
+  background: modeCouleur.value + '1a',
+  color: modeCouleur.value,
+}))
 
 onMounted(async () => {
   if (!quizStore.chapitreId) { router.replace('/'); return }
@@ -943,87 +968,157 @@ function palierParticleStyle(i) {
 .expl-slide-leave-active { transition: opacity 0.15s; }
 .expl-slide-leave-to     { opacity: 0; }
 
-/* ── Stats mobiles – cachés par défaut ──────────────────────────── */
+/* ── Éléments mobile cachés par défaut (desktop) ─────────────────── */
 .qz-mobile-stats { display: none; }
+.qz-mob-topbar   { display: none; }
+.qz-mob-subbar   { display: none; }
+.qz-mob-divider  { display: none; }
 .qz-bonus-toggle { display: none; }
 .qz-mobile-bonus { display: none; }
-.qz-nav-right { display: contents; }
+.qz-nav-right    { display: contents; }
 
-/* ── Mobile (≤ 640 px) ──────────────────────────────────────────── */
+/* ── Mobile (≤ 640 px) — design identique Flutter ─────────────────── */
 @media (max-width: 640px) {
 
-  /* Cache l'aside, affiche la barre de stats */
+  /* Shell */
+  .qz-shell { background: #f5f5f7; }
+
+  /* ── Header : masquer le desktop, afficher le mobile ── */
+  .qz-header-inner { display: none; }
+
+  .qz-mob-topbar {
+    display: flex; align-items: center;
+    padding: 8px 4px 0 4px; gap: 0;
+  }
+  .qz-mob-back {
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border: none; background: none;
+    cursor: pointer; color: #1a1d24; flex-shrink: 0;
+  }
+  .qz-mob-app-title {
+    flex: 1;
+    font-size: 1.55rem; font-weight: 900; letter-spacing: -0.02em; color: #1a1d24;
+  }
+  .qz-mob-more {
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border: none; background: none;
+    cursor: pointer; font-size: 1.2rem; color: #727785; letter-spacing: 0.1em;
+  }
+
+  .qz-mob-subbar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 4px 12px 8px;
+    overflow: hidden;
+  }
+  .qz-mob-chip {
+    display: inline-flex; align-items: center;
+    padding: 2px 10px; border-radius: 99px; white-space: nowrap;
+    font-size: 0.75rem; font-weight: 700;
+  }
+  .qz-mob-chip--primary { background: #0058be; color: #fff; }
+  .qz-mob-ctx-text {
+    flex: 1; font-size: 0.69rem; font-weight: 600;
+    color: #727785; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .qz-mob-score-pill {
+    font-size: 0.81rem; font-weight: 800; color: #1a1d24; white-space: nowrap; flex-shrink: 0;
+  }
+  .qz-mob-quit {
+    font-size: 0.81rem; font-weight: 700; color: #ba1a1a;
+    border: none; background: none; cursor: pointer; padding: 0; white-space: nowrap; flex-shrink: 0;
+  }
+
+  .qz-mob-divider { display: block; height: 1px; background: #ececf0; }
+
+  /* ── Stats 3-cartes ── */
   .qz-aside { display: none; }
 
   .qz-mobile-stats {
-    display: flex;
-    gap: 0.6rem;
-    padding: 0.75rem 0.85rem 0;
+    display: flex; gap: 10px;
+    padding: 12px 16px 0;
   }
-
   .qz-mstat {
-    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.15rem;
-    background: #fff; border: 1.5px solid #c2c6d6; border-radius: 12px;
-    padding: 0.65rem 0.4rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    gap: 3px; padding: 12px 8px;
+    background: #fff; border: 1.5px solid #e0e3ec;
+    border-radius: 14px;
   }
-  .qz-mstat-ico  { font-size: 1.1rem; line-height: 1; }
-  .qz-mstat-val  { font-size: 1.3rem; font-weight: 800; color: #0058be; line-height: 1; font-variant-numeric: tabular-nums; }
-  .qz-mstat-lbl  { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #727785; }
+  .qz-mstat-ico  { font-size: 1.35rem; line-height: 1; }
+  .qz-mstat-val  { font-size: 1.25rem; font-weight: 900; color: #1a1d24; line-height: 1; font-variant-numeric: tabular-nums; }
+  .qz-mstat-lbl  { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: #727785; }
 
-  /* Timer card arc */
-  .qz-mstat--timer { padding: 0.55rem 0.4rem; }
-  .qz-arc-wrap { position: relative; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
+  /* Timer arc */
+  .qz-mstat--timer { padding: 12px 8px; }
+  .qz-arc-wrap { position: relative; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; }
   .qz-arc-svg  { position: absolute; inset: 0; width: 100%; height: 100%; }
   .qz-arc-path { stroke: #0058be; transition: stroke-dasharray 1s linear; }
-  .qz-arc-num  { position: relative; z-index: 1; font-size: 0.9rem; font-weight: 800; color: #151c27; font-variant-numeric: tabular-nums; }
+  .qz-arc-num  {
+    position: relative; z-index: 1;
+    font-size: 0.88rem; font-weight: 800; color: #0058be; font-variant-numeric: tabular-nums;
+  }
+  .qz-mstat-urgent { border-color: rgba(186,26,26,0.4); background: rgba(186,26,26,0.06); }
   .qz-mstat-urgent .qz-arc-path { stroke: #ba1a1a; }
   .qz-mstat-urgent .qz-arc-num  { color: #ba1a1a; }
-  .qz-mstat-urgent { border-color: #ffdad6; background: #fff5f5; }
 
-  /* Question nav : bonus toggle visible */
-  .qz-nav-right { display: flex; align-items: center; gap: 0.5rem; }
+  /* ── Main ── */
+  .qz-main { padding: 14px 16px; gap: 0; }
+
+  /* ── Question nav ── */
+  .qz-question-nav { margin-bottom: 6px; }
+  .qz-question-num { font-size: 0.94rem; font-weight: 700; }
+  .qz-nav-right { display: flex; align-items: center; gap: 0.4rem; }
+
+  /* Passer caché sur mobile */
+  .qz-passer-btn { display: none; }
+
+  /* Bonus toggle = TextButton style Flutter */
   .qz-bonus-toggle {
-    display: flex; align-items: center; gap: 0.25rem;
-    font-size: 0.8rem; font-weight: 700; color: #6b38d4;
-    background: #f0eaff; border: 1.5px solid #d4b8ff;
-    border-radius: 8px; padding: 0.3rem 0.65rem;
-    cursor: pointer; white-space: nowrap;
-    transition: background 0.12s;
+    display: flex; align-items: center; gap: 0.2rem;
+    font-size: 0.88rem; font-weight: 700; color: #0058be;
+    background: none; border: none; cursor: pointer; padding: 4px 8px;
+    border-radius: 8px; transition: background 0.12s;
   }
-  .qz-bonus-toggle:hover { background: #e4d6ff; }
+  .qz-bonus-toggle:hover { background: rgba(0,88,190,0.08); }
 
   /* Panneau bonus mobile */
   .qz-mobile-bonus {
-    display: flex; gap: 0.4rem; flex-wrap: wrap;
-    background: #fff; border: 1.5px solid #c2c6d6;
-    border-radius: 12px; padding: 0.75rem;
-    margin-bottom: 0.5rem;
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+    background: #fff; border: 1.5px solid #e0e3ec;
+    border-radius: 14px; padding: 0.75rem;
+    margin-bottom: 0.75rem;
   }
   .qz-mobile-bonus .qz-bonus-btn {
-    flex: 1 1 calc(50% - 0.2rem); min-width: 0;
+    flex: 1 1 calc(50% - 0.25rem); min-width: 0;
     flex-direction: column; align-items: center; justify-content: center;
-    padding: 0.55rem 0.3rem; gap: 0.1rem;
+    padding: 0.6rem 0.3rem; gap: 0.15rem;
   }
-  .qz-mobile-bonus .qz-bonus-name { font-size: 0.72rem; text-align: center; }
-  .qz-mobile-bonus .qz-bonus-cout { font-size: 0.65rem; }
+  .qz-mobile-bonus .qz-bonus-name { font-size: 0.75rem; text-align: center; }
+  .qz-mobile-bonus .qz-bonus-cout { font-size: 0.68rem; }
+  .mobile-bonus-enter-active, .mobile-bonus-leave-active { transition: opacity 0.2s, transform 0.18s; }
+  .mobile-bonus-enter-from, .mobile-bonus-leave-to { opacity: 0; transform: translateY(-8px); }
 
-  /* Transitions panneau bonus */
-  .mobile-bonus-enter-active, .mobile-bonus-leave-active { transition: opacity 0.2s, transform 0.2s; }
-  .mobile-bonus-enter-from, .mobile-bonus-leave-to { opacity: 0; transform: translateY(-6px); }
+  /* ── Question card ── */
+  .qz-question-card { padding: 24px 20px; margin-bottom: 14px; }
+  .qz-question-text { font-size: 1.125rem; font-weight: 800; }
 
-  /* Main layout */
-  .qz-main { padding: 0.85rem; gap: 0.75rem; }
-
-  /* Grille 2×2 sur mobile */
-  .qz-choix-grid { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
-  .qz-choix-btn { padding: 0.75rem 0.7rem; gap: 0.5rem; flex-direction: column; align-items: flex-start; }
-  .qz-lettre { width: 32px; height: 32px; font-size: 0.88rem; border-radius: 8px; }
-  .qz-choix-texte { font-size: 0.88rem; }
-  .qz-choix-texte--long { font-size: 0.78rem; }
-
-  /* Question card */
-  .qz-question-card { padding: 1.25rem 0.9rem; }
-  .qz-question-text { font-size: clamp(1rem, 4.5vw, 1.6rem); }
+  /* ── Grille 2×2 : ROW layout comme Flutter ── */
+  .qz-choix-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 0; }
+  .qz-choix-btn {
+    padding: 14px 12px; gap: 10px;
+    flex-direction: row; align-items: flex-start;
+    border-radius: 14px; border-width: 1.4px;
+  }
+  .qz-lettre {
+    width: 32px; height: 32px; font-size: 0.81rem;
+    border-radius: 9px; flex-shrink: 0;
+    border: 1.4px solid #c2c6d6;
+    background: rgba(0,88,190,0.08);
+    color: #424754;
+  }
+  .qz-choix-btn:hover:not(:disabled) .qz-lettre { border-color: #0058be; background: #0058be; color: #fff; }
+  .qz-lettre.correct   { border-color: #006c49; background: rgba(0,108,73,0.1); color: #006c49; }
+  .qz-lettre.incorrect { border-color: #ba1a1a; background: rgba(186,26,26,0.1); color: #ba1a1a; }
+  .qz-choix-texte { font-size: 0.875rem; font-weight: 600; padding-top: 6px; }
+  .qz-choix-texte--long { font-size: 0.78rem; padding-top: 4px; }
 }
 </style>
