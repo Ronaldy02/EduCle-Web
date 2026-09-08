@@ -170,12 +170,11 @@ class ClassementEntreeSchema(BaseModel):
     rang: int
     pseudo: str
     zone: str
-    score: int
+    score: int          # score total (SUM)
     nb_correctes: int
     nb_total: int
-    mode_nom: str
-    matiere_nom: str | None
-    date: str
+    label: str          # matière ou mode selon le contexte
+    nb_sessions: int    # nombre de quiz pris en compte
 
 
 @router.get("/classement", response_model=list[ClassementEntreeSchema])
@@ -184,38 +183,68 @@ def get_classement(
     matiere_id: int | None = None,
     db: Session = Depends(get_db),
 ):
-    """Classement des sessions de quiz triées par score décroissant."""
+    """Classement agrégé par score TOTAL (SUM). Sans filtre matière : top
+    matières. Avec filtre matière : top modes dans cette matière."""
     from datetime import datetime, timedelta, timezone
 
-    q = select(Score, Matiere.nom.label("matiere_nom")).outerjoin(
-        Matiere, Score.matiere_id == Matiere.id
-    ).order_by(Score.score.desc()).limit(50)
-
     now = datetime.now(timezone.utc)
+    date_min: str | None = None
     if periode == "semaine":
-        q = q.where(Score.date >= (now - timedelta(days=7)).isoformat())
+        date_min = (now - timedelta(days=7)).isoformat()
     elif periode == "mois":
-        q = q.where(Score.date >= (now - timedelta(days=30)).isoformat())
+        date_min = (now - timedelta(days=30)).isoformat()
     elif periode == "annee":
-        q = q.where(Score.date >= (now - timedelta(days=365)).isoformat())
+        date_min = (now - timedelta(days=365)).isoformat()
 
-    if matiere_id is not None:
-        q = q.where(Score.matiere_id == matiere_id)
+    user = _get_or_create_user(db)
+
+    if matiere_id is None:
+        # Agrégation par matière
+        q = (
+            select(
+                Matiere.nom.label("label"),
+                func.sum(Score.score).label("total_score"),
+                func.sum(Score.nb_correctes).label("total_correctes"),
+                func.sum(Score.nb_total).label("total_total"),
+                func.count(Score.id).label("nb_sessions"),
+            )
+            .join(Score, Score.matiere_id == Matiere.id)
+            .group_by(Matiere.id, Matiere.nom)
+            .order_by(func.sum(Score.score).desc())
+        )
+        if date_min:
+            q = q.where(Score.date >= date_min)
+    else:
+        # Agrégation par mode pour une matière donnée
+        mat = db.get(Matiere, matiere_id)
+        mat_nom = mat.nom if mat else "?"
+        q = (
+            select(
+                Score.mode_nom.label("label"),
+                func.sum(Score.score).label("total_score"),
+                func.sum(Score.nb_correctes).label("total_correctes"),
+                func.sum(Score.nb_total).label("total_total"),
+                func.count(Score.id).label("nb_sessions"),
+            )
+            .where(Score.matiere_id == matiere_id)
+            .group_by(Score.mode_nom)
+            .order_by(func.sum(Score.score).desc())
+        )
+        if date_min:
+            q = q.where(Score.date >= date_min)
 
     rows = db.execute(q).all()
-    user = _get_or_create_user(db)
 
     return [
         ClassementEntreeSchema(
             rang=i + 1,
             pseudo="Moi",
             zone=user.zone or "—",
-            score=s.score,
-            nb_correctes=s.nb_correctes,
-            nb_total=s.nb_total,
-            mode_nom=s.mode_nom,
-            matiere_nom=matiere_nom,
-            date=s.date,
+            score=r.total_score,
+            nb_correctes=r.total_correctes,
+            nb_total=r.total_total,
+            label=r.label,
+            nb_sessions=r.nb_sessions,
         )
-        for i, (s, matiere_nom) in enumerate(rows)
+        for i, r in enumerate(rows)
     ]
