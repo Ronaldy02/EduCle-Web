@@ -121,6 +121,30 @@ const sidebarOuvert = ref(false)
 const NO_NAV = ['quiz', 'resultat', 'revision', 'admin']
 const showNav = computed(() => !NO_NAV.includes(route.name))
 
+// ── Musique de fond ────────────────────────────────────────────────────────
+const _musique = new Audio('/sounds/musique_fond.mp3')
+_musique.loop = true
+_musique.volume = 0.30
+
+// Routes sans musique
+const ROUTES_SANS_MUSIQUE = ['quiz']
+
+let _musiqueActive = false
+
+function _syncMusique(routeName) {
+  if (ROUTES_SANS_MUSIQUE.includes(routeName)) {
+    _musique.pause()
+  } else {
+    if (!_musiqueActive) {
+      _musiqueActive = true
+      _musique.play().catch(() => {})
+    } else {
+      _musique.play().catch(() => {})
+    }
+  }
+}
+// ──────────────────────────────────────────────────────────────────────────
+
 function toggleConnexion() {
   connecte.value = !connecte.value
 }
@@ -129,10 +153,20 @@ async function chargerNiveau() {
   try { niveau.value = await getNiveau() } catch {}
 }
 
-onMounted(chargerNiveau)
+onMounted(() => {
+  chargerNiveau()
+  // Premier démarrage : la musique part sur le premier clic utilisateur
+  const demarrerMusique = () => {
+    _syncMusique(route.name)
+    document.removeEventListener('click', demarrerMusique)
+  }
+  document.addEventListener('click', demarrerMusique)
+})
+
 watch(() => route.name, (n) => {
   if (n && !NO_NAV.includes(n)) chargerNiveau()
   sidebarOuvert.value = false
+  _syncMusique(n)
 })
 
 </script>
