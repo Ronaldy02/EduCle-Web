@@ -199,27 +199,45 @@ const bonusUtilises = ref({ elimination: false, cinqCinq: false, indice: false }
 const elimines      = ref([])  // indices de choix éliminés par bonus
 
 // ── Sons ──────────────────────────────────────────────────────────────────
-// Tick minuteur : HTML5 Audio (MP3 réels)
-// Bonne/mauvaise réponse, gong : Web Audio API (synthèse)
+// Tick minuteur : HTML5 Audio (MP3 réels, 1 par mode, joué une fois par question)
+//   Bombardement → tick_qpuc.mp3  (loop continu)
+//   Révision(30s) → tick_30s.mp3
+//   Rush(20s)     → tick_20s.mp3
+//   Génie(10s)    → tick_timer.mp3
+// Bonne/mauvaise réponse, gong : Web Audio API
 
-// Ticks MP3
-const _tickQpuc  = new Audio('/sounds/tick_qpuc.mp3')   // Bombardement : boucle
-const _tickTimer = new Audio('/sounds/tick_timer.mp3')  // autres modes : 1×/s
-_tickQpuc.loop = true
-
-function jouerTickBombardement() {
-  _tickQpuc.currentTime = 0
-  _tickQpuc.play().catch(() => {})
+const _tickSons = {
+  qpuc:  new Audio('/sounds/tick_qpuc.mp3'),
+  '30s': new Audio('/sounds/tick_30s.mp3'),
+  '20s': new Audio('/sounds/tick_20s.mp3'),
+  '10s': new Audio('/sounds/tick_timer.mp3'),
 }
+_tickSons.qpuc.loop = true
+let _tickActif = null
 
-function jouerTick(tempsRestant, tempsMax) {
-  const clone = _tickTimer.cloneNode()
-  clone.play().catch(() => {})
+function jouerTickQuestion(tempsMax) {
+  stopTick()
+  let son
+  if (tempsMax === 0) {
+    son = _tickSons.qpuc
+  } else if (tempsMax <= 10) {
+    son = _tickSons['10s']
+  } else if (tempsMax <= 20) {
+    son = _tickSons['20s']
+  } else {
+    son = _tickSons['30s']
+  }
+  son.currentTime = 0
+  son.play().catch(() => {})
+  _tickActif = son
 }
 
 function stopTick() {
-  _tickQpuc.pause()
-  _tickQpuc.currentTime = 0
+  if (_tickActif) {
+    _tickActif.pause()
+    _tickActif.currentTime = 0
+    _tickActif = null
+  }
 }
 
 // Web Audio API pour les sons synthétiques
@@ -341,9 +359,10 @@ onMounted(async () => {
   chargement.value = false
   if (modeNom.value === 'Bombardement') {
     demarrerChronoGlobal()
-    jouerTickBombardement()
+    jouerTickQuestion(0)          // QPUC en boucle
   } else {
     demarrerChrono()
+    jouerTickQuestion(tempsMax.value)
   }
   window.addEventListener('keydown', onKey)
 })
@@ -375,7 +394,6 @@ function demarrerChrono() {
   tempsRestant.value = tempsMax.value
   timerInterval = setInterval(() => {
     tempsRestant.value--
-    if (reponduIndex.value === null) jouerTick(tempsRestant.value, tempsMax.value)
     if (tempsRestant.value <= 0) { clearInterval(timerInterval); jouerGong(); repondre(null) }
   }, 1000)
 }
@@ -383,6 +401,7 @@ function demarrerChrono() {
 function repondre(choixIndex) {
   if (reponduIndex.value !== null) return
   clearInterval(timerInterval)
+  if (modeNom.value !== 'Bombardement') stopTick()
   showIndice.value = false
 
   const q        = question.value
@@ -446,7 +465,10 @@ function suivant() {
     finirQuiz()
   } else {
     indexCourant.value++
-    if (modeNom.value !== 'Bombardement') demarrerChrono()
+    if (modeNom.value !== 'Bombardement') {
+      demarrerChrono()
+      jouerTickQuestion(tempsMax.value)
+    }
   }
 }
 
