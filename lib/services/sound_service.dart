@@ -14,8 +14,6 @@ class SoundService {
 
   static const int _sr = 22050;
 
-  late Uint8List _bonneReponse;
-  late Uint8List _mauvaiseReponse;
   late Uint8List _gong;
 
   bool mute = false;
@@ -26,9 +24,7 @@ class SoundService {
   Future<void> initialiser() async {
     if (_ready || kIsWeb) return;
     _ready = true;
-    _bonneReponse    = _wav(_arpeggio());
-    _mauvaiseReponse = _wav(_buzzer());
-    _gong            = _wav(_buildGong());
+    _gong = _wav(_buildGong());
   }
 
   // ── Tick minuteur ──────────────────────────────────────────────────────────
@@ -63,14 +59,14 @@ class SoundService {
     if (mute || !_ready) return;
     final p = AudioPlayer();
     await p.setReleaseMode(ReleaseMode.release);
-    unawaited(p.play(BytesSource(_bonneReponse)));
+    unawaited(p.play(AssetSource('sounds/bonne_reponse.mp3')));
   }
 
   Future<void> jouerMauvaiseReponse() async {
     if (mute || !_ready) return;
     final p = AudioPlayer();
     await p.setReleaseMode(ReleaseMode.release);
-    unawaited(p.play(BytesSource(_mauvaiseReponse)));
+    unawaited(p.play(AssetSource('sounds/mauvaise_reponse.mp3')));
   }
 
   Future<void> jouerGong() async {
@@ -103,12 +99,6 @@ class SoundService {
     return out;
   }
 
-  List<int> _arpeggio() => [
-    ..._tone(523.25, 0.09, vol: 0.45, fadeMs: 25),
-    ..._tone(659.25, 0.09, vol: 0.55, fadeMs: 25),
-    ..._tone(783.99, 0.22, vol: 0.65, fadeMs: 60),
-  ];
-
   // Fanfare score parfait : montée rapide puis accord final tenu
   List<int> _fanfare() => [
     ..._tone(523.25, 0.07, vol: 0.55, fadeMs: 15),
@@ -123,20 +113,6 @@ class SoundService {
       return List.generate(bass.length, (i) => (bass[i] + top[i]).clamp(-32768, 32767));
     }(),
   ];
-
-  List<int> _buzzer() {
-    const dur = 0.22;
-    final n   = (_sr * dur).round();
-    final out = List<int>.filled(n, 0);
-    for (int i = 0; i < n; i++) {
-      final t    = i / _sr;
-      final freq = (350.0 - 700.0 * t).clamp(150.0, 350.0);
-      final env  = (1.0 - t / dur * 1.4).clamp(0.0, 1.0);
-      out[i] = (sin(2 * pi * freq * t) * env * 0.65 * 32767)
-          .round().clamp(-32768, 32767);
-    }
-    return out;
-  }
 
   List<int> _buildGong() {
     const dur       = 2.0;
