@@ -324,7 +324,7 @@ class ReglagesScreen extends StatelessWidget {
                   Divider(height: 20),
                   _LigneInfo(libelle: 'Version', valeur: '1.0.0'),
                   Divider(height: 20),
-                  _LigneInfo(libelle: 'Créé par', valeur: 'Coding Club ISTEAH'),
+                  _LigneInfo(libelle: 'Créé par', valeur: 'Ing. Ronaldy Faustin'),
                 ],
               ),
             ),

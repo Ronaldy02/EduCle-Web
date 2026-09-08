@@ -259,6 +259,7 @@ class _CarteMode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bgCouleur = couleur.withValues(alpha: 0.08);
     return Material(
       color: EduCleColors.surface,
       borderRadius: BorderRadius.circular(16),
@@ -267,67 +268,91 @@ class _CarteMode extends StatelessWidget {
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
+            color: EduCleColors.surface,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(color: EduCleColors.border),
           ),
           clipBehavior: Clip.antiAlias,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                height: 4,
-                decoration: BoxDecoration(
-                  color: couleur,
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(16),
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Barre colorée gauche
+                Container(width: 5, color: couleur),
+                const SizedBox(width: 14),
+                // Icône carrée
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: Container(
+                    width: 48,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      color: bgCouleur,
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: Icon(icone, color: couleur, size: 22),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+                const SizedBox(width: 14),
+                // Corps
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(icone, color: couleur),
-                        const SizedBox(width: 10),
-                        Text(
-                          mode.nom,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w800,
-                            fontSize: 17,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              mode.nom,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w800,
+                                fontSize: 16,
+                                color: Color(0xFF1A1D24),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: bgCouleur,
+                                borderRadius: BorderRadius.circular(99),
+                              ),
+                              child: Text(
+                                sousTitre,
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w700,
+                                  color: couleur,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                        const Spacer(),
-                        Icon(
-                          Icons.chevron_right_rounded,
-                          color: EduCleColors.textSecondary,
+                        const SizedBox(height: 5),
+                        Text(
+                          description,
+                          style: const TextStyle(
+                            color: EduCleColors.textSecondary,
+                            fontSize: 13,
+                            height: 1.45,
+                          ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      sousTitre,
-                      style: TextStyle(
-                        color: couleur,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 13,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      description,
-                      style: const TextStyle(
-                        color: EduCleColors.textSecondary,
-                        fontSize: 13,
-                        height: 1.4,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+                // Flèche
+                Padding(
+                  padding: const EdgeInsets.only(right: 14),
+                  child: Icon(
+                    Icons.chevron_right_rounded,
+                    color: EduCleColors.textSecondary,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

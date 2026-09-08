@@ -5,7 +5,6 @@ import '../../controllers/quiz_controller.dart';
 import '../../theme/app_theme.dart';
 import '../widgets/educle_app_bar.dart';
 import 'chapitre_detail_screen.dart';
-import 'mode_jeu_screen.dart';
 import 'reglages_screen.dart';
 
 class ChapitreScreen extends StatelessWidget {

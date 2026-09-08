@@ -409,11 +409,34 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
                 opacity: _questionFade,
                 child: SlideTransition(
                   position: _questionSlide,
-                  child: Text(
-                    question.enonce,
+                  child: Container(
                     key: ValueKey(quiz.indexCourant),
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w800),
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 24),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                          color: const Color(0xFFD8E2FF), width: 2),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x0D000000),
+                          blurRadius: 8,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Text(
+                      question.enonce,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w800,
+                        color: Color(0xFF151C27),
+                        height: 1.35,
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -626,11 +649,12 @@ class _BoutonChoix extends StatelessWidget {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   curve: Curves.easeOut,
-                  width: 28,
-                  height: 28,
+                  width: 36,
+                  height: 36,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
+                    borderRadius: BorderRadius.circular(10),
+                    color: couleurLettre.withValues(alpha: 0.10),
                     border: Border.all(color: couleurLettre, width: 1.4),
                   ),
                   child: Text(
