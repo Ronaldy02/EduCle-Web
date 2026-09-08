@@ -47,24 +47,23 @@
         </div>
       </div>
 
-      <!-- ── Mobile top bar : ← EduClé ⋯ ─────────────────── -->
-      <div class="qz-mob-topbar">
-        <button class="qz-mob-back" @click="router.back()" aria-label="Retour">
-          <span class="material-symbols-outlined" style="font-size:20px;line-height:1">arrow_back_ios</span>
-        </button>
-        <span class="qz-mob-app-title">EduClé</span>
-        <button class="qz-mob-more" aria-label="Options">···</button>
+      <!-- ── Mobile header (design dc.html) ────────────────── -->
+      <div class="qz-dc-header">
+        <div class="qz-dc-hgrid">
+          <div class="qz-dc-hleft">
+            <span class="qz-dc-logo">EduClé</span>
+            <span class="qz-dc-badge" :style="modeBadgeStyle">{{ modeNom }}</span>
+          </div>
+          <div class="qz-dc-hcenter">
+            <span class="qz-dc-mat">{{ matNom || 'EduClé' }}</span>
+            <span class="qz-dc-chap">{{ chapNom }}</span>
+          </div>
+          <div class="qz-dc-hright">
+            <span class="qz-dc-coins">🪙 {{ scoreLocal }}</span>
+            <button class="qz-dc-quit" @click="router.back()">Quitter</button>
+          </div>
+        </div>
       </div>
-
-      <!-- ── Mobile context sub-bar ─────────────────────────── -->
-      <div class="qz-mob-subbar">
-        <span class="qz-mob-chip qz-mob-chip--primary">EduClé</span>
-        <span class="qz-mob-chip" :style="modeChipStyle">{{ modeNom }}</span>
-        <span class="qz-mob-ctx-text">{{ matNom }}<template v-if="matNom"> · </template>{{ chapNom }}</span>
-        <span class="qz-mob-score-pill">⭐ {{ scoreLocal }}</span>
-        <button class="qz-mob-quit" @click="router.back()">Quitter</button>
-      </div>
-      <div class="qz-mob-divider"></div>
 
       <!-- Barre de progression pleine largeur -->
       <div class="qz-progress-track">
@@ -72,32 +71,37 @@
       </div>
     </header>
 
-    <!-- ── Stats mobiles (≤ 640 px) ─────────────────────────────── -->
-    <div class="qz-mobile-stats">
-      <div class="qz-mstat">
-        <span class="qz-mstat-ico">⭐</span>
-        <span class="qz-mstat-val">{{ scoreLocal }}</span>
-        <span class="qz-mstat-lbl">Score</span>
+    <!-- ── Stats mobiles (design dc.html) ──────────────────────── -->
+    <div class="qz-dc-stats">
+      <!-- Score -->
+      <div class="qz-dc-score-card">
+        <div class="qz-dc-score-val">⭐ {{ scoreLocal }}</div>
+        <div class="qz-dc-stat-lbl">Score</div>
       </div>
-      <div class="qz-mstat qz-mstat--timer"
-        :class="{ 'qz-mstat-urgent': modeNom !== 'Bombardement' ? tempsRestant <= seuilCritique : tempsGlobal <= 10 }">
-        <div class="qz-arc-wrap">
-          <svg class="qz-arc-svg" viewBox="0 0 48 48" aria-hidden="true">
-            <circle cx="24" cy="24" r="18" fill="none" stroke="#dce2f3" stroke-width="3"/>
-            <circle cx="24" cy="24" r="18" fill="none" class="qz-arc-path"
-              stroke-linecap="round" stroke-width="3"
-              :stroke-dasharray="mobileArcDash"
-              transform="rotate(-90 24 24)"/>
-          </svg>
-          <span class="qz-arc-num">{{ modeNom === 'Bombardement' ? tempsGlobal : tempsRestant }}</span>
-        </div>
-        <span class="qz-mstat-lbl">Temps</span>
+      <!-- Timer ring SVG -->
+      <div class="qz-dc-ring-wrap"
+        :class="{ 'qz-dc-ring-bomb': modeNom === 'Bombardement', 'qz-dc-ring-urgent': dcTimerUrgent }">
+        <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"
+          style="position:absolute;top:0;left:0;transform:rotate(-90deg);">
+          <circle cx="26" cy="26" r="21" fill="none"
+            :stroke="modeNom === 'Bombardement' ? 'rgba(255,255,255,0.15)' : '#ececf0'"
+            stroke-width="5"/>
+          <circle cx="26" cy="26" r="21" fill="none"
+            :stroke="dcTimerColor" stroke-width="5"
+            stroke-linecap="round" stroke-dasharray="132"
+            :stroke-dashoffset="dcRingOffset"
+            style="transition:stroke-dashoffset 1s linear;"/>
+        </svg>
+        <span class="qz-dc-ring-lbl" :style="{ color: dcTimerUrgent ? '#c23a3a' : (modeNom === 'Bombardement' ? '#fff' : '#1e2a52') }">
+          {{ modeNom === 'Bombardement' ? tempsGlobal : (tempsRestant + ' s') }}
+        </span>
       </div>
-      <div class="qz-mstat">
-        <span class="qz-mstat-ico">🔥</span>
-        <span class="qz-mstat-val">{{ serie }}</span>
-        <span class="qz-mstat-lbl">Série</span>
+      <!-- Streak -->
+      <div v-if="serie > 0" class="qz-dc-streak-card">
+        <div class="qz-dc-streak-val">🔥 {{ serie }}</div>
+        <div class="qz-dc-stat-lbl">Série</div>
       </div>
+      <div v-else class="qz-dc-streak-placeholder"></div>
     </div>
 
     <!-- ── Main ─────────────────────────────────────────────────── -->
@@ -160,40 +164,35 @@
 
         <!-- Nav question -->
         <div class="qz-question-nav">
+          <div class="qz-nav-left"></div>
           <span class="qz-question-num" :style="{ color: modeCouleur }">Question {{ indexCourant + 1 }} / {{ total }}</span>
           <div class="qz-nav-right">
-            <button class="qz-bonus-toggle" @click="mobileShowBonus = !mobileShowBonus">🎁 Bonus</button>
+            <div class="qz-bonus-wrap">
+              <button class="qz-bonus-toggle" @click="mobileShowBonus = !mobileShowBonus">🎁 Bonus</button>
+              <!-- Dropdown bonus (dc.html style) -->
+              <transition name="mobile-bonus">
+                <div v-if="mobileShowBonus" class="qz-dc-bonus-dropdown">
+                  <button class="qz-dc-bitem" @click="utiliserBonus('elimination'); mobileShowBonus=false" :disabled="bonusUtilises.elimination || reponduIndex !== null">
+                    <span>🧹</span><span class="qz-dc-bname">Élimination</span><span class="qz-dc-bcost">🪙50</span>
+                  </button>
+                  <button class="qz-dc-bitem" @click="utiliserBonus('cinqCinq'); mobileShowBonus=false" :disabled="bonusUtilises.cinqCinq || reponduIndex !== null">
+                    <span>½</span><span class="qz-dc-bname">50/50</span><span class="qz-dc-bcost">🪙100</span>
+                  </button>
+                  <button class="qz-dc-bitem" @click="utiliserBonus('indice'); mobileShowBonus=false" :disabled="bonusUtilises.indice || reponduIndex !== null">
+                    <span>💡</span><span class="qz-dc-bname">Indice</span><span class="qz-dc-bcost">🪙75</span>
+                  </button>
+                  <button class="qz-dc-bitem" @click="utiliserBonus('plusTemps'); mobileShowBonus=false" :disabled="modeNom === 'Bombardement' || reponduIndex !== null">
+                    <span>⏱️</span><span class="qz-dc-bname">+Temps</span><span class="qz-dc-bcost">🪙150</span>
+                  </button>
+                </div>
+              </transition>
+            </div>
             <button class="qz-passer-btn" :disabled="reponduIndex !== null" @click="passer">
               Passer
               <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle">skip_next</span>
             </button>
           </div>
         </div>
-        <!-- Panneau bonus mobile -->
-        <transition name="mobile-bonus">
-          <div v-if="mobileShowBonus" class="qz-mobile-bonus">
-            <button class="qz-bonus-btn" @click="utiliserBonus('elimination')" :disabled="bonusUtilises.elimination">
-              <span class="qz-bonus-icon">🧹</span>
-              <span class="qz-bonus-name">Élimination</span>
-              <span class="qz-bonus-cout">50 🪙</span>
-            </button>
-            <button class="qz-bonus-btn" @click="utiliserBonus('cinqCinq')" :disabled="bonusUtilises.cinqCinq">
-              <span class="qz-bonus-icon">½</span>
-              <span class="qz-bonus-name">50/50</span>
-              <span class="qz-bonus-cout">100 🪙</span>
-            </button>
-            <button class="qz-bonus-btn" @click="utiliserBonus('indice')" :disabled="bonusUtilises.indice">
-              <span class="qz-bonus-icon">💡</span>
-              <span class="qz-bonus-name">Indice</span>
-              <span class="qz-bonus-cout">75 🪙</span>
-            </button>
-            <button class="qz-bonus-btn" @click="utiliserBonus('plusTemps')" :disabled="modeNom === 'Bombardement'">
-              <span class="qz-bonus-icon">⏱️</span>
-              <span class="qz-bonus-name">+Temps</span>
-              <span class="qz-bonus-cout">150 🪙</span>
-            </button>
-          </div>
-        </transition>
 
         <!-- Carte question -->
         <div class="qz-question-card" :class="{ shake: animShake, pulse: animPulse }">
@@ -410,19 +409,25 @@ const modeBadgeStyle = computed(() => ({
 // Choix visibles (tous, sauf éliminés masqués : on les grise)
 const choixVisibles = computed(() => question.value?.choix ?? [])
 
-const mobileArcDash = computed(() => {
-  const C = 2 * Math.PI * 18
-  if (modeNom.value === 'Bombardement') {
-    return `${Math.max(0, tempsGlobal.value / 60) * C} ${C}`
-  }
-  if (!tempsMax.value) return `${C} ${C}`
-  return `${Math.max(0, tempsRestant.value / tempsMax.value) * C} ${C}`
+// ── DC ring timer computed ──────────────────────────────────────────
+const dcTimerUrgent = computed(() => {
+  if (modeNom.value === 'Bombardement') return tempsGlobal.value <= 10
+  return tempsRestant.value <= seuilCritique.value
 })
 
-const modeChipStyle = computed(() => ({
-  background: modeCouleur.value + '1a',
-  color: modeCouleur.value,
-}))
+const dcTimerColor = computed(() => {
+  if (dcTimerUrgent.value) return '#c23a3a'
+  return modeNom.value === 'Bombardement' ? '#8fa4ff' : modeCouleur.value
+})
+
+const dcRingOffset = computed(() => {
+  const C = 132
+  if (modeNom.value === 'Bombardement') {
+    return C * (1 - Math.max(0, tempsGlobal.value) / 60)
+  }
+  if (!tempsMax.value) return 0
+  return C * (1 - Math.max(0, tempsRestant.value) / tempsMax.value)
+})
 
 onMounted(async () => {
   if (!quizStore.chapitreId) { router.replace('/'); return }
@@ -968,157 +973,202 @@ function palierParticleStyle(i) {
 .expl-slide-leave-active { transition: opacity 0.15s; }
 .expl-slide-leave-to     { opacity: 0; }
 
-/* ── Éléments mobile cachés par défaut (desktop) ─────────────────── */
-.qz-mobile-stats { display: none; }
-.qz-mob-topbar   { display: none; }
-.qz-mob-subbar   { display: none; }
-.qz-mob-divider  { display: none; }
+/* ── Éléments mobile cachés par défaut ───────────────────────────── */
+.qz-dc-header   { display: none; }
+.qz-dc-stats    { display: none; }
 .qz-bonus-toggle { display: none; }
-.qz-mobile-bonus { display: none; }
-.qz-nav-right    { display: contents; }
+.qz-nav-left    { display: none; }
+.qz-bonus-wrap  { display: none; }
 
-/* ── Mobile (≤ 640 px) — design identique Flutter ─────────────────── */
+/* ── Mobile (≤ 640 px) — design dc.html exact ───────────────────── */
 @media (max-width: 640px) {
 
   /* Shell */
-  .qz-shell { background: #f5f5f7; }
+  .qz-shell { background: #f5f6f8; }
 
-  /* ── Header : masquer le desktop, afficher le mobile ── */
+  /* ── Header desktop caché, header dc.html affiché ── */
   .qz-header-inner { display: none; }
 
-  .qz-mob-topbar {
-    display: flex; align-items: center;
-    padding: 8px 4px 0 4px; gap: 0;
+  .qz-dc-header {
+    display: block;
+    background: #fff;
   }
-  .qz-mob-back {
-    display: flex; align-items: center; justify-content: center;
-    width: 40px; height: 40px; border: none; background: none;
-    cursor: pointer; color: #1a1d24; flex-shrink: 0;
+  .qz-dc-hgrid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
   }
-  .qz-mob-app-title {
-    flex: 1;
-    font-size: 1.55rem; font-weight: 900; letter-spacing: -0.02em; color: #1a1d24;
+  .qz-dc-hleft {
+    display: flex; align-items: center; gap: 6px; min-width: 0;
   }
-  .qz-mob-more {
-    display: flex; align-items: center; justify-content: center;
-    width: 40px; height: 40px; border: none; background: none;
-    cursor: pointer; font-size: 1.2rem; color: #727785; letter-spacing: 0.1em;
+  .qz-dc-logo {
+    font-size: 15px; font-weight: 800; color: #2f6fed; letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .qz-dc-badge {
+    font-size: 9.5px; font-weight: 800; padding: 2px 7px;
+    border-radius: 999px; white-space: nowrap;
+  }
+  .qz-dc-hcenter {
+    display: flex; flex-direction: column; align-items: center; min-width: 0;
+  }
+  .qz-dc-mat  { font-size: 11px; font-weight: 700; color: #1a1d24; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  .qz-dc-chap { font-size: 10px; font-weight: 700; color: #9aa1ad; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  .qz-dc-hright {
+    display: flex; align-items: center; justify-content: flex-end; gap: 8px; flex-shrink: 0;
+  }
+  .qz-dc-coins {
+    display: flex; align-items: center; gap: 4px;
+    font-weight: 800; font-size: 11px; color: #c0472c;
+    background: #fdf3ec; padding: 6px 9px; border-radius: 999px; white-space: nowrap;
+  }
+  .qz-dc-quit {
+    color: #c23a3a; font-weight: 800; font-size: 11px;
+    background: #fdecec; padding: 6px 10px; border-radius: 8px;
+    border: none; cursor: pointer; white-space: nowrap;
   }
 
-  .qz-mob-subbar {
-    display: flex; align-items: center; gap: 6px;
-    padding: 4px 12px 8px;
-    overflow: hidden;
-  }
-  .qz-mob-chip {
-    display: inline-flex; align-items: center;
-    padding: 2px 10px; border-radius: 99px; white-space: nowrap;
-    font-size: 0.75rem; font-weight: 700;
-  }
-  .qz-mob-chip--primary { background: #0058be; color: #fff; }
-  .qz-mob-ctx-text {
-    flex: 1; font-size: 0.69rem; font-weight: 600;
-    color: #727785; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  }
-  .qz-mob-score-pill {
-    font-size: 0.81rem; font-weight: 800; color: #1a1d24; white-space: nowrap; flex-shrink: 0;
-  }
-  .qz-mob-quit {
-    font-size: 0.81rem; font-weight: 700; color: #ba1a1a;
-    border: none; background: none; cursor: pointer; padding: 0; white-space: nowrap; flex-shrink: 0;
-  }
-
-  .qz-mob-divider { display: block; height: 1px; background: #ececf0; }
-
-  /* ── Stats 3-cartes ── */
+  /* ── Aside caché, stats dc.html affichées ── */
   .qz-aside { display: none; }
 
-  .qz-mobile-stats {
-    display: flex; gap: 10px;
-    padding: 12px 16px 0;
+  .qz-dc-stats {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 8px;
+    padding: 22px 20px 8px;
   }
-  .qz-mstat {
-    flex: 1; display: flex; flex-direction: column; align-items: center;
-    gap: 3px; padding: 12px 8px;
-    background: #fff; border: 1.5px solid #e0e3ec;
-    border-radius: 14px;
-  }
-  .qz-mstat-ico  { font-size: 1.35rem; line-height: 1; }
-  .qz-mstat-val  { font-size: 1.25rem; font-weight: 900; color: #1a1d24; line-height: 1; font-variant-numeric: tabular-nums; }
-  .qz-mstat-lbl  { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: #727785; }
 
-  /* Timer arc */
-  .qz-mstat--timer { padding: 12px 8px; }
-  .qz-arc-wrap { position: relative; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; }
-  .qz-arc-svg  { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .qz-arc-path { stroke: #0058be; transition: stroke-dasharray 1s linear; }
-  .qz-arc-num  {
-    position: relative; z-index: 1;
-    font-size: 0.88rem; font-weight: 800; color: #0058be; font-variant-numeric: tabular-nums;
+  .qz-dc-score-card {
+    background: #fff; border: 1px solid #ececf0;
+    border-radius: 10px; padding: 6px 10px;
+    text-align: center; min-height: 40px;
+    display: flex; flex-direction: column; justify-content: center;
   }
-  .qz-mstat-urgent { border-color: rgba(186,26,26,0.4); background: rgba(186,26,26,0.06); }
-  .qz-mstat-urgent .qz-arc-path { stroke: #ba1a1a; }
-  .qz-mstat-urgent .qz-arc-num  { color: #ba1a1a; }
+  .qz-dc-score-val { font-size: 17px; font-weight: 800; color: #8a6300; }
+  .qz-dc-stat-lbl  { font-size: 9px; font-weight: 700; color: #9aa1ad; text-transform: uppercase; }
+
+  .qz-dc-ring-wrap {
+    position: relative; width: 52px; height: 52px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+  }
+  .qz-dc-ring-bomb { background: #1e2a52; }
+  .qz-dc-ring-urgent { animation: eduUrgent 0.6s infinite; }
+  @keyframes eduUrgent { 0%,100%{ transform: scale(1); } 50%{ transform: scale(1.06); } }
+  .qz-dc-ring-lbl {
+    position: relative; z-index: 1;
+    font-weight: 800; font-size: 13px; color: #1e2a52;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .qz-dc-streak-card {
+    background: #fff; border: 1px solid #ececf0;
+    border-radius: 10px; padding: 3px 5px;
+    text-align: center; min-height: 38px; justify-self: end;
+    display: flex; flex-direction: column; justify-content: center;
+    min-width: 63px;
+  }
+  .qz-dc-streak-val { font-size: 12px; font-weight: 800; color: #c0472c; }
+  .qz-dc-streak-placeholder { justify-self: end; width: 63px; }
 
   /* ── Main ── */
-  .qz-main { padding: 14px 16px; gap: 0; }
+  .qz-main { padding: 0 20px 36px; gap: 0; }
 
-  /* ── Question nav ── */
-  .qz-question-nav { margin-bottom: 6px; }
-  .qz-question-num { font-size: 0.94rem; font-weight: 700; }
-  .qz-nav-right { display: flex; align-items: center; gap: 0.4rem; }
-
-  /* Passer caché sur mobile */
+  /* ── Question nav (3-col grid) ── */
+  .qz-question-nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin-bottom: 22px;
+    position: relative;
+  }
+  .qz-nav-left  { display: block; }
+  .qz-question-num { font-size: 15px; font-weight: 800; white-space: nowrap; }
+  .qz-nav-right { display: flex; align-items: center; justify-content: flex-end; }
   .qz-passer-btn { display: none; }
 
-  /* Bonus toggle = TextButton style Flutter */
+  /* Bonus wrap + toggle (pill style dc.html) */
+  .qz-bonus-wrap { display: block; position: relative; }
   .qz-bonus-toggle {
-    display: flex; align-items: center; gap: 0.2rem;
-    font-size: 0.88rem; font-weight: 700; color: #0058be;
-    background: none; border: none; cursor: pointer; padding: 4px 8px;
-    border-radius: 8px; transition: background 0.12s;
+    display: flex; align-items: center; gap: 5px;
+    background: #f8faff; border: 1px solid #e3e5ea;
+    border-radius: 999px; padding: 6px 11px;
+    font-weight: 800; font-size: 11px; color: #2f6fed;
+    cursor: pointer; white-space: nowrap;
   }
-  .qz-bonus-toggle:hover { background: rgba(0,88,190,0.08); }
 
-  /* Panneau bonus mobile */
-  .qz-mobile-bonus {
-    display: flex; gap: 0.5rem; flex-wrap: wrap;
-    background: #fff; border: 1.5px solid #e0e3ec;
-    border-radius: 14px; padding: 0.75rem;
-    margin-bottom: 0.75rem;
+  /* Dropdown bonus (position absolute, dc.html) */
+  .qz-dc-bonus-dropdown {
+    position: absolute; top: 34px; right: 0; z-index: 20;
+    background: #fff; border: 1px solid #ececf0;
+    border-radius: 12px; padding: 8px;
+    display: flex; flex-direction: column; gap: 6px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    min-width: 160px;
   }
-  .qz-mobile-bonus .qz-bonus-btn {
-    flex: 1 1 calc(50% - 0.25rem); min-width: 0;
-    flex-direction: column; align-items: center; justify-content: center;
-    padding: 0.6rem 0.3rem; gap: 0.15rem;
+  .qz-dc-bitem {
+    display: flex; align-items: center; gap: 6px;
+    border-radius: 10px; padding: 6px 9px;
+    border: none; background: #f8faff; box-sizing: border-box;
+    cursor: pointer; font-size: 11px; white-space: nowrap;
+    transition: background 0.12s;
   }
-  .qz-mobile-bonus .qz-bonus-name { font-size: 0.75rem; text-align: center; }
-  .qz-mobile-bonus .qz-bonus-cout { font-size: 0.68rem; }
-  .mobile-bonus-enter-active, .mobile-bonus-leave-active { transition: opacity 0.2s, transform 0.18s; }
-  .mobile-bonus-enter-from, .mobile-bonus-leave-to { opacity: 0; transform: translateY(-8px); }
+  .qz-dc-bitem:hover:not(:disabled) { background: #edf1ff; }
+  .qz-dc-bitem:disabled { opacity: 0.5; cursor: default; }
+  .qz-dc-bname { font-size: 11px; font-weight: 700; color: #4a4f5a; flex: 1; }
+  .qz-dc-bcost { font-size: 11px; font-weight: 800; color: #c0472c; }
 
-  /* ── Question card ── */
-  .qz-question-card { padding: 24px 20px; margin-bottom: 14px; }
-  .qz-question-text { font-size: 1.125rem; font-weight: 800; }
+  .mobile-bonus-enter-active, .mobile-bonus-leave-active { transition: opacity 0.15s, transform 0.15s; }
+  .mobile-bonus-enter-from, .mobile-bonus-leave-to { opacity: 0; transform: translateY(-6px) scale(0.97); }
 
-  /* ── Grille 2×2 : ROW layout comme Flutter ── */
-  .qz-choix-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 0; }
+  /* ── Question card (dc.html) ── */
+  .qz-question-card {
+    padding: 22px 18px; margin-bottom: 18px;
+    border: 1px solid #ececf0; border-radius: 16px;
+    border-width: 1px;
+  }
+  .qz-question-text { font-size: 13px; font-weight: 800; line-height: 1.4; }
+
+  /* ── Grille 2×2 (dc.html) ── */
+  .qz-choix-grid { grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 0; }
   .qz-choix-btn {
-    padding: 14px 12px; gap: 10px;
-    flex-direction: row; align-items: flex-start;
-    border-radius: 14px; border-width: 1.4px;
+    padding: 14px 12px; gap: 8px;
+    flex-direction: row; align-items: center;
+    border-radius: 14px; font-size: 10.5px; font-weight: 700;
+    border: 2px solid #e3e5ea;
   }
+  /* Badge lettre : 24×24, rgba bg sans bordure (dc.html) */
   .qz-lettre {
-    width: 32px; height: 32px; font-size: 0.81rem;
-    border-radius: 9px; flex-shrink: 0;
-    border: 1.4px solid #c2c6d6;
-    background: rgba(0,88,190,0.08);
-    color: #424754;
+    width: 24px; height: 24px; font-size: 12px; font-weight: 800;
+    border-radius: 7px; flex-shrink: 0;
+    background: rgba(0,0,0,0.06);
+    border: none; color: #1a1d24;
+    text-transform: uppercase;
   }
-  .qz-choix-btn:hover:not(:disabled) .qz-lettre { border-color: #0058be; background: #0058be; color: #fff; }
-  .qz-lettre.correct   { border-color: #006c49; background: rgba(0,108,73,0.1); color: #006c49; }
-  .qz-lettre.incorrect { border-color: #ba1a1a; background: rgba(186,26,26,0.1); color: #ba1a1a; }
-  .qz-choix-texte { font-size: 0.875rem; font-weight: 600; padding-top: 6px; }
-  .qz-choix-texte--long { font-size: 0.78rem; padding-top: 4px; }
+  .qz-choix-btn:hover:not(:disabled) { border-color: #2f6fed; background: #e9f0fe; color: #2f6fed; }
+  .qz-choix-btn:hover:not(:disabled) .qz-lettre { background: rgba(47,111,237,0.12); }
+  .qz-lettre.correct   { background: rgba(26,138,74,0.12); color: #146436; }
+  .qz-lettre.incorrect { background: rgba(194,58,58,0.12); color: #c23a3a; }
+  .qz-choix-btn.correct  { border-color: #1a8a4a; background: #e9f8ef; color: #146436; }
+  .qz-choix-btn.incorrect{ border-color: #c23a3a; background: #fdecec; color: #8f2b2b; }
+  .qz-choix-texte { font-size: 10.5px; font-weight: 700; padding-top: 0; }
+  .qz-choix-texte--long { font-size: 9.5px; }
+  .qz-kbd { display: none; }
+
+  /* ── Explication feedback (dc.html) ── */
+  .qz-explication {
+    border-radius: 14px; padding: 16px;
+    border: 1px solid #ececf0; border-left-width: 1px;
+    background: #fff;
+  }
+  .qz-expl-titre { color: #1a1d24; }
+  .qz-expl-texte { font-size: 13px; line-height: 1.55; color: #4a4f5a; }
+  .qz-suivant-btn {
+    background: #2f6fed; border-radius: 12px; padding: 15px;
+    font-size: 15px; font-weight: 800;
+  }
 }
 </style>
