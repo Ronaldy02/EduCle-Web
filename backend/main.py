@@ -11,6 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from config import settings
 from routers import matieres, quiz, user, realisations, admin
+from routers.auth import router as auth_router
 
 app = FastAPI(
     title="EduClé API",
@@ -29,6 +30,7 @@ app.add_middleware(
 )
 
 # ─── Routers ──────────────────────────────────────────────────────────────────
+app.include_router(auth_router)
 app.include_router(matieres.router)
 app.include_router(quiz.router)
 app.include_router(user.router)

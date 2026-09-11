@@ -9,21 +9,33 @@ import StatsView from '../views/StatsView.vue'
 import ReglagesView from '../views/ReglagesView.vue'
 import RevisionView from '../views/RevisionView.vue'
 import AdminView from '../views/AdminView.vue'
+import LoginView from '../views/LoginView.vue'
 
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/',         name: 'home',       component: HomeView },
-    { path: '/quiz',     name: 'quiz',       component: QuizView },
-    { path: '/resultat', name: 'resultat',   component: ResultatView },
-    { path: '/profil',   name: 'profil',     component: ProfilView },
-    { path: '/scores',   name: 'scores',     component: ScoresView },
-    { path: '/stats',    name: 'stats',      component: StatsView },
-    { path: '/reglages', name: 'reglages',   component: ReglagesView },
-    { path: '/revision', name: 'revision',   component: RevisionView },
-    { path: '/admin',    name: 'admin',       component: AdminView },
-    { path: '/taches',        name: 'taches',       component: { template: '<div style="padding:2rem"><h2>Tâches</h2><p>À venir…</p></div>' } },
-    { path: '/realisations',  name: 'realisations', component: { template: '<div style="padding:2rem"><h2>Réalisations</h2><p>À venir…</p></div>' } },
+    { path: '/login',     name: 'login',      component: LoginView, meta: { public: true } },
+    { path: '/',          name: 'home',        component: HomeView },
+    { path: '/quiz',      name: 'quiz',        component: QuizView },
+    { path: '/resultat',  name: 'resultat',    component: ResultatView },
+    { path: '/profil',    name: 'profil',      component: ProfilView },
+    { path: '/scores',    name: 'scores',      component: ScoresView },
+    { path: '/stats',     name: 'stats',       component: StatsView },
+    { path: '/reglages',  name: 'reglages',    component: ReglagesView },
+    { path: '/revision',  name: 'revision',    component: RevisionView },
+    { path: '/admin',     name: 'admin',        component: AdminView, meta: { public: true } },
+    { path: '/taches',       name: 'taches',       component: { template: '<div style="padding:2rem"><h2>Tâches</h2><p>À venir…</p></div>' } },
+    { path: '/realisations', name: 'realisations', component: { template: '<div style="padding:2rem"><h2>Réalisations</h2><p>À venir…</p></div>' } },
     { path: '/cartes/:matiereId/:chapitreId', name: 'cartes', component: CartesMentalesView },
   ],
 })
+
+// ── Guard d'authentification ──────────────────────────────────────────────────
+router.beforeEach((to) => {
+  if (to.meta.public) return true
+  const token = localStorage.getItem('ec_token')
+  if (!token) return { name: 'login' }
+  return true
+})
+
+export default router

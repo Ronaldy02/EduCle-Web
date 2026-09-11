@@ -8,6 +8,13 @@ import axios from 'axios'
 // En production : VITE_API_URL doit pointer vers le backend déployé.
 const api = axios.create({ baseURL: import.meta.env.VITE_API_URL || '/api' })
 
+// Injecte le JWT dans chaque requête si disponible
+api.interceptors.request.use(config => {
+  const token = localStorage.getItem('ec_token')
+  if (token) config.headers.Authorization = `Bearer ${token}`
+  return config
+})
+
 // ─── Matières ─────────────────────────────────────────────────────────────────
 export const getMatieres = (niveau) =>
   api.get('/matieres/', { params: niveau ? { niveau } : {} }).then(r => r.data)
@@ -39,6 +46,15 @@ export const getScores = (matiereId) =>
 export const getStats = () => api.get('/user/stats').then(r => r.data)
 export const getClassement = (params) =>
   api.get('/user/classement', { params }).then(r => r.data)
+
+// ─── Authentification ─────────────────────────────────────────────────────────
+export const authCheckEmail = (email) =>
+  api.post('/auth/check-email', { email }).then(r => r.data)
+export const authRegister = (email, password, pseudo) =>
+  api.post('/auth/register', { email, password, pseudo }).then(r => r.data)
+export const authLogin = (email, password) =>
+  api.post('/auth/login', { email, password }).then(r => r.data)
+export const authMe = () => api.get('/auth/me').then(r => r.data)
 
 // ─── Réalisations ─────────────────────────────────────────────────────────────
 export const getRealisations = () => api.get('/realisations/').then(r => r.data)

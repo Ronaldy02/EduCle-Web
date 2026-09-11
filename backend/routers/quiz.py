@@ -15,7 +15,8 @@ from sqlalchemy.orm import Session
 from sqlalchemy import select
 
 from database import get_db
-from models import Matiere, Chapitre, Question, StatistiqueQuestion, UserPreferences
+from models import Matiere, Chapitre, Question, StatistiqueQuestion
+from models.user import User
 from models.score import Score
 from schemas.question import QuestionSchema
 from schemas.quiz import DemarrerQuizRequest, ResultatQuizSchema, QuestionResultatSchema
@@ -25,13 +26,17 @@ from services.niveau import (
     calculer_pieces_question,
     niveau_depuis_xp,
 )
+from dependencies.auth import get_current_user
 
 router = APIRouter(prefix="/quiz", tags=["Quiz"])
 
 
-def _get_stats(db: Session, question_ids: list[int]) -> dict[int, dict]:
+def _get_stats(db: Session, question_ids: list[int], user_id: int) -> dict[int, dict]:
     rows = db.scalars(
-        select(StatistiqueQuestion).where(StatistiqueQuestion.question_id.in_(question_ids))
+        select(StatistiqueQuestion).where(
+            StatistiqueQuestion.question_id.in_(question_ids),
+            StatistiqueQuestion.user_id == user_id,
+        )
     ).all()
     return {
         r.question_id: {
@@ -79,7 +84,11 @@ def _questions_du_chapitre(db: Session, chapitre_id: int) -> list[Question]:
 
 
 @router.post("/demarrer", response_model=list[QuestionSchema])
-def demarrer_quiz(body: DemarrerQuizRequest, db: Session = Depends(get_db)):
+def demarrer_quiz(
+    body: DemarrerQuizRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
     """Sélectionne les questions du quiz de façon adaptative."""
     questions_orm = _questions_du_chapitre(db, body.chapitre_id)
     if not questions_orm:
@@ -100,7 +109,7 @@ def demarrer_quiz(body: DemarrerQuizRequest, db: Session = Depends(get_db)):
         })
 
     pool = _dedup_pool(pool)
-    stats = _get_stats(db, [q["id"] for q in pool])
+    stats = _get_stats(db, [q["id"] for q in pool], current_user.id)
     selected = selectionner(pool=pool, stats=stats, nb_voulu=body.nb_questions)
     return [QuestionSchema(**q) for q in selected]
 
@@ -150,7 +159,11 @@ def _calculer_bonus_serie(correctes: list[bool], mode_nom: str) -> tuple[int, in
 
 
 @router.post("/terminer", response_model=ResultatQuizSchema)
-def terminer_quiz(body: TerminerQuizRequest, db: Session = Depends(get_db)):
+def terminer_quiz(
+    body: TerminerQuizRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
     """Corrige les réponses, met à jour les stats et retourne le résultat."""
     question_ids = [r.question_id for r in body.reponses]
     questions_orm = db.scalars(
@@ -158,7 +171,7 @@ def terminer_quiz(body: TerminerQuizRequest, db: Session = Depends(get_db)):
     ).all()
     questions_map = {q.id: q for q in questions_orm}
 
-    stats = _get_stats(db, question_ids)
+    stats = _get_stats(db, question_ids, current_user.id)
     now_iso = datetime.now().isoformat(timespec="seconds")
 
     xp_total_gagne = 0
@@ -190,10 +203,13 @@ def terminer_quiz(body: TerminerQuizRequest, db: Session = Depends(get_db)):
             xp_gagne=xp,
         ))
 
-        # ── Mise à jour des statistiques adaptatives ─────────────────────────
-        stat_orm = db.get(StatistiqueQuestion, q.id)
+        # ── Mise à jour des statistiques adaptatives (par utilisateur) ───────
+        stat_orm = db.get(StatistiqueQuestion, (current_user.id, q.id))
         if stat_orm is None:
-            stat_orm = StatistiqueQuestion(question_id=q.id, nb_affichee=0, nb_correcte=0.0)
+            stat_orm = StatistiqueQuestion(
+                user_id=current_user.id, question_id=q.id,
+                nb_affichee=0, nb_correcte=0.0,
+            )
             db.add(stat_orm)
 
         nb = stat_orm.nb_affichee + 1
@@ -210,19 +226,15 @@ def terminer_quiz(body: TerminerQuizRequest, db: Session = Depends(get_db)):
     pieces_totales_gagnees += serie_bonus
 
     # ── Mise à jour XP / pièces utilisateur ──────────────────────────────────
-    user = db.get(UserPreferences, 1)
-    if not user:
-        user = UserPreferences(id=1)
-        db.add(user)
-
-    niveau_avant = niveau_depuis_xp(user.xp_total)
-    user.xp_total += xp_total_gagne
-    user.pieces_total += pieces_totales_gagnees
-    niveau_apres = niveau_depuis_xp(user.xp_total)
+    niveau_avant = niveau_depuis_xp(current_user.xp_total)
+    current_user.xp_total += xp_total_gagne
+    current_user.pieces_total += pieces_totales_gagnees
+    niveau_apres = niveau_depuis_xp(current_user.xp_total)
 
     # ── Enregistrement du score ───────────────────────────────────────────────
     score_val = sum(1 for r in resultats if r.correcte)
     db.add(Score(
+        user_id=current_user.id,
         matiere_id=body.matiere_id,
         score=score_val,
         nb_correctes=score_val,
@@ -242,8 +254,8 @@ def terminer_quiz(body: TerminerQuizRequest, db: Session = Depends(get_db)):
         pieces_gagnees=pieces_totales_gagnees,
         serie_bonus=serie_bonus,
         serie_max=serie_max,
-        xp_total=user.xp_total,
-        pieces_total=user.pieces_total,
+        xp_total=current_user.xp_total,
+        pieces_total=current_user.pieces_total,
         niveau_avant=niveau_avant,
         niveau_apres=niveau_apres,
     )

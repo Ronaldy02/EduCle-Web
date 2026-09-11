@@ -1,15 +1,16 @@
-"""Endpoints : profil utilisateur et niveau XP."""
+"""Endpoints : profil utilisateur, niveau XP et statistiques (par compte)."""
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import select, func
 from pydantic import BaseModel
 
 from database import get_db
-from models import UserPreferences
+from models.user import User
 from models.question import Question, StatistiqueQuestion
 from models.matiere import Matiere, Chapitre
-from schemas.user import UserSchema, UserUpdateRequest, NiveauSchema, ScoreSchema
 from models.score import Score
+from schemas.user import NiveauSchema, ScoreSchema
+from dependencies.auth import get_current_user
 from services.niveau import (
     niveau_depuis_xp, rang_depuis_niveau, RANGS,
     progression_niveau, xp_dans_niveau_actuel, xp_pour_niveau_suivant,
@@ -18,62 +19,32 @@ from services.niveau import (
 router = APIRouter(prefix="/user", tags=["Utilisateur"])
 
 
-def _get_or_create_user(db: Session) -> UserPreferences:
-    user = db.get(UserPreferences, 1)
-    if not user:
-        user = UserPreferences(id=1, pieces_total=100)
-        db.add(user)
-        db.commit()
-        db.refresh(user)
-    return user
+# ─── Schémas locaux ───────────────────────────────────────────────────────────
+
+class UserUpdateRequest(BaseModel):
+    pseudo: str | None = None
+    zone: str | None = None
+    niveau_scolaire: str | None = None
+    annee: str | None = None
 
 
-@router.get("/profil", response_model=UserSchema)
-def get_profil(db: Session = Depends(get_db)):
-    return _get_or_create_user(db)
-
-
-@router.patch("/profil", response_model=UserSchema)
-def update_profil(body: UserUpdateRequest, db: Session = Depends(get_db)):
-    user = _get_or_create_user(db)
-    if body.zone is not None:
-        user.zone = body.zone
-    if body.niveau_scolaire is not None:
-        user.niveau_scolaire = body.niveau_scolaire
-    if body.annee is not None:
-        user.annee = body.annee
-    db.commit()
-    db.refresh(user)
-    return user
-
-
-@router.get("/niveau", response_model=NiveauSchema)
-def get_niveau(db: Session = Depends(get_db)):
-    """Retourne le niveau, rang et progression XP de l'utilisateur."""
-    user = _get_or_create_user(db)
-    xp = user.xp_total
-    niv = niveau_depuis_xp(xp)
-    rang_id = rang_depuis_niveau(niv)
-    rang = RANGS[rang_id]
-    return NiveauSchema(
-        xp_total=xp,
-        pieces_total=user.pieces_total,
-        niveau=niv,
-        rang=rang_id,
-        rang_nom=rang["nom"],
-        rang_emoji=rang["emoji"],
-        rang_couleur=rang["couleur"],
-        progression=progression_niveau(xp),
-        xp_dans_niveau=xp_dans_niveau_actuel(xp),
-        xp_pour_suivant=xp_pour_niveau_suivant(niv),
-    )
+class UserSchema(BaseModel):
+    id: int
+    email: str
+    pseudo: str
+    zone: str
+    niveau_scolaire: str
+    annee: str
+    xp_total: int
+    pieces_total: int
+    model_config = {"from_attributes": True}
 
 
 class ChapitreStatSchema(BaseModel):
     id: int
     titre: str
     nb_vues: int
-    reussite: float   # 0.0 – 1.0
+    reussite: float
 
 
 class MatiereStatSchema(BaseModel):
@@ -92,24 +63,91 @@ class StatsSchema(BaseModel):
     matieres: list[MatiereStatSchema]
 
 
+class ClassementEntreeSchema(BaseModel):
+    rang: int
+    pseudo: str
+    zone: str
+    score: int
+    nb_correctes: int
+    nb_total: int
+    label: str
+    nb_sessions: int
+
+
+# ─── Profil ──────────────────────────────────────────────────────────────────
+
+@router.get("/profil", response_model=UserSchema)
+def get_profil(current_user: User = Depends(get_current_user)):
+    return current_user
+
+
+@router.patch("/profil", response_model=UserSchema)
+def update_profil(
+    body: UserUpdateRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    if body.pseudo is not None:
+        current_user.pseudo = body.pseudo
+    if body.zone is not None:
+        current_user.zone = body.zone
+    if body.niveau_scolaire is not None:
+        current_user.niveau_scolaire = body.niveau_scolaire
+    if body.annee is not None:
+        current_user.annee = body.annee
+    db.commit()
+    db.refresh(current_user)
+    return current_user
+
+
+# ─── Niveau / XP ─────────────────────────────────────────────────────────────
+
+@router.get("/niveau", response_model=NiveauSchema)
+def get_niveau(current_user: User = Depends(get_current_user)):
+    xp = current_user.xp_total
+    niv = niveau_depuis_xp(xp)
+    rang_id = rang_depuis_niveau(niv)
+    rang = RANGS[rang_id]
+    return NiveauSchema(
+        xp_total=xp,
+        pieces_total=current_user.pieces_total,
+        niveau=niv,
+        rang=rang_id,
+        rang_nom=rang["nom"],
+        rang_emoji=rang["emoji"],
+        rang_couleur=rang["couleur"],
+        progression=progression_niveau(xp),
+        xp_dans_niveau=xp_dans_niveau_actuel(xp),
+        xp_pour_suivant=xp_pour_niveau_suivant(niv),
+    )
+
+
+# ─── Statistiques ────────────────────────────────────────────────────────────
+
 @router.get("/stats", response_model=StatsSchema)
-def get_stats(db: Session = Depends(get_db)):
-    """Statistiques d'apprentissage agrégées par matière et chapitre."""
-    # Agrégation par chapitre : SUM(nb_affichee), moyenne pondérée de nb_correcte
+def get_stats(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
     rows = db.execute(
         select(
             Chapitre.id,
             Chapitre.titre,
             Chapitre.matiere_id,
             func.sum(StatistiqueQuestion.nb_affichee).label("nb_vues"),
-            func.sum(StatistiqueQuestion.nb_correcte * StatistiqueQuestion.nb_affichee).label("sum_correcte"),
+            func.sum(
+                StatistiqueQuestion.nb_correcte * StatistiqueQuestion.nb_affichee
+            ).label("sum_correcte"),
         )
         .join(Question, Question.chapitre_id == Chapitre.id)
-        .join(StatistiqueQuestion, StatistiqueQuestion.question_id == Question.id)
+        .join(
+            StatistiqueQuestion,
+            (StatistiqueQuestion.question_id == Question.id)
+            & (StatistiqueQuestion.user_id == current_user.id),
+        )
         .group_by(Chapitre.id, Chapitre.titre, Chapitre.matiere_id)
     ).all()
 
-    # Index par matiere_id
     chap_par_matiere: dict[int, list] = {}
     for r in rows:
         chap_par_matiere.setdefault(r.matiere_id, []).append(r)
@@ -147,7 +185,9 @@ def get_stats(db: Session = Depends(get_db)):
             ],
         ))
 
-    nb_quiz = db.scalar(select(func.count()).select_from(Score)) or 0
+    nb_quiz = db.scalar(
+        select(func.count()).select_from(Score).where(Score.user_id == current_user.id)
+    ) or 0
 
     return StatsSchema(
         questions_vues=total_vues,
@@ -157,34 +197,34 @@ def get_stats(db: Session = Depends(get_db)):
     )
 
 
+# ─── Scores ──────────────────────────────────────────────────────────────────
+
 @router.get("/scores", response_model=list[ScoreSchema])
-def get_scores(matiere_id: int | None = None, db: Session = Depends(get_db)):
-    """Historique des scores, optionnellement filtré par matière."""
-    q = select(Score).order_by(Score.date.desc()).limit(100)
+def get_scores(
+    matiere_id: int | None = None,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    q = (
+        select(Score)
+        .where(Score.user_id == current_user.id)
+        .order_by(Score.date.desc())
+        .limit(100)
+    )
     if matiere_id is not None:
         q = q.where(Score.matiere_id == matiere_id)
     return db.scalars(q).all()
 
 
-class ClassementEntreeSchema(BaseModel):
-    rang: int
-    pseudo: str
-    zone: str
-    score: int          # score total (SUM)
-    nb_correctes: int
-    nb_total: int
-    label: str          # matière ou mode selon le contexte
-    nb_sessions: int    # nombre de quiz pris en compte
-
+# ─── Classement ──────────────────────────────────────────────────────────────
 
 @router.get("/classement", response_model=list[ClassementEntreeSchema])
 def get_classement(
     periode: str = "general",
     matiere_id: int | None = None,
     db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
 ):
-    """Classement agrégé par score TOTAL (SUM). Sans filtre matière : top
-    matières. Avec filtre matière : top modes dans cette matière."""
     from datetime import datetime, timedelta, timezone
 
     now = datetime.now(timezone.utc)
@@ -196,10 +236,7 @@ def get_classement(
     elif periode == "annee":
         date_min = (now - timedelta(days=365)).isoformat()
 
-    user = _get_or_create_user(db)
-
     if matiere_id is None:
-        # Agrégation par matière
         q = (
             select(
                 Matiere.nom.label("label"),
@@ -209,15 +246,11 @@ def get_classement(
                 func.count(Score.id).label("nb_sessions"),
             )
             .join(Score, Score.matiere_id == Matiere.id)
+            .where(Score.user_id == current_user.id)
             .group_by(Matiere.id, Matiere.nom)
             .order_by(func.sum(Score.score).desc())
         )
-        if date_min:
-            q = q.where(Score.date >= date_min)
     else:
-        # Agrégation par mode pour une matière donnée
-        mat = db.get(Matiere, matiere_id)
-        mat_nom = mat.nom if mat else "?"
         q = (
             select(
                 Score.mode_nom.label("label"),
@@ -226,20 +259,21 @@ def get_classement(
                 func.sum(Score.nb_total).label("total_total"),
                 func.count(Score.id).label("nb_sessions"),
             )
-            .where(Score.matiere_id == matiere_id)
+            .where(Score.matiere_id == matiere_id, Score.user_id == current_user.id)
             .group_by(Score.mode_nom)
             .order_by(func.sum(Score.score).desc())
         )
-        if date_min:
-            q = q.where(Score.date >= date_min)
+
+    if date_min:
+        q = q.where(Score.date >= date_min)
 
     rows = db.execute(q).all()
 
     return [
         ClassementEntreeSchema(
             rang=i + 1,
-            pseudo="Moi",
-            zone=user.zone or "—",
+            pseudo=current_user.pseudo or "Moi",
+            zone=current_user.zone or "—",
             score=r.total_score,
             nb_correctes=r.total_correctes,
             nb_total=r.total_total,

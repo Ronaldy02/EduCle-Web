@@ -4,6 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     database_url: str
     cors_origins: str = "http://localhost:5173"
+    secret_key: str = "changez-moi-en-production-cle-secrete-educle-2026"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 

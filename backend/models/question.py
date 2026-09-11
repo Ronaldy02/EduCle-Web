@@ -19,23 +19,19 @@ class Question(Base):
     niveau_complexite: Mapped[str] = mapped_column(String(20), nullable=False)
 
     chapitre: Mapped["Chapitre"] = relationship(back_populates="questions")
-    statistique: Mapped["StatistiqueQuestion | None"] = relationship(
-        back_populates="question", uselist=False
-    )
 
 
 class StatistiqueQuestion(Base):
-    """Maîtrise adaptative d'une question pour l'utilisateur."""
+    """Maîtrise adaptative d'une question — une ligne par (utilisateur, question)."""
     __tablename__ = "statistiques_questions"
 
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id"), primary_key=True
+    )
     question_id: Mapped[int] = mapped_column(
         ForeignKey("questions.id"), primary_key=True
     )
     nb_affichee: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
-    # Taux de réussite entre 0.0 et 1.0 (nb_correcte / nb_affichee)
     nb_correcte: Mapped[float] = mapped_column(Float, default=0.0, nullable=False)
-    # Historique JSON : liste de {"correct": bool, "date": "ISO8601"}
     historique: Mapped[list | None] = mapped_column(JSONB, nullable=True)
     last_correct_at: Mapped[str | None] = mapped_column(String(30), nullable=True)
-
-    question: Mapped["Question"] = relationship(back_populates="statistique")

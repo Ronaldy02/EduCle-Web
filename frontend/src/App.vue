@@ -108,15 +108,18 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { getNiveau } from './api/client.js'
+import { useAuthStore } from './stores/auth.js'
 
 const route = useRoute()
+const router = useRouter()
+const auth = useAuthStore()
 const niveau = ref(null)
-const connecte = ref(true)
 const sidebarOuvert = ref(false)
+const connecte = computed(() => auth.isAuthenticated)
 
-const NO_NAV = ['quiz', 'resultat', 'revision', 'admin']
+const NO_NAV = ['quiz', 'resultat', 'revision', 'admin', 'login']
 const showNav = computed(() => !NO_NAV.includes(route.name))
 
 // ── Musique de fond ────────────────────────────────────────────────────────
@@ -144,7 +147,12 @@ function _syncMusique(routeName) {
 // ──────────────────────────────────────────────────────────────────────────
 
 function toggleConnexion() {
-  connecte.value = !connecte.value
+  if (auth.isAuthenticated) {
+    auth.logout()
+    router.push('/login')
+  } else {
+    router.push('/login')
+  }
 }
 
 async function chargerNiveau() {

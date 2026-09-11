@@ -9,6 +9,9 @@ class Score(Base):
     __tablename__ = "scores"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[int | None] = mapped_column(
+        Integer, ForeignKey("users.id"), nullable=True
+    )
     matiere_id: Mapped[int | None] = mapped_column(
         Integer, ForeignKey("matieres.id"), nullable=True
     )
