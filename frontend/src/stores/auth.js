@@ -42,10 +42,15 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  async function loginWithToken(jwt) {
+    _setToken(jwt)
+    user.value = await authMe()
+  }
+
   function logout() {
     _setToken(null)
     user.value = null
   }
 
-  return { token, user, isAuthenticated, checkEmail, login, register, chargerUser, logout }
+  return { token, user, isAuthenticated, checkEmail, login, register, loginWithToken, chargerUser, logout }
 })

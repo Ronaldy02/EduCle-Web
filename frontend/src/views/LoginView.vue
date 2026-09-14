@@ -31,11 +31,8 @@
           <h2 class="lv-title">Bienvenue sur EduClé</h2>
           <p class="lv-sub-auth">Connecte-toi ou crée ton compte pour continuer.</p>
           <div class="lv-oauth-stack">
-            <button class="lv-btn-oauth" disabled title="Bientôt disponible">
+            <button class="lv-btn-oauth" @click="loginGoogle">
               <GoogleIcon /> Continuer avec Google
-            </button>
-            <button class="lv-btn-oauth" disabled title="Bientôt disponible">
-              <AppleIcon /> Continuer avec Apple
             </button>
           </div>
           <div class="lv-divider"><span>ou</span></div>
@@ -179,11 +176,7 @@ const GoogleIcon = {
     <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58Z" fill="#EA4335"/>
   </svg>`
 }
-const AppleIcon = {
-  template: `<svg width="17" height="17" viewBox="0 0 18 18" fill="currentColor" style="flex-shrink:0">
-    <path d="M12.97 9.46c-.02-2.02 1.65-2.99 1.73-3.04-.95-1.38-2.42-1.57-2.94-1.59-1.25-.13-2.44.74-3.07.74-.63 0-1.6-.72-2.64-.7-1.35.02-2.6.79-3.3 2-1.42 2.46-.36 6.1 1.01 8.1.67.97 1.47 2.06 2.52 2.02 1.01-.04 1.4-.65 2.62-.65 1.22 0 1.57.65 2.64.63 1.09-.02 1.77-.98 2.43-1.96.77-1.12 1.09-2.2 1.1-2.26-.02-.01-2.1-.81-2.12-3.29ZM10.9 3.27c.56-.68.94-1.62.84-2.56-.81.03-1.79.54-2.37 1.21-.52.6-.98 1.57-.86 2.49.9.07 1.82-.46 2.39-1.14Z"/>
-  </svg>`
-}
+
 const MailIcon = {
   template: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0">
     <rect x="1" y="3.5" width="14" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
@@ -229,6 +222,10 @@ const nameErr  = ref('')
 const globalErr = ref('')
 
 function clearErr() { fieldErr.value = ''; globalErr.value = ''; nameErr.value = '' }
+
+function loginGoogle() {
+  window.location.href = `${import.meta.env.VITE_API_URL || ''}/auth/google`
+}
 
 // ── Actions ───────────────────────────────────────────────────────────────────
 async function checkEmail() {

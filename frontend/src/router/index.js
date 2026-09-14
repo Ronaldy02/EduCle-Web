@@ -10,11 +10,14 @@ import ReglagesView from '../views/ReglagesView.vue'
 import RevisionView from '../views/RevisionView.vue'
 import AdminView from '../views/AdminView.vue'
 import LoginView from '../views/LoginView.vue'
+import AuthCallbackView from '../views/AuthCallbackView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/login',     name: 'login',      component: LoginView, meta: { public: true } },
+    { path: '/login',              name: 'login',         component: LoginView,         meta: { public: true } },
+    { path: '/auth/callback',      name: 'auth-callback', component: AuthCallbackView,  meta: { public: true } },
+    { path: '/auth/google/callback', name: 'google-cb',  component: AuthCallbackView,  meta: { public: true } },
     { path: '/',          name: 'home',        component: HomeView },
     { path: '/quiz',      name: 'quiz',        component: QuizView },
     { path: '/resultat',  name: 'resultat',    component: ResultatView },

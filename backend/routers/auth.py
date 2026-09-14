@@ -1,14 +1,22 @@
-"""Endpoints d'authentification : inscription, connexion, profil courant."""
+"""Endpoints d'authentification : inscription, connexion, profil courant, Google OAuth."""
 from datetime import datetime
+from urllib.parse import urlencode
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr
 from sqlalchemy.orm import Session
 from sqlalchemy import select
+import httpx
 
+from config import settings
 from database import get_db
 from models.user import User
 from services.auth import hash_password, verify_password, create_access_token
 from dependencies.auth import get_current_user
+
+GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth"
+GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"
+GOOGLE_USERINFO_URL = "https://www.googleapis.com/oauth2/v3/userinfo"
 
 router = APIRouter(prefix="/auth", tags=["Authentification"])
 
@@ -104,3 +112,81 @@ def login(body: LoginRequest, db: Session = Depends(get_db)):
 def me(current_user: User = Depends(get_current_user)):
     """Retourne le profil de l'utilisateur connecté."""
     return current_user
+
+
+# ─── Google OAuth ─────────────────────────────────────────────────────────────
+
+@router.get("/google")
+def google_login():
+    """Redirige vers la page d'autorisation Google."""
+    if not settings.google_client_id:
+        raise HTTPException(503, "Google OAuth non configuré.")
+    redirect_uri = f"{settings.frontend_url.rstrip('/')}/auth/google/callback"
+    # On passe par le backend Vercel comme redirect_uri
+    redirect_uri = f"https://educleweb.vercel.app/auth/google/callback"
+    params = {
+        "client_id": settings.google_client_id,
+        "redirect_uri": redirect_uri,
+        "response_type": "code",
+        "scope": "openid email profile",
+        "access_type": "offline",
+        "prompt": "select_account",
+    }
+    return RedirectResponse(f"{GOOGLE_AUTH_URL}?{urlencode(params)}")
+
+
+@router.get("/google/callback")
+def google_callback(code: str = None, error: str = None, db: Session = Depends(get_db)):
+    """Reçoit le code de Google, crée/connecte l'utilisateur, redirige vers le frontend."""
+    frontend = settings.frontend_url.rstrip("/")
+
+    if error or not code:
+        return RedirectResponse(f"{frontend}/login?error=google_cancelled")
+
+    redirect_uri = "https://educleweb.vercel.app/auth/google/callback"
+
+    # Échange du code contre un token Google
+    with httpx.Client() as client:
+        token_resp = client.post(GOOGLE_TOKEN_URL, data={
+            "code": code,
+            "client_id": settings.google_client_id,
+            "client_secret": settings.google_client_secret,
+            "redirect_uri": redirect_uri,
+            "grant_type": "authorization_code",
+        })
+        if token_resp.status_code != 200:
+            return RedirectResponse(f"{frontend}/login?error=google_token")
+
+        access_token = token_resp.json().get("access_token")
+
+        # Récupération du profil Google
+        user_resp = client.get(GOOGLE_USERINFO_URL, headers={"Authorization": f"Bearer {access_token}"})
+        if user_resp.status_code != 200:
+            return RedirectResponse(f"{frontend}/login?error=google_userinfo")
+
+        info = user_resp.json()
+
+    email = info.get("email", "").lower()
+    name = info.get("name") or info.get("given_name") or email.split("@")[0]
+
+    if not email:
+        return RedirectResponse(f"{frontend}/login?error=google_no_email")
+
+    # Création ou récupération du compte
+    user = db.scalar(select(User).where(User.email == email))
+    if not user:
+        now = datetime.now().isoformat(timespec="seconds")
+        user = User(
+            email=email,
+            hashed_password=None,
+            pseudo=name,
+            pieces_total=100,
+            xp_total=0,
+            created_at=now,
+        )
+        db.add(user)
+        db.commit()
+        db.refresh(user)
+
+    jwt = create_access_token(user.id)
+    return RedirectResponse(f"{frontend}/auth/callback?token={jwt}")
