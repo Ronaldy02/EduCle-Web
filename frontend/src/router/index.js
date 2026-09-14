@@ -11,6 +11,7 @@ import RevisionView from '../views/RevisionView.vue'
 import AdminView from '../views/AdminView.vue'
 import LoginView from '../views/LoginView.vue'
 import AuthCallbackView from '../views/AuthCallbackView.vue'
+import PrivacyView from '../views/PrivacyView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -18,6 +19,7 @@ const router = createRouter({
     { path: '/login',              name: 'login',         component: LoginView,         meta: { public: true } },
     { path: '/auth/callback',      name: 'auth-callback', component: AuthCallbackView,  meta: { public: true } },
     { path: '/auth/google/callback', name: 'google-cb',  component: AuthCallbackView,  meta: { public: true } },
+    { path: '/privacy',            name: 'privacy',     component: PrivacyView,        meta: { public: true } },
     { path: '/',          name: 'home',        component: HomeView },
     { path: '/quiz',      name: 'quiz',        component: QuizView },
     { path: '/resultat',  name: 'resultat',    component: ResultatView },
