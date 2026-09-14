@@ -10,36 +10,19 @@
       <h2 class="al-title">Espace administrateur</h2>
       <p class="al-sub">Accès restreint au personnel autorisé.</p>
 
-      <div v-if="globalErr" class="al-notice err">{{ globalErr }}</div>
+      <div v-if="errorMsg" class="al-notice err">{{ errorMsg }}</div>
 
-      <div class="al-field">
-        <label>E-mail</label>
-        <input v-model="email" type="email" placeholder="admin@exemple.com"
-               autocomplete="email" @keydown.enter="doLogin" :class="{ 'is-err': !!globalErr }">
-      </div>
-
-      <div class="al-field">
-        <label>Mot de passe</label>
-        <div class="al-input-wrap">
-          <input v-model="password" :type="showPwd ? 'text' : 'password'"
-                 placeholder="••••••••" autocomplete="current-password"
-                 @keydown.enter="doLogin" :class="{ 'is-err': !!globalErr }">
-          <button class="al-eye" @click="showPwd = !showPwd" type="button">
-            <svg v-if="showPwd" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <ellipse cx="8" cy="8" rx="7" ry="5" stroke="currentColor" stroke-width="1.3" fill="none"/>
-              <circle cx="8" cy="8" r="2" stroke="currentColor" stroke-width="1.3" fill="none"/>
-            </svg>
-            <svg v-else width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M2 2l12 12M6.7 6.8a2 2 0 0 0 2.5 2.5M1 8s2.5-4.5 7-4.5c1.1 0 2.1.2 3 .6M15 8s-.7 1.3-2 2.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <button class="al-btn" :disabled="loading" @click="doLogin">
-        <span v-if="loading" class="al-spinner"></span>
-        <span v-else>Accéder au panneau</span>
+      <button class="al-btn-google" @click="loginGoogle">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="flex-shrink:0">
+          <path d="M17.64 9.205c0-.639-.057-1.252-.164-1.841H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615Z" fill="#4285F4"/>
+          <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18Z" fill="#34A853"/>
+          <path d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332Z" fill="#FBBC05"/>
+          <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58Z" fill="#EA4335"/>
+        </svg>
+        Continuer avec Google
       </button>
+
+      <p class="al-info">Seuls les comptes administrateurs autorisés peuvent accéder à ce panneau.</p>
 
       <button class="al-back" @click="$router.push('/')">← Retour à l'application</button>
     </div>
@@ -47,40 +30,22 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import axios from 'axios'
+import { ref, onMounted } from 'vue'
 
-const router = useRouter()
 const BASE = import.meta.env.VITE_API_URL || ''
 
-const email    = ref('')
-const password = ref('')
-const showPwd  = ref(false)
-const loading  = ref(false)
-const globalErr = ref('')
+const errorMsg = ref('')
 
-async function doLogin() {
-  globalErr.value = ''
-  if (!email.value || !password.value) {
-    globalErr.value = 'Remplis tous les champs.'
-    return
-  }
-  loading.value = true
-  try {
-    const { data } = await axios.post(`${BASE}/admin/login`, {
-      email: email.value,
-      password: password.value,
-    })
-    localStorage.setItem('ec_admin_token', data.access_token)
-    localStorage.setItem('ec_admin_role', data.role)
-    localStorage.setItem('ec_admin_pseudo', data.pseudo)
-    router.push('/admin')
-  } catch (e) {
-    globalErr.value = e?.response?.data?.detail || 'Identifiants incorrects ou accès non autorisé.'
-  } finally {
-    loading.value = false
-  }
+onMounted(() => {
+  const params = new URLSearchParams(window.location.search)
+  const err = params.get('error')
+  if (err === 'unauthorized') errorMsg.value = 'Ce compte Google n\'a pas les droits d\'administration.'
+  else if (err === 'google_cancelled') errorMsg.value = 'Connexion annulée.'
+  else if (err) errorMsg.value = 'Erreur lors de la connexion Google.'
+})
+
+function loginGoogle() {
+  window.location.href = `${BASE}/auth/google?admin=true`
 }
 </script>
 
@@ -96,16 +61,18 @@ async function doLogin() {
   background: #0D1B3E;
   font-family: 'DM Sans', sans-serif;
 }
-
 .al-box {
   width: 100%;
-  max-width: 400px;
+  max-width: 380px;
   background: #fff;
   border-radius: 18px;
   padding: 40px 36px 32px;
   box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
-
 .al-logo {
   display: flex;
   align-items: center;
@@ -122,73 +89,45 @@ async function doLogin() {
 .al-logo-name {
   font-family: 'Syne', sans-serif;
   font-size: 18px; font-weight: 800;
-  color: #0D1117; letter-spacing: -0.3px;
+  color: #0D1117;
 }
 .al-badge {
-  margin-left: 4px;
-  background: #EFF4FF;
-  color: #2563EB;
+  background: #EFF4FF; color: #2563EB;
   font-size: 11px; font-weight: 600;
   padding: 3px 9px; border-radius: 100px;
-  letter-spacing: 0.03em;
 }
-
 .al-title {
   font-family: 'Syne', sans-serif;
   font-size: 21px; font-weight: 700;
-  color: #0D1117; letter-spacing: -0.3px;
-  margin-bottom: 5px;
+  color: #0D1117; margin-bottom: 6px;
 }
-.al-sub { font-size: 13.5px; color: #6B7A99; margin-bottom: 26px; }
+.al-sub { font-size: 13.5px; color: #6B7A99; margin-bottom: 28px; }
 
 .al-notice {
-  padding: 10px 14px; border-radius: 8px;
+  width: 100%; padding: 10px 14px; border-radius: 8px;
   font-size: 13px; margin-bottom: 16px;
 }
 .al-notice.err { background: #FEF2F2; color: #DC2626; border: 1px solid rgba(220,38,38,0.18); }
 
-.al-field { margin-bottom: 14px; }
-.al-field label {
-  display: block; font-size: 13px; font-weight: 500;
-  color: #3D4A62; margin-bottom: 6px;
+.al-btn-google {
+  width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 13px 20px;
+  background: #fff; border: 1.5px solid #DDE2F0;
+  border-radius: 12px; color: #0D1117;
+  font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500;
+  cursor: pointer; transition: border-color 0.15s, background 0.12s;
+  margin-bottom: 20px;
 }
-.al-field input {
-  width: 100%; padding: 11px 14px;
-  background: #F4F6FB; border: 1.5px solid #DDE2F0;
-  border-radius: 8px; color: #0D1117;
-  font-family: 'DM Sans', sans-serif; font-size: 15px; outline: none;
-  transition: border-color 0.15s;
-}
-.al-field input:focus { border-color: #2563EB; background: #fff; }
-.al-field input.is-err { border-color: #DC2626; }
-.al-input-wrap { position: relative; }
-.al-input-wrap input { padding-right: 44px; }
-.al-eye {
-  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-  background: none; border: none; cursor: pointer; color: #6B7A99; padding: 4px; line-height: 0;
-}
+.al-btn-google:hover { border-color: #4285F4; background: #F8FAFF; }
 
-.al-btn {
-  width: 100%; padding: 13px; margin-top: 8px;
-  background: #0D1B3E; color: #fff; border: none; border-radius: 12px;
-  font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700;
-  cursor: pointer; transition: opacity 0.15s;
-  display: flex; align-items: center; justify-content: center;
+.al-info {
+  font-size: 12px; color: #9CA3AF;
+  line-height: 1.6; margin-bottom: 20px;
+  max-width: 280px;
 }
-.al-btn:hover { opacity: 0.85; }
-.al-btn:disabled { opacity: 0.45; cursor: not-allowed; }
-
-.al-spinner {
-  width: 17px; height: 17px;
-  border: 2px solid rgba(255,255,255,0.25);
-  border-top-color: #fff;
-  border-radius: 50%; animation: spin 0.7s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
 .al-back {
-  display: block; width: 100%; text-align: center;
-  background: none; border: none; margin-top: 18px;
+  background: none; border: none;
   font-size: 13px; color: #6B7A99; cursor: pointer;
   font-family: inherit;
 }

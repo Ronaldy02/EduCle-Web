@@ -116,34 +116,34 @@ def me(current_user: User = Depends(get_current_user)):
 
 # ─── Google OAuth ─────────────────────────────────────────────────────────────
 
+GOOGLE_REDIRECT_URI = "https://educleweb.vercel.app/auth/google/callback"
+
 @router.get("/google")
-def google_login():
+def google_login(admin: bool = False):
     """Redirige vers la page d'autorisation Google."""
     if not settings.google_client_id:
         raise HTTPException(503, "Google OAuth non configuré.")
-    redirect_uri = f"{settings.frontend_url.rstrip('/')}/auth/google/callback"
-    # On passe par le backend Vercel comme redirect_uri
-    redirect_uri = f"https://educleweb.vercel.app/auth/google/callback"
     params = {
         "client_id": settings.google_client_id,
-        "redirect_uri": redirect_uri,
+        "redirect_uri": GOOGLE_REDIRECT_URI,
         "response_type": "code",
         "scope": "openid email profile",
         "access_type": "offline",
         "prompt": "select_account",
+        "state": "admin" if admin else "user",
     }
     return RedirectResponse(f"{GOOGLE_AUTH_URL}?{urlencode(params)}")
 
 
 @router.get("/google/callback")
-def google_callback(code: str = None, error: str = None, db: Session = Depends(get_db)):
+def google_callback(code: str = None, error: str = None, state: str = "user", db: Session = Depends(get_db)):
     """Reçoit le code de Google, crée/connecte l'utilisateur, redirige vers le frontend."""
     frontend = settings.frontend_url.rstrip("/")
+    is_admin = state == "admin"
 
     if error or not code:
-        return RedirectResponse(f"{frontend}/login?error=google_cancelled")
-
-    redirect_uri = "https://educleweb.vercel.app/auth/google/callback"
+        dest = f"{frontend}/admin/login?error=google_cancelled" if is_admin else f"{frontend}/login?error=google_cancelled"
+        return RedirectResponse(dest)
 
     # Échange du code contre un token Google
     with httpx.Client() as client:
@@ -151,7 +151,7 @@ def google_callback(code: str = None, error: str = None, db: Session = Depends(g
             "code": code,
             "client_id": settings.google_client_id,
             "client_secret": settings.google_client_secret,
-            "redirect_uri": redirect_uri,
+            "redirect_uri": GOOGLE_REDIRECT_URI,
             "grant_type": "authorization_code",
         })
         if token_resp.status_code != 200:
@@ -159,7 +159,6 @@ def google_callback(code: str = None, error: str = None, db: Session = Depends(g
 
         access_token = token_resp.json().get("access_token")
 
-        # Récupération du profil Google
         user_resp = client.get(GOOGLE_USERINFO_URL, headers={"Authorization": f"Bearer {access_token}"})
         if user_resp.status_code != 200:
             return RedirectResponse(f"{frontend}/login?error=google_userinfo")
@@ -187,6 +186,15 @@ def google_callback(code: str = None, error: str = None, db: Session = Depends(g
         db.add(user)
         db.commit()
         db.refresh(user)
+
+    # Flux admin : vérifier le rôle
+    if is_admin:
+        if user.role not in ("admin", "superadmin"):
+            return RedirectResponse(f"{frontend}/admin/login?error=unauthorized")
+        jwt = create_access_token(user.id)
+        return RedirectResponse(
+            f"{frontend}/admin/callback?token={quote(jwt, safe='')}&role={user.role}&pseudo={quote(user.pseudo, safe='')}"
+        )
 
     jwt = create_access_token(user.id)
     return RedirectResponse(f"{frontend}/auth/callback?token={quote(jwt, safe='')}")

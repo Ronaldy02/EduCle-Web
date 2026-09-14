@@ -14,6 +14,7 @@ import AuthCallbackView from '../views/AuthCallbackView.vue'
 import PrivacyView from '../views/PrivacyView.vue'
 import TermsView from '../views/TermsView.vue'
 import AdminLoginView from '../views/AdminLoginView.vue'
+import AdminCallbackView from '../views/AdminCallbackView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -23,7 +24,8 @@ const router = createRouter({
     { path: '/auth/google/callback', name: 'google-cb',  component: AuthCallbackView,  meta: { public: true } },
     { path: '/privacy',            name: 'privacy',     component: PrivacyView,        meta: { public: true } },
     { path: '/terms',              name: 'terms',       component: TermsView,          meta: { public: true } },
-    { path: '/admin/login',        name: 'admin-login', component: AdminLoginView,     meta: { public: true } },
+    { path: '/admin/login',        name: 'admin-login',     component: AdminLoginView,     meta: { public: true } },
+    { path: '/admin/callback',     name: 'admin-callback',  component: AdminCallbackView,  meta: { public: true } },
     { path: '/',          name: 'home',        component: HomeView },
     { path: '/quiz',      name: 'quiz',        component: QuizView },
     { path: '/resultat',  name: 'resultat',    component: ResultatView },

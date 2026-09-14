@@ -27,20 +27,28 @@ onMounted(async () => {
   const token = params.get('token')
   const err = params.get('error')
 
-  if (err || !token) {
+  if (err) {
     error.value = true
-    errorMsg.value = err === 'google_cancelled'
-      ? 'Connexion annulée.'
-      : 'Erreur lors de la connexion Google. Réessaie.'
+    errorMsg.value = err === 'google_cancelled' ? 'Connexion annulée.' : `Erreur Google : ${err}`
+    return
+  }
+
+  if (!token) {
+    error.value = true
+    errorMsg.value = `Aucun token reçu. URL : ${window.location.href}`
     return
   }
 
   try {
     await auth.loginWithToken(token)
     router.replace('/')
-  } catch {
+  } catch (e) {
     error.value = true
-    errorMsg.value = 'Token invalide. Réessaie.'
+    const status = e?.response?.status
+    const detail = e?.response?.data?.detail || e?.message || String(e)
+    errorMsg.value = status
+      ? `Erreur ${status} : ${detail}`
+      : `Erreur réseau : ${detail}`
   }
 })
 </script>
