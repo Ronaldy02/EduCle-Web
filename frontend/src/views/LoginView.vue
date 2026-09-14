@@ -39,7 +39,7 @@
           <button class="lv-btn-ghost" @click="state = 'email'">
             <MailIcon /> Continuer avec l'e-mail
           </button>
-          <p class="lv-legal">En continuant, tu acceptes nos <a href="#">Conditions d'utilisation</a>.</p>
+          <p class="lv-legal">En continuant, tu acceptes nos <a href="/terms">Conditions d'utilisation</a>.</p>
         </template>
 
         <!-- État : saisie e-mail -->
@@ -130,7 +130,7 @@
             <span v-if="loading" class="lv-spinner"></span>
             <span v-else>Créer mon compte</span>
           </button>
-          <p class="lv-legal">En créant un compte, tu acceptes nos <a href="#">CGU</a>.</p>
+          <p class="lv-legal">En créant un compte, tu acceptes nos <a href="/terms">CGU</a>.</p>
         </template>
 
         <!-- État : mot de passe oublié -->
