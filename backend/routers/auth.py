@@ -1,6 +1,6 @@
 """Endpoints d'authentification : inscription, connexion, profil courant, Google OAuth."""
 from datetime import datetime
-from urllib.parse import urlencode
+from urllib.parse import urlencode, quote
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr
@@ -189,4 +189,4 @@ def google_callback(code: str = None, error: str = None, db: Session = Depends(g
         db.refresh(user)
 
     jwt = create_access_token(user.id)
-    return RedirectResponse(f"{frontend}/auth/callback?token={jwt}")
+    return RedirectResponse(f"{frontend}/auth/callback?token={quote(jwt, safe='')}")
