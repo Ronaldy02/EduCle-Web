@@ -19,6 +19,7 @@ class User(Base):
     xp_total: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     pieces_total: Mapped[int] = mapped_column(Integer, nullable=False, default=100)
     created_at: Mapped[str] = mapped_column(String(30), nullable=False, default="")
+    role: Mapped[str] = mapped_column(String(20), nullable=False, default="user")
 
 
 class UserPreferences(Base):

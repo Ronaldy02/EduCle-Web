@@ -22,9 +22,17 @@
       </nav>
 
       <div class="adm-nav-foot">
+        <div class="adm-admin-info">
+          <span :class="['role-badge', `role-${adminRole}`]" style="margin-bottom:4px">{{ adminRole }}</span>
+          <span class="adm-admin-name">{{ adminPseudo }}</span>
+        </div>
         <button class="adm-nav-item" @click="$router.push('/')">
           <span class="material-symbols-outlined">arrow_back</span>
           <span class="adm-nav-label">Quitter</span>
+        </button>
+        <button class="adm-nav-item" @click="logoutAdmin" style="color:#DC2626">
+          <span class="material-symbols-outlined">logout</span>
+          <span class="adm-nav-label">Déconnexion</span>
         </button>
       </div>
     </aside>
@@ -291,10 +299,56 @@
 
       <!-- UTILISATEURS ───────────────────────────────────────────────────── -->
       <div v-else-if="section === 'utilisateurs'" class="adm-section">
-        <div class="adm-section-header"><h1>Utilisateur</h1></div>
+        <div class="adm-section-header"><h1>Utilisateurs</h1></div>
+
+        <!-- Liste tous les comptes -->
+        <div class="adm-card" style="margin-bottom:1.25rem">
+          <h3 class="adm-card-h3">
+            Comptes inscrits
+            <span style="font-weight:400;color:#6B7A99;font-size:13px;margin-left:8px">{{ allUsers.length }} compte(s)</span>
+          </h3>
+          <div v-if="allUsers.length" class="user-table-wrap">
+            <table class="user-table">
+              <thead>
+                <tr>
+                  <th>Pseudo</th>
+                  <th>E-mail</th>
+                  <th>XP</th>
+                  <th>Rôle</th>
+                  <th v-if="adminRole === 'superadmin'">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="u in allUsers" :key="u.id">
+                  <td>{{ u.pseudo }}</td>
+                  <td class="td-email">{{ u.email }}</td>
+                  <td>{{ u.xp_total.toLocaleString() }}</td>
+                  <td>
+                    <span :class="['role-badge', `role-${u.role}`]">{{ u.role }}</span>
+                  </td>
+                  <td v-if="adminRole === 'superadmin'">
+                    <select
+                      :value="u.role"
+                      :disabled="roleLoading === u.id"
+                      @change="changeRole(u.id, $event.target.value)"
+                      class="role-select"
+                    >
+                      <option value="user">user</option>
+                      <option value="admin">admin</option>
+                      <option value="superadmin">superadmin</option>
+                    </select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div v-else class="loading">Chargement…</div>
+        </div>
+
+        <!-- Profil utilisateur courant (legacy) -->
         <div v-if="user" class="adm-2col">
           <div class="adm-card">
-            <h3 class="adm-card-h3">Profil</h3>
+            <h3 class="adm-card-h3">Modifier un profil</h3>
             <div class="user-fields">
               <label class="field-group"><span>XP total</span>
                 <input type="number" v-model.number="user.xp_total" class="field-input" /></label>
@@ -322,7 +376,6 @@
             </div>
           </div>
         </div>
-        <div v-else class="loading">Chargement…</div>
       </div>
 
       <!-- STATISTIQUES ────────────────────────────────────────────────────── -->
@@ -564,9 +617,22 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import axios from 'axios'
 
+import { useRouter } from 'vue-router'
+const router = useRouter()
+
 const BASE = import.meta.env.VITE_API_URL || '/api'
 const api = axios.create({ baseURL: BASE })
 const apiBase = BASE
+
+// Injecte le token admin dans chaque requête
+api.interceptors.request.use(cfg => {
+  const t = localStorage.getItem('ec_admin_token')
+  if (t) cfg.headers.Authorization = `Bearer ${t}`
+  return cfg
+})
+
+const adminRole  = ref(localStorage.getItem('ec_admin_role') || '')
+const adminPseudo = ref(localStorage.getItem('ec_admin_pseudo') || '')
 
 const SECTIONS = [
   { key: 'dashboard',    label: 'Tableau de bord', icon: 'dashboard' },
@@ -625,6 +691,35 @@ async function loadRealisations() { try { realisations.value = await api.get('/a
 async function loadChapitresList(){ try { chapitresList.value = await api.get('/admin/chapitres').then(r => r.data) } catch {} }
 async function loadActivity()     { try { activity.value     = await api.get('/admin/activity', { params: { period: period.value } }).then(r => r.data) } catch {} }
 
+// Gestion des utilisateurs (admin+)
+const allUsers    = ref([])
+const roleLoading = ref(null)
+
+async function loadAllUsers() {
+  try { allUsers.value = await api.get('/admin/users').then(r => r.data) } catch {}
+}
+
+async function changeRole(userId, newRole) {
+  roleLoading.value = userId
+  try {
+    const { data } = await api.patch(`/admin/users/${userId}/role`, { role: newRole })
+    const idx = allUsers.value.findIndex(u => u.id === userId)
+    if (idx !== -1) allUsers.value[idx].role = data.role
+    showToast('Rôle mis à jour.')
+  } catch (e) {
+    showToast(e?.response?.data?.detail || 'Erreur.')
+  } finally {
+    roleLoading.value = null
+  }
+}
+
+function logoutAdmin() {
+  localStorage.removeItem('ec_admin_token')
+  localStorage.removeItem('ec_admin_role')
+  localStorage.removeItem('ec_admin_pseudo')
+  router.replace('/admin/login')
+}
+
 async function loadQuestions() {
   const params = {}
   if (filterMatiere.value)  params.matiere_id  = filterMatiere.value
@@ -633,11 +728,19 @@ async function loadQuestions() {
   try { questions.value = await api.get('/admin/questions', { params }).then(r => r.data) } catch {}
 }
 
-onMounted(() => { loadStats(); loadActivity(); loadMatieres() })
+// Redirige vers login admin si pas de token ou rôle insuffisant
+onMounted(() => {
+  const token = localStorage.getItem('ec_admin_token')
+  if (!token || !['admin','superadmin'].includes(adminRole.value)) {
+    router.replace('/admin/login')
+    return
+  }
+  loadStats(); loadActivity(); loadMatieres()
+})
 
 watch(section, s => {
   if ((s === 'questions' || s === 'statistiques') && !questions.value.length) loadQuestions()
-  if (s === 'utilisateurs' && !user.value) { loadUser(); if (!activity.value) loadActivity() }
+  if (s === 'utilisateurs') { loadAllUsers(); loadUser(); if (!activity.value) loadActivity() }
   if (s === 'realisations' && !realisations.value.length) loadRealisations()
   if (s === 'chapitres'    && !chapitresList.value.length) loadChapitresList()
 })
@@ -900,6 +1003,28 @@ async function clearAllScores() {
 .ustat { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem; text-align: center; }
 .ustat-val { font-size: 1.25rem; font-weight: 800; color: var(--text); }
 .ustat-lab { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; margin-top: 0.1rem; }
+
+/* Table utilisateurs */
+.user-table-wrap { overflow-x: auto; }
+.user-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.user-table th { text-align: left; padding: 8px 12px; border-bottom: 1.5px solid var(--border); color: var(--text-muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+.user-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: middle; }
+.user-table tr:last-child td { border-bottom: none; }
+.td-email { color: var(--text-muted); font-size: 12px; }
+
+/* Badges rôle */
+.role-badge { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; }
+.role-user { background: #F4F6FB; color: #6B7A99; }
+.role-admin { background: #EFF4FF; color: #2563EB; }
+.role-superadmin { background: #FDF4FF; color: #A855F7; }
+
+/* Select rôle */
+.role-select { padding: 5px 8px; border: 1.5px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-size: 12px; cursor: pointer; }
+.role-select:focus { outline: none; border-color: #2563EB; }
+
+/* Info admin sidebar */
+.adm-admin-info { padding: 10px 16px 6px; display: flex; flex-direction: column; gap: 2px; }
+.adm-admin-name { font-size: 12px; color: var(--text-muted); }
 
 /* Stats */
 .stat-q-list { display: flex; flex-direction: column; gap: 0.4rem; }
