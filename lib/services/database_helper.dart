@@ -9039,7 +9039,7 @@ EPS:
           _QSeed(
               'La roche mère d\'un sol est :',
               ['La roche sous-jacente dont dérive le sol par altération', 'La couche d\'humus en surface', 'Les cailloux du sous-sol', 'Les sédiments du fond de l\'océan'],
-              'La roche mère dont dérive le sol par altération',
+              'La roche sous-jacente dont dérive le sol par altération',
               'Le sol se forme par altération physique et chimique de la roche mère en contact avec l\'eau, l\'air et les êtres vivants.',
               'Moyen',
             ),
@@ -11243,7 +11243,7 @@ EPS:
           _QSeed(
               'La politique fiscale désigne :',
               ['La gestion des recettes (impôts, taxes) et des dépenses publiques par le gouvernement', 'La politique de la banque centrale sur les taux', 'Le contrôle des changes', 'La fixation des prix par l\'État'],
-              'La politique fiscale désigne la gestion des recettes (impôts, taxes) et des dépenses publiques par le gouvernement',
+              'La gestion des recettes (impôts, taxes) et des dépenses publiques par le gouvernement',
               'Politique fiscale expansive : baisse d\'impôts ou hausse des dépenses → stimule l\'économie. Restrictive : hausse d\'impôts ou coupes → freine l\'inflation.',
               'Moyen',
             ),
@@ -14743,7 +14743,7 @@ EPS:
           _QSeed(
               'Louis Pasteur (1822-1895) a découvert que les maladies infectieuses sont causées par :',
               ['Des micro-organismes (bactéries, virus) — théorie des germes, fondant la microbiologie et l\'hygiène médicale', 'Des déséquilibres des humeurs dans le corps', 'Des facteurs héréditaires uniquement', 'L\'air corrompu (miasmes)'],
-              'Des micro-organismes — théorie des germes, fondant la microbiologie et l\'hygiène médicale',
+              'Des micro-organismes (bactéries, virus) — théorie des germes, fondant la microbiologie et l\'hygiène médicale',
               'Pasteur a réfuté la génération spontanée, développé la pasteurisation et les vaccins (rage, charbon). Il a révolutionné la médecine et sauvé des millions de vies.',
               'Facile',
             ),
@@ -14986,7 +14986,7 @@ EPS:
           _QSeed(
               'Les Zones Economiques Exclusives (ZEE) permettent à un pays côtier d\'exploiter :',
               ['Les ressources marines (poissons, minerais, pétrole) dans une zone s\'étendant à 200 miles nautiques de ses côtes', 'Le commerce maritime international', 'L\'espace aérien au-dessus de ses eaux', 'Les câbles sous-marins uniquement'],
-              'Les ressources marines dans une zone s\'étendant à 200 miles nautiques de ses côtes',
+              'Les ressources marines (poissons, minerais, pétrole) dans une zone s\'étendant à 200 miles nautiques de ses côtes',
               'La ZEE d\'Haïti inclut des ressources potentielles (poissons, minéraux marins). Mais le pays manque de moyens pour les surveiller et les exploiter efficacement.',
               'Moyen',
             ),
