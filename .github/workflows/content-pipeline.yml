@@ -1,0 +1,103 @@
+name: Pipeline de contenu EduClé
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Action à exécuter"
+        required: true
+        type: choice
+        options:
+          - validate          # Valide les drafts en staging
+          - publish           # Publie les questions prêtes
+          - validate-publish  # Les deux en séquence
+          - audit             # Rapport de couverture
+      batch_id:
+        description: "ID du batch (laisser vide pour tout traiter)"
+        required: false
+        type: string
+      dry_run:
+        description: "Mode simulation (aucune modification)"
+        required: false
+        type: boolean
+        default: false
+
+  schedule:
+    # Toutes les 6 heures : publie automatiquement ce qui est prêt
+    - cron: "0 */6 * * *"
+
+jobs:
+  pipeline:
+    name: Pipeline contenu
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Configurer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Installer les dépendances
+        run: pip install psycopg2-binary
+
+      - name: Valider le staging
+        if: |
+          github.event_name == 'schedule' ||
+          inputs.action == 'validate' ||
+          inputs.action == 'validate-publish'
+        working-directory: scripts/pipeline
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          ARGS=""
+          if [ -n "${{ inputs.batch_id }}" ]; then ARGS="$ARGS --batch ${{ inputs.batch_id }}"; fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          python validate_staging.py $ARGS
+
+      - name: Marquer comme prêts (validated_tech -> ready)
+        if: |
+          github.event_name == 'schedule' ||
+          inputs.action == 'validate' ||
+          inputs.action == 'validate-publish'
+        working-directory: scripts/pipeline
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          if [ "${{ inputs.dry_run }}" != "true" ]; then
+            python - <<'EOF'
+          import os, psycopg2
+          conn = psycopg2.connect(os.environ["DATABASE_URL"])
+          conn.autocommit = False
+          cur = conn.cursor()
+          cur.execute("UPDATE questions_staging SET statut='ready' WHERE statut='validated_tech'")
+          print(f"Marqué prêts: {cur.rowcount}")
+          conn.commit()
+          conn.close()
+          EOF
+          fi
+
+      - name: Publier vers production
+        if: |
+          github.event_name == 'schedule' ||
+          inputs.action == 'publish' ||
+          inputs.action == 'validate-publish'
+        working-directory: scripts/pipeline
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          ARGS=""
+          if [ -n "${{ inputs.batch_id }}" ]; then ARGS="$ARGS --batch ${{ inputs.batch_id }}"; fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          python publish_to_prod.py $ARGS
+
+      - name: Audit de couverture
+        working-directory: scripts/pipeline
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python audit_coverage.py
+
+      - name: Résumé
+        run: echo "## Pipeline EduClé terminé" >> $GITHUB_STEP_SUMMARY
