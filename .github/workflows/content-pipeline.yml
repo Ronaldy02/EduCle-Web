@@ -1,5 +1,10 @@
 name: Pipeline de contenu EduClé
 
+# Garanties de sécurité :
+# - concurrency: un seul run de publication à la fois (cancel-in-progress: false)
+# - mark-ready : action MANUELLE uniquement (jamais automatique par cron)
+# - cron : publie uniquement ce qui est déjà en 'ready' (décision humaine préalable)
+
 on:
   workflow_dispatch:
     inputs:
@@ -8,10 +13,14 @@ on:
         required: true
         type: choice
         options:
-          - validate          # Valide les drafts en staging
-          - publish           # Publie les questions prêtes
-          - validate-publish  # Les deux en séquence
-          - audit             # Rapport de couverture
+          - validate          # draft → validated_tech
+          - mark-ready        # validated_tech → ready (DÉCISION HUMAINE)
+          - publish           # ready → published (atomique)
+          - validate-publish  # validate + publish (sans mark-ready automatique)
+          - retrovalidate     # Rétrovalidation des questions déjà en production
+          - audit-duplicates  # Lister les doublons stable_hash
+          - audit-coverage    # Rapport de couverture par matière/niveau
+          - recover           # Libérer les lignes processing abandonnées
       batch_id:
         description: "ID du batch (laisser vide pour tout traiter)"
         required: false
@@ -23,8 +32,15 @@ on:
         default: false
 
   schedule:
-    # Toutes les 6 heures : publie automatiquement ce qui est prêt
+    # Toutes les 6 heures : publie uniquement les questions déjà en 'ready'
+    # Ne fait JAMAIS de mark-ready automatique.
     - cron: "0 */6 * * *"
+
+# Un seul job de publication à la fois — protège contre la double publication concurrente.
+# cancel-in-progress: false garantit qu'un run en cours n'est pas interrompu.
+concurrency:
+  group: educkle-content-pipeline
+  cancel-in-progress: false
 
 jobs:
   pipeline:
@@ -43,7 +59,8 @@ jobs:
       - name: Installer les dépendances
         run: pip install psycopg2-binary
 
-      - name: Valider le staging
+      # ── Validation technique (draft → validated_tech) ─────────────────────
+      - name: Valider le staging (draft → validated_tech)
         if: |
           github.event_name == 'schedule' ||
           inputs.action == 'validate' ||
@@ -57,29 +74,34 @@ jobs:
           if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           python validate_staging.py $ARGS
 
-      - name: Marquer comme prêts (validated_tech -> ready)
-        if: |
-          github.event_name == 'schedule' ||
-          inputs.action == 'validate' ||
-          inputs.action == 'validate-publish'
+      # ── Promotion manuelle (validated_tech → ready) ───────────────────────
+      # Cette étape n'est JAMAIS exécutée par le cron.
+      # Elle exige une action explicite 'mark-ready' par un humain.
+      - name: Marquer comme prêts (validated_tech → ready) [MANUEL]
+        if: inputs.action == 'mark-ready'
         working-directory: scripts/pipeline
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
-          if [ "${{ inputs.dry_run }}" != "true" ]; then
-            python - <<'EOF'
-          import os, psycopg2
-          conn = psycopg2.connect(os.environ["DATABASE_URL"])
-          conn.autocommit = False
-          cur = conn.cursor()
-          cur.execute("UPDATE questions_staging SET statut='ready' WHERE statut='validated_tech'")
-          print(f"Marqué prêts: {cur.rowcount}")
-          conn.commit()
-          conn.close()
-          EOF
-          fi
+          ARGS=""
+          if [ -n "${{ inputs.batch_id }}" ]; then ARGS="$ARGS --batch ${{ inputs.batch_id }}"; fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
+          python mark_ready.py $ARGS
 
-      - name: Publier vers production
+      # ── Récupération des lignes abandonnées ───────────────────────────────
+      - name: Récupérer les lignes processing abandonnées
+        if: |
+          github.event_name == 'schedule' ||
+          inputs.action == 'recover' ||
+          inputs.action == 'publish' ||
+          inputs.action == 'validate-publish'
+        working-directory: scripts/pipeline
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python publish_to_prod.py --recover
+
+      # ── Publication (ready → published, atomique) ─────────────────────────
+      - name: Publier vers production (atomique)
         if: |
           github.event_name == 'schedule' ||
           inputs.action == 'publish' ||
@@ -93,11 +115,42 @@ jobs:
           if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS="$ARGS --dry-run"; fi
           python publish_to_prod.py $ARGS
 
+      # ── Rétrovalidation ───────────────────────────────────────────────────
+      - name: Rétrovalidation des questions en production
+        if: inputs.action == 'retrovalidate'
+        working-directory: scripts/pipeline
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          ARGS="--output /tmp/retrovalidation_report.json"
+          if [ -n "${{ inputs.batch_id }}" ]; then ARGS="$ARGS --batch ${{ inputs.batch_id }}"; fi
+          python retrovalidate_prod.py $ARGS
+          cat /tmp/retrovalidation_report.json
+
+      # ── Audit doublons ────────────────────────────────────────────────────
+      - name: Audit des doublons stable_hash
+        if: inputs.action == 'audit-duplicates'
+        working-directory: scripts/pipeline
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python audit_duplicates.py --output /tmp/doublons_report.json
+
+      # ── Audit de couverture ───────────────────────────────────────────────
       - name: Audit de couverture
+        if: |
+          github.event_name == 'schedule' ||
+          inputs.action == 'audit-coverage' ||
+          inputs.action == 'publish' ||
+          inputs.action == 'validate-publish'
         working-directory: scripts/pipeline
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: python audit_coverage.py
 
+      # ── Résumé ────────────────────────────────────────────────────────────
       - name: Résumé
-        run: echo "## Pipeline EduClé terminé" >> $GITHUB_STEP_SUMMARY
+        if: always()
+        run: |
+          echo "## Pipeline EduClé — ${{ inputs.action || 'cron' }}" >> $GITHUB_STEP_SUMMARY
+          echo "Batch: ${{ inputs.batch_id || '(tous)' }}" >> $GITHUB_STEP_SUMMARY
+          echo "Dry-run: ${{ inputs.dry_run || 'false' }}" >> $GITHUB_STEP_SUMMARY
