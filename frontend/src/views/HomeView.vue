@@ -65,9 +65,17 @@
       </div>
 
       <div class="filtres">
-        <button v-for="niv in niveaux" :key="niv"
-          class="filtre-btn" :class="{ active: niveauActif === niv }"
-          @click="filtrer(niv)">{{ niv }}</button>
+        <button v-for="cycle in CYCLES" :key="cycle"
+          class="filtre-btn" :class="{ active: cycleActif === cycle }"
+          @click="selectionnerCycle(cycle)">{{ cycle }}</button>
+      </div>
+      <div v-if="sousNiveaux.length" class="filtres sous-filtres-row">
+        <button
+          class="filtre-btn sous-filtre" :class="{ active: sousNiveauActif === null }"
+          @click="selectionnerSousNiveau(null)">Tout</button>
+        <button v-for="niv in sousNiveaux" :key="niv"
+          class="filtre-btn sous-filtre" :class="{ active: sousNiveauActif === niv }"
+          @click="selectionnerSousNiveau(niv)">{{ niv }}</button>
       </div>
 
       <!-- ── Résultats de recherche ──────────────────────────── -->
@@ -115,7 +123,7 @@
       <template v-else>
         <div v-if="chargement" class="loading">Chargement…</div>
         <div v-else class="matieres-grid">
-          <div v-for="m in matieres" :key="m.id"
+          <div v-for="m in matieresFiltrees" :key="m.id"
             class="mat-card" @click="choisirMatiere(m)">
             <div v-if="imagePour(m.nom)" class="mat-img-wrap">
               <img :src="imagePour(m.nom)" :alt="m.nom" class="mat-img" />
@@ -360,18 +368,43 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { getMatieres, getNiveaux, getMatiere, getStats, getMatieresAvecChapitres } from '../api/client.js'
+import { getMatieres, getMatiere, getStats, getMatieresAvecChapitres } from '../api/client.js'
 import { useQuizStore } from '../stores/quiz.js'
 
 const router = useRouter()
 const quiz = useQuizStore()
 
-const niveaux        = ref([])
-const niveauActif    = ref(null)
-const matieres       = ref([])
+// ── Constantes de cycle ──────────────────────────────────────────
+const CYCLES = ['Tout', 'Fondamentale', 'Secondaire']
+const CYCLE_NIVEAUX = {
+  Fondamentale: ['Fondamentale', 'Fondamental'],
+  Secondaire:   ['NS0', 'NS1', 'NS2', 'NS3', 'NS4'],
+}
+
+const cycleActif      = ref('Tout')
+const sousNiveauActif = ref(null)
+const toutesLesMatieres = ref([])  // toutes les matieres chargées une seule fois
+const matieres       = ref([])     // conservé pour compatibilité (recherche, etc.)
 const chargement     = ref(true)
 const recherche      = ref('')
 const tousLesThemes  = ref([])   // [{ id, titre, matiere: {id, nom} }]
+
+// Sous-niveaux disponibles pour le cycle actif
+const sousNiveaux = computed(() => {
+  if (cycleActif.value === 'Tout') return []
+  const niveauxCycle = CYCLE_NIVEAUX[cycleActif.value] || []
+  const presents = new Set(toutesLesMatieres.value.map(m => m.niveau))
+  return niveauxCycle.filter(n => presents.has(n))
+})
+
+// Matieres filtrées selon le cycle + sous-niveau actifs
+const matieresFiltrees = computed(() => {
+  if (cycleActif.value === 'Tout') return toutesLesMatieres.value
+  const niveauxCycle = CYCLE_NIVEAUX[cycleActif.value] || []
+  const parCycle = toutesLesMatieres.value.filter(m => niveauxCycle.includes(m.niveau))
+  if (!sousNiveauActif.value) return parCycle
+  return parCycle.filter(m => m.niveau === sousNiveauActif.value)
+})
 
 // Étapes : null | 'chapitre' | 'mode'
 const etape         = ref(null)
@@ -484,7 +517,7 @@ const rechercheActive = computed(() => recherche.value.trim().length > 0)
 const q = computed(() => recherche.value.toLowerCase().trim())
 
 const matieresFiltrées = computed(() =>
-  q.value ? matieres.value.filter(m => m.nom.toLowerCase().includes(q.value)) : matieres.value
+  q.value ? toutesLesMatieres.value.filter(m => m.nom.toLowerCase().includes(q.value)) : toutesLesMatieres.value
 )
 
 const chapitresFiltrés = computed(() =>
@@ -492,10 +525,7 @@ const chapitresFiltrés = computed(() =>
 )
 
 onMounted(async () => {
-  const [nivList] = await Promise.all([getNiveaux(), chargerStats(), chargerTousLesThemes()])
-  niveaux.value = ['Tout', ...nivList.filter(n => n !== 'Commun')]
-  niveauActif.value = 'Tout'
-  await filtrer('Tout')
+  await Promise.all([chargerToutesMatieres(), chargerStats(), chargerTousLesThemes()])
   chargement.value = false
 })
 
@@ -521,11 +551,20 @@ async function chargerStats() {
   } catch {}
 }
 
-async function filtrer(niv) {
-  niveauActif.value = niv
-  chargement.value = true
-  matieres.value = await getMatieres(niv === 'Tout' ? null : niv)
-  chargement.value = false
+async function chargerToutesMatieres() {
+  try {
+    toutesLesMatieres.value = await getMatieres()
+    matieres.value = toutesLesMatieres.value  // pour la recherche
+  } catch {}
+}
+
+function selectionnerCycle(cycle) {
+  cycleActif.value = cycle
+  sousNiveauActif.value = null
+}
+
+function selectionnerSousNiveau(niv) {
+  sousNiveauActif.value = niv
 }
 
 // ── Flux sélection ───────────────────────────────────────────────
@@ -640,9 +679,11 @@ async function jouerAleatoire() {
 .search-wrap { display: flex; align-items: center; gap: 0.4rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.5rem 0.9rem; min-width: 220px; }
 .search-icon { font-size: 18px; color: var(--text-muted); }
 .search-input { border: none; outline: none; background: transparent; font-family: inherit; font-size: 0.875rem; width: 100%; color: var(--text); }
-.filtres { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.filtres { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
 .filtre-btn { padding: 0.3rem 0.8rem; border-radius: 99px; background: var(--border); font-weight: 600; font-size: 0.8rem; color: var(--text-muted); border: none; cursor: pointer; transition: background 0.15s, color 0.15s; }
 .filtre-btn.active { background: var(--primary); color: white; }
+.sous-filtres-row { margin-bottom: 1rem; }
+.sous-filtre { font-size: 0.75rem; padding: 0.2rem 0.65rem; }
 .loading { text-align: center; color: var(--text-muted); padding: 3rem; }
 .vide { text-align: center; color: var(--text-muted); padding: 2rem; font-style: italic; }
 

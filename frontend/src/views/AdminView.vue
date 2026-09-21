@@ -418,6 +418,76 @@
         </div>
       </div>
 
+      <!-- PROPOSITIONS ───────────────────────────────────────────────────── -->
+      <div v-else-if="section === 'propositions'" class="adm-section">
+        <div class="adm-section-header">
+          <h1>Propositions de questions</h1>
+          <span class="adm-date">{{ proposals.length }} proposition(s)</span>
+        </div>
+
+        <!-- Filtre statut -->
+        <div class="prop-filter-row">
+          <button v-for="f in [['en_attente','En attente'],['approuve','Approuvées'],['rejete','Rejetées'],['all','Toutes']]"
+            :key="f[0]" class="filtre-btn" :class="{ active: proposalFilter === f[0] }"
+            @click="proposalFilter = f[0]; loadProposals()">{{ f[1] }}</button>
+        </div>
+
+        <div v-if="!proposals.length" class="adm-vide">Aucune proposition.</div>
+
+        <div v-for="p in proposals" :key="p.id" class="prop-card">
+          <div class="prop-card-top">
+            <div class="prop-card-meta">
+              <span class="prop-badge" :class="'badge-' + p.statut">{{ p.statut.replace('_',' ') }}</span>
+              <span class="prop-card-who">{{ p.nom_proposant }}</span>
+              <span class="prop-card-date">{{ p.created_at?.slice(0,10) }}</span>
+            </div>
+            <div class="prop-card-loc">
+              <span v-if="p.matiere_nom">{{ p.matiere_nom }}</span>
+              <span v-if="p.chapitre_titre"> · {{ p.chapitre_titre }}</span>
+            </div>
+          </div>
+          <p class="prop-card-enonce">{{ p.enonce }}</p>
+          <div class="prop-card-choix">
+            <span v-for="(c, i) in p.choix" :key="i"
+              :class="['prop-choix', { 'prop-choix-ok': c === p.bonne_reponse }]">
+              {{ 'ABCD'[i] }}. {{ c }}
+            </span>
+          </div>
+          <p v-if="p.explication" class="prop-card-expl">{{ p.explication }}</p>
+          <p v-if="p.remarque_admin" class="prop-card-rem">Note admin : {{ p.remarque_admin }}</p>
+          <div v-if="p.statut === 'en_attente'" class="prop-card-actions">
+            <button class="adm-btn adm-btn-success" @click="proposalModal = p; proposalRemarque = ''">Réviser</button>
+            <button class="adm-btn adm-btn-danger" @click="deleteProposal(p.id)">Supprimer</button>
+          </div>
+          <div v-else class="prop-card-actions">
+            <button class="adm-btn" style="font-size:0.8rem" @click="deleteProposal(p.id)">Supprimer</button>
+          </div>
+        </div>
+
+        <!-- Modal révision -->
+        <transition name="modal-fade">
+          <div v-if="proposalModal" class="modal-overlay" @click.self="proposalModal = null">
+            <div class="modal-box">
+              <h2 style="margin-bottom:0.75rem">Réviser la proposition</h2>
+              <p style="font-size:0.9rem;margin-bottom:0.5rem;font-weight:700">{{ proposalModal.enonce }}</p>
+              <div style="margin-bottom:0.75rem">
+                <span v-for="(c, i) in proposalModal.choix" :key="i"
+                  :class="['prop-choix', { 'prop-choix-ok': c === proposalModal.bonne_reponse }]"
+                  style="display:block;margin-bottom:0.25rem">{{ 'ABCD'[i] }}. {{ c }}</span>
+              </div>
+              <label class="adm-label">Remarque (facultatif)</label>
+              <textarea v-model="proposalRemarque" class="adm-input" rows="2"
+                placeholder="Explication du refus ou commentaire…" style="margin-bottom:0.75rem"></textarea>
+              <div style="display:flex;gap:0.5rem">
+                <button class="adm-btn adm-btn-success" @click="reviewProposal(proposalModal.id, 'approuve')">Approuver</button>
+                <button class="adm-btn adm-btn-danger" @click="reviewProposal(proposalModal.id, 'rejete')">Rejeter</button>
+                <button class="adm-btn" @click="proposalModal = null">Annuler</button>
+              </div>
+            </div>
+          </div>
+        </transition>
+      </div>
+
       <!-- RÉALISATIONS ────────────────────────────────────────────────────── -->
       <div v-else-if="section === 'realisations'" class="adm-section">
         <div class="adm-section-header">
@@ -638,6 +708,7 @@ const SECTIONS = [
   { key: 'dashboard',    label: 'Tableau de bord', icon: 'dashboard' },
   { key: 'questions',    label: 'Questions',        icon: 'quiz' },
   { key: 'chapitres',    label: 'Chapitres',        icon: 'library_books' },
+  { key: 'propositions', label: 'Propositions',     icon: 'rate_review' },
   { key: 'utilisateurs', label: 'Utilisateurs',     icon: 'people' },
   { key: 'statistiques', label: 'Statistiques',     icon: 'bar_chart' },
   { key: 'realisations', label: 'Réalisations',     icon: 'military_tech' },
@@ -691,6 +762,36 @@ async function loadRealisations() { try { realisations.value = await api.get('/a
 async function loadChapitresList(){ try { chapitresList.value = await api.get('/admin/chapitres').then(r => r.data) } catch {} }
 async function loadActivity()     { try { activity.value     = await api.get('/admin/activity', { params: { period: period.value } }).then(r => r.data) } catch {} }
 
+// ── Propositions ──────────────────────────────────────────────────
+const proposals        = ref([])
+const proposalFilter   = ref('en_attente')
+const proposalModal    = ref(null)
+const proposalRemarque = ref('')
+
+async function loadProposals() {
+  try {
+    const params = proposalFilter.value !== 'all' ? { statut: proposalFilter.value } : {}
+    proposals.value = await api.get('/admin/proposals', { params }).then(r => r.data)
+  } catch {}
+}
+
+async function reviewProposal(id, statut) {
+  try {
+    await api.patch(`/admin/proposals/${id}`, { statut, remarque_admin: proposalRemarque.value || null })
+    showToast(statut === 'approuve' ? 'Proposition approuvée et ajoutée.' : 'Proposition rejetée.')
+    proposalModal.value = null
+    proposalRemarque.value = ''
+    await loadProposals()
+  } catch (e) {
+    showToast(e?.response?.data?.detail || 'Erreur.')
+  }
+}
+
+async function deleteProposal(id) {
+  if (!confirm('Supprimer cette proposition définitivement ?')) return
+  try { await api.delete(`/admin/proposals/${id}`); await loadProposals() } catch {}
+}
+
 // Gestion des utilisateurs (admin+)
 const allUsers    = ref([])
 const roleLoading = ref(null)
@@ -739,10 +840,11 @@ onMounted(() => {
 })
 
 watch(section, s => {
-  if ((s === 'questions' || s === 'statistiques') && !questions.value.length) loadQuestions()
+  if (s === 'questions' || s === 'statistiques') loadQuestions()
   if (s === 'utilisateurs') { loadAllUsers(); loadUser(); if (!activity.value) loadActivity() }
   if (s === 'realisations' && !realisations.value.length) loadRealisations()
   if (s === 'chapitres'    && !chapitresList.value.length) loadChapitresList()
+  if (s === 'propositions') loadProposals()
 })
 
 watch(period, loadActivity)
@@ -1091,6 +1193,31 @@ async function clearAllScores() {
 .diff-chips { display: flex; gap: 0.4rem; }
 .diff-chip { padding: 0.32rem 0.8rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; background: none; color: var(--text-muted); }
 .diff-chip.active { font-weight: 700; }
+
+/* Vide */
+.adm-vide { text-align: center; padding: 2rem; color: var(--text-muted); font-style: italic; font-size: 0.9rem; }
+
+/* Propositions */
+.prop-filter-row { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.prop-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; margin-bottom: 0.75rem; }
+.prop-card-top { display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 0.5rem; }
+.prop-card-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.prop-badge { font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 99px; text-transform: capitalize; }
+.badge-en_attente { background: #fef3c7; color: #92400e; }
+.badge-approuve   { background: #dcfce7; color: #15803d; }
+.badge-rejete     { background: #fee2e2; color: #b91c1c; }
+.prop-card-who { font-size: 0.8rem; font-weight: 600; color: var(--text); }
+.prop-card-date { font-size: 0.75rem; color: var(--text-muted); }
+.prop-card-loc { font-size: 0.78rem; color: var(--text-muted); }
+.prop-card-enonce { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; }
+.prop-card-choix { display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 0.5rem; }
+.prop-choix { font-size: 0.82rem; color: var(--text-muted); padding: 0.15rem 0.4rem; border-radius: 4px; }
+.prop-choix-ok { background: #dcfce7; color: #15803d; font-weight: 700; }
+.prop-card-expl { font-size: 0.8rem; color: var(--text-muted); font-style: italic; margin-bottom: 0.4rem; }
+.prop-card-rem { font-size: 0.8rem; color: var(--primary); margin-bottom: 0.4rem; }
+.prop-card-actions { display: flex; gap: 0.4rem; margin-top: 0.5rem; }
+.adm-btn-success { background: #dcfce7; color: #15803d; border-color: #86efac; }
+.adm-btn-success:hover { background: #bbf7d0; }
 
 /* Toast */
 .adm-toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%); background: #1E293B; color: white; padding: 0.55rem 1.25rem; border-radius: 10px; font-size: 0.875rem; font-weight: 600; z-index: 200; box-shadow: 0 4px 12px rgba(0,0,0,0.18); white-space: nowrap; }

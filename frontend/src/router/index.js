@@ -15,6 +15,7 @@ import PrivacyView from '../views/PrivacyView.vue'
 import TermsView from '../views/TermsView.vue'
 import AdminLoginView from '../views/AdminLoginView.vue'
 import AdminCallbackView from '../views/AdminCallbackView.vue'
+import ProposerView from '../views/ProposerView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -37,6 +38,7 @@ const router = createRouter({
     { path: '/admin',     name: 'admin',        component: AdminView, meta: { public: true } },
     { path: '/taches',       name: 'taches',       component: { template: '<div style="padding:2rem"><h2>Tâches</h2><p>À venir…</p></div>' } },
     { path: '/realisations', name: 'realisations', component: { template: '<div style="padding:2rem"><h2>Réalisations</h2><p>À venir…</p></div>' } },
+    { path: '/proposer', name: 'proposer', component: ProposerView },
     { path: '/cartes/:matiereId/:chapitreId', name: 'cartes', component: CartesMentalesView },
   ],
 })

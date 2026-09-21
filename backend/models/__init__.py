@@ -3,6 +3,7 @@ from .question import Question, StatistiqueQuestion
 from .user import User, UserPreferences
 from .score import Score
 from .realisation import Realisation, RealisationStat
+from .proposal import QuestionProposal
 
 __all__ = [
     "Matiere", "Chapitre", "CarteMentale",
@@ -10,4 +11,5 @@ __all__ = [
     "User", "UserPreferences",
     "Score",
     "Realisation", "RealisationStat",
+    "QuestionProposal",
 ]

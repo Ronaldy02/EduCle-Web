@@ -49,6 +49,9 @@
         <router-link to="/realisations" class="nav-link" :class="{ active: $route.name === 'realisations' }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">military_tech</span> Réalisations
         </router-link>
+        <router-link to="/proposer" class="nav-link" :class="{ active: $route.name === 'proposer' }" @click="sidebarOuvert = false">
+          <span class="material-symbols-outlined">add_circle</span> Proposer
+        </router-link>
       </div>
 
       <div class="sidebar-foot">

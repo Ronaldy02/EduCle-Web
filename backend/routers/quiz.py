@@ -76,8 +76,15 @@ def _dedup_pool(pool: list[dict]) -> list[dict]:
 
 def _questions_du_chapitre(db: Session, chapitre_id: int) -> list[Question]:
     if chapitre_id == -1:
-        # Toutes les matières
         return db.scalars(select(Question)).all()
+    if chapitre_id < 0:
+        # ID négatif = toutes les questions de la matière abs(chapitre_id)
+        matiere_id = abs(chapitre_id)
+        return db.scalars(
+            select(Question)
+            .join(Chapitre, Question.chapitre_id == Chapitre.id)
+            .where(Chapitre.matiere_id == matiere_id)
+        ).all()
     return db.scalars(
         select(Question).where(Question.chapitre_id == chapitre_id)
     ).all()

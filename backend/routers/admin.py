@@ -9,6 +9,7 @@ from pydantic import BaseModel
 from database import get_db
 from models import Matiere, Chapitre, Question, UserPreferences, Score, StatistiqueQuestion
 from models.realisation import Realisation
+from models.proposal import QuestionProposal
 
 router = APIRouter(prefix="/admin", tags=["Admin"])
 
@@ -412,3 +413,119 @@ def list_realisations(db: Session = Depends(get_db)):
         }
         for r in reals
     ]
+
+
+# ── Propositions de questions ──────────────────────────────────────────────────
+
+class ProposalAdminOut(BaseModel):
+    id: int
+    chapitre_id: int | None
+    matiere_id: int | None
+    nom_proposant: str
+    enonce: str
+    choix: list[str]
+    bonne_reponse: str
+    explication: str
+    niveau_complexite: str
+    statut: str
+    created_at: str
+    remarque_admin: str | None = None
+    chapitre_titre: str | None = None
+    matiere_nom: str | None = None
+
+    class Config:
+        from_attributes = True
+
+
+class ProposalPatch(BaseModel):
+    statut: str  # "approuve" | "rejete"
+    remarque_admin: str | None = None
+
+
+@router.get("/proposals", response_model=list[ProposalAdminOut])
+def list_proposals(statut: str | None = None, db: Session = Depends(get_db)):
+    stmt = select(QuestionProposal).order_by(QuestionProposal.created_at.desc())
+    if statut:
+        stmt = stmt.where(QuestionProposal.statut == statut)
+    proposals = db.scalars(stmt).all()
+    result = []
+    for p in proposals:
+        chap_titre = None
+        mat_nom = None
+        if p.chapitre_id:
+            chap = db.get(Chapitre, p.chapitre_id)
+            if chap:
+                chap_titre = chap.titre
+                mat = db.get(Matiere, chap.matiere_id)
+                if mat:
+                    mat_nom = mat.nom
+        elif p.matiere_id:
+            mat = db.get(Matiere, p.matiere_id)
+            if mat:
+                mat_nom = mat.nom
+        result.append(ProposalAdminOut(
+            id=p.id, chapitre_id=p.chapitre_id, matiere_id=p.matiere_id,
+            nom_proposant=p.nom_proposant, enonce=p.enonce, choix=p.choix,
+            bonne_reponse=p.bonne_reponse, explication=p.explication,
+            niveau_complexite=p.niveau_complexite, statut=p.statut,
+            created_at=p.created_at, remarque_admin=p.remarque_admin,
+            chapitre_titre=chap_titre, matiere_nom=mat_nom,
+        ))
+    return result
+
+
+@router.patch("/proposals/{proposal_id}", response_model=ProposalAdminOut)
+def review_proposal(proposal_id: int, body: ProposalPatch, db: Session = Depends(get_db)):
+    p = db.get(QuestionProposal, proposal_id)
+    if not p:
+        raise HTTPException(status_code=404, detail="Proposition introuvable")
+    if body.statut not in ("approuve", "rejete"):
+        raise HTTPException(status_code=422, detail="statut doit être 'approuve' ou 'rejete'")
+
+    p.statut = body.statut
+    if body.remarque_admin is not None:
+        p.remarque_admin = body.remarque_admin
+
+    # Si approuvé et qu'un chapitre est associé, on ajoute la question en production
+    if body.statut == "approuve" and p.chapitre_id:
+        chap = db.get(Chapitre, p.chapitre_id)
+        if not chap:
+            raise HTTPException(status_code=422, detail="Chapitre introuvable pour approbation")
+        q = Question(
+            chapitre_id=p.chapitre_id,
+            enonce=p.enonce,
+            choix=p.choix,
+            bonne_reponse=p.bonne_reponse,
+            explication=p.explication,
+            niveau_complexite=p.niveau_complexite,
+        )
+        db.add(q)
+
+    db.commit()
+
+    chap_titre = None
+    mat_nom = None
+    if p.chapitre_id:
+        chap = db.get(Chapitre, p.chapitre_id)
+        if chap:
+            chap_titre = chap.titre
+            mat = db.get(Matiere, chap.matiere_id)
+            if mat:
+                mat_nom = mat.nom
+    return ProposalAdminOut(
+        id=p.id, chapitre_id=p.chapitre_id, matiere_id=p.matiere_id,
+        nom_proposant=p.nom_proposant, enonce=p.enonce, choix=p.choix,
+        bonne_reponse=p.bonne_reponse, explication=p.explication,
+        niveau_complexite=p.niveau_complexite, statut=p.statut,
+        created_at=p.created_at, remarque_admin=p.remarque_admin,
+        chapitre_titre=chap_titre, matiere_nom=mat_nom,
+    )
+
+
+@router.delete("/proposals/{proposal_id}", status_code=204)
+def delete_proposal(proposal_id: int, db: Session = Depends(get_db)):
+    p = db.get(QuestionProposal, proposal_id)
+    if not p:
+        raise HTTPException(status_code=404, detail="Proposition introuvable")
+    db.delete(p)
+    db.commit()

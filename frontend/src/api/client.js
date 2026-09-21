@@ -61,3 +61,6 @@ export const getRealisations = () => api.get('/realisations/').then(r => r.data)
 
 // ─── Admin (lecture seule) ────────────────────────────────────────────────────
 export const getMatieresAvecChapitres = () => api.get('/admin/matieres').then(r => r.data)
+
+// ─── Propositions ─────────────────────────────────────────────────────────────
+export const soumettreProposition = (data) => api.post('/proposals/', data).then(r => r.data)
