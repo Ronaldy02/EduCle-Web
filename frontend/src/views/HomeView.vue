@@ -377,9 +377,8 @@ const quiz = useQuizStore()
 // ── Constantes de cycle ──────────────────────────────────────────
 const CYCLES = ['Tout', 'Fondamentale', 'Secondaire']
 const CYCLE_NIVEAUX = {
-  // 'Commun' = matières transversales (Maths, Créole, Français…) → dans les deux cycles
-  Fondamentale: ['Fondamentale', 'Fondamental', 'Commun'],
-  Secondaire:   ['NS0', 'NS1', 'NS2', 'NS3', 'NS4', 'Secondaire', 'Commun'],
+  Fondamentale: ['Fondamentale'],
+  Secondaire:   ['NS0', 'NS1', 'NS2', 'NS3', 'NS4', 'Secondaire'],
 }
 
 const cycleActif      = ref('Tout')
