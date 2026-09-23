@@ -177,7 +177,7 @@
 
             <!-- Chapitres -->
             <div class="sel-chapitres">
-              <button v-for="chap in chapitres" :key="chap.id"
+              <button v-for="chap in chapitresFiltres" :key="chap.id"
                 class="chap-row" :class="{ active: chapitreChoisi?.id === chap.id }"
                 @click="selChap(chap)">
                 <div class="chap-row-inner">
@@ -407,6 +407,12 @@ const etape         = ref(null)
 const mat           = ref(null)       // matière sélectionnée
 const chapitres     = ref([])
 const chapitreChoisi = ref(null)
+
+// Chapitres filtrés selon l'année sélectionnée (null classe = tous)
+const chapitresFiltres = computed(() => {
+  if (!sousNiveauActif.value) return chapitres.value
+  return chapitres.value.filter(c => !c.classe || c.classe === sousNiveauActif.value)
+})
 const chapStats     = ref({})         // { chapId: pct 0-100 }
 
 const modeNom      = ref('Révision')

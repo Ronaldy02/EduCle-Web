@@ -21,6 +21,7 @@ class Chapitre(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     matiere_id: Mapped[int] = mapped_column(ForeignKey("matieres.id"), nullable=False)
     titre: Mapped[str] = mapped_column(String(200), nullable=False)
+    classe: Mapped[str | None] = mapped_column(String(20), nullable=True)
 
     matiere: Mapped["Matiere"] = relationship(back_populates="chapitres")
     questions: Mapped[list["Question"]] = relationship(back_populates="chapitre")
