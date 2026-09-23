@@ -408,10 +408,10 @@ const mat           = ref(null)       // matière sélectionnée
 const chapitres     = ref([])
 const chapitreChoisi = ref(null)
 
-// Chapitres filtrés selon l'année sélectionnée (null classe = tous)
+// Chapitres filtrés selon l'année sélectionnée (null niveau_v4 = tous)
 const chapitresFiltres = computed(() => {
   if (!sousNiveauActif.value) return chapitres.value
-  return chapitres.value.filter(c => !c.classe || c.classe === sousNiveauActif.value)
+  return chapitres.value.filter(c => !c.niveau_v4 || c.niveau_v4 === sousNiveauActif.value)
 })
 const chapStats     = ref({})         // { chapId: pct 0-100 }
 

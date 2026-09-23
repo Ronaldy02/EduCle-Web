@@ -16,7 +16,7 @@ class ChapitreSchema(BaseModel):
     id: int
     matiere_id: int
     titre: str
-    classe: str | None = None
+    niveau_v4: str | None = None
 
 
 class ChapitreDetailSchema(ChapitreSchema):
