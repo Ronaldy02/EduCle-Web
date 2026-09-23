@@ -380,6 +380,10 @@ const CYCLE_NIVEAUX = {
   Fondamentale: ['Fondamentale'],
   Secondaire:   ['NS0', 'NS1', 'NS2', 'NS3', 'NS4', 'Secondaire'],
 }
+const CYCLE_ANNEES = {
+  Fondamentale: ['7e AF', '8e AF', '9e AF'],
+  Secondaire:   ['NS1', 'NS2', 'NS3', 'NS4'],
+}
 
 const cycleActif      = ref('Fondamentale')
 const sousNiveauActif = ref(null)
@@ -389,19 +393,13 @@ const chargement     = ref(true)
 const recherche      = ref('')
 const tousLesThemes  = ref([])   // [{ id, titre, matiere: {id, nom} }]
 
-// Sous-niveaux disponibles pour le cycle actif
-const sousNiveaux = computed(() => {
-  const niveauxCycle = CYCLE_NIVEAUX[cycleActif.value] || []
-  const presents = new Set(toutesLesMatieres.value.map(m => m.niveau))
-  return niveauxCycle.filter(n => presents.has(n))
-})
+// Années disponibles pour le cycle actif (hardcodées, non dérivées de la BD)
+const sousNiveaux = computed(() => CYCLE_ANNEES[cycleActif.value] || [])
 
-// Matieres filtrées selon le cycle + sous-niveau actifs
+// Matieres filtrées selon le cycle actif (le sous-niveau/année ne filtre pas les matières)
 const matieresFiltrees = computed(() => {
   const niveauxCycle = CYCLE_NIVEAUX[cycleActif.value] || []
-  const parCycle = toutesLesMatieres.value.filter(m => niveauxCycle.includes(m.niveau))
-  if (!sousNiveauActif.value) return parCycle
-  return parCycle.filter(m => m.niveau === sousNiveauActif.value)
+  return toutesLesMatieres.value.filter(m => niveauxCycle.includes(m.niveau))
 })
 
 // Étapes : null | 'chapitre' | 'mode'
