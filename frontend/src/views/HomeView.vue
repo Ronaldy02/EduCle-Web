@@ -375,13 +375,13 @@ const router = useRouter()
 const quiz = useQuizStore()
 
 // ── Constantes de cycle ──────────────────────────────────────────
-const CYCLES = ['Tout', 'Fondamentale', 'Secondaire']
+const CYCLES = ['Fondamentale', 'Secondaire']
 const CYCLE_NIVEAUX = {
   Fondamentale: ['Fondamentale'],
   Secondaire:   ['NS0', 'NS1', 'NS2', 'NS3', 'NS4', 'Secondaire'],
 }
 
-const cycleActif      = ref('Tout')
+const cycleActif      = ref('Fondamentale')
 const sousNiveauActif = ref(null)
 const toutesLesMatieres = ref([])  // toutes les matieres chargées une seule fois
 const matieres       = ref([])     // conservé pour compatibilité (recherche, etc.)
@@ -391,7 +391,6 @@ const tousLesThemes  = ref([])   // [{ id, titre, matiere: {id, nom} }]
 
 // Sous-niveaux disponibles pour le cycle actif
 const sousNiveaux = computed(() => {
-  if (cycleActif.value === 'Tout') return []
   const niveauxCycle = CYCLE_NIVEAUX[cycleActif.value] || []
   const presents = new Set(toutesLesMatieres.value.map(m => m.niveau))
   return niveauxCycle.filter(n => presents.has(n))
@@ -399,7 +398,6 @@ const sousNiveaux = computed(() => {
 
 // Matieres filtrées selon le cycle + sous-niveau actifs
 const matieresFiltrees = computed(() => {
-  if (cycleActif.value === 'Tout') return toutesLesMatieres.value
   const niveauxCycle = CYCLE_NIVEAUX[cycleActif.value] || []
   const parCycle = toutesLesMatieres.value.filter(m => niveauxCycle.includes(m.niveau))
   if (!sousNiveauActif.value) return parCycle
