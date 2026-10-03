@@ -1411,7 +1411,7 @@ class DatabaseHelper {
               'La créolisation est le processus par lequel un pidgin (langue de contact rudimentaire) se transforme en langue créole complète, devenant la langue maternelle d\'une communauté avec une grammaire stabilisée et un vocabulaire étendu.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Gramè kreyòl ayisyen : mòfoloji ak sentaks (NS1)',
@@ -1543,7 +1543,7 @@ class DatabaseHelper {
               'En créole haïtien, l\'aspect accompli s\'exprime avec "fini" ou "deja" placé devant ou après le verbe : "Mwen fini manje" (J\'ai fini de manger / J\'ai déjà mangé). C\'est un marqueur d\'aspect différent du simple passé "te".',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Literati oral ayisyen : pwovèb, kont ak devinen (NS1)',
@@ -1675,7 +1675,7 @@ class DatabaseHelper {
               'Les cérémonies vodou sont un lieu privilégié de la littérature orale haïtienne : les "chante lwà" (chants rituels), les récits des mythes des lwa (esprits), les formules et proverbes constituent un corpus oral riche qui préserve une mémoire africaine et haïtienne profonde.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Lekti ak analiz tèks kreyòl : Frankétienne ak lòt (NS2)',
@@ -1807,7 +1807,7 @@ class DatabaseHelper {
               'La narration à la première personne (\'je\' en français, \'mwen\' en créole) signifie que le narrateur est un personnage interne à l\'histoire. Ce choix crée une proximité avec le lecteur mais limite la vision aux seules perceptions de ce personnage.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Analiz diskoutif : agimantasyon ak debat an kreyòl (NS3)',
@@ -1883,7 +1883,7 @@ class DatabaseHelper {
               'Un sophisme est un raisonnement formellement incorrect mais qui paraît convaincant. Par exemple, l\'argument "ad hominem" (attaquer la personne plutôt que ses idées) ou la fausse généralisation ("tous les X font Y"). Reconnaître les sophismes est crucial dans l\'analyse des discours.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Politique lingwistik ak kreyòl nan monn kontemporèn (NS4)',
@@ -2008,7 +2008,7 @@ class DatabaseHelper {
               'La glocalisation du créole haïtien désigne sa capacité à être simultanément global (présent sur internet, dans la diaspora mondiale, adapté aux nouvelles technologies) et local (ancré dans l\'identité et la culture haïtienne). Le créole n\'est pas figé mais une langue vivante qui s\'adapte à son époque.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
     ]);
 
@@ -2829,7 +2829,7 @@ class DatabaseHelper {
               'Un morphème est la plus petite unité linguistique porteuse de sens. En français : le radical (sens de base), les préfixes (avant le radical : re-, dé-, in-), les suffixes (après : -tion, -eur, -ment) et les désinences verbales (-ons, -ez, -ait) sont des morphèmes. Morphologie = étude des morphèmes.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Lecture et analyse de textes : méthodologie (NS1)',
@@ -2947,7 +2947,7 @@ class DatabaseHelper {
               'La problématique est la question centrale qui oriente toute l\'analyse : elle interroge l\'intérêt et la particularité du texte. Elle dépasse la simple description pour questionner les intentions de l\'auteur, les effets produits sur le lecteur et les enjeux littéraires, culturels ou philosophiques de l\'extrait.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Expression écrite : disserter et rédiger (NS1)',
@@ -3065,7 +3065,7 @@ class DatabaseHelper {
               'La dissertation académique vise à une argumentation impersonnelle et universalisable. L\'usage du "je" donne l\'impression d\'une opinion subjective. On préfère des formulations impersonnelles ("On peut affirmer que...", "Il semble que...", "Nous verrons que...") qui confèrent objectivité et distance critique à la réflexion.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Littérature française : du Moyen Âge au 18e siècle (NS2)',
@@ -3183,7 +3183,7 @@ class DatabaseHelper {
               'La presse à imprimer de Gutenberg (vers 1450) a révolutionné la diffusion des textes : la Bible, les textes antiques et les œuvres humanistes ont pu être reproduits en grande quantité à faible coût. Cela a favorisé l\'Humanisme, la Réforme protestante et la diffusion des Lumières au XVIIIe siècle.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Littérature française : 19e et 20e siècles (NS2)',
@@ -3301,7 +3301,7 @@ class DatabaseHelper {
               'Le dadaïsme (1916, Zurich, Tristan Tzara) est un mouvement de révolte totale née du traumatisme de la Première Guerre mondiale. Il refuse toute logique, toute esthétique et toute morale "bourgeoise", prônant le nonsense, le hasard et la destruction des conventions. Il a préparé le terrain pour le surréalisme.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Stylistique et rhétorique avancées (NS3)',
@@ -3433,7 +3433,7 @@ class DatabaseHelper {
               'L\'anacoluthe est une rupture de construction : "Rentrant à la maison, la nuit était tombée" (le sujet grammatical change entre la participiale et la principale). Considérée comme faute en style courant, elle peut être délibérée pour mimer le désordre mental d\'un personnage, la précipitation ou l\'émotion. Céline l\'utilise fréquemment dans son style fragmenté.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Littérature francophone : Caraïbe, Afrique et Antilles (NS3)',
@@ -3558,7 +3558,7 @@ class DatabaseHelper {
               'La littérature de la diaspora (auteurs africains, antillais, haïtiens vivant en France, aux États-Unis...) explore le déracinement, l\'hybridité culturelle, la nostalgie et la reformulation identitaire. Auteurs : Edwidge Danticat (Haïti/États-Unis), Léonora Miano (Cameroun/France), Gauz (Côte d\'Ivoire/France). Elle questionne la notion même de "littérature nationale".',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Sociolinguistique : langues, société et politique linguistique (NS3)',
@@ -3683,7 +3683,7 @@ class DatabaseHelper {
               'La "langue maternelle" est ordinairement la première langue (L1) acquise par l\'enfant dans son milieu familial. Mais le terme est critiqué : pour les populations colonisées qui ont dû apprendre la langue du colonisateur, la "langue maternelle scolaire" ne correspond pas à la langue de la maison. On lui préfère "langue première" ou "L1". En Haïti, L1 = créole mais L1 scolaire officielle = français.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Théorie et critique littéraires (NS4)',
@@ -3794,7 +3794,7 @@ class DatabaseHelper {
               'La critique postcoloniale (Edward Said, Orientalisme, 1978 ; Gayatri Spivak, "Les subalternes peuvent-elles parler ?" ; Homi Bhabha, Les Lieux de la culture) déconstruit les représentations que l\'Occident a construites des peuples colonisés. Said montre comment la littérature et le discours savant européen ont construit un "Orient" imaginaire servant à justifier la domination coloniale.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Dissertation et commentaire composé avancés (NS4)',
@@ -3905,7 +3905,7 @@ class DatabaseHelper {
               'Un développement avancé évite les "premières idées" (les plus prévisibles) et cherche des angles d\'attaque moins attendus : questionner les présupposés du sujet, mobiliser une théorie critique, renverser la perspective habituelle. La valeur d\'une dissertation avancée tient à la profondeur de la pensée et à l\'originalité des analyses, pas à l\'accumulation d\'exemples connus.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
     ]);
 
@@ -4764,7 +4764,7 @@ class DatabaseHelper {
               'Le devoir de mémoire haïtien inclut l\'esclavage, la révolution de 1804 et les luttes pour la dignité.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Institutions haïtiennes et gouvernance (NS2)',
@@ -4868,7 +4868,7 @@ class DatabaseHelper {
               'Haïti peine à décentraliser effectivement ; les collectivités locales manquent d\'autonomie et de moyens.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
     ]);
 
@@ -6468,7 +6468,7 @@ EPS:
               'En climat tropical, la thermorégulation est cruciale ; la chaleur humide réduit l\'évaporation et le risque.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Sports collectifs : règles, tactiques et arbitrage (NS2)',
@@ -6565,7 +6565,7 @@ EPS:
               'Le gardien a un statut particulier : il peut utiliser ses mains dans sa surface, contrairement aux autres.',
               'Facile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Santé, hygiène et prévention des blessures sportives (NS3)',
@@ -6662,7 +6662,7 @@ EPS:
               'L\'ergonomie sportive inclut le choix des équipements, la technique gestuelle et l\'aménagement des espaces.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
     ]);
 
@@ -7517,7 +7517,7 @@ EPS:
               'La méthode par substitution isole une variable dans une équation, puis remplace dans l\'autre.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Fonctions : analyse et représentation graphique (NS1)',
@@ -7614,7 +7614,7 @@ EPS:
               'Les zéros de f sont les antécédents de 0, c\'est-à-dire les abscisses des intersections avec l\'axe des x.',
               'Facile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Géométrie analytique et trigonométrie (NS2)',
@@ -7711,7 +7711,7 @@ EPS:
               'Milieu M = ((1+5)/2, (3+7)/2) = (3,5).',
               'Facile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Calcul différentiel et intégral (NS2)',
@@ -7808,7 +7808,7 @@ EPS:
               'Cette limite fondamentale (règle de L\'Hôpital ou développement limité) vaut 1.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Analyse avancée : limites, séries et équations différentielles (NS3)',
@@ -7919,7 +7919,7 @@ EPS:
               '[x²/2]₋₁¹ = 1/2 - 1/2 = 0. Résultat cohérent car f(x)=x est impaire et l\'intervalle est symétrique.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Algèbre linéaire et matrices (NS4)',
@@ -8030,7 +8030,7 @@ EPS:
               'Gram-Schmidt transforme iterativement une base en une base orthonormale par projections et normalisations.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Probabilités et statistiques avancées (NS4)',
@@ -8127,7 +8127,7 @@ EPS:
               'X ~ B(n,p) : X suit une loi binomiale avec P(X=k) = C(n,k) × pᵏ × (1-p)ⁿ⁻ᵏ.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
     ]);
 
@@ -10449,7 +10449,7 @@ EPS:
               'g = 9,81 m/s² aux pôles, 9,78 m/s² à l\'équateur (force centrifuge) ; on utilise g = 10 m/s² en physique scolaire haïtienne.',
               'Facile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Cinématique : mouvement et description (NS1)',
@@ -10518,7 +10518,7 @@ EPS:
               'Ex : tour complet d\'un circuit de 100 m → déplacement = 0, distance = 100 m.',
               'Facile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Dynamique : forces et lois de Newton (NS2)',
@@ -10594,7 +10594,7 @@ EPS:
               'Conservation de p (impulsion) : choc élastique (Ec conservée), choc inélastique parfait (Ec non conservée, objets solidaires).',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Électricité : charges, courant et circuits (NS2)',
@@ -10663,7 +10663,7 @@ EPS:
               'La mise à la terre, les disjoncteurs et les disjoncteurs différentiels forment le système de protection des installations électriques.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Optique : lumière et propriétés (NS3)',
@@ -10732,7 +10732,7 @@ EPS:
               'Le redshift cosmologique (Edwin Hubble, 1929) a révélé l\'expansion de l\'univers et permis d\'estimer l\'âge du Big Bang (~13,8 Ga).',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Thermodynamique et transferts thermiques (NS3)',
@@ -10787,7 +10787,7 @@ EPS:
               'Le cycle de Carnot (1824) définit le rendement maximal thermodynamique ; les moteurs réels l\'atteignent rarement.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Physique nucléaire et moderne (NS4)',
@@ -10856,7 +10856,7 @@ EPS:
               'Le développement d\'Haïti en énergie solaire (fort ensoleillement) repose sur des principes de physique quantique et d\'électronique.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
     ]);
 
@@ -11669,7 +11669,7 @@ EPS:
               'Les métaux alcalins (Li, Na, K) ont de faibles énergies d\'ionisation → facilement oxydés ; les gaz nobles ont les plus élevées.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Liaisons chimiques et propriétés des composés (NS1)',
@@ -11738,7 +11738,7 @@ EPS:
               'Les forces de London (dispersion) existent entre toutes les molécules ; elles augmentent avec la masse molaire et la surface de contact.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Réactions chimiques et stœchiométrie (NS2)',
@@ -11814,7 +11814,7 @@ EPS:
               'La loi d\'Arrhenius (k = A·e^(-Ea/RT)) montre l\'effet de la température ; les enzymes sont des biocatalyseurs abaissant l\'énergie d\'activation.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Chimie organique : structure et réactivité (NS3)',
@@ -11890,7 +11890,7 @@ EPS:
               'Les 12 principes de la chimie verte (Anastas & Warner, 1998) guident l\'industrie chimique vers la durabilité et la prévention de la pollution.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Électrochimie et applications (NS4)',
@@ -11966,7 +11966,7 @@ EPS:
               'La RMN (IRM médicale), la spectrométrie de masse (protéomique), l\'IR (identification fonctionnels) sont les outils analytiques de référence.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
     ]);
 
@@ -12821,7 +12821,7 @@ EPS:
               'Le centrosome (avec ses centrioles) nucléarise les microtubules du fuseau qui séparent les chromosomes.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'La division cellulaire : mitose et méiose (NS1)',
@@ -12918,7 +12918,7 @@ EPS:
               'Sans la méiose (2n→n), la fécondation (n+n) produirait un organisme avec le double de chromosomes à chaque génération.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Génétique : hérédité et lois de Mendel (NS1)',
@@ -13008,7 +13008,7 @@ EPS:
               'L\'épistasie (entre gènes) diffère de la dominance (entre allèles d\'un même gène) : ex. gène A épisatique sur gène B.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Structure et fonction des molécules biologiques (NS2)',
@@ -13098,7 +13098,7 @@ EPS:
               'Les enzymes humaines ont généralement un optimum de ~37°C et pH 7,4 ; les enzymes digestives varient (pepsine pH 2).',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Métabolisme : photosynthèse et respiration cellulaire (NS2)',
@@ -13181,7 +13181,7 @@ EPS:
               'En-dessous du point de compensation, la plante consomme plus de matière organique qu\'elle n\'en produit.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'ADN, réplication et expression génétique (NS3)',
@@ -13278,7 +13278,7 @@ EPS:
               'Sans télomérase, les cellules somatiques vieillissent (sénescence) ; la télomérase active est un marqueur de certains cancers.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Évolution et classification du vivant (NS3)',
@@ -13368,7 +13368,7 @@ EPS:
               'La queue du paon (handicap de survie mais avantage reproducteur) illustre la sélection sexuelle inter-sexuelle.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Écologie et dynamique des écosystèmes (NS4)',
@@ -13458,7 +13458,7 @@ EPS:
               'La biologie de la conservation utilise : corridors écologiques, programmes d\'élevage ex situ, banques de gènes, aires protégées.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Biotechnologies et applications de la biologie (NS4)',
@@ -13534,7 +13534,7 @@ EPS:
               'Haïti peut bénéficier des biotechnologies : sélection variétale, biofortification, diagnostics moléculaires adaptés au climat tropical.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
     ]);
 
@@ -14333,7 +14333,7 @@ EPS:
               'La datation Pb-Pb de météorites (Clair Patterson, 1956) a établi l\'âge du système solaire à ~4,56 Ga.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Tectonique des plaques (NS1)',
@@ -14416,7 +14416,7 @@ EPS:
               'La Pangée (Wegener) s\'est fragmentée en Laurasie (nord) et Gondwana (sud), puis en continents actuels.',
               'Facile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Les roches et le cycle des roches (NS2)',
@@ -14492,7 +14492,7 @@ EPS:
               'La géologie haïtienne (caldeira, roches calcaires karstiques, minéraux précieux dans le Nord) est variée et économiquement importante.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Séismes et volcans : risques naturels (NS3)',
@@ -14582,7 +14582,7 @@ EPS:
               'Le code parasismique japonais permet de survivre à des séismes de magnitude 8+ ; son application en Haïti est un enjeu majeur.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Ressources naturelles et géologie économique (NS4)',
@@ -14672,7 +14672,7 @@ EPS:
               'Les géologues ont identifié des périodes de CO2 élevé (PETM, il y a 56 Ma) montrant des analogues du réchauffement actuel.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
     ]);
     await ajouterMatiere('Secondaire', 'Géographie', [
@@ -14806,7 +14806,7 @@ EPS:
               'Le Lac de Péligre est un lac artificiel créé par le barrage de Péligre (construit en 1956) sur le fleuve Artibonite, dans le département du Centre. Ce barrage fournit une partie de l\'électricité d\'Haïti et irrigue la plaine de l\'Artibonite pour la production de riz.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Géographie humaine et économique d\'Haïti (NS1)',
@@ -14938,7 +14938,7 @@ EPS:
               'La mangue Francisque (Mangifera indica var. Francisque) est une variété spécifique à Haïti et l\'une des principales cultures d\'exportation depuis les années 1990. Exportée principalement vers les États-Unis et le Canada, elle représente une source de revenus importante pour les producteurs haïtiens.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Géographie de la Caraïbe et de l\'Amérique latine (NS2)',
@@ -15070,7 +15070,7 @@ EPS:
               'L\'espagnol est la langue officielle de tous les pays d\'Amérique centrale continentale, héritage de la colonisation espagnole (XVIe siècle). Le Belize est l\'exception : pays d\'Amérique centrale dont l\'anglais est la langue officielle (ancienne colonie britannique, membre de la CARICOM).',
               'Facile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Géographie mondiale : mondialisation et enjeux géopolitiques (NS3)',
@@ -15185,7 +15185,7 @@ EPS:
               'Qu\'est-ce que les "nouvelles routes de la soie" (Belt and Road Initiative) de la Chine ?',
               ['Une politique de préservation des routes commerciales médiévales', 'Un vaste projet d\'infrastructure (routes, ports, chemins de fer, pipelines) financé par la Chine pour renforcer son influence économique et géopolitique mondiale', 'Un accord de libre-échange entre la Chine et l\'Asie centrale', 'Un projet culturel de promotion de la civilisation chinoise'],
               'Un vaste projet d\'infrastructure (routes, ports, chemins de fer, pipelines) financé par la Chine pour renforcer son influence économique et géopolitique mondiale',
-              'Lancée en 2013 par Xi Jinping, la BRI (Belt and Road Initiative) est un projet d\'infrastructures gigantesque (>100 pays, >$1000 milliards). Elle vise à connecter la Chine à l\'Asie, l\'Afrique, l\'Europe et l\'Amérique latine par des routes, ports et chemins de fer financés par des prêts chinois, renforçant l\'influence géopolitique de Pékin.',
+              'Lancée en 2013 par Xi Jinping, la BRI (Belt and Road Initiative) est un projet d\'infrastructures gigantesque (>100 pays, >\$1000 milliards). Elle vise à connecter la Chine à l\'Asie, l\'Afrique, l\'Europe et l\'Amérique latine par des routes, ports et chemins de fer financés par des prêts chinois, renforçant l\'influence géopolitique de Pékin.',
               'Difficile',
             ),
           _QSeed(
@@ -15202,7 +15202,7 @@ EPS:
               'Les flux migratoires mondiaux reflètent les inégalités géopolitiques : ils suivent un axe Sud-Nord (Afrique-Europe, Amérique latine-Amérique du Nord) et des zones de conflits vers des zones stables (Syrie, Myanmar, Afghanistan). Haïti est un émetteur majeur de migrants vers les États-Unis, le Canada et la République Dominicaine, en raison des crises politiques et économiques.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Géopolitique d\'Haïti : histoire et défis actuels (NS4)',
@@ -15327,7 +15327,7 @@ EPS:
               'La construction d\'un mur à la frontière haïtiano-dominicaine annoncée par le gouvernement Abinader en 2022-2023, les déportations massives d\'Haïtiens de RD, et les accusations de violations des droits humains ont exacerbé les tensions bilatérales, révélant la fragilité des relations entre les deux nations partageant l\'île d\'Hispaniola.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
     ]);
 
@@ -16891,7 +16891,7 @@ EPS:
               'Constantinople (Istanbul) contrôlait le Bosphore, clé du commerce entre Méditerranée et mer Noire.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Révolutions et transformations du monde moderne (XVe-XVIIIe siècle) (NS2)',
@@ -16964,7 +16964,7 @@ EPS:
               'Qu\'est-ce que la dette de l\'indépendance haïtienne de 1825 et ses conséquences à long terme ?',
               ['Un don français', 'Le paiement imposé par la France à Haïti (150 millions de francs-or) pour reconnaître l\'indépendance, remboursé jusqu\'en 1947, qui a appauvri le pays pendant plus d\'un siècle', 'Une aide internationale', 'Un emprunt haïtien volontaire'],
               'Le paiement imposé par la France à Haïti (150 millions de francs-or) pour reconnaître l\'indépendance, remboursé jusqu\'en 1947, qui a appauvri le pays pendant plus d\'un siècle',
-              'Cette dette (environ 21 milliards $ en valeur actuelle) a saigné l\'économie haïtienne et structurellement entravé son développement.',
+              'Cette dette (environ 21 milliards \$ en valeur actuelle) a saigné l\'économie haïtienne et structurellement entravé son développement.',
               'Moyen',
             ),
           _QSeed(
@@ -16974,7 +16974,7 @@ EPS:
               'Le Code Napoléon (1804) a influencé le droit de nombreux pays dont Haïti ; Waterloo (1815) a mis fin à l\'Empire.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Les deux guerres mondiales et la recomposition du monde (NS3)',
@@ -17064,7 +17064,7 @@ EPS:
               'Bandung (1955) a fondé le Tiers-Monde politique ; les 5 principes de coexistence pacifique y ont été proclamés.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Mondialisation et enjeux géopolitiques contemporains (NS4)',
@@ -17114,8 +17114,8 @@ EPS:
             ),
           _QSeed(
               'Qu\'est-ce que la question de la migration internationale et ses enjeux pour Haïti ?',
-              ['Un phénomène marginal', 'La diaspora haïtienne (~2 millions de personnes aux USA, Canada, France, RD, Bahamas) représente un apport économique vital (transferts ~>3 milliards $/an) mais aussi un drain des cerveaux', 'La migration ne concerne pas Haïti', 'Un phénomène uniquement illégal'],
-              'La diaspora haïtienne (~2 millions de personnes aux USA, Canada, France, RD, Bahamas) représente un apport économique vital (transferts ~>3 milliards $/an) mais aussi un drain des cerveaux',
+              ['Un phénomène marginal', 'La diaspora haïtienne (~2 millions de personnes aux USA, Canada, France, RD, Bahamas) représente un apport économique vital (transferts ~>3 milliards \$/an) mais aussi un drain des cerveaux', 'La migration ne concerne pas Haïti', 'Un phénomène uniquement illégal'],
+              'La diaspora haïtienne (~2 millions de personnes aux USA, Canada, France, RD, Bahamas) représente un apport économique vital (transferts ~>3 milliards \$/an) mais aussi un drain des cerveaux',
               'Les transferts de la diaspora représentent ~20-30% du PIB haïtien ; ils surpassent l\'aide internationale et les investissements directs étrangers.',
               'Moyen',
             ),
@@ -17128,8 +17128,8 @@ EPS:
             ),
           _QSeed(
               'Qu\'est-ce que la communauté internationale et l\'aide au développement : le cas d\'Haïti ?',
-              ['L\'aide résout tous les problèmes', 'L\'aide internationale à Haïti (~500M$/an avant 2010) a souvent renforcé la dépendance, contourné l\'État haïtien et profité aux ONG étrangères plus qu\'aux institutions locales, un phénomène critiqué comme «business humanitaire»', 'L\'aide n\'a aucun effet', 'Haïti ne reçoit pas d\'aide internationale'],
-              'L\'aide internationale à Haïti (~500M$/an avant 2010) a souvent renforcé la dépendance, contourné l\'État haïtien et profité aux ONG étrangères plus qu\'aux institutions locales, un phénomène critiqué comme «business humanitaire»',
+              ['L\'aide résout tous les problèmes', 'L\'aide internationale à Haïti (~500M\$/an avant 2010) a souvent renforcé la dépendance, contourné l\'État haïtien et profité aux ONG étrangères plus qu\'aux institutions locales, un phénomène critiqué comme «business humanitaire»', 'L\'aide n\'a aucun effet', 'Haïti ne reçoit pas d\'aide internationale'],
+              'L\'aide internationale à Haïti (~500M\$/an avant 2010) a souvent renforcé la dépendance, contourné l\'État haïtien et profité aux ONG étrangères plus qu\'aux institutions locales, un phénomène critiqué comme «business humanitaire»',
               'Le livre «Dead Aid» de Dambisa Moyo et les critiques post-séisme 2010 ont révélé les limites structurelles de l\'aide en Haïti.',
               'Difficile',
             ),
@@ -17154,7 +17154,7 @@ EPS:
               'La CPI (1998), les tribunaux ad hoc (Rwanda, ex-Yougoslavie) représentent des avancées ; l\'universalité des droits reste contestée.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
     ]);
 
@@ -17981,7 +17981,7 @@ EPS:
               'Marx reprend la distinction classique : la valeur d\'échange (prix) est fondée sur le travail abstrait moyen.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'L\'offre et la demande : mécanismes de marché (NS1)',
@@ -18078,7 +18078,7 @@ EPS:
               'La subvention réduit le coût de production, déplaçant la courbe d\'offre vers la droite et baissant le prix.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'La monnaie et le système financier (NS1)',
@@ -18168,7 +18168,7 @@ EPS:
               'La crise de 2008 illustre le risque systémique : la faillite de Lehman Brothers contamine l\'ensemble du système.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'La croissance économique et ses déterminants (NS2)',
@@ -18258,7 +18258,7 @@ EPS:
               'Le commerce intra-branche (Krugman) s\'explique par les économies d\'échelle et la différentiation des produits.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Commerce international et mondialisation (NS3)',
@@ -18355,7 +18355,7 @@ EPS:
               'Ex : ALENA/USMCA. Différent de l\'union douanière qui fixe un tarif extérieur commun.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Macroéconomie : chômage, inflation et politiques économiques (NS3)',
@@ -18452,7 +18452,7 @@ EPS:
               'Le taper tantrum (2013) illustre la dépendance des marchés émergents à la liquidité mondiale américaine.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Économie du développement et Haïti (NS4)',
@@ -18460,9 +18460,9 @@ EPS:
         questions: [
           _QSeed(
               'Quels sont les principaux indicateurs de la pauvreté selon la Banque Mondiale ?',
-              ['PIB et exportations', 'Pauvreté monétaire (seuil < 2,15$/jour), IDH, taux de malnutrition, accès aux services', 'Taux de change et inflation', 'Dette extérieure et déficit'],
-              'Pauvreté monétaire (seuil < 2,15$/jour), IDH, taux de malnutrition, accès aux services',
-              'La Banque Mondiale utilise le seuil de 2,15 $ PPA/jour et des indicateurs multidimensionnels.',
+              ['PIB et exportations', 'Pauvreté monétaire (seuil < 2,15\$/jour), IDH, taux de malnutrition, accès aux services', 'Taux de change et inflation', 'Dette extérieure et déficit'],
+              'Pauvreté monétaire (seuil < 2,15\$/jour), IDH, taux de malnutrition, accès aux services',
+              'La Banque Mondiale utilise le seuil de 2,15 \$ PPA/jour et des indicateurs multidimensionnels.',
               'Moyen',
             ),
           _QSeed(
@@ -18549,7 +18549,7 @@ EPS:
               'Acemoglu et Robinson dans Why Nations Fail : institutions inclusives vs extractives déterminent la prospérité.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
     ]);
 
@@ -19384,7 +19384,7 @@ EPS:
               'Pour Platon, les Idées existent indépendamment du monde sensible et sont plus réelles que lui.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Le sujet : conscience, identité et liberté (NS1)',
@@ -19495,7 +19495,7 @@ EPS:
               'Kant dans la Fondation de la métaphysique des mœurs : les personnes ont une dignité qui ne peut être échangée.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'La connaissance et la vérité (NS1)',
@@ -19606,7 +19606,7 @@ EPS:
               'Aristote dans la Métaphysique : la vérité consiste à affirmer ce qui est et nier ce qui n\'est pas.',
               'Facile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'La morale et l\'éthique : fondements et enjeux (NS2)',
@@ -19717,7 +19717,7 @@ EPS:
               'Rawls dans Théorie de la Justice (1971) développe la justice fondée sur le voile d\'ignorance et les principes d\'égalité.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'La politique : État, pouvoir et démocratie (NS2)',
@@ -19828,7 +19828,7 @@ EPS:
               'Platon confie le gouvernement aux philosophes, seuls capables de connaître le Bien et de gouverner selon la raison.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Philosophie de l\'art et du langage (NS3)',
@@ -19939,7 +19939,7 @@ EPS:
               'Dans L\'Origine de l\'œuvre d\'art, Heidegger : l\'art est Ereignis, dévoilement de l\'être dans le conflit terre/monde.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Philosophie de la religion et philosophie contemporaine (NS3)',
@@ -20050,7 +20050,7 @@ EPS:
               'L\'intersubjectivité (Husserl, Merleau-Ponty) montre que le sujet se constitue dans et par la relation à l\'autre.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Philosophie des sciences et épistémologie avancée (NS4)',
@@ -20161,7 +20161,7 @@ EPS:
               'Quine dans Mot et Objet : la "traduction radicale" montre l\'indétermination de la référence linguistique.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Philosophie de l\'histoire et philosophies critiques (NS4)',
@@ -20272,7 +20272,7 @@ EPS:
               'Bauman : la modernité "liquide" dissout les formes solides (emploi, identité, liens) dans l\'instabilité permanente.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
     ]);
 
@@ -21120,7 +21120,7 @@ EPS:
               'L\'architecture Von Neumann (1945) est le modèle de base de la plupart des ordinateurs : une Unité Centrale de Traitement (CPU), une mémoire unique stockant données et programmes, une unité arithmétique et logique (UAL), et des unités d\'entrée/sortie. La clé est que données et instructions partagent la même mémoire, permettant aux programmes de se modifier eux-mêmes.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Algorithmique et logique de programmation (NS1)',
@@ -21224,7 +21224,7 @@ EPS:
               'Le pseudo-code permet de décrire la logique d\'un algorithme sans se soucier de la syntaxe d\'un langage précis : DEBUT, SI, ALORS, SINON, TANTQUE, POUR, FIN. Il facilite la communication entre développeurs et la conception des algorithmes avant l\'implémentation. Les diagrammes de flux (flowcharts) ont le même objectif sous forme visuelle.',
               'Facile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Réseaux informatiques et Internet (NS1)',
@@ -21328,7 +21328,7 @@ EPS:
               'Une attaque DDoS utilise un botnet (réseau de machines compromises) pour inonder un serveur cible de requêtes, saturant sa bande passante ou ses ressources de traitement. Le serveur ne peut plus répondre aux requêtes légitimes. Contre-mesures : filtrage du trafic, CDN, équilibreurs de charge. Les sites gouvernementaux et bancaires sont des cibles fréquentes.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Programmation orientée objet et structures de données (NS2)',
@@ -21432,7 +21432,7 @@ EPS:
               'Le garbage collector (GC) automatise la gestion de la mémoire en Java, Python, C#. Il identifie les objets non référencés et libère leur mémoire. Algorithmes : comptage de références (Python), marquage et balayage (Java G1GC). Avantage : évite les fuites mémoire et les dangling pointers. Inconvénient : pauses imprévisibles (GC pause). C et C++ exigent la gestion manuelle (malloc/free).',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Développement web et applications mobiles (NS2)',
@@ -21536,7 +21536,7 @@ EPS:
               'Git est le système de contrôle de versions dominant. Commandes clés : git commit (sauvegarder les changements), git push/pull (synchroniser), git branch (créer une branche), git merge (fusionner), git clone (copier un repo). GitHub/GitLab hébergent les dépôts. Le workflow GitFlow (branches main, develop, feature) structure la collaboration en équipe.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Algorithmique avancée : complexité et paradigmes (NS3)',
@@ -21647,7 +21647,7 @@ EPS:
               'DFS utilise une pile d\'appels dont la profondeur peut atteindre n sommets dans le pire cas.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Cybersécurité et cryptographie (NS3)',
@@ -21758,7 +21758,7 @@ EPS:
               'L\'intégrité assure que les données reçues sont identiques à celles envoyées, grâce aux hachages.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Systèmes d\'information et bases de données avancées (NS3)',
@@ -21869,7 +21869,7 @@ EPS:
               'Dans les data warehouses, la dénormalisation réduit les jointures coûteuses au prix de redondance.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Intelligence artificielle, machine learning et éthique du numérique (NS4)',
@@ -21980,7 +21980,7 @@ EPS:
               'Le F1-Score est la moyenne harmonique de la précision et du rappel, équilibrant les deux pour les classes déséquilibrées.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Nouvelles technologies : IoT, cloud et transformation numérique (NS4)',
@@ -22091,7 +22091,7 @@ EPS:
               'Le serverless (FaaS) comme AWS Lambda exécute des fonctions à la demande sans gérer de serveurs.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
     ]);
 
@@ -23623,7 +23623,7 @@ EPS:
               'Kristeva : tout texte est une "mosaïque de citations", transformant et absorbant d\'autres textes.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Littérature antique et médiévale (NS2)',
@@ -23727,7 +23727,7 @@ EPS:
               'Les Géorgiques (29 av. J.-C.) sont un poème didactique sur l\'agriculture célébrant la vie rurale romaine.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Littérature de la Renaissance au XVIIIe siècle (NS2)',
@@ -23831,7 +23831,7 @@ EPS:
               'Le Sturm und Drang (Goethe, Schiller) exalte la passion, la nature et le génie contre les normes classiques.',
               'Difficile',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Littérature des XIXe et XXe siècles (NS3)',
@@ -23935,7 +23935,7 @@ EPS:
               'Tolstoï (1828-1910) est l\'un des plus grands romanciers réalistes, peignant la société russe dans son ensemble.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
     ]);
     await ajouterMatiere('Secondaire', 'Littérature Haïtienne', [
@@ -24048,7 +24048,7 @@ EPS:
               'La poésie haïtienne du XIXe s. est profondément marquée par la conscience de la première République noire libre.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'La négritude et la littérature haïtienne moderne (NS2)',
@@ -24152,7 +24152,7 @@ EPS:
               'Premier roman de Laferrière (1985), provocateur et humoristique, il déconstruit les stéréotypes raciaux.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
       _ChapitreSeed(
         titre: 'Littérature haïtienne contemporaine et diaspora (NS3)',
@@ -24249,7 +24249,7 @@ EPS:
               'Kettly Mars (Saisons sauvages, Je suis vivant) donne une voix aux femmes sous la dictature duvaliériste.',
               'Moyen',
             ),
-        ]),
+        ],
       ),
     ]);
 
