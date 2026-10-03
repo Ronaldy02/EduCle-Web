@@ -1,0 +1,72 @@
+name: Appliquer suppléments de questions
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Mode simulation (affiche les fichiers sans les appliquer)"
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  apply:
+    name: Appliquer les 26 fichiers suppléments
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer psql
+        run: sudo apt-get install -y postgresql-client
+
+      - name: Lister les fichiers à appliquer
+        run: |
+          echo "## Fichiers suppléments détectés :" >> $GITHUB_STEP_SUMMARY
+          ls scripts/supplements/v2_supp_*.sql | while read f; do
+            count=$(grep -c "SELECT id INTO chap_id FROM chapitres" "$f" || true)
+            echo "- \`$(basename $f)\` — $count chapitres" >> $GITHUB_STEP_SUMMARY
+          done
+
+      - name: Appliquer les suppléments sur Supabase
+        if: inputs.dry_run != true
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          ERRORS=0
+          for f in scripts/supplements/v2_supp_*.sql; do
+            echo "=== Applying $(basename $f) ==="
+            if psql "$DATABASE_URL" -f "$f" --set ON_ERROR_STOP=1; then
+              echo "✓ $(basename $f) OK"
+            else
+              echo "✗ ERREUR sur $(basename $f)"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+          if [ $ERRORS -gt 0 ]; then
+            echo "::error::$ERRORS fichier(s) ont échoué."
+            exit 1
+          fi
+
+      - name: Compter les questions insérées
+        if: inputs.dry_run != true
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          echo "## Résultat après injection" >> $GITHUB_STEP_SUMMARY
+          psql "$DATABASE_URL" -c "
+            SELECT m.nom AS matiere, COUNT(*) AS total_questions
+            FROM questions q
+            JOIN chapitres c ON c.id = q.chapitre_id
+            JOIN matieres m ON m.id = c.matiere_id
+            WHERE c.niveau_v4 IN ('NS1','NS2','NS3','NS4')
+            GROUP BY m.nom
+            ORDER BY m.nom;
+          " >> $GITHUB_STEP_SUMMARY
+
+      - name: Résumé dry-run
+        if: inputs.dry_run == true
+        run: |
+          echo "## Dry-run — aucun fichier appliqué" >> $GITHUB_STEP_SUMMARY
+          echo "Relancez sans dry_run pour appliquer réellement." >> $GITHUB_STEP_SUMMARY
