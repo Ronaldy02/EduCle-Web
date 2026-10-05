@@ -21,6 +21,11 @@ jobs:
       - name: Installer psql
         run: sudo apt-get install -y postgresql-client
 
+      - name: Désactiver IPv6 (GitHub Actions n'a pas de connectivité IPv6)
+        run: |
+          sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+          sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+
       - name: Lister les fichiers à appliquer
         run: |
           echo "## Fichiers suppléments détectés :" >> $GITHUB_STEP_SUMMARY
@@ -29,33 +34,10 @@ jobs:
             echo "- \`$(basename $f)\` — $count chapitres" >> $GITHUB_STEP_SUMMARY
           done
 
-      - name: Forcer IPv4 pour psql
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        run: |
-          # GitHub Actions n'a pas de connectivité IPv6 — résoudre le host en IPv4
-          export PGHOST=$(python3 -c "
-          import os, re
-          url = os.environ.get('DATABASE_URL', '')
-          m = re.search(r'@([^:/@]+)', url)
-          print(m.group(1) if m else '')
-          ")
-          export PGHOSTADDR=$(python3 -c "
-          import socket, os
-          h = os.environ.get('PGHOST', '')
-          if h:
-              results = socket.getaddrinfo(h, None, socket.AF_INET)
-              print(results[0][4][0])
-          " 2>/dev/null || true)
-          echo "PGHOST=$PGHOST" >> $GITHUB_ENV
-          echo "PGHOSTADDR=$PGHOSTADDR" >> $GITHUB_ENV
-
       - name: Appliquer les suppléments sur Supabase
         if: ${{ inputs.dry_run != true }}
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          PGHOST: ${{ env.PGHOST }}
-          PGHOSTADDR: ${{ env.PGHOSTADDR }}
         run: |
           ERRORS=0
           for f in scripts/supplements/v2_supp_*.sql; do
@@ -76,8 +58,6 @@ jobs:
         if: ${{ inputs.dry_run != true }}
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          PGHOST: ${{ env.PGHOST }}
-          PGHOSTADDR: ${{ env.PGHOSTADDR }}
         run: |
           echo "## Résultat après injection" >> $GITHUB_STEP_SUMMARY
           psql "$DATABASE_URL" -c "
