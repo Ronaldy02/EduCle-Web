@@ -21,11 +21,6 @@ jobs:
       - name: Installer psql
         run: sudo apt-get install -y postgresql-client
 
-      - name: Désactiver IPv6 (GitHub Actions n'a pas de connectivité IPv6)
-        run: |
-          sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
-          sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
-
       - name: Lister les fichiers à appliquer
         run: |
           echo "## Fichiers suppléments détectés :" >> $GITHUB_STEP_SUMMARY
@@ -39,6 +34,15 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
+          # Forcer IPv4 : extraire le host, résoudre en IPv4, exporter PGHOSTADDR
+          SUPABASE_HOST=$(echo "$DATABASE_URL" | sed -E 's|.*@([^:/@]+).*|\1|')
+          IPV4=$(getent ahostsv4 "$SUPABASE_HOST" 2>/dev/null | awk 'NR==1{print $1}' || true)
+          if [ -n "$IPV4" ]; then
+            export PGHOST="$SUPABASE_HOST"
+            export PGHOSTADDR="$IPV4"
+            echo "IPv4 forcé (non-sensible): $IPV4"
+          fi
+
           ERRORS=0
           for f in scripts/supplements/v2_supp_*.sql; do
             echo "=== Applying $(basename $f) ==="
@@ -60,6 +64,12 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
           echo "## Résultat après injection" >> $GITHUB_STEP_SUMMARY
+          SUPABASE_HOST=$(echo "$DATABASE_URL" | sed -E 's|.*@([^:/@]+).*|\1|')
+          IPV4=$(getent ahostsv4 "$SUPABASE_HOST" 2>/dev/null | awk 'NR==1{print $1}' || true)
+          if [ -n "$IPV4" ]; then
+            export PGHOST="$SUPABASE_HOST"
+            export PGHOSTADDR="$IPV4"
+          fi
           psql "$DATABASE_URL" -c "
             SELECT m.nom AS matiere, COUNT(*) AS total_questions
             FROM questions q
