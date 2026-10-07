@@ -127,10 +127,17 @@ const List<Map<String, dynamic>> kDefisData = [
 
 // IDs par type pour l'algorithme de rotation
 const List<String> kDefisQuotidiensIds = [
-  'D01','D02','D03','D04','D05','D06','D07','D08','D09','D10',
-  'D11','D12','D13','D14','D15','D16','D17','D18','D19','D20',
-  'D21','D22','D23','D24','D25','D26','D27','D28','D29','D30',
-  'D31','D32','D33','D34','D35','D36','D37','D38','D39','D40',
+  // Interleaved palier 1/2/3 — chaque slot mélange les difficultés
+  'D01','D15','D29','D02', // slot 0
+  'D16','D30','D03','D17', // slot 1
+  'D31','D04','D18','D32', // slot 2
+  'D05','D19','D33','D06', // slot 3
+  'D20','D34','D07','D21', // slot 4
+  'D35','D08','D22','D36', // slot 5
+  'D09','D23','D37','D10', // slot 6
+  'D24','D38','D11','D25', // slot 7
+  'D39','D12','D26','D40', // slot 8
+  'D13','D27','D14','D28', // slot 9
 ];
 
 const List<String> kDefisHebdoIds = [
