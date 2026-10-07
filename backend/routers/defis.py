@@ -16,10 +16,17 @@ router = APIRouter(prefix="/defis", tags=["Défis"])
 _EPOCH = date(2026, 1, 1)
 
 _IDS_QUOTIDIENS = [
-    "D01","D02","D03","D04","D05","D06","D07","D08","D09","D10",
-    "D11","D12","D13","D14","D15","D16","D17","D18","D19","D20",
-    "D21","D22","D23","D24","D25","D26","D27","D28","D29","D30",
-    "D31","D32","D33","D34","D35","D36","D37","D38","D39","D40",
+    # Interleaved palier 1/2/3 — chaque slot de 4 mélange les difficultés
+    "D01","D15","D29","D02",  # slot 0 : Facile, Moyen, Difficile, Facile
+    "D16","D30","D03","D17",  # slot 1 : Moyen, Difficile, Facile, Moyen
+    "D31","D04","D18","D32",  # slot 2 : Difficile, Facile, Moyen, Difficile
+    "D05","D19","D33","D06",  # slot 3 : Facile, Moyen, Difficile, Facile
+    "D20","D34","D07","D21",  # slot 4 : Moyen, Difficile, Facile, Moyen
+    "D35","D08","D22","D36",  # slot 5 : Difficile, Facile, Moyen, Difficile
+    "D09","D23","D37","D10",  # slot 6 : Facile, Moyen, Difficile, Facile
+    "D24","D38","D11","D25",  # slot 7 : Moyen, Difficile, Facile, Moyen
+    "D39","D12","D26","D40",  # slot 8 : Difficile, Facile, Moyen, Difficile
+    "D13","D27","D14","D28",  # slot 9 : Facile, Moyen, Facile, Moyen
 ]
 _IDS_HEBDO = [
     "W01","W02","W03","W04","W05","W06","W07","W08","W09","W10",

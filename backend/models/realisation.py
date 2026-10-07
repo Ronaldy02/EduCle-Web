@@ -1,5 +1,5 @@
 """Modèles ORM : réalisations (achievements) et leurs statistiques."""
-from sqlalchemy import String, Integer
+from sqlalchemy import String, Integer, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from database import Base
@@ -8,7 +8,6 @@ from database import Base
 class Realisation(Base):
     __tablename__ = "realisations"
 
-    # Identifiant textuel, ex. "premier_quiz", "serie_5"
     id: Mapped[str] = mapped_column(String(100), primary_key=True)
     nom: Mapped[str] = mapped_column(String(200), nullable=False)
     description: Mapped[str] = mapped_column(String(500), nullable=False)
@@ -20,6 +19,11 @@ class Realisation(Base):
     progres: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     debloquee: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     debloquee_at: Mapped[str | None] = mapped_column(String(30), nullable=True)
+    # Colonnes ajoutées en migration 004
+    groupe: Mapped[str | None] = mapped_column(String(10), nullable=True)
+    metrique: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    cible: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    filtres: Mapped[str | None] = mapped_column(Text, nullable=True)
 
 
 class RealisationStat(Base):
