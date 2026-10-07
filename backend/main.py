@@ -10,7 +10,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from config import settings
-from routers import matieres, quiz, user, realisations, admin
+from routers import matieres, quiz, user, realisations, admin, defis
 from routers.auth import router as auth_router
 from routers.admin_auth import router as admin_auth_router
 from routers.proposals import router as proposals_router
@@ -37,6 +37,7 @@ app.include_router(matieres.router)
 app.include_router(quiz.router)
 app.include_router(user.router)
 app.include_router(realisations.router)
+app.include_router(defis.router)
 app.include_router(admin.router)
 app.include_router(admin_auth_router)
 app.include_router(proposals_router)

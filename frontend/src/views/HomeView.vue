@@ -52,6 +52,24 @@
         </div>
       </div>
 
+      <!-- ─── Carte Défis du jour ──────────────────────────── -->
+      <RouterLink to="/defis" class="defis-jour-card">
+        <div class="dj-left">
+          <span class="dj-icon material-symbols-outlined">military_tech</span>
+          <div>
+            <p class="dj-titre">Défis du jour</p>
+            <p class="dj-sous">{{ defisQuotidiens.length ? `${defisCompletes}/${defisQuotidiens.length} complétés` : 'Charger les défis…' }}</p>
+          </div>
+        </div>
+        <div class="dj-right">
+          <div class="dj-pills">
+            <span v-for="d in defisQuotidiens" :key="d.id"
+              class="dj-pill" :class="{ 'dj-pill--done': d.complete }"></span>
+          </div>
+          <span class="material-symbols-outlined dj-chevron">chevron_right</span>
+        </div>
+      </RouterLink>
+
       <!-- ─── Section thématiques ────────────────────────────── -->
       <div class="section-header">
         <div>
@@ -368,7 +386,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { getMatieres, getMatiere, getStats, getMatieresAvecChapitres } from '../api/client.js'
+import { getMatieres, getMatiere, getStats, getMatieresAvecChapitres, getDefisQuotidiens } from '../api/client.js'
 import { useQuizStore } from '../stores/quiz.js'
 
 const router = useRouter()
@@ -526,8 +544,16 @@ const chapitresFiltrés = computed(() =>
   q.value ? tousLesThemes.value.filter(c => c.titre.toLowerCase().includes(q.value)) : []
 )
 
+// ── Défis du jour ────────────────────────────────────────────────
+const defisQuotidiens = ref([])
+const defisCompletes = computed(() => defisQuotidiens.value.filter(d => d.complete).length)
+
+async function chargerDefisJour() {
+  try { defisQuotidiens.value = await getDefisQuotidiens() } catch {}
+}
+
 onMounted(async () => {
-  await Promise.all([chargerToutesMatieres(), chargerStats(), chargerTousLesThemes()])
+  await Promise.all([chargerToutesMatieres(), chargerStats(), chargerTousLesThemes(), chargerDefisJour()])
   chargement.value = false
 })
 
@@ -912,4 +938,29 @@ async function jouerAleatoire() {
   .chap-row { padding: 0.7rem 0.85rem; }
   .sel-tout { padding: 0.75rem 0.85rem; }
 }
+
+/* ── Carte Défis du jour ──────────────────────────────────── */
+.defis-jour-card {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1rem 1.25rem;
+  text-decoration: none; color: inherit;
+  transition: box-shadow 0.15s, border-color 0.15s;
+  cursor: pointer;
+}
+.defis-jour-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); border-color: var(--primary); }
+
+.dj-left { display: flex; align-items: center; gap: 0.75rem; }
+.dj-icon { font-size: 28px; color: var(--primary); }
+.dj-titre { font-size: 0.95rem; font-weight: 800; color: var(--text); line-height: 1.2; }
+.dj-sous  { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.1rem; }
+
+.dj-right { display: flex; align-items: center; gap: 0.5rem; }
+.dj-pills { display: flex; gap: 0.3rem; }
+.dj-pill {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--border); transition: background 0.2s;
+}
+.dj-pill--done { background: #10B981; }
+.dj-chevron { font-size: 20px; color: var(--text-muted); }
 </style>

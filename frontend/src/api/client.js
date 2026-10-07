@@ -58,6 +58,16 @@ export const authMe = () => api.get('/auth/me').then(r => r.data)
 
 // ─── Réalisations ─────────────────────────────────────────────────────────────
 export const getRealisations = () => api.get('/realisations/').then(r => r.data)
+export const incrementerRealisationProgres = (id, delta = 1) =>
+  api.post(`/realisations/${id}/progres`, { delta }).then(r => r.data)
+
+// ─── Défis ────────────────────────────────────────────────────────────────────
+export const getDefisQuotidiens = () => api.get('/defis/quotidiens').then(r => r.data)
+export const getDefisHebdo = () => api.get('/defis/hebdo').then(r => r.data)
+export const getDefisMensuels = () => api.get('/defis/mensuels').then(r => r.data)
+export const getDefisSpeciaux = () => api.get('/defis/speciaux').then(r => r.data)
+export const incrementerDefiProgres = (id, delta = 1) =>
+  api.post(`/defis/${id}/progres`, { delta }).then(r => r.data)
 
 // ─── Admin (lecture seule) ────────────────────────────────────────────────────
 export const getMatieresAvecChapitres = () => api.get('/admin/matieres').then(r => r.data)

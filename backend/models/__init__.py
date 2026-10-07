@@ -3,6 +3,7 @@ from .question import Question, StatistiqueQuestion
 from .user import User, UserPreferences
 from .score import Score
 from .realisation import Realisation, RealisationStat
+from .defi import Defi, DefiProgres, RealisationProgres
 from .proposal import QuestionProposal
 
 __all__ = [
@@ -11,5 +12,6 @@ __all__ = [
     "User", "UserPreferences",
     "Score",
     "Realisation", "RealisationStat",
+    "Defi", "DefiProgres", "RealisationProgres",
     "QuestionProposal",
 ]
