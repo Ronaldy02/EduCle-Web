@@ -19,66 +19,72 @@
         </button>
       </div>
 
-      <!-- Onglet Quotidiens -->
-      <div v-if="ongletActif === 'quotidiens'" class="tab-content">
-        <div v-if="chargement.quotidiens" class="loading-row">
-          <span class="spinner"></span> Chargement…
-        </div>
-        <template v-else>
-          <div v-if="!defisQuotidiens.length" class="vide-msg">Aucun défi aujourd'hui.</div>
-          <div v-else class="defis-grid">
-            <DefiCard v-for="d in defisQuotidiens" :key="d.id" :defi="d" :periode="periodeJour" @done="rechargerQuotidiens" />
-          </div>
-        </template>
-      </div>
+      <!-- Contenu des onglets avec transition -->
+      <Transition name="tab-fade" mode="out-in">
+        <div :key="ongletActif" class="tab-content">
 
-      <!-- Onglet Hebdo -->
-      <div v-if="ongletActif === 'hebdo'" class="tab-content">
-        <div v-if="chargement.hebdo" class="loading-row">
-          <span class="spinner"></span> Chargement…
-        </div>
-        <template v-else>
-          <p class="periode-label">Semaine en cours</p>
-          <div v-if="!defisHebdo.length" class="vide-msg">Aucun défi hebdomadaire.</div>
-          <div v-else class="defis-grid">
-            <DefiCard v-for="d in defisHebdo" :key="d.id" :defi="d" :periode="d.periode" @done="rechargerHebdo" />
-          </div>
-        </template>
-      </div>
+          <!-- Quotidiens -->
+          <template v-if="ongletActif === 'quotidiens'">
+            <div v-if="chargement.quotidiens" class="loading-row">
+              <span class="spinner"></span> Chargement…
+            </div>
+            <template v-else>
+              <div v-if="!defisQuotidiens.length" class="vide-msg">Aucun défi aujourd'hui.</div>
+              <div v-else class="defis-grid">
+                <DefiCard v-for="(d, i) in defisQuotidiens" :key="d.id" :defi="d" :index="i" :periode="periodeJour" @done="rechargerQuotidiens" />
+              </div>
+            </template>
+          </template>
 
-      <!-- Onglet Mensuel -->
-      <div v-if="ongletActif === 'mensuel'" class="tab-content">
-        <div v-if="chargement.mensuel" class="loading-row">
-          <span class="spinner"></span> Chargement…
-        </div>
-        <template v-else>
-          <p class="periode-label">{{ moisCourant }}</p>
-          <div v-if="!defisMensuels.length" class="vide-msg">Aucun défi mensuel.</div>
-          <div v-else class="defis-grid">
-            <DefiCard v-for="d in defisMensuels" :key="d.id" :defi="d" :periode="d.periode" @done="rechargerMensuel" />
-          </div>
-        </template>
-      </div>
+          <!-- Hebdo -->
+          <template v-else-if="ongletActif === 'hebdo'">
+            <div v-if="chargement.hebdo" class="loading-row">
+              <span class="spinner"></span> Chargement…
+            </div>
+            <template v-else>
+              <p class="periode-label">Semaine en cours</p>
+              <div v-if="!defisHebdo.length" class="vide-msg">Aucun défi hebdomadaire.</div>
+              <div v-else class="defis-grid">
+                <DefiCard v-for="(d, i) in defisHebdo" :key="d.id" :defi="d" :index="i" :periode="d.periode" @done="rechargerHebdo" />
+              </div>
+            </template>
+          </template>
 
-      <!-- Onglet Réalisations -->
-      <div v-if="ongletActif === 'realisations'" class="tab-content">
-        <div v-if="chargement.realisations" class="loading-row">
-          <span class="spinner"></span> Chargement…
+          <!-- Mensuel -->
+          <template v-else-if="ongletActif === 'mensuel'">
+            <div v-if="chargement.mensuel" class="loading-row">
+              <span class="spinner"></span> Chargement…
+            </div>
+            <template v-else>
+              <p class="periode-label">{{ moisCourant }}</p>
+              <div v-if="!defisMensuels.length" class="vide-msg">Aucun défi mensuel.</div>
+              <div v-else class="defis-grid">
+                <DefiCard v-for="(d, i) in defisMensuels" :key="d.id" :defi="d" :index="i" :periode="d.periode" @done="rechargerMensuel" />
+              </div>
+            </template>
+          </template>
+
+          <!-- Réalisations -->
+          <template v-else-if="ongletActif === 'realisations'">
+            <div v-if="chargement.realisations" class="loading-row">
+              <span class="spinner"></span> Chargement…
+            </div>
+            <template v-else>
+              <div class="groupes-row">
+                <button v-for="g in GROUPES" :key="g.key"
+                  class="groupe-btn" :class="{ active: groupeActif === g.key }"
+                  @click="groupeActif = g.key">
+                  {{ g.emoji }} {{ g.label }}
+                </button>
+              </div>
+              <div class="realisations-grid">
+                <RealisationCard v-for="(r, i) in realisationsFiltrees" :key="r.id" :realisation="r" :index="i" />
+              </div>
+            </template>
+          </template>
+
         </div>
-        <template v-else>
-          <!-- Filtres groupes -->
-          <div class="groupes-row">
-            <button v-for="g in GROUPES" :key="g.key"
-              class="groupe-btn" :class="{ active: groupeActif === g.key }"
-              @click="groupeActif = g.key">
-              {{ g.emoji }} {{ g.label }}
-            </button>
-          </div>
-          <div class="realisations-grid">
-            <RealisationCard v-for="r in realisationsFiltrees" :key="r.id" :realisation="r" />
-          </div>
-        </template>
-      </div>
+      </Transition>
 
     </div>
   </div>
@@ -230,4 +236,10 @@ onMounted(rechargerQuotidiens)
 
 .fade-in { animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ── Transition onglets ──────────────────────────────────── */
+.tab-fade-enter-active { transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.22, 1, 0.36, 1); }
+.tab-fade-leave-active { transition: opacity 0.15s ease, transform 0.15s ease; }
+.tab-fade-enter-from  { opacity: 0; transform: translateY(10px); }
+.tab-fade-leave-to    { opacity: 0; transform: translateY(-6px); }
 </style>
