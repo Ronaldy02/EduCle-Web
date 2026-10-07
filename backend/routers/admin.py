@@ -268,8 +268,7 @@ def list_questions(
 ):
     stmt = (
         select(Question)
-        .options(selectinload(Question.chapitre).selectinload(Chapitre.matiere),
-                 selectinload(Question.statistique))
+        .options(selectinload(Question.chapitre).selectinload(Chapitre.matiere))
     )
     if chapitre_id:
         stmt = stmt.where(Question.chapitre_id == chapitre_id)
@@ -279,8 +278,30 @@ def list_questions(
         stmt = stmt.where(Question.enonce.ilike(f"%{search}%"))
     questions = db.scalars(stmt).all()
 
-    return [
-        QuestionOut(
+    # Aggregate stats across all users per question
+    q_ids = [q.id for q in questions]
+    stats_agg: dict = {}
+    if q_ids:
+        rows = db.execute(
+            select(
+                StatistiqueQuestion.question_id,
+                func.sum(StatistiqueQuestion.nb_affichee).label("total_aff"),
+                func.sum(StatistiqueQuestion.nb_correcte).label("total_ok"),
+                func.max(StatistiqueQuestion.last_correct_at).label("last_ok"),
+            )
+            .where(StatistiqueQuestion.question_id.in_(q_ids))
+            .group_by(StatistiqueQuestion.question_id)
+        ).all()
+        for r in rows:
+            stats_agg[r.question_id] = r
+
+    result = []
+    for q in questions:
+        s = stats_agg.get(q.id)
+        nb_aff = int(s.total_aff) if s and s.total_aff else 0
+        nb_ok  = float(s.total_ok) if s and s.total_ok else 0.0
+        taux   = round(nb_ok / nb_aff * 100) if nb_aff else 0
+        result.append(QuestionOut(
             id=q.id,
             chapitre_id=q.chapitre_id,
             matiere_id=q.chapitre.matiere_id,
@@ -291,12 +312,11 @@ def list_questions(
             bonne_reponse=q.bonne_reponse,
             explication=q.explication,
             niveau_complexite=q.niveau_complexite,
-            nb_affichee=q.statistique.nb_affichee if q.statistique else 0,
-            taux_reussite=round(q.statistique.nb_correcte * 100) if q.statistique else 0,
-            last_correct_at=q.statistique.last_correct_at if q.statistique else None,
-        )
-        for q in questions
-    ]
+            nb_affichee=nb_aff,
+            taux_reussite=taux,
+            last_correct_at=s.last_ok if s else None,
+        ))
+    return result
 
 
 @router.post("/questions", response_model=QuestionOut, status_code=201)
@@ -333,7 +353,6 @@ def update_question(question_id: int, body: QuestionIn, db: Session = Depends(ge
     db.commit()
     chap = db.get(Chapitre, q.chapitre_id)
     mat  = db.get(Matiere, chap.matiere_id)
-    stat = db.get(StatistiqueQuestion, q.id)
     return QuestionOut(
         id=q.id, chapitre_id=q.chapitre_id,
         matiere_id=mat.id, matiere_nom=mat.nom,
@@ -341,9 +360,6 @@ def update_question(question_id: int, body: QuestionIn, db: Session = Depends(ge
         enonce=q.enonce, choix=q.choix,
         bonne_reponse=q.bonne_reponse, explication=q.explication,
         niveau_complexite=q.niveau_complexite,
-        nb_affichee=stat.nb_affichee if stat else 0,
-        taux_reussite=round(stat.nb_correcte * 100) if stat else 0,
-        last_correct_at=stat.last_correct_at if stat else None,
     )
 
 
@@ -352,9 +368,12 @@ def delete_question(question_id: int, db: Session = Depends(get_db)):
     q = db.get(Question, question_id)
     if not q:
         raise HTTPException(status_code=404, detail="Question introuvable")
-    stat = db.get(StatistiqueQuestion, question_id)
-    if stat:
-        db.delete(stat)
+    # Supprimer toutes les stats liées (clé composite user_id + question_id)
+    stats = db.scalars(
+        select(StatistiqueQuestion).where(StatistiqueQuestion.question_id == question_id)
+    ).all()
+    for s in stats:
+        db.delete(s)
     db.delete(q)
     db.commit()
 
