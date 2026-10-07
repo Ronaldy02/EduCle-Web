@@ -13,6 +13,8 @@ import 'mode_jeu_screen.dart';
 import 'onboarding_screen.dart';
 import 'quiz_screen.dart';
 import 'reglages_screen.dart';
+import '../../services/defis_service.dart';
+import 'defis_screen.dart';
 import 'stats_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -84,6 +86,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             annee: controller.annee,
                             difficulte: controller.difficulte,
                             onTap: () => _afficherReglages(context),
+                          ),
+                          const SizedBox(height: 16),
+                          _CarteDefisJour(
+                            onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const DefisScreen(),
+                              ),
+                            ),
                           ),
                           const SizedBox(height: 20),
                           Row(
@@ -572,6 +582,101 @@ class _BoutonRejouer extends StatelessWidget {
                 fontSize: 13,
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CarteDefisJour extends StatefulWidget {
+  final VoidCallback onTap;
+  const _CarteDefisJour({required this.onTap});
+
+  @override
+  State<_CarteDefisJour> createState() => _CarteDefisJourState();
+}
+
+class _CarteDefisJourState extends State<_CarteDefisJour> {
+  final _svc = DefisService();
+  int _complete = 0;
+  int _total = 4;
+  bool _loaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    await _svc.init();
+    final defis = _svc.defisQuotidiensForDate(null);
+    final progres = await _svc.getProgresJour();
+    final done = progres.where((p) => p.complete).length;
+    if (mounted) {
+      setState(() {
+        _total = defis.length;
+        _complete = done;
+        _loaded = true;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        decoration: BoxDecoration(
+          color: EduCleColors.primary.withValues(alpha: 0.07),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: EduCleColors.primary.withValues(alpha: 0.25)),
+        ),
+        child: Row(
+          children: [
+            const Text('🎯', style: TextStyle(fontSize: 28)),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Défis du jour',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 15,
+                      color: EduCleColors.primary,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    _loaded
+                        ? '$_complete / $_total défis complétés'
+                        : 'Chargement…',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (_loaded) ...[
+              Text(
+                '$_complete/$_total',
+                style: const TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 18,
+                  color: EduCleColors.primary,
+                ),
+              ),
+              const SizedBox(width: 6),
+            ],
+            const Icon(Icons.chevron_right_rounded,
+                color: EduCleColors.primary, size: 22),
           ],
         ),
       ),

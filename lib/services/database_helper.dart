@@ -5,8 +5,10 @@ import 'package:sqflite/sqflite.dart';
 
 import '../models/carte_mentale.dart';
 import '../models/chapitre.dart';
+import '../models/defi.dart';
 import '../models/matiere.dart';
 import '../models/question.dart';
+import '../models/realisation.dart';
 import '../models/reponse_enregistree.dart';
 
 class DatabaseHelper {
@@ -24,7 +26,7 @@ class DatabaseHelper {
     final path = join(await getDatabasesPath(), 'quiz_educatif.db');
     return openDatabase(
       path,
-      version: 11,
+      version: 12,
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );
@@ -85,9 +87,12 @@ class DatabaseHelper {
     }
     if (oldVersion < 10) {
       await _reseedAll(db);
+    }
     if (oldVersion < 11) {
       await _reseedAll(db);
     }
+    if (oldVersion < 12) {
+      await _createDefisTables(db);
     }
   }
 
@@ -162,7 +167,54 @@ class DatabaseHelper {
     ''');
 
     await _createStatsAndScoresTables(db);
+    await _createDefisTables(db);
     await _seedData(db);
+  }
+
+  Future<void> _createDefisTables(Database db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS defis (
+        id TEXT PRIMARY KEY,
+        type TEXT NOT NULL,
+        palier INTEGER NOT NULL DEFAULT 1,
+        nom TEXT NOT NULL,
+        description TEXT NOT NULL,
+        metrique TEXT NOT NULL,
+        cible INTEGER NOT NULL,
+        filtres TEXT,
+        date_spe TEXT
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS realisations (
+        id TEXT PRIMARY KEY,
+        rarete INTEGER NOT NULL,
+        groupe TEXT NOT NULL,
+        nom TEXT NOT NULL,
+        description TEXT NOT NULL,
+        metrique TEXT NOT NULL,
+        cible INTEGER NOT NULL,
+        secret INTEGER NOT NULL DEFAULT 0,
+        filtres TEXT
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS defis_progres (
+        defi_id TEXT NOT NULL,
+        periode TEXT NOT NULL,
+        progres INTEGER NOT NULL DEFAULT 0,
+        complete INTEGER NOT NULL DEFAULT 0,
+        PRIMARY KEY (defi_id, periode)
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS realisations_progres (
+        realisation_id TEXT PRIMARY KEY,
+        progres INTEGER NOT NULL DEFAULT 0,
+        debloquee INTEGER NOT NULL DEFAULT 0,
+        debloque_le TEXT
+      )
+    ''');
   }
 
   Future<void> _createStatsAndScoresTables(Database db) async {
@@ -517,6 +569,96 @@ class DatabaseHelper {
     final db = await database;
     await _ensurePrefsRow(db);
     await db.update('user_preferences', {'profil_configure': 1}, where: 'id = 1');
+  }
+
+  // ── Défis : progression ───────────────────────────────────────────────────
+
+  Future<List<DefiProgres>> getDefisProgres(String periode) async {
+    final db = await database;
+    final rows = await db.query(
+      'defis_progres',
+      where: 'periode = ?',
+      whereArgs: [periode],
+    );
+    return rows.map((r) => DefiProgres.fromMap(r)).toList();
+  }
+
+  Future<void> upsertDefiProgres(
+    String defiId,
+    String periode,
+    int delta,
+    int cible,
+  ) async {
+    final db = await database;
+    final rows = await db.query(
+      'defis_progres',
+      where: 'defi_id = ? AND periode = ?',
+      whereArgs: [defiId, periode],
+    );
+    if (rows.isEmpty) {
+      final progres = delta.clamp(0, cible);
+      await db.insert('defis_progres', {
+        'defi_id': defiId,
+        'periode': periode,
+        'progres': progres,
+        'complete': progres >= cible ? 1 : 0,
+      });
+    } else {
+      final current = rows.first['progres'] as int;
+      final newProgres = (current + delta).clamp(0, cible);
+      await db.update(
+        'defis_progres',
+        {'progres': newProgres, 'complete': newProgres >= cible ? 1 : 0},
+        where: 'defi_id = ? AND periode = ?',
+        whereArgs: [defiId, periode],
+      );
+    }
+  }
+
+  // ── Réalisations : progression ────────────────────────────────────────────
+
+  Future<List<RealisationProgres>> getAllRealisationsProgres() async {
+    final db = await database;
+    final rows = await db.query('realisations_progres');
+    return rows.map((r) => RealisationProgres.fromMap(r)).toList();
+  }
+
+  Future<void> upsertRealisationProgres(
+    String realId,
+    int delta,
+    int cible,
+  ) async {
+    final db = await database;
+    final rows = await db.query(
+      'realisations_progres',
+      where: 'realisation_id = ?',
+      whereArgs: [realId],
+    );
+    if (rows.isEmpty) {
+      final progres = delta.clamp(0, cible);
+      final debloque = progres >= cible;
+      await db.insert('realisations_progres', {
+        'realisation_id': realId,
+        'progres': progres,
+        'debloquee': debloque ? 1 : 0,
+        'debloque_le': debloque ? DateTime.now().toIso8601String() : null,
+      });
+    } else {
+      final current = rows.first;
+      if ((current['debloquee'] as int) == 1) return; // déjà débloquée
+      final newProgres = ((current['progres'] as int) + delta).clamp(0, cible);
+      final debloque = newProgres >= cible;
+      await db.update(
+        'realisations_progres',
+        {
+          'progres': newProgres,
+          'debloquee': debloque ? 1 : 0,
+          'debloque_le': debloque ? DateTime.now().toIso8601String() : null,
+        },
+        where: 'realisation_id = ?',
+        whereArgs: [realId],
+      );
+    }
   }
 
   Future<void> _ensurePrefsRow(Database db) async {
