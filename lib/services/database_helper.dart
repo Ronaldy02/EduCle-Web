@@ -4051,7 +4051,7 @@ class DatabaseHelper {
       ),
     ]);
 
-    CITOYENNETE:
+    // CITOYENNETE
     await ajouterMatiere('Commun', 'Éducation à la Citoyenneté', [
       _ChapitreSeed(
         titre: 'Droits et devoirs du citoyen',
@@ -5014,7 +5014,7 @@ class DatabaseHelper {
       ),
     ]);
 
-    EEA:
+    // EEA
     await ajouterMatiere('Commun', 'Éducation Esthétique et Artistique', [
       _ChapitreSeed(
         titre: 'Arts visuels et plastiques',
@@ -5762,7 +5762,7 @@ class DatabaseHelper {
       ),
     ]);
 
-EPS:
+    // EPS
     await ajouterMatiere('Commun', 'Éducation Physique et Sportive', [
       _ChapitreSeed(
         titre: 'Sports collectifs',
@@ -22829,7 +22829,7 @@ EPS:
       ),
     ]);
 
-    EEA:
+    // EEA
     await ajouterMatiere('Commun', 'Éducation Esthétique et Artistique', [
       _ChapitreSeed(
         titre: 'Arts visuels et plastiques',
