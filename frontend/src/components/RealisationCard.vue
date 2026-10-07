@@ -7,6 +7,9 @@
     ]"
     :style="cardStyle"
   >
+    <!-- Flash overlay pour les cartes débloquées -->
+    <div v-if="realisation.debloquee" class="real-flash" aria-hidden="true"></div>
+
     <div class="real-top">
       <span class="real-rarete" :style="{ background: rareté.bg, color: rareté.fg }">{{ rareté.label }}</span>
       <span v-if="realisation.debloquee" class="real-check material-symbols-outlined real-check--bounce">check_circle</span>
@@ -21,7 +24,7 @@
       <span class="real-pct">{{ realisation.progres }} / {{ realisation.cible }}</span>
     </div>
     <p v-if="realisation.debloquee && realisation.debloque_le" class="real-date">
-      {{ formatDate(realisation.debloque_le) }}
+      Débloqué le {{ formatDate(realisation.debloque_le) }}
     </p>
   </div>
 </template>
@@ -69,9 +72,13 @@ onMounted(() => {
   })
 })
 
-const cardStyle = computed(() => ({
-  animationDelay: `${props.index * 45}ms`,
-}))
+const cardStyle = computed(() => {
+  const delay = props.index * 45
+  return {
+    '--card-delay': `${delay}ms`,
+    animationDelay: `${delay}ms`,
+  }
+})
 
 function formatDate(iso) {
   try {
@@ -81,16 +88,34 @@ function formatDate(iso) {
 </script>
 
 <style scoped>
+/* ── Keyframes ───────────────────────────────────────────── */
 @keyframes card-in {
   from { opacity: 0; transform: translateY(12px) scale(0.97); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+@keyframes unlock-reveal {
+  0%   { opacity: 0; transform: translateY(16px) scale(0.90); }
+  45%  { transform: translateY(-4px) scale(1.04); }
+  65%  { transform: scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes unlock-glow {
+  0%, 100% { box-shadow: 0 0 0 1px #10B98125, 0 2px 8px #10B98110; }
+  50%       { box-shadow: 0 0 0 2px #10B98145, 0 6px 24px #10B98130; }
+}
+
+@keyframes flash-fade {
+  0%   { opacity: 0.7; transform: scale(1.06); }
+  100% { opacity: 0;   transform: scale(1); }
+}
+
 @keyframes check-bounce {
-  0%   { transform: scale(0.6) rotate(-10deg); opacity: 0; }
-  60%  { transform: scale(1.2) rotate(5deg); opacity: 1; }
-  80%  { transform: scale(0.95); }
-  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  0%   { transform: scale(0.5) rotate(-15deg); opacity: 0; }
+  55%  { transform: scale(1.3) rotate(6deg);  opacity: 1; }
+  75%  { transform: scale(0.93); }
+  100% { transform: scale(1) rotate(0deg);    opacity: 1; }
 }
 
 @keyframes shimmer {
@@ -98,10 +123,13 @@ function formatDate(iso) {
   100% { background-position: 200% center; }
 }
 
+/* ── Carte de base ───────────────────────────────────────── */
 .real-card {
+  position: relative;
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 14px; padding: 1rem;
   display: flex; flex-direction: column; gap: 0.4rem;
+  overflow: hidden;
   transition: box-shadow 0.18s, border-color 0.18s, transform 0.15s;
   animation: card-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
   will-change: transform, opacity;
@@ -110,10 +138,29 @@ function formatDate(iso) {
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
   transform: translateY(-2px);
 }
-.real-card--done { border-color: #10B98140; }
+
+/* ── Débloquée — animation + glow persistant ─────────────── */
+.real-card--done {
+  border-color: #10B98145;
+  animation:
+    unlock-reveal 0.65s cubic-bezier(0.22, 1, 0.36, 1) var(--card-delay, 0ms) both,
+    unlock-glow 3.2s ease-in-out calc(var(--card-delay, 0ms) + 700ms) infinite;
+}
+
+/* Flash lumineux à l'entrée */
+.real-flash {
+  position: absolute; inset: 0; border-radius: 13px;
+  background: radial-gradient(circle at 50% 40%, #10B98140 0%, transparent 65%);
+  animation: flash-fade 1.1s ease-out calc(var(--card-delay, 0ms) + 100ms) both;
+  pointer-events: none;
+  z-index: 0;
+}
+/* Tout le contenu au-dessus du flash */
+.real-card > *:not(.real-flash) { position: relative; z-index: 1; }
+
 .real-card--secret:not(.real-card--done) { opacity: 0.65; }
 
-/* Légendaire : golden glow */
+/* ── Légendaire ──────────────────────────────────────────── */
 .real-card--legendary {
   border-color: #F59E0B55;
   box-shadow: 0 0 0 1px #F59E0B22;
@@ -125,7 +172,7 @@ function formatDate(iso) {
   color: #78350F !important;
 }
 
-/* Mythique : red shimmer */
+/* ── Mythique ────────────────────────────────────────────── */
 .real-card--mythic {
   border-color: #EF444455;
   box-shadow: 0 0 0 1px #EF444422, 0 4px 16px #EF444412;
@@ -137,6 +184,7 @@ function formatDate(iso) {
   color: #7F1D1D !important;
 }
 
+/* ── Contenu ─────────────────────────────────────────────── */
 .real-top { display: flex; align-items: center; justify-content: space-between; }
 .real-rarete {
   font-size: 0.62rem; font-weight: 800; text-transform: uppercase;
@@ -146,10 +194,9 @@ function formatDate(iso) {
   font-size: 18px; color: #10B981;
 }
 .real-check--bounce {
-  animation: check-bounce 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: 180ms;
+  animation: check-bounce 0.6s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--card-delay, 0ms) + 350ms) both;
 }
-.real-lock  { font-size: 18px; color: var(--text-muted); }
+.real-lock { font-size: 18px; color: var(--text-muted); }
 
 .real-nom  { font-size: 0.875rem; font-weight: 700; color: var(--text); line-height: 1.3; }
 .real-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
