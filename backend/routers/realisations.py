@@ -102,12 +102,17 @@ def incrementer_progres(
         db.add(row)
     else:
         if row.debloquee:
-            pass  # déjà débloquée
+            debloque = False
         else:
             row.progres = min(row.progres + body.delta, cible)
-            if row.progres >= cible:
+            debloque = row.progres >= cible
+            if debloque:
                 row.debloquee = 1
                 row.debloque_le = datetime.now(timezone.utc).isoformat()
+
+    if debloque:
+        user.pieces_total += (real.recompense_pieces or 0)
+
     db.commit()
     db.refresh(row)
 

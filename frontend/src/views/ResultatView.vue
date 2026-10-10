@@ -114,6 +114,17 @@
         </div>
       </div>
 
+      <!-- ── Réalisations débloquées ──────────────────────────────────── -->
+      <div v-if="res.realisations_debloquees && res.realisations_debloquees.length" class="rt-defis-completes rt-real-completes">
+        <div class="rt-defis-header">
+          <span class="material-symbols-outlined" style="color:#8B5CF6">military_tech</span>
+          <span>Réalisation{{ res.realisations_debloquees.length > 1 ? 's' : '' }} débloquée{{ res.realisations_debloquees.length > 1 ? 's' : '' }} !</span>
+        </div>
+        <div class="rt-defis-bonus">
+          <span>{{ res.realisations_debloquees.length }} 🏅</span>
+        </div>
+      </div>
+
       <!-- ── Barre XP ────────────────────────────────────────────────── -->
       <div class="rt-xp-card">
         <div class="rt-xp-head">
@@ -566,10 +577,19 @@ function accueil()  { quizStore.reset(); router.push('/') }
 .rt-defis-bonus {
   display: flex; gap: 1rem; font-weight: 700; color: #78350f; font-size: 0.95rem;
 }
+.rt-real-completes {
+  background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+  border-color: #8B5CF6;
+}
+.rt-real-completes .rt-defis-header { color: #4c1d95; }
+.rt-real-completes .rt-defis-bonus { color: #4c1d95; }
 @media (prefers-color-scheme: dark) {
   .rt-defis-completes { background: linear-gradient(135deg,#451a03,#78350f); border-color:#F59E0B; }
   .rt-defis-header { color: #fde68a; }
   .rt-defis-bonus { color: #fde68a; }
+  .rt-real-completes { background: linear-gradient(135deg,#2e1065,#4c1d95); border-color:#8B5CF6; }
+  .rt-real-completes .rt-defis-header { color: #ddd6fe; }
+  .rt-real-completes .rt-defis-bonus { color: #ddd6fe; }
 }
 
 /* ── XP card ─────────────────────────────────────────────────────── */

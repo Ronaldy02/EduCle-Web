@@ -17,6 +17,8 @@ from sqlalchemy import select
 from database import get_db
 from models import Matiere, Chapitre, Question, StatistiqueQuestion
 from models.defi import Defi, DefiProgres
+from models.realisation import Realisation
+from models.defi import RealisationProgres
 from models.user import User
 from models.score import Score
 from schemas.question import QuestionSchema
@@ -355,6 +357,71 @@ def terminer_quiz(
             current_user.xp_total     += bonus_xp
             current_user.pieces_total += bonus_pieces
 
+    # ── Mise à jour des réalisations ─────────────────────────────────────────
+    realisations_all = db.scalars(select(Realisation)).all()
+    progres_rows = db.scalars(
+        select(RealisationProgres).where(RealisationProgres.user_id == current_user.id)
+    ).all()
+    progres_real_map = {r.realisation_id: r for r in progres_rows}
+
+    realisations_debloquees: list[str] = []
+
+    for real in realisations_all:
+        p = progres_real_map.get(real.id)
+        if p and p.debloquee:
+            continue  # déjà débloquée
+
+        cible = real.cible or real.objectif or 1
+        m = real.metrique
+        if not m:
+            continue
+
+        delta = 0
+        if m == "ans":
+            delta = len(resultats)
+        elif m == "game":
+            delta = 1
+        elif m == "perf":
+            delta = 1 if is_perfect else 0
+        elif m == "xp":
+            delta = xp_total_gagne
+        elif m == "subj":
+            delta = 1 if body.matiere_id else 0
+        elif m == "expl" and body.mode_nom == "Révision":
+            delta = len(resultats)
+        # strk : max glissant, pas addition
+        # card, dact, mast, dc, fast, profile, ok — gérés hors quiz
+
+        if m == "strk":
+            current = p.progres if p else 0
+            delta = max(0, min(serie_max, cible) - current)
+
+        if delta <= 0:
+            continue
+
+        was_debloque = False
+        if p is None:
+            new_progres = min(delta, cible)
+            debloque = new_progres >= cible
+            p = RealisationProgres(
+                user_id=current_user.id, realisation_id=real.id,
+                progres=new_progres, debloquee=1 if debloque else 0,
+                debloque_le=now_iso if debloque else None,
+            )
+            db.add(p)
+            progres_real_map[real.id] = p
+        else:
+            p.progres = min(p.progres + delta, cible)
+            debloque = p.progres >= cible
+            if debloque:
+                p.debloquee = 1
+                p.debloque_le = now_iso
+
+        if debloque and not was_debloque:
+            realisations_debloquees.append(real.id)
+            current_user.pieces_total += (real.recompense_pieces or 0)
+            pieces_bonus_defis += (real.recompense_pieces or 0)
+
     db.commit()
 
     return ResultatQuizSchema(
@@ -367,6 +434,7 @@ def terminer_quiz(
         serie_bonus=serie_bonus,
         serie_max=serie_max,
         defis_completes=defis_completes,
+        realisations_debloquees=realisations_debloquees,
         xp_bonus_defis=xp_bonus_defis,
         pieces_bonus_defis=pieces_bonus_defis,
         xp_total=current_user.xp_total,
