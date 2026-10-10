@@ -470,63 +470,78 @@ function pctColor(pct) {
   return '#2fa84f'
 }
 
-// ── Images & icônes ──────────────────────────────────────────────
-const MAT_IMAGES = {
-  'mathématiques':                                              '/matieres/Maths.jpg',
-  'communication française':                                    '/matieres/comm_francaise.webp',
-  'communication créole':                                       '/matieres/Creole.webp',
-  'éducation à la citoyenneté':                                 '/matieres/citoyennete.webp',
-  'éducation esthétique et artistique':                         '/matieres/artist_palette_3d.png',
-  'éducation physique et sportive':                             '/matieres/eps.jpg',
-  'éducation à la technologie et aux activités productives':    '/matieres/etap.jpg',
-  'biologie':                                                   '/matieres/biologie.jpg',
-  'géologie':                                                   '/matieres/geologie.jpg',
-  'sciences sociales':                                          '/matieres/Geographie.jpg',
-  "histoire d'haïti":                                           '/matieres/Histoire_Haiti.webp',
-  'histoire universelle':                                       '/matieres/Histoire_Uni.jpg',
-  'économie':                                                   '/matieres/economie.webp',
-  'philosophie':                                                '/matieres/philosophie.jpg',
-  'informatique':                                               '/matieres/informatique.jpg',
-  'littérature haïtienne':                                      '/matieres/Litterature_Haiti.webp',
-  'littérature universelle':                                    '/matieres/Litterature_Uni.jpg',
-  'chimie':                                                     '/matieres/chimie.webp',
-  'physique':                                                   '/matieres/physique.jpg',
-  'culture générale':                                           '/matieres/Culture_gen.webp',
+// ── Logos des matières ───────────────────────────────────────────
+// Un logo SVG par famille de matière (public/matieres/*.svg), même style partout.
+// `color` sert au titre de la carte, `bg` aux fonds de vignette.
+const LOGOS = {
+  'mathematiques':        { bg: '#E0E9FC', color: '#2157CF', icon: 'calculate' },
+  'francais':             { bg: '#EDE3FC', color: '#6D33D1', icon: 'book_2' },
+  'creole':               { bg: '#FBDFE5', color: '#C61A3F', icon: 'record_voice_over' },
+  'citoyennete':          { bg: '#DDF0EE', color: '#0B8278', icon: 'balance' },
+  'arts':                 { bg: '#FCE8DD', color: '#CE4D0B', icon: 'palette' },
+  'musique':              { bg: '#F6E1F9', color: '#A921BA', icon: 'music_note' },
+  'eps':                  { bg: '#FEF1DD', color: '#B87507', icon: 'directions_run' },
+  'etap':                 { bg: '#E5E7EA', color: '#3E4B5C', icon: 'build' },
+  'biologie':             { bg: '#DEF2E6', color: '#138F41', icon: 'biotech' },
+  'geologie':             { bg: '#F2E9DC', color: '#8E5606', icon: 'terrain' },
+  'geographie':           { bg: '#DCEEF7', color: '#0274AF', icon: 'public' },
+  'sciences':             { bg: '#E9F2DD', color: '#598F0B', icon: 'science' },
+  'histoire':             { bg: '#F4E7DD', color: '#9E4908', icon: 'account_balance' },
+  'histoire-haiti':       { bg: '#DFE6FA', color: '#1A45BE', icon: 'account_balance' },
+  'histoire-universelle': { bg: '#F1E3DE', color: '#882E10', icon: 'hourglass_empty' },
+  'economie':             { bg: '#DCF0EA', color: '#04845C', icon: 'bar_chart' },
+  'philosophie':          { bg: '#E5E3F8', color: '#3B31B2', icon: 'psychology' },
+  'informatique':         { bg: '#DCF0F4', color: '#07809D', icon: 'computer' },
+  'litterature-haiti':    { bg: '#F6DFE8', color: '#A71552', icon: 'history_edu' },
+  'litterature-uni':      { bg: '#EDE0F8', color: '#6F1EB5', icon: 'auto_stories' },
+  'chimie':               { bg: '#FAE1EC', color: '#C12269', icon: 'science' },
+  'physique':             { bg: '#E0E4F4', color: '#1A389A', icon: 'bolt' },
+  'culture-generale':     { bg: '#F8EFDC', color: '#B27904', icon: 'lightbulb' },
+}
+
+// Nom de matière (sans accents, minuscules) → logo
+const MAT_LOGO = {
+  'mathematiques':                                           'mathematiques',
+  'communication francaise':                                 'francais',
+  'francais':                                                'francais',
+  'communication creole':                                    'creole',
+  'creole haitien':                                          'creole',
+  'education a la citoyennete':                              'citoyennete',
+  'education esthetique et artistique':                      'arts',
+  'arts et musiques':                                        'musique',
+  'education physique et sportive':                          'eps',
+  'education a la technologie et aux activites productives': 'etap',
+  'biologie':                                                'biologie',
+  'geologie':                                                'geologie',
+  'geographie':                                              'geographie',
+  'sciences sociales':                                       'geographie',
+  'sciences experimentales':                                 'sciences',
+  'histoire':                                                'histoire',
+  "histoire d'haiti":                                        'histoire-haiti',
+  'histoire universelle':                                    'histoire-universelle',
+  'economie':                                                'economie',
+  'philosophie':                                             'philosophie',
+  'informatique':                                            'informatique',
+  'litterature haitienne':                                   'litterature-haiti',
+  'litterature universelle':                                 'litterature-uni',
+  'chimie':                                                  'chimie',
+  'physique':                                                'physique',
+  'culture generale':                                        'culture-generale',
+  'connaissances generales':                                 'culture-generale',
+}
+
+function _logoSlug(nom) {
+  const key = (nom ?? '').toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[’`]/g, "'")
+  return MAT_LOGO[key] ?? null
 }
 
 function imagePour(nom) {
-  return MAT_IMAGES[nom.toLowerCase().trim()] ?? MAT_IMAGES[nom.trim()] ?? null
-}
-
-const MAT_MAP = {
-  'mathématiques':                   { icon: 'calculate',       bg: '#DBEAFE', color: '#1D4ED8' },
-  'communication française':         { icon: 'book_2',          bg: '#EDE9FE', color: '#7C3AED' },
-  'communication créole':            { icon: 'record_voice_over',bg: '#EDE9FE', color: '#6D28D9' },
-  'éducation à la citoyenneté':      { icon: 'balance',         bg: '#CCFBF1', color: '#0D9488' },
-  'éducation esthétique et artistique': { icon: 'palette',      bg: '#FFEDD5', color: '#C2410C' },
-  'éducation physique et sportive':  { icon: 'directions_run',  bg: '#FEF3C7', color: '#B45309' },
-  'éducation à la technologie et aux activités productives': { icon: 'build', bg: '#D1FAE5', color: '#059669' },
-  'biologie':                        { icon: 'biotech',         bg: '#CCFBF1', color: '#065F46' },
-  'géologie':                        { icon: 'terrain',         bg: '#FEF3C7', color: '#92400E' },
-  'sciences sociales':               { icon: 'groups',          bg: '#FEF3C7', color: '#D97706' },
-  "histoire d'haïti":                { icon: 'account_balance', bg: '#FEE2E2', color: '#B91C1C' },
-  'histoire universelle':            { icon: 'public',          bg: '#DCFCE7', color: '#15803D' },
-  'économie':                        { icon: 'bar_chart',       bg: '#DCFCE7', color: '#16A34A' },
-  'philosophie':                     { icon: 'psychology',      bg: '#FEF3C7', color: '#B45309' },
-  'informatique':                    { icon: 'computer',        bg: '#DBEAFE', color: '#2563EB' },
-  'littérature haïtienne':           { icon: 'auto_stories',    bg: '#FCE7F3', color: '#9D174D' },
-  'littérature universelle':         { icon: 'auto_stories',    bg: '#EDE9FE', color: '#6B21A8' },
-  'chimie':                          { icon: 'science',         bg: '#EDE9FE', color: '#7C3AED' },
-  'physique':                        { icon: 'bolt',            bg: '#DBEAFE', color: '#1D4ED8' },
-  'culture générale':                { icon: 'lightbulb',       bg: '#FEF3C7', color: '#D97706' },
-  'connaissances générales':         { icon: 'lightbulb',       bg: '#FEF3C7', color: '#D97706' },
+  const slug = _logoSlug(nom)
+  return slug ? `/matieres/${slug}.svg` : null
 }
 
 function _lookup(nom) {
-  const key = nom.toLowerCase().trim()
-  return MAT_MAP[key]
-    ?? MAT_MAP[key.replace(/[éèê]/g,'e').replace(/[àâ]/g,'a').replace(/[ûù]/g,'u').replace(/î/g,'i').replace(/ô/g,'o')]
-    ?? { icon: 'menu_book', bg: '#DBEAFE', color: '#2563EB' }
+  return LOGOS[_logoSlug(nom)] ?? { icon: 'menu_book', bg: '#DBEAFE', color: '#2563EB' }
 }
 function iconPour(nom) { return _lookup(nom).icon }
 function iconBgPour(nom) { return _lookup(nom).bg }
