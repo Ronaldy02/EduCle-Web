@@ -11,6 +11,9 @@ class QuestionSchema(BaseModel):
     bonne_reponse: str
     explication: str
     niveau_complexite: str
+    # Gains d'une bonne réponse (affichés en direct pendant le quiz, cf. /quiz/demarrer)
+    xp: int = 0
+    pieces: int = 0
 
 
 class StatistiqueQuestionSchema(BaseModel):

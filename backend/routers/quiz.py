@@ -121,6 +121,11 @@ def demarrer_quiz(
     pool = _dedup_pool(pool)
     stats = _get_stats(db, [q["id"] for q in pool], current_user.id)
     selected = selectionner(pool=pool, stats=stats, nb_voulu=body.nb_questions)
+    # Même calcul que /terminer : le front peut afficher le vrai gain de chaque question
+    for q in selected:
+        maitrise = stats.get(q["id"], {}).get("nb_correcte", 0.0)
+        q["xp"]     = calculer_xp_question(maitrise, body.mode_nom)
+        q["pieces"] = calculer_pieces_question(True, body.mode_nom)
     return [QuestionSchema(**q) for q in selected]
 
 

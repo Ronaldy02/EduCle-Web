@@ -10,11 +10,11 @@
     <transition name="palier-anim">
       <div v-if="palierVisible" class="palier-overlay" :class="`palier-lv${palierValue}`">
         <div class="palier-box">
-          <span v-for="i in (palierValue >= 20 ? 12 : 0)" :key="i"
-            class="palier-particle" :style="palierParticleStyle(i)"></span>
+          <span v-for="i in PALIER_PARTICULES[palierValue]" :key="i"
+            class="palier-particle" :style="palierParticleStyle(i, PALIER_PARTICULES[palierValue])"></span>
           <div class="palier-fire">🔥</div>
           <div class="palier-label">SÉRIE DE {{ palierValue }} !</div>
-          <div class="palier-bonus">+{{ PALIER_BONUS[palierValue] }} <CoinIcon /></div>
+          <div ref="palierBonusEl" class="palier-bonus">+{{ PALIER_BONUS[palierValue] }} <CoinIcon /></div>
         </div>
       </div>
     </transition>
@@ -31,6 +31,9 @@
         </div>
         <!-- Score + Série -->
         <div class="qz-header-right">
+          <!-- H1/H2 · compteurs qui reçoivent les gains -->
+          <div ref="xpDesktop" class="qz-gain-pill qz-gain-xp">✨ <span v-countup="xpGagne"></span> XP</div>
+          <div ref="piecesDesktop" class="qz-gain-pill qz-gain-pieces"><CoinIcon /> <span v-countup="piecesTotal"></span></div>
           <div class="qz-score-block">
             <span class="qz-score-label">Score</span>
             <span class="qz-score-val" v-countup="scoreLocal"></span>
@@ -40,7 +43,11 @@
               class="qz-serie-pill"
               :class="{ 'qz-serie-bounce': serieBounce, 'qz-serie-hot': serie >= 10 }">
               <span>🔥</span>
-              <span class="qz-serie-num">{{ serie }}</span>
+              <span class="qz-serie-num">
+                <transition :name="serieTransition" mode="out-in">
+                  <span :key="serie" class="qz-serie-chiffre">{{ serie }}</span>
+                </transition>
+              </span>
             </div>
           </transition>
         </div>
@@ -68,7 +75,7 @@
             </div>
           </div>
           <div class="qz-dc-hright">
-            <span class="qz-dc-coins"><CoinIcon /> {{ piecesTotal }}</span>
+            <span ref="piecesMobile" class="qz-dc-coins"><CoinIcon /> <span v-countup="piecesTotal"></span></span>
             <button class="qz-dc-quit" @click="router.back()">Quitter</button>
           </div>
         </div>
@@ -85,7 +92,7 @@
       <!-- Score -->
       <div class="qz-dc-score-card">
         <div class="qz-dc-score-val">⭐ <span v-countup="scoreLocal"></span></div>
-        <div class="qz-dc-stat-lbl">Score</div>
+        <div class="qz-dc-stat-lbl">Score · <span ref="xpMobile" class="qz-dc-xp">✨ <span v-countup="xpGagne"></span> XP</span></div>
       </div>
       <!-- Timer ring SVG -->
       <div class="qz-dc-ring-wrap"
@@ -107,7 +114,11 @@
       </div>
       <!-- Streak (toujours affiché comme dans le dc.html) -->
       <div class="qz-dc-streak-card">
-        <div class="qz-dc-streak-val">🔥 {{ serie }}</div>
+        <div class="qz-dc-streak-val">🔥
+          <transition :name="serieTransition" mode="out-in">
+            <span :key="serie" class="qz-serie-chiffre">{{ serie }}</span>
+          </transition>
+        </div>
         <div class="qz-dc-stat-lbl">Série</div>
       </div>
     </div>
@@ -267,7 +278,7 @@ import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useQuizStore } from '../stores/quiz.js'
 import { getNiveau } from '../api/client.js'
-import { ripple, burst } from '../animations/effects.js'
+import { ripple, burst, voler, rebond } from '../animations/effects.js'
 
 const router    = useRouter()
 const quizStore = useQuizStore()
@@ -295,6 +306,16 @@ const palierValue   = ref(0)
 const _PALIERS      = [5, 10, 15, 20]
 const PALIER_BONUS    = { 5: 5, 10: 10, 15: 18, 20: 25 }
 const PALIER_DURATION = { 5: 1500, 10: 1800, 15: 2100, 20: 2600 }
+const PALIER_PARTICULES = { 5: 6, 10: 10, 15: 14, 20: 20 }   // H4 · plus le palier est haut, plus ça éclate
+
+// H1/H2 · gains affichés en direct (valeurs réelles envoyées par /quiz/demarrer)
+const xpGagne         = ref(0)
+const serieTransition = ref('serie-up')                        // H3 · le chiffre monte ou tombe
+const xpDesktop       = ref(null)
+const xpMobile        = ref(null)
+const piecesDesktop   = ref(null)
+const piecesMobile    = ref(null)
+const palierBonusEl   = ref(null)
 
 // Bonus
 const bonusUtilises  = ref({ elimination: false, cinqCinq: false, remplacer: false })
@@ -530,6 +551,7 @@ function repondre(choixIndex) {
 
   if (correcte) {
     jouerBonneReponse()
+    serieTransition.value = 'serie-up'
     serie.value++
     const meta    = MODES_META[modeNom.value] ?? { multi: 1 }
     const base    = Math.round(10 * meta.multi)
@@ -541,10 +563,14 @@ function repondre(choixIndex) {
     }
     animPulse.value = true
     setTimeout(() => { animPulse.value = false }, 500)
-    // E3 · étoiles qui jaillissent du bon choix
-    nextTick(() => burst(choixEls[bonneIdx], { count: 8, color: '#16A34A' }))
+    // E3 · étoiles qui jaillissent du bon choix — H1/H2 · gains qui volent vers les compteurs
+    nextTick(() => {
+      burst(choixEls[bonneIdx], { count: 8, color: '#16A34A' })
+      animerGains(choixEls[bonneIdx], q.xp ?? 0, q.pieces ?? 0)
+    })
   } else {
     if (choixIndex !== null) jouerMauvaiseReponse()
+    serieTransition.value = 'serie-fall'
     serie.value = 0
     animShake.value = true
     setTimeout(() => { animShake.value = false }, 480)
@@ -660,7 +686,40 @@ function triggerPalier(n) {
   palierValue.value = n
   palierVisible.value = true
   playSerieSound(n)
+  // H4 · le bonus de pièces quitte la bannière et rejoint le compteur
+  setTimeout(() => {
+    volerPieces(palierBonusEl.value, Math.min(8, 3 + n / 5), PALIER_BONUS[n])
+  }, PALIER_DURATION[n] * 0.55)
   setTimeout(() => { palierVisible.value = false }, PALIER_DURATION[n])
+}
+
+// ── H1/H2 · Gains qui volent vers leurs compteurs ───────────────────────────
+const visible = (el) => !!el && el.getClientRects().length > 0
+
+function cibleXp()     { return visible(xpDesktop.value) ? xpDesktop.value : xpMobile.value }
+function ciblePieces() { return visible(piecesDesktop.value) ? piecesDesktop.value : piecesMobile.value }
+
+function animerGains(depuis, xp, pieces) {
+  if (xp > 0) {
+    const cible = cibleXp()
+    voler(depuis, cible, { contenu: `+${xp} XP`, classe: 'fx-vol-xp' })
+      .then(() => { xpGagne.value += xp; rebond(cible) })
+  }
+  // 3 à 5 pièces selon le gain
+  if (pieces > 0) volerPieces(depuis, Math.min(5, Math.max(3, pieces + 1)), pieces)
+}
+
+// n pièces partent en éventail, l'une après l'autre ; le compteur est crédité à l'arrivée
+function volerPieces(depuis, n, montant) {
+  const cible = ciblePieces()
+  const svg   = document.querySelector('.coin-icon')?.outerHTML ?? '🪙'
+  const vols  = Array.from({ length: n }, (_, k) =>
+    voler(depuis, cible, {
+      contenu: svg, classe: 'fx-vol-piece', duree: 700,
+      delai: 120 + k * 70, ecart: (k - (n - 1) / 2) * 14, hauteur: 60 + k * 8,
+    }).then(() => rebond(cible))
+  )
+  Promise.all(vols).then(() => { piecesTotal.value += montant })
 }
 
 function playSerieSound(n) {
@@ -687,9 +746,9 @@ function playSerieSound(n) {
   } catch {}
 }
 
-function palierParticleStyle(i) {
+function palierParticleStyle(i, n) {
   return {
-    '--angle': (i / 12 * 360) + 'deg',
+    '--angle': (i / n * 360) + 'deg',
     '--dist':  (90 + (i % 3) * 25) + 'px',
     '--size':  (4 + (i % 3) * 3) + 'px',
     '--hue':   (20 + i * 15) + 'deg',
@@ -967,10 +1026,34 @@ function palierParticleStyle(i) {
 }
 .qz-suivant-btn:hover { background: #004295; }
 
+/* H1/H2 · compteurs XP / pièces de l'en-tête */
+.qz-gain-pill {
+  display: flex; align-items: center; gap: 0.3rem;
+  border-radius: 99px; padding: 0.3rem 0.75rem;
+  font-size: 0.82rem; font-weight: 800; white-space: nowrap;
+}
+.qz-gain-xp     { background: #f3efff; border: 1.5px solid #ddd3fe; color: #6d28d9; }
+.qz-gain-pieces { background: #fff8e6; border: 1.5px solid #fde4a3; color: #9a5b0b; }
+.qz-dc-xp { color: #6d28d9; white-space: nowrap; display: inline-block; }
+
+/* H3 · le chiffre de la série monte avec un rebond, ou tombe quand elle casse */
+.qz-serie-chiffre { display: inline-block; }
+.serie-up-enter-active   { animation: serie-chiffre-up 0.35s var(--ease-spring); }
+.serie-up-leave-active   { transition: opacity 0.1s, transform 0.1s; }
+.serie-up-leave-to       { opacity: 0; transform: translateY(-8px); }
+@keyframes serie-chiffre-up {
+  from { transform: translateY(10px) scale(0.6); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+.serie-fall-leave-active { transition: opacity 0.35s ease-in, transform 0.35s ease-in; }
+.serie-fall-leave-to     { opacity: 0; transform: translateY(18px) rotate(-25deg); }
+.serie-fall-enter-active { transition: opacity 0.2s; }
+.serie-fall-enter-from   { opacity: 0; }
+
 /* Pill entrance */
 .serie-pop-enter-active { animation: serie-pop-in 0.45s cubic-bezier(0.34,1.56,0.64,1); }
-.serie-pop-leave-active { transition: opacity 0.2s, transform 0.2s; }
-.serie-pop-leave-to     { opacity: 0; transform: scale(0.8); }
+.serie-pop-leave-active { transition: opacity 0.35s ease-in, transform 0.35s ease-in; }
+.serie-pop-leave-to     { opacity: 0; transform: translateY(18px) rotate(-10deg) scale(0.85); }
 @keyframes serie-pop-in {
   from { transform: scale(0); opacity: 0; }
   to   { transform: scale(1); opacity: 1; }
