@@ -15,9 +15,9 @@
     <div v-if="!res" class="rt-loading">Chargement…</div>
     <main v-else class="rt-main">
 
-      <!-- ── Overlay niveau supérieur (+ badge parfait si les deux) ── -->
+      <!-- ── Overlay niveau supérieur ──────────────────────────────── -->
       <transition name="overlay-fade">
-        <div v-if="showOverlay" class="overlay" @click="dismissOverlay">
+        <div v-if="currentOverlay === 'levelup'" class="overlay" @click="nextOverlay">
           <span v-for="i in 16" :key="i" class="particle" :style="particleStyle(i)"></span>
           <div class="overlay-card" @click.stop>
             <div v-if="isPerfect" class="overlay-perfect-badge">🎆 SCORE MAXIMUM !</div>
@@ -35,7 +35,44 @@
               </div>
               <div class="overlay-rang-glow" :style="{ '--glow': rangApres.couleur }"></div>
             </template>
-            <button class="overlay-btn" @click="dismissOverlay">Continuer →</button>
+            <button class="overlay-btn" @click="nextOverlay">Continuer →</button>
+          </div>
+        </div>
+      </transition>
+
+      <!-- ── Overlay défis complétés ────────────────────────────────── -->
+      <transition name="overlay-fade">
+        <div v-if="currentOverlay === 'defis'" class="overlay overlay--defi" @click="nextOverlay">
+          <span v-for="i in 12" :key="i" class="particle particle--defi" :style="particleStyle(i)"></span>
+          <div class="overlay-card overlay-card--defi" @click.stop>
+            <div class="overlay-defi-icon">🎯</div>
+            <div class="overlay-niveau-label" style="color:#F59E0B">
+              DÉFI{{ res.defis_completes.length > 1 ? 'S' : '' }} COMPLÉTÉ{{ res.defis_completes.length > 1 ? 'S' : '' }} !
+            </div>
+            <div class="overlay-defi-count">{{ res.defis_completes.length }}</div>
+            <div class="overlay-defi-bonus">
+              <span>+{{ res.xp_bonus_defis }} XP</span>
+              <span>+{{ res.pieces_bonus_defis }} pièces</span>
+            </div>
+            <button class="overlay-btn overlay-btn--defi" @click="nextOverlay">Continuer →</button>
+          </div>
+        </div>
+      </transition>
+
+      <!-- ── Overlay réalisations débloquées ────────────────────────── -->
+      <transition name="overlay-fade">
+        <div v-if="currentOverlay === 'realisations'" class="overlay overlay--real" @click="nextOverlay">
+          <span v-for="i in 12" :key="i" class="particle particle--real" :style="particleStyle(i)"></span>
+          <div class="overlay-card overlay-card--real" @click.stop>
+            <div class="overlay-defi-icon">🏅</div>
+            <div class="overlay-niveau-label" style="color:#8B5CF6">
+              RÉALISATION{{ res.realisations_debloquees.length > 1 ? 'S' : '' }} DÉBLOQUÉE{{ res.realisations_debloquees.length > 1 ? 'S' : '' }} !
+            </div>
+            <div class="overlay-defi-count" style="color:#8B5CF6">{{ res.realisations_debloquees.length }}</div>
+            <div class="overlay-defi-bonus">
+              <span>🎖️ Nouvelle récompense</span>
+            </div>
+            <button class="overlay-btn overlay-btn--real" @click="nextOverlay">Continuer →</button>
           </div>
         </div>
       </transition>
@@ -212,31 +249,43 @@ const rangUp    = computed(() =>
   res.value && rangDepuisNiveau(res.value.niveau_avant) !== rangDepuisNiveau(res.value.niveau_apres)
 )
 
-// ── Overlay niveau supérieur ──────────────────────────────────────
-const showOverlay = ref(false)
-let dismissTimer = null
-function dismissOverlay() { clearTimeout(dismissTimer); showOverlay.value = false }
+// ── File d'overlays séquentiels ───────────────────────────────────
+const overlayQueue   = ref([])
+const currentOverlay = ref(null)
+let overlayTimer     = null
+
+function nextOverlay() {
+  clearTimeout(overlayTimer)
+  currentOverlay.value = overlayQueue.value.shift() ?? null
+  if (currentOverlay.value) {
+    overlayTimer = setTimeout(nextOverlay, 4500)
+  }
+}
 
 // ── Score parfait ─────────────────────────────────────────────────
-const fwCanvas       = ref(null)
+const fwCanvas          = ref(null)
 const showPerfectBanner = ref(false)
 let fwCleanup = null
 
 onMounted(() => {
-  const levelUp = res.value?.niveau_apres > res.value?.niveau_avant
+  const r       = res.value
+  const levelUp = r?.niveau_apres > r?.niveau_avant
   const perfect = isPerfect.value
+  const hasDefis = r?.defis_completes?.length > 0
+  const hasReal  = r?.realisations_debloquees?.length > 0
 
-  if (levelUp) {
-    showOverlay.value = true
-    dismissTimer = setTimeout(dismissOverlay, 4500)
-  }
+  if (levelUp)   overlayQueue.value.push('levelup')
+  if (hasDefis)  overlayQueue.value.push('defis')
+  if (hasReal)   overlayQueue.value.push('realisations')
+
+  if (overlayQueue.value.length) nextOverlay()
 
   if (perfect) {
     playPerfectSound()
     nextTick(() => {
       if (fwCanvas.value) fwCleanup = launchFireworks(fwCanvas.value)
     })
-    if (!levelUp) {
+    if (!levelUp && !hasDefis && !hasReal) {
       showPerfectBanner.value = true
       setTimeout(() => { showPerfectBanner.value = false }, 3200)
     }
@@ -721,4 +770,47 @@ function accueil()  { quizStore.reset(); router.push('/') }
 .overlay-fade-leave-active { transition: opacity 0.4s; }
 .overlay-fade-enter-from,
 .overlay-fade-leave-to { opacity: 0; }
+
+/* ── Overlay défis ──────────────────────────────────────────────── */
+.overlay--defi { background: rgba(120, 53, 15, 0.85); }
+.overlay-card--defi {
+  background: linear-gradient(145deg, #1c1007, #2d1a0a);
+  border: 1px solid #F59E0B; box-shadow: 0 0 40px rgba(245,158,11,0.4);
+}
+.overlay-defi-icon {
+  font-size: 3.5rem; animation: pop-in 0.5s 0.2s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.overlay-defi-count {
+  font-size: 4rem; font-weight: 900; color: #F59E0B;
+  animation: pop-in 0.5s 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+  text-shadow: 0 0 20px rgba(245,158,11,0.8);
+}
+.overlay-defi-bonus {
+  display: flex; gap: 1.5rem; margin-top: 0.5rem;
+  font-weight: 700; font-size: 1.1rem; color: #fde68a;
+  animation: fade-up 0.4s 0.7s both;
+}
+.overlay-btn--defi {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+}
+.particle--defi {
+  background: hsl(45, 95%, 55%);
+}
+
+/* ── Overlay réalisations ────────────────────────────────────────── */
+.overlay--real { background: rgba(46, 16, 101, 0.85); }
+.overlay-card--real {
+  background: linear-gradient(145deg, #1a0a2e, #2e1065);
+  border: 1px solid #8B5CF6; box-shadow: 0 0 40px rgba(139,92,246,0.4);
+}
+.overlay-btn--real {
+  background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+}
+.particle--real {
+  background: hsl(270, 80%, 65%);
+}
+@keyframes pop-in {
+  0%   { transform: scale(0) rotate(-10deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
 </style>
