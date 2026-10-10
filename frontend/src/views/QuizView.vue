@@ -1,11 +1,10 @@
 <template>
-  <!-- Chargement / envoi -->
   <div v-if="chargement || envoi" class="qz-loading">
     <p>{{ chargement ? 'Préparation du quiz…' : 'Calcul du résultat…' }}</p>
   </div>
 
-  <!-- Quiz en cours -->
   <div v-else-if="question" class="qz-shell">
+    <!-- Quiz en cours -->
 
     <!-- ── Overlay palier série ─────────────────────────────────── -->
     <transition name="palier-anim">
@@ -34,7 +33,7 @@
         <div class="qz-header-right">
           <div class="qz-score-block">
             <span class="qz-score-label">Score</span>
-            <span class="qz-score-val">{{ scoreLocal }}</span>
+            <span class="qz-score-val" v-countup="scoreLocal"></span>
           </div>
           <transition name="serie-pop">
             <div v-if="serie >= 3 && modeNom !== 'Bombardement'"
@@ -85,7 +84,7 @@
     <div class="qz-dc-stats">
       <!-- Score -->
       <div class="qz-dc-score-card">
-        <div class="qz-dc-score-val">⭐ {{ scoreLocal }}</div>
+        <div class="qz-dc-score-val">⭐ <span v-countup="scoreLocal"></span></div>
         <div class="qz-dc-stat-lbl">Score</div>
       </div>
       <!-- Timer ring SVG -->
@@ -181,27 +180,32 @@
               <!-- Dropdown bonus (dc.html style) -->
               <transition name="mobile-bonus">
                 <div v-if="mobileShowBonus" class="qz-dc-bonus-dropdown">
-                  <button class="qz-dc-bitem" @click="utiliserBonus('elimination'); mobileShowBonus=false" :disabled="bonusUtilises.elimination || reponduIndex !== null">
+                  <button class="qz-dc-bitem" @click="utiliserBonus('elimination'); mobileShowBonus=false" :disabled="bonusUtilises.elimination || repondu">
                     <span>🧹</span><span class="qz-dc-bname">Élimination</span><span class="qz-dc-bcost"><CoinIcon />50</span>
                   </button>
-                  <button class="qz-dc-bitem" @click="utiliserBonus('cinqCinq'); mobileShowBonus=false" :disabled="bonusUtilises.cinqCinq || reponduIndex !== null">
+                  <button class="qz-dc-bitem" @click="utiliserBonus('cinqCinq'); mobileShowBonus=false" :disabled="bonusUtilises.cinqCinq || repondu">
                     <span>½</span><span class="qz-dc-bname">50/50</span><span class="qz-dc-bcost"><CoinIcon />100</span>
                   </button>
-                  <button class="qz-dc-bitem" @click="utiliserBonus('remplacer'); mobileShowBonus=false" :disabled="bonusUtilises.remplacer || reponduIndex !== null">
+                  <button class="qz-dc-bitem" @click="utiliserBonus('remplacer'); mobileShowBonus=false" :disabled="bonusUtilises.remplacer || repondu">
                     <span>🔄</span><span class="qz-dc-bname">Remplacer</span><span class="qz-dc-bcost"><CoinIcon />75</span>
                   </button>
-                  <button class="qz-dc-bitem" @click="utiliserBonus('plusTemps'); mobileShowBonus=false" :disabled="modeNom === 'Bombardement' || reponduIndex !== null">
+                  <button class="qz-dc-bitem" @click="utiliserBonus('plusTemps'); mobileShowBonus=false" :disabled="modeNom === 'Bombardement' || repondu">
                     <span>⏱️</span><span class="qz-dc-bname">+Temps</span><span class="qz-dc-bcost"><CoinIcon />150</span>
                   </button>
                 </div>
               </transition>
             </div>
-            <button class="qz-passer-btn" :disabled="reponduIndex !== null" @click="passer">
+            <button class="qz-passer-btn" :disabled="repondu" @click="passer">
               Passer
               <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle">skip_next</span>
             </button>
           </div>
         </div>
+
+        <!-- E7 · Question + réponses : glissement d'une question à l'autre -->
+        <transition name="q-swap" mode="out-in">
+        <div :key="indexCourant + ':' + question.id" class="qz-q-stage"
+          :class="{ 'qz-q-stage--rapide': modeNom === 'Bombardement' }">
 
         <!-- Carte question -->
         <div class="qz-question-card" :class="{ shake: animShake, pulse: animPulse }">
@@ -214,15 +218,31 @@
           <button
             v-for="(choix, i) in choixVisibles"
             :key="i"
+            :ref="el => { if (el) choixEls[i] = el }"
+            v-ripple
             class="qz-choix-btn"
-            :class="[etatChoix(i), { 'qz-choix-elimine': elimines.includes(i) }]"
-            :disabled="reponduIndex !== null || elimines.includes(i)"
+            :class="[etatChoix(i), {
+              'qz-choix-elimine': elimines.includes(i),
+              'qz-gagne':  repondu && reponduIndex === bonneIndex && i === bonneIndex,
+              'qz-revele': repondu && reponduIndex !== bonneIndex && i === bonneIndex,
+              'qz-kbd-press': touchePressee === i,
+            }]"
+            :disabled="repondu || elimines.includes(i)"
             @click="repondre(i)">
-            <div class="qz-lettre" :class="etatChoix(i)">{{ lettres[i] }}</div>
+            <div class="qz-lettre" :class="etatChoix(i)">
+              <transition name="lettre-pop">
+                <span v-if="etatChoix(i) === 'correct'" key="ok">✓</span>
+                <span v-else-if="etatChoix(i) === 'incorrect'" key="ko">✗</span>
+                <span v-else key="l">{{ lettres[i] }}</span>
+              </transition>
+            </div>
             <span class="qz-choix-texte" :class="{ 'qz-choix-texte--long': choix.length > 20 }">{{ choix }}</span>
             <div class="qz-kbd">{{ i + 1 }}</div>
           </button>
         </div>
+
+        </div>
+        </transition>
 
         <!-- Explication (mode Révision) -->
         <transition name="expl-slide">
@@ -247,6 +267,7 @@ import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useQuizStore } from '../stores/quiz.js'
 import { getNiveau } from '../api/client.js'
+import { ripple, burst } from '../animations/effects.js'
 
 const router    = useRouter()
 const quizStore = useQuizStore()
@@ -256,11 +277,14 @@ const chargement = ref(true)
 const envoi      = ref(false)
 
 const indexCourant    = ref(0)
+const repondu         = ref(false)   // vrai dès qu'une réponse (ou temps écoulé / passer) est enregistrée
 const reponduIndex    = ref(null)
 const bonneIndex      = ref(null)
 const showExplication = ref(false)
 const animShake  = ref(false)
 const animPulse  = ref(false)
+const touchePressee = ref(null)      // E9 · choix activé au clavier
+const choixEls      = []             // éléments DOM des choix (effets E2/E3)
 
 const serie         = ref(0)
 const scoreLocal    = ref(0)
@@ -457,9 +481,15 @@ onBeforeUnmount(() => {
 })
 
 function onKey(e) {
-  if (reponduIndex.value !== null) return
+  if (repondu.value) return
   const map = { '1': 0, '2': 1, '3': 2, '4': 3 }
-  if (map[e.key] !== undefined && !elimines.value.includes(map[e.key])) repondre(map[e.key])
+  const i = map[e.key]
+  if (i === undefined || elimines.value.includes(i)) return
+  // E9 · la touche « appuie » visuellement sur le choix
+  touchePressee.value = i
+  ripple(choixEls[i])
+  setTimeout(() => { touchePressee.value = null }, 180)
+  repondre(i)
 }
 
 function demarrerChronoGlobal() {
@@ -481,7 +511,7 @@ function demarrerChrono() {
 }
 
 function repondre(choixIndex) {
-  if (reponduIndex.value !== null) return
+  if (repondu.value) return
   clearInterval(timerInterval)
   if (modeNom.value !== 'Bombardement') stopTick()
 
@@ -489,6 +519,7 @@ function repondre(choixIndex) {
   const bonneRep = q.bonne_reponse
   const bonneIdx = q.choix.indexOf(bonneRep)
 
+  repondu.value      = true
   reponduIndex.value = choixIndex
   bonneIndex.value   = bonneIdx
 
@@ -510,6 +541,8 @@ function repondre(choixIndex) {
     }
     animPulse.value = true
     setTimeout(() => { animPulse.value = false }, 500)
+    // E3 · étoiles qui jaillissent du bon choix
+    nextTick(() => burst(choixEls[bonneIdx], { count: 8, color: '#16A34A' }))
   } else {
     if (choixIndex !== null) jouerMauvaiseReponse()
     serie.value = 0
@@ -530,12 +563,13 @@ function repondre(choixIndex) {
 }
 
 function passer() {
-  if (reponduIndex.value !== null) return
+  if (repondu.value) return
   repondre(null)
 }
 
 function suivant() {
   showExplication.value = false
+  repondu.value         = false
   reponduIndex.value    = null
   bonneIndex.value      = null
   elimines.value        = []
@@ -561,14 +595,14 @@ async function finirQuiz() {
 }
 
 function etatChoix(i) {
-  if (reponduIndex.value === null) return ''
+  if (!repondu.value) return ''
   if (i === bonneIndex.value)     return 'correct'
   if (i === reponduIndex.value)   return 'incorrect'
   return 'neutre'
 }
 
 function utiliserBonus(type) {
-  if (reponduIndex.value !== null) return
+  if (repondu.value) return
   const q = question.value
   if (!q) return
 
@@ -834,23 +868,62 @@ function palierParticleStyle(i) {
   background: #fff; border: 2px solid #c2c6d6;
   border-radius: 14px; padding: 1rem 1.1rem;
   text-align: left; cursor: pointer;
-  transition: border-color 0.15s, background 0.15s, transform 0.12s;
+  transition: border-color 0.2s, background 0.2s, opacity 0.3s, transform 0.15s var(--ease-out);
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
+/* E1 · survol : léger décalage vers la droite */
 .qz-choix-btn:hover:not(:disabled) {
-  border-color: #0058be; background: #d8e2ff; transform: translateY(-2px);
+  border-color: #0058be; background: #d8e2ff; transform: translateX(4px);
 }
+/* E2 · pression (l'onde est ajoutée par v-ripple) */
+.qz-choix-btn:active:not(:disabled) { transform: translateX(4px) scale(0.97); transition-duration: 80ms; }
+.qz-choix-btn:disabled { opacity: 1; cursor: default; }
 .qz-choix-btn.correct  { border-color: #006c49; background: #6ffbbe33; }
 .qz-choix-btn.incorrect{ border-color: #ba1a1a; background: #ffdad6; }
-.qz-choix-btn.neutre   { opacity: 0.45; }
+/* E6 · les choix non concernés pâlissent */
+.qz-choix-btn.neutre   { opacity: 0.4; }
 .qz-choix-btn.qz-choix-elimine { opacity: 0.25; cursor: not-allowed; }
+
+/* E3 · bonne réponse : halo vert qui pulse une fois */
+.qz-choix-btn.qz-gagne { animation: qz-halo 0.6s var(--ease-out); }
+@keyframes qz-halo {
+  0%   { box-shadow: 0 0 0 0 rgba(22,163,74,0.55); }
+  100% { box-shadow: 0 0 0 16px rgba(22,163,74,0); }
+}
+/* E4 · mauvaise réponse : le choix tremble */
+.qz-choix-btn.incorrect { animation: qz-choix-shake 0.4s ease; }
+@keyframes qz-choix-shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(7px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+/* E5 · révélation de la bonne réponse : contour qui clignote 2 fois */
+.qz-choix-btn.qz-revele { animation: qz-revele 0.5s ease-in-out 0.25s 2; }
+@keyframes qz-revele {
+  0%,100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); }
+  50%     { box-shadow: 0 0 0 4px rgba(22,163,74,0.5); }
+}
+/* E9 · réponse au clavier */
+.qz-choix-btn.qz-kbd-press { transform: scale(0.96); }
+.qz-kbd-press .qz-kbd { background: #0058be; color: #fff; transform: scale(1.15); }
 
 .qz-lettre {
   width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
   background: #dce2f3; color: #424754;
   display: flex; align-items: center; justify-content: center;
   font-size: 1.1rem; font-weight: 700;
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.2s, color 0.2s;
+}
+.qz-lettre > span { display: inline-block; }
+/* E3/E4 · ✓ / ✗ qui apparaissent avec un rebond */
+.lettre-pop-enter-active { animation: lettre-pop 0.4s var(--ease-spring); }
+.lettre-pop-leave-active { display: none; }
+@keyframes lettre-pop {
+  0%   { transform: scale(0) rotate(-25deg); }
+  60%  { transform: scale(1.35) rotate(5deg); }
+  100% { transform: scale(1) rotate(0); }
 }
 .qz-choix-btn:hover:not(:disabled) .qz-lettre { background: #0058be; color: #fff; }
 .qz-lettre.correct   { background: #006c49; color: #fff; }
@@ -864,6 +937,7 @@ function palierParticleStyle(i) {
   padding: 0.2rem 0.45rem; border-radius: 6px;
   background: #dce2f3; font-size: 0.72rem; font-weight: 600; color: #727785;
   flex-shrink: 0;
+  transition: background 0.15s, color 0.15s, transform 0.15s var(--ease-spring);
 }
 @media (min-width: 768px) { .qz-kbd { display: flex; } }
 
@@ -981,8 +1055,21 @@ function palierParticleStyle(i) {
 .palier-anim-enter-from    { opacity: 0; transform: scale(0.5); }
 .palier-anim-leave-to      { opacity: 0; }
 
-.expl-slide-enter-active { transition: opacity 0.25s, transform 0.25s; }
-.expl-slide-enter-from   { opacity: 0; transform: translateY(10px); }
+/* E7 · question suivante : sortie à gauche, entrée par la droite */
+.q-swap-enter-active { transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out); }
+.q-swap-leave-active { transition: opacity 0.15s var(--ease-in), transform 0.15s var(--ease-in); }
+.q-swap-enter-from   { opacity: 0; transform: translateX(40px) rotate(1.5deg); }
+.q-swap-leave-to     { opacity: 0; transform: translateX(-40px) rotate(-1.5deg); }
+.qz-q-stage--rapide.q-swap-enter-active,
+.qz-q-stage--rapide.q-swap-leave-active { transition-duration: 0.1s; }
+
+/* E8 · explication qui se déplie, puis le texte apparaît */
+.expl-slide-enter-active { transition: max-height 0.35s var(--ease-out), opacity 0.25s, transform 0.3s var(--ease-out); overflow: hidden; }
+.expl-slide-enter-from   { max-height: 0; opacity: 0; transform: translateY(-8px); }
+.expl-slide-enter-to     { max-height: 600px; }
+.expl-slide-enter-active .qz-expl-texte,
+.expl-slide-enter-active .qz-suivant-btn { animation: expl-texte 0.3s var(--ease-out) 0.15s backwards; }
+@keyframes expl-texte { from { opacity: 0; transform: translateY(6px); } }
 .expl-slide-leave-active { transition: opacity 0.15s; }
 .expl-slide-leave-to     { opacity: 0; }
 

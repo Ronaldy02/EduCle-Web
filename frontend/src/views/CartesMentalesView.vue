@@ -1,6 +1,6 @@
 <template>
   <div class="page fade-in">
-    <div v-if="chargement" class="loading">Chargement…</div>
+    <SkeletonBlock v-if="chargement" :lignes="4" />
 
     <template v-else-if="cartes.length === 0">
       <div class="vide">

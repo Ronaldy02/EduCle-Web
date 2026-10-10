@@ -19,7 +19,7 @@
     <!-- Réalisations -->
     <h3 class="section-title">Réalisations</h3>
     <div v-if="realisations.length === 0" class="empty">Aucune réalisation pour l'instant.</div>
-    <div class="realisations-grid">
+    <div class="realisations-grid" v-stagger>
       <div
         v-for="r in realisations"
         :key="r.id"

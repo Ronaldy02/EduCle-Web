@@ -46,10 +46,9 @@ button {
   cursor: pointer;
   border: none;
   border-radius: var(--radius);
-  transition: opacity 0.15s, transform 0.1s;
 }
 
-button:active { transform: scale(0.97); }
+/* Pression des boutons : voir animations/motion.css (A3) */
 button:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .card {

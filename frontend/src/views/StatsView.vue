@@ -2,7 +2,7 @@
   <div class="page fade-in">
     <h2 class="page-title">Statistiques</h2>
 
-    <div v-if="chargement" class="loading">Chargement…</div>
+    <SkeletonBlock v-if="chargement" :lignes="5" />
 
     <template v-else-if="stats">
       <!-- Tuiles globales -->
@@ -29,7 +29,7 @@
       </div>
 
       <!-- Liste des matières -->
-      <div v-else class="matieres-list">
+      <div v-else class="matieres-list" v-stagger>
         <div
           v-for="mat in stats.matieres"
           :key="mat.id"

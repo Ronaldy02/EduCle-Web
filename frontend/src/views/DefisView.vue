@@ -25,9 +25,7 @@
 
           <!-- Quotidiens -->
           <template v-if="ongletActif === 'quotidiens'">
-            <div v-if="chargement.quotidiens" class="loading-row">
-              <span class="spinner"></span> Chargement…
-            </div>
+            <SkeletonBlock v-if="chargement.quotidiens" :lignes="3" hauteur="88px" />
             <template v-else>
               <div v-if="!defisQuotidiens.length" class="vide-msg">Aucun défi aujourd'hui.</div>
               <div v-else class="defis-grid">
@@ -38,9 +36,7 @@
 
           <!-- Hebdo -->
           <template v-else-if="ongletActif === 'hebdo'">
-            <div v-if="chargement.hebdo" class="loading-row">
-              <span class="spinner"></span> Chargement…
-            </div>
+            <SkeletonBlock v-if="chargement.hebdo" :lignes="3" hauteur="88px" />
             <template v-else>
               <p class="periode-label">Semaine en cours</p>
               <div v-if="!defisHebdo.length" class="vide-msg">Aucun défi hebdomadaire.</div>
@@ -52,9 +48,7 @@
 
           <!-- Mensuel -->
           <template v-else-if="ongletActif === 'mensuel'">
-            <div v-if="chargement.mensuel" class="loading-row">
-              <span class="spinner"></span> Chargement…
-            </div>
+            <SkeletonBlock v-if="chargement.mensuel" :lignes="3" hauteur="88px" />
             <template v-else>
               <p class="periode-label">{{ moisCourant }}</p>
               <div v-if="!defisMensuels.length" class="vide-msg">Aucun défi mensuel.</div>
@@ -66,9 +60,7 @@
 
           <!-- Réalisations -->
           <template v-else-if="ongletActif === 'realisations'">
-            <div v-if="chargement.realisations" class="loading-row">
-              <span class="spinner"></span> Chargement…
-            </div>
+            <SkeletonBlock v-if="chargement.realisations" :lignes="3" hauteur="88px" />
             <template v-else>
               <div class="groupes-row">
                 <button v-for="g in GROUPES" :key="g.key"

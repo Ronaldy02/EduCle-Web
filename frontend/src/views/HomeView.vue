@@ -3,7 +3,7 @@
     <div class="home-inner">
 
       <!-- ─── Hero bento grid ─────────────────────────────────── -->
-      <div class="bento-grid">
+      <div class="bento-grid" v-stagger>
         <div class="hero-card">
           <div class="hero-deco-1"></div>
           <div class="hero-deco-2"></div>
@@ -101,9 +101,9 @@
         <template v-if="matieresFiltrées.length || chapitresFiltrés.length">
           <div v-if="matieresFiltrées.length">
             <div class="search-section-label">Matières</div>
-            <div class="matieres-grid">
+            <div class="matieres-grid" v-stagger>
               <div v-for="m in matieresFiltrées" :key="m.id"
-                class="mat-card" @click="choisirMatiere(m)">
+                class="mat-card" :style="{ '--lift-color': iconColorPour(m.nom) }" @click="choisirMatiere(m)">
                 <div v-if="imagePour(m.nom)" class="mat-img-wrap">
                   <img :src="imagePour(m.nom)" :alt="m.nom" class="mat-img" />
                 </div>
@@ -139,10 +139,10 @@
 
       <!-- ── Grille normale ──────────────────────────────────── -->
       <template v-else>
-        <div v-if="chargement" class="loading">Chargement…</div>
-        <div v-else class="matieres-grid">
+        <SkeletonBlock v-if="chargement" :lignes="4" hauteur="96px" />
+        <div v-else class="matieres-grid" v-stagger>
           <div v-for="m in matieresFiltrees" :key="m.id"
-            class="mat-card" @click="choisirMatiere(m)">
+            class="mat-card" :style="{ '--lift-color': iconColorPour(m.nom) }" @click="choisirMatiere(m)">
             <div v-if="imagePour(m.nom)" class="mat-img-wrap">
               <img :src="imagePour(m.nom)" :alt="m.nom" class="mat-img" />
             </div>
@@ -742,8 +742,9 @@ async function jouerAleatoire() {
 .matieres-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; padding-bottom: 2rem; }
 @media (min-width: 640px) { .matieres-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 900px)  { .matieres-grid { grid-template-columns: repeat(4, 1fr); } }
-.mat-card { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem 0.75rem; gap: 0.6rem; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; cursor: pointer; transition: box-shadow 0.15s, transform 0.15s; }
-.mat-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.1); transform: translateY(-2px); }
+.mat-card { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem 0.75rem; gap: 0.6rem; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; cursor: pointer; transition: box-shadow 0.2s var(--ease-out), transform 0.2s var(--ease-out), border-color 0.2s; }
+@media (hover: hover) { .mat-card:hover { box-shadow: 0 10px 24px rgba(16,19,26,0.10); transform: translateY(-4px); border-color: var(--lift-color, var(--primary)); } }
+.mat-card:active { transform: translateY(-1px) scale(0.98); }
 .mat-img-wrap { width: 56px; height: 56px; border-radius: 12px; overflow: hidden; transition: transform 0.15s; }
 .mat-card:hover .mat-img-wrap { transform: scale(1.08); }
 .mat-img { width: 100%; height: 100%; object-fit: cover; display: block; }

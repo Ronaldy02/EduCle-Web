@@ -9,7 +9,7 @@
     </div>
     <div class="mh-right">
       <div class="stat-pill" v-if="niveau">
-        <CoinIcon /> {{ niveau.pieces_total }}
+        <CoinIcon /> <span v-countup="niveau.pieces_total"></span>
       </div>
       <div class="mh-avatar">🎓</div>
     </div>
@@ -79,7 +79,7 @@
               <div class="xp-bar-wrap" style="width:140px">
                 <div class="xp-bar" :style="{ width: (niveau.progression * 100) + '%', background: niveau.rang_couleur }"></div>
               </div>
-              <span class="dtb-xp-label">{{ niveau.xp_dans_niveau }}/{{ niveau.xp_pour_suivant }} XP</span>
+              <span class="dtb-xp-label"><span v-countup="niveau.xp_dans_niveau"></span>/{{ niveau.xp_pour_suivant }} XP</span>
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@
             <span>0</span>
           </div>
           <div class="stat-pill">
-            <CoinIcon /> {{ niveau.pieces_total }}
+            <CoinIcon /> <span v-countup="niveau.pieces_total"></span>
           </div>
           <div class="mh-avatar">🎓</div>
         </div>
@@ -103,10 +103,16 @@
 
       <!-- Page content -->
       <div class="page-content">
-        <router-view />
+        <router-view v-slot="{ Component, route: r }">
+          <transition name="page" mode="out-in">
+            <component :is="Component" :key="r.path" />
+          </transition>
+        </router-view>
       </div>
     </div>
   </div>
+
+  <ToastHost />
 </template>
 
 <script setup>
@@ -114,6 +120,7 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getNiveau } from './api/client.js'
 import { useAuthStore } from './stores/auth.js'
+import ToastHost from './components/ToastHost.vue'
 
 const route = useRoute()
 const router = useRouter()

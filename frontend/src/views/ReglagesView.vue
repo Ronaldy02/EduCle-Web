@@ -87,6 +87,21 @@
         </template>
       </div>
 
+      <!-- ── Animations ─────────────────────────────────────── -->
+      <div class="rg-section-label">Animations</div>
+      <div class="rg-card">
+        <div class="rg-switch-row">
+          <div>
+            <p class="rg-switch-titre">Animations et effets visuels</p>
+            <p class="rg-desc">Désactive-les si le site te semble lent ou si les mouvements te gênent.</p>
+          </div>
+          <button class="rg-switch" :class="{ on: animationsOn }" role="switch"
+            :aria-checked="animationsOn" @click="basculerAnimations">
+            <span class="rg-switch-knob"></span>
+          </button>
+        </div>
+      </div>
+
       <!-- ── À propos ───────────────────────────────────────── -->
       <div class="rg-section-label">À propos</div>
       <div class="rg-card">
@@ -107,20 +122,14 @@
       </div>
 
     </div>
-
-    <!-- Toast de confirmation -->
-    <transition name="toast-slide">
-      <div v-if="toastVisible" class="rg-toast">
-        <span class="material-symbols-outlined" style="font-size:18px">check_circle</span>
-        Réglages sauvegardés
-      </div>
-    </transition>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { getProfil, updateProfil } from '../api/client.js'
+import { animationsOn } from '../animations/motion.js'
+import { toast, fermerToast } from '../animations/toast.js'
 
 // ── Pays & régions ────────────────────────────────────────────
 const PAYS = ['Haïti', 'Rép. Dominicaine', 'États-Unis', 'Canada', 'France', 'Belgique']
@@ -140,8 +149,7 @@ const annee         = ref('7e AF')
 const difficulte    = ref('Toutes')
 const pays          = ref('Haïti')
 const zone          = ref('')
-const toastVisible  = ref(false)
-let toastTimer      = null
+let toastId         = null
 
 const anneeOptions = computed(() =>
   niveauScolaire.value === 'Secondaire'
@@ -178,26 +186,26 @@ onMounted(async () => {
 function setNbQuestions(n) {
   nbQuestions.value = n
   localStorage.setItem('educle_nb_questions', n)
-  toast()
+  confirmer()
 }
 
 function setDifficulte(d) {
   difficulte.value = d
   localStorage.setItem('educle_difficulte', d)
-  toast()
+  confirmer()
 }
 
 function setPays(p) {
   pays.value  = p
   zone.value  = ''
   localStorage.setItem('educle_pays', p)
-  toast()
+  confirmer()
 }
 
 async function setZone(r) {
   zone.value = r
   await saveBackend({ zone: r })
-  toast()
+  confirmer()
 }
 
 async function setNiveau(n) {
@@ -206,23 +214,27 @@ async function setNiveau(n) {
   const opts = n === 'Secondaire' ? ['NS1', 'NS2', 'NS3', 'NS4'] : ['7e AF', '8e AF', '9e AF']
   if (!opts.includes(annee.value)) annee.value = opts[0]
   await saveBackend({ niveau_scolaire: n, annee: annee.value })
-  toast()
+  confirmer()
 }
 
 async function setAnnee(a) {
   annee.value = a
   await saveBackend({ annee: a })
-  toast()
+  confirmer()
 }
 
 async function saveBackend(data) {
   try { await updateProfil(data) } catch {}
 }
 
-function toast() {
-  clearTimeout(toastTimer)
-  toastVisible.value = true
-  toastTimer = setTimeout(() => { toastVisible.value = false }, 2000)
+function basculerAnimations() {
+  animationsOn.value = !animationsOn.value
+  confirmer()
+}
+
+function confirmer() {
+  if (toastId) fermerToast(toastId)
+  toastId = toast('Réglages sauvegardés', { icon: 'check_circle', type: 'success', duree: 2000 })
 }
 </script>
 
@@ -298,18 +310,21 @@ function toast() {
 .rg-info-val { font-size: 0.875rem; font-weight: 700; color: var(--text); }
 .rg-divider  { height: 1px; background: var(--border); margin: 0.75rem 0; }
 
-/* Toast */
-.rg-toast {
-  position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
-  display: flex; align-items: center; gap: 0.5rem;
-  background: #16A34A; color: #fff;
-  padding: 0.65rem 1.25rem; border-radius: 99px;
-  font-weight: 700; font-size: 0.875rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-  z-index: 200; white-space: nowrap;
+/* Interrupteur animations */
+.rg-switch-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.rg-switch-titre { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+.rg-switch {
+  position: relative; flex-shrink: 0;
+  width: 50px; height: 28px; border-radius: 99px; padding: 0;
+  background: var(--border);
+  transition: background var(--dur-normal);
 }
-.toast-slide-enter-active { transition: opacity 0.2s, transform 0.2s; }
-.toast-slide-enter-from   { opacity: 0; transform: translateX(-50%) translateY(8px); }
-.toast-slide-leave-active { transition: opacity 0.2s; }
-.toast-slide-leave-to     { opacity: 0; }
+.rg-switch.on { background: var(--primary); }
+.rg-switch-knob {
+  position: absolute; top: 3px; left: 3px;
+  width: 22px; height: 22px; border-radius: 50%; background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: transform var(--dur-normal) var(--ease-spring);
+}
+.rg-switch.on .rg-switch-knob { transform: translateX(22px); }
 </style>
