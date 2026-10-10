@@ -1,0 +1,89 @@
+name: Migration base de données
+
+on:
+  workflow_dispatch:
+    inputs:
+      fichier:
+        description: "Fichier de migration (dans scripts/migrations/)"
+        required: true
+        type: string
+        default: "004_chapitre_niveaux_bio_geo.sql"
+      mode:
+        description: "simulation = exécute puis ROLLBACK ; appliquer = COMMIT"
+        required: true
+        type: choice
+        default: simulation
+        options:
+          - simulation
+          - appliquer
+
+concurrency:
+  group: educle-db-migration
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    name: Migration (${{ inputs.mode }})
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer psql
+        run: sudo apt-get install -y postgresql-client
+
+      - name: Exécuter la migration
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          PGCLIENTENCODING: UTF8
+          FICHIER: ${{ inputs.fichier }}
+          MODE: ${{ inputs.mode }}
+        run: |
+          set -o pipefail
+          case "$FICHIER" in */*|*..*) echo "::error::Nom de fichier invalide"; exit 1;; esac
+          SRC="scripts/migrations/$FICHIER"
+          test -f "$SRC" || { echo "::error::$SRC introuvable"; exit 1; }
+
+          SUPABASE_HOST=$(echo "$DATABASE_URL" | sed -E 's|.*@([^:/@]+).*|\1|')
+          IPV4=$(getent ahostsv4 "$SUPABASE_HOST" 2>/dev/null | awk 'NR==1{print $1}' || true)
+          if [ -n "$IPV4" ]; then
+            export PGHOST="$SUPABASE_HOST"
+            export PGHOSTADDR="$IPV4"
+          fi
+
+          RUN=/tmp/migration.sql
+          if [ "$MODE" = "appliquer" ]; then
+            cp "$SRC" "$RUN"
+          else
+            # Simulation : remplacer le COMMIT final par ROLLBACK
+            sed -E 's/^COMMIT;/ROLLBACK;/' "$SRC" > "$RUN"
+          fi
+
+          echo "## Migration \`$FICHIER\` — mode **$MODE**" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          psql "$DATABASE_URL" -f "$RUN" --set ON_ERROR_STOP=1 2>&1 | tee -a $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Exporter les chapitres Bio/Géol à répartir
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          PGCLIENTENCODING: UTF8
+        run: |
+          SUPABASE_HOST=$(echo "$DATABASE_URL" | sed -E 's|.*@([^:/@]+).*|\1|')
+          IPV4=$(getent ahostsv4 "$SUPABASE_HOST" 2>/dev/null | awk 'NR==1{print $1}' || true)
+          if [ -n "$IPV4" ]; then
+            export PGHOST="$SUPABASE_HOST"
+            export PGHOSTADDR="$IPV4"
+          fi
+          mkdir -p export
+          psql "$DATABASE_URL" --set ON_ERROR_STOP=1 -c "\copy (SELECT q.id, ch.matiere_id, ch.titre AS chapitre, ch.niveau_v4, q.enonce, q.bonne_reponse, q.explication FROM questions q JOIN chapitres ch ON ch.id = q.chapitre_id WHERE (ch.matiere_id = 11 AND ch.titre IN ('Évolution et classification du vivant', 'Écologie et dynamique des écosystèmes')) OR (ch.matiere_id = 12 AND ch.titre = 'Séismes et volcans : risques naturels') ORDER BY ch.matiere_id, ch.titre, q.id) TO 'export/questions_a_repartir.csv' WITH CSV HEADER"
+          psql "$DATABASE_URL" --set ON_ERROR_STOP=1 -c "\copy (SELECT ch.id, ch.matiere_id, ch.titre, ch.niveau_v4, COUNT(q.id) AS nb_questions FROM chapitres ch LEFT JOIN questions q ON q.chapitre_id = ch.id WHERE ch.matiere_id IN (11, 12) GROUP BY ch.id ORDER BY ch.matiere_id, ch.niveau_v4, ch.titre) TO 'export/chapitres_bio_geo.csv' WITH CSV HEADER"
+          echo "Questions à répartir : $(($(wc -l < export/questions_a_repartir.csv) - 1))" >> $GITHUB_STEP_SUMMARY
+
+      - name: Publier l'export
+        uses: actions/upload-artifact@v4
+        with:
+          name: export-bio-geo-${{ github.run_number }}
+          path: export/
+          retention-days: 7
