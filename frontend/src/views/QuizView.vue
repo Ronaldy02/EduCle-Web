@@ -24,7 +24,7 @@
     </Teleport>
 
     <Teleport to="body">
-      <!-- F2 · lueur rouge battante sur les bords en zone critique (Rush) -->
+      <!-- F2 · lueur rouge battante sur les bords en zone critique (tous les modes) -->
       <transition name="fondu">
         <div v-if="vignetteCritique" class="qz-vignette" aria-hidden="true"></div>
       </transition>
@@ -554,10 +554,13 @@ const dcTimerColor = computed(() => {
     : couleurChrono.value
 })
 
-// ── F2 · zone critique du Rush (≤ 3 s) ──────────────────────────────────────
-const vignetteCritique = computed(() =>
-  modeNom.value === 'Rush' && decompte.value === null && !repondu.value &&
-  tempsRestant.value > 0 && tempsRestant.value <= 3)
+// ── F2 · zone critique (≤ 3 s), tous les modes ──────────────────────────────
+// Bombardement : chrono global ; autres modes : chrono de la question en cours
+const vignetteCritique = computed(() => {
+  if (decompte.value !== null || explosion.value) return false
+  if (modeNom.value === 'Bombardement') return tempsGlobal.value > 0 && tempsGlobal.value <= 3
+  return !repondu.value && tempsRestant.value > 0 && tempsRestant.value <= 3
+})
 
 // ── F4/F6 · Bombardement : paliers 60-30 / 30-15 / 15-5 / 5-0 ───────────────
 const RYTHME_BOMBE = { 0: '0s', 1: '1.2s', 2: '0.8s', 3: '0.45s', 4: '0.22s' }
