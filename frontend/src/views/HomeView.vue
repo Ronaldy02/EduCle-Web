@@ -700,17 +700,17 @@ async function jouerAleatoire() {
 .reprendre-btn:hover { background: var(--primary-light-solid); }
 
 /* ── Section header ─────────────────────────────────────────── */
-.section-header { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 0.85rem; }
+.section-header { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.25rem; }
 @media (min-width: 640px) { .section-header { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
 .section-titre { font-size: 1.15rem; font-weight: 800; }
 .section-sous { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem; }
 .search-wrap { display: flex; align-items: center; gap: 0.4rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.5rem 0.9rem; min-width: 220px; }
 .search-icon { font-size: 18px; color: var(--text-muted); }
 .search-input { border: none; outline: none; background: transparent; font-family: inherit; font-size: 0.875rem; width: 100%; color: var(--text); }
-.filtres { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+.filtres { display: flex; gap: 0.45rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
 .filtre-btn { padding: 0.3rem 0.8rem; border-radius: 99px; background: var(--border); font-weight: 600; font-size: 0.8rem; color: var(--text-muted); border: none; cursor: pointer; transition: background 0.15s, color 0.15s; }
 .filtre-btn.active { background: var(--primary); color: white; }
-.sous-filtres-row { margin-bottom: 1rem; }
+.sous-filtres-row { margin-bottom: 1.25rem; }
 .sous-filtre { font-size: 0.75rem; padding: 0.2rem 0.65rem; }
 .loading { text-align: center; color: var(--text-muted); padding: 3rem; }
 .vide { text-align: center; color: var(--text-muted); padding: 2rem; font-style: italic; }
@@ -944,6 +944,7 @@ async function jouerAleatoire() {
   display: flex; align-items: center; justify-content: space-between;
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 16px; padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
   text-decoration: none; color: inherit;
   transition: box-shadow 0.15s, border-color 0.15s;
   cursor: pointer;
