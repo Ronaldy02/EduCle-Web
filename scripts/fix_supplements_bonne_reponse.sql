@@ -2523,9 +2523,9 @@ UPDATE questions SET
   choix = '["Platon","Hegel","Nietzsche","Schopenhauer"]'::jsonb
 WHERE enonce = 'Quel philosophe a dit que "la vérité est femme" en parlant de la philosophie ?';
 
-UPDATE questions SET 
-  bonne_reponse = 'Elle "met en œuvre la vérité" en',
-  choix = '["Elle imite la réalité","Elle "met en œuvre la vérité" en","Elle divertit","Elle embellit le monde"]'::jsonb
+UPDATE questions SET
+  bonne_reponse = 'Elle met en œuvre la vérité',
+  choix = '["Elle imite la réalité","Elle met en œuvre la vérité","Elle divertit","Elle embellit le monde"]'::jsonb
 WHERE enonce = 'Selon Heidegger, que fait l''œuvre d''art ?';
 
 UPDATE questions SET 
