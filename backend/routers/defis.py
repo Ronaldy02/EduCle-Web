@@ -255,19 +255,29 @@ def incrementer_progres(
             DefiProgres.periode == periode,
         )
     )
+    _BONUS_XP    = {1: 20, 2: 50, 3: 100}
+    _BONUS_PIECES = {1: 10, 2: 25, 3: 50}
+
     if row is None:
         new_progres = max(0, min(body.delta, defi.cible))
+        newly_complete = new_progres >= defi.cible
         row = DefiProgres(
             user_id=user.id, defi_id=defi_id, periode=periode,
-            progres=new_progres, complete=1 if new_progres >= defi.cible else 0,
+            progres=new_progres, complete=1 if newly_complete else 0,
         )
         db.add(row)
     else:
         if row.complete:
-            pass  # déjà complété
+            newly_complete = False
         else:
             row.progres = min(row.progres + body.delta, defi.cible)
-            row.complete = 1 if row.progres >= defi.cible else 0
+            newly_complete = row.progres >= defi.cible
+            row.complete = 1 if newly_complete else 0
+
+    if newly_complete:
+        user.xp_total     += _BONUS_XP.get(defi.palier, 20)
+        user.pieces_total += _BONUS_PIECES.get(defi.palier, 10)
+
     db.commit()
     db.refresh(row)
 

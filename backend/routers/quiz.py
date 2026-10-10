@@ -9,13 +9,14 @@ Flux :
 """
 import re
 import random
-from datetime import datetime
+from datetime import date, datetime
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 
 from database import get_db
 from models import Matiere, Chapitre, Question, StatistiqueQuestion
+from models.defi import Defi, DefiProgres
 from models.user import User
 from models.score import Score
 from schemas.question import QuestionSchema
@@ -250,6 +251,110 @@ def terminer_quiz(
         date=now_iso,
     ))
 
+    # ── Mise à jour des défis actifs ──────────────────────────────────────────
+    from routers.defis import (
+        _ids_quotidiens_pour, _ids_hebdo_pour, _ids_mensuels_pour,
+        _periode_jour, _periode_hebdo, _periode_mensuel,
+    )
+    today = date.today()
+    is_perfect = (score_val == len(resultats) and len(resultats) > 0)
+    now_hour = datetime.now().hour
+
+    all_defi_ids = (
+        _ids_quotidiens_pour(today)
+        + _ids_hebdo_pour(today)
+        + _ids_mensuels_pour(today)
+    )
+    defis_actifs = db.scalars(select(Defi).where(Defi.id.in_(all_defi_ids))).all()
+
+    _BONUS_XP    = {1: 20, 2: 50, 3: 100}
+    _BONUS_PIECES = {1: 10, 2: 25, 3: 50}
+    xp_bonus_defis     = 0
+    pieces_bonus_defis = 0
+    defis_completes: list[str] = []
+
+    for defi in defis_actifs:
+        filtres = defi.filtres_dict
+
+        # Vérifier les filtres avant de calculer le delta
+        if "h" in filtres and now_hour >= int(filtres["h"]):
+            continue  # filtre heure dépassée
+        if "md" in filtres:
+            mode_filtre = filtres["md"]
+            if mode_filtre == "rev" and body.mode_nom != "Révision":
+                continue
+
+        m = defi.metrique
+        delta = 0
+        if m == "ans":
+            delta = len(resultats)
+        elif m == "game":
+            delta = 1
+        elif m == "perf":
+            delta = 1 if is_perfect else 0
+        elif m == "xp":
+            delta = xp_total_gagne
+        elif m == "subj":
+            delta = 1 if body.matiere_id else 0
+        elif m == "expl" and body.mode_nom == "Révision":
+            delta = len(resultats)
+        # strk, card, dact, mast, dd, fast — gérés ailleurs
+
+        if m == "strk":
+            # Streak : on veut max(progres_actuel, serie_max), pas une addition
+            # On calcule le delta comme l'écart à combler
+            pass  # handled below
+
+        if delta <= 0 and m != "strk":
+            continue
+
+        if defi.type == "d":
+            periode = _periode_jour(today)
+        elif defi.type == "w":
+            periode = _periode_hebdo(today)
+        elif defi.type == "m":
+            periode = _periode_mensuel(today)
+        else:
+            periode = _periode_jour(today)
+
+        row = db.scalar(
+            select(DefiProgres).where(
+                DefiProgres.user_id == current_user.id,
+                DefiProgres.defi_id == defi.id,
+                DefiProgres.periode == periode,
+            )
+        )
+
+        was_complete = bool(row.complete) if row else False
+        if was_complete:
+            continue
+
+        if m == "strk":
+            current_progres = row.progres if row else 0
+            delta = max(0, min(serie_max, defi.cible) - current_progres)
+            if delta <= 0:
+                continue
+
+        if row is None:
+            new_progres = min(delta, defi.cible)
+            row = DefiProgres(
+                user_id=current_user.id, defi_id=defi.id, periode=periode,
+                progres=new_progres, complete=1 if new_progres >= defi.cible else 0,
+            )
+            db.add(row)
+        else:
+            row.progres = min(row.progres + delta, defi.cible)
+            row.complete = 1 if row.progres >= defi.cible else 0
+
+        if row.complete and not was_complete:
+            defis_completes.append(defi.id)
+            bonus_xp     = _BONUS_XP.get(defi.palier, 20)
+            bonus_pieces = _BONUS_PIECES.get(defi.palier, 10)
+            xp_bonus_defis     += bonus_xp
+            pieces_bonus_defis += bonus_pieces
+            current_user.xp_total     += bonus_xp
+            current_user.pieces_total += bonus_pieces
+
     db.commit()
 
     return ResultatQuizSchema(
@@ -261,6 +366,9 @@ def terminer_quiz(
         pieces_gagnees=pieces_totales_gagnees,
         serie_bonus=serie_bonus,
         serie_max=serie_max,
+        defis_completes=defis_completes,
+        xp_bonus_defis=xp_bonus_defis,
+        pieces_bonus_defis=pieces_bonus_defis,
         xp_total=current_user.xp_total,
         pieces_total=current_user.pieces_total,
         niveau_avant=niveau_avant,
