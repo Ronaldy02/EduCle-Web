@@ -18,8 +18,8 @@ BEGIN
     (chap_id, 'Résoudre l''inéquation x² - 4 < 0', '["x < -2 ou x > 2","-2 < x < 2","x > 2","x < -2"]'::jsonb, '-2 < x < 2', 'x² < 4 ⟺ |x| < 2 ⟺ -2 < x < 2 ; le parabole est négative entre ses racines ±2.', 'Difficile'),
     (chap_id, 'Quel est le discriminant de 2x² - 3x + 1 = 0 ?', '["1","7","17","25"]'::jsonb, '1', 'Δ = b² - 4ac = (-3)² - 4×2×1 = 9 - 8 = 1.', 'Moyen'),
     (chap_id, 'Résoudre : 2(x+3) = 3(x-1)', '["x = 7","x = 8","x = 9","x = 10"]'::jsonb, 'x = 9', '2x + 6 = 3x - 3 → 6 + 3 = 3x - 2x → x = 9.', 'Facile'),
-    (chap_id, 'Que signifie résoudre une équation dans ℝ ?', '["Trouver les entiers solutions","Trouver tous les réels qui vérifient l''équation","Trouver les solutions entières positives","Simplifier l''équation"]'::jsonb, 'Trouver tous les réels qui vérifient l''équation', 'Résoudre dans ℝ signifie trouver toutes les valeurs réelles satisfaisant l''équation.', 'Facile'),
-    (chap_id, 'Quelle méthode de résolution de système utilise la substitution ?', '["On additionne les équations","On exprime une variable en fonction de l''autre et on substitue","On multiplie toutes les équations","On divise par le coefficient"]'::jsonb, 'On exprime une variable en fonction de l''autre et on substitue', 'La méthode par substitution isole une variable dans une équation, puis remplace dans l''autre.', 'Moyen');
+    (chap_id, 'Que signifie résoudre une équation dans ℝ ?', '["Trouver les entiers solutions","Trouver tous les réels qui vérifient","Trouver les solutions entières positives","Simplifier l''équation"]'::jsonb, 'Trouver tous les réels qui vérifient', 'Résoudre dans ℝ signifie trouver toutes les valeurs réelles satisfaisant l''équation.', 'Facile'),
+    (chap_id, 'Quelle méthode de résolution de système utilise la substitution ?', '["On additionne les équations","On exprime une variable en fonction de","On multiplie toutes les équations","On divise par le coefficient"]'::jsonb, 'On exprime une variable en fonction de', 'La méthode par substitution isole une variable dans une équation, puis remplace dans l''autre.', 'Moyen');
   END IF;
 END $$;
 
@@ -39,7 +39,7 @@ BEGIN
     (chap_id, 'Quelle transformation déplace le graphe de f(x) de 3 unités vers la droite ?', '["f(x) + 3","f(x) - 3","f(x + 3)","f(x - 3)"]'::jsonb, 'f(x - 3)', 'f(x - h) translat le graphe de h unités vers la droite (remplacement de x par x-h).', 'Moyen'),
     (chap_id, 'Pour la fonction f(x) = 2x + 1, que vaut f⁻¹(x) ?', '["(x-1)/2","(x+1)/2","2x-1","x/2 + 1"]'::jsonb, '(x-1)/2', 'On résout y = 2x + 1 pour x : x = (y-1)/2, donc f⁻¹(x) = (x-1)/2.', 'Moyen'),
     (chap_id, 'Quel est le domaine de définition de f(x) = √(x - 4) ?', '["ℝ","x ≥ 0","x ≥ 4","x > 4"]'::jsonb, 'x ≥ 4', 'La racine carrée exige x - 4 ≥ 0, donc x ≥ 4.', 'Moyen'),
-    (chap_id, 'Une fonction est croissante sur [a,b] si ?', '["f(a) > f(b)","Pour tout x₁ < x₂ dans [a,b], f(x₁) < f(x₂)","f est positive","La dérivée est négative"]'::jsonb, 'Pour tout x₁ < x₂ dans [a,b], f(x₁) < f(x₂)', 'Une fonction croissante associe des images de plus en plus grandes à des antécédents croissants.', 'Facile'),
+    (chap_id, 'Une fonction est croissante sur [a,b] si ?', '["f(a) > f(b)","Pour tout x₁ < x₂ dans [a,b], f(x₁) < f","f est positive","La dérivée est négative"]'::jsonb, 'Pour tout x₁ < x₂ dans [a,b], f(x₁) < f', 'Une fonction croissante associe des images de plus en plus grandes à des antécédents croissants.', 'Facile'),
     (chap_id, 'Quel est l''ensemble image de la fonction f(x) = x² sur ℝ ?', '["ℝ","ℝ⁺","[-1, 1]","[0, +∞["]'::jsonb, '[0, +∞[', 'x² ≥ 0 pour tout réel x, et toute valeur positive est atteinte, donc l''image est [0, +∞[.', 'Moyen'),
     (chap_id, 'Qu''est-ce qu''un zéro (racine) d''une fonction f ?', '["La valeur minimale de f","Un x tel que f(x) = 0","La dérivée de f","L''image de 0 par f"]'::jsonb, 'Un x tel que f(x) = 0', 'Les zéros de f sont les antécédents de 0, c''est-à-dire les abscisses des intersections avec l''axe des x.', 'Facile');
   END IF;
@@ -75,7 +75,7 @@ BEGIN
     INSERT INTO questions (chapitre_id, enonce, choix, bonne_reponse, explication, niveau_complexite) VALUES
     (chap_id, 'Quelle est la dérivée de f(x) = x³ ?', '["x²","3x²","3x","2x³"]'::jsonb, '3x²', 'Règle de puissance : (xⁿ)'' = nxⁿ⁻¹, donc (x³)'' = 3x².', 'Facile'),
     (chap_id, 'Quelle est la dérivée de f(x) = sin(x) ?', '["-sin(x)","cos(x)","-cos(x)","sin(x)"]'::jsonb, 'cos(x)', 'La dérivée du sinus est le cosinus : (sin x)'' = cos x.', 'Facile'),
-    (chap_id, 'Que représente la dérivée f''(a) géométriquement ?', '["L''aire sous la courbe","La pente de la tangente à la courbe en x=a","La valeur maximale","La concavité de la courbe"]'::jsonb, 'La pente de la tangente à la courbe en x=a', 'f''(a) est le coefficient directeur de la droite tangente à la courbe au point d''abscisse a.', 'Moyen'),
+    (chap_id, 'Que représente la dérivée f''(a) géométriquement ?', '["L''aire sous la courbe","La pente de la tangente à la courbe en","La valeur maximale","La concavité de la courbe"]'::jsonb, 'La pente de la tangente à la courbe en', 'f''(a) est le coefficient directeur de la droite tangente à la courbe au point d''abscisse a.', 'Moyen'),
     (chap_id, 'Quelle est la dérivée de f(x) = eˣ ?', '["x·eˣ","eˣ","eˣ⁻¹","ln(x)"]'::jsonb, 'eˣ', 'La fonction exponentielle est sa propre dérivée : (eˣ)'' = eˣ.', 'Facile'),
     (chap_id, 'Quel est le signe de f''(x) sur un intervalle où f est croissante ?', '["Négatif","Nul","Positif","Variable"]'::jsonb, 'Positif', 'f est croissante sur I ⟺ f''(x) ≥ 0 pour tout x dans I.', 'Facile'),
     (chap_id, 'Comment calcule-t-on ∫₀² x dx ?', '["1","2","4","6"]'::jsonb, '2', '∫x dx = x²/2 ; [x²/2]₀² = 4/2 - 0 = 2.', 'Moyen'),
@@ -84,7 +84,7 @@ BEGIN
     (chap_id, 'Quelle est la primitive de f(x) = 2x + 3 ?', '["x² + 3x + C","2x² + 3x + C","x² + 3 + C","2 + C"]'::jsonb, 'x² + 3x + C', '∫(2x+3)dx = 2x²/2 + 3x + C = x² + 3x + C.', 'Facile'),
     (chap_id, 'Un extremum local de f se trouve aux valeurs de x où ?', '["f''(x) est maximale","f''(x) = 0 (et changement de signe de f'')","f(x) = 0","f''(x) > 0"]'::jsonb, 'f''(x) = 0 (et changement de signe de f'')', 'Un extremum local existe quand f'' s''annule et change de signe (condition nécessaire et suffisante).', 'Moyen'),
     (chap_id, 'Quelle est la dérivée de la fonction composée f(g(x)) ?', '["f''(x)·g(x)","f''(g(x))·g''(x)","f(g''(x))","f''(g''(x))"]'::jsonb, 'f''(g(x))·g''(x)', 'La règle de la chaîne : (f∘g)''(x) = f''(g(x))·g''(x).', 'Difficile'),
-    (chap_id, 'Quel théorème relie dérivée et intégrale ?', '["Théorème de Pythagore","Théorème fondamental du calcul (Théorème de Newton-Leibniz)","Théorème de Thalès","Théorème de Bayes"]'::jsonb, 'Théorème fondamental du calcul (Théorème de Newton-Leibniz)', 'Ce théorème établit que dérivation et intégration sont des opérations inverses.', 'Difficile'),
+    (chap_id, 'Quel théorème relie dérivée et intégrale ?', '["Théorème de Pythagore","Théorème fondamental du calcul","Théorème de Thalès","Théorème de Bayes"]'::jsonb, 'Théorème fondamental du calcul', 'Ce théorème établit que dérivation et intégration sont des opérations inverses.', 'Difficile'),
     (chap_id, 'Que vaut lim(x→0) sin(x)/x ?', '["0","1","∞","Indéterminé"]'::jsonb, '1', 'Cette limite fondamentale (règle de L''Hôpital ou développement limité) vaut 1.', 'Difficile');
   END IF;
 END $$;
