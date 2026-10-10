@@ -1,0 +1,48 @@
+name: Synchroniser bonne_reponse depuis mobile
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    name: Appliquer fix_bonne_reponse_sync.sql sur Supabase
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer psql
+        run: sudo apt-get install -y postgresql-client
+
+      - name: Appliquer le script de synchronisation
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          PGCLIENTENCODING: UTF8
+        run: |
+          SUPABASE_HOST=$(echo "$DATABASE_URL" | sed -E 's|.*@([^:/@]+).*|\1|')
+          IPV4=$(getent ahostsv4 "$SUPABASE_HOST" 2>/dev/null | awk 'NR==1{print $1}' || true)
+          if [ -n "$IPV4" ]; then
+            export PGHOST="$SUPABASE_HOST"
+            export PGHOSTADDR="$IPV4"
+          fi
+          psql "$DATABASE_URL" -f scripts/fix_bonne_reponse_sync.sql --set ON_ERROR_STOP=1
+          echo "✓ Synchronisation terminée"
+
+      - name: Vérifier le résultat
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          SUPABASE_HOST=$(echo "$DATABASE_URL" | sed -E 's|.*@([^:/@]+).*|\1|')
+          IPV4=$(getent ahostsv4 "$SUPABASE_HOST" 2>/dev/null | awk 'NR==1{print $1}' || true)
+          if [ -n "$IPV4" ]; then
+            export PGHOST="$SUPABASE_HOST"
+            export PGHOSTADDR="$IPV4"
+          fi
+          echo "## Résultat après synchronisation" >> $GITHUB_STEP_SUMMARY
+          psql "$DATABASE_URL" -c "
+            SELECT COUNT(*) AS total_questions,
+                   AVG(LENGTH(bonne_reponse))::int AS avg_len_bonne_reponse,
+                   MAX(LENGTH(bonne_reponse)) AS max_len_bonne_reponse
+            FROM questions;
+          " >> $GITHUB_STEP_SUMMARY
