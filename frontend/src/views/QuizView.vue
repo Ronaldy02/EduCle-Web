@@ -3,8 +3,24 @@
     <p>{{ chargement ? 'Préparation du quiz…' : 'Calcul du résultat…' }}</p>
   </div>
 
-  <div v-else-if="question" class="qz-shell">
+  <div v-else-if="question" class="qz-shell"
+    :class="{ 'qz-attente': decompte !== null, 'qz-entree': entree }">
     <!-- Quiz en cours -->
+
+    <!-- ── D1 · Compte à rebours (un clic ou une touche le passe) ──── -->
+    <Teleport to="body">
+    <transition name="decompte-fond">
+      <div v-if="decompte !== null" class="qz-decompte" @click="passerDecompte">
+        <transition name="decompte-pas" mode="out-in">
+          <div :key="decompte" class="qz-decompte-val"
+            :class="{ 'qz-decompte-go': decompte === 0 }" :style="{ color: modeCouleur }">
+            {{ decompte === 0 ? "C'est parti !" : decompte }}
+          </div>
+        </transition>
+        <p class="qz-decompte-aide">Clique pour passer</p>
+      </div>
+    </transition>
+    </Teleport>
 
     <!-- ── Overlay palier série ─────────────────────────────────── -->
     <transition name="palier-anim">
@@ -83,7 +99,10 @@
 
       <!-- Barre de progression pleine largeur -->
       <div class="qz-progress-track">
-        <div class="qz-progress-fill" :style="{ width: (indexCourant / total * 100) + '%', background: modeCouleur }"></div>
+        <div class="qz-progress-fill" :style="{ width: (indexCourant / total * 100) + '%', background: modeCouleur }">
+          <!-- D3 · reflet qui traverse la barre à chaque avancée -->
+          <span :key="indexCourant" class="qz-progress-shine"></span>
+        </div>
       </div>
     </header>
 
@@ -279,6 +298,7 @@ import { useRouter } from 'vue-router'
 import { useQuizStore } from '../stores/quiz.js'
 import { getNiveau } from '../api/client.js'
 import { ripple, burst, voler, rebond } from '../animations/effects.js'
+import { animationsActives } from '../animations/motion.js'
 
 const router    = useRouter()
 const quizStore = useQuizStore()
@@ -295,6 +315,10 @@ const showExplication = ref(false)
 const animShake  = ref(false)
 const animPulse  = ref(false)
 const touchePressee = ref(null)      // E9 · choix activé au clavier
+const decompte      = ref(null)      // D1 · 3, 2, 1, 0 (= « C'est parti ! »), null = terminé
+const entree        = ref(false)     // D2 · animation d'entrée de l'interface
+let _decompteTimers = []
+let _commence       = false
 const choixEls      = []             // éléments DOM des choix (effets E2/E3)
 
 const serie         = ref(0)
@@ -484,6 +508,42 @@ onMounted(async () => {
   await quizStore.demarrer()
   try { const n = await getNiveau(); piecesTotal.value = n.pieces_total ?? 0 } catch {}
   chargement.value = false
+  // D1 · le chrono ne démarre qu'après le compte à rebours
+  if (animationsActives()) lancerDecompte()
+  else commencer()
+})
+
+// ── D1 · Compte à rebours ────────────────────────────────────────────────────
+const PAS_DECOMPTE = 700   // ms par étape : 3 · 2 · 1 · C'est parti ! ≈ 2,8 s
+
+function lancerDecompte() {
+  decompte.value = 3
+  ;[2, 1, 0].forEach((v, k) => {
+    _decompteTimers.push(setTimeout(() => { decompte.value = v }, PAS_DECOMPTE * (k + 1)))
+  })
+  _decompteTimers.push(setTimeout(commencer, PAS_DECOMPTE * 4))
+  window.addEventListener('keydown', passerDecompte)
+}
+
+function passerDecompte() {
+  if (decompte.value !== null) commencer()
+}
+
+// Démarre réellement la partie (chrono, sons, clavier) — une seule fois
+function commencer() {
+  if (_commence) return
+  _commence = true
+  _decompteTimers.forEach(clearTimeout)
+  _decompteTimers = []
+  window.removeEventListener('keydown', passerDecompte)
+  decompte.value = null
+
+  // D2 · entrée de l'interface (classe retirée ensuite pour ne pas gêner E3/E4)
+  if (animationsActives()) {
+    entree.value = true
+    setTimeout(() => { entree.value = false }, 900)
+  }
+
   if (modeNom.value === 'Bombardement') {
     demarrerChronoGlobal()
     jouerTickQuestion(0)          // QPUC en boucle
@@ -492,9 +552,11 @@ onMounted(async () => {
     jouerTickQuestion(tempsMax.value)
   }
   window.addEventListener('keydown', onKey)
-})
+}
 
 onBeforeUnmount(() => {
+  _decompteTimers.forEach(clearTimeout)
+  window.removeEventListener('keydown', passerDecompte)
   clearInterval(timerInterval)
   clearInterval(timerGlobal)
   stopTick()
@@ -817,7 +879,65 @@ function palierParticleStyle(i, n) {
 .qz-serie-bounce { animation: qz-serie-bounce 0.4s cubic-bezier(0.34,1.56,0.64,1); }
 
 .qz-progress-track { width: 100%; height: 4px; background: #dce2f3; }
-.qz-progress-fill  { height: 100%; transition: width 0.4s ease; }
+/* D3 · avancée en douceur + reflet */
+.qz-progress-fill  {
+  height: 100%; position: relative; overflow: hidden;
+  border-radius: 0 99px 99px 0;
+  transition: width 0.6s var(--ease-out);
+}
+.qz-progress-shine {
+  position: absolute; inset: 0; width: 60%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent);
+  transform: translateX(-120%);
+  animation: qz-progress-shine 0.9s ease-out 0.3s;
+}
+@keyframes qz-progress-shine { to { transform: translateX(260%); } }
+
+/* ── D1 · Compte à rebours ───────────────────────────────────── */
+.qz-decompte {
+  position: fixed; inset: 0; z-index: 120;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: rgba(249, 249, 255, 0.82); backdrop-filter: blur(6px);
+  cursor: pointer; user-select: none;
+}
+.qz-decompte-val {
+  font-size: clamp(6rem, 22vw, 11rem); font-weight: 900; line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+}
+.qz-decompte-go { font-size: clamp(2.6rem, 10vw, 5rem); letter-spacing: -0.02em; }
+.qz-decompte-aide {
+  position: absolute; bottom: 2.5rem;
+  font-size: 0.85rem; font-weight: 600; color: #727785;
+}
+/* Chaque chiffre arrive en grossissant puis s'efface */
+.decompte-pas-enter-active { animation: decompte-in 0.35s var(--ease-spring); }
+.decompte-pas-leave-active { transition: opacity 0.15s, transform 0.15s ease-in; }
+.decompte-pas-leave-to     { opacity: 0; transform: scale(1.5); }
+@keyframes decompte-in {
+  from { opacity: 0; transform: scale(0.3); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.decompte-fond-leave-active { transition: opacity 0.3s ease; }
+.decompte-fond-leave-to     { opacity: 0; }
+
+/* ── D2 · Entrée de l'interface ──────────────────────────────── */
+.qz-attente .qz-header,
+.qz-attente .qz-dc-stats,
+.qz-attente .qz-main { opacity: 0; }
+
+.qz-entree .qz-header    { animation: qz-in-haut 0.4s var(--ease-out) backwards; }
+.qz-entree .qz-dc-stats  { animation: qz-in-bas 0.4s var(--ease-out) 0.08s backwards; }
+.qz-entree .qz-aside     { animation: qz-in-bas 0.4s var(--ease-out) 0.1s backwards; }
+.qz-entree .qz-question-nav,
+.qz-entree .qz-question-card { animation: qz-in-bas 0.45s var(--ease-out) 0.12s backwards; }
+.qz-entree .qz-choix-btn { animation: qz-in-bas 0.4s var(--ease-out) backwards; }
+.qz-entree .qz-choix-btn:nth-child(1) { animation-delay: 0.25s; }
+.qz-entree .qz-choix-btn:nth-child(2) { animation-delay: 0.32s; }
+.qz-entree .qz-choix-btn:nth-child(3) { animation-delay: 0.39s; }
+.qz-entree .qz-choix-btn:nth-child(4) { animation-delay: 0.46s; }
+@keyframes qz-in-haut { from { opacity: 0; transform: translateY(-100%); } }
+@keyframes qz-in-bas  { from { opacity: 0; transform: translateY(24px); } }
 
 /* ── Main layout ─────────────────────────────────────────────── */
 .qz-main {
