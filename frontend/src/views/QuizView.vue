@@ -15,7 +15,7 @@
             class="palier-particle" :style="palierParticleStyle(i)"></span>
           <div class="palier-fire">🔥</div>
           <div class="palier-label">SÉRIE DE {{ palierValue }} !</div>
-          <div class="palier-bonus">+{{ PALIER_BONUS[palierValue] }} 🪙</div>
+          <div class="palier-bonus">+{{ PALIER_BONUS[palierValue] }} <CoinIcon /></div>
         </div>
       </div>
     </transition>
@@ -69,7 +69,7 @@
             </div>
           </div>
           <div class="qz-dc-hright">
-            <span class="qz-dc-coins">🪙 {{ piecesTotal }}</span>
+            <span class="qz-dc-coins"><CoinIcon /> {{ piecesTotal }}</span>
             <button class="qz-dc-quit" @click="router.back()">Quitter</button>
           </div>
         </div>
@@ -147,22 +147,22 @@
             <button class="qz-bonus-btn" @click="utiliserBonus('elimination')" :disabled="bonusUtilises.elimination">
               <span class="qz-bonus-icon">🧹</span>
               <span class="qz-bonus-name">Élimination</span>
-              <span class="qz-bonus-cout">50 🪙</span>
+              <span class="qz-bonus-cout">50 <CoinIcon /></span>
             </button>
             <button class="qz-bonus-btn" @click="utiliserBonus('cinqCinq')" :disabled="bonusUtilises.cinqCinq">
               <span class="qz-bonus-icon">½</span>
               <span class="qz-bonus-name">50/50</span>
-              <span class="qz-bonus-cout">100 🪙</span>
+              <span class="qz-bonus-cout">100 <CoinIcon /></span>
             </button>
             <button class="qz-bonus-btn" @click="utiliserBonus('remplacer')" :disabled="bonusUtilises.remplacer">
               <span class="qz-bonus-icon">🔄</span>
               <span class="qz-bonus-name">Remplacer</span>
-              <span class="qz-bonus-cout">75 🪙</span>
+              <span class="qz-bonus-cout">75 <CoinIcon /></span>
             </button>
             <button class="qz-bonus-btn" @click="utiliserBonus('plusTemps')" :disabled="modeNom === 'Bombardement'">
               <span class="qz-bonus-icon">⏱️</span>
               <span class="qz-bonus-name">+Temps</span>
-              <span class="qz-bonus-cout">150 🪙</span>
+              <span class="qz-bonus-cout">150 <CoinIcon /></span>
             </button>
           </div>
         </div>
@@ -182,16 +182,16 @@
               <transition name="mobile-bonus">
                 <div v-if="mobileShowBonus" class="qz-dc-bonus-dropdown">
                   <button class="qz-dc-bitem" @click="utiliserBonus('elimination'); mobileShowBonus=false" :disabled="bonusUtilises.elimination || reponduIndex !== null">
-                    <span>🧹</span><span class="qz-dc-bname">Élimination</span><span class="qz-dc-bcost">🪙50</span>
+                    <span>🧹</span><span class="qz-dc-bname">Élimination</span><span class="qz-dc-bcost"><CoinIcon />50</span>
                   </button>
                   <button class="qz-dc-bitem" @click="utiliserBonus('cinqCinq'); mobileShowBonus=false" :disabled="bonusUtilises.cinqCinq || reponduIndex !== null">
-                    <span>½</span><span class="qz-dc-bname">50/50</span><span class="qz-dc-bcost">🪙100</span>
+                    <span>½</span><span class="qz-dc-bname">50/50</span><span class="qz-dc-bcost"><CoinIcon />100</span>
                   </button>
                   <button class="qz-dc-bitem" @click="utiliserBonus('remplacer'); mobileShowBonus=false" :disabled="bonusUtilises.remplacer || reponduIndex !== null">
-                    <span>🔄</span><span class="qz-dc-bname">Remplacer</span><span class="qz-dc-bcost">🪙75</span>
+                    <span>🔄</span><span class="qz-dc-bname">Remplacer</span><span class="qz-dc-bcost"><CoinIcon />75</span>
                   </button>
                   <button class="qz-dc-bitem" @click="utiliserBonus('plusTemps'); mobileShowBonus=false" :disabled="modeNom === 'Bombardement' || reponduIndex !== null">
-                    <span>⏱️</span><span class="qz-dc-bname">+Temps</span><span class="qz-dc-bcost">🪙150</span>
+                    <span>⏱️</span><span class="qz-dc-bname">+Temps</span><span class="qz-dc-bcost"><CoinIcon />150</span>
                   </button>
                 </div>
               </transition>

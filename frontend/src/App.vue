@@ -9,7 +9,7 @@
     </div>
     <div class="mh-right">
       <div class="stat-pill" v-if="niveau">
-        🪙 {{ niveau.pieces_total }}
+        <CoinIcon /> {{ niveau.pieces_total }}
       </div>
       <div class="mh-avatar">🎓</div>
     </div>
@@ -95,7 +95,7 @@
             <span>0</span>
           </div>
           <div class="stat-pill">
-            🪙 {{ niveau.pieces_total }}
+            <CoinIcon /> {{ niveau.pieces_total }}
           </div>
           <div class="mh-avatar">🎓</div>
         </div>

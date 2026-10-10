@@ -13,7 +13,7 @@
       <div class="xp-bar-wrap">
         <div class="xp-bar" :style="{ width: (niveau.progression * 100) + '%', background: niveau.rang_couleur }"></div>
       </div>
-      <p class="xp-label">{{ niveau.xp_dans_niveau }} / {{ niveau.xp_pour_suivant }} XP · 🪙 {{ niveau.pieces_total }}</p>
+      <p class="xp-label">{{ niveau.xp_dans_niveau }} / {{ niveau.xp_pour_suivant }} XP · <CoinIcon /> {{ niveau.pieces_total }}</p>
     </div>
 
     <!-- Réalisations -->

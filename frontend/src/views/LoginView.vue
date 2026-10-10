@@ -15,7 +15,7 @@
             <span class="lv-chip">12 matières</span>
             <span class="lv-chip">500+ questions</span>
             <span class="lv-chip">8 modes de jeu</span>
-            <span class="lv-chip">🪙 Récompenses</span>
+            <span class="lv-chip"><CoinIcon /> Récompenses</span>
           </div>
         </div>
         <div class="lv-footer">© 2025 EduClé · Application éducative</div>

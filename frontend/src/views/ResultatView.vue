@@ -84,10 +84,10 @@
         </div>
         <div class="rt-reward rt-reward-coins">
           <div class="rt-reward-icon" style="font-size:26px">
-            🪙
+            <CoinIcon />
           </div>
           <div>
-            <p class="rt-reward-val">+{{ res.pieces_gagnees }} 🪙</p>
+            <p class="rt-reward-val">+{{ res.pieces_gagnees }} <CoinIcon /></p>
             <p class="rt-reward-sub">Pièces</p>
           </div>
         </div>
@@ -96,9 +96,21 @@
             <span class="material-symbols-outlined" style="font-size:26px;color:#DC2626">local_fire_department</span>
           </div>
           <div>
-            <p class="rt-reward-val">Série ×{{ res.serie_max }} · +{{ res.serie_bonus }} 🪙</p>
+            <p class="rt-reward-val">Série ×{{ res.serie_max }} · +{{ res.serie_bonus }} <CoinIcon /></p>
             <p class="rt-reward-sub">Bonus enchaînement</p>
           </div>
+        </div>
+      </div>
+
+      <!-- ── Défis complétés ───────────────────────────────────────────── -->
+      <div v-if="res.defis_completes && res.defis_completes.length" class="rt-defis-completes">
+        <div class="rt-defis-header">
+          <span class="material-symbols-outlined" style="color:#F59E0B">emoji_events</span>
+          <span>Défi{{ res.defis_completes.length > 1 ? 's' : '' }} complété{{ res.defis_completes.length > 1 ? 's' : '' }} !</span>
+        </div>
+        <div class="rt-defis-bonus">
+          <span>+{{ res.xp_bonus_defis }} XP</span>
+          <span>+{{ res.pieces_bonus_defis }} <CoinIcon /></span>
         </div>
       </div>
 
@@ -537,6 +549,27 @@ function accueil()  { quizStore.reset(); router.push('/') }
 .rt-reward-sub  {
   font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.06em; color: var(--text-muted); margin-top: 0.1rem;
+}
+
+/* ── Défis complétés ─────────────────────────────────────────────── */
+.rt-defis-completes {
+  width: 100%; max-width: 36rem;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 1px solid #F59E0B; border-radius: 16px;
+  padding: 1rem 1.25rem; display: flex;
+  align-items: center; justify-content: space-between; gap: 1rem;
+}
+.rt-defis-header {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-weight: 700; font-size: 1rem; color: #92400e;
+}
+.rt-defis-bonus {
+  display: flex; gap: 1rem; font-weight: 700; color: #78350f; font-size: 0.95rem;
+}
+@media (prefers-color-scheme: dark) {
+  .rt-defis-completes { background: linear-gradient(135deg,#451a03,#78350f); border-color:#F59E0B; }
+  .rt-defis-header { color: #fde68a; }
+  .rt-defis-bonus { color: #fde68a; }
 }
 
 /* ── XP card ─────────────────────────────────────────────────────── */

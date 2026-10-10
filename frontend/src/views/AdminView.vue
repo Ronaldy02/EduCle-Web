@@ -95,7 +95,7 @@
           </div>
           <div class="kpi-card">
             <div class="kpi-icon" style="background:#FFF7ED;font-size:22px">
-              🪙
+              <CoinIcon />
             </div>
             <div>
               <div class="kpi-value">{{ stats.pieces_total }}</div>
@@ -511,7 +511,7 @@
               </div>
               <span class="real-prog-label">{{ r.progres }}/{{ r.objectif }}</span>
               <span v-if="r.debloquee" class="real-check">✓</span>
-              <span class="real-reward">+{{ r.recompense_pieces }}🪙</span>
+              <span class="real-reward">+{{ r.recompense_pieces }}<CoinIcon /></span>
             </div>
           </div>
         </div>
