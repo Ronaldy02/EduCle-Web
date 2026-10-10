@@ -4,7 +4,8 @@
   </div>
 
   <div v-else-if="question" class="qz-shell"
-    :class="{ 'qz-attente': decompte !== null, 'qz-entree': entree }">
+    :class="{ 'qz-attente': decompte !== null, 'qz-entree': entree, 'qz-secousse': explosion }"
+    :style="fondBombe">
     <!-- Quiz en cours -->
 
     <!-- ── D1 · Compte à rebours (un clic ou une touche le passe) ──── -->
@@ -20,6 +21,26 @@
         <p class="qz-decompte-aide">Clique pour passer</p>
       </div>
     </transition>
+    </Teleport>
+
+    <Teleport to="body">
+      <!-- F2 · lueur rouge battante sur les bords en zone critique (Rush) -->
+      <transition name="fondu">
+        <div v-if="vignetteCritique" class="qz-vignette" aria-hidden="true"></div>
+      </transition>
+
+      <!-- F3 · Temps écoulé -->
+      <transition name="temps-ecoule">
+        <div v-if="tempsEcoule" class="qz-temps-ecoule" role="status">⏰ Temps écoulé !</div>
+      </transition>
+
+      <!-- F5 · Explosion finale (Bombardement) -->
+      <div v-if="explosion" class="qz-explosion" aria-hidden="true">
+        <div class="qz-explosion-flash"></div>
+        <div class="qz-explosion-onde"></div>
+        <div class="qz-explosion-onde qz-explosion-onde--2"></div>
+        <div class="qz-explosion-boum">💥</div>
+      </div>
     </Teleport>
 
     <!-- ── Overlay palier série ─────────────────────────────────── -->
@@ -115,7 +136,9 @@
       </div>
       <!-- Timer ring SVG -->
       <div class="qz-dc-ring-wrap"
-        :class="{ 'qz-dc-ring-bomb': modeNom === 'Bombardement', 'qz-dc-ring-urgent': dcTimerUrgent }">
+        :class="{ 'qz-dc-ring-bomb': modeNom === 'Bombardement', 'qz-dc-ring-urgent': dcTimerUrgent,
+                  'qz-bombe-pulse': bombePalier > 0, 'qz-chrono-shake': tempsEcoule }"
+        :style="{ '--rythme': RYTHME_BOMBE[bombePalier] }">
         <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"
           style="position:absolute;top:0;left:0;transform:rotate(-90deg);">
           <circle cx="26" cy="26" r="21" fill="none"
@@ -125,7 +148,7 @@
             :stroke="dcTimerColor" stroke-width="5"
             stroke-linecap="round" stroke-dasharray="132"
             :stroke-dashoffset="dcRingOffset"
-            style="transition:stroke-dashoffset 1s linear;"/>
+            style="transition:stroke-dashoffset 1s linear, stroke 1s linear;"/>
         </svg>
         <span class="qz-dc-ring-lbl" :style="{ color: dcTimerUrgent ? '#c23a3a' : (modeNom === 'Bombardement' ? '#fff' : '#1e2a52') }">
           {{ modeNom === 'Bombardement' ? tempsGlobal : (tempsRestant + ' s') }}
@@ -151,9 +174,17 @@
         <!-- Timer par question (Rush / Révision) -->
         <div v-if="modeNom !== 'Bombardement' && tempsMax"
           class="qz-timer-card"
-          :class="{ 'qz-timer-urgent': tempsRestant <= seuilCritique }">
+          :class="{ 'qz-timer-urgent': tempsRestant <= seuilCritique, 'qz-chrono-shake': tempsEcoule }">
           <span class="qz-timer-label">Temps Restant</span>
-          <div class="qz-timer-val">{{ String(tempsRestant).padStart(2, '0') }}</div>
+          <!-- F1 · anneau qui se vide en continu, du vert au rouge -->
+          <div class="qz-timer-ring">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="60" r="52" class="qz-timer-ring-fond" />
+              <circle cx="60" cy="60" r="52" class="qz-timer-ring-arc"
+                :stroke="couleurChrono" :stroke-dasharray="RING_C" :stroke-dashoffset="RING_C * (1 - fracChrono)" />
+            </svg>
+            <div class="qz-timer-val">{{ String(tempsRestant).padStart(2, '0') }}</div>
+          </div>
           <span class="qz-timer-unit">secondes</span>
         </div>
 
@@ -162,10 +193,23 @@
           class="qz-timer-card"
           :class="{ 'qz-timer-urgent': tempsGlobal <= 10 }">
           <span class="qz-timer-label">Temps Restant</span>
-          <div class="qz-timer-val">{{ String(tempsGlobal).padStart(2, '0') }}</div>
+          <div class="qz-timer-ring">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="60" r="52" class="qz-timer-ring-fond" />
+              <circle cx="60" cy="60" r="52" class="qz-timer-ring-arc"
+                :stroke="couleurChrono" :stroke-dasharray="RING_C" :stroke-dashoffset="RING_C * (1 - fracChrono)" />
+            </svg>
+            <div class="qz-timer-val">{{ String(tempsGlobal).padStart(2, '0') }}</div>
+          </div>
           <span class="qz-timer-unit">secondes</span>
-          <div class="qz-timer-bar-wrap">
-            <div class="qz-timer-bar" :style="{ width: (tempsGlobal / 60 * 100) + '%' }"></div>
+          <!-- F4 · la bombe bat au rythme du palier, la mèche raccourcit -->
+          <div class="qz-bombe-ligne" :style="{ '--rythme': RYTHME_BOMBE[bombePalier] }">
+            <span class="qz-bombe">💣</span>
+            <div class="qz-meche-wrap">
+              <div class="qz-meche" :style="{ width: (tempsGlobal / 60 * 100) + '%' }">
+                <span class="qz-etincelle"></span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -315,6 +359,9 @@ const showExplication = ref(false)
 const animShake  = ref(false)
 const animPulse  = ref(false)
 const touchePressee = ref(null)      // E9 · choix activé au clavier
+const tempsEcoule   = ref(false)     // F3
+const explosion     = ref(false)     // F5
+let _explosionTimer = null
 const decompte      = ref(null)      // D1 · 3, 2, 1, 0 (= « C'est parti ! »), null = terminé
 const entree        = ref(false)     // D2 · animation d'entrée de l'interface
 let _decompteTimers = []
@@ -489,10 +536,39 @@ const dcTimerUrgent = computed(() => {
   return tempsRestant.value <= seuilCritique.value
 })
 
+// ── F1 · Chrono : fraction restante et couleur vert → orange → rouge ─────────
+const RING_C = 2 * Math.PI * 52
+const fracChrono = computed(() => {
+  if (modeNom.value === 'Bombardement') return Math.max(0, tempsGlobal.value) / 60
+  if (!tempsMax.value) return 1
+  return Math.max(0, tempsRestant.value) / tempsMax.value
+})
+const teinteChrono  = computed(() => Math.round(120 * Math.min(1, fracChrono.value)))
+const couleurChrono = computed(() => `hsl(${teinteChrono.value}, 72%, 42%)`)
+
 const dcTimerColor = computed(() => {
   if (dcTimerUrgent.value) return '#c23a3a'
-  return modeNom.value === 'Bombardement' ? '#8fa4ff' : modeCouleur.value
+  // anneau sur fond sombre en Bombardement : même teinte, plus claire
+  return modeNom.value === 'Bombardement'
+    ? `hsl(${teinteChrono.value}, 85%, 62%)`
+    : couleurChrono.value
 })
+
+// ── F2 · zone critique du Rush (≤ 3 s) ──────────────────────────────────────
+const vignetteCritique = computed(() =>
+  modeNom.value === 'Rush' && decompte.value === null && !repondu.value &&
+  tempsRestant.value > 0 && tempsRestant.value <= 3)
+
+// ── F4/F6 · Bombardement : paliers 60-30 / 30-15 / 15-5 / 5-0 ───────────────
+const RYTHME_BOMBE = { 0: '0s', 1: '1.2s', 2: '0.8s', 3: '0.45s', 4: '0.22s' }
+const FOND_BOMBE   = { 1: '#f7f8ff', 2: '#fff6ee', 3: '#ffebd9', 4: '#ffdcc7' }
+const bombePalier = computed(() => {
+  if (modeNom.value !== 'Bombardement') return 0
+  const t = tempsGlobal.value
+  return t > 30 ? 1 : t > 15 ? 2 : t > 5 ? 3 : 4
+})
+const fondBombe = computed(() =>
+  bombePalier.value ? { backgroundColor: FOND_BOMBE[bombePalier.value] } : null)
 
 const dcRingOffset = computed(() => {
   const C = 132
@@ -555,6 +631,7 @@ function commencer() {
 }
 
 onBeforeUnmount(() => {
+  clearTimeout(_explosionTimer)
   _decompteTimers.forEach(clearTimeout)
   window.removeEventListener('keydown', passerDecompte)
   clearInterval(timerInterval)
@@ -579,7 +656,7 @@ function demarrerChronoGlobal() {
   tempsGlobal.value = 60
   timerGlobal = setInterval(() => {
     tempsGlobal.value--
-    if (tempsGlobal.value <= 0) { clearInterval(timerGlobal); finirQuiz() }
+    if (tempsGlobal.value <= 0) { clearInterval(timerGlobal); exploser() }
   }, 1000)
 }
 
@@ -589,8 +666,24 @@ function demarrerChrono() {
   tempsRestant.value = tempsMax.value
   timerInterval = setInterval(() => {
     tempsRestant.value--
-    if (tempsRestant.value <= 0) { clearInterval(timerInterval); jouerGong(); repondre(null) }
+    if (tempsRestant.value <= 0) {
+      clearInterval(timerInterval)
+      jouerGong()
+      // F3 · « Temps écoulé ! » tombe, le chrono tremble, puis la bonne réponse est révélée (E5)
+      tempsEcoule.value = true
+      setTimeout(() => { tempsEcoule.value = false }, 1300)
+      repondre(null)
+    }
   }, 1000)
+}
+
+// F5 · fin du Bombardement : flash, onde de choc et secousse avant le résultat
+function exploser() {
+  if (!animationsActives()) { finirQuiz(); return }
+  repondu.value = true          // plus de réponse possible pendant l'explosion
+  stopTick()
+  explosion.value = true
+  _explosionTimer = setTimeout(finirQuiz, 900)
 }
 
 function repondre(choixIndex) {
@@ -824,7 +917,61 @@ function palierParticleStyle(i, n) {
 .qz-loading { display: flex; align-items: center; justify-content: center; min-height: 100dvh; font-weight: 600; color: #6b7280; font-size: 1rem; }
 
 /* ── Shell ───────────────────────────────────────────────────── */
-.qz-shell { display: flex; flex-direction: column; min-height: 100dvh; background: #f9f9ff; }
+.qz-shell { display: flex; flex-direction: column; min-height: 100dvh; background-color: #f9f9ff; transition: background-color 1s ease; }
+
+/* F2 · lueur rouge battante sur les bords */
+.qz-vignette {
+  position: fixed; inset: 0; z-index: 90; pointer-events: none;
+  box-shadow: inset 0 0 90px 10px rgba(220, 38, 38, 0.45);
+  animation: qz-vignette 1s ease-in-out infinite;
+}
+@keyframes qz-vignette { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
+.fondu-enter-active, .fondu-leave-active { transition: opacity 0.3s; }
+.fondu-enter-from, .fondu-leave-to { opacity: 0; }
+
+/* F3 · « Temps écoulé ! » tombe du haut avec un rebond */
+.qz-temps-ecoule {
+  position: fixed; top: 18%; left: 50%; z-index: 110; transform: translateX(-50%);
+  background: #c23a3a; color: #fff; font-weight: 900; font-size: 1.35rem;
+  padding: 0.6rem 1.4rem; border-radius: 99px; white-space: nowrap;
+  box-shadow: 0 10px 30px rgba(194, 58, 58, 0.4); pointer-events: none;
+}
+.temps-ecoule-enter-active { animation: temps-ecoule-in 0.5s var(--ease-spring); }
+.temps-ecoule-leave-active { transition: opacity 0.25s, transform 0.25s; }
+.temps-ecoule-leave-to     { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+@keyframes temps-ecoule-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-140px) rotate(-6deg); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0) rotate(0); }
+}
+
+/* F5 · explosion finale */
+.qz-explosion { position: fixed; inset: 0; z-index: 140; pointer-events: none; display: flex; align-items: center; justify-content: center; }
+.qz-explosion-flash { position: absolute; inset: 0; background: #fff; animation: qz-flash 0.5s ease-out forwards; }
+@keyframes qz-flash { 0% { opacity: 0; } 15% { opacity: 1; } 100% { opacity: 0; } }
+.qz-explosion-onde {
+  position: absolute; width: 120px; height: 120px; border-radius: 50%;
+  border: 10px solid #ff7a1a; animation: qz-onde 0.8s ease-out forwards;
+}
+.qz-explosion-onde--2 { border-color: #ffd23f; animation-delay: 0.12s; }
+@keyframes qz-onde {
+  from { transform: scale(0.2); opacity: 1; }
+  to   { transform: scale(9); opacity: 0; border-width: 1px; }
+}
+.qz-explosion-boum { font-size: 7rem; animation: qz-boum 0.8s var(--ease-spring) forwards; }
+@keyframes qz-boum {
+  0%   { transform: scale(0); opacity: 0; }
+  40%  { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.qz-secousse { animation: qz-secousse 0.6s ease; }
+@keyframes qz-secousse {
+  0%,100% { transform: translate(0, 0); }
+  15% { transform: translate(-10px, 6px); }
+  30% { transform: translate(9px, -7px); }
+  45% { transform: translate(-7px, -4px); }
+  60% { transform: translate(6px, 5px); }
+  80% { transform: translate(-3px, 2px); }
+}
 
 /* ── Header ──────────────────────────────────────────────────── */
 .qz-header {
@@ -964,8 +1111,53 @@ function palierParticleStyle(i, n) {
 .qz-timer-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #424754; margin-bottom: 0.25rem; }
 .qz-timer-val   { font-size: 3rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; color: #151c27; }
 .qz-timer-unit  { font-size: 0.72rem; color: #727785; margin-top: 0.15rem; }
-.qz-timer-bar-wrap { width: 100%; height: 5px; background: #dce2f3; border-radius: 99px; overflow: hidden; margin-top: 0.75rem; }
-.qz-timer-bar   { height: 100%; background: #0058be; border-radius: 99px; transition: width 1s linear; }
+.qz-timer-ring { position: relative; width: 104px; height: 104px; display: flex; align-items: center; justify-content: center; margin: 0.15rem 0; }
+.qz-timer-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.qz-timer-ring-fond { fill: none; stroke: #e7eaf3; stroke-width: 9; }
+.qz-timer-ring-arc  {
+  fill: none; stroke-width: 9; stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear, stroke 1s linear;
+}
+.qz-timer-ring .qz-timer-val { position: relative; font-size: 2.4rem; }
+
+/* F4 · bombe qui bat + mèche qui raccourcit */
+.qz-bombe-ligne { display: flex; align-items: center; gap: 0.5rem; width: 100%; margin-top: 0.75rem; }
+.qz-bombe {
+  font-size: 1.6rem; line-height: 1; display: inline-block;
+  animation: qz-bombe-bat var(--rythme, 1.2s) ease-in-out infinite;
+}
+@keyframes qz-bombe-bat {
+  0%, 100% { transform: scale(1); }
+  30%      { transform: scale(1.22) rotate(-6deg); }
+}
+.qz-meche-wrap { flex: 1; height: 6px; }
+.qz-meche {
+  position: relative; height: 100%;
+  background: repeating-linear-gradient(90deg, #8a5a2b 0 6px, #b07a45 6px 10px);
+  border-radius: 99px; transition: width 1s linear;
+}
+.qz-etincelle {
+  position: absolute; right: -7px; top: 50%; width: 14px; height: 14px;
+  border-radius: 50%; transform: translateY(-50%);
+  background: radial-gradient(circle, #fff7c2 0%, #ffb020 45%, rgba(255,80,0,0) 70%);
+  animation: qz-etincelle 0.18s steps(2) infinite;
+}
+@keyframes qz-etincelle {
+  from { transform: translateY(-50%) scale(0.8); opacity: 0.8; }
+  to   { transform: translateY(-50%) scale(1.25); opacity: 1; }
+}
+.qz-dc-ring-wrap.qz-bombe-pulse { animation: qz-bombe-bat var(--rythme, 1.2s) ease-in-out infinite; }
+
+/* F3 · le chrono tremble au temps écoulé */
+.qz-timer-card.qz-chrono-shake,
+.qz-dc-ring-wrap.qz-chrono-shake { animation: qz-chrono-shake 0.5s ease; }
+@keyframes qz-chrono-shake {
+  0%,100% { transform: translateX(0) rotate(0); }
+  20% { transform: translateX(-6px) rotate(-4deg); }
+  40% { transform: translateX(6px) rotate(4deg); }
+  60% { transform: translateX(-4px) rotate(-2deg); }
+  80% { transform: translateX(4px) rotate(2deg); }
+}
 
 @keyframes pulse-red {
   0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(186,26,26,0.4); }
@@ -1287,7 +1479,7 @@ function palierParticleStyle(i, n) {
 @media (max-width: 640px) {
 
   /* Shell */
-  .qz-shell { background: #f5f6f8; }
+  .qz-shell { background-color: #f5f6f8; }
 
   /* ── Header desktop caché, header dc.html affiché ── */
   .qz-header-inner { display: none; }
