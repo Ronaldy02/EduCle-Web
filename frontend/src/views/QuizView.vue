@@ -135,9 +135,9 @@
         <div class="qz-dc-stat-lbl">Score · <span ref="xpMobile" class="qz-dc-xp">✨ <span v-countup="xpGagne"></span> XP</span></div>
       </div>
       <!-- Timer ring SVG -->
-      <div class="qz-dc-ring-wrap"
+      <div ref="chronoMobile" class="qz-dc-ring-wrap"
         :class="{ 'qz-dc-ring-bomb': modeNom === 'Bombardement', 'qz-dc-ring-urgent': dcTimerUrgent,
-                  'qz-bombe-pulse': bombePalier > 0, 'qz-chrono-shake': tempsEcoule }"
+                  'qz-bombe-pulse': bombePalier > 0, 'qz-chrono-shake': tempsEcoule, 'qz-chrono-recharge': recharge }"
         :style="{ '--rythme': RYTHME_BOMBE[bombePalier] }">
         <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"
           style="position:absolute;top:0;left:0;transform:rotate(-90deg);">
@@ -177,7 +177,7 @@
           :class="{ 'qz-timer-urgent': tempsRestant <= seuilCritique, 'qz-chrono-shake': tempsEcoule }">
           <span class="qz-timer-label">Temps Restant</span>
           <!-- F1 · anneau qui se vide en continu, du vert au rouge -->
-          <div class="qz-timer-ring">
+          <div ref="chronoDesktop" class="qz-timer-ring" :class="{ 'qz-chrono-recharge': recharge }">
             <svg viewBox="0 0 120 120" aria-hidden="true">
               <circle cx="60" cy="60" r="52" class="qz-timer-ring-fond" />
               <circle cx="60" cy="60" r="52" class="qz-timer-ring-arc"
@@ -193,7 +193,7 @@
           class="qz-timer-card"
           :class="{ 'qz-timer-urgent': tempsGlobal <= 10 }">
           <span class="qz-timer-label">Temps Restant</span>
-          <div class="qz-timer-ring">
+          <div ref="chronoDesktop" class="qz-timer-ring" :class="{ 'qz-chrono-recharge': recharge }">
             <svg viewBox="0 0 120 120" aria-hidden="true">
               <circle cx="60" cy="60" r="52" class="qz-timer-ring-fond" />
               <circle cx="60" cy="60" r="52" class="qz-timer-ring-arc"
@@ -232,7 +232,7 @@
               <span class="qz-bonus-name">Remplacer</span>
               <span class="qz-bonus-cout">75 <CoinIcon /></span>
             </button>
-            <button class="qz-bonus-btn" @click="utiliserBonus('plusTemps')" :disabled="modeNom === 'Bombardement'">
+            <button class="qz-bonus-btn" @click="utiliserBonus('plusTemps', $event)" :disabled="modeNom === 'Bombardement'">
               <span class="qz-bonus-icon">⏱️</span>
               <span class="qz-bonus-name">+Temps</span>
               <span class="qz-bonus-cout">150 <CoinIcon /></span>
@@ -263,7 +263,7 @@
                   <button class="qz-dc-bitem" @click="utiliserBonus('remplacer'); mobileShowBonus=false" :disabled="bonusUtilises.remplacer || repondu">
                     <span>🔄</span><span class="qz-dc-bname">Remplacer</span><span class="qz-dc-bcost"><CoinIcon />75</span>
                   </button>
-                  <button class="qz-dc-bitem" @click="utiliserBonus('plusTemps'); mobileShowBonus=false" :disabled="modeNom === 'Bombardement' || repondu">
+                  <button class="qz-dc-bitem" @click="utiliserBonus('plusTemps', $event); mobileShowBonus=false" :disabled="modeNom === 'Bombardement' || repondu">
                     <span>⏱️</span><span class="qz-dc-bname">+Temps</span><span class="qz-dc-bcost"><CoinIcon />150</span>
                   </button>
                 </div>
@@ -277,7 +277,7 @@
         </div>
 
         <!-- E7 · Question + réponses : glissement d'une question à l'autre -->
-        <transition name="q-swap" mode="out-in">
+        <transition :name="transitionQuestion" mode="out-in">
         <div :key="indexCourant + ':' + question.id" class="qz-q-stage"
           :class="{ 'qz-q-stage--rapide': modeNom === 'Bombardement' }">
 
@@ -288,9 +288,9 @@
         </div>
 
         <!-- Grille de réponses -->
-        <div class="qz-choix-grid">
+        <TransitionGroup tag="div" class="qz-choix-grid" name="choix" @before-leave="figerChoix">
           <button
-            v-for="(choix, i) in choixVisibles"
+            v-for="{ choix, i } in choixAffiches"
             :key="i"
             :ref="el => { if (el) choixEls[i] = el }"
             v-ripple
@@ -313,7 +313,7 @@
             <span class="qz-choix-texte" :class="{ 'qz-choix-texte--long': choix.length > 20 }">{{ choix }}</span>
             <div class="qz-kbd">{{ i + 1 }}</div>
           </button>
-        </div>
+        </TransitionGroup>
 
         </div>
         </transition>
@@ -527,8 +527,25 @@ const modeBadgeStyle = computed(() => ({
   color: '#fff',
 }))
 
-// Choix visibles (tous, sauf éliminés masqués : on les grise)
+// Choix affichés : les éliminés sortent de la grille (G1/G2), l'indice d'origine est conservé
 const choixVisibles = computed(() => question.value?.choix ?? [])
+const choixAffiches = computed(() =>
+  choixVisibles.value
+    .map((choix, i) => ({ choix, i }))
+    .filter(({ i }) => !elimines.value.includes(i)))
+
+// G1 · le choix qui part est figé à sa place pendant que les autres se resserrent
+function figerChoix(el) {
+  el.style.left   = el.offsetLeft + 'px'
+  el.style.top    = el.offsetTop + 'px'
+  el.style.width  = el.offsetWidth + 'px'
+  el.style.height = el.offsetHeight + 'px'
+}
+
+const transitionQuestion = ref('q-swap')   // G4 : 'q-flip' le temps d'un « Remplacer »
+const recharge           = ref(false)      // G3 : éclat de l'anneau à l'arrivée du « +10s »
+const chronoDesktop      = ref(null)
+const chronoMobile       = ref(null)
 
 // ── DC ring timer computed ──────────────────────────────────────────
 const dcTimerUrgent = computed(() => {
@@ -785,7 +802,7 @@ function etatChoix(i) {
   return 'neutre'
 }
 
-function utiliserBonus(type) {
+function utiliserBonus(type, evt) {
   if (repondu.value) return
   const q = question.value
   if (!q) return
@@ -802,8 +819,9 @@ function utiliserBonus(type) {
     bonusUtilises.value.cinqCinq = true
     const bonneIdx = q.choix.indexOf(q.bonne_reponse)
     const mauvais  = [0, 1, 2, 3].filter(i => i !== bonneIdx)
-    // Garder un mauvais, éliminer les deux autres
-    const garder = mauvais[Math.floor(Math.random() * mauvais.length)]
+    // Garder un mauvais encore visible, éliminer les autres (sans faire revenir un choix déjà éliminé)
+    const restants = mauvais.filter(i => !elimines.value.includes(i))
+    const garder = restants[Math.floor(Math.random() * restants.length)]
     elimines.value = mauvais.filter(i => i !== garder)
 
   } else if (type === 'remplacer') {
@@ -818,17 +836,29 @@ function utiliserBonus(type) {
       arr.splice(swapIdx, 1, temp)
       elimines.value = []
       clearInterval(timerInterval)
+      // G4 · la carte se retourne et la nouvelle question apparaît au dos
+      transitionQuestion.value = 'q-flip'
+      setTimeout(() => { transitionQuestion.value = 'q-swap' }, 700)
       if (modeNom.value !== 'Bombardement') demarrerChrono()
     }
 
   } else if (type === 'plusTemps') {
-    if (modeNom.value !== 'Bombardement') {
-      clearInterval(timerInterval)
-      tempsRestant.value = Math.min(tempsRestant.value + 10, tempsMax.value)
-      demarrerChrono()
-    } else {
-      tempsGlobal.value = Math.min(tempsGlobal.value + 15, 60)
+    const ajout = modeNom.value === 'Bombardement' ? 15 : 10
+    const crediter = () => {
+      if (modeNom.value !== 'Bombardement') {
+        if (repondu.value) return
+        tempsRestant.value = Math.min(tempsRestant.value + ajout, tempsMax.value)
+      } else {
+        tempsGlobal.value = Math.min(tempsGlobal.value + ajout, 60)
+      }
+      recharge.value = true
+      setTimeout(() => { recharge.value = false }, 600)
     }
+    // G3 · « +10s » vole du bouton jusqu'au chrono ; le temps est crédité à l'arrivée
+    // (tout de suite s'il ne reste qu'une seconde)
+    const cible = visible(chronoDesktop.value) ? chronoDesktop.value : chronoMobile.value
+    if (tempsRestant.value <= 1 && modeNom.value !== 'Bombardement') crediter()
+    else voler(evt?.currentTarget, cible, { contenu: `+${ajout}s`, classe: 'fx-vol-temps', duree: 700 }).then(crediter)
   }
 }
 
@@ -1197,7 +1227,7 @@ function palierParticleStyle(i, n) {
 .qz-bonus-cout { font-size: 0.72rem; font-weight: 700; color: #6b38d4; white-space: nowrap; flex-shrink: 0; }
 
 /* ── Centre ──────────────────────────────────────────────────── */
-.qz-center { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.qz-center { flex: 1; display: flex; flex-direction: column; min-width: 0; perspective: 1200px; }
 
 .qz-question-nav {
   display: flex; align-items: center; justify-content: space-between;
@@ -1232,6 +1262,43 @@ function palierParticleStyle(i, n) {
 }
 
 /* Grille de réponses */
+/* G1/G2 · élimination : le choix se fissure, se réduit et s'efface ; la grille se resserre */
+.qz-choix-grid { position: relative; }
+.choix-move { transition: transform 0.35s var(--ease-out); }
+.choix-leave-active {
+  position: absolute; z-index: 2; pointer-events: none;
+  animation: choix-fissure 0.5s ease-in forwards;
+}
+.choix-leave-active::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M48 0 L44 12 L53 18 L46 29 L51 40 M44 12 L30 16 M53 18 L68 14 M46 29 L36 34' fill='none' stroke='%23424754' stroke-width='1.4' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  animation: choix-fissure-trait 0.5s ease-out forwards;
+}
+@keyframes choix-fissure {
+  0%   { transform: none; opacity: 1; }
+  12%  { transform: rotate(-2deg); }
+  24%  { transform: rotate(2deg); }
+  36%  { transform: rotate(0) scale(1); opacity: 1; }
+  100% { transform: scale(0.4) rotate(5deg); opacity: 0; }
+}
+@keyframes choix-fissure-trait { from { opacity: 0; } 25% { opacity: 1; } to { opacity: 1; } }
+
+/* G3 · éclat de l'anneau quand le temps est rechargé */
+.qz-timer-ring.qz-chrono-recharge,
+.qz-dc-ring-wrap.qz-chrono-recharge { animation: qz-recharge 0.6s var(--ease-out); border-radius: 50%; }
+.qz-chrono-recharge .qz-timer-ring-arc { transition-duration: 0.35s; }
+@keyframes qz-recharge {
+  0%   { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.6); transform: scale(1); }
+  35%  { transform: scale(1.12); }
+  100% { box-shadow: 0 0 0 22px rgba(22, 163, 74, 0); transform: scale(1); }
+}
+
+/* G4 · « Remplacer » : la carte se retourne */
+.q-flip-leave-active { transition: transform 0.25s ease-in, opacity 0.25s ease-in; }
+.q-flip-leave-to     { transform: rotateY(90deg); opacity: 0.3; }
+.q-flip-enter-active { transition: transform 0.25s var(--ease-out), opacity 0.25s; }
+.q-flip-enter-from   { transform: rotateY(-90deg); opacity: 0.3; }
+
 .qz-choix-grid {
   display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1rem;
 }

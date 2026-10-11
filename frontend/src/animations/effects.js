@@ -53,7 +53,10 @@ export function voler(depuis, vers, { contenu, classe = '', duree = 800, delai =
     { transform: `translate(-50%, -50%) translate(${dx}px, ${dy}px) scale(0.45)`, opacity: 0.4 },
   ], { duration: duree, delay: delai, easing: 'cubic-bezier(0.45, 0, 0.55, 1)', fill: 'both' })
 
-  return anim.finished.catch(() => {}).then(() => el.remove())
+  // Filet de sécurité : si l'onglet est en arrière-plan, l'animation peut rester figée ;
+  // le gain doit quand même être crédité à l'heure prévue.
+  const filet = new Promise(r => setTimeout(r, delai + duree + 250))
+  return Promise.race([anim.finished.catch(() => {}), filet]).then(() => el.remove())
 }
 
 // Petit « boing » d'un compteur qui reçoit un gain
