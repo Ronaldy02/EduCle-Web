@@ -471,32 +471,33 @@ function pctColor(pct) {
 }
 
 // ── Logos des matières ───────────────────────────────────────────
-// Un logo SVG par famille de matière (public/matieres/*.svg), même style partout.
+// Une image par famille de matière (public/matieres/), choisie matière par matière :
+// images d'origine de l'app, SVG maison (musique, histoire) ou Fluent Emoji 3D (*-3d.png, licence MIT).
 // `color` sert au titre de la carte, `bg` aux fonds de vignette.
 const LOGOS = {
-  'mathematiques':        { bg: '#E0E9FC', color: '#2157CF', icon: 'calculate' },
-  'francais':             { bg: '#EDE3FC', color: '#6D33D1', icon: 'book_2' },
-  'creole':               { bg: '#FBDFE5', color: '#C61A3F', icon: 'record_voice_over' },
-  'citoyennete':          { bg: '#DDF0EE', color: '#0B8278', icon: 'balance' },
-  'arts':                 { bg: '#FCE8DD', color: '#CE4D0B', icon: 'palette' },
-  'musique':              { bg: '#F6E1F9', color: '#A921BA', icon: 'music_note' },
-  'eps':                  { bg: '#FEF1DD', color: '#B87507', icon: 'directions_run' },
-  'etap':                 { bg: '#E5E7EA', color: '#3E4B5C', icon: 'build' },
-  'biologie':             { bg: '#DEF2E6', color: '#138F41', icon: 'biotech' },
-  'geologie':             { bg: '#F2E9DC', color: '#8E5606', icon: 'terrain' },
-  'geographie':           { bg: '#DCEEF7', color: '#0274AF', icon: 'public' },
-  'sciences':             { bg: '#E9F2DD', color: '#598F0B', icon: 'science' },
-  'histoire':             { bg: '#F4E7DD', color: '#9E4908', icon: 'account_balance' },
-  'histoire-haiti':       { bg: '#DFE6FA', color: '#1A45BE', icon: 'account_balance' },
-  'histoire-universelle': { bg: '#F1E3DE', color: '#882E10', icon: 'hourglass_empty' },
-  'economie':             { bg: '#DCF0EA', color: '#04845C', icon: 'bar_chart' },
-  'philosophie':          { bg: '#E5E3F8', color: '#3B31B2', icon: 'psychology' },
-  'informatique':         { bg: '#DCF0F4', color: '#07809D', icon: 'computer' },
-  'litterature-haiti':    { bg: '#F6DFE8', color: '#A71552', icon: 'history_edu' },
-  'litterature-uni':      { bg: '#EDE0F8', color: '#6F1EB5', icon: 'auto_stories' },
-  'chimie':               { bg: '#FAE1EC', color: '#C12269', icon: 'science' },
-  'physique':             { bg: '#E0E4F4', color: '#1A389A', icon: 'bolt' },
-  'culture-generale':     { bg: '#F8EFDC', color: '#B27904', icon: 'lightbulb' },
+  'mathematiques':        { img: 'Maths.jpg',              bg: '#E0E9FC', color: '#2157CF', icon: 'calculate' },
+  'francais':             { img: 'comm_francaise.webp',    bg: '#EDE3FC', color: '#6D33D1', icon: 'book_2' },
+  'creole':               { img: 'Creole.webp',            bg: '#FBDFE5', color: '#C61A3F', icon: 'record_voice_over' },
+  'citoyennete':          { img: 'citoyennete.webp',       bg: '#DDF0EE', color: '#0B8278', icon: 'balance' },
+  'arts':                 { img: 'artist_palette_3d.png',  bg: '#FCE8DD', color: '#CE4D0B', icon: 'palette' },
+  'musique':              { img: 'musique.svg',            bg: '#F6E1F9', color: '#A921BA', icon: 'music_note' },
+  'eps':                  { img: 'eps.jpg',                bg: '#FEF1DD', color: '#B87507', icon: 'directions_run' },
+  'etap':                 { img: 'etap.jpg',               bg: '#E5E7EA', color: '#3E4B5C', icon: 'build' },
+  'biologie':             { img: 'biologie-3d.png',        bg: '#DEF2E6', color: '#138F41', icon: 'biotech' },
+  'geologie':             { img: 'geologie.jpg',           bg: '#F2E9DC', color: '#8E5606', icon: 'terrain' },
+  'geographie':           { img: 'Geographie.jpg',         bg: '#DCEEF7', color: '#0274AF', icon: 'public' },
+  'sciences':             { img: 'sciences-3d.png',        bg: '#E9F2DD', color: '#598F0B', icon: 'science' },
+  'histoire':             { img: 'histoire.svg',           bg: '#F4E7DD', color: '#9E4908', icon: 'account_balance' },
+  'histoire-haiti':       { img: 'Histoire_Haiti.webp',    bg: '#DFE6FA', color: '#1A45BE', icon: 'account_balance' },
+  'histoire-universelle': { img: 'Histoire_Uni.jpg',       bg: '#F1E3DE', color: '#882E10', icon: 'hourglass_empty' },
+  'economie':             { img: 'economie.webp',          bg: '#DCF0EA', color: '#04845C', icon: 'bar_chart' },
+  'philosophie':          { img: 'philosophie.jpg',        bg: '#E5E3F8', color: '#3B31B2', icon: 'psychology' },
+  'informatique':         { img: 'informatique.jpg',       bg: '#DCF0F4', color: '#07809D', icon: 'computer' },
+  'litterature-haiti':    { img: 'Litterature_Haiti.webp', bg: '#F6DFE8', color: '#A71552', icon: 'history_edu' },
+  'litterature-uni':      { img: 'Litterature_Uni.jpg',    bg: '#EDE0F8', color: '#6F1EB5', icon: 'auto_stories' },
+  'chimie':               { img: 'chimie.webp',            bg: '#FAE1EC', color: '#C12269', icon: 'science' },
+  'physique':             { img: 'physique-3d.png',        bg: '#E0E4F4', color: '#1A389A', icon: 'bolt' },
+  'culture-generale':     { img: 'Culture_gen.webp',       bg: '#F8EFDC', color: '#B27904', icon: 'lightbulb' },
 }
 
 // Nom de matière (sans accents, minuscules) → logo
@@ -536,8 +537,8 @@ function _logoSlug(nom) {
 }
 
 function imagePour(nom) {
-  const slug = _logoSlug(nom)
-  return slug ? `/matieres/${slug}.svg` : null
+  const img = LOGOS[_logoSlug(nom)]?.img
+  return img ? `/matieres/${img}` : null
 }
 
 function _lookup(nom) {
