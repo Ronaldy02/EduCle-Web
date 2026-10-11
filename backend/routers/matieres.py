@@ -9,11 +9,21 @@ from schemas.matiere import MatiereSchema, MatiereDetailSchema, ChapitreDetailSc
 
 router = APIRouter(prefix="/matieres", tags=["Matières"])
 
+_MIN_QUESTIONS = 10
+
 
 @router.get("/", response_model=list[MatiereSchema])
 def lister_matieres(niveau: str | None = None, db: Session = Depends(get_db)):
-    """Liste toutes les matières, optionnellement filtrées par niveau scolaire."""
-    q = select(Matiere)
+    """Liste les matières ayant au moins un chapitre avec ≥ 10 questions."""
+    viable_chap_ids = (
+        select(Question.chapitre_id)
+        .group_by(Question.chapitre_id)
+        .having(func.count(Question.id) >= _MIN_QUESTIONS)
+    )
+    matiere_ids_visibles = select(Chapitre.matiere_id).where(
+        Chapitre.id.in_(viable_chap_ids)
+    )
+    q = select(Matiere).where(Matiere.id.in_(matiere_ids_visibles))
     if niveau:
         q = q.where(Matiere.niveau == niveau)
     return db.scalars(q.order_by(Matiere.nom)).all()
@@ -24,9 +34,6 @@ def lister_niveaux(db: Session = Depends(get_db)):
     """Retourne les niveaux scolaires distincts présents dans la base."""
     rows = db.execute(select(Matiere.niveau).distinct()).scalars().all()
     return sorted(rows)
-
-
-_MIN_QUESTIONS = 10
 
 
 @router.get("/{matiere_id}", response_model=MatiereDetailSchema)
