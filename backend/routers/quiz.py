@@ -19,6 +19,10 @@ from models import Matiere, Chapitre, Question, StatistiqueQuestion
 from models.defi import Defi, DefiProgres
 from models.realisation import Realisation
 from models.defi import RealisationProgres
+from routers.defis import (
+    _ids_quotidiens_pour, _ids_hebdo_pour, _ids_mensuels_pour,
+    _periode_jour, _periode_hebdo, _periode_mensuel,
+)
 from models.user import User
 from models.score import Score
 from schemas.question import QuestionSchema
@@ -259,10 +263,6 @@ def terminer_quiz(
     ))
 
     # ── Mise à jour des défis actifs ──────────────────────────────────────────
-    from routers.defis import (
-        _ids_quotidiens_pour, _ids_hebdo_pour, _ids_mensuels_pour,
-        _periode_jour, _periode_hebdo, _periode_mensuel,
-    )
     today = date.today()
     is_perfect = (score_val == len(resultats) and len(resultats) > 0)
     now_hour = datetime.now().hour
@@ -273,6 +273,18 @@ def terminer_quiz(
         + _ids_mensuels_pour(today)
     )
     defis_actifs = db.scalars(select(Defi).where(Defi.id.in_(all_defi_ids))).all()
+
+    periode_quotidien   = _periode_jour(today)
+    periode_hebdo_val   = _periode_hebdo(today)
+    periode_mensuel_val = _periode_mensuel(today)
+    _dp_rows = db.scalars(
+        select(DefiProgres).where(
+            DefiProgres.user_id == current_user.id,
+            DefiProgres.defi_id.in_(all_defi_ids),
+            DefiProgres.periode.in_([periode_quotidien, periode_hebdo_val, periode_mensuel_val]),
+        )
+    ).all()
+    defi_progres_map = {(r.defi_id, r.periode): r for r in _dp_rows}
 
     _BONUS_XP    = {1: 20, 2: 50, 3: 100}
     _BONUS_PIECES = {1: 10, 2: 25, 3: 50}
@@ -316,21 +328,15 @@ def terminer_quiz(
             continue
 
         if defi.type == "d":
-            periode = _periode_jour(today)
+            periode = periode_quotidien
         elif defi.type == "w":
-            periode = _periode_hebdo(today)
+            periode = periode_hebdo_val
         elif defi.type == "m":
-            periode = _periode_mensuel(today)
+            periode = periode_mensuel_val
         else:
-            periode = _periode_jour(today)
+            periode = periode_quotidien
 
-        row = db.scalar(
-            select(DefiProgres).where(
-                DefiProgres.user_id == current_user.id,
-                DefiProgres.defi_id == defi.id,
-                DefiProgres.periode == periode,
-            )
-        )
+        row = defi_progres_map.get((defi.id, periode))
 
         was_complete = bool(row.complete) if row else False
         if was_complete:
