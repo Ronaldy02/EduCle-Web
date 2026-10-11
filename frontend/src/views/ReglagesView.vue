@@ -87,6 +87,46 @@
         </template>
       </div>
 
+      <!-- ── Son (S6) ───────────────────────────────────────── -->
+      <div class="rg-section-label">Son</div>
+      <div class="rg-card">
+        <div class="rg-switch-row">
+          <div>
+            <p class="rg-switch-titre">Musique de fond</p>
+            <p class="rg-desc">Ambiance douce sur les pages, plus rythmée pendant les quiz.</p>
+          </div>
+          <button class="rg-switch" :class="{ on: musiqueOn }" role="switch"
+            :aria-checked="musiqueOn" aria-label="Musique de fond" @click="musiqueOn = !musiqueOn; confirmer()">
+            <span class="rg-switch-knob"></span>
+          </button>
+        </div>
+        <div class="rg-volume" :class="{ 'rg-volume--off': !musiqueOn }">
+          <span class="material-symbols-outlined">music_note</span>
+          <input type="range" min="0" max="1" step="0.05" v-model.number="musiqueVolume"
+            :disabled="!musiqueOn" aria-label="Volume de la musique" />
+          <span class="rg-volume-val">{{ Math.round(musiqueVolume * 100) }} %</span>
+        </div>
+
+        <div class="rg-divider"></div>
+
+        <div class="rg-switch-row">
+          <div>
+            <p class="rg-switch-titre">Effets sonores</p>
+            <p class="rg-desc">Bonnes et mauvaises réponses, chrono, séries.</p>
+          </div>
+          <button class="rg-switch" :class="{ on: effetsOn }" role="switch"
+            :aria-checked="effetsOn" aria-label="Effets sonores" @click="effetsOn = !effetsOn; confirmer()">
+            <span class="rg-switch-knob"></span>
+          </button>
+        </div>
+        <div class="rg-volume" :class="{ 'rg-volume--off': !effetsOn }">
+          <span class="material-symbols-outlined">volume_up</span>
+          <input type="range" min="0" max="1" step="0.05" v-model.number="effetsVolume"
+            :disabled="!effetsOn" aria-label="Volume des effets sonores" @change="essaiEffet" />
+          <span class="rg-volume-val">{{ Math.round(effetsVolume * 100) }} %</span>
+        </div>
+      </div>
+
       <!-- ── Animations ─────────────────────────────────────── -->
       <div class="rg-section-label">Animations</div>
       <div class="rg-card">
@@ -129,6 +169,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { getProfil, updateProfil } from '../api/client.js'
 import { animationsOn } from '../animations/motion.js'
+import { musiqueOn, musiqueVolume, effetsOn, effetsVolume, volumeEffets } from '../audio/reglages.js'
 import { toast, fermerToast } from '../animations/toast.js'
 
 // ── Pays & régions ────────────────────────────────────────────
@@ -227,6 +268,14 @@ async function saveBackend(data) {
   try { await updateProfil(data) } catch {}
 }
 
+// Petit son d'essai quand on relâche le curseur des effets
+const _sonEssai = new Audio('/sounds/bonne_reponse.mp3')
+function essaiEffet() {
+  const s = _sonEssai.cloneNode()
+  s.volume = volumeEffets()
+  s.play().catch(() => {})
+}
+
 function basculerAnimations() {
   animationsOn.value = !animationsOn.value
   confirmer()
@@ -309,6 +358,14 @@ function confirmer() {
 .rg-info-lib { font-size: 0.875rem; color: var(--text-muted); }
 .rg-info-val { font-size: 0.875rem; font-weight: 700; color: var(--text); }
 .rg-divider  { height: 1px; background: var(--border); margin: 0.75rem 0; }
+
+/* Volume (son) */
+.rg-volume { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.85rem; transition: opacity var(--dur-normal); }
+.rg-volume--off { opacity: 0.4; }
+.rg-volume .material-symbols-outlined { font-size: 20px; color: var(--primary); }
+.rg-volume input[type="range"] { flex: 1; accent-color: var(--primary); cursor: pointer; }
+.rg-volume input[type="range"]:disabled { cursor: not-allowed; }
+.rg-volume-val { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); min-width: 3rem; text-align: right; }
 
 /* Interrupteur animations */
 .rg-switch-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }

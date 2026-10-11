@@ -337,11 +337,13 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useQuizStore } from '../stores/quiz.js'
 import { getNiveau, utiliserBonusApi } from '../api/client.js'
 import { toast } from '../animations/toast.js'
+import { musique } from '../audio/musique.js'
+import { volumeEffets, effetsOn, effetsVolume } from '../audio/reglages.js'
 import { ripple, burst, voler, rebond } from '../animations/effects.js'
 import { animationsActives } from '../animations/motion.js'
 
@@ -424,9 +426,11 @@ function jouerTickQuestion(tempsMax) {
     son = _tickSons['30s']
   }
   son.currentTime = 0
+  son.volume = volumeEffets()
   son.play().catch(() => {})
   _tickActif = son
 }
+watch([effetsOn, effetsVolume], () => { if (_tickActif) _tickActif.volume = volumeEffets() })
 
 function stopTick() {
   if (_tickActif) {
@@ -440,15 +444,15 @@ function stopTick() {
 const _bonneReponseAudio    = new Audio('/sounds/bonne_reponse.mp3')
 const _mauvaiseReponseAudio = new Audio('/sounds/mauvaise_reponse.mp3')
 
-function jouerBonneReponse() {
-  const s = _bonneReponseAudio.cloneNode()
+function jouerEffet(audio) {
+  const v = volumeEffets()
+  if (!v) return
+  const s = audio.cloneNode()
+  s.volume = v
   s.play().catch(() => {})
 }
-
-function jouerMauvaiseReponse() {
-  const s = _mauvaiseReponseAudio.cloneNode()
-  s.play().catch(() => {})
-}
+const jouerBonneReponse    = () => jouerEffet(_bonneReponseAudio)
+const jouerMauvaiseReponse = () => jouerEffet(_mauvaiseReponseAudio)
 
 // Web Audio API uniquement pour le gong (synthèse)
 let _ac = null
@@ -471,9 +475,11 @@ function _jouerAvecResume(fn) {
 
 // Gong : ton continu 1 seconde
 function jouerGong() {
+  const v = volumeEffets()
+  if (!v) return
   _jouerAvecResume((ac, t) => {
     try {
-      [[220, 0.55], [440, 0.20]].forEach(([freq, vol]) => {
+      [[220, 0.55 * v], [440, 0.20 * v]].forEach(([freq, vol]) => {
         const osc = ac.createOscillator(), g = ac.createGain()
         osc.connect(g); g.connect(ac.destination)
         osc.frequency.value = freq
@@ -651,7 +657,16 @@ function commencer() {
   window.addEventListener('keydown', onKey)
 }
 
+// ── Musique adaptative ──────────────────────────────────────────────────────
+watch(vignetteCritique, (v) => musique.setTension(v))                   // S3 · zone critique
+watch(bombePalier, (n) => musique.setBombe(n))                          // S3 · paliers de la bombe
+watch(() => serie.value >= 5 && modeNom.value !== 'Bombardement',       // S4 · série
+  (v) => musique.setSerie(v))
+
 onBeforeUnmount(() => {
+  musique.setTension(false)
+  musique.setBombe(0)
+  musique.setSerie(false)
   clearTimeout(_explosionTimer)
   _decompteTimers.forEach(clearTimeout)
   window.removeEventListener('keydown', passerDecompte)
@@ -700,6 +715,7 @@ function demarrerChrono() {
 
 // F5 · fin du Bombardement : flash, onde de choc et secousse avant le résultat
 function exploser() {
+  musique.duck(0, 2500)            // S5 · silence pendant l'explosion
   if (!animationsActives()) { finirQuiz(); return }
   repondu.value = true          // plus de réponse possible pendant l'explosion
   stopTick()
@@ -943,6 +959,7 @@ function triggerPalier(n) {
   palierValue.value = n
   palierVisible.value = true
   playSerieSound(n)
+  musique.duck(0.35, PALIER_DURATION[n])   // S5 · la musique s'efface derrière le palier
   // H4 · le bonus de pièces quitte la bannière et rejoint le compteur
   setTimeout(() => {
     volerPieces(palierBonusEl.value, Math.min(8, 3 + n / 5), PALIER_BONUS[n])
@@ -980,8 +997,11 @@ function volerPieces(depuis, n, montant) {
 }
 
 function playSerieSound(n) {
+  const v = volumeEffets()
+  if (!v) return
   try {
-    const ac = new AudioContext()
+    const ac = _getAc()
+    if (!ac) return
     const plans = {
       5:  [[523, 0], [659, 0.14]],
       10: [[523, 0], [659, 0.12], [784, 0.24]],
@@ -996,7 +1016,7 @@ function playSerieSound(n) {
       osc.type = 'triangle'
       const st = ac.currentTime + t
       g.gain.setValueAtTime(0, st)
-      g.gain.linearRampToValueAtTime(0.2, st + 0.04)
+      g.gain.linearRampToValueAtTime(0.2 * v, st + 0.04)
       g.gain.exponentialRampToValueAtTime(0.001, st + 0.55)
       osc.start(st); osc.stop(st + 0.6)
     })

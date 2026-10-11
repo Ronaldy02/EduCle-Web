@@ -121,6 +121,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { getNiveau } from './api/client.js'
 import { useAuthStore } from './stores/auth.js'
 import ToastHost from './components/ToastHost.vue'
+import { musique } from './audio/musique.js'
 
 const route = useRoute()
 const router = useRouter()
@@ -132,29 +133,14 @@ const connecte = computed(() => auth.isAuthenticated)
 const NO_NAV = ['quiz', 'resultat', 'revision', 'admin', 'login']
 const showNav = computed(() => !NO_NAV.includes(route.name))
 
-// ── Musique de fond ────────────────────────────────────────────────────────
-const _musique = new Audio('/sounds/musique_fond.mp3')
-_musique.loop = true
-_musique.volume = 0.30
+// ── Musique de fond adaptative (audio/musique.js) ─────────────────────────
+// Pages : ambiance « calme » · Quiz : version rythmée · Admin : silence
+const ROUTES_SANS_MUSIQUE = ['admin', 'admin-login', 'admin-callback']
 
-// Routes sans musique
-const ROUTES_SANS_MUSIQUE = ['quiz']
-
-let _musiqueActive = false
-
-function _syncMusique(routeName) {
-  if (ROUTES_SANS_MUSIQUE.includes(routeName)) {
-    _musique.pause()
-  } else {
-    if (!_musiqueActive) {
-      _musiqueActive = true
-      _musique.play().catch(() => {})
-    } else {
-      _musique.play().catch(() => {})
-    }
-  }
+function sceneMusique(routeName) {
+  if (ROUTES_SANS_MUSIQUE.includes(routeName)) return 'off'
+  return routeName === 'quiz' ? 'quiz' : 'calme'
 }
-// ──────────────────────────────────────────────────────────────────────────
 
 function toggleConnexion() {
   if (auth.isAuthenticated) {
@@ -171,18 +157,21 @@ async function chargerNiveau() {
 
 onMounted(() => {
   chargerNiveau()
-  // Premier démarrage : la musique part sur le premier clic utilisateur
+  // Le navigateur n'autorise le son qu'après un geste : la musique part au premier clic ou à la première touche
+  musique.setScene(sceneMusique(route.name))
   const demarrerMusique = () => {
-    _syncMusique(route.name)
-    document.removeEventListener('click', demarrerMusique)
+    musique.demarrer()
+    document.removeEventListener('pointerdown', demarrerMusique)
+    document.removeEventListener('keydown', demarrerMusique)
   }
-  document.addEventListener('click', demarrerMusique)
+  document.addEventListener('pointerdown', demarrerMusique)
+  document.addEventListener('keydown', demarrerMusique)
 })
 
 watch(() => route.name, (n) => {
   if (n && !NO_NAV.includes(n)) chargerNiveau()
   sidebarOuvert.value = false
-  _syncMusique(n)
+  musique.setScene(sceneMusique(n))
 })
 
 </script>
