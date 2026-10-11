@@ -33,6 +33,10 @@ export const demarrerQuiz = (chapitreId, modeNom, nbQuestions = 10) =>
   api.post('/quiz/demarrer', { chapitre_id: chapitreId, mode_nom: modeNom, nb_questions: nbQuestions })
      .then(r => r.data)
 
+// Débite le coût d'un bonus (400 si pièces insuffisantes)
+export const utiliserBonusApi = (type) =>
+  api.post('/quiz/bonus', { type }).then(r => r.data)
+
 export const terminerQuiz = (payload) =>
   api.post('/quiz/terminer', payload).then(r => r.data)
 

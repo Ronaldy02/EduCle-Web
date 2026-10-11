@@ -8,6 +8,15 @@ class DemarrerQuizRequest(BaseModel):
     nb_questions: int = 10
 
 
+class UtiliserBonusRequest(BaseModel):
+    type: str              # "elimination" | "cinqCinq" | "remplacer" | "plusTemps"
+
+
+class UtiliserBonusResponse(BaseModel):
+    cout: int
+    pieces_total: int      # solde après déduction
+
+
 class RepondreRequest(BaseModel):
     question_id: int
     reponse: str

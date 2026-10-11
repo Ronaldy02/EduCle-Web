@@ -340,7 +340,8 @@
 import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useQuizStore } from '../stores/quiz.js'
-import { getNiveau } from '../api/client.js'
+import { getNiveau, utiliserBonusApi } from '../api/client.js'
+import { toast } from '../animations/toast.js'
 import { ripple, burst, voler, rebond } from '../animations/effects.js'
 import { animationsActives } from '../animations/motion.js'
 
@@ -802,8 +803,76 @@ function etatChoix(i) {
   return 'neutre'
 }
 
-function utiliserBonus(type, evt) {
+// ── Bonus : vérification → débit serveur → effet + animations ───────────────
+const COUT_BONUS = { elimination: 50, cinqCinq: 100, remplacer: 75, plusTemps: 150 }
+let bonusEnCours = false
+
+// Un bonus qui ne changerait rien n'est pas facturé
+function bonusApplicable(type) {
+  const q = question.value
+  const bonneIdx = q.choix.indexOf(q.bonne_reponse)
+  const mauvaisVisibles = [0, 1, 2, 3].filter(i => i !== bonneIdx && !elimines.value.includes(i))
+  if (type === 'elimination') return mauvaisVisibles.length > 0
+  if (type === 'cinqCinq')    return mauvaisVisibles.length > 1
+  if (type === 'remplacer')   return quizStore.questions.length - indexCourant.value - 1 > 0
+  if (type === 'plusTemps')   return modeNom.value === 'Bombardement' || tempsRestant.value < tempsMax.value
+  return false
+}
+
+async function utiliserBonus(type, evt) {
+  if (repondu.value || bonusEnCours || !question.value) return
+  if (bonusUtilises.value[type]) return
+  if (!bonusApplicable(type)) {
+    toast('Ce bonus ne changerait rien ici', { icon: 'block', type: 'error', duree: 2200 })
+    return
+  }
+  const bouton = evt?.currentTarget   // à lire avant l'await (currentTarget est remis à null ensuite)
+
+  bonusEnCours = true
+  try {
+    const r = await utiliserBonusApi(type)
+    animerDepense(bouton, r.cout)
+  } catch (e) {
+    refuserBonus(bouton, e)
+    return
+  } finally {
+    bonusEnCours = false
+  }
   if (repondu.value) return
+  appliquerBonus(type, bouton)
+}
+
+// G5 · les pièces quittent le compteur et rejoignent le bouton ; le compteur descend
+function animerDepense(bouton, cout) {
+  const compteur = ciblePieces()
+  // Sur mobile, le menu des bonus est déjà refermé : les pièces vont au bouton « Bonus »
+  const cible = bouton?.isConnected ? bouton : document.querySelector('.qz-bonus-toggle')
+  piecesTotal.value -= cout
+  rebond(compteur)
+  const svg = document.querySelector('.coin-icon')?.outerHTML ?? '🪙'
+  const n   = Math.min(5, Math.max(3, Math.round(cout / 40)))
+  for (let k = 0; k < n; k++) {
+    voler(compteur, cible, {
+      contenu: svg, classe: 'fx-vol-piece', duree: 650,
+      delai: k * 70, ecart: (k - (n - 1) / 2) * 10, hauteur: 50,
+    })
+  }
+}
+
+function refuserBonus(bouton, e) {
+  const manque = e?.response?.status === 400
+  toast(manque ? 'Pas assez de pièces pour ce bonus' : 'Bonus indisponible, réessaie',
+    { icon: manque ? 'savings' : 'error', type: 'error', duree: 2500 })
+  if (bouton?.isConnected && animationsActives()) {
+    bouton.animate([
+      { transform: 'translateX(0)' }, { transform: 'translateX(-6px)' },
+      { transform: 'translateX(6px)' }, { transform: 'translateX(-3px)' },
+      { transform: 'translateX(0)' },
+    ], { duration: 350, easing: 'ease' })
+  }
+}
+
+function appliquerBonus(type, bouton) {
   const q = question.value
   if (!q) return
 
@@ -858,7 +927,7 @@ function utiliserBonus(type, evt) {
     // (tout de suite s'il ne reste qu'une seconde)
     const cible = visible(chronoDesktop.value) ? chronoDesktop.value : chronoMobile.value
     if (tempsRestant.value <= 1 && modeNom.value !== 'Bombardement') crediter()
-    else voler(evt?.currentTarget, cible, { contenu: `+${ajout}s`, classe: 'fx-vol-temps', duree: 700 }).then(crediter)
+    else voler(bouton, cible, { contenu: `+${ajout}s`, classe: 'fx-vol-temps', duree: 700 }).then(crediter)
   }
 }
 

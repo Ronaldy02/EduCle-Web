@@ -3,6 +3,7 @@
 Flux :
   POST /quiz/demarrer  → reçoit chapitre_id + mode_nom + nb_questions
                          → retourne la liste des questions sélectionnées
+  POST /quiz/bonus     → débite le coût d'un bonus utilisé (refusé si solde insuffisant)
   POST /quiz/terminer  → reçoit les réponses de l'utilisateur
                          → calcule le score, met à jour XP/pièces/stats
                          → retourne ResultatQuizSchema
@@ -12,7 +13,7 @@ import random
 from datetime import date, datetime
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from sqlalchemy import select
+from sqlalchemy import select, update
 
 from database import get_db
 from models import Matiere, Chapitre, Question, StatistiqueQuestion
@@ -26,7 +27,10 @@ from routers.defis import (
 from models.user import User
 from models.score import Score
 from schemas.question import QuestionSchema
-from schemas.quiz import DemarrerQuizRequest, ResultatQuizSchema, QuestionResultatSchema
+from schemas.quiz import (
+    DemarrerQuizRequest, ResultatQuizSchema, QuestionResultatSchema,
+    UtiliserBonusRequest, UtiliserBonusResponse,
+)
 from services.adaptive_selector import selectionner
 from services.niveau import (
     calculer_xp_question,
@@ -131,6 +135,35 @@ def demarrer_quiz(
         q["xp"]     = calculer_xp_question(maitrise, body.mode_nom)
         q["pieces"] = calculer_pieces_question(True, body.mode_nom)
     return [QuestionSchema(**q) for q in selected]
+
+
+# Coût des bonus en pièces (affiché tel quel dans le quiz)
+COUT_BONUS = {"elimination": 50, "cinqCinq": 100, "remplacer": 75, "plusTemps": 150}
+
+
+@router.post("/bonus", response_model=UtiliserBonusResponse)
+def utiliser_bonus(
+    body: UtiliserBonusRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Débite le coût d'un bonus. Refusé (400) si le solde est insuffisant."""
+    cout = COUT_BONUS.get(body.type)
+    if cout is None:
+        raise HTTPException(status_code=422, detail="Bonus inconnu")
+
+    # Débit atomique : ne passe que si le solde couvre le coût
+    res = db.execute(
+        update(User)
+        .where(User.id == current_user.id, User.pieces_total >= cout)
+        .values(pieces_total=User.pieces_total - cout)
+    )
+    if res.rowcount == 0:
+        db.rollback()
+        raise HTTPException(status_code=400, detail="Pièces insuffisantes")
+    db.commit()
+    db.refresh(current_user)
+    return UtiliserBonusResponse(cout=cout, pieces_total=current_user.pieces_total)
 
 
 class ReponseItem(DemarrerQuizRequest):
