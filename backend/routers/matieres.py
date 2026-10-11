@@ -61,7 +61,14 @@ def detail_matiere(matiere_id: int, db: Session = Depends(get_db)):
         "id": matiere.id,
         "niveau": matiere.niveau,
         "nom": matiere.nom,
-        "chapitres": [c for c in matiere.chapitres if counts.get(c.id, 0) >= _MIN_QUESTIONS],
+        "chapitres": [
+            {
+                "id": c.id, "matiere_id": c.matiere_id, "titre": c.titre,
+                "niveau_v4": c.niveau_v4, "nb_questions": counts.get(c.id, 0),
+            }
+            for c in matiere.chapitres
+            if counts.get(c.id, 0) >= _MIN_QUESTIONS
+        ],
     }
 
 
