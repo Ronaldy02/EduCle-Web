@@ -1,0 +1,467 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Les interactions écologiques",
+  "niveaux": [
+    "NS1",
+    "NS2"
+  ],
+  "unite_programme": "1.6 + 2.6",
+  "statut": "validé par l'utilisateur 2026-10-12",
+  "rejetees": [
+    "Q1615",
+    "B11-26",
+    "B11-29",
+    "B11-30",
+    "B11-27"
+  ],
+  "base_rejetees_a_supprimer": [
+    {
+      "id": "Q1615",
+      "enonce": "Que se passe-t-il si l'on élimine le prédateur naturel d'une proie ?"
+    }
+  ],
+  "questions": [
+    {
+      "id": "B11-01",
+      "enonce": "Mode de recherche alimentaire qui consiste à capturer un animal vivant et à le manger.",
+      "choix": [
+        "La prédation",
+        "Le parasitisme",
+        "La compétition",
+        "Le commensalisme"
+      ],
+      "bonne_reponse": "La prédation",
+      "explication": "Exemple : le faucon qui chasse un lézard.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : prédation (sens 1, reformulé)"
+    },
+    {
+      "id": "B11-02",
+      "enonce": "Animal qui capture et mange d'autres animaux vivants.",
+      "choix": [
+        "Un prédateur",
+        "Une proie",
+        "Un parasite",
+        "Un décomposeur"
+      ],
+      "bonne_reponse": "Un prédateur",
+      "explication": "Exemples : le lion, le requin, la mangouste.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : prédateur (reformulé)"
+    },
+    {
+      "id": "B11-03",
+      "enonce": "Animal vivant qui sert de victime et de nourriture à un animal d'une autre espèce.",
+      "choix": [
+        "Une proie",
+        "Un prédateur",
+        "Un hôte",
+        "Un parasite"
+      ],
+      "bonne_reponse": "Une proie",
+      "explication": "Exemple : la gazelle pour le lion.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : proie (sens 1)"
+    },
+    {
+      "id": "B11-04",
+      "enonce": "Se dit d'une espèce qui se nourrit en partie d'animaux carnivores et qui n'est elle-même mangée par aucune autre espèce.",
+      "choix": [
+        "Un superprédateur",
+        "Un herbivore",
+        "Un décomposeur",
+        "Un parasite"
+      ],
+      "bonne_reponse": "Un superprédateur",
+      "explication": "Exemples : les rapaces, le cachalot, l'être humain.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : superprédateur (reformulé)"
+    },
+    {
+      "id": "B11-05",
+      "enonce": "Concurrence entre des organismes, des populations ou des espèces pour l'utilisation d'une ressource, la nourriture ou un habitat.",
+      "choix": [
+        "La compétition",
+        "La symbiose",
+        "Le mutualisme",
+        "Le commensalisme"
+      ],
+      "bonne_reponse": "La compétition",
+      "explication": "Elle porte sur l'eau, la lumière, la nourriture, l'espace…",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : compétition (sens 4)"
+    },
+    {
+      "id": "B11-21",
+      "enonce": "Comment appelle-t-on la compétition entre individus d'une même espèce ?",
+      "choix": [
+        "La compétition intraspécifique",
+        "La compétition interspécifique",
+        "Le mutualisme",
+        "La prédation"
+      ],
+      "bonne_reponse": "La compétition intraspécifique",
+      "explication": "Exemple : deux manguiers voisins qui se disputent la lumière.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 1.6 / 2.6"
+    },
+    {
+      "id": "B11-22",
+      "enonce": "Comment appelle-t-on la compétition entre individus d'espèces différentes ?",
+      "choix": [
+        "La compétition interspécifique",
+        "La compétition intraspécifique",
+        "Le commensalisme",
+        "La symbiose"
+      ],
+      "bonne_reponse": "La compétition interspécifique",
+      "explication": "Exemple : le lion et la hyène qui chassent les mêmes proies.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 1.6 / 2.6"
+    },
+    {
+      "id": "B11-18",
+      "enonce": "Étendue dont un individu ou une famille d'animaux se réserve l'usage.",
+      "choix": [
+        "Un territoire",
+        "Un habitat",
+        "Un biotope",
+        "Un écosystème"
+      ],
+      "bonne_reponse": "Un territoire",
+      "explication": "Beaucoup d'oiseaux défendent leur territoire en chantant.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : territoire (sens 2)"
+    },
+    {
+      "id": "Q1610",
+      "enonce": "Place et rôle d'une espèce dans un écosystème : ce qu'elle mange, où elle vit et ses relations avec les autres espèces.",
+      "choix": [
+        "La niche écologique",
+        "L'habitat",
+        "Le biotope",
+        "Le territoire"
+      ],
+      "bonne_reponse": "La niche écologique",
+      "explication": "L'habitat est seulement le lieu de vie ; la niche inclut aussi le rôle de l'espèce.",
+      "niveau_complexite": "Difficile",
+      "source": "Base Q1610 (modifiée)",
+      "ancien_enonce": "Que désigne la niche écologique d'une espèce ?"
+    },
+    {
+      "id": "Q1716",
+      "enonce": "Qu'est-ce qui distingue la niche écologique de l'habitat ?",
+      "choix": [
+        "Elle inclut le rôle de l'espèce",
+        "Elle est toujours plus petite",
+        "Rien, c'est la même chose",
+        "Elle ne concerne que les plantes"
+      ],
+      "bonne_reponse": "Elle inclut le rôle de l'espèce",
+      "explication": "L'habitat est l'adresse de l'espèce ; la niche, son métier.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1716 (modifiée)",
+      "ancien_enonce": "Qu'est-ce que la niche écologique d'une espèce ?"
+    },
+    {
+      "id": "Q1717",
+      "enonce": "Que dit le principe d'exclusion compétitive de Gause ?",
+      "choix": [
+        "Deux espèces, une niche : impossible",
+        "Les espèces coexistent toujours",
+        "Les ressources sont toujours partagées",
+        "La compétition est rare"
+      ],
+      "bonne_reponse": "Deux espèces, une niche : impossible",
+      "explication": "Énoncé par Gause en 1934 : l'une des deux espèces finit par exclure l'autre.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1717",
+      "ancien_enonce": "Que dit le principe d'exclusion compétitive de Gause ?"
+    },
+    {
+      "id": "Q1603",
+      "enonce": "Relation durable entre deux espèces ou deux populations, avantageuse pour toutes les deux.",
+      "choix": [
+        "Le mutualisme",
+        "Le parasitisme",
+        "Le commensalisme",
+        "La prédation"
+      ],
+      "bonne_reponse": "Le mutualisme",
+      "explication": "Exemple : l'abeille récolte le nectar et transporte le pollen de la fleur.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1603 (modifiée) — Larousse : mutualisme",
+      "ancien_enonce": "Qu'est-ce qui caractérise le mutualisme entre deux espèces ?"
+    },
+    {
+      "id": "B11-06",
+      "enonce": "Association étroite de deux organismes différents, mutuellement bénéfique, voire indispensable à leur survie.",
+      "choix": [
+        "La symbiose",
+        "Le parasitisme",
+        "La compétition",
+        "La prédation"
+      ],
+      "bonne_reponse": "La symbiose",
+      "explication": "C'est un cas particulier, très étroit, de mutualisme.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : symbiose (sens 1)"
+    },
+    {
+      "id": "B11-07",
+      "enonce": "Organisme vivant en association étroite et bénéfique avec un autre d'une espèce différente.",
+      "choix": [
+        "Un symbiote",
+        "Un parasite",
+        "Un prédateur",
+        "Un hôte"
+      ],
+      "bonne_reponse": "Un symbiote",
+      "explication": "Exemple : les bactéries de notre intestin.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : symbiote (reformulé)"
+    },
+    {
+      "id": "Q1613",
+      "enonce": "Quel organisme résulte de l'association d'un champignon et d'une algue ?",
+      "choix": [
+        "Le lichen",
+        "La mousse",
+        "La fougère",
+        "Le corail"
+      ],
+      "bonne_reponse": "Le lichen",
+      "explication": "Le champignon protège et retient l'eau ; l'algue fabrique la matière organique.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1613 (modifiée)",
+      "ancien_enonce": "La symbiose entre les champignons et les algues forme :"
+    },
+    {
+      "id": "B11-14",
+      "enonce": "Association symbiotique du mycélium d'un champignon et des racines d'une plante.",
+      "choix": [
+        "Une mycorhize",
+        "Un lichen",
+        "Une nodosité",
+        "Un rhizome"
+      ],
+      "bonne_reponse": "Une mycorhize",
+      "explication": "Le champignon apporte eau et sels minéraux ; la plante lui fournit des sucres.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : mycorhize"
+    },
+    {
+      "id": "B11-15",
+      "enonce": "Renflement formé sur les racines d'une plante, souvent une légumineuse, envahie par des bactéries fixatrices d'azote.",
+      "choix": [
+        "Une nodosité",
+        "Une mycorhize",
+        "Un tubercule",
+        "Un bourgeon"
+      ],
+      "bonne_reponse": "Une nodosité",
+      "explication": "On en trouve sur les racines du pois congo et du haricot.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : nodosité (sens 2)"
+    },
+    {
+      "id": "B11-25",
+      "enonce": "Quel avantage les légumineuses tirent-elles des bactéries de leurs nodosités ?",
+      "choix": [
+        "Un apport d'azote",
+        "Un apport de lumière",
+        "Une protection contre le vent",
+        "Un apport de sucre"
+      ],
+      "bonne_reponse": "Un apport d'azote",
+      "explication": "C'est pourquoi on les utilise pour enrichir les sols.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 1.6 / 2.6"
+    },
+    {
+      "id": "B11-16",
+      "enonce": "Transport des grains mâles d'une fleur jusqu'au stigmate, assuré par le vent ou par des animaux.",
+      "choix": [
+        "La pollinisation",
+        "La germination",
+        "La fécondation",
+        "La photosynthèse"
+      ],
+      "bonne_reponse": "La pollinisation",
+      "explication": "Abeilles, papillons et colibris sont des agents de ce transport.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : pollinisation (reformulé)"
+    },
+    {
+      "id": "Q1608",
+      "enonce": "Entre qui la pollinisation est-elle une relation de mutualisme ?",
+      "choix": [
+        "Les fleurs et leurs pollinisateurs",
+        "Les arbres et les vers de terre",
+        "Les algues et les champignons",
+        "Les carnivores et leurs proies"
+      ],
+      "bonne_reponse": "Les fleurs et leurs pollinisateurs",
+      "explication": "Les pollinisateurs (abeilles, papillons, colibris) transportent le pollen et reçoivent du nectar.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1608",
+      "ancien_enonce": "Entre qui la pollinisation est-elle une relation de mutualisme ?"
+    },
+    {
+      "id": "B11-20",
+      "enonce": "Dispersion des graines chez les plantes.",
+      "choix": [
+        "La dissémination",
+        "La pollinisation",
+        "La germination",
+        "La transpiration"
+      ],
+      "bonne_reponse": "La dissémination",
+      "explication": "Beaucoup d'oiseaux et de chauves-souris dispersent les graines des fruits qu'ils mangent.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : dissémination (sens 2)"
+    },
+    {
+      "id": "B11-28",
+      "enonce": "Quelle relation unit le poisson-clown et l'anémone de mer ?",
+      "choix": [
+        "Le mutualisme",
+        "Le parasitisme",
+        "La prédation",
+        "La compétition"
+      ],
+      "bonne_reponse": "Le mutualisme",
+      "explication": "L'anémone protège le poisson ; le poisson nettoie l'anémone et éloigne certains prédateurs.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 1.6 / 2.6"
+    },
+    {
+      "id": "B11-08",
+      "enonce": "Mode d'alimentation d'un animal qui se nourrit des restes de repas d'un animal d'une autre espèce, sans lui faire de tort.",
+      "choix": [
+        "Le commensalisme",
+        "Le parasitisme",
+        "La prédation",
+        "Le mutualisme"
+      ],
+      "bonne_reponse": "Le commensalisme",
+      "explication": "L'un en profite, l'autre n'y gagne ni n'y perd.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : commensalisme"
+    },
+    {
+      "id": "Q1604",
+      "enonce": "État d'un organisme qui vit aux dépens d'un organisme d'une autre espèce, appelé l'hôte.",
+      "choix": [
+        "Le parasitisme",
+        "Le mutualisme",
+        "Le commensalisme",
+        "La symbiose"
+      ],
+      "bonne_reponse": "Le parasitisme",
+      "explication": "Le parasite profite ; l'hôte en souffre, sans être tué en général.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1604 (modifiée) — Larousse : parasitisme (sens 2)",
+      "ancien_enonce": "Qu'est-ce qui caractérise le parasitisme ?"
+    },
+    {
+      "id": "B11-09",
+      "enonce": "Organisme qui se nourrit aux dépens d'un organisme hôte d'une espèce différente.",
+      "choix": [
+        "Un parasite",
+        "Un symbiote",
+        "Un prédateur",
+        "Un décomposeur"
+      ],
+      "bonne_reponse": "Un parasite",
+      "explication": "Exemples : le ténia, la puce, le plasmodium du paludisme.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : parasite (sens 1)"
+    },
+    {
+      "id": "B11-10",
+      "enonce": "Être vivant qui héberge un parasite.",
+      "choix": [
+        "L'hôte",
+        "Le vecteur",
+        "Le prédateur",
+        "Le symbiote"
+      ],
+      "bonne_reponse": "L'hôte",
+      "explication": "Exemple : le chien est l'hôte de ses puces.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hôte (sens 4)"
+    },
+    {
+      "id": "B11-11",
+      "enonce": "Organisme qui vit sur la peau d'un hôte et se nourrit de son sang, comme la tique ou le pou.",
+      "choix": [
+        "Un ectoparasite",
+        "Un endoparasite",
+        "Un symbiote",
+        "Un commensal"
+      ],
+      "bonne_reponse": "Un ectoparasite",
+      "explication": "Ecto- = dehors.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : ectoparasite (reformulé)"
+    },
+    {
+      "id": "B11-12",
+      "enonce": "Organisme qui effectue son développement à l'intérieur du corps de son hôte : tissus, sang ou cavités profondes.",
+      "choix": [
+        "Un endoparasite",
+        "Un ectoparasite",
+        "Un symbiote",
+        "Un commensal"
+      ],
+      "bonne_reponse": "Un endoparasite",
+      "explication": "Exemples : le ténia, l'ascaris. Endo- = dedans.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : endoparasite (reformulé)"
+    },
+    {
+      "id": "B11-13",
+      "enonce": "Être vivant capable de transmettre un agent infectieux comme une bactérie, un virus ou un parasite.",
+      "choix": [
+        "Un vecteur",
+        "Un hôte",
+        "Un symbiote",
+        "Un décomposeur"
+      ],
+      "bonne_reponse": "Un vecteur",
+      "explication": "Exemple : le moustique qui transmet le paludisme ou la dengue.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : vecteur (sens 2)"
+    },
+    {
+      "id": "B11-24",
+      "enonce": "Quel insecte transmet le paludisme en Haïti ?",
+      "choix": [
+        "Le moustique anophèle",
+        "La mouche tsé-tsé",
+        "La puce",
+        "La tique"
+      ],
+      "bonne_reponse": "Le moustique anophèle",
+      "explication": "La femelle anophèle transmet le parasite (plasmodium) en piquant.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 1.6 / 2.6"
+    },
+    {
+      "id": "B11-19",
+      "enonce": "Se dit d'une espèce animale qui vit en groupe, mais sans organisation sociale.",
+      "choix": [
+        "Grégaire",
+        "Solitaire",
+        "Parasite",
+        "Sédentaire"
+      ],
+      "bonne_reponse": "Grégaire",
+      "explication": "Exemple : un banc de sardines.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : grégaire"
+    }
+  ]
+}
