@@ -1,0 +1,841 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Le rein et l'excrétion",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "1.1",
+  "statut": "validé par l'utilisateur 2026-10-10",
+  "rejetees": [
+    "B4-22"
+  ],
+  "questions": [
+    {
+      "id": "B4-01",
+      "enonce": "Organe pair, placé dans l'abdomen de chaque côté de la colonne vertébrale, qui forme l'urine en filtrant le sang.",
+      "choix": [
+        "Le rein",
+        "Le foie",
+        "La rate",
+        "Le pancréas"
+      ],
+      "bonne_reponse": "Le rein",
+      "explication": "Le rein élimine aussi des déchets et règle l'équilibre de l'eau et des sels minéraux.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : rein"
+    },
+    {
+      "id": "B4-02",
+      "enonce": "Élément microscopique fondamental du rein, qui forme l'urine par filtration du sang.",
+      "choix": [
+        "Le néphron",
+        "L'alvéole",
+        "Le neurone",
+        "La villosité"
+      ],
+      "bonne_reponse": "Le néphron",
+      "explication": "Chaque néphron comprend un glomérule (filtration) suivi d'un tubule.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : néphron"
+    },
+    {
+      "id": "B4-03",
+      "enonce": "Petite pelote de vaisseaux sanguins, au début du néphron, où le sang est filtré.",
+      "choix": [
+        "Le glomérule",
+        "Le bassinet",
+        "L'uretère",
+        "La vessie"
+      ],
+      "bonne_reponse": "Le glomérule",
+      "explication": "On parle aussi de glomérule de Malpighi.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : glomérule"
+    },
+    {
+      "id": "B4-04",
+      "enonce": "Liquide formé par les reins, qui s'accumule dans la vessie avant d'être évacué.",
+      "choix": [
+        "L'urine",
+        "La lymphe",
+        "La bile",
+        "La sueur"
+      ],
+      "bonne_reponse": "L'urine",
+      "explication": "Elle s'écoule par les calices, le bassinet, l'uretère, puis la vessie et l'urètre.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : urine"
+    },
+    {
+      "id": "B4-05",
+      "enonce": "Conduit qui permet à l'urine de s'écouler du rein jusqu'à la vessie.",
+      "choix": [
+        "L'uretère",
+        "L'urètre",
+        "L'œsophage",
+        "L'aorte"
+      ],
+      "bonne_reponse": "L'uretère",
+      "explication": "Il y a deux uretères, un par rein.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : uretère"
+    },
+    {
+      "id": "B4-06",
+      "enonce": "Conduit allant de la vessie à l'extérieur du corps, qui permet l'écoulement de l'urine.",
+      "choix": [
+        "L'urètre",
+        "L'uretère",
+        "Le rectum",
+        "La trachée"
+      ],
+      "bonne_reponse": "L'urètre",
+      "explication": "Ne pas confondre : uretère (rein → vessie) et urètre (vessie → extérieur).",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : urètre"
+    },
+    {
+      "id": "B4-07",
+      "enonce": "Poche du bas-ventre où l'urine s'accumule entre deux mictions.",
+      "choix": [
+        "La vessie",
+        "Le bassinet",
+        "La vésicule biliaire",
+        "L'estomac"
+      ],
+      "bonne_reponse": "La vessie",
+      "explication": "La vessie reçoit l'urine des deux uretères.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : vessie"
+    },
+    {
+      "id": "B4-08",
+      "enonce": "Émission naturelle d'urine par évacuation de la vessie.",
+      "choix": [
+        "La miction",
+        "La diurèse",
+        "La déglutition",
+        "La digestion"
+      ],
+      "bonne_reponse": "La miction",
+      "explication": "La miction se fait par l'urètre.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : miction"
+    },
+    {
+      "id": "B4-09",
+      "enonce": "Partie élargie des voies urinaires du rein, qui se continue par l'uretère.",
+      "choix": [
+        "Le bassinet",
+        "Le glomérule",
+        "Le cortex",
+        "La vessie"
+      ],
+      "bonne_reponse": "Le bassinet",
+      "explication": "Le bassinet collecte l'urine formée par les néphrons.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : bassinet"
+    },
+    {
+      "id": "B4-10",
+      "enonce": "Rejet par les cellules vivantes des produits encombrants ou toxiques de leur activité.",
+      "choix": [
+        "L'excrétion",
+        "La digestion",
+        "L'absorption",
+        "La respiration"
+      ],
+      "bonne_reponse": "L'excrétion",
+      "explication": "Les reins sont les principaux organes de l'excrétion des déchets solubles.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : excrétion"
+    },
+    {
+      "id": "B4-11",
+      "enonce": "Substance non toxique formée dans le foie à partir des acides aminés, et éliminée dans l'urine.",
+      "choix": [
+        "L'urée",
+        "Le glucose",
+        "La bile",
+        "L'hémoglobine"
+      ],
+      "bonne_reponse": "L'urée",
+      "explication": "Le foie transforme l'ammoniaque toxique en urée, que les reins éliminent.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : urée"
+    },
+    {
+      "id": "B4-12",
+      "enonce": "Volume d'urine produit par les reins pendant une durée donnée.",
+      "choix": [
+        "La diurèse",
+        "La miction",
+        "La polyurie",
+        "L'anurie"
+      ],
+      "bonne_reponse": "La diurèse",
+      "explication": "On mesure souvent la diurèse sur 24 heures.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : diurèse"
+    },
+    {
+      "id": "B4-13",
+      "enonce": "Arrêt de la production d'urine par les reins.",
+      "choix": [
+        "L'anurie",
+        "La polyurie",
+        "La diurèse",
+        "La glycosurie"
+      ],
+      "bonne_reponse": "L'anurie",
+      "explication": "Le préfixe a- (an-) marque l'absence.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : anurie"
+    },
+    {
+      "id": "B4-14",
+      "enonce": "Présence anormale de protéines dans l'urine, signe possible d'une atteinte du rein.",
+      "choix": [
+        "L'albuminurie",
+        "La glycosurie",
+        "La polyurie",
+        "L'anurie"
+      ],
+      "bonne_reponse": "L'albuminurie",
+      "explication": "Normalement, les protéines du sang ne passent pas le filtre du glomérule.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : albuminurie"
+    },
+    {
+      "id": "B4-15",
+      "enonce": "Liquide incolore et salé, produit par des glandes de la peau.",
+      "choix": [
+        "La sueur",
+        "L'urine",
+        "La salive",
+        "La lymphe"
+      ],
+      "bonne_reponse": "La sueur",
+      "explication": "La sueur élimine de l'eau, des sels et un peu d'urée : la peau participe à l'excrétion.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : sueur"
+    },
+    {
+      "id": "B4-16",
+      "enonce": "Épuration artificielle du sang, pratiquée en cas d'insuffisance rénale.",
+      "choix": [
+        "La dialyse",
+        "La transfusion",
+        "La vaccination",
+        "La perfusion"
+      ],
+      "bonne_reponse": "La dialyse",
+      "explication": "Elle remplace la fonction de filtration des reins malades.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : dialyse"
+    },
+    {
+      "id": "B4-17",
+      "enonce": "Épuration du sang réalisée hors du corps grâce à un appareil appelé rein artificiel.",
+      "choix": [
+        "L'hémodialyse",
+        "La transfusion",
+        "La transplantation",
+        "La perfusion"
+      ],
+      "bonne_reponse": "L'hémodialyse",
+      "explication": "Le patient est relié à l'appareil plusieurs heures, environ trois fois par semaine.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : hémodialyse"
+    },
+    {
+      "id": "B4-18",
+      "enonce": "Impossibilité pour un organe, comme le rein, de remplir ses fonctions normales.",
+      "choix": [
+        "Une insuffisance",
+        "Une inflammation",
+        "Une infection",
+        "Une hémorragie"
+      ],
+      "bonne_reponse": "Une insuffisance",
+      "explication": "On parle d'insuffisance rénale, cardiaque, respiratoire…",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : insuffisance"
+    },
+    {
+      "id": "B4-19",
+      "enonce": "Transfert d'un organe entier, en état de fonctionner, d'une personne à une autre.",
+      "choix": [
+        "La transplantation",
+        "La dialyse",
+        "La transfusion",
+        "La dissection"
+      ],
+      "bonne_reponse": "La transplantation",
+      "explication": "La greffe de rein est la transplantation d'organe la plus fréquente.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : transplantation"
+    },
+    {
+      "id": "B4-20",
+      "enonce": "Maladie due à la présence de petites pierres dans un organe ou dans son canal.",
+      "choix": [
+        "La lithiase",
+        "L'anurie",
+        "La cystite",
+        "L'albuminurie"
+      ],
+      "bonne_reponse": "La lithiase",
+      "explication": "La lithiase urinaire (calculs rénaux) provoque de violentes douleurs : les coliques néphrétiques.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : lithiase"
+    },
+    {
+      "id": "B4-21",
+      "enonce": "Substance azotée dont le taux dans le sang sert à dépister une insuffisance rénale.",
+      "choix": [
+        "La créatinine",
+        "Le glucose",
+        "L'hémoglobine",
+        "Le cholestérol"
+      ],
+      "bonne_reponse": "La créatinine",
+      "explication": "Si les reins filtrent mal, la créatinine s'accumule dans le sang.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : créatinine"
+    },
+    {
+      "id": "B4-23",
+      "enonce": "Dans quel ordre l'urine parcourt-elle les voies urinaires ?",
+      "choix": [
+        "Rein, uretère, vessie, urètre",
+        "Rein, urètre, vessie, uretère",
+        "Vessie, rein, uretère, urètre",
+        "Uretère, rein, vessie, urètre"
+      ],
+      "bonne_reponse": "Rein, uretère, vessie, urètre",
+      "explication": "Rein → uretère → vessie → urètre → extérieur.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B4-24",
+      "enonce": "Quel est le rôle principal des reins ?",
+      "choix": [
+        "Filtrer le sang",
+        "Digérer les aliments",
+        "Fabriquer la bile",
+        "Pomper le sang"
+      ],
+      "bonne_reponse": "Filtrer le sang",
+      "explication": "En filtrant le sang, ils produisent l'urine et éliminent les déchets.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B4-25",
+      "enonce": "Que voit-on, de l'extérieur vers l'intérieur, sur une coupe longitudinale de rein ?",
+      "choix": [
+        "Cortex, médullaire, bassinet",
+        "Bassinet, cortex, médullaire",
+        "Médullaire, cortex, bassinet",
+        "Cortex, bassinet, médullaire"
+      ],
+      "bonne_reponse": "Cortex, médullaire, bassinet",
+      "explication": "Le cortex (zone externe) contient les glomérules ; la médullaire est la zone centrale.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B4-26",
+      "enonce": "Combien de néphrons compte environ chaque rein ?",
+      "choix": [
+        "Un million",
+        "Cent",
+        "Mille",
+        "Un milliard"
+      ],
+      "bonne_reponse": "Un million",
+      "explication": "Environ un million de néphrons par rein travaillent en parallèle.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B4-27",
+      "enonce": "Quelle quantité d'urine un adulte émet-il environ chaque jour ?",
+      "choix": [
+        "1,5 litre",
+        "10 litres",
+        "0,1 litre",
+        "50 litres"
+      ],
+      "bonne_reponse": "1,5 litre",
+      "explication": "Le volume varie avec la quantité d'eau bue et la transpiration.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B4-28",
+      "enonce": "Quelle quantité de plasma les glomérules filtrent-ils environ chaque jour ?",
+      "choix": [
+        "180 litres",
+        "1,5 litre",
+        "18 litres",
+        "1 800 litres"
+      ],
+      "bonne_reponse": "180 litres",
+      "explication": "Presque toute l'eau filtrée est réabsorbée : il reste environ 1,5 L d'urine.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B4-29",
+      "enonce": "Quel constituant est normalement absent de l'urine d'une personne en bonne santé ?",
+      "choix": [
+        "Le glucose",
+        "L'eau",
+        "L'urée",
+        "Le sel"
+      ],
+      "bonne_reponse": "Le glucose",
+      "explication": "Le glucose filtré est entièrement réabsorbé ; sa présence (glycosurie) évoque un diabète.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B4-30",
+      "enonce": "Quel est le principal constituant de l'urine ?",
+      "choix": [
+        "L'eau",
+        "L'urée",
+        "Le sel",
+        "L'acide urique"
+      ],
+      "bonne_reponse": "L'eau",
+      "explication": "L'urine contient environ 95 % d'eau ; l'urée est le principal déchet dissous.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B4-31",
+      "enonce": "Quelles sont les étapes de la formation de l'urine dans le néphron ?",
+      "choix": [
+        "Filtration puis réabsorption",
+        "Digestion puis absorption",
+        "Absorption puis filtration",
+        "Sécrétion puis digestion"
+      ],
+      "bonne_reponse": "Filtration puis réabsorption",
+      "explication": "Le glomérule filtre le sang ; le tubule réabsorbe l'eau, le glucose et une partie des sels.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B4-32",
+      "enonce": "Par quel vaisseau le sang à filtrer arrive-t-il au rein ?",
+      "choix": [
+        "L'artère rénale",
+        "La veine rénale",
+        "L'uretère",
+        "L'urètre"
+      ],
+      "bonne_reponse": "L'artère rénale",
+      "explication": "Le sang épuré repart par la veine rénale.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B4-33",
+      "enonce": "Quel organe fabrique l'urée à partir des acides aminés ?",
+      "choix": [
+        "Le foie",
+        "Le rein",
+        "La vessie",
+        "L'estomac"
+      ],
+      "bonne_reponse": "Le foie",
+      "explication": "Le foie fabrique l'urée ; le rein ne fait que l'éliminer.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : urée"
+    },
+    {
+      "id": "B4-34",
+      "enonce": "En plus des reins, quels organes participent à l'excrétion ?",
+      "choix": [
+        "La peau et les poumons",
+        "L'estomac et l'œsophage",
+        "Le cœur et la rate",
+        "Les os et les muscles"
+      ],
+      "bonne_reponse": "La peau et les poumons",
+      "explication": "La peau rejette la sueur ; les poumons rejettent le dioxyde de carbone.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B4-35",
+      "enonce": "Comment traite-t-on une insuffisance rénale grave ?",
+      "choix": [
+        "Par la dialyse ou la greffe",
+        "Par des antibiotiques",
+        "Par des injections d'insuline",
+        "Par des vitamines"
+      ],
+      "bonne_reponse": "Par la dialyse ou la greffe",
+      "explication": "La dialyse remplace le rein ; la greffe en donne un nouveau.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B4-36",
+      "enonce": "À travers quoi les petites molécules passent-elles lors d'une dialyse ?",
+      "choix": [
+        "Une membrane poreuse",
+        "Un filtre à charbon",
+        "Une couche de graisse",
+        "Un tube de verre"
+      ],
+      "bonne_reponse": "Une membrane poreuse",
+      "explication": "Les déchets traversent la membrane vers le liquide de dialyse ; les grosses molécules restent dans le sang.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : dialyse"
+    },
+    {
+      "id": "B4-37",
+      "enonce": "Que conseille-t-on pour préserver ses reins ?",
+      "choix": [
+        "Boire suffisamment d'eau",
+        "Manger très salé",
+        "Retenir longtemps son urine",
+        "Boire très peu"
+      ],
+      "bonne_reponse": "Boire suffisamment d'eau",
+      "explication": "Une bonne hydratation limite aussi les calculs et les infections urinaires.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B4-38",
+      "enonce": "Que sont les calculs rénaux ?",
+      "choix": [
+        "De petites pierres urinaires",
+        "Des infections du sang",
+        "Des tumeurs du foie",
+        "Des caillots dans les veines"
+      ],
+      "bonne_reponse": "De petites pierres urinaires",
+      "explication": "Ils se forment par cristallisation de sels dans l'urine.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : lithiase"
+    },
+    {
+      "id": "B4-39",
+      "enonce": "Cavité du rein qui recueille l'urine produite et la conduit vers le bassinet.",
+      "choix": [
+        "Le calice",
+        "L'uretère",
+        "Le glomérule",
+        "La vessie"
+      ],
+      "bonne_reponse": "Le calice",
+      "explication": "Plusieurs calices se réunissent pour former le bassinet.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : calice (sens 3)"
+    },
+    {
+      "id": "B4-40",
+      "enonce": "Tube de très faible diamètre qui, dans le néphron, fait suite au glomérule.",
+      "choix": [
+        "Le tubule",
+        "Le capillaire",
+        "L'uretère",
+        "Le calice"
+      ],
+      "bonne_reponse": "Le tubule",
+      "explication": "C'est dans le tubule que l'eau, le glucose et une partie des sels sont réabsorbés.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : tubule ; néphron"
+    },
+    {
+      "id": "B4-41",
+      "enonce": "Partie liquide du sang, dans laquelle baignent les globules et les plaquettes.",
+      "choix": [
+        "Le plasma",
+        "La lymphe",
+        "L'urine",
+        "La sueur"
+      ],
+      "bonne_reponse": "Le plasma",
+      "explication": "Les glomérules filtrent le plasma : c'est l'origine de l'urine.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : plasma"
+    },
+    {
+      "id": "B4-42",
+      "enonce": "À partir de quelle substance toxique, issue des acides aminés, le foie fabrique-t-il l'urée ?",
+      "choix": [
+        "L'ammoniaque",
+        "Le glucose",
+        "La bile",
+        "Le glycérol"
+      ],
+      "bonne_reponse": "L'ammoniaque",
+      "explication": "L'ammoniaque est toxique ; l'urée, qui en dérive, ne l'est pas.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : urée"
+    },
+    {
+      "id": "B4-43",
+      "enonce": "Inflammation de la paroi interne de la vessie.",
+      "choix": [
+        "La cystite",
+        "La lithiase",
+        "L'anurie",
+        "La colique néphrétique"
+      ],
+      "bonne_reponse": "La cystite",
+      "explication": "Elle provoque des brûlures et des envies fréquentes d'uriner ; boire suffisamment aide à la prévenir.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : cystite"
+    },
+    {
+      "id": "B4-44",
+      "enonce": "Ensemble des troubles caractéristiques de l'insuffisance rénale.",
+      "choix": [
+        "L'urémie",
+        "La glycémie",
+        "La diurèse",
+        "La miction"
+      ],
+      "bonne_reponse": "L'urémie",
+      "explication": "Les déchets que le rein n'élimine plus s'accumulent dans le sang.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : urémie"
+    },
+    {
+      "id": "B4-45",
+      "enonce": "Douleur violente, par crises, due au blocage d'un calcul dans les voies urinaires.",
+      "choix": [
+        "La colique néphrétique",
+        "La cystite",
+        "L'anurie",
+        "L'hématurie"
+      ],
+      "bonne_reponse": "La colique néphrétique",
+      "explication": "C'est la complication la plus connue de la lithiase urinaire.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : colique"
+    },
+    {
+      "id": "B4-46",
+      "enonce": "Muscle en anneau qui entoure un orifice et permet de l'ouvrir ou de le fermer, comme à la sortie de la vessie.",
+      "choix": [
+        "Un sphincter",
+        "Un tendon",
+        "Un ligament",
+        "Un cartilage"
+      ],
+      "bonne_reponse": "Un sphincter",
+      "explication": "Le sphincter de la vessie s'ouvre au moment de la miction.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : sphincter"
+    },
+    {
+      "id": "B4-47",
+      "enonce": "Orifice externe de l'urètre.",
+      "choix": [
+        "Le méat urinaire",
+        "Le pylore",
+        "Le bassinet",
+        "Le calice"
+      ],
+      "bonne_reponse": "Le méat urinaire",
+      "explication": "C'est par le méat urinaire que l'urine sort du corps.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : méat"
+    },
+    {
+      "id": "B4-48",
+      "enonce": "Médecin spécialiste des maladies des reins.",
+      "choix": [
+        "Le néphrologue",
+        "Le cardiologue",
+        "Le dermatologue",
+        "Le pneumologue"
+      ],
+      "bonne_reponse": "Le néphrologue",
+      "explication": "Le préfixe néphr(o)- désigne le rein (comme dans néphron).",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : néphrologue"
+    },
+    {
+      "id": "B4-49",
+      "enonce": "Discipline médicale consacrée à l'étude des reins et de leurs maladies.",
+      "choix": [
+        "La néphrologie",
+        "La cardiologie",
+        "L'hématologie",
+        "La neurologie"
+      ],
+      "bonne_reponse": "La néphrologie",
+      "explication": "Le néphrologue suit notamment les patients dialysés.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : néphrologie"
+    },
+    {
+      "id": "B4-50",
+      "enonce": "Discipline médicochirurgicale qui traite les maladies de l'appareil urinaire.",
+      "choix": [
+        "L'urologie",
+        "La cardiologie",
+        "La pédiatrie",
+        "La dermatologie"
+      ],
+      "bonne_reponse": "L'urologie",
+      "explication": "L'urologue opère par exemple les calculs qui ne s'évacuent pas seuls.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : urologie"
+    },
+    {
+      "id": "B4-51",
+      "enonce": "Se dit d'une substance qui augmente le volume d'urine produit.",
+      "choix": [
+        "Diurétique",
+        "Laxatif",
+        "Antibiotique",
+        "Anesthésique"
+      ],
+      "bonne_reponse": "Diurétique",
+      "explication": "Les médicaments diurétiques sont utilisés contre l'hypertension et les œdèmes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : diurétique"
+    },
+    {
+      "id": "B4-52",
+      "enonce": "Ensemble des troubles dus à une perte d'eau excessive de l'organisme.",
+      "choix": [
+        "La déshydratation",
+        "L'anurie",
+        "La polyurie",
+        "La dénutrition"
+      ],
+      "bonne_reponse": "La déshydratation",
+      "explication": "Diarrhée, fortes sueurs ou manque de boisson peuvent la provoquer ; les urines deviennent rares et foncées.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : déshydratation (sens 5)"
+    },
+    {
+      "id": "B4-53",
+      "enonce": "Comment qualifie-t-on les glandes de la peau qui produisent la sueur ?",
+      "choix": [
+        "Sudoripares",
+        "Salivaires",
+        "Lacrymales",
+        "Digestives"
+      ],
+      "bonne_reponse": "Sudoripares",
+      "explication": "La sueur élimine de l'eau, des sels et un peu d'urée.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : sudoripare"
+    },
+    {
+      "id": "B4-54",
+      "enonce": "Très petit orifice à la surface de la peau, par où s'écoule la sueur.",
+      "choix": [
+        "Un pore",
+        "Un méat",
+        "Un calice",
+        "Un sphincter"
+      ],
+      "bonne_reponse": "Un pore",
+      "explication": "Les glandes sudoripares débouchent à la surface de la peau par les pores.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : pore"
+    },
+    {
+      "id": "B4-55",
+      "enonce": "Enzyme sécrétée par le rein, dans une zone située près des glomérules.",
+      "choix": [
+        "La rénine",
+        "L'amylase",
+        "La pepsine",
+        "La lipase"
+      ],
+      "bonne_reponse": "La rénine",
+      "explication": "La rénine intervient dans la régulation de la pression artérielle.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : rénine"
+    },
+    {
+      "id": "B4-56",
+      "enonce": "Émission d'urine contenant du sang.",
+      "choix": [
+        "L'hématurie",
+        "L'albuminurie",
+        "La glycosurie",
+        "L'anurie"
+      ],
+      "bonne_reponse": "L'hématurie",
+      "explication": "Le préfixe héma- (hémo-) désigne le sang.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hématurie"
+    },
+    {
+      "id": "B4-57",
+      "enonce": "Transfert, sur un malade, de cellules, d'un tissu ou d'un organe prélevé sur un donneur.",
+      "choix": [
+        "Une greffe",
+        "Une dialyse",
+        "Une dissection",
+        "Une miction"
+      ],
+      "bonne_reponse": "Une greffe",
+      "explication": "La greffe de rein évite au malade la dialyse à vie.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : greffe (sens 3)"
+    },
+    {
+      "id": "B4-58",
+      "enonce": "Personne qui accepte qu'un de ses organes soit prélevé pour être transplanté sur un malade.",
+      "choix": [
+        "Le donneur",
+        "Le receveur",
+        "Le néphrologue",
+        "Le dialysé"
+      ],
+      "bonne_reponse": "Le donneur",
+      "explication": "Le malade qui reçoit l'organe est appelé le receveur.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : donneur"
+    },
+    {
+      "id": "B4-59",
+      "enonce": "Partie externe qui forme l'enveloppe d'un organe, comme le rein.",
+      "choix": [
+        "Le cortex",
+        "La médullaire",
+        "Le bassinet",
+        "Le calice"
+      ],
+      "bonne_reponse": "Le cortex",
+      "explication": "Dans le rein, le cortex contient les glomérules.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : cortex"
+    },
+    {
+      "id": "B4-60",
+      "enonce": "Partie centrale de certains organes, comme le rein.",
+      "choix": [
+        "La médullaire",
+        "Le cortex",
+        "Le bassinet",
+        "L'uretère"
+      ],
+      "bonne_reponse": "La médullaire",
+      "explication": "Dans le rein, la médullaire contient les tubules qui convergent vers les calices.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : médullaire"
+    }
+  ]
+}

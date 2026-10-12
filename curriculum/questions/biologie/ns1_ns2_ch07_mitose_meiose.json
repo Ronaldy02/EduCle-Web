@@ -1,0 +1,873 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "La division cellulaire : mitose et méiose",
+  "niveaux": [
+    "NS1",
+    "NS2"
+  ],
+  "unite_programme": "1.5 + 2.5",
+  "statut": "validé par l'utilisateur 2026-10-10",
+  "rejetees": [],
+  "corrections_base": {
+    "BASE-1": "énoncé en base : « La méiose produit des cellules avec : » (réponse coupée « La moitié du nombre normal de »)",
+    "BASE-2": "énoncé en base : « La recombinaison génétique lors de la méiose contribue à : » (réponse coupée « La diversité génétique dans la »)"
+  },
+  "questions": [
+    {
+      "id": "BASE-1",
+      "niveau": "NS2",
+      "enonce": "Combien de chromosomes contiennent les cellules produites par la méiose ?",
+      "choix": [
+        "La moitié de la cellule mère (n)",
+        "Autant que la cellule mère (2n)",
+        "Le double de la cellule mère (4n)",
+        "Aucun chromosome"
+      ],
+      "bonne_reponse": "La moitié de la cellule mère (n)",
+      "explication": "La méiose réduit le nombre de chromosomes de 2n à n pour que la fécondation (n + n) rétablisse 2n.",
+      "niveau_complexite": "Moyen",
+      "source": "Question existante en base (corrigée)"
+    },
+    {
+      "id": "BASE-2",
+      "niveau": "NS2",
+      "enonce": "À quoi contribue la recombinaison génétique lors de la méiose ?",
+      "choix": [
+        "À la diversité génétique",
+        "À la reproduction asexuée",
+        "À la stabilité du génome",
+        "À la mutation des gènes"
+      ],
+      "bonne_reponse": "À la diversité génétique",
+      "explication": "Le brassage interchromosomique et le crossing-over créent de nouvelles combinaisons d'allèles à chaque génération.",
+      "niveau_complexite": "Difficile",
+      "source": "Question existante en base (corrigée)"
+    },
+    {
+      "id": "B7-01",
+      "niveau": "NS1",
+      "enonce": "Mode de division de la cellule où tous ses éléments sont dupliqués puis répartis également entre deux cellules filles.",
+      "choix": [
+        "La mitose",
+        "La méiose",
+        "La fécondation",
+        "La différenciation"
+      ],
+      "bonne_reponse": "La mitose",
+      "explication": "Synonyme : caryocinèse.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : mitose"
+    },
+    {
+      "id": "B7-02",
+      "niveau": "NS1",
+      "enonce": "Première phase de la mitose : les chromosomes changent d'aspect et le fuseau se forme.",
+      "choix": [
+        "La prophase",
+        "La métaphase",
+        "L'anaphase",
+        "La télophase"
+      ],
+      "bonne_reponse": "La prophase",
+      "explication": "Pro- = avant.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : prophase"
+    },
+    {
+      "id": "B7-03",
+      "niveau": "NS1",
+      "enonce": "Phase de la mitose où les chromosomes se rangent au milieu de la cellule pour former la plaque équatoriale.",
+      "choix": [
+        "La métaphase",
+        "La prophase",
+        "L'anaphase",
+        "La télophase"
+      ],
+      "bonne_reponse": "La métaphase",
+      "explication": "C'est le meilleur moment pour compter et observer les chromosomes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : métaphase"
+    },
+    {
+      "id": "B7-04",
+      "niveau": "NS1",
+      "enonce": "Phase de la mitose où les chromatides se séparent et migrent vers les deux pôles de la cellule.",
+      "choix": [
+        "L'anaphase",
+        "La métaphase",
+        "La prophase",
+        "La télophase"
+      ],
+      "bonne_reponse": "L'anaphase",
+      "explication": "Les chromatides « remontent » vers les pôles.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : anaphase"
+    },
+    {
+      "id": "B7-05",
+      "niveau": "NS1",
+      "enonce": "Phase terminale de la mitose, pendant laquelle deux noyaux fils se reconstituent.",
+      "choix": [
+        "La télophase",
+        "L'anaphase",
+        "La métaphase",
+        "La prophase"
+      ],
+      "bonne_reponse": "La télophase",
+      "explication": "Télo- = fin. Le cytoplasme se partage ensuite en deux.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : télophase"
+    },
+    {
+      "id": "B7-06",
+      "niveau": "NS1",
+      "enonce": "Période entre deux divisions, pendant laquelle la cellule grandit et double ses structures.",
+      "choix": [
+        "L'interphase",
+        "La prophase",
+        "La télophase",
+        "La métaphase"
+      ],
+      "bonne_reponse": "L'interphase",
+      "explication": "C'est la phase la plus longue du cycle cellulaire ; l'ADN y est répliqué.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : interphase"
+    },
+    {
+      "id": "B7-07",
+      "niveau": "NS1",
+      "enonce": "Séparation des deux cellules filles par une cloison, à la fin de la mitose.",
+      "choix": [
+        "La cytodiérèse",
+        "La caryocinèse",
+        "La réplication",
+        "La fécondation"
+      ],
+      "bonne_reponse": "La cytodiérèse",
+      "explication": "Le noyau se divise d'abord (caryocinèse), puis le cytoplasme (cytodiérèse).",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : cytodiérèse"
+    },
+    {
+      "id": "B7-08",
+      "niveau": "NS1",
+      "enonce": "Chacune des deux parties identiques d'un chromosome, réunies par le centromère avant la division.",
+      "choix": [
+        "Une chromatide",
+        "Un centromère",
+        "Un gène",
+        "Un allèle"
+      ],
+      "bonne_reponse": "Une chromatide",
+      "explication": "À l'anaphase, chaque chromatide part vers un pôle et devient un chromosome.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : chromatide"
+    },
+    {
+      "id": "B7-09",
+      "niveau": "NS1",
+      "enonce": "Étranglement du chromosome qui relie ses deux chromatides.",
+      "choix": [
+        "Le centromère",
+        "Le centriole",
+        "Le nucléole",
+        "Le fuseau"
+      ],
+      "bonne_reponse": "Le centromère",
+      "explication": "C'est au niveau du centromère que s'accrochent les fibres du fuseau.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : centromère"
+    },
+    {
+      "id": "B7-10",
+      "niveau": "NS1",
+      "enonce": "Ensemble de filaments qui apparaît pendant la division et que suivent les chromosomes vers les pôles.",
+      "choix": [
+        "Le fuseau achromatique",
+        "La plaque équatoriale",
+        "Le centromère",
+        "La membrane nucléaire"
+      ],
+      "bonne_reponse": "Le fuseau achromatique",
+      "explication": "Il est organisé par les centrosomes dans la cellule animale.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : fuseau (sens 4)"
+    },
+    {
+      "id": "B7-11",
+      "niveau": "NS1",
+      "enonce": "Duplication de la molécule d'ADN en vue d'une division cellulaire.",
+      "choix": [
+        "La réplication",
+        "La mutation",
+        "La fécondation",
+        "La méiose"
+      ],
+      "bonne_reponse": "La réplication",
+      "explication": "Grâce à elle, chaque cellule fille reçoit la même information génétique.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : réplication"
+    },
+    {
+      "id": "B7-12",
+      "niveau": "NS1",
+      "enonce": "Ensemble des cellules issues des divisions d'une même cellule, toutes identiques à elle.",
+      "choix": [
+        "Un clone",
+        "Un organe",
+        "Une tétrade",
+        "Un caryotype"
+      ],
+      "bonne_reponse": "Un clone",
+      "explication": "Les mitoses successives produisent des clones.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : clone (sens 2)"
+    },
+    {
+      "id": "B7-13",
+      "niveau": "NS1",
+      "enonce": "Tissu végétal dont les cellules se divisent activement, ce qui permet la croissance de la plante.",
+      "choix": [
+        "Le méristème",
+        "L'épiderme",
+        "Le liège",
+        "La sève"
+      ],
+      "bonne_reponse": "Le méristème",
+      "explication": "On l'observe à l'extrémité des racines (pointe de racine d'oignon) : nombreuses mitoses.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : méristème"
+    },
+    {
+      "id": "B7-14",
+      "niveau": "NS1",
+      "enonce": "Mode de division des bactéries, qui s'allongent puis se partagent en deux cellules identiques.",
+      "choix": [
+        "La scissiparité",
+        "La méiose",
+        "La fécondation",
+        "Le bourgeonnement"
+      ],
+      "bonne_reponse": "La scissiparité",
+      "explication": "Les bactéries n'ont pas de noyau : elles ne font pas de mitose.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : scissiparité"
+    },
+    {
+      "id": "B7-15",
+      "niveau": "NS1",
+      "enonce": "Ensemble de cellules qui se multiplient sans contrôle et envahissent les tissus voisins.",
+      "choix": [
+        "Un cancer",
+        "Un clone",
+        "Un méristème",
+        "Un tissu"
+      ],
+      "bonne_reponse": "Un cancer",
+      "explication": "Le cancer résulte de mitoses qui échappent au contrôle de l'organisme.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : cancer"
+    },
+    {
+      "id": "B7-16",
+      "niveau": "NS1",
+      "enonce": "Prolifération exagérée de cellules qui forme une masse de tissu ayant tendance à grossir.",
+      "choix": [
+        "Une tumeur",
+        "Un œdème",
+        "Un abcès",
+        "Une cicatrice"
+      ],
+      "bonne_reponse": "Une tumeur",
+      "explication": "Une tumeur peut être bénigne ou maligne (cancer).",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : tumeur"
+    },
+    {
+      "id": "B7-17",
+      "niveau": "NS1",
+      "enonce": "Succession régulière, dans la vie d'une cellule, d'une interphase puis d'une division.",
+      "choix": [
+        "Le cycle cellulaire",
+        "La mitose",
+        "La différenciation",
+        "La réplication"
+      ],
+      "bonne_reponse": "Le cycle cellulaire",
+      "explication": "Interphase (longue) + mitose (courte) = un cycle.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : cycle (sens 3)"
+    },
+    {
+      "id": "B7-40",
+      "niveau": "NS1",
+      "enonce": "Dans quel ordre se déroulent les phases de la mitose ?",
+      "choix": [
+        "Prophase, métaphase, anaphase, télophase",
+        "Métaphase, prophase, anaphase, télophase",
+        "Prophase, anaphase, métaphase, télophase",
+        "Télophase, anaphase, métaphase, prophase"
+      ],
+      "bonne_reponse": "Prophase, métaphase, anaphase, télophase",
+      "explication": "Moyen mnémotechnique : P-M-A-T.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B7-41",
+      "niveau": "NS1",
+      "enonce": "Combien de cellules la mitose produit-elle à partir d'une cellule ?",
+      "choix": [
+        "Deux cellules identiques",
+        "Quatre cellules différentes",
+        "Une seule cellule",
+        "Trois cellules"
+      ],
+      "bonne_reponse": "Deux cellules identiques",
+      "explication": "Les deux cellules filles ont le même nombre de chromosomes que la cellule mère.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B7-42",
+      "niveau": "NS1",
+      "enonce": "À quoi sert principalement la mitose dans l'organisme ?",
+      "choix": [
+        "À la croissance et à la réparation",
+        "À former les gamètes",
+        "À digérer les aliments",
+        "À produire l'énergie"
+      ],
+      "bonne_reponse": "À la croissance et à la réparation",
+      "explication": "Elle multiplie les cellules : croissance, cicatrisation, renouvellement de la peau, du sang…",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B7-43",
+      "niveau": "NS1",
+      "enonce": "Que devient la quantité d'ADN pendant l'interphase qui précède la mitose ?",
+      "choix": [
+        "Elle double",
+        "Elle diminue de moitié",
+        "Elle reste nulle",
+        "Elle disparaît"
+      ],
+      "bonne_reponse": "Elle double",
+      "explication": "C'est la réplication : chaque chromosome se retrouve formé de deux chromatides.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : réplication"
+    },
+    {
+      "id": "B7-44",
+      "niveau": "NS1",
+      "enonce": "Combien de chromosomes contient chaque cellule fille après une mitose chez l'être humain ?",
+      "choix": [
+        "46",
+        "23",
+        "92",
+        "44"
+      ],
+      "bonne_reponse": "46",
+      "explication": "La mitose conserve le nombre de chromosomes (2n = 46).",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B7-45",
+      "niveau": "NS1",
+      "enonce": "Que font les chromosomes au début de la mitose, ce qui les rend visibles au microscope ?",
+      "choix": [
+        "Ils se condensent",
+        "Ils disparaissent",
+        "Ils deviennent verts",
+        "Ils sortent de la cellule"
+      ],
+      "bonne_reponse": "Ils se condensent",
+      "explication": "En interphase, l'ADN forme une chromatine diffuse, invisible sous forme de bâtonnets.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : chromatine"
+    },
+    {
+      "id": "B7-18",
+      "niveau": "NS2",
+      "enonce": "Double division de la cellule qui réduit de moitié le nombre de chromosomes, lors de la formation des gamètes.",
+      "choix": [
+        "La méiose",
+        "La mitose",
+        "La fécondation",
+        "La réplication"
+      ],
+      "bonne_reponse": "La méiose",
+      "explication": "Une cellule diploïde donne quatre gamètes haploïdes.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : méiose"
+    },
+    {
+      "id": "B7-19",
+      "niveau": "NS2",
+      "enonce": "Cellule reproductrice, mâle ou femelle, qui ne contient qu'un chromosome de chaque paire.",
+      "choix": [
+        "Un gamète",
+        "Un zygote",
+        "Un clone",
+        "Un méristème"
+      ],
+      "bonne_reponse": "Un gamète",
+      "explication": "Spermatozoïde et ovule sont des gamètes.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : gamète"
+    },
+    {
+      "id": "B7-20",
+      "niveau": "NS2",
+      "enonce": "Se dit d'une cellule qui ne contient qu'un seul chromosome de chaque paire.",
+      "choix": [
+        "Haploïde",
+        "Diploïde",
+        "Triploïde",
+        "Polyploïde"
+      ],
+      "bonne_reponse": "Haploïde",
+      "explication": "Noté n ; chez l'homme, n = 23.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : haploïde"
+    },
+    {
+      "id": "B7-21",
+      "niveau": "NS2",
+      "enonce": "Se dit d'une cellule dont les chromosomes vont par paires de chromosomes semblables.",
+      "choix": [
+        "Diploïde",
+        "Haploïde",
+        "Aneuploïde",
+        "Monosomique"
+      ],
+      "bonne_reponse": "Diploïde",
+      "explication": "Noté 2n ; chez l'homme, 2n = 46.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : diploïde"
+    },
+    {
+      "id": "B7-22",
+      "niveau": "NS2",
+      "enonce": "Union d'un gamète mâle et d'un gamète femelle pour former un œuf.",
+      "choix": [
+        "La fécondation",
+        "La méiose",
+        "La mitose",
+        "La gamétogenèse"
+      ],
+      "bonne_reponse": "La fécondation",
+      "explication": "L'œuf (zygote) obtenu est diploïde.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : fécondation (sens 2)"
+    },
+    {
+      "id": "B7-23",
+      "niveau": "NS2",
+      "enonce": "Les deux chromosomes d'une même paire, l'un venant du père, l'autre de la mère.",
+      "choix": [
+        "Des chromosomes homologues",
+        "Des chromatides sœurs",
+        "Des allèles",
+        "Des gamètes"
+      ],
+      "bonne_reponse": "Des chromosomes homologues",
+      "explication": "Ne pas confondre avec les chromatides sœurs, copies identiques d'un même chromosome.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : homologue"
+    },
+    {
+      "id": "B7-24",
+      "niveau": "NS2",
+      "enonce": "Entrecroisement de deux chromosomes homologues pendant la méiose, qui permet l'échange de fragments.",
+      "choix": [
+        "L'enjambement",
+        "La réplication",
+        "La mutation",
+        "La trisomie"
+      ],
+      "bonne_reponse": "L'enjambement",
+      "explication": "On dit aussi crossing-over ; il crée de nouvelles combinaisons de gènes.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : enjambement (sens 2)"
+    },
+    {
+      "id": "B7-25",
+      "niveau": "NS2",
+      "enonce": "Structure formée par l'appariement de deux chromosomes homologues lors de la première division de méiose.",
+      "choix": [
+        "Un bivalent",
+        "Un centromère",
+        "Un fuseau",
+        "Un caryotype"
+      ],
+      "bonne_reponse": "Un bivalent",
+      "explication": "C'est au sein du bivalent que se produit l'enjambement.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : bivalent"
+    },
+    {
+      "id": "B7-26",
+      "niveau": "NS2",
+      "enonce": "Ensemble des quatre cellules issues d'une même méiose.",
+      "choix": [
+        "Une tétrade",
+        "Un clone",
+        "Un bivalent",
+        "Un caryotype"
+      ],
+      "bonne_reponse": "Une tétrade",
+      "explication": "Chez les végétaux, les quatre grains de pollen d'une même cellule mère forment aussi une tétrade.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : tétrade (sens 2)"
+    },
+    {
+      "id": "B7-27",
+      "niveau": "NS2",
+      "enonce": "Mécanisme de formation des gamètes.",
+      "choix": [
+        "La gamétogenèse",
+        "La fécondation",
+        "La scissiparité",
+        "La différenciation"
+      ],
+      "bonne_reponse": "La gamétogenèse",
+      "explication": "Elle comprend une méiose.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : gamétogenèse"
+    },
+    {
+      "id": "B7-28",
+      "niveau": "NS2",
+      "enonce": "Formation des spermatozoïdes par le testicule.",
+      "choix": [
+        "La spermatogenèse",
+        "L'ovogenèse",
+        "La fécondation",
+        "La mitose"
+      ],
+      "bonne_reponse": "La spermatogenèse",
+      "explication": "Elle commence à la puberté et dure toute la vie.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : spermatogenèse"
+    },
+    {
+      "id": "B7-29",
+      "niveau": "NS2",
+      "enonce": "Ensemble des phénomènes qui conduisent à la formation des ovules.",
+      "choix": [
+        "L'ovogenèse",
+        "La spermatogenèse",
+        "La fécondation",
+        "L'ovulation"
+      ],
+      "bonne_reponse": "L'ovogenèse",
+      "explication": "Elle se déroule dans l'ovaire.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : ovogenèse"
+    },
+    {
+      "id": "B7-30",
+      "niveau": "NS2",
+      "enonce": "Gamète femelle mûr et fécondable.",
+      "choix": [
+        "L'ovule",
+        "Le spermatozoïde",
+        "Le zygote",
+        "L'embryon"
+      ],
+      "bonne_reponse": "L'ovule",
+      "explication": "Il est produit par l'ovaire.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : ovule"
+    },
+    {
+      "id": "B7-31",
+      "niveau": "NS2",
+      "enonce": "Cellule reproductrice mâle, petite et capable de nager activement.",
+      "choix": [
+        "Le spermatozoïde",
+        "L'ovule",
+        "Le zygote",
+        "La spore"
+      ],
+      "bonne_reponse": "Le spermatozoïde",
+      "explication": "Il se déplace grâce à son flagelle.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : spermatozoïde"
+    },
+    {
+      "id": "B7-32",
+      "niveau": "NS2",
+      "enonce": "Représentation des chromosomes d'une cellule, rangés par paires et classés selon leur taille.",
+      "choix": [
+        "Le caryotype",
+        "La tétrade",
+        "Le fuseau",
+        "Le bivalent"
+      ],
+      "bonne_reponse": "Le caryotype",
+      "explication": "Il permet de repérer les anomalies chromosomiques.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : caryotype"
+    },
+    {
+      "id": "B7-33",
+      "niveau": "NS2",
+      "enonce": "Présence d'un chromosome en trois exemplaires au lieu de deux.",
+      "choix": [
+        "La trisomie",
+        "La monosomie",
+        "La mutation",
+        "L'enjambement"
+      ],
+      "bonne_reponse": "La trisomie",
+      "explication": "Exemple : la trisomie 21.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : trisomie"
+    },
+    {
+      "id": "B7-34",
+      "niveau": "NS2",
+      "enonce": "Présence d'un seul exemplaire d'un chromosome au lieu de deux.",
+      "choix": [
+        "La monosomie",
+        "La trisomie",
+        "L'enjambement",
+        "La réplication"
+      ],
+      "bonne_reponse": "La monosomie",
+      "explication": "Exemple : le syndrome de Turner (un seul chromosome X).",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : monosomie"
+    },
+    {
+      "id": "B7-35",
+      "niveau": "NS2",
+      "enonce": "État d'une cellule qui possède un ou plusieurs chromosomes en plus ou en moins.",
+      "choix": [
+        "L'aneuploïdie",
+        "La diploïdie",
+        "L'haploïdie",
+        "La mitose"
+      ],
+      "bonne_reponse": "L'aneuploïdie",
+      "explication": "Trisomies et monosomies sont des aneuploïdies.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : aneuploïdie"
+    },
+    {
+      "id": "B7-36",
+      "niveau": "NS2",
+      "enonce": "Segment d'ADN qui détermine un caractère héréditaire.",
+      "choix": [
+        "Un gène",
+        "Un chromosome",
+        "Un caryotype",
+        "Un nucléole"
+      ],
+      "bonne_reponse": "Un gène",
+      "explication": "Un chromosome porte de nombreux gènes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : gène"
+    },
+    {
+      "id": "B7-37",
+      "niveau": "NS2",
+      "enonce": "Variante d'un gène qui assure la même fonction, mais selon ses propres modalités.",
+      "choix": [
+        "Un allèle",
+        "Un chromosome",
+        "Un caryotype",
+        "Un gamète"
+      ],
+      "bonne_reponse": "Un allèle",
+      "explication": "Exemple : les allèles A, B et O du gène des groupes sanguins.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : allèle"
+    },
+    {
+      "id": "B7-38",
+      "niveau": "NS2",
+      "enonce": "Apparition brusque d'un changement dans la structure d'un gène.",
+      "choix": [
+        "Une mutation",
+        "Une réplication",
+        "Une fécondation",
+        "Une méiose"
+      ],
+      "bonne_reponse": "Une mutation",
+      "explication": "Elle est transmise à la descendance si elle touche les gamètes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : mutation (sens 4)"
+    },
+    {
+      "id": "B7-39",
+      "niveau": "NS2",
+      "enonce": "Transmission des caractères génétiques des parents à leurs descendants.",
+      "choix": [
+        "L'hérédité",
+        "La mutation",
+        "La réplication",
+        "L'évolution"
+      ],
+      "bonne_reponse": "L'hérédité",
+      "explication": "La méiose et la fécondation assurent cette transmission.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : hérédité"
+    },
+    {
+      "id": "B7-46",
+      "niveau": "NS2",
+      "enonce": "Combien de divisions successives la méiose comprend-elle ?",
+      "choix": [
+        "Deux",
+        "Une",
+        "Trois",
+        "Quatre"
+      ],
+      "bonne_reponse": "Deux",
+      "explication": "Méiose I (réductionnelle) puis méiose II (comparable à une mitose).",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : méiose"
+    },
+    {
+      "id": "B7-47",
+      "niveau": "NS2",
+      "enonce": "Combien de cellules la méiose produit-elle à partir d'une cellule ?",
+      "choix": [
+        "Quatre cellules haploïdes",
+        "Deux cellules diploïdes",
+        "Une cellule diploïde",
+        "Huit cellules haploïdes"
+      ],
+      "bonne_reponse": "Quatre cellules haploïdes",
+      "explication": "Chaque cellule obtenue a n chromosomes.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : méiose"
+    },
+    {
+      "id": "B7-48",
+      "niveau": "NS2",
+      "enonce": "Combien de chromosomes contient un gamète humain ?",
+      "choix": [
+        "23",
+        "46",
+        "92",
+        "22"
+      ],
+      "bonne_reponse": "23",
+      "explication": "22 autosomes + 1 chromosome sexuel (X ou Y).",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 2.5"
+    },
+    {
+      "id": "B7-49",
+      "niveau": "NS2",
+      "enonce": "Pendant quelle division le nombre de chromosomes est-il réduit de moitié ?",
+      "choix": [
+        "La première division de méiose",
+        "La deuxième division de méiose",
+        "La mitose",
+        "La fécondation"
+      ],
+      "bonne_reponse": "La première division de méiose",
+      "explication": "À l'anaphase I, les chromosomes homologues se séparent.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 2.5"
+    },
+    {
+      "id": "B7-50",
+      "niveau": "NS2",
+      "enonce": "Dans quel ordre se déroulent les phases de la première division de méiose ?",
+      "choix": [
+        "Prophase I, métaphase I, anaphase I, télophase I",
+        "Métaphase I, prophase I, anaphase I, télophase I",
+        "Prophase I, anaphase I, métaphase I, télophase I",
+        "Anaphase I, prophase I, télophase I, métaphase I"
+      ],
+      "bonne_reponse": "Prophase I, métaphase I, anaphase I, télophase I",
+      "explication": "La deuxième division suit le même ordre (prophase II à télophase II).",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 2.5"
+    },
+    {
+      "id": "B7-51",
+      "niveau": "NS2",
+      "enonce": "À quel moment de la méiose se produit l'enjambement (crossing-over) ?",
+      "choix": [
+        "Pendant la prophase I",
+        "Pendant la métaphase II",
+        "Pendant l'anaphase II",
+        "Pendant la télophase I"
+      ],
+      "bonne_reponse": "Pendant la prophase I",
+      "explication": "Les chromosomes homologues sont alors appariés en bivalents.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 2.5"
+    },
+    {
+      "id": "B7-52",
+      "niveau": "NS2",
+      "enonce": "Quel nombre de chromosomes la fécondation rétablit-elle dans l'œuf ?",
+      "choix": [
+        "Le nombre diploïde (2n)",
+        "Le nombre haploïde (n)",
+        "Le triple (3n)",
+        "Aucun chromosome"
+      ],
+      "bonne_reponse": "Le nombre diploïde (2n)",
+      "explication": "n (spermatozoïde) + n (ovule) = 2n (œuf).",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 2.5"
+    },
+    {
+      "id": "B7-53",
+      "niveau": "NS2",
+      "enonce": "Quelle est la cause de la trisomie 21 ?",
+      "choix": [
+        "Un chromosome 21 en trop",
+        "Un manque de vitamine",
+        "Une infection",
+        "Un chromosome 21 absent"
+      ],
+      "bonne_reponse": "Un chromosome 21 en trop",
+      "explication": "Les personnes trisomiques 21 ont 47 chromosomes au lieu de 46.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : trisomie"
+    },
+    {
+      "id": "B7-54",
+      "niveau": "NS2",
+      "enonce": "D'où proviennent souvent les anomalies du nombre de chromosomes, comme la trisomie 21 ?",
+      "choix": [
+        "D'une erreur pendant la méiose",
+        "D'une mauvaise digestion",
+        "D'un excès de mitoses",
+        "D'une infection virale"
+      ],
+      "bonne_reponse": "D'une erreur pendant la méiose",
+      "explication": "Une mauvaise séparation des chromosomes donne un gamète avec un chromosome en trop ou en moins.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 2.5"
+    },
+    {
+      "id": "B7-55",
+      "niveau": "NS2",
+      "enonce": "Comment sont les gamètes d'un même individu, grâce au brassage génétique de la méiose ?",
+      "choix": [
+        "Presque tous différents",
+        "Tous identiques",
+        "Sans chromosomes",
+        "Tous diploïdes"
+      ],
+      "bonne_reponse": "Presque tous différents",
+      "explication": "Le brassage explique que deux frères et sœurs (hors vrais jumeaux) soient différents.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 2.5"
+    }
+  ]
+}

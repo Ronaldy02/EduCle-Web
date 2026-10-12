@@ -1,0 +1,1068 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Aliments, nutriments et ration alimentaire",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "1.1",
+  "statut": "validé par l'utilisateur 2026-10-10",
+  "rejetees": [
+    "B1-38",
+    "B1-65",
+    "B1-69",
+    "B1-70"
+  ],
+  "questions": [
+    {
+      "id": "B1-01",
+      "enonce": "Substance organique ou minérale que l'organisme peut assimiler directement, sans passer par la digestion.",
+      "choix": [
+        "Un nutriment",
+        "Un aliment",
+        "Une enzyme",
+        "Un déchet"
+      ],
+      "bonne_reponse": "Un nutriment",
+      "explication": "Aliment = ce que l'on mange ; nutriment = ce que l'organisme absorbe après digestion.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : nutriment"
+    },
+    {
+      "id": "B1-02",
+      "enonce": "Quels nutriments sont la principale source d'énergie rapide de l'organisme ?",
+      "choix": [
+        "Les glucides",
+        "Les vitamines",
+        "Les sels minéraux",
+        "Les fibres"
+      ],
+      "bonne_reponse": "Les glucides",
+      "explication": "Les glucides (glucose surtout) sont le carburant rapide des cellules ; vitamines et sels minéraux n'apportent pas d'énergie.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : glucide"
+    },
+    {
+      "id": "B1-03",
+      "enonce": "Quel nutriment a surtout un rôle bâtisseur (construction et réparation des tissus) ?",
+      "choix": [
+        "Les protides",
+        "Les glucides",
+        "Les lipides",
+        "L'eau"
+      ],
+      "bonne_reponse": "Les protides",
+      "explication": "Les protides (protéines) construisent muscles, peau, enzymes, anticorps.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-04",
+      "enonce": "Quelle quantité d'énergie libère 1 g de lipides ?",
+      "choix": [
+        "38 kJ (9 kcal)",
+        "17 kJ (4 kcal)",
+        "4 kJ (1 kcal)",
+        "75 kJ (18 kcal)"
+      ],
+      "bonne_reponse": "38 kJ (9 kcal)",
+      "explication": "Les lipides sont les nutriments les plus énergétiques : environ 38 kJ/g, contre 17 kJ/g pour glucides et protides.",
+      "niveau_complexite": "Moyen",
+      "source": "Valeurs nutritionnelles classiques"
+    },
+    {
+      "id": "B1-05",
+      "enonce": "Quelle quantité d'énergie libère 1 g de glucides ?",
+      "choix": [
+        "17 kJ (4 kcal)",
+        "38 kJ (9 kcal)",
+        "29 kJ (7 kcal)",
+        "4 kJ (1 kcal)"
+      ],
+      "bonne_reponse": "17 kJ (4 kcal)",
+      "explication": "Glucides et protides libèrent environ 17 kJ (4 kcal) par gramme.",
+      "niveau_complexite": "Moyen",
+      "source": "Valeurs nutritionnelles classiques"
+    },
+    {
+      "id": "B1-06",
+      "enonce": "Unité du Système international utilisée pour exprimer l'énergie apportée par les aliments.",
+      "choix": [
+        "Le joule",
+        "La calorie",
+        "Le watt",
+        "Le newton"
+      ],
+      "bonne_reponse": "Le joule",
+      "explication": "Le joule (kJ) est l'unité légale ; la calorie (kcal) reste d'usage courant.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : joule"
+    },
+    {
+      "id": "B1-07",
+      "enonce": "Combien de kilojoules vaut environ une kilocalorie (kcal) ?",
+      "choix": [
+        "4,18 kJ",
+        "1 kJ",
+        "10 kJ",
+        "0,24 kJ"
+      ],
+      "bonne_reponse": "4,18 kJ",
+      "explication": "1 kcal = 4,18 kJ ; inversement 1 kJ ≈ 0,24 kcal.",
+      "niveau_complexite": "Moyen",
+      "source": "Valeurs nutritionnelles classiques"
+    },
+    {
+      "id": "B1-08",
+      "enonce": "Acide organique qui constitue l'unité de structure des protéines.",
+      "choix": [
+        "Un acide aminé",
+        "Un acide gras",
+        "Le glucose",
+        "Un nucléotide"
+      ],
+      "bonne_reponse": "Un acide aminé",
+      "explication": "Une protéine est une chaîne d'acides aminés (20 types différents).",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : acide aminé"
+    },
+    {
+      "id": "B1-09",
+      "enonce": "Comment qualifie-t-on les acides aminés que l'organisme ne sait pas fabriquer et que l'alimentation doit apporter ?",
+      "choix": [
+        "Essentiels",
+        "Libres",
+        "Saturés",
+        "Réducteurs"
+      ],
+      "bonne_reponse": "Essentiels",
+      "explication": "8 acides aminés essentiels chez l'adulte (9 chez l'enfant) doivent provenir des aliments.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-10",
+      "enonce": "Quel type de glucide est le glucose ?",
+      "choix": [
+        "Un glucide simple",
+        "Un glucide complexe",
+        "Un glucide insoluble",
+        "Un glucide protéique"
+      ],
+      "bonne_reponse": "Un glucide simple",
+      "explication": "Le glucose est un sucre simple (ose), directement absorbable.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : glucose"
+    },
+    {
+      "id": "B1-11",
+      "enonce": "Réserve glucidique insoluble des végétaux, abondante dans les tubercules (igname, manioc) et les graines.",
+      "choix": [
+        "L'amidon",
+        "Le glucose",
+        "Le glycogène",
+        "Le saccharose"
+      ],
+      "bonne_reponse": "L'amidon",
+      "explication": "L'amidon est un polymère de glucose stocké par les plantes ; le glycogène est la réserve animale.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : amidon"
+    },
+    {
+      "id": "B1-12",
+      "enonce": "Quel réactif colore l'amidon en bleu-noir ?",
+      "choix": [
+        "L'eau iodée",
+        "La liqueur de Fehling",
+        "Le réactif du biuret",
+        "Le nitrate d'argent"
+      ],
+      "bonne_reponse": "L'eau iodée",
+      "explication": "L'eau iodée (iode) forme avec l'amidon un complexe bleu-noir.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-13",
+      "enonce": "Quelle couleur de précipité le glucose donne-t-il avec la liqueur de Fehling chauffée ?",
+      "choix": [
+        "Rouge brique",
+        "Bleu-noir",
+        "Violet",
+        "Blanc"
+      ],
+      "bonne_reponse": "Rouge brique",
+      "explication": "La liqueur de Fehling (bleue) donne à chaud un précipité rouge brique avec les sucres réducteurs comme le glucose.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-14",
+      "enonce": "Quel test met en évidence les protéines par une coloration violette ?",
+      "choix": [
+        "La réaction du biuret",
+        "L'eau iodée",
+        "La liqueur de Fehling",
+        "Le nitrate d'argent"
+      ],
+      "bonne_reponse": "La réaction du biuret",
+      "explication": "Le réactif du biuret (soude + sulfate de cuivre) vire au violet en présence de protéines.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-15",
+      "enonce": "Quels nutriments révèle une tache translucide persistante sur du papier ?",
+      "choix": [
+        "Les lipides",
+        "Les glucides",
+        "Les protides",
+        "Les sels minéraux"
+      ],
+      "bonne_reponse": "Les lipides",
+      "explication": "Les lipides laissent sur le papier une tache translucide qui ne disparaît pas en séchant (contrairement à l'eau).",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-16",
+      "enonce": "Quelle substance révèle un précipité blanc avec le nitrate d'argent ?",
+      "choix": [
+        "Les chlorures",
+        "L'amidon",
+        "Les protéines",
+        "Le glucose"
+      ],
+      "bonne_reponse": "Les chlorures",
+      "explication": "Les ions chlorure (sels minéraux comme NaCl) forment avec le nitrate d'argent un précipité blanc qui noircit à la lumière.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-17",
+      "enonce": "Substance organique indispensable en très petite quantité, que l'organisme ne peut pas fabriquer lui-même.",
+      "choix": [
+        "Une vitamine",
+        "Un protide",
+        "Un lipide",
+        "Un glucide"
+      ],
+      "bonne_reponse": "Une vitamine",
+      "explication": "Les vitamines n'apportent pas d'énergie ; leur manque provoque des maladies de carence.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : vitamine"
+    },
+    {
+      "id": "B1-18",
+      "enonce": "Le manque de quelle substance provoque le scorbut ?",
+      "choix": [
+        "La vitamine C",
+        "La vitamine D",
+        "Le fer",
+        "L'iode"
+      ],
+      "bonne_reponse": "La vitamine C",
+      "explication": "Le scorbut (hémorragies, affaiblissement) est dû au manque de vitamine C (agrumes, fruits frais).",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : scorbut"
+    },
+    {
+      "id": "B1-19",
+      "enonce": "Le manque de quelle vitamine provoque le rachitisme chez l'enfant ?",
+      "choix": [
+        "La vitamine D",
+        "La vitamine C",
+        "La vitamine A",
+        "La vitamine B1"
+      ],
+      "bonne_reponse": "La vitamine D",
+      "explication": "La vitamine D permet la minéralisation des os ; sa carence déforme le squelette.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : rachitisme"
+    },
+    {
+      "id": "B1-20",
+      "enonce": "Quel trouble provoque surtout une carence en vitamine A ?",
+      "choix": [
+        "Des troubles de la vision",
+        "Un saignement des gencives",
+        "Une déformation des os",
+        "Un goitre"
+      ],
+      "bonne_reponse": "Des troubles de la vision",
+      "explication": "La vitamine A est nécessaire à la vision (cécité nocturne, xérophtalmie en cas de carence).",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-21",
+      "enonce": "Le manque de quelle substance provoque le béribéri ?",
+      "choix": [
+        "La vitamine B1",
+        "La vitamine C",
+        "La vitamine K",
+        "Le calcium"
+      ],
+      "bonne_reponse": "La vitamine B1",
+      "explication": "Le béribéri (troubles cardiaques ou neurologiques) est lié au manque de vitamine B1, fréquent avec le riz très décortiqué.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : béribéri"
+    },
+    {
+      "id": "B1-22",
+      "enonce": "Quelle maladie provoque une carence en fer ?",
+      "choix": [
+        "L'anémie",
+        "Le goitre",
+        "Le scorbut",
+        "Le rachitisme"
+      ],
+      "bonne_reponse": "L'anémie",
+      "explication": "Le fer entre dans l'hémoglobine ; son manque en diminue le taux (anémie) et réduit le transport d'oxygène.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : anémie"
+    },
+    {
+      "id": "B1-23",
+      "enonce": "Quelle maladie provoque une carence en iode ?",
+      "choix": [
+        "Le goitre",
+        "L'anémie",
+        "Le béribéri",
+        "Le scorbut"
+      ],
+      "bonne_reponse": "Le goitre",
+      "explication": "L'iode est nécessaire aux hormones thyroïdiennes ; son manque fait grossir la thyroïde (goitre). D'où le sel iodé.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : goitre"
+    },
+    {
+      "id": "B1-24",
+      "enonce": "Quel sel minéral est indispensable à la solidité des os et des dents ?",
+      "choix": [
+        "Le calcium",
+        "Le sodium",
+        "Le fer",
+        "L'iode"
+      ],
+      "bonne_reponse": "Le calcium",
+      "explication": "Le calcium (lait, poissons à arêtes) minéralise os et dents.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-25",
+      "enonce": "Malnutrition de l'enfant due à une alimentation pauvre en protéines, même si l'énergie apportée suffit.",
+      "choix": [
+        "Le kwashiorkor",
+        "Le marasme",
+        "Le rachitisme",
+        "Le béribéri"
+      ],
+      "bonne_reponse": "Le kwashiorkor",
+      "explication": "Ventre gonflé et œdèmes sont typiques du kwashiorkor, souvent après le sevrage.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : kwashiorkor"
+    },
+    {
+      "id": "B1-26",
+      "enonce": "État pathologique dû à un apport énergétique insuffisant.",
+      "choix": [
+        "Le marasme",
+        "Le kwashiorkor",
+        "Le scorbut",
+        "Le goitre"
+      ],
+      "bonne_reponse": "Le marasme",
+      "explication": "Le marasme se traduit par une maigreur extrême (fonte des muscles et des graisses).",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : marasme"
+    },
+    {
+      "id": "B1-27",
+      "enonce": "Principal constituant du corps humain, environ 60 % de sa masse.",
+      "choix": [
+        "L'eau",
+        "Les protides",
+        "Les lipides",
+        "Le calcium"
+      ],
+      "bonne_reponse": "L'eau",
+      "explication": "L'eau représente environ 60 % de la masse d'un adulte ; elle doit être renouvelée chaque jour.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-28",
+      "enonce": "Quel est le rôle principal des fibres alimentaires ?",
+      "choix": [
+        "Faciliter le transit intestinal",
+        "Apporter beaucoup d'énergie",
+        "Construire les muscles",
+        "Transporter le dioxygène"
+      ],
+      "bonne_reponse": "Faciliter le transit intestinal",
+      "explication": "Non digérées, les fibres (légumes, fruits, céréales complètes) facilitent le transit et préviennent la constipation.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-29",
+      "enonce": "Quelle est la formule de l'indice de masse corporelle (IMC) ?",
+      "choix": [
+        "Masse ÷ taille²",
+        "Taille ÷ masse",
+        "Masse × taille",
+        "Masse ÷ âge"
+      ],
+      "bonne_reponse": "Masse ÷ taille²",
+      "explication": "IMC = masse (kg) ÷ taille² (m²), exprimé en kg/m².",
+      "niveau_complexite": "Facile",
+      "source": "Norme OMS"
+    },
+    {
+      "id": "B1-30",
+      "enonce": "Quel est l'IMC d'un adulte de 81 kg mesurant 1,80 m ?",
+      "choix": [
+        "25",
+        "45",
+        "20",
+        "30"
+      ],
+      "bonne_reponse": "25",
+      "explication": "81 ÷ (1,80 × 1,80) = 81 ÷ 3,24 = 25 kg/m².",
+      "niveau_complexite": "Moyen",
+      "source": "Norme OMS"
+    },
+    {
+      "id": "B1-31",
+      "enonce": "Selon l'OMS, entre quelles valeurs se situe l'IMC d'un adulte de corpulence normale ?",
+      "choix": [
+        "18,5 et 24,9",
+        "25 et 29,9",
+        "16 et 18,4",
+        "30 et 34,9"
+      ],
+      "bonne_reponse": "18,5 et 24,9",
+      "explication": "OMS : < 18,5 maigreur ; 18,5–24,9 normal ; 25–29,9 surpoids ; ≥ 30 obésité.",
+      "niveau_complexite": "Moyen",
+      "source": "Norme OMS"
+    },
+    {
+      "id": "B1-32",
+      "enonce": "Selon l'OMS, à partir de quel IMC un adulte est-il obèse ?",
+      "choix": [
+        "30",
+        "25",
+        "18,5",
+        "24,9"
+      ],
+      "bonne_reponse": "30",
+      "explication": "L'obésité commence à un IMC de 30 kg/m² ; entre 25 et 29,9, on parle de surpoids.",
+      "niveau_complexite": "Facile",
+      "source": "Norme OMS"
+    },
+    {
+      "id": "B1-33",
+      "enonce": "Comment qualifie-t-on une ration qui couvre tous les besoins de l'organisme, en qualité et en quantité ?",
+      "choix": [
+        "Équilibrée",
+        "Restrictive",
+        "Carencée",
+        "Excédentaire"
+      ],
+      "bonne_reponse": "Équilibrée",
+      "explication": "Elle apporte assez d'énergie et tous les nutriments grâce à la variété des groupes d'aliments.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-34",
+      "enonce": "Quelle part de l'énergie les glucides fournissent-ils dans une ration équilibrée ?",
+      "choix": [
+        "50 à 55 %",
+        "10 à 15 %",
+        "30 à 35 %",
+        "80 à 90 %"
+      ],
+      "bonne_reponse": "50 à 55 %",
+      "explication": "Répartition classique : glucides 50–55 %, lipides 30–35 %, protides 12–15 % de l'apport énergétique.",
+      "niveau_complexite": "Moyen",
+      "source": "Valeurs nutritionnelles classiques"
+    },
+    {
+      "id": "B1-35",
+      "enonce": "Quelle part de l'énergie les protides fournissent-ils dans une ration équilibrée ?",
+      "choix": [
+        "12 à 15 %",
+        "50 à 55 %",
+        "30 à 35 %",
+        "1 à 2 %"
+      ],
+      "bonne_reponse": "12 à 15 %",
+      "explication": "Les protides couvrent 12 à 15 % de l'énergie ; leur rôle principal reste la construction.",
+      "niveau_complexite": "Moyen",
+      "source": "Valeurs nutritionnelles classiques"
+    },
+    {
+      "id": "B1-36",
+      "enonce": "Dans quelles conditions mesure-t-on le métabolisme de base ?",
+      "choix": [
+        "Au repos complet, à jeun",
+        "Pendant un effort intense",
+        "Pendant la digestion",
+        "Pendant la croissance"
+      ],
+      "bonne_reponse": "Au repos complet, à jeun",
+      "explication": "Il couvre les fonctions vitales (cœur, respiration, température) ; s'y ajoutent les dépenses d'activité.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-37",
+      "enonce": "De quoi dépendent les besoins énergétiques d'une personne ?",
+      "choix": [
+        "De l'âge, du sexe, de l'activité",
+        "Du groupe sanguin seul",
+        "De la couleur des yeux",
+        "Du mois de naissance"
+      ],
+      "bonne_reponse": "De l'âge, du sexe, de l'activité",
+      "explication": "Âge, sexe, activité physique et état (croissance, grossesse) modifient les besoins.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-39",
+      "enonce": "À quel groupe d'aliments appartiennent le riz, le maïs, le pain et la banane plantain ?",
+      "choix": [
+        "Céréales et féculents",
+        "Produits laitiers",
+        "Viandes et poissons",
+        "Matières grasses"
+      ],
+      "bonne_reponse": "Céréales et féculents",
+      "explication": "Les céréales et féculents sont riches en amidon : ils fournissent l'énergie de base.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-40",
+      "enonce": "Quels nutriments le lait et le fromage apportent-ils surtout ?",
+      "choix": [
+        "Calcium et protides",
+        "Fer et glucides",
+        "Vitamine C et fibres",
+        "Iode et lipides"
+      ],
+      "bonne_reponse": "Calcium et protides",
+      "explication": "Les produits laitiers apportent calcium et protéines de bonne qualité.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-41",
+      "enonce": "À quelle famille de plantes appartiennent les pois (haricots), riches en protéines végétales ?",
+      "choix": [
+        "Les légumineuses",
+        "Les céréales",
+        "Les tubercules",
+        "Les fruits secs sucrés"
+      ],
+      "bonne_reponse": "Les légumineuses",
+      "explication": "Les légumineuses (pois, lentilles, arachide) complètent bien les céréales comme le riz (« diri ak pwa »).",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-42",
+      "enonce": "Quand une ration est-elle déséquilibrée sur le plan qualitatif ?",
+      "choix": [
+        "Quand un groupe d'aliments manque",
+        "Quand l'énergie apportée est trop forte",
+        "Quand les repas sont trop espacés",
+        "Quand on boit moins de deux litres"
+      ],
+      "bonne_reponse": "Quand un groupe d'aliments manque",
+      "explication": "Qualitatif = variété des nutriments ; quantitatif = quantité d'énergie apportée.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-43",
+      "enonce": "À quelle molécule les acides gras sont-ils reliés dans une molécule de lipide (graisse) ?",
+      "choix": [
+        "Au glycérol",
+        "Au glucose",
+        "Aux acides aminés",
+        "À l'amidon"
+      ],
+      "bonne_reponse": "Au glycérol",
+      "explication": "Un triglycéride = 1 glycérol + 3 acides gras ; la digestion les sépare.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : glycérol"
+    },
+    {
+      "id": "B1-44",
+      "enonce": "Pour quelle durée calcule-t-on une ration alimentaire ?",
+      "choix": [
+        "Une journée",
+        "Un seul repas",
+        "Une semaine",
+        "Une heure"
+      ],
+      "bonne_reponse": "Une journée",
+      "explication": "La ration se calcule sur 24 heures ; elle se répartit ensuite entre les repas.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : ration"
+    },
+    {
+      "id": "B1-45",
+      "enonce": "Composant de la matière vivante formé d'acides gras, présent dans les structures cellulaires et au rôle énergétique.",
+      "choix": [
+        "Un lipide",
+        "Un glucide",
+        "Un protide",
+        "Une vitamine"
+      ],
+      "bonne_reponse": "Un lipide",
+      "explication": "Graisses et huiles sont des lipides ; ils fournissent 38 kJ par gramme.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : lipide"
+    },
+    {
+      "id": "B1-46",
+      "enonce": "Substance formée d'un ou de plusieurs acides aminés, comme les peptides et les protéines.",
+      "choix": [
+        "Un protide",
+        "Un lipide",
+        "Un glucide",
+        "Un sel minéral"
+      ],
+      "bonne_reponse": "Un protide",
+      "explication": "« Protide » regroupe peptides et protéines (rôle bâtisseur).",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : protide"
+    },
+    {
+      "id": "B1-47",
+      "enonce": "Quels nutriments les viandes, poissons et œufs apportent-ils surtout ?",
+      "choix": [
+        "Protides et fer",
+        "Glucides et fibres",
+        "Vitamine C et eau",
+        "Calcium et amidon"
+      ],
+      "bonne_reponse": "Protides et fer",
+      "explication": "Ce groupe apporte des protéines de bonne qualité et du fer.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-48",
+      "enonce": "Qu'apportent surtout les fruits et légumes frais ?",
+      "choix": [
+        "Vitamines, minéraux, fibres",
+        "Lipides et protides",
+        "Amidon et protides",
+        "Cholestérol et sucres"
+      ],
+      "bonne_reponse": "Vitamines, minéraux, fibres",
+      "explication": "Ils sont peu énergétiques mais riches en vitamines (C notamment), sels minéraux, fibres et eau.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-49",
+      "enonce": "À quel groupe d'aliments appartiennent l'huile, le beurre et le saindoux ?",
+      "choix": [
+        "Matières grasses",
+        "Produits sucrés",
+        "Produits laitiers",
+        "Céréales et féculents"
+      ],
+      "bonne_reponse": "Matières grasses",
+      "explication": "Les matières grasses sont surtout des lipides : très énergétiques, à consommer avec modération.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-50",
+      "enonce": "Pourquoi est-il intéressant d'associer le riz et les pois dans un même repas ?",
+      "choix": [
+        "Leurs protéines se complètent",
+        "Ils apportent la vitamine C",
+        "Ils remplacent le lait",
+        "Ils réduisent l'énergie"
+      ],
+      "bonne_reponse": "Leurs protéines se complètent",
+      "explication": "Céréales et légumineuses manquent d'acides aminés essentiels différents : ensemble, elles apportent des protéines complètes.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-51",
+      "enonce": "Quelle part de l'énergie les lipides fournissent-ils dans une ration équilibrée ?",
+      "choix": [
+        "30 à 35 %",
+        "50 à 55 %",
+        "12 à 15 %",
+        "70 à 80 %"
+      ],
+      "bonne_reponse": "30 à 35 %",
+      "explication": "Répartition classique : glucides 50–55 %, lipides 30–35 %, protides 12–15 %.",
+      "niveau_complexite": "Moyen",
+      "source": "Valeurs nutritionnelles classiques"
+    },
+    {
+      "id": "B1-52",
+      "enonce": "Absence ou manque d'un élément indispensable à l'organisme, par exemple en vitamines.",
+      "choix": [
+        "Une carence",
+        "Un excès",
+        "Une allergie",
+        "Une intoxication"
+      ],
+      "bonne_reponse": "Une carence",
+      "explication": "Une carence prolongée provoque une maladie de carence (scorbut, rachitisme…).",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : carence"
+    },
+    {
+      "id": "B1-53",
+      "enonce": "Insuffisance de la quantité d'aliments consommés, assez prolongée pour provoquer des troubles.",
+      "choix": [
+        "La sous-alimentation",
+        "La suralimentation",
+        "La déshydratation",
+        "L'indigestion"
+      ],
+      "bonne_reponse": "La sous-alimentation",
+      "explication": "La sous-alimentation est un manque en quantité ; le contraire est la suralimentation.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : sous-alimentation"
+    },
+    {
+      "id": "B1-54",
+      "enonce": "État nutritionnel anormal dû à une alimentation mal équilibrée en quantité ou en qualité.",
+      "choix": [
+        "La malnutrition",
+        "La digestion",
+        "La déshydratation",
+        "L'indigestion"
+      ],
+      "bonne_reponse": "La malnutrition",
+      "explication": "La malnutrition regroupe la sous-alimentation, la suralimentation et la mauvaise assimilation.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : malnutrition"
+    },
+    {
+      "id": "B1-55",
+      "enonce": "Glucide formé de longues chaînes ramifiées de glucose, principale réserve de glucose de l'organisme.",
+      "choix": [
+        "Le glycogène",
+        "L'amidon",
+        "La cellulose",
+        "Le saccharose"
+      ],
+      "bonne_reponse": "Le glycogène",
+      "explication": "Le glycogène est stocké dans le foie et les muscles ; l'amidon est la réserve des végétaux.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : glycogène"
+    },
+    {
+      "id": "B1-56",
+      "enonce": "Nom scientifique du sucre de canne, formé d'une molécule de glucose et d'une de fructose.",
+      "choix": [
+        "Le saccharose",
+        "Le lactose",
+        "L'amidon",
+        "Le glycogène"
+      ],
+      "bonne_reponse": "Le saccharose",
+      "explication": "Le saccharose est le sucre de table, extrait en Haïti de la canne à sucre.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : saccharose"
+    },
+    {
+      "id": "B1-57",
+      "enonce": "Sucre contenu dans le lait, formé de glucose et de galactose.",
+      "choix": [
+        "Le lactose",
+        "Le saccharose",
+        "Le glycogène",
+        "La cellulose"
+      ],
+      "bonne_reponse": "Le lactose",
+      "explication": "La digestion du lactose libère du glucose et du galactose.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : lactose"
+    },
+    {
+      "id": "B1-58",
+      "enonce": "Glucide macromoléculaire qui constitue la paroi des cellules végétales.",
+      "choix": [
+        "La cellulose",
+        "L'amidon",
+        "Le glycogène",
+        "Le lactose"
+      ],
+      "bonne_reponse": "La cellulose",
+      "explication": "Non digérée par l'être humain, la cellulose forme l'essentiel des fibres alimentaires.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : cellulose"
+    },
+    {
+      "id": "B1-59",
+      "enonce": "Stérol d'origine alimentaire ou fabriqué par l'organisme, qui peut se déposer sur la paroi des artères.",
+      "choix": [
+        "Le cholestérol",
+        "Le glycérol",
+        "Le glycogène",
+        "L'amidon"
+      ],
+      "bonne_reponse": "Le cholestérol",
+      "explication": "En excès, le cholestérol favorise l'athérosclérose et les maladies cardiovasculaires.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : cholestérol"
+    },
+    {
+      "id": "B1-60",
+      "enonce": "Quelles vitamines sont solubles dans les graisses (liposolubles) ?",
+      "choix": [
+        "A, D, E et K",
+        "B et C",
+        "C seulement",
+        "B1 et B12"
+      ],
+      "bonne_reponse": "A, D, E et K",
+      "explication": "Les vitamines A, D, E, K sont liposolubles ; les vitamines B et C sont hydrosolubles (solubles dans l'eau).",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-61",
+      "enonce": "Dans quel phénomène la vitamine K intervient-elle surtout ?",
+      "choix": [
+        "La coagulation du sang",
+        "La vision nocturne",
+        "La fixation du calcium",
+        "La croissance des cheveux"
+      ],
+      "bonne_reponse": "La coagulation du sang",
+      "explication": "La vitamine K (légumes verts) est nécessaire à la coagulation sanguine.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-62",
+      "enonce": "En dehors de l'alimentation, comment l'organisme obtient-il de la vitamine D ?",
+      "choix": [
+        "Par l'exposition au soleil",
+        "En buvant de l'eau",
+        "Par le sommeil",
+        "Par l'effort physique"
+      ],
+      "bonne_reponse": "Par l'exposition au soleil",
+      "explication": "Les rayons ultraviolets du soleil permettent à la peau de fabriquer de la vitamine D.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-63",
+      "enonce": "Comment appelle-t-on les sels minéraux nécessaires en quantité infime, comme le fer, l'iode ou le zinc ?",
+      "choix": [
+        "Des oligoéléments",
+        "Des macroéléments",
+        "Des vitamines",
+        "Des nutriments énergétiques"
+      ],
+      "bonne_reponse": "Des oligoéléments",
+      "explication": "Calcium, sodium, potassium sont nécessaires en plus grande quantité ; fer, iode, zinc sont des oligoéléments.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-64",
+      "enonce": "Quel est le rôle principal des vitamines et des sels minéraux dans l'organisme ?",
+      "choix": [
+        "Un rôle fonctionnel (protecteur)",
+        "Un rôle énergétique",
+        "Un rôle de réserve",
+        "Aucun rôle utile"
+      ],
+      "bonne_reponse": "Un rôle fonctionnel (protecteur)",
+      "explication": "Ils règlent le fonctionnement de l'organisme ; seul le calcium a aussi un rôle bâtisseur marqué.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-66",
+      "enonce": "À quelle maladie conduit une ration qui apporte régulièrement trop d'énergie ?",
+      "choix": [
+        "L'obésité",
+        "Le scorbut",
+        "Le rachitisme",
+        "Le béribéri"
+      ],
+      "bonne_reponse": "L'obésité",
+      "explication": "Un excès d'énergie (déséquilibre quantitatif) est stocké sous forme de graisse.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-67",
+      "enonce": "Selon l'OMS, dans quelle situation est un adulte dont l'IMC est inférieur à 18,5 ?",
+      "choix": [
+        "La maigreur",
+        "Le surpoids",
+        "L'obésité",
+        "La corpulence normale"
+      ],
+      "bonne_reponse": "La maigreur",
+      "explication": "Moins de 18,5 : maigreur (insuffisance pondérale).",
+      "niveau_complexite": "Facile",
+      "source": "Norme OMS"
+    },
+    {
+      "id": "B1-68",
+      "enonce": "Selon l'OMS, à quoi correspond un IMC compris entre 25 et 29,9 ?",
+      "choix": [
+        "Au surpoids",
+        "À l'obésité",
+        "À la maigreur",
+        "À une corpulence normale"
+      ],
+      "bonne_reponse": "Au surpoids",
+      "explication": "25 à 29,9 : surpoids ; 30 ou plus : obésité.",
+      "niveau_complexite": "Facile",
+      "source": "Norme OMS"
+    },
+    {
+      "id": "B1-71",
+      "enonce": "Quelle quantité d'eau un adulte doit-il renouveler environ chaque jour (boissons et aliments) ?",
+      "choix": [
+        "Environ 2,5 litres",
+        "Environ 0,5 litre",
+        "Environ 10 litres",
+        "Environ 25 litres"
+      ],
+      "bonne_reponse": "Environ 2,5 litres",
+      "explication": "L'organisme perd environ 2,5 L d'eau par jour (urine, sueur, respiration) ; boissons et aliments compensent.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B1-72",
+      "enonce": "Lipide formé de trois molécules d'acide gras reliées à une molécule de glycérol.",
+      "choix": [
+        "Un triglycéride",
+        "Un peptide",
+        "Un glucide",
+        "Un acide aminé"
+      ],
+      "bonne_reponse": "Un triglycéride",
+      "explication": "C'est la forme principale des graisses alimentaires et des réserves du tissu adipeux.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : triglycéride"
+    },
+    {
+      "id": "B1-73",
+      "enonce": "Substance formée d'au moins deux acides aminés.",
+      "choix": [
+        "Un peptide",
+        "Un triglycéride",
+        "Un glucide",
+        "Un nucléotide"
+      ],
+      "bonne_reponse": "Un peptide",
+      "explication": "Une protéine est une très longue chaîne d'acides aminés ; un peptide, une chaîne plus courte.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : peptide"
+    },
+    {
+      "id": "B1-74",
+      "enonce": "Pigment protéique des globules rouges, qui transporte le dioxygène dans le sang.",
+      "choix": [
+        "L'hémoglobine",
+        "La chlorophylle",
+        "La mélanine",
+        "La bile"
+      ],
+      "bonne_reponse": "L'hémoglobine",
+      "explication": "Le fer est indispensable à sa fabrication : d'où l'anémie en cas de carence en fer.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hémoglobine"
+    },
+    {
+      "id": "B1-75",
+      "enonce": "Sécheresse de l'œil pouvant aller jusqu'à la cécité, liée notamment au manque de vitamine A.",
+      "choix": [
+        "La xérophtalmie",
+        "Le goitre",
+        "Le scorbut",
+        "Le rachitisme"
+      ],
+      "bonne_reponse": "La xérophtalmie",
+      "explication": "La vitamine A se trouve dans le foie, le lait, la carotte, la mangue, la patate douce orange.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : xérophtalmie"
+    },
+    {
+      "id": "B1-76",
+      "enonce": "Élément chimique nécessaire à la fabrication des hormones de la glande thyroïde.",
+      "choix": [
+        "L'iode",
+        "Le fer",
+        "Le calcium",
+        "Le sodium"
+      ],
+      "bonne_reponse": "L'iode",
+      "explication": "Son manque provoque le goitre ; on le trouve dans le sel iodé et les produits de la mer.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : iode (sens 2)"
+    },
+    {
+      "id": "B1-77",
+      "enonce": "Plante cultivée pour ses grains, qui servent à nourrir l'homme et les animaux, comme le riz ou le maïs.",
+      "choix": [
+        "Une céréale",
+        "Une légumineuse",
+        "Un tubercule",
+        "Un fruit"
+      ],
+      "bonne_reponse": "Une céréale",
+      "explication": "Riz, maïs, mil (petit mil), blé et sorgho sont des céréales.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : céréale"
+    },
+    {
+      "id": "B1-78",
+      "enonce": "Renflement souterrain d'une plante, riche en réserves, comme l'igname ou le manioc.",
+      "choix": [
+        "Un tubercule",
+        "Une céréale",
+        "Une gousse",
+        "Une feuille"
+      ],
+      "bonne_reponse": "Un tubercule",
+      "explication": "Igname, manioc, patate douce et pomme de terre sont des tubercules riches en amidon.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : tubercule"
+    },
+    {
+      "id": "B1-79",
+      "enonce": "Partie de la médecine qui adapte le régime alimentaire aux besoins de chaque personne.",
+      "choix": [
+        "La diététique",
+        "La gastronomie",
+        "La pharmacie",
+        "La chirurgie"
+      ],
+      "bonne_reponse": "La diététique",
+      "explication": "Le diététicien établit des rations adaptées (diabète, obésité, grossesse…).",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : diététique"
+    }
+  ]
+}

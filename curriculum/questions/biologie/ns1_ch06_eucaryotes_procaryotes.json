@@ -1,0 +1,562 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Cellules eucaryotes et procaryotes",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "1.5",
+  "statut": "validé par l'utilisateur 2026-10-10",
+  "rejetees": [
+    "B6-34",
+    "B6-39"
+  ],
+  "questions": [
+    {
+      "id": "B6-01",
+      "enonce": "Se dit d'un organisme dont le noyau cellulaire est séparé du cytoplasme par une membrane.",
+      "choix": [
+        "Eucaryote",
+        "Procaryote",
+        "Unicellulaire",
+        "Bactérien"
+      ],
+      "bonne_reponse": "Eucaryote",
+      "explication": "Animaux, végétaux, champignons et protistes sont des eucaryotes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : eucaryote"
+    },
+    {
+      "id": "B6-02",
+      "enonce": "Micro-organisme dont la cellule, très petite, n'a ni noyau ni organites.",
+      "choix": [
+        "Un procaryote",
+        "Un eucaryote",
+        "Un protiste",
+        "Un champignon"
+      ],
+      "bonne_reponse": "Un procaryote",
+      "explication": "Les bactéries sont des procaryotes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : procaryote"
+    },
+    {
+      "id": "B6-03",
+      "enonce": "Organite qui assure la respiration cellulaire et la mise en réserve de l'énergie.",
+      "choix": [
+        "La mitochondrie",
+        "Le chloroplaste",
+        "Le ribosome",
+        "La vacuole"
+      ],
+      "bonne_reponse": "La mitochondrie",
+      "explication": "On l'appelle souvent la « centrale énergétique » de la cellule.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : mitochondrie"
+    },
+    {
+      "id": "B6-04",
+      "enonce": "Organite des cellules des plantes vertes qui contient la chlorophylle.",
+      "choix": [
+        "Le chloroplaste",
+        "La mitochondrie",
+        "Le noyau",
+        "Le lysosome"
+      ],
+      "bonne_reponse": "Le chloroplaste",
+      "explication": "C'est le lieu de la photosynthèse.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : chloroplaste"
+    },
+    {
+      "id": "B6-05",
+      "enonce": "Pigment vert des plantes qui absorbe une partie de l'énergie de la lumière solaire.",
+      "choix": [
+        "La chlorophylle",
+        "L'hémoglobine",
+        "La mélanine",
+        "Le carotène"
+      ],
+      "bonne_reponse": "La chlorophylle",
+      "explication": "Elle rend possible la photosynthèse.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : chlorophylle"
+    },
+    {
+      "id": "B6-06",
+      "enonce": "Enveloppe, généralement faite de cellulose, qui entoure la cellule végétale à l'extérieur de sa membrane.",
+      "choix": [
+        "La paroi",
+        "La membrane",
+        "La vacuole",
+        "La capsule"
+      ],
+      "bonne_reponse": "La paroi",
+      "explication": "Elle donne à la cellule végétale sa forme rigide.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : paroi (sens 6)"
+    },
+    {
+      "id": "B6-07",
+      "enonce": "Cavité du cytoplasme qui, dans la cellule végétale adulte, peut occuper presque toute la cellule.",
+      "choix": [
+        "La vacuole",
+        "Le noyau",
+        "Le chloroplaste",
+        "La mitochondrie"
+      ],
+      "bonne_reponse": "La vacuole",
+      "explication": "Dans la cellule animale, les vacuoles sont petites et peu nombreuses.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : vacuole"
+    },
+    {
+      "id": "B6-08",
+      "enonce": "Petite formation riche en ARN, présente dans le cytoplasme, où sont fabriquées les protéines.",
+      "choix": [
+        "Le ribosome",
+        "Le lysosome",
+        "Le centrosome",
+        "Le nucléole"
+      ],
+      "bonne_reponse": "Le ribosome",
+      "explication": "On trouve des ribosomes dans toutes les cellules, y compris les bactéries.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : ribosome"
+    },
+    {
+      "id": "B6-09",
+      "enonce": "Petit élément sphérique entouré d'une membrane, qui contient des enzymes de digestion de la cellule.",
+      "choix": [
+        "Le lysosome",
+        "Le ribosome",
+        "Le centrosome",
+        "Le chloroplaste"
+      ],
+      "bonne_reponse": "Le lysosome",
+      "explication": "Il dégrade les déchets et les éléments usés de la cellule.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : lysosome"
+    },
+    {
+      "id": "B6-10",
+      "enonce": "Réseau de canaux et de sacs aplatis, limités par des membranes, à l'intérieur de la cellule.",
+      "choix": [
+        "Le réticulum endoplasmique",
+        "Le cytosquelette",
+        "La vacuole",
+        "Le noyau"
+      ],
+      "bonne_reponse": "Le réticulum endoplasmique",
+      "explication": "Le réticulum « rugueux », couvert de ribosomes, participe à la fabrication des protéines.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : réticulum endoplasmique"
+    },
+    {
+      "id": "B6-11",
+      "enonce": "Petit corps situé près du noyau de la cellule animale, qui organise sa division.",
+      "choix": [
+        "Le centrosome",
+        "Le nucléole",
+        "Le ribosome",
+        "Le lysosome"
+      ],
+      "bonne_reponse": "Le centrosome",
+      "explication": "Il contient deux centrioles.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : centrosome"
+    },
+    {
+      "id": "B6-12",
+      "enonce": "Corpuscule arrondi, riche en ARN, situé à l'intérieur du noyau.",
+      "choix": [
+        "Le nucléole",
+        "Le ribosome",
+        "Le centriole",
+        "Le chromosome"
+      ],
+      "bonne_reponse": "Le nucléole",
+      "explication": "Il participe à la fabrication des ribosomes.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : nucléole"
+    },
+    {
+      "id": "B6-13",
+      "enonce": "Structure en forme de bâtonnet du noyau, support de l'hérédité.",
+      "choix": [
+        "Le chromosome",
+        "Le ribosome",
+        "Le centriole",
+        "Le nucléole"
+      ],
+      "bonne_reponse": "Le chromosome",
+      "explication": "L'être humain possède 46 chromosomes dans chaque cellule (sauf les gamètes).",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : chromosome"
+    },
+    {
+      "id": "B6-14",
+      "enonce": "Molécule en double hélice qui constitue les chromosomes et porte l'information génétique.",
+      "choix": [
+        "L'ADN",
+        "L'ARN",
+        "Une protéine",
+        "Le glucose"
+      ],
+      "bonne_reponse": "L'ADN",
+      "explication": "ADN = acide désoxyribonucléique.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : ADN"
+    },
+    {
+      "id": "B6-15",
+      "enonce": "Contenu du noyau d'une cellule qui n'est pas en train de se diviser.",
+      "choix": [
+        "La chromatine",
+        "Le cytoplasme",
+        "La vacuole",
+        "Le nucléole"
+      ],
+      "bonne_reponse": "La chromatine",
+      "explication": "Pendant la division, la chromatine se condense en chromosomes visibles.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : chromatine"
+    },
+    {
+      "id": "B6-16",
+      "enonce": "Réseau de filaments protéiques qui forme la charpente interne de la cellule.",
+      "choix": [
+        "Le cytosquelette",
+        "Le réticulum",
+        "La paroi",
+        "La membrane"
+      ],
+      "bonne_reponse": "Le cytosquelette",
+      "explication": "Il intervient aussi dans les mouvements et la division de la cellule.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : cytosquelette"
+    },
+    {
+      "id": "B6-17",
+      "enonce": "Filament mobile et long, fixé à la surface de certaines cellules, qui leur permet de se déplacer.",
+      "choix": [
+        "Le flagelle",
+        "Le cil",
+        "Le pseudopode",
+        "Le chromosome"
+      ],
+      "bonne_reponse": "Le flagelle",
+      "explication": "Spermatozoïdes, euglènes et certaines bactéries possèdent un flagelle.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : flagelle"
+    },
+    {
+      "id": "B6-18",
+      "enonce": "Organite cellulaire qui ressemble à un minuscule poil.",
+      "choix": [
+        "Le cil",
+        "Le flagelle",
+        "Le pseudopode",
+        "Le ribosome"
+      ],
+      "bonne_reponse": "Le cil",
+      "explication": "La paramécie est couverte de cils.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : cil (sens 3)"
+    },
+    {
+      "id": "B6-19",
+      "enonce": "Expansion du cytoplasme qui sert à l'amibe à se déplacer et à capturer ses proies.",
+      "choix": [
+        "Le pseudopode",
+        "Le flagelle",
+        "Le cil",
+        "La vacuole"
+      ],
+      "bonne_reponse": "Le pseudopode",
+      "explication": "Pseudopode = « faux pied ».",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : pseudopode"
+    },
+    {
+      "id": "B6-20",
+      "enonce": "Fragment d'ADN de certaines bactéries, séparé de leur chromosome principal.",
+      "choix": [
+        "Un plasmide",
+        "Un nucléole",
+        "Un ribosome",
+        "Un lysosome"
+      ],
+      "bonne_reponse": "Un plasmide",
+      "explication": "Les plasmides portent parfois des gènes de résistance aux antibiotiques.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : plasmide"
+    },
+    {
+      "id": "B6-21",
+      "enonce": "Agent infectieux très petit, qui ne peut se reproduire qu'en parasitant une cellule.",
+      "choix": [
+        "Un virus",
+        "Une bactérie",
+        "Une levure",
+        "Un protiste"
+      ],
+      "bonne_reponse": "Un virus",
+      "explication": "Un virus n'est pas une cellule : il n'a ni cytoplasme ni ribosomes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : virus"
+    },
+    {
+      "id": "B6-22",
+      "enonce": "Organite caractéristique des cellules végétales, dont le chloroplaste est un exemple.",
+      "choix": [
+        "Un plaste",
+        "Un lysosome",
+        "Un centriole",
+        "Un ribosome"
+      ],
+      "bonne_reponse": "Un plaste",
+      "explication": "Certains plastes stockent l'amidon (amyloplastes).",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : plaste"
+    },
+    {
+      "id": "B6-23",
+      "enonce": "Lipide contenant de l'acide phosphorique, principal constituant des membranes cellulaires.",
+      "choix": [
+        "Un phospholipide",
+        "Un triglycéride",
+        "Un peptide",
+        "Un glucide"
+      ],
+      "bonne_reponse": "Un phospholipide",
+      "explication": "Les membranes sont formées d'une double couche de phospholipides.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : phospholipide"
+    },
+    {
+      "id": "B6-24",
+      "enonce": "Passage de l'eau, à travers une membrane, d'une solution diluée vers une solution concentrée.",
+      "choix": [
+        "L'osmose",
+        "La diffusion",
+        "La filtration",
+        "La digestion"
+      ],
+      "bonne_reponse": "L'osmose",
+      "explication": "L'osmose explique les échanges d'eau entre la cellule et son milieu.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : osmose"
+    },
+    {
+      "id": "B6-25",
+      "enonce": "Gonflement d'une cellule végétale qui absorbe de l'eau dans un milieu peu concentré.",
+      "choix": [
+        "La turgescence",
+        "La plasmolyse",
+        "La fermentation",
+        "La digestion"
+      ],
+      "bonne_reponse": "La turgescence",
+      "explication": "La paroi empêche la cellule turgescente d'éclater.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : turgescence"
+    },
+    {
+      "id": "B6-26",
+      "enonce": "Perte d'eau d'une cellule placée dans un milieu très concentré, qui provoque la rétraction de son cytoplasme.",
+      "choix": [
+        "La plasmolyse",
+        "La turgescence",
+        "La mitose",
+        "La digestion"
+      ],
+      "bonne_reponse": "La plasmolyse",
+      "explication": "La plasmolyse explique le flétrissement des plantes.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : plasmolyse"
+    },
+    {
+      "id": "B6-27",
+      "enonce": "Gel riche en eau, constituant fondamental du cytoplasme, dans lequel baignent les organites.",
+      "choix": [
+        "Le hyaloplasme",
+        "Le plasma",
+        "La lymphe",
+        "La sève"
+      ],
+      "bonne_reponse": "Le hyaloplasme",
+      "explication": "Synonyme : protoplasme.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : hyaloplasme"
+    },
+    {
+      "id": "B6-28",
+      "enonce": "Quel type de cellules sont les bactéries ?",
+      "choix": [
+        "Des procaryotes",
+        "Des eucaryotes",
+        "Des cellules végétales",
+        "Des cellules animales"
+      ],
+      "bonne_reponse": "Des procaryotes",
+      "explication": "Elles n'ont pas de noyau.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B6-29",
+      "enonce": "Quel type de cellules sont les cellules animales et végétales ?",
+      "choix": [
+        "Des eucaryotes",
+        "Des procaryotes",
+        "Des bactéries",
+        "Des virus"
+      ],
+      "bonne_reponse": "Des eucaryotes",
+      "explication": "Elles possèdent un vrai noyau et des organites.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B6-30",
+      "enonce": "Où se trouve l'ADN chez une bactérie ?",
+      "choix": [
+        "Dans le cytoplasme",
+        "Dans un noyau",
+        "Dans la paroi",
+        "Dans les mitochondries"
+      ],
+      "bonne_reponse": "Dans le cytoplasme",
+      "explication": "Il forme un chromosome circulaire, sans membrane autour.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B6-31",
+      "enonce": "Quels organites sont présents dans la cellule végétale mais absents de la cellule animale ?",
+      "choix": [
+        "Les chloroplastes",
+        "Les mitochondries",
+        "Les ribosomes",
+        "Le noyau"
+      ],
+      "bonne_reponse": "Les chloroplastes",
+      "explication": "Les cellules animales ne font pas de photosynthèse.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B6-32",
+      "enonce": "Quelle structure entoure la cellule végétale mais pas la cellule animale ?",
+      "choix": [
+        "La paroi cellulosique",
+        "La membrane",
+        "Le cytoplasme",
+        "Le noyau"
+      ],
+      "bonne_reponse": "La paroi cellulosique",
+      "explication": "La cellule animale n'est limitée que par sa membrane.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B6-33",
+      "enonce": "Quels éléments sont communs aux cellules animales et végétales ?",
+      "choix": [
+        "Membrane, cytoplasme, noyau",
+        "Paroi, chloroplastes, vacuole",
+        "Paroi, flagelle, plasmide",
+        "Chloroplastes et centrosome"
+      ],
+      "bonne_reponse": "Membrane, cytoplasme, noyau",
+      "explication": "Ces trois éléments se voient au microscope optique dans les deux types de cellules.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B6-35",
+      "enonce": "Quel organite modifie, trie et emballe les protéines dans des vésicules ?",
+      "choix": [
+        "L'appareil de Golgi",
+        "Le noyau",
+        "La mitochondrie",
+        "Le chloroplaste"
+      ],
+      "bonne_reponse": "L'appareil de Golgi",
+      "explication": "Il reçoit les protéines du réticulum endoplasmique.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B6-36",
+      "enonce": "Quel est le rôle de la membrane plasmique ?",
+      "choix": [
+        "Contrôler les échanges avec le milieu",
+        "Fabriquer les protéines",
+        "Produire l'énergie",
+        "Stocker l'ADN"
+      ],
+      "bonne_reponse": "Contrôler les échanges avec le milieu",
+      "explication": "Elle laisse passer certaines substances et en retient d'autres.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : membrane"
+    },
+    {
+      "id": "B6-37",
+      "enonce": "Quel est le rôle principal du noyau ?",
+      "choix": [
+        "Contenir l'information génétique",
+        "Produire l'énergie",
+        "Faire la photosynthèse",
+        "Digérer les déchets"
+      ],
+      "bonne_reponse": "Contenir l'information génétique",
+      "explication": "Il dirige le fonctionnement de la cellule grâce à l'ADN.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : noyau"
+    },
+    {
+      "id": "B6-38",
+      "enonce": "De quel phénomène le chloroplaste est-il le siège ?",
+      "choix": [
+        "La photosynthèse",
+        "La respiration",
+        "La digestion",
+        "La division cellulaire"
+      ],
+      "bonne_reponse": "La photosynthèse",
+      "explication": "La plante y fabrique sa matière organique grâce à la lumière.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : chlorophylle"
+    },
+    {
+      "id": "B6-40",
+      "enonce": "Dans quelles cellules trouve-t-on surtout le centrosome ?",
+      "choix": [
+        "Les cellules animales",
+        "Les cellules végétales",
+        "Les bactéries",
+        "Les virus"
+      ],
+      "bonne_reponse": "Les cellules animales",
+      "explication": "Les cellules des plantes à fleurs n'en ont pas.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B6-41",
+      "enonce": "Que contient surtout la grande vacuole d'une cellule végétale ?",
+      "choix": [
+        "De l'eau et des substances dissoutes",
+        "De l'ADN",
+        "Des chloroplastes",
+        "De la cellulose"
+      ],
+      "bonne_reponse": "De l'eau et des substances dissoutes",
+      "explication": "Son remplissage en eau assure la turgescence de la cellule.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : vacuole"
+    }
+  ]
+}

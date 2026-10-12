@@ -1,0 +1,954 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Classification du vivant",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "1.6",
+  "statut": "validé par l'utilisateur 2026-10-11",
+  "rejetees": [
+    "B8-11",
+    "B8-15"
+  ],
+  "questions": [
+    {
+      "id": "B8-01",
+      "enonce": "Établissement d'une série hiérarchisée de groupes, dans lesquels on range chaque espèce selon ses ressemblances avec les autres.",
+      "choix": [
+        "La classification",
+        "La nomenclature",
+        "La morphologie",
+        "La détermination"
+      ],
+      "bonne_reponse": "La classification",
+      "explication": "On regroupe les êtres vivants selon les caractères qu'ils partagent.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : classification"
+    },
+    {
+      "id": "B8-02",
+      "enonce": "Science des lois de la classification.",
+      "choix": [
+        "La taxonomie",
+        "La morphologie",
+        "La cytologie",
+        "L'écologie"
+      ],
+      "bonne_reponse": "La taxonomie",
+      "explication": "Le taxonomiste décrit, nomme et classe les espèces.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : taxonomie"
+    },
+    {
+      "id": "B8-03",
+      "enonce": "Méthode de classification biologique des êtres vivants, d'abord fondée sur leur forme.",
+      "choix": [
+        "La systématique",
+        "La génétique",
+        "La physiologie",
+        "L'anatomie"
+      ],
+      "bonne_reponse": "La systématique",
+      "explication": "La systématique moderne tient compte aussi de la parenté évolutive.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : systématique"
+    },
+    {
+      "id": "B8-04",
+      "enonce": "En biologie, synonyme de « groupe » dans la classification (règne, classe, espèce…).",
+      "choix": [
+        "Un taxon",
+        "Un clone",
+        "Un organe",
+        "Un tissu"
+      ],
+      "bonne_reponse": "Un taxon",
+      "explication": "Chaque niveau de la classification est un taxon.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : taxon"
+    },
+    {
+      "id": "B8-05",
+      "enonce": "Ensemble d'individus semblables qui peuvent se reproduire entre eux et donner des descendants féconds.",
+      "choix": [
+        "Une espèce",
+        "Un genre",
+        "Une famille",
+        "Un règne"
+      ],
+      "bonne_reponse": "Une espèce",
+      "explication": "L'espèce est l'unité de base de la classification.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : espèce"
+    },
+    {
+      "id": "B8-06",
+      "enonce": "Niveau de la classification situé entre la famille et l'espèce.",
+      "choix": [
+        "Le genre",
+        "L'ordre",
+        "La classe",
+        "Le règne"
+      ],
+      "bonne_reponse": "Le genre",
+      "explication": "Il réunit des espèces très voisines.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : genre (sens 4)"
+    },
+    {
+      "id": "B8-07",
+      "enonce": "Division de l'ordre qui rassemble des genres ayant de nombreux caractères communs.",
+      "choix": [
+        "La famille",
+        "Le genre",
+        "L'espèce",
+        "Le règne"
+      ],
+      "bonne_reponse": "La famille",
+      "explication": "Exemple : la famille des félidés (chat, lion, tigre).",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : famille (sens 8)"
+    },
+    {
+      "id": "B8-08",
+      "enonce": "Chacune des divisions d'une classe.",
+      "choix": [
+        "L'ordre",
+        "La famille",
+        "Le genre",
+        "L'embranchement"
+      ],
+      "bonne_reponse": "L'ordre",
+      "explication": "Exemple : l'ordre des primates dans la classe des mammifères.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : ordre (sens 21)"
+    },
+    {
+      "id": "B8-09",
+      "enonce": "Grande division du règne animal ou du règne végétal.",
+      "choix": [
+        "L'embranchement",
+        "La famille",
+        "Le genre",
+        "L'espèce"
+      ],
+      "bonne_reponse": "L'embranchement",
+      "explication": "Exemples : vertébrés, arthropodes, mollusques.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : embranchement"
+    },
+    {
+      "id": "B8-10",
+      "enonce": "Très vaste subdivision du monde vivant, qui regroupe des espèces au mode d'alimentation voisin.",
+      "choix": [
+        "Le règne",
+        "L'embranchement",
+        "La classe",
+        "Le genre"
+      ],
+      "bonne_reponse": "Le règne",
+      "explication": "Exemples : règne animal, règne végétal, règne des champignons.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : règne (sens 4)"
+    },
+    {
+      "id": "B8-12",
+      "enonce": "Se dit de la nomenclature, due à Linné, qui désigne chaque espèce par deux noms.",
+      "choix": [
+        "Binominale",
+        "Dichotomique",
+        "Systématique",
+        "Morphologique"
+      ],
+      "bonne_reponse": "Binominale",
+      "explication": "Exemple : Homo sapiens (genre + espèce).",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : binominal"
+    },
+    {
+      "id": "B8-13",
+      "enonce": "Dénomination des animaux et des plantes selon des règles fixées par des codes internationaux.",
+      "choix": [
+        "La nomenclature",
+        "La détermination",
+        "La morphologie",
+        "L'écologie"
+      ],
+      "bonne_reponse": "La nomenclature",
+      "explication": "Ces règles ont été codifiées pour la première fois en 1867.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : nomenclature (sens 5)"
+    },
+    {
+      "id": "B8-14",
+      "enonce": "Qui se divise de deux en deux ; se dit d'une clé fondée sur des choix entre deux possibilités.",
+      "choix": [
+        "Dichotomique",
+        "Binominale",
+        "Systématique",
+        "Hiérarchique"
+      ],
+      "bonne_reponse": "Dichotomique",
+      "explication": "À chaque étape, on choisit entre deux caractères opposés.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : dichotomique"
+    },
+    {
+      "id": "B8-16",
+      "enonce": "Collection de plantes desséchées, étiquetées et nommées, qui sert à l'étude de la classification.",
+      "choix": [
+        "Un herbier",
+        "Un aquarium",
+        "Un terrarium",
+        "Un musée"
+      ],
+      "bonne_reponse": "Un herbier",
+      "explication": "Les plantes sont séchées sous presse avant d'être collées et nommées.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : herbier"
+    },
+    {
+      "id": "B8-17",
+      "enonce": "Étude de la forme et de la structure externes des êtres vivants.",
+      "choix": [
+        "La morphologie",
+        "La cytologie",
+        "L'histologie",
+        "La taxonomie"
+      ],
+      "bonne_reponse": "La morphologie",
+      "explication": "Les caractères morphologiques servent à identifier les espèces.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : morphologie"
+    },
+    {
+      "id": "B8-57",
+      "enonce": "Quel naturaliste suédois a créé la nomenclature binominale au XVIIIe siècle ?",
+      "choix": [
+        "Carl von Linné",
+        "Charles Darwin",
+        "Jean-Baptiste Lamarck",
+        "Gregor Mendel"
+      ],
+      "bonne_reponse": "Carl von Linné",
+      "explication": "Linné l'a utilisée dans Systema Naturae (1758 pour les animaux).",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : binominal"
+    },
+    {
+      "id": "B8-58",
+      "enonce": "Dans quel ordre se rangent les niveaux de la classification, du plus large au plus précis ?",
+      "choix": [
+        "Règne, embranchement, classe, ordre, famille, genre, espèce",
+        "Espèce, genre, famille, ordre, classe, embranchement, règne",
+        "Règne, classe, embranchement, famille, ordre, genre, espèce",
+        "Embranchement, règne, ordre, classe, genre, famille, espèce"
+      ],
+      "bonne_reponse": "Règne, embranchement, classe, ordre, famille, genre, espèce",
+      "explication": "Chaque niveau regroupe plusieurs groupes du niveau inférieur.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 1.6"
+    },
+    {
+      "id": "B8-59",
+      "enonce": "Dans le nom scientifique Homo sapiens, que désigne « Homo » ?",
+      "choix": [
+        "Le genre",
+        "L'espèce",
+        "La famille",
+        "L'ordre"
+      ],
+      "bonne_reponse": "Le genre",
+      "explication": "Le premier nom (avec majuscule) est le genre ; le second précise l'espèce.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : genre (sens 4)"
+    },
+    {
+      "id": "B8-60",
+      "enonce": "Quelle est l'écriture correcte du nom scientifique de l'être humain ?",
+      "choix": [
+        "Homo sapiens",
+        "homo Sapiens",
+        "Homo Sapiens",
+        "HOMO sapiens"
+      ],
+      "bonne_reponse": "Homo sapiens",
+      "explication": "Genre avec majuscule, espèce en minuscule, le tout en italique.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : binominal"
+    },
+    {
+      "id": "B8-61",
+      "enonce": "Quel critère permet de dire que deux individus appartiennent à la même espèce ?",
+      "choix": [
+        "Ils ont des descendants féconds",
+        "Ils ont la même couleur",
+        "Ils vivent au même endroit",
+        "Ils ont la même taille"
+      ],
+      "bonne_reponse": "Ils ont des descendants féconds",
+      "explication": "Le cheval et l'âne donnent un mulet stérile : ce sont deux espèces.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : espèce"
+    },
+    {
+      "id": "B8-68",
+      "enonce": "Quel outil permet d'identifier un être vivant par une suite de choix entre deux caractères ?",
+      "choix": [
+        "Une clé de détermination",
+        "Un herbier",
+        "Un microscope",
+        "Un aquarium"
+      ],
+      "bonne_reponse": "Une clé de détermination",
+      "explication": "Exemple : « a des plumes / n'a pas de plumes ».",
+      "niveau_complexite": "Facile",
+      "source": "Programme 1.6"
+    },
+    {
+      "id": "B8-18",
+      "enonce": "Se dit d'un animal dont le squelette interne comprend une colonne d'os empilés le long du dos.",
+      "choix": [
+        "Vertébré",
+        "Invertébré",
+        "Arthropode",
+        "Mollusque"
+      ],
+      "bonne_reponse": "Vertébré",
+      "explication": "Poissons, amphibiens, reptiles, oiseaux et mammifères.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : vertébré"
+    },
+    {
+      "id": "B8-19",
+      "enonce": "Se dit d'un animal sans squelette osseux interne le long du dos, comme l'escargot ou l'insecte.",
+      "choix": [
+        "Invertébré",
+        "Vertébré",
+        "Mammifère",
+        "Reptile"
+      ],
+      "bonne_reponse": "Invertébré",
+      "explication": "La grande majorité des espèces animales sont des invertébrés.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : invertébré"
+    },
+    {
+      "id": "B8-20",
+      "enonce": "Vertébré qui possède des poils et des mamelles.",
+      "choix": [
+        "Un mammifère",
+        "Un oiseau",
+        "Un reptile",
+        "Un amphibien"
+      ],
+      "bonne_reponse": "Un mammifère",
+      "explication": "Les mamelles produisent le lait qui nourrit les petits.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : mammifère"
+    },
+    {
+      "id": "B8-21",
+      "enonce": "Vertébré ovipare, couvert de plumes, à bec corné, dont les membres antérieurs sont des ailes.",
+      "choix": [
+        "Un oiseau",
+        "Un reptile",
+        "Un mammifère",
+        "Un insecte"
+      ],
+      "bonne_reponse": "Un oiseau",
+      "explication": "Les oiseaux sont aussi homéothermes.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : oiseau"
+    },
+    {
+      "id": "B8-22",
+      "enonce": "Vertébré à respiration pulmonaire, à peau couverte d'écailles, dont la température varie.",
+      "choix": [
+        "Un reptile",
+        "Un amphibien",
+        "Un poisson",
+        "Un oiseau"
+      ],
+      "bonne_reponse": "Un reptile",
+      "explication": "Tortues, serpents, lézards, crocodiles.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : reptile"
+    },
+    {
+      "id": "B8-23",
+      "enonce": "Vertébré à peau nue, capable de respirer hors de l'eau à l'état adulte, comme la grenouille.",
+      "choix": [
+        "Un amphibien",
+        "Un reptile",
+        "Un poisson",
+        "Un mammifère"
+      ],
+      "bonne_reponse": "Un amphibien",
+      "explication": "Ancien nom : batracien.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : amphibien"
+    },
+    {
+      "id": "B8-24",
+      "enonce": "Vertébré aquatique qui respire toute sa vie par des branchies et se déplace avec des nageoires.",
+      "choix": [
+        "Un poisson",
+        "Un amphibien",
+        "Un mollusque",
+        "Un crustacé"
+      ],
+      "bonne_reponse": "Un poisson",
+      "explication": "La baleine, qui respire par des poumons, n'est pas un poisson.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : poisson"
+    },
+    {
+      "id": "B8-25",
+      "enonce": "Animal formé d'anneaux durs articulés, dont certains portent des pattes articulées.",
+      "choix": [
+        "Un arthropode",
+        "Un mollusque",
+        "Un vertébré",
+        "Un cnidaire"
+      ],
+      "bonne_reponse": "Un arthropode",
+      "explication": "Insectes, arachnides, crustacés et mille-pattes sont des arthropodes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : arthropode"
+    },
+    {
+      "id": "B8-26",
+      "enonce": "Invertébré dont le thorax porte trois paires de pattes et qui respire par des trachées.",
+      "choix": [
+        "Un insecte",
+        "Un arachnide",
+        "Un crustacé",
+        "Un mollusque"
+      ],
+      "bonne_reponse": "Un insecte",
+      "explication": "Son corps comprend tête, thorax et abdomen.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : insecte"
+    },
+    {
+      "id": "B8-27",
+      "enonce": "Arthropode sans antennes, qui possède quatre paires de pattes, comme l'araignée ou le scorpion.",
+      "choix": [
+        "Un arachnide",
+        "Un insecte",
+        "Un crustacé",
+        "Un reptile"
+      ],
+      "bonne_reponse": "Un arachnide",
+      "explication": "Les acariens et les tiques sont aussi des arachnides.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : arachnide"
+    },
+    {
+      "id": "B8-28",
+      "enonce": "Arthropode le plus souvent aquatique, à deux paires d'antennes et à respiration branchiale, comme le crabe.",
+      "choix": [
+        "Un crustacé",
+        "Un insecte",
+        "Un arachnide",
+        "Un mollusque"
+      ],
+      "bonne_reponse": "Un crustacé",
+      "explication": "Crevettes, langoustes, crabes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : crustacé"
+    },
+    {
+      "id": "B8-29",
+      "enonce": "Animal invertébré à corps mou, comme l'escargot, l'huître ou le poulpe.",
+      "choix": [
+        "Un mollusque",
+        "Un arthropode",
+        "Un cnidaire",
+        "Un insecte"
+      ],
+      "bonne_reponse": "Un mollusque",
+      "explication": "Beaucoup de mollusques sont protégés par une coquille.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : mollusque"
+    },
+    {
+      "id": "B8-30",
+      "enonce": "Animal marin à symétrie d'ordre 5, comme l'oursin ou l'étoile de mer.",
+      "choix": [
+        "Un échinoderme",
+        "Un cnidaire",
+        "Un mollusque",
+        "Un crustacé"
+      ],
+      "bonne_reponse": "Un échinoderme",
+      "explication": "Échino- = épine, -derme = peau.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : échinoderme"
+    },
+    {
+      "id": "B8-31",
+      "enonce": "Animal aquatique possédant des cellules urticantes, comme la méduse ou le corail.",
+      "choix": [
+        "Un cnidaire",
+        "Un échinoderme",
+        "Un spongiaire",
+        "Un mollusque"
+      ],
+      "bonne_reponse": "Un cnidaire",
+      "explication": "Les récifs coralliens d'Haïti sont formés par des cnidaires.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : cnidaire"
+    },
+    {
+      "id": "B8-32",
+      "enonce": "Animal aquatique fixé, dont la paroi entoure une cavité centrale, comme l'éponge.",
+      "choix": [
+        "Un spongiaire",
+        "Un cnidaire",
+        "Un échinoderme",
+        "Un mollusque"
+      ],
+      "bonne_reponse": "Un spongiaire",
+      "explication": "Les éponges sont parmi les animaux les plus simples.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : spongiaire"
+    },
+    {
+      "id": "B8-55",
+      "enonce": "Protiste sans chlorophylle capable d'ingérer des proies, comme l'amibe ou la paramécie.",
+      "choix": [
+        "Un protozoaire",
+        "Une algue",
+        "Une bactérie",
+        "Un champignon"
+      ],
+      "bonne_reponse": "Un protozoaire",
+      "explication": "Les protozoaires sont des eucaryotes unicellulaires.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : protozoaire"
+    },
+    {
+      "id": "B8-62",
+      "enonce": "Quelles sont les cinq classes de vertébrés ?",
+      "choix": [
+        "Poissons, amphibiens, reptiles, oiseaux, mammifères",
+        "Poissons, insectes, reptiles, oiseaux, mammifères",
+        "Mollusques, amphibiens, reptiles, oiseaux, mammifères",
+        "Poissons, amphibiens, crustacés, oiseaux, mammifères"
+      ],
+      "bonne_reponse": "Poissons, amphibiens, reptiles, oiseaux, mammifères",
+      "explication": "Insectes, mollusques et crustacés sont des invertébrés.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 1.6"
+    },
+    {
+      "id": "B8-63",
+      "enonce": "À quel groupe appartient la chauve-souris ?",
+      "choix": [
+        "Aux mammifères",
+        "Aux oiseaux",
+        "Aux reptiles",
+        "Aux insectes"
+      ],
+      "bonne_reponse": "Aux mammifères",
+      "explication": "Elle a des poils et allaite ses petits ; ses ailes sont des mains modifiées.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : mammifère"
+    },
+    {
+      "id": "B8-64",
+      "enonce": "À quel groupe appartient la baleine ?",
+      "choix": [
+        "Aux mammifères",
+        "Aux poissons",
+        "Aux reptiles",
+        "Aux amphibiens"
+      ],
+      "bonne_reponse": "Aux mammifères",
+      "explication": "Elle respire par des poumons et allaite ses petits.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : mammifère"
+    },
+    {
+      "id": "B8-65",
+      "enonce": "À quel groupe appartient l'araignée ?",
+      "choix": [
+        "Aux arachnides",
+        "Aux insectes",
+        "Aux crustacés",
+        "Aux mollusques"
+      ],
+      "bonne_reponse": "Aux arachnides",
+      "explication": "Elle a quatre paires de pattes et pas d'antennes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : arachnide"
+    },
+    {
+      "id": "B8-66",
+      "enonce": "À quel groupe appartient le crabe ?",
+      "choix": [
+        "Aux crustacés",
+        "Aux insectes",
+        "Aux arachnides",
+        "Aux mollusques"
+      ],
+      "bonne_reponse": "Aux crustacés",
+      "explication": "Il a deux paires d'antennes et respire par des branchies.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : crustacé"
+    },
+    {
+      "id": "B8-67",
+      "enonce": "À quel groupe appartient la tortue ?",
+      "choix": [
+        "Aux reptiles",
+        "Aux amphibiens",
+        "Aux mammifères",
+        "Aux poissons"
+      ],
+      "bonne_reponse": "Aux reptiles",
+      "explication": "Elle a des écailles, respire par des poumons et pond des œufs.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : reptile"
+    },
+    {
+      "id": "B8-33",
+      "enonce": "Plante à graines dont l'ovule se transforme en un fruit clos ; elle porte des fleurs.",
+      "choix": [
+        "Une angiosperme",
+        "Une gymnosperme",
+        "Une fougère",
+        "Une mousse"
+      ],
+      "bonne_reponse": "Une angiosperme",
+      "explication": "Manguier, haricot, maïs sont des angiospermes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : angiosperme"
+    },
+    {
+      "id": "B8-34",
+      "enonce": "Plante à graines dont les graines sont portées sur des écailles, et non dans un fruit clos, comme le pin.",
+      "choix": [
+        "Une gymnosperme",
+        "Une angiosperme",
+        "Une fougère",
+        "Une mousse"
+      ],
+      "bonne_reponse": "Une gymnosperme",
+      "explication": "Gymno- = nu : graines « nues ».",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : gymnosperme"
+    },
+    {
+      "id": "B8-35",
+      "enonce": "Plante à fleurs dont la graine n'a qu'un seul cotylédon, comme le maïs.",
+      "choix": [
+        "Une monocotylédone",
+        "Une dicotylédone",
+        "Une gymnosperme",
+        "Une fougère"
+      ],
+      "bonne_reponse": "Une monocotylédone",
+      "explication": "Graminées, palmiers, bananiers sont des monocotylédones.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : monocotylédone"
+    },
+    {
+      "id": "B8-36",
+      "enonce": "Plante à fleurs dont la graine possède deux cotylédons, comme le haricot.",
+      "choix": [
+        "Une dicotylédone",
+        "Une monocotylédone",
+        "Une gymnosperme",
+        "Une algue"
+      ],
+      "bonne_reponse": "Une dicotylédone",
+      "explication": "Le haricot se sépare en deux moitiés : ses deux cotylédons.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : dicotylédone"
+    },
+    {
+      "id": "B8-37",
+      "enonce": "Plante à vaisseaux, sans fleurs ni graines, qui porte des sporanges sous ses feuilles.",
+      "choix": [
+        "Une fougère",
+        "Une mousse",
+        "Une algue",
+        "Un lichen"
+      ],
+      "bonne_reponse": "Une fougère",
+      "explication": "Elle se reproduit par des spores.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : fougère"
+    },
+    {
+      "id": "B8-38",
+      "enonce": "Petite plante sans vaisseaux, qui forme des tapis moelleux dans les forêts.",
+      "choix": [
+        "Une mousse",
+        "Une fougère",
+        "Une algue",
+        "Un lichen"
+      ],
+      "bonne_reponse": "Une mousse",
+      "explication": "Les mousses sont des bryophytes.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : mousse"
+    },
+    {
+      "id": "B8-39",
+      "enonce": "Végétal chlorophyllien aquatique, sans feuilles, ni racines, ni fleurs.",
+      "choix": [
+        "Une algue",
+        "Une mousse",
+        "Une fougère",
+        "Un champignon"
+      ],
+      "bonne_reponse": "Une algue",
+      "explication": "Exemples : le fucus, la spirogyre.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : algue"
+    },
+    {
+      "id": "B8-40",
+      "enonce": "Être vivant sans chlorophylle, formé de filaments, qui se reproduit par des spores.",
+      "choix": [
+        "Un champignon",
+        "Une algue",
+        "Une mousse",
+        "Une bactérie"
+      ],
+      "bonne_reponse": "Un champignon",
+      "explication": "Les champignons forment un règne à part.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : champignon"
+    },
+    {
+      "id": "B8-41",
+      "enonce": "Association d'une algue microscopique et d'un champignon filamenteux.",
+      "choix": [
+        "Un lichen",
+        "Une mousse",
+        "Une fougère",
+        "Un corail"
+      ],
+      "bonne_reponse": "Un lichen",
+      "explication": "On le trouve sur les rochers et les troncs d'arbres.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : lichen"
+    },
+    {
+      "id": "B8-42",
+      "enonce": "Végétal pluricellulaire qui ne forme pas de graines, comme les fougères et les mousses.",
+      "choix": [
+        "Un cryptogame",
+        "Un phanérogame",
+        "Une angiosperme",
+        "Une gymnosperme"
+      ],
+      "bonne_reponse": "Un cryptogame",
+      "explication": "Crypto- = caché : ses organes reproducteurs sont peu visibles.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : cryptogame"
+    },
+    {
+      "id": "B8-43",
+      "enonce": "Plante à graines.",
+      "choix": [
+        "Un phanérogame",
+        "Un cryptogame",
+        "Une algue",
+        "Une mousse"
+      ],
+      "bonne_reponse": "Un phanérogame",
+      "explication": "Les phanérogames regroupent angiospermes et gymnospermes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : phanérogame"
+    },
+    {
+      "id": "B8-69",
+      "enonce": "Quel caractère distingue les angiospermes des gymnospermes ?",
+      "choix": [
+        "Des graines enfermées dans un fruit",
+        "La couleur des feuilles",
+        "La taille de la plante",
+        "La présence de racines"
+      ],
+      "bonne_reponse": "Des graines enfermées dans un fruit",
+      "explication": "Angio- = vase, récipient : la graine est protégée par le fruit.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : angiosperme"
+    },
+    {
+      "id": "B8-44",
+      "enonce": "Se dit des espèces dont la femelle pond des œufs.",
+      "choix": [
+        "Ovipare",
+        "Vivipare",
+        "Herbivore",
+        "Homéotherme"
+      ],
+      "bonne_reponse": "Ovipare",
+      "explication": "Oiseaux, la plupart des reptiles, poissons et insectes.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : ovipare"
+    },
+    {
+      "id": "B8-45",
+      "enonce": "Se dit des animaux dont les petits naissent sans coquille, déjà assez développés.",
+      "choix": [
+        "Vivipare",
+        "Ovipare",
+        "Carnivore",
+        "Poïkilotherme"
+      ],
+      "bonne_reponse": "Vivipare",
+      "explication": "La plupart des mammifères sont vivipares.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : vivipare (sens 1)"
+    },
+    {
+      "id": "B8-46",
+      "enonce": "Se dit d'un animal dont la température interne varie avec celle du milieu.",
+      "choix": [
+        "Poïkilotherme",
+        "Homéotherme",
+        "Ovipare",
+        "Vivipare"
+      ],
+      "bonne_reponse": "Poïkilotherme",
+      "explication": "Reptiles, amphibiens, poissons.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : poïkilotherme"
+    },
+    {
+      "id": "B8-47",
+      "enonce": "Se dit d'un animal dont la température interne reste constante, comme les oiseaux et les mammifères.",
+      "choix": [
+        "Homéotherme",
+        "Poïkilotherme",
+        "Ovipare",
+        "Herbivore"
+      ],
+      "bonne_reponse": "Homéotherme",
+      "explication": "Homéo- = semblable ; -therme = chaleur.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : homéotherme"
+    },
+    {
+      "id": "B8-48",
+      "enonce": "Se dit d'un animal qui se nourrit d'herbes et de plantes.",
+      "choix": [
+        "Herbivore",
+        "Carnivore",
+        "Omnivore",
+        "Insectivore"
+      ],
+      "bonne_reponse": "Herbivore",
+      "explication": "Exemples : la chèvre, le bœuf, le cheval.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : herbivore"
+    },
+    {
+      "id": "B8-49",
+      "enonce": "Se dit d'un animal qui se nourrit de chair.",
+      "choix": [
+        "Carnivore",
+        "Herbivore",
+        "Omnivore",
+        "Frugivore"
+      ],
+      "bonne_reponse": "Carnivore",
+      "explication": "Exemples : le chien, le chat, le requin.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : carnivore"
+    },
+    {
+      "id": "B8-50",
+      "enonce": "Se dit d'un animal qui se nourrit d'aliments très variés, végétaux et animaux.",
+      "choix": [
+        "Omnivore",
+        "Herbivore",
+        "Carnivore",
+        "Granivore"
+      ],
+      "bonne_reponse": "Omnivore",
+      "explication": "Exemples : le porc, le rat, l'être humain.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : omnivore"
+    },
+    {
+      "id": "B8-51",
+      "enonce": "Se dit des plantes vertes, qui fabriquent elles-mêmes leur matière organique.",
+      "choix": [
+        "Autotrophe",
+        "Hétérotrophe",
+        "Omnivore",
+        "Parasite"
+      ],
+      "bonne_reponse": "Autotrophe",
+      "explication": "Elles utilisent la lumière, l'eau, le CO₂ et les sels minéraux.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : autotrophe"
+    },
+    {
+      "id": "B8-52",
+      "enonce": "Se dit d'un être vivant qui se nourrit de matières organiques venant d'autres organismes.",
+      "choix": [
+        "Hétérotrophe",
+        "Autotrophe",
+        "Chlorophyllien",
+        "Photosynthétique"
+      ],
+      "bonne_reponse": "Hétérotrophe",
+      "explication": "Animaux et champignons sont hétérotrophes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hétérotrophe"
+    },
+    {
+      "id": "B8-53",
+      "enonce": "Organe respiratoire des animaux aquatiques.",
+      "choix": [
+        "La branchie",
+        "Le poumon",
+        "La trachée",
+        "La nageoire"
+      ],
+      "bonne_reponse": "La branchie",
+      "explication": "Les poissons et les crustacés respirent par des branchies.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : branchie"
+    },
+    {
+      "id": "B8-54",
+      "enonce": "Squelette externe de certains animaux, comme la carapace des arthropodes.",
+      "choix": [
+        "L'exosquelette",
+        "L'endosquelette",
+        "La vertèbre",
+        "L'écaille"
+      ],
+      "bonne_reponse": "L'exosquelette",
+      "explication": "Exo- = dehors ; endo- = dedans.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : exosquelette"
+    },
+    {
+      "id": "B8-56",
+      "enonce": "Se dit d'un être issu du croisement de parents de variétés ou d'espèces différentes.",
+      "choix": [
+        "Hybride",
+        "Clone",
+        "Mutant",
+        "Fossile"
+      ],
+      "bonne_reponse": "Hybride",
+      "explication": "Exemple : le mulet, hybride d'un âne et d'une jument.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hybride"
+    }
+  ]
+}

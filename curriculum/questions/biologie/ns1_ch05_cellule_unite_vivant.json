@@ -1,0 +1,659 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "La cellule : unité du vivant",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "1.5",
+  "statut": "validé par l'utilisateur 2026-10-10",
+  "rejetees": [
+    "B5-42"
+  ],
+  "questions": [
+    {
+      "id": "B5-01",
+      "enonce": "Structure microscopique qui constitue tous les êtres vivants.",
+      "choix": [
+        "La cellule",
+        "Le tissu",
+        "L'organe",
+        "L'organite"
+      ],
+      "bonne_reponse": "La cellule",
+      "explication": "La cellule est l'unité de base de la structure et du fonctionnement du vivant.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : cellule (sens 4)"
+    },
+    {
+      "id": "B5-02",
+      "enonce": "Ensemble homogène de cellules qui exercent une même fonction.",
+      "choix": [
+        "Un tissu",
+        "Un organe",
+        "Un organite",
+        "Un organisme"
+      ],
+      "bonne_reponse": "Un tissu",
+      "explication": "Exemples : tissu musculaire, tissu nerveux, tissu osseux, tissu adipeux.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : tissu (sens 4)"
+    },
+    {
+      "id": "B5-03",
+      "enonce": "Partie du corps d'un être vivant, nettement délimitée, qui exerce des fonctions particulières.",
+      "choix": [
+        "Un organe",
+        "Un tissu",
+        "Une cellule",
+        "Un organite"
+      ],
+      "bonne_reponse": "Un organe",
+      "explication": "Le cœur, l'estomac, le rein sont des organes formés de plusieurs tissus.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : organe"
+    },
+    {
+      "id": "B5-04",
+      "enonce": "Chacun des éléments qui constituent une cellule, comme le noyau ou les mitochondries.",
+      "choix": [
+        "Un organite",
+        "Un organe",
+        "Un tissu",
+        "Un organisme"
+      ],
+      "bonne_reponse": "Un organite",
+      "explication": "Organite = « petit organe » de la cellule.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : organite"
+    },
+    {
+      "id": "B5-05",
+      "enonce": "Ensemble des organes qui constituent un être vivant.",
+      "choix": [
+        "Un organisme",
+        "Un tissu",
+        "Un organite",
+        "Une cellule"
+      ],
+      "bonne_reponse": "Un organisme",
+      "explication": "Un organisme peut aussi être formé d'une seule cellule.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : organisme"
+    },
+    {
+      "id": "B5-06",
+      "enonce": "Se dit d'un être vivant formé d'une seule cellule pendant presque toute sa vie.",
+      "choix": [
+        "Unicellulaire",
+        "Pluricellulaire",
+        "Multicellulaire",
+        "Végétal"
+      ],
+      "bonne_reponse": "Unicellulaire",
+      "explication": "Bactéries, levures, amibes, paramécies sont unicellulaires.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : unicellulaire"
+    },
+    {
+      "id": "B5-07",
+      "enonce": "Se dit d'un être vivant formé de plusieurs cellules organisées en tissus et en organes.",
+      "choix": [
+        "Pluricellulaire",
+        "Unicellulaire",
+        "Microscopique",
+        "Bactérien"
+      ],
+      "bonne_reponse": "Pluricellulaire",
+      "explication": "Synonyme : multicellulaire. L'être humain compte des milliers de milliards de cellules.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : pluricellulaire"
+    },
+    {
+      "id": "B5-08",
+      "enonce": "Être formé d'une seule cellule, de structure très simple, sans noyau ni organites.",
+      "choix": [
+        "Une bactérie",
+        "Une levure",
+        "Une amibe",
+        "Une paramécie"
+      ],
+      "bonne_reponse": "Une bactérie",
+      "explication": "Son matériel génétique est diffus dans le cytoplasme.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : bactérie"
+    },
+    {
+      "id": "B5-09",
+      "enonce": "Être vivant formé d'une seule cellule possédant un noyau distinct.",
+      "choix": [
+        "Un protiste",
+        "Une bactérie",
+        "Un virus",
+        "Un organe"
+      ],
+      "bonne_reponse": "Un protiste",
+      "explication": "Amibe, paramécie, euglène sont des protistes ; les bactéries n'ont pas de noyau.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : protiste"
+    },
+    {
+      "id": "B5-10",
+      "enonce": "Champignon formé d'une seule cellule, utilisé notamment en boulangerie.",
+      "choix": [
+        "La levure",
+        "L'amibe",
+        "La paramécie",
+        "L'euglène"
+      ],
+      "bonne_reponse": "La levure",
+      "explication": "La levure fait lever la pâte à pain par fermentation.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : levure"
+    },
+    {
+      "id": "B5-11",
+      "enonce": "Protozoaire des eaux et des sols humides, qui se déplace grâce à des pseudopodes.",
+      "choix": [
+        "L'amibe",
+        "La paramécie",
+        "L'euglène",
+        "La levure"
+      ],
+      "bonne_reponse": "L'amibe",
+      "explication": "Certaines amibes parasitent l'intestin de l'homme (amibiase).",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : amibe"
+    },
+    {
+      "id": "B5-12",
+      "enonce": "Grand protozoaire cilié que l'on trouve dans les eaux croupies.",
+      "choix": [
+        "La paramécie",
+        "L'amibe",
+        "L'euglène",
+        "La levure"
+      ],
+      "bonne_reponse": "La paramécie",
+      "explication": "Elle se déplace grâce aux cils qui recouvrent sa surface.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : paramécie"
+    },
+    {
+      "id": "B5-13",
+      "enonce": "Être unicellulaire chlorophyllien des eaux stagnantes, muni d'un flagelle.",
+      "choix": [
+        "L'euglène",
+        "La paramécie",
+        "L'amibe",
+        "La levure"
+      ],
+      "bonne_reponse": "L'euglène",
+      "explication": "Elle donne leur couleur verte aux eaux stagnantes.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : euglène"
+    },
+    {
+      "id": "B5-14",
+      "enonce": "Être vivant microscopique, comme une bactérie ou une levure.",
+      "choix": [
+        "Un micro-organisme",
+        "Un organe",
+        "Un organite",
+        "Un tissu"
+      ],
+      "bonne_reponse": "Un micro-organisme",
+      "explication": "On disait autrefois « microbe ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : micro-organisme"
+    },
+    {
+      "id": "B5-15",
+      "enonce": "Instrument qui fournit une image très agrandie de petits objets grâce à un système de lentilles.",
+      "choix": [
+        "Le microscope",
+        "Le télescope",
+        "Le périscope",
+        "Le thermomètre"
+      ],
+      "bonne_reponse": "Le microscope",
+      "explication": "Il existe des microscopes optiques et électroniques.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : microscope"
+    },
+    {
+      "id": "B5-16",
+      "enonce": "Unité de longueur égale à un milliardième de mètre.",
+      "choix": [
+        "Le nanomètre",
+        "Le micromètre",
+        "Le millimètre",
+        "Le centimètre"
+      ],
+      "bonne_reponse": "Le nanomètre",
+      "explication": "Symbole nm ; il sert à mesurer les organites et les molécules.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : nanomètre"
+    },
+    {
+      "id": "B5-17",
+      "enonce": "Unité de longueur égale à un millionième de mètre, adaptée à la taille des cellules.",
+      "choix": [
+        "Le micromètre",
+        "Le nanomètre",
+        "Le millimètre",
+        "Le décimètre"
+      ],
+      "bonne_reponse": "Le micromètre",
+      "explication": "Symbole µm ; 1 mm = 1 000 µm.",
+      "niveau_complexite": "Moyen",
+      "source": "Système international"
+    },
+    {
+      "id": "B5-18",
+      "enonce": "Partie d'un microscope, faite de lentilles, devant laquelle on place l'œil.",
+      "choix": [
+        "L'oculaire",
+        "L'objectif",
+        "La platine",
+        "Le condenseur"
+      ],
+      "bonne_reponse": "L'oculaire",
+      "explication": "L'objectif, lui, est placé près de la préparation.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : oculaire"
+    },
+    {
+      "id": "B5-19",
+      "enonce": "Structure des cellules observée au microscope électronique.",
+      "choix": [
+        "L'ultrastructure",
+        "La micrographie",
+        "L'histologie",
+        "La cytologie"
+      ],
+      "bonne_reponse": "L'ultrastructure",
+      "explication": "Le microscope électronique révèle les détails des organites.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : ultrastructure"
+    },
+    {
+      "id": "B5-20",
+      "enonce": "Étude de la forme et du fonctionnement des cellules.",
+      "choix": [
+        "La cytologie",
+        "L'histologie",
+        "L'écologie",
+        "La géologie"
+      ],
+      "bonne_reponse": "La cytologie",
+      "explication": "Cyto- = cellule ; histo- = tissu.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : cytologie"
+    },
+    {
+      "id": "B5-21",
+      "enonce": "Science qui étudie au microscope la structure des tissus.",
+      "choix": [
+        "L'histologie",
+        "La cytologie",
+        "L'écologie",
+        "La zoologie"
+      ],
+      "bonne_reponse": "L'histologie",
+      "explication": "Elle est utilisée en médecine pour analyser des prélèvements (biopsies).",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : histologie"
+    },
+    {
+      "id": "B5-22",
+      "enonce": "Photographie prise au microscope.",
+      "choix": [
+        "Une micrographie",
+        "Une radiographie",
+        "Une échographie",
+        "Une lithographie"
+      ],
+      "bonne_reponse": "Une micrographie",
+      "explication": "Les manuels montrent souvent des micrographies électroniques de cellules.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : micrographie"
+    },
+    {
+      "id": "B5-23",
+      "enonce": "Étalement en couche mince, sur une lame, d'une goutte de liquide ou de cellules à observer.",
+      "choix": [
+        "Un frottis",
+        "Une coupe",
+        "Une dissection",
+        "Une culture"
+      ],
+      "bonne_reponse": "Un frottis",
+      "explication": "Exemple : le frottis sanguin, pour observer les globules.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : frottis"
+    },
+    {
+      "id": "B5-24",
+      "enonce": "Cellule résultant de la fécondation, qui donne un nouvel être par divisions successives.",
+      "choix": [
+        "L'œuf",
+        "Le gamète",
+        "L'embryon",
+        "La spore"
+      ],
+      "bonne_reponse": "L'œuf",
+      "explication": "Toutes les cellules d'un organisme proviennent de cette cellule unique.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : œuf"
+    },
+    {
+      "id": "B5-25",
+      "enonce": "Nom scientifique de l'œuf fécondé, avant sa première division.",
+      "choix": [
+        "Le zygote",
+        "L'embryon",
+        "Le gamète",
+        "Le fœtus"
+      ],
+      "bonne_reponse": "Le zygote",
+      "explication": "Le zygote se divise ensuite par mitoses pour former l'embryon.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : zygote"
+    },
+    {
+      "id": "B5-26",
+      "enonce": "Apparition, au cours du développement, de types de cellules, de tissus et d'organes de plus en plus variés.",
+      "choix": [
+        "La différenciation",
+        "La digestion",
+        "La fécondation",
+        "La respiration"
+      ],
+      "bonne_reponse": "La différenciation",
+      "explication": "Grâce à elle, des cellules issues du même œuf deviennent neurones, globules, cellules musculaires…",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : différenciation"
+    },
+    {
+      "id": "B5-27",
+      "enonce": "Enveloppe souple, perméable de façon sélective, qui entoure une cellule.",
+      "choix": [
+        "La membrane",
+        "La paroi",
+        "Le noyau",
+        "Le cytoplasme"
+      ],
+      "bonne_reponse": "La membrane",
+      "explication": "Elle contrôle les échanges entre la cellule et son milieu.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : membrane (sens 2)"
+    },
+    {
+      "id": "B5-28",
+      "enonce": "Partie interne de la cellule, surtout formée d'eau et de protéines, qui contient le noyau et les organites.",
+      "choix": [
+        "Le cytoplasme",
+        "Le noyau",
+        "La membrane",
+        "La vacuole"
+      ],
+      "bonne_reponse": "Le cytoplasme",
+      "explication": "Le cytoplasme est soutenu par un réseau de filaments, le cytosquelette.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : cytoplasme"
+    },
+    {
+      "id": "B5-29",
+      "enonce": "Organite central de la cellule, séparé du reste par une membrane, qui contient les chromosomes.",
+      "choix": [
+        "Le noyau",
+        "La mitochondrie",
+        "La vacuole",
+        "Le ribosome"
+      ],
+      "bonne_reponse": "Le noyau",
+      "explication": "Les chromosomes portent l'information héréditaire.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : noyau (sens 8)"
+    },
+    {
+      "id": "B5-30",
+      "enonce": "Ensemble des sciences qui étudient les êtres vivants et les lois de la vie.",
+      "choix": [
+        "La biologie",
+        "La géologie",
+        "La chimie",
+        "La physique"
+      ],
+      "bonne_reponse": "La biologie",
+      "explication": "Bio- = vie ; -logie = étude.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : biologie"
+    },
+    {
+      "id": "B5-31",
+      "enonce": "Quel est l'ordre des niveaux d'organisation d'un être vivant, du plus grand au plus petit ?",
+      "choix": [
+        "Organe, tissu, cellule, organite",
+        "Tissu, organe, organite, cellule",
+        "Cellule, organe, tissu, organite",
+        "Organite, cellule, tissu, organe"
+      ],
+      "bonne_reponse": "Organe, tissu, cellule, organite",
+      "explication": "Organisme > organe > tissu > cellule > organite > molécule.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B5-32",
+      "enonce": "Chez un être unicellulaire, qu'est-ce qui assure toutes les fonctions vitales ?",
+      "choix": [
+        "Une seule cellule",
+        "Des organes",
+        "Des tissus",
+        "Plusieurs cellules"
+      ],
+      "bonne_reponse": "Une seule cellule",
+      "explication": "Une même cellule se nourrit, respire, excrète et se reproduit.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B5-33",
+      "enonce": "D'où proviennent toutes les cellules d'un organisme pluricellulaire ?",
+      "choix": [
+        "D'une cellule unique, l'œuf",
+        "De la nourriture",
+        "De plusieurs organismes",
+        "Du milieu extérieur"
+      ],
+      "bonne_reponse": "D'une cellule unique, l'œuf",
+      "explication": "L'œuf se divise par mitoses ; les cellules filles se différencient ensuite.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B5-34",
+      "enonce": "Qui a donné le nom de « cellule » en observant du liège au microscope, en 1665 ?",
+      "choix": [
+        "Robert Hooke",
+        "Louis Pasteur",
+        "Charles Darwin",
+        "Gregor Mendel"
+      ],
+      "bonne_reponse": "Robert Hooke",
+      "explication": "Les petites cavités du liège lui rappelaient les cellules d'un monastère.",
+      "niveau_complexite": "Facile",
+      "source": "Histoire des sciences"
+    },
+    {
+      "id": "B5-35",
+      "enonce": "Qui a observé le premier des êtres unicellulaires vivants au microscope, au XVIIe siècle ?",
+      "choix": [
+        "Antoni van Leeuwenhoek",
+        "Robert Hooke",
+        "Louis Pasteur",
+        "Claude Bernard"
+      ],
+      "bonne_reponse": "Antoni van Leeuwenhoek",
+      "explication": "Ce drapier hollandais fabriquait lui-même ses microscopes.",
+      "niveau_complexite": "Moyen",
+      "source": "Histoire des sciences"
+    },
+    {
+      "id": "B5-36",
+      "enonce": "Par qui la théorie cellulaire a-t-elle été établie au XIXe siècle ?",
+      "choix": [
+        "Schleiden et Schwann",
+        "Watson et Crick",
+        "Darwin et Wallace",
+        "Pasteur et Koch"
+      ],
+      "bonne_reponse": "Schleiden et Schwann",
+      "explication": "Schleiden (végétaux, 1838) et Schwann (animaux, 1839) ; Virchow la complète en 1855.",
+      "niveau_complexite": "Moyen",
+      "source": "Histoire des sciences"
+    },
+    {
+      "id": "B5-37",
+      "enonce": "Selon la théorie cellulaire, d'où provient toute cellule ?",
+      "choix": [
+        "D'une cellule préexistante",
+        "De la matière inerte",
+        "D'un organe",
+        "D'un tissu"
+      ],
+      "bonne_reponse": "D'une cellule préexistante",
+      "explication": "« Omnis cellula e cellula » (Virchow).",
+      "niveau_complexite": "Moyen",
+      "source": "Histoire des sciences"
+    },
+    {
+      "id": "B5-38",
+      "enonce": "Comment calcule-t-on le grossissement d'un microscope optique ?",
+      "choix": [
+        "Oculaire × objectif",
+        "Oculaire + objectif",
+        "Objectif − oculaire",
+        "Oculaire ÷ objectif"
+      ],
+      "bonne_reponse": "Oculaire × objectif",
+      "explication": "Exemple : oculaire ×10 et objectif ×40 donnent ×400.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B5-39",
+      "enonce": "Quel microscope permet d'observer les organites à l'intérieur des cellules ?",
+      "choix": [
+        "Électronique à transmission",
+        "Optique",
+        "La loupe binoculaire",
+        "Le télescope"
+      ],
+      "bonne_reponse": "Électronique à transmission",
+      "explication": "Il utilise des électrons et grossit bien plus que le microscope optique.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B5-40",
+      "enonce": "Quel type d'image donne le microscope électronique à balayage ?",
+      "choix": [
+        "La surface, en relief",
+        "L'intérieur de la cellule",
+        "Des couleurs naturelles",
+        "Des objets vivants en mouvement"
+      ],
+      "bonne_reponse": "La surface, en relief",
+      "explication": "Les électrons balaient la surface de l'objet.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B5-41",
+      "enonce": "Entre quoi place-t-on la préparation pour l'observer au microscope optique ?",
+      "choix": [
+        "Une lame et une lamelle",
+        "Deux tubes à essai",
+        "Deux boîtes de Petri",
+        "Deux béchers"
+      ],
+      "bonne_reponse": "Une lame et une lamelle",
+      "explication": "La lamelle aplatit et protège la préparation.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B5-43",
+      "enonce": "Quel matériel est classiquement observé au microscope pour voir des cellules végétales ?",
+      "choix": [
+        "L'épiderme d'oignon",
+        "Un os de poulet",
+        "Un ongle",
+        "Un cheveu"
+      ],
+      "bonne_reponse": "L'épiderme d'oignon",
+      "explication": "La fine pellicule d'oignon montre des cellules bien délimitées par leur paroi.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B5-44",
+      "enonce": "Quelle cellule est spécialisée dans la transmission des messages nerveux ?",
+      "choix": [
+        "Le neurone",
+        "Le globule rouge",
+        "La cellule musculaire",
+        "L'ovule"
+      ],
+      "bonne_reponse": "Le neurone",
+      "explication": "Sa forme allongée, avec des prolongements, est adaptée à sa fonction.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B5-45",
+      "enonce": "Quelle cellule est spécialisée dans le transport du dioxygène ?",
+      "choix": [
+        "Le globule rouge",
+        "Le neurone",
+        "La cellule musculaire",
+        "Le spermatozoïde"
+      ],
+      "bonne_reponse": "Le globule rouge",
+      "explication": "Elle est remplie d'hémoglobine et n'a pas de noyau chez les mammifères.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B5-46",
+      "enonce": "Que forment les tissus en s'associant ?",
+      "choix": [
+        "Des organes",
+        "Des cellules",
+        "Des organites",
+        "Des molécules"
+      ],
+      "bonne_reponse": "Des organes",
+      "explication": "Exemple : l'estomac associe tissu musculaire, tissu glandulaire, tissu nerveux…",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.5"
+    },
+    {
+      "id": "B5-47",
+      "enonce": "Quelle taille ont la plupart des cellules animales et végétales ?",
+      "choix": [
+        "10 à 100 micromètres",
+        "1 à 10 centimètres",
+        "1 à 10 mètres",
+        "0,1 à 1 nanomètre"
+      ],
+      "bonne_reponse": "10 à 100 micromètres",
+      "explication": "Elles sont invisibles à l'œil nu (qui distingue environ 0,1 mm).",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.5"
+    }
+  ]
+}

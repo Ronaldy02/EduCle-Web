@@ -1,0 +1,953 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Le tube digestif et la digestion",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "1.1",
+  "statut": "validé par l'utilisateur 2026-10-10",
+  "rejetees": [
+    "B2-40"
+  ],
+  "questions": [
+    {
+      "id": "B2-01",
+      "enonce": "Ensemble des transformations qui changent les aliments en nutriments dans le tube digestif.",
+      "choix": [
+        "La digestion",
+        "L'absorption",
+        "La déglutition",
+        "La mastication"
+      ],
+      "bonne_reponse": "La digestion",
+      "explication": "La digestion rend les aliments assez petits pour traverser la paroi intestinale.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : digestion"
+    },
+    {
+      "id": "B2-02",
+      "enonce": "Protéine qui accélère les réactions chimiques de l'organisme.",
+      "choix": [
+        "Une enzyme",
+        "Une hormone",
+        "Une vitamine",
+        "Un anticorps"
+      ],
+      "bonne_reponse": "Une enzyme",
+      "explication": "Les enzymes digestives (amylase, pepsine, lipase…) découpent les grosses molécules des aliments.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : enzyme"
+    },
+    {
+      "id": "B2-03",
+      "enonce": "Action de broyer les aliments avec les dents, considérée comme la première étape de la digestion.",
+      "choix": [
+        "La mastication",
+        "La déglutition",
+        "L'ingestion",
+        "L'absorption"
+      ],
+      "bonne_reponse": "La mastication",
+      "explication": "La mastication est une digestion mécanique ; elle mélange aussi les aliments à la salive.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : mastication"
+    },
+    {
+      "id": "B2-04",
+      "enonce": "Acte par lequel le bol alimentaire passe de la bouche dans l'œsophage, puis dans l'estomac.",
+      "choix": [
+        "La déglutition",
+        "La mastication",
+        "L'absorption",
+        "Le péristaltisme"
+      ],
+      "bonne_reponse": "La déglutition",
+      "explication": "Avaler = déglutir. L'épiglotte ferme alors le larynx pour éviter la « fausse route ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : déglutition"
+    },
+    {
+      "id": "B2-05",
+      "enonce": "Action d'avaler des aliments, qui les fait entrer dans le tube digestif.",
+      "choix": [
+        "L'ingestion",
+        "La digestion",
+        "L'absorption",
+        "L'excrétion"
+      ],
+      "bonne_reponse": "L'ingestion",
+      "explication": "L'ingestion est l'entrée des aliments dans le tube digestif.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : ingestion"
+    },
+    {
+      "id": "B2-06",
+      "enonce": "Liquide clair et filant, sécrété par des glandes de la bouche, qui facilite la déglutition.",
+      "choix": [
+        "La salive",
+        "La bile",
+        "Le suc gastrique",
+        "Le suc pancréatique"
+      ],
+      "bonne_reponse": "La salive",
+      "explication": "Produite par les glandes salivaires, la salive contient aussi l'amylase salivaire.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : salive"
+    },
+    {
+      "id": "B2-07",
+      "enonce": "Conduit musculaire où se croisent la voie digestive et la voie respiratoire.",
+      "choix": [
+        "Le pharynx",
+        "Le larynx",
+        "L'œsophage",
+        "La trachée"
+      ],
+      "bonne_reponse": "Le pharynx",
+      "explication": "Le pharynx (gorge) mène à la fois vers l'œsophage et vers le larynx.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : pharynx"
+    },
+    {
+      "id": "B2-08",
+      "enonce": "Partie du tube digestif allant du pharynx à l'estomac, dont les mouvements font descendre le bol alimentaire.",
+      "choix": [
+        "L'œsophage",
+        "Le duodénum",
+        "Le côlon",
+        "Le pylore"
+      ],
+      "bonne_reponse": "L'œsophage",
+      "explication": "L'œsophage ne digère pas : il transporte le bol alimentaire par péristaltisme.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : œsophage"
+    },
+    {
+      "id": "B2-09",
+      "enonce": "Partie du tube digestif située sous le diaphragme, où les aliments sont stockés, brassés et prédigérés.",
+      "choix": [
+        "L'estomac",
+        "Le duodénum",
+        "Le rectum",
+        "Le pharynx"
+      ],
+      "bonne_reponse": "L'estomac",
+      "explication": "L'estomac brasse les aliments avec le suc gastrique, acide, qui les stérilise aussi.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : estomac"
+    },
+    {
+      "id": "B2-10",
+      "enonce": "Orifice inférieur de l'estomac, qui le fait communiquer avec le duodénum.",
+      "choix": [
+        "Le pylore",
+        "Le cardia",
+        "L'anus",
+        "L'épiglotte"
+      ],
+      "bonne_reponse": "Le pylore",
+      "explication": "Le pylore (sphincter) laisse passer le chyme par petites quantités ; le cardia est l'orifice supérieur.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : pylore"
+    },
+    {
+      "id": "B2-11",
+      "enonce": "Produit de la digestion du bol alimentaire dans l'estomac, au moment où il arrive dans le duodénum.",
+      "choix": [
+        "Le chyme",
+        "Le chyle",
+        "La bile",
+        "La salive"
+      ],
+      "bonne_reponse": "Le chyme",
+      "explication": "Bol alimentaire (bouche) → chyme (sortie de l'estomac).",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : chyme"
+    },
+    {
+      "id": "B2-12",
+      "enonce": "Partie initiale de l'intestin grêle, qui fait suite au pylore.",
+      "choix": [
+        "Le duodénum",
+        "Le jéjunum",
+        "L'iléon",
+        "Le côlon"
+      ],
+      "bonne_reponse": "Le duodénum",
+      "explication": "Le duodénum reçoit la bile et le suc pancréatique.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : duodénum"
+    },
+    {
+      "id": "B2-13",
+      "enonce": "Partie de l'intestin comprise entre la fin de l'intestin grêle et le rectum, qui élabore les matières fécales.",
+      "choix": [
+        "Le côlon",
+        "Le duodénum",
+        "L'œsophage",
+        "L'iléon"
+      ],
+      "bonne_reponse": "Le côlon",
+      "explication": "Le côlon (gros intestin) réabsorbe l'eau et forme les selles.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : côlon"
+    },
+    {
+      "id": "B2-14",
+      "enonce": "Segment terminal du tube digestif, qui fait suite au côlon et s'ouvre à l'extérieur.",
+      "choix": [
+        "Le rectum",
+        "Le cæcum",
+        "Le duodénum",
+        "Le pylore"
+      ],
+      "bonne_reponse": "Le rectum",
+      "explication": "Le rectum stocke les matières fécales avant leur évacuation par l'anus.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : rectum"
+    },
+    {
+      "id": "B2-15",
+      "enonce": "Orifice extérieur du rectum, par lequel sont évacuées les matières fécales.",
+      "choix": [
+        "L'anus",
+        "Le pylore",
+        "Le cardia",
+        "Le méat"
+      ],
+      "bonne_reponse": "L'anus",
+      "explication": "L'anus est la fin du tube digestif.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : anus"
+    },
+    {
+      "id": "B2-16",
+      "enonce": "Ensemble des contractions musculaires d'un organe creux qui font progresser son contenu.",
+      "choix": [
+        "Le péristaltisme",
+        "La déglutition",
+        "La mastication",
+        "La digestion"
+      ],
+      "bonne_reponse": "Le péristaltisme",
+      "explication": "Le péristaltisme fait avancer les aliments tout le long du tube digestif.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : péristaltisme"
+    },
+    {
+      "id": "B2-17",
+      "enonce": "Chacune des petites saillies qui tapissent l'intérieur de l'intestin grêle et lui donnent un aspect velu.",
+      "choix": [
+        "Une villosité",
+        "Une papille",
+        "Une alvéole",
+        "Un sphincter"
+      ],
+      "bonne_reponse": "Une villosité",
+      "explication": "Les villosités augmentent énormément la surface d'absorption de l'intestin grêle.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : villosité"
+    },
+    {
+      "id": "B2-18",
+      "enonce": "Liquide amer, jaune d'or verdissant à l'air, sécrété par le foie, qui contribue à la digestion.",
+      "choix": [
+        "La bile",
+        "La salive",
+        "Le suc pancréatique",
+        "Le suc gastrique"
+      ],
+      "bonne_reponse": "La bile",
+      "explication": "La bile est stockée dans la vésicule biliaire puis versée dans le duodénum.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : bile"
+    },
+    {
+      "id": "B2-19",
+      "enonce": "Volumineuse glande annexe du tube digestif, aux fonctions multiples de synthèse et de transformation.",
+      "choix": [
+        "Le foie",
+        "Le pancréas",
+        "La rate",
+        "L'estomac"
+      ],
+      "bonne_reponse": "Le foie",
+      "explication": "Le foie fabrique la bile, stocke le glycogène et transforme de nombreuses substances.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : foie"
+    },
+    {
+      "id": "B2-20",
+      "enonce": "Organe glandulaire situé sous et derrière l'estomac, qui sécrète un suc digestif et l'insuline.",
+      "choix": [
+        "Le pancréas",
+        "Le foie",
+        "La rate",
+        "La vésicule biliaire"
+      ],
+      "bonne_reponse": "Le pancréas",
+      "explication": "Le pancréas est à la fois glande digestive (suc pancréatique) et glande hormonale (insuline, glucagon).",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : pancréas"
+    },
+    {
+      "id": "B2-21",
+      "enonce": "Enzyme d'origine salivaire ou pancréatique qui dégrade l'amidon en maltose.",
+      "choix": [
+        "L'amylase",
+        "La pepsine",
+        "La lipase",
+        "La trypsine"
+      ],
+      "bonne_reponse": "L'amylase",
+      "explication": "Le maltose est ensuite coupé en glucose dans l'intestin grêle.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : amylase"
+    },
+    {
+      "id": "B2-22",
+      "enonce": "Enzyme de l'estomac qui dégrade les protéines des aliments.",
+      "choix": [
+        "La pepsine",
+        "L'amylase",
+        "La lipase",
+        "La maltase"
+      ],
+      "bonne_reponse": "La pepsine",
+      "explication": "La pepsine agit en milieu très acide ; elle commence la digestion des protéines.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : pepsine"
+    },
+    {
+      "id": "B2-23",
+      "enonce": "Enzyme qui hydrolyse les lipides en libérant des acides gras.",
+      "choix": [
+        "La lipase",
+        "L'amylase",
+        "La pepsine",
+        "La maltase"
+      ],
+      "bonne_reponse": "La lipase",
+      "explication": "La lipase pancréatique agit dans l'intestin grêle, aidée par la bile.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : lipase"
+    },
+    {
+      "id": "B2-24",
+      "enonce": "Destruction d'une substance chimique par l'eau.",
+      "choix": [
+        "L'hydrolyse",
+        "L'oxydation",
+        "La fermentation",
+        "La combustion"
+      ],
+      "bonne_reponse": "L'hydrolyse",
+      "explication": "Les enzymes digestives réalisent des hydrolyses : elles coupent les molécules en fixant de l'eau.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hydrolyse"
+    },
+    {
+      "id": "B2-25",
+      "enonce": "Organe ou tissu qui sécrète une substance, puis l'excrète.",
+      "choix": [
+        "Une glande",
+        "Un muscle",
+        "Un tendon",
+        "Un nerf"
+      ],
+      "bonne_reponse": "Une glande",
+      "explication": "Glandes salivaires, gastriques, foie et pancréas sont des glandes digestives.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : glande"
+    },
+    {
+      "id": "B2-26",
+      "enonce": "Liquide organique produit par sécrétion et contenant des enzymes.",
+      "choix": [
+        "Un suc",
+        "Une hormone",
+        "Le plasma",
+        "La lymphe"
+      ],
+      "bonne_reponse": "Un suc",
+      "explication": "Suc gastrique, suc pancréatique, suc intestinal.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : suc"
+    },
+    {
+      "id": "B2-27",
+      "enonce": "Pénétration de liquides ou de substances dans un organisme vivant à travers une paroi perméable.",
+      "choix": [
+        "L'absorption",
+        "La digestion",
+        "L'excrétion",
+        "La déglutition"
+      ],
+      "bonne_reponse": "L'absorption",
+      "explication": "L'absorption intestinale fait passer les nutriments dans le sang et la lymphe.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : absorption"
+    },
+    {
+      "id": "B2-28",
+      "enonce": "Transformation par l'organisme de molécules différentes des siennes pour les rendre identiques à ses propres constituants.",
+      "choix": [
+        "L'assimilation",
+        "L'absorption",
+        "L'excrétion",
+        "La respiration"
+      ],
+      "bonne_reponse": "L'assimilation",
+      "explication": "Après l'absorption, les nutriments sont assimilés : ils servent à construire les tissus de l'organisme.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : assimilation"
+    },
+    {
+      "id": "B2-29",
+      "enonce": "Liquide riche en lipides issus de la digestion, qui circule dans les vaisseaux lymphatiques de l'intestin grêle.",
+      "choix": [
+        "Le chyle",
+        "Le chyme",
+        "La bile",
+        "La salive"
+      ],
+      "bonne_reponse": "Le chyle",
+      "explication": "Ne pas confondre : chyme (sortie de l'estomac) et chyle (lymphe chargée de lipides).",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : chyle"
+    },
+    {
+      "id": "B2-30",
+      "enonce": "Dispersion d'un liquide, sous forme de fins globules, dans un autre liquide.",
+      "choix": [
+        "Une émulsion",
+        "Une solution",
+        "Un précipité",
+        "Une hydrolyse"
+      ],
+      "bonne_reponse": "Une émulsion",
+      "explication": "La bile émulsionne les graisses, ce qui facilite l'action de la lipase.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : émulsion"
+    },
+    {
+      "id": "B2-31",
+      "enonce": "Dent aplatie et tranchante, située à l'avant de la mâchoire, qui sert à couper les aliments.",
+      "choix": [
+        "Une incisive",
+        "Une canine",
+        "Une prémolaire",
+        "Une molaire"
+      ],
+      "bonne_reponse": "Une incisive",
+      "explication": "4 incisives par mâchoire chez l'adulte.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : incisive"
+    },
+    {
+      "id": "B2-32",
+      "enonce": "Dent située entre les incisives et les prémolaires, qui peut s'allonger en croc chez certains animaux.",
+      "choix": [
+        "Une canine",
+        "Une incisive",
+        "Une prémolaire",
+        "Une molaire"
+      ],
+      "bonne_reponse": "Une canine",
+      "explication": "Les canines servent à déchirer les aliments.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : canine"
+    },
+    {
+      "id": "B2-33",
+      "enonce": "Dent située entre les canines et les molaires, qui sert à écraser les aliments.",
+      "choix": [
+        "Une prémolaire",
+        "Une incisive",
+        "Une canine",
+        "Une dent de sagesse"
+      ],
+      "bonne_reponse": "Une prémolaire",
+      "explication": "4 prémolaires par mâchoire chez l'adulte.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : prémolaire"
+    },
+    {
+      "id": "B2-34",
+      "enonce": "Opération qui consiste à séparer méthodiquement les différentes parties d'un organisme.",
+      "choix": [
+        "La dissection",
+        "La digestion",
+        "La mastication",
+        "La fermentation"
+      ],
+      "bonne_reponse": "La dissection",
+      "explication": "La dissection d'un vertébré (souris, lapin, poisson) permet d'observer le tube digestif.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : dissection"
+    },
+    {
+      "id": "B2-35",
+      "enonce": "Dans quel ordre les aliments traversent-ils le tube digestif ?",
+      "choix": [
+        "Bouche, œsophage, estomac, intestin",
+        "Bouche, estomac, œsophage, intestin",
+        "Bouche, intestin, estomac, œsophage",
+        "Œsophage, bouche, estomac, intestin"
+      ],
+      "bonne_reponse": "Bouche, œsophage, estomac, intestin",
+      "explication": "Puis gros intestin (côlon), rectum et anus.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-36",
+      "enonce": "Quelles sont, dans l'ordre, les trois parties de l'intestin grêle ?",
+      "choix": [
+        "Duodénum, jéjunum, iléon",
+        "Jéjunum, duodénum, iléon",
+        "Iléon, jéjunum, duodénum",
+        "Duodénum, iléon, jéjunum"
+      ],
+      "bonne_reponse": "Duodénum, jéjunum, iléon",
+      "explication": "L'intestin grêle mesure 6 à 7 m chez l'adulte.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : duodénum ; Programme SVT 1.1"
+    },
+    {
+      "id": "B2-37",
+      "enonce": "Où se fait l'essentiel de l'absorption des nutriments ?",
+      "choix": [
+        "Dans l'intestin grêle",
+        "Dans l'estomac",
+        "Dans le gros intestin",
+        "Dans l'œsophage"
+      ],
+      "bonne_reponse": "Dans l'intestin grêle",
+      "explication": "Grâce à ses villosités, l'intestin grêle offre une très grande surface d'échange.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-38",
+      "enonce": "Quel acide rend le suc gastrique très acide ?",
+      "choix": [
+        "L'acide chlorhydrique",
+        "L'acide citrique",
+        "L'acide lactique",
+        "L'acide acétique"
+      ],
+      "bonne_reponse": "L'acide chlorhydrique",
+      "explication": "L'acide chlorhydrique active la pepsine et tue une grande partie des microbes.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-39",
+      "enonce": "Comment la bile, qui ne contient pas d'enzyme, agit-elle sur les lipides ?",
+      "choix": [
+        "En les émulsionnant",
+        "En les hydrolysant",
+        "En les absorbant",
+        "En les oxydant"
+      ],
+      "bonne_reponse": "En les émulsionnant",
+      "explication": "Elle fractionne les graisses en fines gouttelettes : la lipase agit alors plus vite.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-41",
+      "enonce": "Dans quelle partie du tube digestif le suc pancréatique est-il déversé ?",
+      "choix": [
+        "Le duodénum",
+        "L'estomac",
+        "Le côlon",
+        "L'œsophage"
+      ],
+      "bonne_reponse": "Le duodénum",
+      "explication": "Bile et suc pancréatique arrivent ensemble dans le duodénum.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-42",
+      "enonce": "Quelle enzyme du suc pancréatique poursuit la digestion des protéines ?",
+      "choix": [
+        "La trypsine",
+        "L'amylase",
+        "La lipase",
+        "La maltase"
+      ],
+      "bonne_reponse": "La trypsine",
+      "explication": "Pepsine (estomac) puis trypsine (intestin) découpent les protéines.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-43",
+      "enonce": "Quel est le produit final de la digestion de l'amidon ?",
+      "choix": [
+        "Le glucose",
+        "Le glycérol",
+        "Les acides aminés",
+        "Les acides gras"
+      ],
+      "bonne_reponse": "Le glucose",
+      "explication": "Amidon → maltose (amylase) → glucose (maltase).",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-44",
+      "enonce": "Quels sont les produits finaux de la digestion des protides ?",
+      "choix": [
+        "Les acides aminés",
+        "Les acides gras",
+        "Le glucose",
+        "Le glycérol"
+      ],
+      "bonne_reponse": "Les acides aminés",
+      "explication": "Les acides aminés sont absorbés et passent dans le sang.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-45",
+      "enonce": "Quels sont les produits finaux de la digestion des lipides ?",
+      "choix": [
+        "Acides gras et glycérol",
+        "Glucose et fructose",
+        "Acides aminés",
+        "Maltose et lactose"
+      ],
+      "bonne_reponse": "Acides gras et glycérol",
+      "explication": "La lipase coupe les triglycérides en acides gras et glycérol.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-46",
+      "enonce": "À quelle température l'amylase salivaire agit-elle le mieux ?",
+      "choix": [
+        "Environ 37 °C",
+        "Environ 0 °C",
+        "Environ 70 °C",
+        "Environ 100 °C"
+      ],
+      "bonne_reponse": "Environ 37 °C",
+      "explication": "C'est la température du corps ; une forte chaleur détruit l'enzyme, le froid la ralentit.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-47",
+      "enonce": "Que réabsorbe surtout l'organisme dans le gros intestin ?",
+      "choix": [
+        "L'eau",
+        "Le glucose",
+        "Les acides aminés",
+        "Les lipides"
+      ],
+      "bonne_reponse": "L'eau",
+      "explication": "La réabsorption de l'eau donne leur consistance aux matières fécales.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-48",
+      "enonce": "Combien de dents compte la denture définitive d'un adulte ?",
+      "choix": [
+        "32",
+        "20",
+        "28",
+        "36"
+      ],
+      "bonne_reponse": "32",
+      "explication": "8 incisives, 4 canines, 8 prémolaires, 12 molaires (dont les dents de sagesse).",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-49",
+      "enonce": "Combien de dents compte la denture de lait d'un enfant ?",
+      "choix": [
+        "20",
+        "32",
+        "24",
+        "16"
+      ],
+      "bonne_reponse": "20",
+      "explication": "La denture de lait n'a pas de prémolaires.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-50",
+      "enonce": "Comment s'appellent les dents larges du fond de la bouche, qui broient les aliments ?",
+      "choix": [
+        "Les molaires",
+        "Les incisives",
+        "Les canines",
+        "Les prémolaires"
+      ],
+      "bonne_reponse": "Les molaires",
+      "explication": "Les molaires ont une large surface à plusieurs pointes (cuspides).",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-51",
+      "enonce": "Quelles sont les glandes annexes du tube digestif ?",
+      "choix": [
+        "Glandes salivaires, foie, pancréas",
+        "Thyroïde, hypophyse, surrénales",
+        "Reins, vessie, uretères",
+        "Cœur, poumons, rate"
+      ],
+      "bonne_reponse": "Glandes salivaires, foie, pancréas",
+      "explication": "Elles déversent leurs sécrétions dans le tube digestif par des canaux.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-52",
+      "enonce": "Que comprend la digestion mécanique ?",
+      "choix": [
+        "La mastication et le brassage",
+        "L'action des enzymes",
+        "L'absorption intestinale",
+        "L'hydrolyse des protéines"
+      ],
+      "bonne_reponse": "La mastication et le brassage",
+      "explication": "Digestion mécanique = fragmentation ; digestion chimique = action des enzymes.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-53",
+      "enonce": "Qu'augmentent les villosités intestinales ?",
+      "choix": [
+        "La surface d'absorption",
+        "La vitesse de mastication",
+        "L'acidité gastrique",
+        "La production de bile"
+      ],
+      "bonne_reponse": "La surface d'absorption",
+      "explication": "La surface d'absorption de l'intestin grêle atteint environ 200 m².",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-54",
+      "enonce": "Dans quoi passent les nutriments après l'absorption ?",
+      "choix": [
+        "Le sang et la lymphe",
+        "L'air des poumons",
+        "L'urine",
+        "La bile"
+      ],
+      "bonne_reponse": "Le sang et la lymphe",
+      "explication": "Glucose et acides aminés vont dans le sang ; une grande partie des lipides passe dans la lymphe.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B2-55",
+      "enonce": "Languette de cartilage qui ferme l'entrée du larynx au moment de la déglutition.",
+      "choix": [
+        "L'épiglotte",
+        "La luette",
+        "Le pylore",
+        "Le cardia"
+      ],
+      "bonne_reponse": "L'épiglotte",
+      "explication": "Elle empêche les aliments de passer dans les voies respiratoires (« fausse route »).",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : épiglotte"
+    },
+    {
+      "id": "B2-56",
+      "enonce": "Petit appendice charnu au fond du palais, qui ferme les fosses nasales pendant la déglutition.",
+      "choix": [
+        "La luette",
+        "L'épiglotte",
+        "La langue",
+        "Le pharynx"
+      ],
+      "bonne_reponse": "La luette",
+      "explication": "Elle empêche les aliments de remonter vers le nez.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : luette"
+    },
+    {
+      "id": "B2-57",
+      "enonce": "Zone de passage entre l'œsophage et l'estomac.",
+      "choix": [
+        "Le cardia",
+        "Le pylore",
+        "Le duodénum",
+        "Le pharynx"
+      ],
+      "bonne_reponse": "Le cardia",
+      "explication": "Cardia = entrée de l'estomac ; pylore = sortie de l'estomac.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : cardia"
+    },
+    {
+      "id": "B2-58",
+      "enonce": "Partie de l'intestin grêle comprise entre le duodénum et l'iléon.",
+      "choix": [
+        "Le jéjunum",
+        "Le cæcum",
+        "Le côlon",
+        "Le rectum"
+      ],
+      "bonne_reponse": "Le jéjunum",
+      "explication": "C'est la deuxième portion de l'intestin grêle.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : jéjunum"
+    },
+    {
+      "id": "B2-59",
+      "enonce": "Partie terminale de l'intestin grêle, qui précède le début du gros intestin.",
+      "choix": [
+        "L'iléon",
+        "Le jéjunum",
+        "Le duodénum",
+        "Le côlon"
+      ],
+      "bonne_reponse": "L'iléon",
+      "explication": "L'iléon débouche dans le cæcum.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : iléon"
+    },
+    {
+      "id": "B2-60",
+      "enonce": "Partie initiale du gros intestin, qui porte l'appendice.",
+      "choix": [
+        "Le cæcum",
+        "Le duodénum",
+        "Le rectum",
+        "L'iléon"
+      ],
+      "bonne_reponse": "Le cæcum",
+      "explication": "L'inflammation de l'appendice s'appelle l'appendicite.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : cæcum"
+    },
+    {
+      "id": "B2-61",
+      "enonce": "Sucre formé lors de la digestion incomplète de l'amidon, qui donne ensuite deux molécules de glucose.",
+      "choix": [
+        "Le maltose",
+        "Le lactose",
+        "Le saccharose",
+        "Le glycogène"
+      ],
+      "bonne_reponse": "Le maltose",
+      "explication": "Amidon → maltose (amylase) → glucose.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : maltose"
+    },
+    {
+      "id": "B2-62",
+      "enonce": "Enzyme du suc intestinal qui achève la digestion de l'amidon en libérant du glucose.",
+      "choix": [
+        "La maltase",
+        "L'amylase",
+        "La trypsine",
+        "La pepsine"
+      ],
+      "bonne_reponse": "La maltase",
+      "explication": "L'amylase s'arrête au maltose ; la maltase le coupe en deux glucoses.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : maltase"
+    },
+    {
+      "id": "B2-63",
+      "enonce": "Vaisseaux lymphatiques des villosités intestinales, qui emportent les lipides absorbés.",
+      "choix": [
+        "Les chylifères",
+        "Les capillaires sanguins",
+        "Les canaux biliaires",
+        "Les uretères"
+      ],
+      "bonne_reponse": "Les chylifères",
+      "explication": "Ils transportent le chyle vers la circulation lymphatique.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : chylifère"
+    },
+    {
+      "id": "B2-64",
+      "enonce": "Rareté ou difficulté de l'évacuation des matières fécales.",
+      "choix": [
+        "La constipation",
+        "La diarrhée",
+        "La colique",
+        "L'indigestion"
+      ],
+      "bonne_reponse": "La constipation",
+      "explication": "Les fibres alimentaires et une bonne hydratation aident à la prévenir.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : constipation"
+    },
+    {
+      "id": "B2-65",
+      "enonce": "Émission trop fréquente de selles liquides, due à une mauvaise réabsorption de l'eau par l'intestin.",
+      "choix": [
+        "La diarrhée",
+        "La constipation",
+        "La déshydratation",
+        "La polyurie"
+      ],
+      "bonne_reponse": "La diarrhée",
+      "explication": "Une diarrhée importante peut entraîner une déshydratation, surtout chez l'enfant.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : diarrhée"
+    },
+    {
+      "id": "B2-66",
+      "enonce": "Résidus de la digestion non absorbés, rejetés à la fin du transit digestif.",
+      "choix": [
+        "Les fèces",
+        "Le chyme",
+        "Le chyle",
+        "Le bol alimentaire"
+      ],
+      "bonne_reponse": "Les fèces",
+      "explication": "On dit aussi selles ou excréments.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : fèces"
+    },
+    {
+      "id": "B2-67",
+      "enonce": "Membrane qui tapisse l'intérieur du tube digestif, de la bouche au rectum.",
+      "choix": [
+        "La muqueuse",
+        "La peau",
+        "L'émail",
+        "Le cartilage"
+      ],
+      "bonne_reponse": "La muqueuse",
+      "explication": "La muqueuse de l'estomac et de l'intestin contient de nombreuses glandes digestives.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : muqueuse"
+    },
+    {
+      "id": "B2-68",
+      "enonce": "Qui a rapport à l'estomac.",
+      "choix": [
+        "Gastrique",
+        "Biliaire",
+        "Rénal",
+        "Pancréatique"
+      ],
+      "bonne_reponse": "Gastrique",
+      "explication": "Exemple : le suc gastrique.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : gastrique"
+    }
+  ]
+}

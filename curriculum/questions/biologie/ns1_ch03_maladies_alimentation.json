@@ -1,0 +1,549 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Maladies liées à l'alimentation",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "1.1",
+  "statut": "validé par l'utilisateur 2026-10-10",
+  "rejetees": [
+    "B3-27",
+    "B3-33",
+    "B3-34"
+  ],
+  "questions": [
+    {
+      "id": "B3-01",
+      "enonce": "Taux de glucose dans le sang.",
+      "choix": [
+        "La glycémie",
+        "La glycosurie",
+        "La lipémie",
+        "L'urémie"
+      ],
+      "bonne_reponse": "La glycémie",
+      "explication": "Chez une personne en bonne santé, il reste proche de 1 g/L.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : glycémie"
+    },
+    {
+      "id": "B3-02",
+      "enonce": "Élévation anormale du taux de glucose dans le sang.",
+      "choix": [
+        "L'hyperglycémie",
+        "L'hypoglycémie",
+        "La glycosurie",
+        "La polyurie"
+      ],
+      "bonne_reponse": "L'hyperglycémie",
+      "explication": "Le préfixe hyper- signifie « au-dessus » ; sa cause pathologique la plus fréquente est le diabète sucré.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : hyperglycémie"
+    },
+    {
+      "id": "B3-03",
+      "enonce": "Diminution anormale et importante du taux de glucose dans le sang.",
+      "choix": [
+        "L'hypoglycémie",
+        "L'hyperglycémie",
+        "La glycosurie",
+        "La polydipsie"
+      ],
+      "bonne_reponse": "L'hypoglycémie",
+      "explication": "Le préfixe hypo- signifie « au-dessous » ; elle provoque malaise, sueurs, tremblements.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : hypoglycémie"
+    },
+    {
+      "id": "B3-04",
+      "enonce": "Présence de glucose dans l'urine, l'un des signes du diabète.",
+      "choix": [
+        "La glycosurie",
+        "La glycémie",
+        "La polyurie",
+        "La polydipsie"
+      ],
+      "bonne_reponse": "La glycosurie",
+      "explication": "Normalement, l'urine ne contient pas de glucose.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : glycosurie"
+    },
+    {
+      "id": "B3-05",
+      "enonce": "Hormone sécrétée par le pancréas qui diminue le taux de glucose dans le sang.",
+      "choix": [
+        "L'insuline",
+        "Le glucagon",
+        "L'adrénaline",
+        "La thyroxine"
+      ],
+      "bonne_reponse": "L'insuline",
+      "explication": "Son insuffisance provoque le diabète.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : insuline"
+    },
+    {
+      "id": "B3-06",
+      "enonce": "Hormone sécrétée par le pancréas qui augmente le taux de glucose dans le sang.",
+      "choix": [
+        "Le glucagon",
+        "L'insuline",
+        "La pepsine",
+        "La thyroxine"
+      ],
+      "bonne_reponse": "Le glucagon",
+      "explication": "Insuline et glucagon agissent en sens contraire pour régler la glycémie.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : glucagon"
+    },
+    {
+      "id": "B3-07",
+      "enonce": "Affection chronique où un excès de sucre dans le sang entraîne la présence de sucre dans les urines.",
+      "choix": [
+        "Le diabète sucré",
+        "L'obésité",
+        "L'anorexie",
+        "L'anémie"
+      ],
+      "bonne_reponse": "Le diabète sucré",
+      "explication": "Hyperglycémie → glycosurie : ce sont les deux signes biologiques du diabète sucré.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : diabète sucré"
+    },
+    {
+      "id": "B3-08",
+      "enonce": "Besoin exagéré de boire, surtout au cours d'un diabète.",
+      "choix": [
+        "La polydipsie",
+        "La polyurie",
+        "La boulimie",
+        "La glycosurie"
+      ],
+      "bonne_reponse": "La polydipsie",
+      "explication": "Poly- = beaucoup ; -dipsie = soif.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : polydipsie"
+    },
+    {
+      "id": "B3-09",
+      "enonce": "Augmentation anormale de la quantité d'urine émise en 24 heures.",
+      "choix": [
+        "La polyurie",
+        "La polydipsie",
+        "La glycosurie",
+        "La glycémie"
+      ],
+      "bonne_reponse": "La polyurie",
+      "explication": "Au-dessus de 3 litres par jour ; c'est un signe fréquent du diabète.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : polyurie"
+    },
+    {
+      "id": "B3-10",
+      "enonce": "Diabète sucré passager qui survient pendant la grossesse.",
+      "choix": [
+        "Le diabète gestationnel",
+        "Le diabète de type 1",
+        "Le diabète insipide",
+        "Le diabète rénal"
+      ],
+      "bonne_reponse": "Le diabète gestationnel",
+      "explication": "Il disparaît en général après l'accouchement mais doit être surveillé.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : diabète"
+    },
+    {
+      "id": "B3-11",
+      "enonce": "Diminution ou arrêt de l'alimentation, par perte d'appétit ou refus de se nourrir.",
+      "choix": [
+        "L'anorexie",
+        "La boulimie",
+        "L'obésité",
+        "La gourmandise"
+      ],
+      "bonne_reponse": "L'anorexie",
+      "explication": "L'anorexie mentale est la forme où la personne refuse de manger par peur de grossir.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : anorexie"
+    },
+    {
+      "id": "B3-12",
+      "enonce": "Trouble du comportement alimentaire : besoin incontrôlable de manger une grande quantité de nourriture.",
+      "choix": [
+        "La boulimie",
+        "L'anorexie",
+        "La dénutrition",
+        "Le diabète"
+      ],
+      "bonne_reponse": "La boulimie",
+      "explication": "Les crises sont souvent suivies de culpabilité et parfois de vomissements provoqués.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : boulimie"
+    },
+    {
+      "id": "B3-13",
+      "enonce": "Excès de poids dû à l'augmentation de la masse de graisse du corps.",
+      "choix": [
+        "L'obésité",
+        "La boulimie",
+        "L'œdème",
+        "Le marasme"
+      ],
+      "bonne_reponse": "L'obésité",
+      "explication": "Elle se définit par un IMC de 30 ou plus.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : obésité"
+    },
+    {
+      "id": "B3-14",
+      "enonce": "État pathologique où les besoins en énergie ou en protéines de l'organisme ne sont pas couverts.",
+      "choix": [
+        "La dénutrition",
+        "L'obésité",
+        "L'hyperglycémie",
+        "La boulimie"
+      ],
+      "bonne_reponse": "La dénutrition",
+      "explication": "Elle peut accompagner l'anorexie ou une maladie grave.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : dénutrition"
+    },
+    {
+      "id": "B3-15",
+      "enonce": "Ensemble des moyens mis en œuvre pour empêcher l'apparition ou l'aggravation des maladies.",
+      "choix": [
+        "La prévention",
+        "Le traitement",
+        "Le diagnostic",
+        "La guérison"
+      ],
+      "bonne_reponse": "La prévention",
+      "explication": "Alimentation équilibrée et activité physique sont les bases de la prévention de ces maladies.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : prévention"
+    },
+    {
+      "id": "B3-16",
+      "enonce": "Augmentation anormale de la pression à l'intérieur d'un vaisseau sanguin.",
+      "choix": [
+        "L'hypertension",
+        "L'hypotension",
+        "L'hyperglycémie",
+        "L'hémorragie"
+      ],
+      "bonne_reponse": "L'hypertension",
+      "explication": "L'excès de sel et l'obésité favorisent l'hypertension artérielle.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hypertension"
+    },
+    {
+      "id": "B3-17",
+      "enonce": "Mode de vie d'une personne qui bouge peu et reste le plus souvent assise.",
+      "choix": [
+        "La sédentarité",
+        "La boulimie",
+        "La dénutrition",
+        "L'anorexie"
+      ],
+      "bonne_reponse": "La sédentarité",
+      "explication": "Le manque d'activité physique favorise l'obésité et le diabète de type 2.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : sédentarité"
+    },
+    {
+      "id": "B3-18",
+      "enonce": "Quel organe sécrète l'insuline ?",
+      "choix": [
+        "Le pancréas",
+        "Le foie",
+        "L'estomac",
+        "Le rein"
+      ],
+      "bonne_reponse": "Le pancréas",
+      "explication": "Les cellules des îlots de Langerhans du pancréas fabriquent l'insuline.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-19",
+      "enonce": "Quelle est la glycémie à jeun d'une personne en bonne santé ?",
+      "choix": [
+        "0,7 à 1,1 g/L",
+        "2 à 3 g/L",
+        "0,1 à 0,2 g/L",
+        "5 à 6 g/L"
+      ],
+      "bonne_reponse": "0,7 à 1,1 g/L",
+      "explication": "La glycémie est maintenue autour de 1 g/L par l'insuline et le glucagon.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-20",
+      "enonce": "Selon l'OMS, à partir de quelle glycémie à jeun parle-t-on de diabète ?",
+      "choix": [
+        "1,26 g/L",
+        "0,80 g/L",
+        "0,50 g/L",
+        "3,00 g/L"
+      ],
+      "bonne_reponse": "1,26 g/L",
+      "explication": "Seuil OMS : 1,26 g/L (7 mmol/L), confirmé par deux mesures.",
+      "niveau_complexite": "Moyen",
+      "source": "Norme OMS"
+    },
+    {
+      "id": "B3-21",
+      "enonce": "Quelle est la cause du diabète de type 1 ?",
+      "choix": [
+        "L'arrêt de la production d'insuline",
+        "Un excès d'insuline",
+        "Un manque de vitamine C",
+        "Une infection intestinale"
+      ],
+      "bonne_reponse": "L'arrêt de la production d'insuline",
+      "explication": "Le pancréas ne fabrique plus d'insuline : le traitement repose sur l'insuline.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-22",
+      "enonce": "Chez qui le diabète de type 1 apparaît-il le plus souvent ?",
+      "choix": [
+        "Chez l'enfant ou le jeune adulte",
+        "Après 70 ans uniquement",
+        "Chez la femme enceinte",
+        "Chez les obèses seulement"
+      ],
+      "bonne_reponse": "Chez l'enfant ou le jeune adulte",
+      "explication": "On l'appelait autrefois « diabète juvénile ».",
+      "niveau_complexite": "Difficile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-23",
+      "enonce": "Qu'est-ce qui favorise le diabète de type 2, le plus fréquent ?",
+      "choix": [
+        "L'obésité et la sédentarité",
+        "Le manque de vitamine D",
+        "L'excès d'eau bue",
+        "Une carence en fer"
+      ],
+      "bonne_reponse": "L'obésité et la sédentarité",
+      "explication": "Il apparaît surtout chez l'adulte ; une bonne hygiène de vie permet souvent de le prévenir.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-24",
+      "enonce": "Quels sont des signes fréquents du diabète ?",
+      "choix": [
+        "Soif intense, urines abondantes",
+        "Fièvre et toux",
+        "Saignement des gencives",
+        "Déformation des os"
+      ],
+      "bonne_reponse": "Soif intense, urines abondantes",
+      "explication": "Polydipsie et polyurie, souvent avec fatigue et amaigrissement.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-25",
+      "enonce": "Sur quoi repose le traitement du diabète de type 1 ?",
+      "choix": [
+        "Des injections d'insuline",
+        "Des antibiotiques",
+        "Des vitamines",
+        "Un vaccin"
+      ],
+      "bonne_reponse": "Des injections d'insuline",
+      "explication": "L'insuline remplace celle que le pancréas ne produit plus.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-26",
+      "enonce": "Que permet l'insuline au glucose sanguin ?",
+      "choix": [
+        "D'entrer dans les cellules",
+        "De passer dans l'urine",
+        "D'être digéré",
+        "De devenir une protéine"
+      ],
+      "bonne_reponse": "D'entrer dans les cellules",
+      "explication": "Sans insuline, le glucose reste dans le sang : la glycémie monte.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-28",
+      "enonce": "Que doit faire rapidement une personne diabétique en hypoglycémie ?",
+      "choix": [
+        "Prendre du sucre",
+        "Se faire une injection d'insuline",
+        "Boire de l'eau salée",
+        "Faire du sport"
+      ],
+      "bonne_reponse": "Prendre du sucre",
+      "explication": "Le sucre fait remonter la glycémie ; l'insuline l'aggraverait.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-29",
+      "enonce": "Quel examen simple de l'urine peut révéler un diabète ?",
+      "choix": [
+        "La recherche de glucose",
+        "La recherche de calcium",
+        "La mesure de l'acidité",
+        "La recherche de fer"
+      ],
+      "bonne_reponse": "La recherche de glucose",
+      "explication": "La glycosurie se recherche avec une bandelette réactive.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-30",
+      "enonce": "Quelle maladie liée à l'alimentation est un trouble du comportement alimentaire ?",
+      "choix": [
+        "L'anorexie mentale",
+        "Le diabète de type 1",
+        "Le scorbut",
+        "Le goitre"
+      ],
+      "bonne_reponse": "L'anorexie mentale",
+      "explication": "Anorexie mentale et boulimie sont des troubles du comportement alimentaire.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-31",
+      "enonce": "Qui l'anorexie mentale touche-t-elle surtout ?",
+      "choix": [
+        "Les adolescentes",
+        "Les personnes âgées",
+        "Les nourrissons",
+        "Les hommes de 50 ans"
+      ],
+      "bonne_reponse": "Les adolescentes",
+      "explication": "Elle débute le plus souvent à l'adolescence, surtout chez les filles.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-32",
+      "enonce": "Qu'est-ce qui caractérise notamment l'anorexie mentale ?",
+      "choix": [
+        "Une peur intense de grossir",
+        "Une soif intense",
+        "Un excès d'insuline",
+        "Un manque de vitamine C"
+      ],
+      "bonne_reponse": "Une peur intense de grossir",
+      "explication": "La personne se trouve trop grosse malgré sa maigreur.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-35",
+      "enonce": "De quelles maladies l'obésité augmente-t-elle le risque ?",
+      "choix": [
+        "Diabète et maladies cardiovasculaires",
+        "Scorbut et rachitisme",
+        "Goitre et anémie",
+        "Béribéri et kwashiorkor"
+      ],
+      "bonne_reponse": "Diabète et maladies cardiovasculaires",
+      "explication": "Elle prédispose aussi à l'arthrose du genou et à l'hypertension.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : obésité"
+    },
+    {
+      "id": "B3-36",
+      "enonce": "Dans quel tissu l'organisme stocke-t-il les graisses ?",
+      "choix": [
+        "Le tissu adipeux",
+        "Le tissu osseux",
+        "Le tissu nerveux",
+        "Le tissu musculaire"
+      ],
+      "bonne_reponse": "Le tissu adipeux",
+      "explication": "Le tissu adipeux grossit quand les apports énergétiques dépassent les dépenses.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : adipeux"
+    },
+    {
+      "id": "B3-37",
+      "enonce": "Quelle habitude aide à prévenir l'obésité ?",
+      "choix": [
+        "Pratiquer une activité physique",
+        "Manger plus de sucreries",
+        "Sauter le petit-déjeuner",
+        "Dormir moins"
+      ],
+      "bonne_reponse": "Pratiquer une activité physique",
+      "explication": "Activité physique régulière et ration équilibrée sont les deux piliers de la prévention.",
+      "niveau_complexite": "Facile",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-38",
+      "enonce": "Que faut-il surtout limiter pour prévenir le diabète de type 2 ?",
+      "choix": [
+        "Les boissons sucrées",
+        "Les légumes verts",
+        "L'eau",
+        "Les fruits frais"
+      ],
+      "bonne_reponse": "Les boissons sucrées",
+      "explication": "Les sucres rapides en excès font monter la glycémie et favorisent l'obésité.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme SVT 1.1"
+    },
+    {
+      "id": "B3-39",
+      "enonce": "Petits amas de cellules du pancréas qui sécrètent l'insuline.",
+      "choix": [
+        "Les îlots de Langerhans",
+        "Les néphrons",
+        "Les villosités",
+        "Les alvéoles"
+      ],
+      "bonne_reponse": "Les îlots de Langerhans",
+      "explication": "C'est la partie hormonale (endocrine) du pancréas.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : Langerhans (îlots de)"
+    },
+    {
+      "id": "B3-40",
+      "enonce": "Substance sécrétée par une glande, transportée par le sang, qui agit sur des organes cibles.",
+      "choix": [
+        "Une hormone",
+        "Une enzyme",
+        "Une vitamine",
+        "Un nutriment"
+      ],
+      "bonne_reponse": "Une hormone",
+      "explication": "L'insuline et le glucagon sont des hormones.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hormone"
+    },
+    {
+      "id": "B3-41",
+      "enonce": "Spécialiste des troubles et des maladies de la nutrition.",
+      "choix": [
+        "Le nutritionniste",
+        "Le néphrologue",
+        "Le cardiologue",
+        "Le dermatologue"
+      ],
+      "bonne_reponse": "Le nutritionniste",
+      "explication": "Il prend en charge l'obésité, la dénutrition, le diabète…",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : nutritionniste"
+    }
+  ]
+}
