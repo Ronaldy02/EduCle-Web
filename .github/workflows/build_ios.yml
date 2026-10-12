@@ -25,7 +25,27 @@ jobs:
         run: flutter pub get
 
       - name: Build iOS sans signature
-        run: flutter build ios --release --no-codesign
+        run: |
+          flutter pub get
+          flutter build ios --release --no-codesign 2>&1 | tee /tmp/flutter_build.log || true
+          # Si flutter --no-codesign échoue (team requis), passer par xcodebuild direct
+          if [ ! -d "build/ios/iphoneos/Runner.app" ]; then
+            echo "Fallback xcodebuild..."
+            xcodebuild \
+              -workspace ios/Runner.xcworkspace \
+              -scheme Runner \
+              -configuration Release \
+              -sdk iphoneos \
+              CODE_SIGNING_ALLOWED=NO \
+              CODE_SIGNING_REQUIRED=NO \
+              CODE_SIGN_IDENTITY="" \
+              DEVELOPMENT_TEAM="" \
+              ARCHS="arm64" \
+              -derivedDataPath /tmp/ios_dd \
+              build
+            mkdir -p build/ios/iphoneos
+            cp -r /tmp/ios_dd/Build/Products/Release-iphoneos/Runner.app build/ios/iphoneos/
+          fi
 
       - name: Créer le fichier IPA
         run: |
