@@ -1337,6 +1337,6 @@ SELECT s.fichier, COUNT(*) AS total,
   SUM((EXISTS (SELECT 1 FROM questions q WHERE q.enonce = s.enonce))::int) AS en_prod,
   SUM((EXISTS (SELECT 1 FROM questions q WHERE q.enonce = s.enonce AND q.bonne_reponse = s.bonne))::int) AS version_raccourcie,
   SUM((EXISTS (SELECT 1 FROM questions q WHERE q.enonce = s.enonce AND q.bonne_reponse = s.bonne_orig))::int) AS version_originale,
-  SUM((SELECT COUNT(*) FROM questions q WHERE q.enonce = s.enonce) > 1)::int AS doublons
+  SUM(((SELECT COUNT(*) FROM questions q WHERE q.enonce = s.enonce) > 1)::int) AS doublons
 FROM s GROUP BY s.fichier ORDER BY s.fichier;
 ROLLBACK;
