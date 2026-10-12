@@ -1,0 +1,655 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Évolution et sélection naturelle",
+  "niveaux": [
+    "NS1",
+    "NS2"
+  ],
+  "unite_programme": "1.6 + 2.6",
+  "statut": "validé par l'utilisateur 2026-10-12 (B10-28 à revalider)",
+  "rejetees": [
+    "Q1614",
+    "B10-26",
+    "B10-34"
+  ],
+  "base_rejetees_a_supprimer": [
+    {
+      "id": "Q1614",
+      "enonce": "Pourquoi les fossiles sont-ils des preuves de l'évolution ?"
+    }
+  ],
+  "questions": [
+    {
+      "id": "B10-01",
+      "enonce": "Ensemble des changements subis au cours des temps géologiques par les lignées animales et végétales, ayant eu pour résultat l'apparition de formes nouvelles.",
+      "choix": [
+        "L'évolution",
+        "La mutation",
+        "La sélection",
+        "L'adaptation"
+      ],
+      "bonne_reponse": "L'évolution",
+      "explication": "Toutes les espèces actuelles descendent d'espèces plus anciennes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : évolution (sens 5)"
+    },
+    {
+      "id": "B10-09",
+      "enonce": "Débris ou empreinte de plante ou d'animal, ensevelis dans des couches rocheuses anciennes, et qui s'y sont conservés.",
+      "choix": [
+        "Un fossile",
+        "Un minéral",
+        "Un sédiment",
+        "Un cristal"
+      ],
+      "bonne_reponse": "Un fossile",
+      "explication": "Coquilles, os, empreintes de feuilles ou de pas…",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : fossile"
+    },
+    {
+      "id": "B10-10",
+      "enonce": "Science qui étudie les êtres vivants ayant peuplé la Terre au cours des temps géologiques, principalement à partir des fossiles.",
+      "choix": [
+        "La paléontologie",
+        "L'archéologie",
+        "La géologie",
+        "L'écologie"
+      ],
+      "bonne_reponse": "La paléontologie",
+      "explication": "L'archéologie, elle, étudie les traces laissées par les sociétés humaines.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : paléontologie"
+    },
+    {
+      "id": "Q1701",
+      "enonce": "Quelles sont les preuves moléculaires d'une origine commune des espèces ?",
+      "choix": [
+        "Des séquences d'ADN partagées",
+        "L'absence de ressemblances",
+        "Les différences de taille",
+        "L'absence de fossiles"
+      ],
+      "bonne_reponse": "Des séquences d'ADN partagées",
+      "explication": "Plus deux espèces sont apparentées, plus leurs séquences d'ADN et de protéines se ressemblent.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1701",
+      "ancien_enonce": "Quelles sont les preuves moléculaires d'une origine commune des espèces ?"
+    },
+    {
+      "id": "Q1704",
+      "enonce": "Se dit d'organes qui ont la même structure fondamentale, la même origine embryonnaire et les mêmes connexions, mais dont la fonction peut être différente.",
+      "choix": [
+        "Homologues",
+        "Analogues",
+        "Vestigiaux",
+        "Convergents"
+      ],
+      "bonne_reponse": "Homologues",
+      "explication": "Exemple : le bras humain, l'aile de la chauve-souris et la nageoire du phoque. Ils révèlent un ancêtre commun.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1704 (modifiée) — Larousse : homologue (sens 2)",
+      "ancien_enonce": "Qu'est-ce qui caractérise des organes homologues ?"
+    },
+    {
+      "id": "B10-13",
+      "enonce": "Se dit d'organes très différents par leur origine, mais qui se ressemblent par leur forme et leur fonction, comme l'aile de l'oiseau et celle de l'insecte.",
+      "choix": [
+        "Analogues",
+        "Homologues",
+        "Vestigiaux",
+        "Héréditaires"
+      ],
+      "bonne_reponse": "Analogues",
+      "explication": "Leur ressemblance ne vient pas d'un ancêtre commun mais d'une convergence.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : analogue"
+    },
+    {
+      "id": "B10-14",
+      "enonce": "Ressemblance acquise entre des êtres vivants de même milieu ou de même mode de vie, alors que leurs ancêtres étaient très différents.",
+      "choix": [
+        "La convergence",
+        "La coévolution",
+        "La divergence",
+        "L'homologie"
+      ],
+      "bonne_reponse": "La convergence",
+      "explication": "Exemple : la forme fuselée du requin (poisson) et du dauphin (mammifère).",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : convergence (sens 4)"
+    },
+    {
+      "id": "B10-32",
+      "enonce": "Quel est le plus proche parent vivant de l'espèce humaine ?",
+      "choix": [
+        "Le chimpanzé",
+        "Le gorille",
+        "L'orang-outan",
+        "Le babouin"
+      ],
+      "bonne_reponse": "Le chimpanzé",
+      "explication": "Avec le bonobo, il partage environ 98 % de notre ADN et un ancêtre commun récent.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 1.6 / 2.6"
+    },
+    {
+      "id": "B10-16",
+      "enonce": "Doctrine selon laquelle les espèces vivantes ne se transforment pas au cours des temps.",
+      "choix": [
+        "Le fixisme",
+        "Le transformisme",
+        "Le lamarckisme",
+        "Le néodarwinisme"
+      ],
+      "bonne_reponse": "Le fixisme",
+      "explication": "Elle s'oppose à l'évolutionnisme et a été abandonnée.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : fixisme"
+    },
+    {
+      "id": "B10-20",
+      "enonce": "Théorie selon laquelle chaque espèce serait apparue brusquement, sans ancêtres, par la volonté divine.",
+      "choix": [
+        "Le créationnisme",
+        "Le transformisme",
+        "Le darwinisme",
+        "Le néodarwinisme"
+      ],
+      "bonne_reponse": "Le créationnisme",
+      "explication": "Cette doctrine religieuse est abandonnée par la communauté scientifique.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : créationnisme"
+    },
+    {
+      "id": "B10-17",
+      "enonce": "Doctrine suivant laquelle les espèces animales et végétales se modifient et dérivent les unes des autres par filiation.",
+      "choix": [
+        "Le transformisme",
+        "Le fixisme",
+        "Le créationnisme",
+        "Le vitalisme"
+      ],
+      "bonne_reponse": "Le transformisme",
+      "explication": "Elle s'oppose au fixisme.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : transformisme (reformulé)"
+    },
+    {
+      "id": "B10-18",
+      "enonce": "Théorie de 1809 qui explique l'évolution des espèces par l'hérédité des caractères acquis.",
+      "choix": [
+        "Le lamarckisme",
+        "Le darwinisme",
+        "Le fixisme",
+        "Le créationnisme"
+      ],
+      "bonne_reponse": "Le lamarckisme",
+      "explication": "Exposée par Lamarck dans sa Philosophie zoologique.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : lamarckisme"
+    },
+    {
+      "id": "Q1698",
+      "enonce": "Qu'est-ce qui distingue la théorie de Lamarck de celle de Darwin ?",
+      "choix": [
+        "L'hérédité des caractères acquis",
+        "Rien, elles sont identiques",
+        "Lamarck vient après Darwin",
+        "Lamarck n'a pas parlé d'évolution"
+      ],
+      "bonne_reponse": "L'hérédité des caractères acquis",
+      "explication": "Lamarck : la girafe allonge son cou à force de l'étirer et transmet ce caractère. Cette idée a été réfutée.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1698",
+      "ancien_enonce": "Qu'est-ce qui distingue la théorie de Lamarck de celle de Darwin ?"
+    },
+    {
+      "id": "B10-19",
+      "enonce": "Doctrine scientifique exposée en 1858, qui démontre le fait de l'évolution et explique le renouvellement des faunes et des flores au cours des ères géologiques.",
+      "choix": [
+        "Le darwinisme",
+        "Le lamarckisme",
+        "Le fixisme",
+        "Le créationnisme"
+      ],
+      "bonne_reponse": "Le darwinisme",
+      "explication": "Elle repose sur la variation, l'hérédité et la sélection naturelle.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : darwinisme"
+    },
+    {
+      "id": "Q1601",
+      "enonce": "Quel naturaliste a proposé la théorie de l'évolution par sélection naturelle ?",
+      "choix": [
+        "Charles Darwin",
+        "Jean-Baptiste Lamarck",
+        "Gregor Mendel",
+        "Louis Pasteur"
+      ],
+      "bonne_reponse": "Charles Darwin",
+      "explication": "Il l'a exposée dans L'Origine des espèces (1859).",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1601 (modifiée)",
+      "ancien_enonce": "La théorie de l'évolution par sélection naturelle a été proposée par :"
+    },
+    {
+      "id": "B10-23",
+      "enonce": "Quel livre Charles Darwin a-t-il publié en 1859 ?",
+      "choix": [
+        "L'Origine des espèces",
+        "Philosophie zoologique",
+        "Systema Naturae",
+        "Le Capital"
+      ],
+      "bonne_reponse": "L'Origine des espèces",
+      "explication": "Il y expose la théorie de l'évolution par sélection naturelle.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 1.6 / 2.6"
+    },
+    {
+      "id": "B10-35",
+      "enonce": "Quels oiseaux des îles Galápagos ont inspiré Darwin ?",
+      "choix": [
+        "Les pinsons",
+        "Les flamants",
+        "Les pélicans",
+        "Les colibris"
+      ],
+      "bonne_reponse": "Les pinsons",
+      "explication": "Leurs becs, différents d'une île à l'autre, sont adaptés à leur nourriture.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 1.6 / 2.6"
+    },
+    {
+      "id": "Q1697",
+      "enonce": "Que dit la théorie de l'évolution par sélection naturelle de Darwin ?",
+      "choix": [
+        "Les mieux adaptés se reproduisent plus",
+        "Les espèces sont immuables",
+        "L'évolution va vers la complexité",
+        "Les caractères acquis se transmettent"
+      ],
+      "bonne_reponse": "Les mieux adaptés se reproduisent plus",
+      "explication": "Variation, hérédité et sélection naturelle expliquent l'évolution (1859).",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1697",
+      "ancien_enonce": "Que dit la théorie de l'évolution par sélection naturelle de Darwin ?"
+    },
+    {
+      "id": "Q1703",
+      "enonce": "Théorie explicative de l'évolution, dite « théorie synthétique », qui retient les mutations génétiques et la sélection naturelle comme facteurs d'apparition de nouvelles espèces.",
+      "choix": [
+        "Le néodarwinisme",
+        "Le lamarckisme",
+        "Le fixisme",
+        "Le créationnisme"
+      ],
+      "bonne_reponse": "Le néodarwinisme",
+      "explication": "Elle unit, dans les années 1930-1940, les idées de Darwin et la génétique de Mendel.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1703 (modifiée) — Larousse : néodarwinisme",
+      "ancien_enonce": "Qu'est-ce que la théorie synthétique de l'évolution (néo-darwinisme) ?"
+    },
+    {
+      "id": "B10-06",
+      "enonce": "Différence qu'un individu animal ou végétal présente avec ses parents et ses autres ascendants, au même stade de développement.",
+      "choix": [
+        "Une variation",
+        "Une lignée",
+        "Une adaptation",
+        "Une espèce"
+      ],
+      "bonne_reponse": "Une variation",
+      "explication": "Lorsqu'elle se transmet par l'hérédité, on parle de mutation.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : variation (sens 4)"
+    },
+    {
+      "id": "B10-05",
+      "enonce": "Apparition brusque, dans les cellules d'un être vivant, d'un changement dans la structure de certains gènes, transmis aux générations suivantes si les gamètes sont touchés.",
+      "choix": [
+        "Une mutation",
+        "Une adaptation",
+        "Une hybridation",
+        "Une sélection"
+      ],
+      "bonne_reponse": "Une mutation",
+      "explication": "C'est la source de nouveaux caractères.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : mutation (sens 4)"
+    },
+    {
+      "id": "B10-07",
+      "enonce": "Variante d'un gène, résultant d'une mutation, qui assure la même fonction que le gène initial mais selon ses modalités propres.",
+      "choix": [
+        "Un allèle",
+        "Un chromosome",
+        "Un génotype",
+        "Un caryotype"
+      ],
+      "bonne_reponse": "Un allèle",
+      "explication": "Exemple : les allèles A, B et O du groupe sanguin.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : allèle"
+    },
+    {
+      "id": "B10-21",
+      "enonce": "Transmission des caractères génétiques des parents à leurs descendants.",
+      "choix": [
+        "L'hérédité",
+        "La mutation",
+        "L'adaptation",
+        "La sélection"
+      ],
+      "bonne_reponse": "L'hérédité",
+      "explication": "Sans hérédité, les caractères avantageux ne se transmettraient pas.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : hérédité (sens 1)"
+    },
+    {
+      "id": "B10-30",
+      "enonce": "Pourquoi les mutations sont-elles importantes pour l'évolution ?",
+      "choix": [
+        "Elles créent de nouveaux caractères",
+        "Elles sont toujours favorables",
+        "Le milieu les dirige",
+        "Elles n'ont aucun effet"
+      ],
+      "bonne_reponse": "Elles créent de nouveaux caractères",
+      "explication": "La plupart sont neutres ou défavorables ; quelques-unes sont avantageuses.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 1.6 / 2.6"
+    },
+    {
+      "id": "B10-31",
+      "enonce": "Les mutations apparaissent-elles pour répondre aux besoins de l'organisme ?",
+      "choix": [
+        "Non, elles surviennent au hasard",
+        "Oui, toujours",
+        "Oui, chez les animaux seulement",
+        "Oui, en cas de danger"
+      ],
+      "bonne_reponse": "Non, elles surviennent au hasard",
+      "explication": "C'est ensuite la sélection naturelle qui trie les mutations utiles.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 1.6 / 2.6"
+    },
+    {
+      "id": "Q1699",
+      "enonce": "Variation au hasard des fréquences des allèles d'une génération à l'autre, plus forte dans les petites populations.",
+      "choix": [
+        "La dérive génétique",
+        "La sélection naturelle",
+        "La mutation",
+        "La migration"
+      ],
+      "bonne_reponse": "La dérive génétique",
+      "explication": "Elle peut faire disparaître ou fixer un allèle sans rapport avec son utilité.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1699 (modifiée)",
+      "ancien_enonce": "Qu'est-ce que la dérive génétique ?"
+    },
+    {
+      "id": "B10-02",
+      "enonce": "Tri opéré par le milieu, au sein d'une espèce, des individus qui assureront sa reproduction de façon préférentielle.",
+      "choix": [
+        "La sélection naturelle",
+        "La sélection artificielle",
+        "La dérive génétique",
+        "La mutation"
+      ],
+      "bonne_reponse": "La sélection naturelle",
+      "explication": "Les mieux adaptés au milieu laissent plus de descendants.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : sélection (sens 4, reformulé)"
+    },
+    {
+      "id": "B10-03",
+      "enonce": "Choix, opéré par l'homme au sein d'une espèce animale ou végétale, des individus qui se reproduiront.",
+      "choix": [
+        "La sélection artificielle",
+        "La sélection naturelle",
+        "La dérive génétique",
+        "La spéciation"
+      ],
+      "bonne_reponse": "La sélection artificielle",
+      "explication": "Exemples : les races de chiens, les variétés de maïs.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : sélection (sens 4)"
+    },
+    {
+      "id": "Q1602",
+      "enonce": "Que favorise la sélection naturelle ?",
+      "choix": [
+        "Les caractères utiles à la survie",
+        "Les mutations aléatoires seulement",
+        "Les individus les plus grands",
+        "Les individus les plus forts"
+      ],
+      "bonne_reponse": "Les caractères utiles à la survie",
+      "explication": "Ce sont les mieux adaptés au milieu, pas forcément les plus forts, qui survivent et se reproduisent davantage.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1602",
+      "ancien_enonce": "Que favorise la sélection naturelle ?"
+    },
+    {
+      "id": "B10-25",
+      "enonce": "Comment appelle-t-on l'action du milieu qui favorise les individus les mieux adaptés ?",
+      "choix": [
+        "Une pression de sélection",
+        "Une dérive génétique",
+        "Une mutation dirigée",
+        "Une hybridation"
+      ],
+      "bonne_reponse": "Une pression de sélection",
+      "explication": "Prédateurs, climat, maladies ou manque de nourriture exercent des pressions de sélection.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 1.6 / 2.6"
+    },
+    {
+      "id": "B10-04",
+      "enonce": "Changement survenu chez un individu, une lignée ou une espèce, qui augmente ses chances de survie et de reproduction dans le milieu où il vit.",
+      "choix": [
+        "L'adaptation",
+        "La mutation",
+        "L'extinction",
+        "La migration"
+      ],
+      "bonne_reponse": "L'adaptation",
+      "explication": "Exemple : les épines des cactus qui limitent la perte d'eau.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : adaptation (sens 3)"
+    },
+    {
+      "id": "Q1620",
+      "enonce": "De quoi l'adaptation d'une espèce à son milieu est-elle le résultat ?",
+      "choix": [
+        "De la sélection naturelle",
+        "D'une décision de l'espèce",
+        "D'un accident unique",
+        "De l'action directe du milieu"
+      ],
+      "bonne_reponse": "De la sélection naturelle",
+      "explication": "Les individus porteurs de caractères avantageux survivent et se reproduisent davantage, génération après génération.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1620",
+      "ancien_enonce": "De quoi l'adaptation d'une espèce à son milieu est-elle le résultat ?"
+    },
+    {
+      "id": "B10-15",
+      "enonce": "Particularité des espèces qui, par leur forme ou leur couleur, peuvent se confondre avec leur environnement ou avec une autre espèce.",
+      "choix": [
+        "Le mimétisme",
+        "Le parasitisme",
+        "La convergence",
+        "L'hibernation"
+      ],
+      "bonne_reponse": "Le mimétisme",
+      "explication": "Exemple : le phasme qui ressemble à une brindille.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : mimétisme (sens 1)"
+    },
+    {
+      "id": "B10-27",
+      "enonce": "Pourquoi les papillons sombres (phalènes) se sont-ils multipliés dans l'Angleterre industrielle ?",
+      "choix": [
+        "Ils étaient moins visibles des oiseaux",
+        "Ils mangeaient la suie",
+        "Ils fuyaient la pollution",
+        "Ils changeaient de couleur à volonté"
+      ],
+      "bonne_reponse": "Ils étaient moins visibles des oiseaux",
+      "explication": "Sur les troncs noircis par la suie, les papillons clairs étaient plus facilement mangés.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 1.6 / 2.6"
+    },
+    {
+      "id": "Q1708",
+      "enonce": "Que favorise la sélection sexuelle ?",
+      "choix": [
+        "Le succès reproducteur",
+        "La survie uniquement",
+        "Le hasard",
+        "Les insectes uniquement"
+      ],
+      "bonne_reponse": "Le succès reproducteur",
+      "explication": "Exemple : la queue du paon gêne sa survie mais attire les femelles.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1708",
+      "ancien_enonce": "Que favorise la sélection sexuelle ?"
+    },
+    {
+      "id": "Q1706",
+      "enonce": "Transformation parallèle, au fil des générations, de deux espèces en étroite interaction.",
+      "choix": [
+        "La coévolution",
+        "La convergence",
+        "La symbiose",
+        "La spéciation"
+      ],
+      "bonne_reponse": "La coévolution",
+      "explication": "Exemple : une fleur et l'insecte qui la pollinise.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1706 (modifiée) — Larousse : coévolution (reformulé)",
+      "ancien_enonce": "Qu'est-ce que la coévolution ?"
+    },
+    {
+      "id": "B10-08",
+      "enonce": "Formation de nouvelles sortes d'êtres vivants, incapables de se reproduire avec les formes anciennes.",
+      "choix": [
+        "La spéciation",
+        "L'extinction",
+        "La mutation",
+        "L'hybridation"
+      ],
+      "bonne_reponse": "La spéciation",
+      "explication": "Elle suit souvent l'isolement d'une population.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : spéciation (reformulé)"
+    },
+    {
+      "id": "Q1700",
+      "enonce": "Formation de nouvelles sortes d'êtres vivants à partir de populations séparées par une barrière géographique (montagne, bras de mer).",
+      "choix": [
+        "La spéciation allopatrique",
+        "La dérive génétique",
+        "La sélection sexuelle",
+        "La coévolution"
+      ],
+      "bonne_reponse": "La spéciation allopatrique",
+      "explication": "Les populations isolées n'échangent plus de gènes et finissent par diverger.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1700 (modifiée)",
+      "ancien_enonce": "Qu'est-ce que la spéciation allopatrique ?"
+    },
+    {
+      "id": "B10-11",
+      "enonce": "Succession des espèces animales ou végétales que l'on suppose descendre les unes des autres.",
+      "choix": [
+        "La phylogenèse",
+        "La spéciation",
+        "L'embryogenèse",
+        "La classification"
+      ],
+      "bonne_reponse": "La phylogenèse",
+      "explication": "On la représente par un arbre phylogénétique.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : phylogenèse"
+    },
+    {
+      "id": "B10-28",
+      "enonce": "Schéma qui représente les liens de parenté entre des espèces à partir de leurs ancêtres communs.",
+      "choix": [
+        "Un arbre phylogénétique",
+        "Une chaîne alimentaire",
+        "Une clé de détermination",
+        "Un caryotype"
+      ],
+      "bonne_reponse": "Un arbre phylogénétique",
+      "explication": "Plus deux espèces sont proches dans l'arbre, plus leur ancêtre commun est récent.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 1.6 / 2.6",
+      "statut": "à revalider"
+    },
+    {
+      "id": "B10-29",
+      "enonce": "Dans un arbre phylogénétique, que représente un nœud (embranchement) ?",
+      "choix": [
+        "Un ancêtre commun",
+        "Une espèce actuelle",
+        "Une extinction",
+        "Un fossile précis"
+      ],
+      "bonne_reponse": "Un ancêtre commun",
+      "explication": "Les espèces actuelles sont placées au bout des branches.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 1.6 / 2.6"
+    },
+    {
+      "id": "B10-12",
+      "enonce": "Très grand groupe d'animaux ou de plantes descendant d'ancêtres communs.",
+      "choix": [
+        "Un clade",
+        "Un genre",
+        "Une population",
+        "Une variété"
+      ],
+      "bonne_reponse": "Un clade",
+      "explication": "Exemple : les vertébrés forment un clade.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : clade"
+    },
+    {
+      "id": "Q1702",
+      "enonce": "Méthode de recherche des parentés entre espèces vivantes, fondée sur l'analyse génétique plus que sur les ressemblances visibles.",
+      "choix": [
+        "La cladistique",
+        "La systématique",
+        "La paléontologie",
+        "La morphologie"
+      ],
+      "bonne_reponse": "La cladistique",
+      "explication": "Elle regroupe les espèces selon leurs caractères hérités d'un ancêtre commun.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1702 (modifiée) — Larousse : cladistique",
+      "ancien_enonce": "Qu'est-ce que la classification phylogénétique (cladistique) ?"
+    },
+    {
+      "id": "Q1707",
+      "enonce": "Comment la théorie de l'endosymbiose explique-t-elle l'origine des mitochondries ?",
+      "choix": [
+        "Des bactéries englouties",
+        "Une forme de parasitisme",
+        "Une division cellulaire",
+        "Une théorie réfutée"
+      ],
+      "bonne_reponse": "Des bactéries englouties",
+      "explication": "Mitochondries et chloroplastes ont leur propre ADN circulaire, comme les bactéries (Lynn Margulis).",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1707",
+      "ancien_enonce": "Comment la théorie de l'endosymbiose explique-t-elle l'origine des mitochondries ?"
+    }
+  ]
+}
