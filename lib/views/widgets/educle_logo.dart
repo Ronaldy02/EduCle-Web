@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../theme/app_theme.dart';
 
-/// Logo "E EduClé" repris de l'en-tête du site web, utilisé sur les
-/// différents écrans mobiles pour garder une identité visuelle cohérente.
+/// Logo EduClé (clé-livre blanche sur carré bleu ciel, créé sur Canva),
+/// identique à celui du site web pour garder une identité visuelle cohérente.
 class EduCleLogo extends StatelessWidget {
   final double taille;
   final bool afficherTexte;
+
+  /// Bleu ciel du logo Canva.
+  static const Color bleuLogo = Color(0xFF06A1F1);
 
   const EduCleLogo({super.key, this.taille = 28, this.afficherTexte = true});
 
@@ -20,16 +23,13 @@ class EduCleLogo extends StatelessWidget {
           height: taille,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: EduCleColors.primary,
+            color: bleuLogo,
             borderRadius: BorderRadius.circular(taille * 0.28),
           ),
-          child: Text(
-            'E',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w800,
-              fontSize: taille * 0.55,
-            ),
+          child: Image.asset(
+            'assets/logo/educle_cle_blanc.png',
+            height: taille * 0.72,
+            filterQuality: FilterQuality.medium,
           ),
         ),
         if (afficherTexte) ...[
