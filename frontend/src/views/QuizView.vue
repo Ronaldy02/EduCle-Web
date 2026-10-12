@@ -365,6 +365,7 @@ const touchePressee = ref(null)      // E9 · choix activé au clavier
 const tempsEcoule   = ref(false)     // F3
 const explosion     = ref(false)     // F5
 let _explosionTimer = null
+let xpAvant         = null      // XP total au début du quiz (pour le résultat provisoire)
 const decompte      = ref(null)      // D1 · 3, 2, 1, 0 (= « C'est parti ! »), null = terminé
 const entree        = ref(false)     // D2 · animation d'entrée de l'interface
 let _decompteTimers = []
@@ -609,7 +610,11 @@ const dcRingOffset = computed(() => {
 onMounted(async () => {
   if (!quizStore.chapitreId) { router.replace('/'); return }
   await quizStore.demarrer()
-  try { const n = await getNiveau(); piecesTotal.value = n.pieces_total ?? 0 } catch {}
+  try {
+    const n = await getNiveau()
+    piecesTotal.value = n.pieces_total ?? 0
+    xpAvant = n.xp_total ?? null
+  } catch {}
   chargement.value = false
   // D1 · le chrono ne démarre qu'après le compte à rebours
   if (animationsActives()) lancerDecompte()
@@ -664,6 +669,7 @@ watch(() => serie.value >= 5 && modeNom.value !== 'Bombardement',       // S4 ·
   (v) => musique.setSerie(v))
 
 onBeforeUnmount(() => {
+  document.querySelectorAll('.fx-vol').forEach(el => el.remove())   // gains encore en vol
   musique.setTension(false)
   musique.setBombe(0)
   musique.setSerie(false)
@@ -804,12 +810,25 @@ function suivant() {
   }
 }
 
+// Résultat affiché tout de suite (calcul local), le serveur confirme en arrière-plan.
+// Sans XP de départ connue, on attend la réponse du serveur comme avant.
 async function finirQuiz() {
   clearInterval(timerGlobal)
   stopTick()
+  const { provisoire, envoi: reponseServeur } = quizStore.terminer(xpAvant)
+  if (provisoire) {
+    reponseServeur.catch(() => {})   // l'échec est signalé par la page de résultat
+    router.replace('/resultat')
+    return
+  }
   envoi.value = true
-  await quizStore.terminer()
-  router.replace('/resultat')
+  try {
+    await reponseServeur
+    router.replace('/resultat')
+  } catch {
+    toast("Le résultat n'a pas pu être enregistré", { icon: 'cloud_off', type: 'error', duree: 4000 })
+    router.replace('/')
+  }
 }
 
 function etatChoix(i) {

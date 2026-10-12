@@ -83,6 +83,13 @@
           <span class="material-symbols-outlined" style="font-size:18px;color:#22d3ee">calculate</span>
           <span>{{ matChap }}</span>
         </div>
+        <!-- Résultat affiché avant la confirmation du serveur -->
+        <div v-if="res?.provisoire" class="rt-sync">
+          <span class="rt-sync-point"></span> Enregistrement…
+        </div>
+        <div v-else-if="res?.erreur" class="rt-sync rt-sync--erreur">
+          <span class="material-symbols-outlined" style="font-size:16px">cloud_off</span> Résultat non enregistré
+        </div>
         <h1 class="rt-title" :class="{ 'rt-title--perfect': isPerfect }">{{ scoreLabel }}</h1>
         <p class="rt-subtitle">{{ scoreSubtitle }}</p>
       </header>
@@ -200,7 +207,7 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { computed, ref, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useQuizStore } from '../stores/quiz.js'
 import { progressionNiveau, xpPourNiveau, rangDepuisNiveau, RANGS } from '../utils/niveau.js'
@@ -267,8 +274,14 @@ const fwCanvas          = ref(null)
 const showPerfectBanner = ref(false)
 let fwCleanup = null
 
-onMounted(() => {
-  const r       = res.value
+// Les célébrations attendent le résultat confirmé par le serveur (niveau, défis, réalisations)
+let celebre = false
+onMounted(() => celebrer(res.value))
+watch(res, (r) => celebrer(r))
+
+function celebrer(r) {
+  if (celebre || !r || r.provisoire || r.erreur) return
+  celebre = true
   const levelUp = r?.niveau_apres > r?.niveau_avant
   const perfect = isPerfect.value
   const hasDefis = r?.defis_completes?.length > 0
@@ -290,7 +303,7 @@ onMounted(() => {
       setTimeout(() => { showPerfectBanner.value = false }, 3200)
     }
   }
-})
+}
 
 onUnmounted(() => { fwCleanup?.() })
 
@@ -813,4 +826,17 @@ function accueil()  { quizStore.reset(); router.push('/') }
   0%   { transform: scale(0) rotate(-10deg); opacity: 0; }
   100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
+
+/* Indicateur d'enregistrement du résultat */
+.rt-sync {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  margin: 0.5rem auto 0; padding: 0.25rem 0.75rem; border-radius: 99px;
+  font-size: 0.75rem; font-weight: 700; color: #64748b; background: rgba(100, 116, 139, 0.1);
+}
+.rt-sync--erreur { color: #b91c1c; background: rgba(220, 38, 38, 0.1); }
+.rt-sync-point {
+  width: 8px; height: 8px; border-radius: 50%; background: #22d3ee;
+  animation: rt-sync-point 1s ease-in-out infinite;
+}
+@keyframes rt-sync-point { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.1); } }
 </style>

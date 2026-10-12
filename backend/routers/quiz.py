@@ -223,7 +223,16 @@ def terminer_quiz(
     ).all()
     questions_map = {q.id: q for q in questions_orm}
 
-    stats = _get_stats(db, question_ids, current_user.id)
+    # Une seule requête pour toutes les stats (au lieu d'un db.get par question)
+    stat_rows = {
+        r.question_id: r
+        for r in db.scalars(
+            select(StatistiqueQuestion).where(
+                StatistiqueQuestion.question_id.in_(question_ids),
+                StatistiqueQuestion.user_id == current_user.id,
+            )
+        ).all()
+    }
     now_iso = datetime.now().isoformat(timespec="seconds")
 
     xp_total_gagne = 0
@@ -236,8 +245,8 @@ def terminer_quiz(
             continue
 
         correcte = rep.reponse.strip() == q.bonne_reponse.strip()
-        stat = stats.get(q.id, {"nb_affichee": 0, "nb_correcte": 0.0, "last_correct_at": None})
-        maitrise = stat["nb_correcte"]
+        stat_orm = stat_rows.get(q.id)
+        maitrise = stat_orm.nb_correcte if stat_orm else 0.0
 
         xp = calculer_xp_question(maitrise, body.mode_nom) if correcte else 0
         pieces = calculer_pieces_question(correcte, body.mode_nom)
@@ -256,13 +265,13 @@ def terminer_quiz(
         ))
 
         # ── Mise à jour des statistiques adaptatives (par utilisateur) ───────
-        stat_orm = db.get(StatistiqueQuestion, (current_user.id, q.id))
         if stat_orm is None:
             stat_orm = StatistiqueQuestion(
                 user_id=current_user.id, question_id=q.id,
                 nb_affichee=0, nb_correcte=0.0,
             )
             db.add(stat_orm)
+            stat_rows[q.id] = stat_orm
 
         nb = stat_orm.nb_affichee + 1
         # Taux de réussite glissant (moyenne mobile)
