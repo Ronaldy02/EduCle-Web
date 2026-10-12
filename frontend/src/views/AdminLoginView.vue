@@ -2,7 +2,7 @@
   <div class="al-page">
     <div class="al-box">
       <div class="al-logo">
-        <div class="al-logo-mark">🔑</div>
+        <div class="al-logo-mark"><img class="educle-cle" src="/logo/educle_cle_blanc.png" alt=""></div>
         <span class="al-logo-name">EduClé</span>
         <span class="al-badge">Administration</span>
       </div>
@@ -81,7 +81,7 @@ function loginGoogle() {
 }
 .al-logo-mark {
   width: 34px; height: 34px;
-  background: #F59E0B;
+  background: #06A1F1;
   border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
   font-size: 17px;

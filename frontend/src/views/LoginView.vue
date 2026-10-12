@@ -5,7 +5,7 @@
       <canvas ref="canvasRef" class="lv-canvas"></canvas>
       <div class="lv-brand-inner">
         <div class="lv-logo">
-          <div class="lv-logo-mark">🔑</div>
+          <div class="lv-logo-mark"><img class="educle-cle" src="/logo/educle_cle_blanc.png" alt=""></div>
           <span class="lv-logo-name">EduClé</span>
         </div>
         <div class="lv-hero">
@@ -378,7 +378,7 @@ onUnmounted(() => { if (_animId) cancelAnimationFrame(_animId) })
 }
 .lv-logo { display: flex; align-items: center; gap: 11px; }
 .lv-logo-mark {
-  width: 38px; height: 38px; background: var(--lv-amber); border-radius: 9px;
+  width: 38px; height: 38px; background: #06A1F1; border-radius: 9px;
   display: flex; align-items: center; justify-content: center; font-size: 19px;
 }
 .lv-logo-name { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
