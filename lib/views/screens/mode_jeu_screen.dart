@@ -25,24 +25,30 @@ class ModeJeuScreen extends StatelessWidget {
     'Bombardement':
         'Réponds à un maximum de questions avant la fin du temps. '
         'Entraîne-toi sous pression.',
+    'Génie':
+        'Le chrono s\'emballe. Réponds vite, marque plus — '
+        'aucune correction avant la fin.',
   };
 
   static const _sousTitres = {
     'Rush': '10 s / question',
     'Révision': '20 s / question',
     'Bombardement': '1 min au total',
+    'Génie': '7 s / question',
   };
 
   static const _icones = {
     'Rush': Icons.bolt_rounded,
     'Révision': Icons.check_circle_rounded,
     'Bombardement': Icons.timer_rounded,
+    'Génie': Icons.psychology_rounded,
   };
 
   static const _couleurs = {
     'Rush': EduCleColors.rush,
     'Révision': EduCleColors.revision,
     'Bombardement': EduCleColors.bombardement,
+    'Génie': EduCleColors.genie,
   };
 
   @override

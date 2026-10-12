@@ -41,5 +41,13 @@ class ParametrePartie {
     multiplicateurScore: 2.0,
   );
 
-  static const modes = [rush, revision, bombardement];
+  static const genie = ParametrePartie(
+    id: 4,
+    nom: 'Génie',
+    tempsParQuestion: 7,
+    feedbackImmediat: false,
+    multiplicateurScore: 1.5,
+  );
+
+  static const modes = [rush, revision, bombardement, genie];
 }

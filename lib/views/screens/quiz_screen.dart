@@ -235,6 +235,8 @@ class _QuizScreenState extends State<QuizScreen> with TickerProviderStateMixin {
         return EduCleColors.rush;
       case 'Bombardement':
         return EduCleColors.bombardement;
+      case 'Génie':
+        return EduCleColors.genie;
       default:
         return EduCleColors.primary;
     }

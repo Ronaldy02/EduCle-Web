@@ -23,6 +23,7 @@ class EduCleColors {
   static const Color rush = Color(0xFFE53935);
   static const Color revision = Color(0xFF2F6FED);
   static const Color bombardement = Color(0xFF111827);
+  static const Color genie = Color(0xFF7C3AED);
 
   static const LinearGradient bannerGradient = LinearGradient(
     begin: Alignment.topLeft,
@@ -116,6 +117,7 @@ class MatiereStyle {
     return _emojis[nom.toLowerCase().trim()] ?? '📚';
   }
 
+  // Les *-3d.png viennent de Microsoft Fluent Emoji (licence MIT, voir assets/matieres/LICENSE-fluent-emoji.txt).
   static const Map<String, String> _images = {
     'mathématiques':                                         'assets/matieres/Maths.jpg',
     'communication française':                               'assets/matieres/comm_francaise.webp',
@@ -123,11 +125,13 @@ class MatiereStyle {
     'éducation à la citoyenneté':                           'assets/matieres/citoyennete.webp',
     'éducation esthétique et artistique':                   'assets/matieres/artist_palette_3d.png',
     'éducation physique et sportive':                       'assets/matieres/eps.jpg',
-    'biologie':                                             'assets/matieres/biologie.jpg',
+    'biologie':                                             'assets/matieres/biologie-3d.png',
     'géologie':                                             'assets/matieres/geologie.jpg',
+    'géographie':                                           'assets/matieres/Geographie.jpg',
     'sciences sociales':                                    'assets/matieres/Geographie.jpg',
+    'sciences expérimentales':                              'assets/matieres/sciences-3d.png',
     'éducation à la technologie et aux activités productives': 'assets/matieres/etap.jpg',
-    'physique':                                             'assets/matieres/physique.jpg',
+    'physique':                                             'assets/matieres/physique-3d.png',
     'chimie':                                               'assets/matieres/chimie.webp',
     "histoire d'haïti":                                     'assets/matieres/Histoire_Haiti.webp',
     'histoire universelle':                                  'assets/matieres/Histoire_Uni.jpg',
