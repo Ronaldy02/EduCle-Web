@@ -259,7 +259,7 @@
 
             <!-- Cartes de mode -->
             <div class="mode-liste">
-              <button v-for="m in MODES" v-if="m.key !== 'cartes' || showCartesMode" :key="m.key"
+              <button v-for="m in modesAffiches" :key="m.key"
                 class="mode-card" :class="{ active: modeNom === m.label }"
                 :style="modeNom === m.label ? { borderLeftColor: m.color, background: m.bg } : {}"
                 @click="modeNom = m.label">
@@ -332,7 +332,7 @@
             <div class="mode-bc-text" style="margin-bottom:0.5rem;font-weight:700;font-size:0.85rem;color:var(--text-muted)">Toutes les matières · Quiz mixte</div>
             <h2 class="mode-titre">Choisis ton mode de jeu</h2>
             <div class="mode-liste">
-              <button v-for="m in MODES" :key="m.key"
+              <button v-for="m in MODES_QUIZ" :key="m.key"
                 class="mode-card" :class="{ active: modeNom === m.label }"
                 :style="modeNom === m.label ? { borderLeftColor: m.color, background: m.bg } : {}"
                 @click="modeNom = m.label">
@@ -461,6 +461,14 @@ const showCartesMode = computed(() => {
   if (chapitreChoisi.value.id !== -1) return true           // chapitre spécifique
   return totalQuestionsMatiere.value < 31                   // tous les chapitres mais petit volume
 })
+
+// « Jouer — Tout » : quiz toutes matières, les cartes mentales n'ont pas de sens ici
+const MODES_QUIZ = MODES.filter(m => m.key !== 'cartes')
+
+// Modes proposés (filtre calculé : v-if et v-for ne doivent pas être sur le même élément,
+// en Vue 3 le v-if passe avant et `m` n'existe pas encore → la fenêtre ne s'affichait plus)
+const modesAffiches = computed(() =>
+  MODES.filter(m => m.key !== 'cartes' || showCartesMode.value))
 
 const LS_KEY = 'educle_dernier_jeu'
 const dernierJeu = ref(JSON.parse(localStorage.getItem(LS_KEY) || 'null'))
