@@ -1,21 +1,57 @@
 <template>
-  <!-- Chargement / envoi -->
   <div v-if="chargement || envoi" class="qz-loading">
     <p>{{ chargement ? 'Préparation du quiz…' : 'Calcul du résultat…' }}</p>
   </div>
 
-  <!-- Quiz en cours -->
-  <div v-else-if="question" class="qz-shell">
+  <div v-else-if="question" class="qz-shell"
+    :class="{ 'qz-attente': decompte !== null, 'qz-entree': entree, 'qz-secousse': explosion }"
+    :style="fondBombe">
+    <!-- Quiz en cours -->
+
+    <!-- ── D1 · Compte à rebours (un clic ou une touche le passe) ──── -->
+    <Teleport to="body">
+    <transition name="decompte-fond">
+      <div v-if="decompte !== null" class="qz-decompte" @click="passerDecompte">
+        <transition name="decompte-pas" mode="out-in">
+          <div :key="decompte" class="qz-decompte-val"
+            :class="{ 'qz-decompte-go': decompte === 0 }" :style="{ color: modeCouleur }">
+            {{ decompte === 0 ? "C'est parti !" : decompte }}
+          </div>
+        </transition>
+        <p class="qz-decompte-aide">Clique pour passer</p>
+      </div>
+    </transition>
+    </Teleport>
+
+    <Teleport to="body">
+      <!-- F2 · lueur rouge battante sur les bords en zone critique (tous les modes) -->
+      <transition name="fondu">
+        <div v-if="vignetteCritique" class="qz-vignette" aria-hidden="true"></div>
+      </transition>
+
+      <!-- F3 · Temps écoulé -->
+      <transition name="temps-ecoule">
+        <div v-if="tempsEcoule" class="qz-temps-ecoule" role="status">⏰ Temps écoulé !</div>
+      </transition>
+
+      <!-- F5 · Explosion finale (Bombardement) -->
+      <div v-if="explosion" class="qz-explosion" aria-hidden="true">
+        <div class="qz-explosion-flash"></div>
+        <div class="qz-explosion-onde"></div>
+        <div class="qz-explosion-onde qz-explosion-onde--2"></div>
+        <div class="qz-explosion-boum">💥</div>
+      </div>
+    </Teleport>
 
     <!-- ── Overlay palier série ─────────────────────────────────── -->
     <transition name="palier-anim">
       <div v-if="palierVisible" class="palier-overlay" :class="`palier-lv${palierValue}`">
         <div class="palier-box">
-          <span v-for="i in (palierValue >= 20 ? 12 : 0)" :key="i"
-            class="palier-particle" :style="palierParticleStyle(i)"></span>
+          <span v-for="i in PALIER_PARTICULES[palierValue]" :key="i"
+            class="palier-particle" :style="palierParticleStyle(i, PALIER_PARTICULES[palierValue])"></span>
           <div class="palier-fire">🔥</div>
           <div class="palier-label">SÉRIE DE {{ palierValue }} !</div>
-          <div class="palier-bonus">+{{ PALIER_BONUS[palierValue] }} <CoinIcon /></div>
+          <div ref="palierBonusEl" class="palier-bonus">+{{ PALIER_BONUS[palierValue] }} <CoinIcon /></div>
         </div>
       </div>
     </transition>
@@ -32,16 +68,23 @@
         </div>
         <!-- Score + Série -->
         <div class="qz-header-right">
+          <!-- H1/H2 · compteurs qui reçoivent les gains -->
+          <div ref="xpDesktop" class="qz-gain-pill qz-gain-xp">✨ <span v-countup="xpGagne"></span> XP</div>
+          <div ref="piecesDesktop" class="qz-gain-pill qz-gain-pieces"><CoinIcon /> <span v-countup="piecesTotal"></span></div>
           <div class="qz-score-block">
             <span class="qz-score-label">Score</span>
-            <span class="qz-score-val">{{ scoreLocal }}</span>
+            <span class="qz-score-val" v-countup="scoreLocal"></span>
           </div>
           <transition name="serie-pop">
             <div v-if="serie >= 3 && modeNom !== 'Bombardement'"
               class="qz-serie-pill"
               :class="{ 'qz-serie-bounce': serieBounce, 'qz-serie-hot': serie >= 10 }">
               <span>🔥</span>
-              <span class="qz-serie-num">{{ serie }}</span>
+              <span class="qz-serie-num">
+                <transition :name="serieTransition" mode="out-in">
+                  <span :key="serie" class="qz-serie-chiffre">{{ serie }}</span>
+                </transition>
+              </span>
             </div>
           </transition>
         </div>
@@ -69,7 +112,7 @@
             </div>
           </div>
           <div class="qz-dc-hright">
-            <span class="qz-dc-coins"><CoinIcon /> {{ piecesTotal }}</span>
+            <span ref="piecesMobile" class="qz-dc-coins"><CoinIcon /> <span v-countup="piecesTotal"></span></span>
             <button class="qz-dc-quit" @click="router.back()">Quitter</button>
           </div>
         </div>
@@ -77,7 +120,10 @@
 
       <!-- Barre de progression pleine largeur -->
       <div class="qz-progress-track">
-        <div class="qz-progress-fill" :style="{ width: (indexCourant / total * 100) + '%', background: modeCouleur }"></div>
+        <div class="qz-progress-fill" :style="{ width: (indexCourant / total * 100) + '%', background: modeCouleur }">
+          <!-- D3 · reflet qui traverse la barre à chaque avancée -->
+          <span :key="indexCourant" class="qz-progress-shine"></span>
+        </div>
       </div>
     </header>
 
@@ -85,12 +131,14 @@
     <div class="qz-dc-stats">
       <!-- Score -->
       <div class="qz-dc-score-card">
-        <div class="qz-dc-score-val">⭐ {{ scoreLocal }}</div>
-        <div class="qz-dc-stat-lbl">Score</div>
+        <div class="qz-dc-score-val">⭐ <span v-countup="scoreLocal"></span></div>
+        <div class="qz-dc-stat-lbl">Score · <span ref="xpMobile" class="qz-dc-xp">✨ <span v-countup="xpGagne"></span> XP</span></div>
       </div>
       <!-- Timer ring SVG -->
-      <div class="qz-dc-ring-wrap"
-        :class="{ 'qz-dc-ring-bomb': modeNom === 'Bombardement', 'qz-dc-ring-urgent': dcTimerUrgent }">
+      <div ref="chronoMobile" class="qz-dc-ring-wrap"
+        :class="{ 'qz-dc-ring-bomb': modeNom === 'Bombardement', 'qz-dc-ring-urgent': dcTimerUrgent,
+                  'qz-bombe-pulse': bombePalier > 0, 'qz-chrono-shake': tempsEcoule, 'qz-chrono-recharge': recharge }"
+        :style="{ '--rythme': RYTHME_BOMBE[bombePalier] }">
         <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"
           style="position:absolute;top:0;left:0;transform:rotate(-90deg);">
           <circle cx="26" cy="26" r="21" fill="none"
@@ -100,7 +148,7 @@
             :stroke="dcTimerColor" stroke-width="5"
             stroke-linecap="round" stroke-dasharray="132"
             :stroke-dashoffset="dcRingOffset"
-            style="transition:stroke-dashoffset 1s linear;"/>
+            style="transition:stroke-dashoffset 1s linear, stroke 1s linear;"/>
         </svg>
         <span class="qz-dc-ring-lbl" :style="{ color: dcTimerUrgent ? '#c23a3a' : (modeNom === 'Bombardement' ? '#fff' : '#1e2a52') }">
           {{ modeNom === 'Bombardement' ? tempsGlobal : (tempsRestant + ' s') }}
@@ -108,7 +156,11 @@
       </div>
       <!-- Streak (toujours affiché comme dans le dc.html) -->
       <div class="qz-dc-streak-card">
-        <div class="qz-dc-streak-val">🔥 {{ serie }}</div>
+        <div class="qz-dc-streak-val">🔥
+          <transition :name="serieTransition" mode="out-in">
+            <span :key="serie" class="qz-serie-chiffre">{{ serie }}</span>
+          </transition>
+        </div>
         <div class="qz-dc-stat-lbl">Série</div>
       </div>
     </div>
@@ -122,9 +174,17 @@
         <!-- Timer par question (Rush / Révision) -->
         <div v-if="modeNom !== 'Bombardement' && tempsMax"
           class="qz-timer-card"
-          :class="{ 'qz-timer-urgent': tempsRestant <= seuilCritique }">
+          :class="{ 'qz-timer-urgent': tempsRestant <= seuilCritique, 'qz-chrono-shake': tempsEcoule }">
           <span class="qz-timer-label">Temps Restant</span>
-          <div class="qz-timer-val">{{ String(tempsRestant).padStart(2, '0') }}</div>
+          <!-- F1 · anneau qui se vide en continu, du vert au rouge -->
+          <div ref="chronoDesktop" class="qz-timer-ring" :class="{ 'qz-chrono-recharge': recharge }">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="60" r="52" class="qz-timer-ring-fond" />
+              <circle cx="60" cy="60" r="52" class="qz-timer-ring-arc"
+                :stroke="couleurChrono" :stroke-dasharray="RING_C" :stroke-dashoffset="RING_C * (1 - fracChrono)" />
+            </svg>
+            <div class="qz-timer-val">{{ String(tempsRestant).padStart(2, '0') }}</div>
+          </div>
           <span class="qz-timer-unit">secondes</span>
         </div>
 
@@ -133,10 +193,23 @@
           class="qz-timer-card"
           :class="{ 'qz-timer-urgent': tempsGlobal <= 10 }">
           <span class="qz-timer-label">Temps Restant</span>
-          <div class="qz-timer-val">{{ String(tempsGlobal).padStart(2, '0') }}</div>
+          <div ref="chronoDesktop" class="qz-timer-ring" :class="{ 'qz-chrono-recharge': recharge }">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="60" r="52" class="qz-timer-ring-fond" />
+              <circle cx="60" cy="60" r="52" class="qz-timer-ring-arc"
+                :stroke="couleurChrono" :stroke-dasharray="RING_C" :stroke-dashoffset="RING_C * (1 - fracChrono)" />
+            </svg>
+            <div class="qz-timer-val">{{ String(tempsGlobal).padStart(2, '0') }}</div>
+          </div>
           <span class="qz-timer-unit">secondes</span>
-          <div class="qz-timer-bar-wrap">
-            <div class="qz-timer-bar" :style="{ width: (tempsGlobal / 60 * 100) + '%' }"></div>
+          <!-- F4 · la bombe bat au rythme du palier, la mèche raccourcit -->
+          <div class="qz-bombe-ligne" :style="{ '--rythme': RYTHME_BOMBE[bombePalier] }">
+            <span class="qz-bombe">💣</span>
+            <div class="qz-meche-wrap">
+              <div class="qz-meche" :style="{ width: (tempsGlobal / 60 * 100) + '%' }">
+                <span class="qz-etincelle"></span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -159,7 +232,7 @@
               <span class="qz-bonus-name">Remplacer</span>
               <span class="qz-bonus-cout">75 <CoinIcon /></span>
             </button>
-            <button class="qz-bonus-btn" @click="utiliserBonus('plusTemps')" :disabled="modeNom === 'Bombardement'">
+            <button class="qz-bonus-btn" @click="utiliserBonus('plusTemps', $event)" :disabled="modeNom === 'Bombardement'">
               <span class="qz-bonus-icon">⏱️</span>
               <span class="qz-bonus-name">+Temps</span>
               <span class="qz-bonus-cout">150 <CoinIcon /></span>
@@ -181,27 +254,32 @@
               <!-- Dropdown bonus (dc.html style) -->
               <transition name="mobile-bonus">
                 <div v-if="mobileShowBonus" class="qz-dc-bonus-dropdown">
-                  <button class="qz-dc-bitem" @click="utiliserBonus('elimination'); mobileShowBonus=false" :disabled="bonusUtilises.elimination || reponduIndex !== null">
+                  <button class="qz-dc-bitem" @click="utiliserBonus('elimination'); mobileShowBonus=false" :disabled="bonusUtilises.elimination || repondu">
                     <span>🧹</span><span class="qz-dc-bname">Élimination</span><span class="qz-dc-bcost"><CoinIcon />50</span>
                   </button>
-                  <button class="qz-dc-bitem" @click="utiliserBonus('cinqCinq'); mobileShowBonus=false" :disabled="bonusUtilises.cinqCinq || reponduIndex !== null">
+                  <button class="qz-dc-bitem" @click="utiliserBonus('cinqCinq'); mobileShowBonus=false" :disabled="bonusUtilises.cinqCinq || repondu">
                     <span>½</span><span class="qz-dc-bname">50/50</span><span class="qz-dc-bcost"><CoinIcon />100</span>
                   </button>
-                  <button class="qz-dc-bitem" @click="utiliserBonus('remplacer'); mobileShowBonus=false" :disabled="bonusUtilises.remplacer || reponduIndex !== null">
+                  <button class="qz-dc-bitem" @click="utiliserBonus('remplacer'); mobileShowBonus=false" :disabled="bonusUtilises.remplacer || repondu">
                     <span>🔄</span><span class="qz-dc-bname">Remplacer</span><span class="qz-dc-bcost"><CoinIcon />75</span>
                   </button>
-                  <button class="qz-dc-bitem" @click="utiliserBonus('plusTemps'); mobileShowBonus=false" :disabled="modeNom === 'Bombardement' || reponduIndex !== null">
+                  <button class="qz-dc-bitem" @click="utiliserBonus('plusTemps', $event); mobileShowBonus=false" :disabled="modeNom === 'Bombardement' || repondu">
                     <span>⏱️</span><span class="qz-dc-bname">+Temps</span><span class="qz-dc-bcost"><CoinIcon />150</span>
                   </button>
                 </div>
               </transition>
             </div>
-            <button class="qz-passer-btn" :disabled="reponduIndex !== null" @click="passer">
+            <button class="qz-passer-btn" :disabled="repondu" @click="passer">
               Passer
               <span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle">skip_next</span>
             </button>
           </div>
         </div>
+
+        <!-- E7 · Question + réponses : glissement d'une question à l'autre -->
+        <transition :name="transitionQuestion" mode="out-in">
+        <div :key="indexCourant + ':' + question.id" class="qz-q-stage"
+          :class="{ 'qz-q-stage--rapide': modeNom === 'Bombardement' }">
 
         <!-- Carte question -->
         <div class="qz-question-card" :class="{ shake: animShake, pulse: animPulse }">
@@ -210,19 +288,35 @@
         </div>
 
         <!-- Grille de réponses -->
-        <div class="qz-choix-grid">
+        <TransitionGroup tag="div" class="qz-choix-grid" name="choix" @before-leave="figerChoix">
           <button
-            v-for="(choix, i) in choixVisibles"
+            v-for="{ choix, i } in choixAffiches"
             :key="i"
+            :ref="el => { if (el) choixEls[i] = el }"
+            v-ripple
             class="qz-choix-btn"
-            :class="[etatChoix(i), { 'qz-choix-elimine': elimines.includes(i) }]"
-            :disabled="reponduIndex !== null || elimines.includes(i)"
+            :class="[etatChoix(i), {
+              'qz-choix-elimine': elimines.includes(i),
+              'qz-gagne':  repondu && reponduIndex === bonneIndex && i === bonneIndex,
+              'qz-revele': repondu && reponduIndex !== bonneIndex && i === bonneIndex,
+              'qz-kbd-press': touchePressee === i,
+            }]"
+            :disabled="repondu || elimines.includes(i)"
             @click="repondre(i)">
-            <div class="qz-lettre" :class="etatChoix(i)">{{ lettres[i] }}</div>
+            <div class="qz-lettre" :class="etatChoix(i)">
+              <transition name="lettre-pop">
+                <span v-if="etatChoix(i) === 'correct'" key="ok">✓</span>
+                <span v-else-if="etatChoix(i) === 'incorrect'" key="ko">✗</span>
+                <span v-else key="l">{{ lettres[i] }}</span>
+              </transition>
+            </div>
             <span class="qz-choix-texte" :class="{ 'qz-choix-texte--long': choix.length > 20 }">{{ choix }}</span>
             <div class="qz-kbd">{{ i + 1 }}</div>
           </button>
+        </TransitionGroup>
+
         </div>
+        </transition>
 
         <!-- Explication (mode Révision) -->
         <transition name="expl-slide">
@@ -243,10 +337,15 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { useQuizStore } from '../stores/quiz.js'
-import { getNiveau } from '../api/client.js'
+import { getNiveau, utiliserBonusApi } from '../api/client.js'
+import { toast } from '../animations/toast.js'
+import { musique } from '../audio/musique.js'
+import { volumeEffets, effetsOn, effetsVolume } from '../audio/reglages.js'
+import { ripple, burst, voler, rebond } from '../animations/effects.js'
+import { animationsActives } from '../animations/motion.js'
 
 const router    = useRouter()
 const quizStore = useQuizStore()
@@ -256,11 +355,22 @@ const chargement = ref(true)
 const envoi      = ref(false)
 
 const indexCourant    = ref(0)
+const repondu         = ref(false)   // vrai dès qu'une réponse (ou temps écoulé / passer) est enregistrée
 const reponduIndex    = ref(null)
 const bonneIndex      = ref(null)
 const showExplication = ref(false)
 const animShake  = ref(false)
 const animPulse  = ref(false)
+const touchePressee = ref(null)      // E9 · choix activé au clavier
+const tempsEcoule   = ref(false)     // F3
+const explosion     = ref(false)     // F5
+let _explosionTimer = null
+let xpAvant         = null      // XP total au début du quiz (pour le résultat provisoire)
+const decompte      = ref(null)      // D1 · 3, 2, 1, 0 (= « C'est parti ! »), null = terminé
+const entree        = ref(false)     // D2 · animation d'entrée de l'interface
+let _decompteTimers = []
+let _commence       = false
+const choixEls      = []             // éléments DOM des choix (effets E2/E3)
 
 const serie         = ref(0)
 const scoreLocal    = ref(0)
@@ -271,6 +381,16 @@ const palierValue   = ref(0)
 const _PALIERS      = [5, 10, 15, 20]
 const PALIER_BONUS    = { 5: 5, 10: 10, 15: 18, 20: 25 }
 const PALIER_DURATION = { 5: 1500, 10: 1800, 15: 2100, 20: 2600 }
+const PALIER_PARTICULES = { 5: 6, 10: 10, 15: 14, 20: 20 }   // H4 · plus le palier est haut, plus ça éclate
+
+// H1/H2 · gains affichés en direct (valeurs réelles envoyées par /quiz/demarrer)
+const xpGagne         = ref(0)
+const serieTransition = ref('serie-up')                        // H3 · le chiffre monte ou tombe
+const xpDesktop       = ref(null)
+const xpMobile        = ref(null)
+const piecesDesktop   = ref(null)
+const piecesMobile    = ref(null)
+const palierBonusEl   = ref(null)
 
 // Bonus
 const bonusUtilises  = ref({ elimination: false, cinqCinq: false, remplacer: false })
@@ -307,9 +427,11 @@ function jouerTickQuestion(tempsMax) {
     son = _tickSons['30s']
   }
   son.currentTime = 0
+  son.volume = volumeEffets()
   son.play().catch(() => {})
   _tickActif = son
 }
+watch([effetsOn, effetsVolume], () => { if (_tickActif) _tickActif.volume = volumeEffets() })
 
 function stopTick() {
   if (_tickActif) {
@@ -323,15 +445,15 @@ function stopTick() {
 const _bonneReponseAudio    = new Audio('/sounds/bonne_reponse.mp3')
 const _mauvaiseReponseAudio = new Audio('/sounds/mauvaise_reponse.mp3')
 
-function jouerBonneReponse() {
-  const s = _bonneReponseAudio.cloneNode()
+function jouerEffet(audio) {
+  const v = volumeEffets()
+  if (!v) return
+  const s = audio.cloneNode()
+  s.volume = v
   s.play().catch(() => {})
 }
-
-function jouerMauvaiseReponse() {
-  const s = _mauvaiseReponseAudio.cloneNode()
-  s.play().catch(() => {})
-}
+const jouerBonneReponse    = () => jouerEffet(_bonneReponseAudio)
+const jouerMauvaiseReponse = () => jouerEffet(_mauvaiseReponseAudio)
 
 // Web Audio API uniquement pour le gong (synthèse)
 let _ac = null
@@ -354,9 +476,11 @@ function _jouerAvecResume(fn) {
 
 // Gong : ton continu 1 seconde
 function jouerGong() {
+  const v = volumeEffets()
+  if (!v) return
   _jouerAvecResume((ac, t) => {
     try {
-      [[220, 0.55], [440, 0.20]].forEach(([freq, vol]) => {
+      [[220, 0.55 * v], [440, 0.20 * v]].forEach(([freq, vol]) => {
         const osc = ac.createOscillator(), g = ac.createGain()
         osc.connect(g); g.connect(ac.destination)
         osc.frequency.value = freq
@@ -411,8 +535,25 @@ const modeBadgeStyle = computed(() => ({
   color: '#fff',
 }))
 
-// Choix visibles (tous, sauf éliminés masqués : on les grise)
+// Choix affichés : les éliminés sortent de la grille (G1/G2), l'indice d'origine est conservé
 const choixVisibles = computed(() => question.value?.choix ?? [])
+const choixAffiches = computed(() =>
+  choixVisibles.value
+    .map((choix, i) => ({ choix, i }))
+    .filter(({ i }) => !elimines.value.includes(i)))
+
+// G1 · le choix qui part est figé à sa place pendant que les autres se resserrent
+function figerChoix(el) {
+  el.style.left   = el.offsetLeft + 'px'
+  el.style.top    = el.offsetTop + 'px'
+  el.style.width  = el.offsetWidth + 'px'
+  el.style.height = el.offsetHeight + 'px'
+}
+
+const transitionQuestion = ref('q-swap')   // G4 : 'q-flip' le temps d'un « Remplacer »
+const recharge           = ref(false)      // G3 : éclat de l'anneau à l'arrivée du « +10s »
+const chronoDesktop      = ref(null)
+const chronoMobile       = ref(null)
 
 // ── DC ring timer computed ──────────────────────────────────────────
 const dcTimerUrgent = computed(() => {
@@ -420,10 +561,42 @@ const dcTimerUrgent = computed(() => {
   return tempsRestant.value <= seuilCritique.value
 })
 
+// ── F1 · Chrono : fraction restante et couleur vert → orange → rouge ─────────
+const RING_C = 2 * Math.PI * 52
+const fracChrono = computed(() => {
+  if (modeNom.value === 'Bombardement') return Math.max(0, tempsGlobal.value) / 60
+  if (!tempsMax.value) return 1
+  return Math.max(0, tempsRestant.value) / tempsMax.value
+})
+const teinteChrono  = computed(() => Math.round(120 * Math.min(1, fracChrono.value)))
+const couleurChrono = computed(() => `hsl(${teinteChrono.value}, 72%, 42%)`)
+
 const dcTimerColor = computed(() => {
   if (dcTimerUrgent.value) return '#c23a3a'
-  return modeNom.value === 'Bombardement' ? '#8fa4ff' : modeCouleur.value
+  // anneau sur fond sombre en Bombardement : même teinte, plus claire
+  return modeNom.value === 'Bombardement'
+    ? `hsl(${teinteChrono.value}, 85%, 62%)`
+    : couleurChrono.value
 })
+
+// ── F2 · zone critique (≤ 3 s), tous les modes ──────────────────────────────
+// Bombardement : chrono global ; autres modes : chrono de la question en cours
+const vignetteCritique = computed(() => {
+  if (decompte.value !== null || explosion.value) return false
+  if (modeNom.value === 'Bombardement') return tempsGlobal.value > 0 && tempsGlobal.value <= 3
+  return !repondu.value && tempsRestant.value > 0 && tempsRestant.value <= 3
+})
+
+// ── F4/F6 · Bombardement : paliers 60-30 / 30-15 / 15-5 / 5-0 ───────────────
+const RYTHME_BOMBE = { 0: '0s', 1: '1.2s', 2: '0.8s', 3: '0.45s', 4: '0.22s' }
+const FOND_BOMBE   = { 1: '#f7f8ff', 2: '#fff6ee', 3: '#ffebd9', 4: '#ffdcc7' }
+const bombePalier = computed(() => {
+  if (modeNom.value !== 'Bombardement') return 0
+  const t = tempsGlobal.value
+  return t > 30 ? 1 : t > 15 ? 2 : t > 5 ? 3 : 4
+})
+const fondBombe = computed(() =>
+  bombePalier.value ? { backgroundColor: FOND_BOMBE[bombePalier.value] } : null)
 
 const dcRingOffset = computed(() => {
   const C = 132
@@ -437,8 +610,48 @@ const dcRingOffset = computed(() => {
 onMounted(async () => {
   if (!quizStore.chapitreId) { router.replace('/'); return }
   await quizStore.demarrer()
-  try { const n = await getNiveau(); piecesTotal.value = n.pieces_total ?? 0 } catch {}
+  try {
+    const n = await getNiveau()
+    piecesTotal.value = n.pieces_total ?? 0
+    xpAvant = n.xp_total ?? null
+  } catch {}
   chargement.value = false
+  // D1 · le chrono ne démarre qu'après le compte à rebours
+  if (animationsActives()) lancerDecompte()
+  else commencer()
+})
+
+// ── D1 · Compte à rebours ────────────────────────────────────────────────────
+const PAS_DECOMPTE = 700   // ms par étape : 3 · 2 · 1 · C'est parti ! ≈ 2,8 s
+
+function lancerDecompte() {
+  decompte.value = 3
+  ;[2, 1, 0].forEach((v, k) => {
+    _decompteTimers.push(setTimeout(() => { decompte.value = v }, PAS_DECOMPTE * (k + 1)))
+  })
+  _decompteTimers.push(setTimeout(commencer, PAS_DECOMPTE * 4))
+  window.addEventListener('keydown', passerDecompte)
+}
+
+function passerDecompte() {
+  if (decompte.value !== null) commencer()
+}
+
+// Démarre réellement la partie (chrono, sons, clavier) — une seule fois
+function commencer() {
+  if (_commence) return
+  _commence = true
+  _decompteTimers.forEach(clearTimeout)
+  _decompteTimers = []
+  window.removeEventListener('keydown', passerDecompte)
+  decompte.value = null
+
+  // D2 · entrée de l'interface (classe retirée ensuite pour ne pas gêner E3/E4)
+  if (animationsActives()) {
+    entree.value = true
+    setTimeout(() => { entree.value = false }, 900)
+  }
+
   if (modeNom.value === 'Bombardement') {
     demarrerChronoGlobal()
     jouerTickQuestion(0)          // QPUC en boucle
@@ -447,9 +660,22 @@ onMounted(async () => {
     jouerTickQuestion(tempsMax.value)
   }
   window.addEventListener('keydown', onKey)
-})
+}
+
+// ── Musique adaptative ──────────────────────────────────────────────────────
+watch(vignetteCritique, (v) => musique.setTension(v))                   // S3 · zone critique
+watch(bombePalier, (n) => musique.setBombe(n))                          // S3 · paliers de la bombe
+watch(() => serie.value >= 5 && modeNom.value !== 'Bombardement',       // S4 · série
+  (v) => musique.setSerie(v))
 
 onBeforeUnmount(() => {
+  document.querySelectorAll('.fx-vol').forEach(el => el.remove())   // gains encore en vol
+  musique.setTension(false)
+  musique.setBombe(0)
+  musique.setSerie(false)
+  clearTimeout(_explosionTimer)
+  _decompteTimers.forEach(clearTimeout)
+  window.removeEventListener('keydown', passerDecompte)
   clearInterval(timerInterval)
   clearInterval(timerGlobal)
   stopTick()
@@ -457,16 +683,22 @@ onBeforeUnmount(() => {
 })
 
 function onKey(e) {
-  if (reponduIndex.value !== null) return
+  if (repondu.value) return
   const map = { '1': 0, '2': 1, '3': 2, '4': 3 }
-  if (map[e.key] !== undefined && !elimines.value.includes(map[e.key])) repondre(map[e.key])
+  const i = map[e.key]
+  if (i === undefined || elimines.value.includes(i)) return
+  // E9 · la touche « appuie » visuellement sur le choix
+  touchePressee.value = i
+  ripple(choixEls[i])
+  setTimeout(() => { touchePressee.value = null }, 180)
+  repondre(i)
 }
 
 function demarrerChronoGlobal() {
   tempsGlobal.value = 60
   timerGlobal = setInterval(() => {
     tempsGlobal.value--
-    if (tempsGlobal.value <= 0) { clearInterval(timerGlobal); finirQuiz() }
+    if (tempsGlobal.value <= 0) { clearInterval(timerGlobal); exploser() }
   }, 1000)
 }
 
@@ -476,12 +708,29 @@ function demarrerChrono() {
   tempsRestant.value = tempsMax.value
   timerInterval = setInterval(() => {
     tempsRestant.value--
-    if (tempsRestant.value <= 0) { clearInterval(timerInterval); jouerGong(); repondre(null) }
+    if (tempsRestant.value <= 0) {
+      clearInterval(timerInterval)
+      jouerGong()
+      // F3 · « Temps écoulé ! » tombe, le chrono tremble, puis la bonne réponse est révélée (E5)
+      tempsEcoule.value = true
+      setTimeout(() => { tempsEcoule.value = false }, 1300)
+      repondre(null)
+    }
   }, 1000)
 }
 
+// F5 · fin du Bombardement : flash, onde de choc et secousse avant le résultat
+function exploser() {
+  musique.duck(0, 2500)            // S5 · silence pendant l'explosion
+  if (!animationsActives()) { finirQuiz(); return }
+  repondu.value = true          // plus de réponse possible pendant l'explosion
+  stopTick()
+  explosion.value = true
+  _explosionTimer = setTimeout(finirQuiz, 900)
+}
+
 function repondre(choixIndex) {
-  if (reponduIndex.value !== null) return
+  if (repondu.value) return
   clearInterval(timerInterval)
   if (modeNom.value !== 'Bombardement') stopTick()
 
@@ -489,6 +738,7 @@ function repondre(choixIndex) {
   const bonneRep = q.bonne_reponse
   const bonneIdx = q.choix.indexOf(bonneRep)
 
+  repondu.value      = true
   reponduIndex.value = choixIndex
   bonneIndex.value   = bonneIdx
 
@@ -499,6 +749,7 @@ function repondre(choixIndex) {
 
   if (correcte) {
     jouerBonneReponse()
+    serieTransition.value = 'serie-up'
     serie.value++
     const meta    = MODES_META[modeNom.value] ?? { multi: 1 }
     const base    = Math.round(10 * meta.multi)
@@ -510,8 +761,14 @@ function repondre(choixIndex) {
     }
     animPulse.value = true
     setTimeout(() => { animPulse.value = false }, 500)
+    // E3 · étoiles qui jaillissent du bon choix — H1/H2 · gains qui volent vers les compteurs
+    nextTick(() => {
+      burst(choixEls[bonneIdx], { count: 8, color: '#16A34A' })
+      animerGains(choixEls[bonneIdx], q.xp ?? 0, q.pieces ?? 0)
+    })
   } else {
     if (choixIndex !== null) jouerMauvaiseReponse()
+    serieTransition.value = 'serie-fall'
     serie.value = 0
     animShake.value = true
     setTimeout(() => { animShake.value = false }, 480)
@@ -530,12 +787,13 @@ function repondre(choixIndex) {
 }
 
 function passer() {
-  if (reponduIndex.value !== null) return
+  if (repondu.value) return
   repondre(null)
 }
 
 function suivant() {
   showExplication.value = false
+  repondu.value         = false
   reponduIndex.value    = null
   bonneIndex.value      = null
   elimines.value        = []
@@ -552,23 +810,104 @@ function suivant() {
   }
 }
 
+// Résultat affiché tout de suite (calcul local), le serveur confirme en arrière-plan.
+// Sans XP de départ connue, on attend la réponse du serveur comme avant.
 async function finirQuiz() {
   clearInterval(timerGlobal)
   stopTick()
+  const { provisoire, envoi: reponseServeur } = quizStore.terminer(xpAvant)
+  if (provisoire) {
+    reponseServeur.catch(() => {})   // l'échec est signalé par la page de résultat
+    router.replace('/resultat')
+    return
+  }
   envoi.value = true
-  await quizStore.terminer()
-  router.replace('/resultat')
+  try {
+    await reponseServeur
+    router.replace('/resultat')
+  } catch {
+    toast("Le résultat n'a pas pu être enregistré", { icon: 'cloud_off', type: 'error', duree: 4000 })
+    router.replace('/')
+  }
 }
 
 function etatChoix(i) {
-  if (reponduIndex.value === null) return ''
+  if (!repondu.value) return ''
   if (i === bonneIndex.value)     return 'correct'
   if (i === reponduIndex.value)   return 'incorrect'
   return 'neutre'
 }
 
-function utiliserBonus(type) {
-  if (reponduIndex.value !== null) return
+// ── Bonus : vérification → débit serveur → effet + animations ───────────────
+const COUT_BONUS = { elimination: 50, cinqCinq: 100, remplacer: 75, plusTemps: 150 }
+let bonusEnCours = false
+
+// Un bonus qui ne changerait rien n'est pas facturé
+function bonusApplicable(type) {
+  const q = question.value
+  const bonneIdx = q.choix.indexOf(q.bonne_reponse)
+  const mauvaisVisibles = [0, 1, 2, 3].filter(i => i !== bonneIdx && !elimines.value.includes(i))
+  if (type === 'elimination') return mauvaisVisibles.length > 0
+  if (type === 'cinqCinq')    return mauvaisVisibles.length > 1
+  if (type === 'remplacer')   return quizStore.questions.length - indexCourant.value - 1 > 0
+  if (type === 'plusTemps')   return modeNom.value === 'Bombardement' || tempsRestant.value < tempsMax.value
+  return false
+}
+
+async function utiliserBonus(type, evt) {
+  if (repondu.value || bonusEnCours || !question.value) return
+  if (bonusUtilises.value[type]) return
+  if (!bonusApplicable(type)) {
+    toast('Ce bonus ne changerait rien ici', { icon: 'block', type: 'error', duree: 2200 })
+    return
+  }
+  const bouton = evt?.currentTarget   // à lire avant l'await (currentTarget est remis à null ensuite)
+
+  bonusEnCours = true
+  try {
+    const r = await utiliserBonusApi(type)
+    animerDepense(bouton, r.cout)
+  } catch (e) {
+    refuserBonus(bouton, e)
+    return
+  } finally {
+    bonusEnCours = false
+  }
+  if (repondu.value) return
+  appliquerBonus(type, bouton)
+}
+
+// G5 · les pièces quittent le compteur et rejoignent le bouton ; le compteur descend
+function animerDepense(bouton, cout) {
+  const compteur = ciblePieces()
+  // Sur mobile, le menu des bonus est déjà refermé : les pièces vont au bouton « Bonus »
+  const cible = bouton?.isConnected ? bouton : document.querySelector('.qz-bonus-toggle')
+  piecesTotal.value -= cout
+  rebond(compteur)
+  const svg = document.querySelector('.coin-icon')?.outerHTML ?? '🪙'
+  const n   = Math.min(5, Math.max(3, Math.round(cout / 40)))
+  for (let k = 0; k < n; k++) {
+    voler(compteur, cible, {
+      contenu: svg, classe: 'fx-vol-piece', duree: 650,
+      delai: k * 70, ecart: (k - (n - 1) / 2) * 10, hauteur: 50,
+    })
+  }
+}
+
+function refuserBonus(bouton, e) {
+  const manque = e?.response?.status === 400
+  toast(manque ? 'Pas assez de pièces pour ce bonus' : 'Bonus indisponible, réessaie',
+    { icon: manque ? 'savings' : 'error', type: 'error', duree: 2500 })
+  if (bouton?.isConnected && animationsActives()) {
+    bouton.animate([
+      { transform: 'translateX(0)' }, { transform: 'translateX(-6px)' },
+      { transform: 'translateX(6px)' }, { transform: 'translateX(-3px)' },
+      { transform: 'translateX(0)' },
+    ], { duration: 350, easing: 'ease' })
+  }
+}
+
+function appliquerBonus(type, bouton) {
   const q = question.value
   if (!q) return
 
@@ -584,8 +923,9 @@ function utiliserBonus(type) {
     bonusUtilises.value.cinqCinq = true
     const bonneIdx = q.choix.indexOf(q.bonne_reponse)
     const mauvais  = [0, 1, 2, 3].filter(i => i !== bonneIdx)
-    // Garder un mauvais, éliminer les deux autres
-    const garder = mauvais[Math.floor(Math.random() * mauvais.length)]
+    // Garder un mauvais encore visible, éliminer les autres (sans faire revenir un choix déjà éliminé)
+    const restants = mauvais.filter(i => !elimines.value.includes(i))
+    const garder = restants[Math.floor(Math.random() * restants.length)]
     elimines.value = mauvais.filter(i => i !== garder)
 
   } else if (type === 'remplacer') {
@@ -600,17 +940,29 @@ function utiliserBonus(type) {
       arr.splice(swapIdx, 1, temp)
       elimines.value = []
       clearInterval(timerInterval)
+      // G4 · la carte se retourne et la nouvelle question apparaît au dos
+      transitionQuestion.value = 'q-flip'
+      setTimeout(() => { transitionQuestion.value = 'q-swap' }, 700)
       if (modeNom.value !== 'Bombardement') demarrerChrono()
     }
 
   } else if (type === 'plusTemps') {
-    if (modeNom.value !== 'Bombardement') {
-      clearInterval(timerInterval)
-      tempsRestant.value = Math.min(tempsRestant.value + 10, tempsMax.value)
-      demarrerChrono()
-    } else {
-      tempsGlobal.value = Math.min(tempsGlobal.value + 15, 60)
+    const ajout = modeNom.value === 'Bombardement' ? 15 : 10
+    const crediter = () => {
+      if (modeNom.value !== 'Bombardement') {
+        if (repondu.value) return
+        tempsRestant.value = Math.min(tempsRestant.value + ajout, tempsMax.value)
+      } else {
+        tempsGlobal.value = Math.min(tempsGlobal.value + ajout, 60)
+      }
+      recharge.value = true
+      setTimeout(() => { recharge.value = false }, 600)
     }
+    // G3 · « +10s » vole du bouton jusqu'au chrono ; le temps est crédité à l'arrivée
+    // (tout de suite s'il ne reste qu'une seconde)
+    const cible = visible(chronoDesktop.value) ? chronoDesktop.value : chronoMobile.value
+    if (tempsRestant.value <= 1 && modeNom.value !== 'Bombardement') crediter()
+    else voler(bouton, cible, { contenu: `+${ajout}s`, classe: 'fx-vol-temps', duree: 700 }).then(crediter)
   }
 }
 
@@ -626,12 +978,49 @@ function triggerPalier(n) {
   palierValue.value = n
   palierVisible.value = true
   playSerieSound(n)
+  musique.duck(0.35, PALIER_DURATION[n])   // S5 · la musique s'efface derrière le palier
+  // H4 · le bonus de pièces quitte la bannière et rejoint le compteur
+  setTimeout(() => {
+    volerPieces(palierBonusEl.value, Math.min(8, 3 + n / 5), PALIER_BONUS[n])
+  }, PALIER_DURATION[n] * 0.55)
   setTimeout(() => { palierVisible.value = false }, PALIER_DURATION[n])
 }
 
+// ── H1/H2 · Gains qui volent vers leurs compteurs ───────────────────────────
+const visible = (el) => !!el && el.getClientRects().length > 0
+
+function cibleXp()     { return visible(xpDesktop.value) ? xpDesktop.value : xpMobile.value }
+function ciblePieces() { return visible(piecesDesktop.value) ? piecesDesktop.value : piecesMobile.value }
+
+function animerGains(depuis, xp, pieces) {
+  if (xp > 0) {
+    const cible = cibleXp()
+    voler(depuis, cible, { contenu: `+${xp} XP`, classe: 'fx-vol-xp' })
+      .then(() => { xpGagne.value += xp; rebond(cible) })
+  }
+  // 3 à 5 pièces selon le gain
+  if (pieces > 0) volerPieces(depuis, Math.min(5, Math.max(3, pieces + 1)), pieces)
+}
+
+// n pièces partent en éventail, l'une après l'autre ; le compteur est crédité à l'arrivée
+function volerPieces(depuis, n, montant) {
+  const cible = ciblePieces()
+  const svg   = document.querySelector('.coin-icon')?.outerHTML ?? '🪙'
+  const vols  = Array.from({ length: n }, (_, k) =>
+    voler(depuis, cible, {
+      contenu: svg, classe: 'fx-vol-piece', duree: 700,
+      delai: 120 + k * 70, ecart: (k - (n - 1) / 2) * 14, hauteur: 60 + k * 8,
+    }).then(() => rebond(cible))
+  )
+  Promise.all(vols).then(() => { piecesTotal.value += montant })
+}
+
 function playSerieSound(n) {
+  const v = volumeEffets()
+  if (!v) return
   try {
-    const ac = new AudioContext()
+    const ac = _getAc()
+    if (!ac) return
     const plans = {
       5:  [[523, 0], [659, 0.14]],
       10: [[523, 0], [659, 0.12], [784, 0.24]],
@@ -646,16 +1035,16 @@ function playSerieSound(n) {
       osc.type = 'triangle'
       const st = ac.currentTime + t
       g.gain.setValueAtTime(0, st)
-      g.gain.linearRampToValueAtTime(0.2, st + 0.04)
+      g.gain.linearRampToValueAtTime(0.2 * v, st + 0.04)
       g.gain.exponentialRampToValueAtTime(0.001, st + 0.55)
       osc.start(st); osc.stop(st + 0.6)
     })
   } catch {}
 }
 
-function palierParticleStyle(i) {
+function palierParticleStyle(i, n) {
   return {
-    '--angle': (i / 12 * 360) + 'deg',
+    '--angle': (i / n * 360) + 'deg',
     '--dist':  (90 + (i % 3) * 25) + 'px',
     '--size':  (4 + (i % 3) * 3) + 'px',
     '--hue':   (20 + i * 15) + 'deg',
@@ -669,7 +1058,61 @@ function palierParticleStyle(i) {
 .qz-loading { display: flex; align-items: center; justify-content: center; min-height: 100dvh; font-weight: 600; color: #6b7280; font-size: 1rem; }
 
 /* ── Shell ───────────────────────────────────────────────────── */
-.qz-shell { display: flex; flex-direction: column; min-height: 100dvh; background: #f9f9ff; }
+.qz-shell { display: flex; flex-direction: column; min-height: 100dvh; background-color: #f9f9ff; transition: background-color 1s ease; }
+
+/* F2 · lueur rouge battante sur les bords */
+.qz-vignette {
+  position: fixed; inset: 0; z-index: 90; pointer-events: none;
+  box-shadow: inset 0 0 90px 10px rgba(220, 38, 38, 0.45);
+  animation: qz-vignette 1s ease-in-out infinite;
+}
+@keyframes qz-vignette { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
+.fondu-enter-active, .fondu-leave-active { transition: opacity 0.3s; }
+.fondu-enter-from, .fondu-leave-to { opacity: 0; }
+
+/* F3 · « Temps écoulé ! » tombe du haut avec un rebond */
+.qz-temps-ecoule {
+  position: fixed; top: 18%; left: 50%; z-index: 110; transform: translateX(-50%);
+  background: #c23a3a; color: #fff; font-weight: 900; font-size: 1.35rem;
+  padding: 0.6rem 1.4rem; border-radius: 99px; white-space: nowrap;
+  box-shadow: 0 10px 30px rgba(194, 58, 58, 0.4); pointer-events: none;
+}
+.temps-ecoule-enter-active { animation: temps-ecoule-in 0.5s var(--ease-spring); }
+.temps-ecoule-leave-active { transition: opacity 0.25s, transform 0.25s; }
+.temps-ecoule-leave-to     { opacity: 0; transform: translateX(-50%) translateY(-12px); }
+@keyframes temps-ecoule-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-140px) rotate(-6deg); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0) rotate(0); }
+}
+
+/* F5 · explosion finale */
+.qz-explosion { position: fixed; inset: 0; z-index: 140; pointer-events: none; display: flex; align-items: center; justify-content: center; }
+.qz-explosion-flash { position: absolute; inset: 0; background: #fff; animation: qz-flash 0.5s ease-out forwards; }
+@keyframes qz-flash { 0% { opacity: 0; } 15% { opacity: 1; } 100% { opacity: 0; } }
+.qz-explosion-onde {
+  position: absolute; width: 120px; height: 120px; border-radius: 50%;
+  border: 10px solid #ff7a1a; animation: qz-onde 0.8s ease-out forwards;
+}
+.qz-explosion-onde--2 { border-color: #ffd23f; animation-delay: 0.12s; }
+@keyframes qz-onde {
+  from { transform: scale(0.2); opacity: 1; }
+  to   { transform: scale(9); opacity: 0; border-width: 1px; }
+}
+.qz-explosion-boum { font-size: 7rem; animation: qz-boum 0.8s var(--ease-spring) forwards; }
+@keyframes qz-boum {
+  0%   { transform: scale(0); opacity: 0; }
+  40%  { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.qz-secousse { animation: qz-secousse 0.6s ease; }
+@keyframes qz-secousse {
+  0%,100% { transform: translate(0, 0); }
+  15% { transform: translate(-10px, 6px); }
+  30% { transform: translate(9px, -7px); }
+  45% { transform: translate(-7px, -4px); }
+  60% { transform: translate(6px, 5px); }
+  80% { transform: translate(-3px, 2px); }
+}
 
 /* ── Header ──────────────────────────────────────────────────── */
 .qz-header {
@@ -724,7 +1167,65 @@ function palierParticleStyle(i) {
 .qz-serie-bounce { animation: qz-serie-bounce 0.4s cubic-bezier(0.34,1.56,0.64,1); }
 
 .qz-progress-track { width: 100%; height: 4px; background: #dce2f3; }
-.qz-progress-fill  { height: 100%; transition: width 0.4s ease; }
+/* D3 · avancée en douceur + reflet */
+.qz-progress-fill  {
+  height: 100%; position: relative; overflow: hidden;
+  border-radius: 0 99px 99px 0;
+  transition: width 0.6s var(--ease-out);
+}
+.qz-progress-shine {
+  position: absolute; inset: 0; width: 60%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent);
+  transform: translateX(-120%);
+  animation: qz-progress-shine 0.9s ease-out 0.3s;
+}
+@keyframes qz-progress-shine { to { transform: translateX(260%); } }
+
+/* ── D1 · Compte à rebours ───────────────────────────────────── */
+.qz-decompte {
+  position: fixed; inset: 0; z-index: 120;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: rgba(249, 249, 255, 0.82); backdrop-filter: blur(6px);
+  cursor: pointer; user-select: none;
+}
+.qz-decompte-val {
+  font-size: clamp(6rem, 22vw, 11rem); font-weight: 900; line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+}
+.qz-decompte-go { font-size: clamp(2.6rem, 10vw, 5rem); letter-spacing: -0.02em; }
+.qz-decompte-aide {
+  position: absolute; bottom: 2.5rem;
+  font-size: 0.85rem; font-weight: 600; color: #727785;
+}
+/* Chaque chiffre arrive en grossissant puis s'efface */
+.decompte-pas-enter-active { animation: decompte-in 0.35s var(--ease-spring); }
+.decompte-pas-leave-active { transition: opacity 0.15s, transform 0.15s ease-in; }
+.decompte-pas-leave-to     { opacity: 0; transform: scale(1.5); }
+@keyframes decompte-in {
+  from { opacity: 0; transform: scale(0.3); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.decompte-fond-leave-active { transition: opacity 0.3s ease; }
+.decompte-fond-leave-to     { opacity: 0; }
+
+/* ── D2 · Entrée de l'interface ──────────────────────────────── */
+.qz-attente .qz-header,
+.qz-attente .qz-dc-stats,
+.qz-attente .qz-main { opacity: 0; }
+
+.qz-entree .qz-header    { animation: qz-in-haut 0.4s var(--ease-out) backwards; }
+.qz-entree .qz-dc-stats  { animation: qz-in-bas 0.4s var(--ease-out) 0.08s backwards; }
+.qz-entree .qz-aside     { animation: qz-in-bas 0.4s var(--ease-out) 0.1s backwards; }
+.qz-entree .qz-question-nav,
+.qz-entree .qz-question-card { animation: qz-in-bas 0.45s var(--ease-out) 0.12s backwards; }
+.qz-entree .qz-choix-btn { animation: qz-in-bas 0.4s var(--ease-out) backwards; }
+.qz-entree .qz-choix-btn:nth-child(1) { animation-delay: 0.25s; }
+.qz-entree .qz-choix-btn:nth-child(2) { animation-delay: 0.32s; }
+.qz-entree .qz-choix-btn:nth-child(3) { animation-delay: 0.39s; }
+.qz-entree .qz-choix-btn:nth-child(4) { animation-delay: 0.46s; }
+@keyframes qz-in-haut { from { opacity: 0; transform: translateY(-100%); } }
+@keyframes qz-in-bas  { from { opacity: 0; transform: translateY(24px); } }
 
 /* ── Main layout ─────────────────────────────────────────────── */
 .qz-main {
@@ -751,8 +1252,53 @@ function palierParticleStyle(i) {
 .qz-timer-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #424754; margin-bottom: 0.25rem; }
 .qz-timer-val   { font-size: 3rem; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; color: #151c27; }
 .qz-timer-unit  { font-size: 0.72rem; color: #727785; margin-top: 0.15rem; }
-.qz-timer-bar-wrap { width: 100%; height: 5px; background: #dce2f3; border-radius: 99px; overflow: hidden; margin-top: 0.75rem; }
-.qz-timer-bar   { height: 100%; background: #0058be; border-radius: 99px; transition: width 1s linear; }
+.qz-timer-ring { position: relative; width: 104px; height: 104px; display: flex; align-items: center; justify-content: center; margin: 0.15rem 0; }
+.qz-timer-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.qz-timer-ring-fond { fill: none; stroke: #e7eaf3; stroke-width: 9; }
+.qz-timer-ring-arc  {
+  fill: none; stroke-width: 9; stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear, stroke 1s linear;
+}
+.qz-timer-ring .qz-timer-val { position: relative; font-size: 2.4rem; }
+
+/* F4 · bombe qui bat + mèche qui raccourcit */
+.qz-bombe-ligne { display: flex; align-items: center; gap: 0.5rem; width: 100%; margin-top: 0.75rem; }
+.qz-bombe {
+  font-size: 1.6rem; line-height: 1; display: inline-block;
+  animation: qz-bombe-bat var(--rythme, 1.2s) ease-in-out infinite;
+}
+@keyframes qz-bombe-bat {
+  0%, 100% { transform: scale(1); }
+  30%      { transform: scale(1.22) rotate(-6deg); }
+}
+.qz-meche-wrap { flex: 1; height: 6px; }
+.qz-meche {
+  position: relative; height: 100%;
+  background: repeating-linear-gradient(90deg, #8a5a2b 0 6px, #b07a45 6px 10px);
+  border-radius: 99px; transition: width 1s linear;
+}
+.qz-etincelle {
+  position: absolute; right: -7px; top: 50%; width: 14px; height: 14px;
+  border-radius: 50%; transform: translateY(-50%);
+  background: radial-gradient(circle, #fff7c2 0%, #ffb020 45%, rgba(255,80,0,0) 70%);
+  animation: qz-etincelle 0.18s steps(2) infinite;
+}
+@keyframes qz-etincelle {
+  from { transform: translateY(-50%) scale(0.8); opacity: 0.8; }
+  to   { transform: translateY(-50%) scale(1.25); opacity: 1; }
+}
+.qz-dc-ring-wrap.qz-bombe-pulse { animation: qz-bombe-bat var(--rythme, 1.2s) ease-in-out infinite; }
+
+/* F3 · le chrono tremble au temps écoulé */
+.qz-timer-card.qz-chrono-shake,
+.qz-dc-ring-wrap.qz-chrono-shake { animation: qz-chrono-shake 0.5s ease; }
+@keyframes qz-chrono-shake {
+  0%,100% { transform: translateX(0) rotate(0); }
+  20% { transform: translateX(-6px) rotate(-4deg); }
+  40% { transform: translateX(6px) rotate(4deg); }
+  60% { transform: translateX(-4px) rotate(-2deg); }
+  80% { transform: translateX(4px) rotate(2deg); }
+}
 
 @keyframes pulse-red {
   0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(186,26,26,0.4); }
@@ -789,7 +1335,7 @@ function palierParticleStyle(i) {
 .qz-bonus-cout { font-size: 0.72rem; font-weight: 700; color: #6b38d4; white-space: nowrap; flex-shrink: 0; }
 
 /* ── Centre ──────────────────────────────────────────────────── */
-.qz-center { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.qz-center { flex: 1; display: flex; flex-direction: column; min-width: 0; perspective: 1200px; }
 
 .qz-question-nav {
   display: flex; align-items: center; justify-content: space-between;
@@ -824,6 +1370,43 @@ function palierParticleStyle(i) {
 }
 
 /* Grille de réponses */
+/* G1/G2 · élimination : le choix se fissure, se réduit et s'efface ; la grille se resserre */
+.qz-choix-grid { position: relative; }
+.choix-move { transition: transform 0.35s var(--ease-out); }
+.choix-leave-active {
+  position: absolute; z-index: 2; pointer-events: none;
+  animation: choix-fissure 0.5s ease-in forwards;
+}
+.choix-leave-active::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M48 0 L44 12 L53 18 L46 29 L51 40 M44 12 L30 16 M53 18 L68 14 M46 29 L36 34' fill='none' stroke='%23424754' stroke-width='1.4' stroke-linejoin='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  animation: choix-fissure-trait 0.5s ease-out forwards;
+}
+@keyframes choix-fissure {
+  0%   { transform: none; opacity: 1; }
+  12%  { transform: rotate(-2deg); }
+  24%  { transform: rotate(2deg); }
+  36%  { transform: rotate(0) scale(1); opacity: 1; }
+  100% { transform: scale(0.4) rotate(5deg); opacity: 0; }
+}
+@keyframes choix-fissure-trait { from { opacity: 0; } 25% { opacity: 1; } to { opacity: 1; } }
+
+/* G3 · éclat de l'anneau quand le temps est rechargé */
+.qz-timer-ring.qz-chrono-recharge,
+.qz-dc-ring-wrap.qz-chrono-recharge { animation: qz-recharge 0.6s var(--ease-out); border-radius: 50%; }
+.qz-chrono-recharge .qz-timer-ring-arc { transition-duration: 0.35s; }
+@keyframes qz-recharge {
+  0%   { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.6); transform: scale(1); }
+  35%  { transform: scale(1.12); }
+  100% { box-shadow: 0 0 0 22px rgba(22, 163, 74, 0); transform: scale(1); }
+}
+
+/* G4 · « Remplacer » : la carte se retourne */
+.q-flip-leave-active { transition: transform 0.25s ease-in, opacity 0.25s ease-in; }
+.q-flip-leave-to     { transform: rotateY(90deg); opacity: 0.3; }
+.q-flip-enter-active { transition: transform 0.25s var(--ease-out), opacity 0.25s; }
+.q-flip-enter-from   { transform: rotateY(-90deg); opacity: 0.3; }
+
 .qz-choix-grid {
   display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1rem;
 }
@@ -834,23 +1417,62 @@ function palierParticleStyle(i) {
   background: #fff; border: 2px solid #c2c6d6;
   border-radius: 14px; padding: 1rem 1.1rem;
   text-align: left; cursor: pointer;
-  transition: border-color 0.15s, background 0.15s, transform 0.12s;
+  transition: border-color 0.2s, background 0.2s, opacity 0.3s, transform 0.15s var(--ease-out);
   box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
+/* E1 · survol : léger décalage vers la droite */
 .qz-choix-btn:hover:not(:disabled) {
-  border-color: #0058be; background: #d8e2ff; transform: translateY(-2px);
+  border-color: #0058be; background: #d8e2ff; transform: translateX(4px);
 }
+/* E2 · pression (l'onde est ajoutée par v-ripple) */
+.qz-choix-btn:active:not(:disabled) { transform: translateX(4px) scale(0.97); transition-duration: 80ms; }
+.qz-choix-btn:disabled { opacity: 1; cursor: default; }
 .qz-choix-btn.correct  { border-color: #006c49; background: #6ffbbe33; }
 .qz-choix-btn.incorrect{ border-color: #ba1a1a; background: #ffdad6; }
-.qz-choix-btn.neutre   { opacity: 0.45; }
+/* E6 · les choix non concernés pâlissent */
+.qz-choix-btn.neutre   { opacity: 0.4; }
 .qz-choix-btn.qz-choix-elimine { opacity: 0.25; cursor: not-allowed; }
+
+/* E3 · bonne réponse : halo vert qui pulse une fois */
+.qz-choix-btn.qz-gagne { animation: qz-halo 0.6s var(--ease-out); }
+@keyframes qz-halo {
+  0%   { box-shadow: 0 0 0 0 rgba(22,163,74,0.55); }
+  100% { box-shadow: 0 0 0 16px rgba(22,163,74,0); }
+}
+/* E4 · mauvaise réponse : le choix tremble */
+.qz-choix-btn.incorrect { animation: qz-choix-shake 0.4s ease; }
+@keyframes qz-choix-shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(7px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+/* E5 · révélation de la bonne réponse : contour qui clignote 2 fois */
+.qz-choix-btn.qz-revele { animation: qz-revele 0.5s ease-in-out 0.25s 2; }
+@keyframes qz-revele {
+  0%,100% { box-shadow: 0 0 0 0 rgba(22,163,74,0); }
+  50%     { box-shadow: 0 0 0 4px rgba(22,163,74,0.5); }
+}
+/* E9 · réponse au clavier */
+.qz-choix-btn.qz-kbd-press { transform: scale(0.96); }
+.qz-kbd-press .qz-kbd { background: #0058be; color: #fff; transform: scale(1.15); }
 
 .qz-lettre {
   width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
   background: #dce2f3; color: #424754;
   display: flex; align-items: center; justify-content: center;
   font-size: 1.1rem; font-weight: 700;
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.2s, color 0.2s;
+}
+.qz-lettre > span { display: inline-block; }
+/* E3/E4 · ✓ / ✗ qui apparaissent avec un rebond */
+.lettre-pop-enter-active { animation: lettre-pop 0.4s var(--ease-spring); }
+.lettre-pop-leave-active { display: none; }
+@keyframes lettre-pop {
+  0%   { transform: scale(0) rotate(-25deg); }
+  60%  { transform: scale(1.35) rotate(5deg); }
+  100% { transform: scale(1) rotate(0); }
 }
 .qz-choix-btn:hover:not(:disabled) .qz-lettre { background: #0058be; color: #fff; }
 .qz-lettre.correct   { background: #006c49; color: #fff; }
@@ -864,6 +1486,7 @@ function palierParticleStyle(i) {
   padding: 0.2rem 0.45rem; border-radius: 6px;
   background: #dce2f3; font-size: 0.72rem; font-weight: 600; color: #727785;
   flex-shrink: 0;
+  transition: background 0.15s, color 0.15s, transform 0.15s var(--ease-spring);
 }
 @media (min-width: 768px) { .qz-kbd { display: flex; } }
 
@@ -893,10 +1516,34 @@ function palierParticleStyle(i) {
 }
 .qz-suivant-btn:hover { background: #004295; }
 
+/* H1/H2 · compteurs XP / pièces de l'en-tête */
+.qz-gain-pill {
+  display: flex; align-items: center; gap: 0.3rem;
+  border-radius: 99px; padding: 0.3rem 0.75rem;
+  font-size: 0.82rem; font-weight: 800; white-space: nowrap;
+}
+.qz-gain-xp     { background: #f3efff; border: 1.5px solid #ddd3fe; color: #6d28d9; }
+.qz-gain-pieces { background: #fff8e6; border: 1.5px solid #fde4a3; color: #9a5b0b; }
+.qz-dc-xp { color: #6d28d9; white-space: nowrap; display: inline-block; }
+
+/* H3 · le chiffre de la série monte avec un rebond, ou tombe quand elle casse */
+.qz-serie-chiffre { display: inline-block; }
+.serie-up-enter-active   { animation: serie-chiffre-up 0.35s var(--ease-spring); }
+.serie-up-leave-active   { transition: opacity 0.1s, transform 0.1s; }
+.serie-up-leave-to       { opacity: 0; transform: translateY(-8px); }
+@keyframes serie-chiffre-up {
+  from { transform: translateY(10px) scale(0.6); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+.serie-fall-leave-active { transition: opacity 0.35s ease-in, transform 0.35s ease-in; }
+.serie-fall-leave-to     { opacity: 0; transform: translateY(18px) rotate(-25deg); }
+.serie-fall-enter-active { transition: opacity 0.2s; }
+.serie-fall-enter-from   { opacity: 0; }
+
 /* Pill entrance */
 .serie-pop-enter-active { animation: serie-pop-in 0.45s cubic-bezier(0.34,1.56,0.64,1); }
-.serie-pop-leave-active { transition: opacity 0.2s, transform 0.2s; }
-.serie-pop-leave-to     { opacity: 0; transform: scale(0.8); }
+.serie-pop-leave-active { transition: opacity 0.35s ease-in, transform 0.35s ease-in; }
+.serie-pop-leave-to     { opacity: 0; transform: translateY(18px) rotate(-10deg) scale(0.85); }
 @keyframes serie-pop-in {
   from { transform: scale(0); opacity: 0; }
   to   { transform: scale(1); opacity: 1; }
@@ -981,8 +1628,21 @@ function palierParticleStyle(i) {
 .palier-anim-enter-from    { opacity: 0; transform: scale(0.5); }
 .palier-anim-leave-to      { opacity: 0; }
 
-.expl-slide-enter-active { transition: opacity 0.25s, transform 0.25s; }
-.expl-slide-enter-from   { opacity: 0; transform: translateY(10px); }
+/* E7 · question suivante : sortie à gauche, entrée par la droite */
+.q-swap-enter-active { transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out); }
+.q-swap-leave-active { transition: opacity 0.15s var(--ease-in), transform 0.15s var(--ease-in); }
+.q-swap-enter-from   { opacity: 0; transform: translateX(40px) rotate(1.5deg); }
+.q-swap-leave-to     { opacity: 0; transform: translateX(-40px) rotate(-1.5deg); }
+.qz-q-stage--rapide.q-swap-enter-active,
+.qz-q-stage--rapide.q-swap-leave-active { transition-duration: 0.1s; }
+
+/* E8 · explication qui se déplie, puis le texte apparaît */
+.expl-slide-enter-active { transition: max-height 0.35s var(--ease-out), opacity 0.25s, transform 0.3s var(--ease-out); overflow: hidden; }
+.expl-slide-enter-from   { max-height: 0; opacity: 0; transform: translateY(-8px); }
+.expl-slide-enter-to     { max-height: 600px; }
+.expl-slide-enter-active .qz-expl-texte,
+.expl-slide-enter-active .qz-suivant-btn { animation: expl-texte 0.3s var(--ease-out) 0.15s backwards; }
+@keyframes expl-texte { from { opacity: 0; transform: translateY(6px); } }
 .expl-slide-leave-active { transition: opacity 0.15s; }
 .expl-slide-leave-to     { opacity: 0; }
 
@@ -997,7 +1657,7 @@ function palierParticleStyle(i) {
 @media (max-width: 640px) {
 
   /* Shell */
-  .qz-shell { background: #f5f6f8; }
+  .qz-shell { background-color: #f5f6f8; }
 
   /* ── Header desktop caché, header dc.html affiché ── */
   .qz-header-inner { display: none; }

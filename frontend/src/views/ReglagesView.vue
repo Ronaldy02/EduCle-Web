@@ -87,6 +87,61 @@
         </template>
       </div>
 
+      <!-- ── Son (S6) ───────────────────────────────────────── -->
+      <div class="rg-section-label">Son</div>
+      <div class="rg-card">
+        <div class="rg-switch-row">
+          <div>
+            <p class="rg-switch-titre">Musique de fond</p>
+            <p class="rg-desc">Ambiance douce sur les pages, plus rythmée pendant les quiz.</p>
+          </div>
+          <button class="rg-switch" :class="{ on: musiqueOn }" role="switch"
+            :aria-checked="musiqueOn" aria-label="Musique de fond" @click="musiqueOn = !musiqueOn; confirmer()">
+            <span class="rg-switch-knob"></span>
+          </button>
+        </div>
+        <div class="rg-volume" :class="{ 'rg-volume--off': !musiqueOn }">
+          <span class="material-symbols-outlined">music_note</span>
+          <input type="range" min="0" max="1" step="0.05" v-model.number="musiqueVolume"
+            :disabled="!musiqueOn" aria-label="Volume de la musique" />
+          <span class="rg-volume-val">{{ Math.round(musiqueVolume * 100) }} %</span>
+        </div>
+
+        <div class="rg-divider"></div>
+
+        <div class="rg-switch-row">
+          <div>
+            <p class="rg-switch-titre">Effets sonores</p>
+            <p class="rg-desc">Bonnes et mauvaises réponses, chrono, séries.</p>
+          </div>
+          <button class="rg-switch" :class="{ on: effetsOn }" role="switch"
+            :aria-checked="effetsOn" aria-label="Effets sonores" @click="effetsOn = !effetsOn; confirmer()">
+            <span class="rg-switch-knob"></span>
+          </button>
+        </div>
+        <div class="rg-volume" :class="{ 'rg-volume--off': !effetsOn }">
+          <span class="material-symbols-outlined">volume_up</span>
+          <input type="range" min="0" max="1" step="0.05" v-model.number="effetsVolume"
+            :disabled="!effetsOn" aria-label="Volume des effets sonores" @change="essaiEffet" />
+          <span class="rg-volume-val">{{ Math.round(effetsVolume * 100) }} %</span>
+        </div>
+      </div>
+
+      <!-- ── Animations ─────────────────────────────────────── -->
+      <div class="rg-section-label">Animations</div>
+      <div class="rg-card">
+        <div class="rg-switch-row">
+          <div>
+            <p class="rg-switch-titre">Animations et effets visuels</p>
+            <p class="rg-desc">Désactive-les si le site te semble lent ou si les mouvements te gênent.</p>
+          </div>
+          <button class="rg-switch" :class="{ on: animationsOn }" role="switch"
+            :aria-checked="animationsOn" @click="basculerAnimations">
+            <span class="rg-switch-knob"></span>
+          </button>
+        </div>
+      </div>
+
       <!-- ── À propos ───────────────────────────────────────── -->
       <div class="rg-section-label">À propos</div>
       <div class="rg-card">
@@ -107,20 +162,15 @@
       </div>
 
     </div>
-
-    <!-- Toast de confirmation -->
-    <transition name="toast-slide">
-      <div v-if="toastVisible" class="rg-toast">
-        <span class="material-symbols-outlined" style="font-size:18px">check_circle</span>
-        Réglages sauvegardés
-      </div>
-    </transition>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { getProfil, updateProfil } from '../api/client.js'
+import { animationsOn } from '../animations/motion.js'
+import { musiqueOn, musiqueVolume, effetsOn, effetsVolume, volumeEffets } from '../audio/reglages.js'
+import { toast, fermerToast } from '../animations/toast.js'
 
 // ── Pays & régions ────────────────────────────────────────────
 const PAYS = ['Haïti', 'Rép. Dominicaine', 'États-Unis', 'Canada', 'France', 'Belgique']
@@ -140,8 +190,7 @@ const annee         = ref('7e AF')
 const difficulte    = ref('Toutes')
 const pays          = ref('Haïti')
 const zone          = ref('')
-const toastVisible  = ref(false)
-let toastTimer      = null
+let toastId         = null
 
 const anneeOptions = computed(() =>
   niveauScolaire.value === 'Secondaire'
@@ -178,26 +227,26 @@ onMounted(async () => {
 function setNbQuestions(n) {
   nbQuestions.value = n
   localStorage.setItem('educle_nb_questions', n)
-  toast()
+  confirmer()
 }
 
 function setDifficulte(d) {
   difficulte.value = d
   localStorage.setItem('educle_difficulte', d)
-  toast()
+  confirmer()
 }
 
 function setPays(p) {
   pays.value  = p
   zone.value  = ''
   localStorage.setItem('educle_pays', p)
-  toast()
+  confirmer()
 }
 
 async function setZone(r) {
   zone.value = r
   await saveBackend({ zone: r })
-  toast()
+  confirmer()
 }
 
 async function setNiveau(n) {
@@ -206,23 +255,35 @@ async function setNiveau(n) {
   const opts = n === 'Secondaire' ? ['NS1', 'NS2', 'NS3', 'NS4'] : ['7e AF', '8e AF', '9e AF']
   if (!opts.includes(annee.value)) annee.value = opts[0]
   await saveBackend({ niveau_scolaire: n, annee: annee.value })
-  toast()
+  confirmer()
 }
 
 async function setAnnee(a) {
   annee.value = a
   await saveBackend({ annee: a })
-  toast()
+  confirmer()
 }
 
 async function saveBackend(data) {
   try { await updateProfil(data) } catch {}
 }
 
-function toast() {
-  clearTimeout(toastTimer)
-  toastVisible.value = true
-  toastTimer = setTimeout(() => { toastVisible.value = false }, 2000)
+// Petit son d'essai quand on relâche le curseur des effets
+const _sonEssai = new Audio('/sounds/bonne_reponse.mp3')
+function essaiEffet() {
+  const s = _sonEssai.cloneNode()
+  s.volume = volumeEffets()
+  s.play().catch(() => {})
+}
+
+function basculerAnimations() {
+  animationsOn.value = !animationsOn.value
+  confirmer()
+}
+
+function confirmer() {
+  if (toastId) fermerToast(toastId)
+  toastId = toast('Réglages sauvegardés', { icon: 'check_circle', type: 'success', duree: 2000 })
 }
 </script>
 
@@ -298,18 +359,29 @@ function toast() {
 .rg-info-val { font-size: 0.875rem; font-weight: 700; color: var(--text); }
 .rg-divider  { height: 1px; background: var(--border); margin: 0.75rem 0; }
 
-/* Toast */
-.rg-toast {
-  position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
-  display: flex; align-items: center; gap: 0.5rem;
-  background: #16A34A; color: #fff;
-  padding: 0.65rem 1.25rem; border-radius: 99px;
-  font-weight: 700; font-size: 0.875rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-  z-index: 200; white-space: nowrap;
+/* Volume (son) */
+.rg-volume { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.85rem; transition: opacity var(--dur-normal); }
+.rg-volume--off { opacity: 0.4; }
+.rg-volume .material-symbols-outlined { font-size: 20px; color: var(--primary); }
+.rg-volume input[type="range"] { flex: 1; accent-color: var(--primary); cursor: pointer; }
+.rg-volume input[type="range"]:disabled { cursor: not-allowed; }
+.rg-volume-val { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); min-width: 3rem; text-align: right; }
+
+/* Interrupteur animations */
+.rg-switch-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.rg-switch-titre { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+.rg-switch {
+  position: relative; flex-shrink: 0;
+  width: 50px; height: 28px; border-radius: 99px; padding: 0;
+  background: var(--border);
+  transition: background var(--dur-normal);
 }
-.toast-slide-enter-active { transition: opacity 0.2s, transform 0.2s; }
-.toast-slide-enter-from   { opacity: 0; transform: translateX(-50%) translateY(8px); }
-.toast-slide-leave-active { transition: opacity 0.2s; }
-.toast-slide-leave-to     { opacity: 0; }
+.rg-switch.on { background: var(--primary); }
+.rg-switch-knob {
+  position: absolute; top: 3px; left: 3px;
+  width: 22px; height: 22px; border-radius: 50%; background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: transform var(--dur-normal) var(--ease-spring);
+}
+.rg-switch.on .rg-switch-knob { transform: translateX(22px); }
 </style>

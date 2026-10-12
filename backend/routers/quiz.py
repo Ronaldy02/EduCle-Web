@@ -3,6 +3,7 @@
 Flux :
   POST /quiz/demarrer  → reçoit chapitre_id + mode_nom + nb_questions
                          → retourne la liste des questions sélectionnées
+  POST /quiz/bonus     → débite le coût d'un bonus utilisé (refusé si solde insuffisant)
   POST /quiz/terminer  → reçoit les réponses de l'utilisateur
                          → calcule le score, met à jour XP/pièces/stats
                          → retourne ResultatQuizSchema
@@ -12,17 +13,24 @@ import random
 from datetime import date, datetime
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from sqlalchemy import select
+from sqlalchemy import select, update
 
 from database import get_db
 from models import Matiere, Chapitre, Question, StatistiqueQuestion
 from models.defi import Defi, DefiProgres
 from models.realisation import Realisation
 from models.defi import RealisationProgres
+from routers.defis import (
+    _ids_quotidiens_pour, _ids_hebdo_pour, _ids_mensuels_pour,
+    _periode_jour, _periode_hebdo, _periode_mensuel,
+)
 from models.user import User
 from models.score import Score
 from schemas.question import QuestionSchema
-from schemas.quiz import DemarrerQuizRequest, ResultatQuizSchema, QuestionResultatSchema
+from schemas.quiz import (
+    DemarrerQuizRequest, ResultatQuizSchema, QuestionResultatSchema,
+    UtiliserBonusRequest, UtiliserBonusResponse,
+)
 from services.adaptive_selector import selectionner
 from services.niveau import (
     calculer_xp_question,
@@ -121,7 +129,41 @@ def demarrer_quiz(
     pool = _dedup_pool(pool)
     stats = _get_stats(db, [q["id"] for q in pool], current_user.id)
     selected = selectionner(pool=pool, stats=stats, nb_voulu=body.nb_questions)
+    # Même calcul que /terminer : le front peut afficher le vrai gain de chaque question
+    for q in selected:
+        maitrise = stats.get(q["id"], {}).get("nb_correcte", 0.0)
+        q["xp"]     = calculer_xp_question(maitrise, body.mode_nom)
+        q["pieces"] = calculer_pieces_question(True, body.mode_nom)
     return [QuestionSchema(**q) for q in selected]
+
+
+# Coût des bonus en pièces (affiché tel quel dans le quiz)
+COUT_BONUS = {"elimination": 50, "cinqCinq": 100, "remplacer": 75, "plusTemps": 150}
+
+
+@router.post("/bonus", response_model=UtiliserBonusResponse)
+def utiliser_bonus(
+    body: UtiliserBonusRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Débite le coût d'un bonus. Refusé (400) si le solde est insuffisant."""
+    cout = COUT_BONUS.get(body.type)
+    if cout is None:
+        raise HTTPException(status_code=422, detail="Bonus inconnu")
+
+    # Débit atomique : ne passe que si le solde couvre le coût
+    res = db.execute(
+        update(User)
+        .where(User.id == current_user.id, User.pieces_total >= cout)
+        .values(pieces_total=User.pieces_total - cout)
+    )
+    if res.rowcount == 0:
+        db.rollback()
+        raise HTTPException(status_code=400, detail="Pièces insuffisantes")
+    db.commit()
+    db.refresh(current_user)
+    return UtiliserBonusResponse(cout=cout, pieces_total=current_user.pieces_total)
 
 
 class ReponseItem(DemarrerQuizRequest):
@@ -181,7 +223,16 @@ def terminer_quiz(
     ).all()
     questions_map = {q.id: q for q in questions_orm}
 
-    stats = _get_stats(db, question_ids, current_user.id)
+    # Une seule requête pour toutes les stats (au lieu d'un db.get par question)
+    stat_rows = {
+        r.question_id: r
+        for r in db.scalars(
+            select(StatistiqueQuestion).where(
+                StatistiqueQuestion.question_id.in_(question_ids),
+                StatistiqueQuestion.user_id == current_user.id,
+            )
+        ).all()
+    }
     now_iso = datetime.now().isoformat(timespec="seconds")
 
     xp_total_gagne = 0
@@ -194,8 +245,8 @@ def terminer_quiz(
             continue
 
         correcte = rep.reponse.strip() == q.bonne_reponse.strip()
-        stat = stats.get(q.id, {"nb_affichee": 0, "nb_correcte": 0.0, "last_correct_at": None})
-        maitrise = stat["nb_correcte"]
+        stat_orm = stat_rows.get(q.id)
+        maitrise = stat_orm.nb_correcte if stat_orm else 0.0
 
         xp = calculer_xp_question(maitrise, body.mode_nom) if correcte else 0
         pieces = calculer_pieces_question(correcte, body.mode_nom)
@@ -214,13 +265,13 @@ def terminer_quiz(
         ))
 
         # ── Mise à jour des statistiques adaptatives (par utilisateur) ───────
-        stat_orm = db.get(StatistiqueQuestion, (current_user.id, q.id))
         if stat_orm is None:
             stat_orm = StatistiqueQuestion(
                 user_id=current_user.id, question_id=q.id,
                 nb_affichee=0, nb_correcte=0.0,
             )
             db.add(stat_orm)
+            stat_rows[q.id] = stat_orm
 
         nb = stat_orm.nb_affichee + 1
         # Taux de réussite glissant (moyenne mobile)
@@ -254,10 +305,6 @@ def terminer_quiz(
     ))
 
     # ── Mise à jour des défis actifs ──────────────────────────────────────────
-    from routers.defis import (
-        _ids_quotidiens_pour, _ids_hebdo_pour, _ids_mensuels_pour,
-        _periode_jour, _periode_hebdo, _periode_mensuel,
-    )
     today = date.today()
     is_perfect = (score_val == len(resultats) and len(resultats) > 0)
     now_hour = datetime.now().hour
@@ -268,6 +315,18 @@ def terminer_quiz(
         + _ids_mensuels_pour(today)
     )
     defis_actifs = db.scalars(select(Defi).where(Defi.id.in_(all_defi_ids))).all()
+
+    periode_quotidien   = _periode_jour(today)
+    periode_hebdo_val   = _periode_hebdo(today)
+    periode_mensuel_val = _periode_mensuel(today)
+    _dp_rows = db.scalars(
+        select(DefiProgres).where(
+            DefiProgres.user_id == current_user.id,
+            DefiProgres.defi_id.in_(all_defi_ids),
+            DefiProgres.periode.in_([periode_quotidien, periode_hebdo_val, periode_mensuel_val]),
+        )
+    ).all()
+    defi_progres_map = {(r.defi_id, r.periode): r for r in _dp_rows}
 
     _BONUS_XP    = {1: 20, 2: 50, 3: 100}
     _BONUS_PIECES = {1: 10, 2: 25, 3: 50}
@@ -311,21 +370,15 @@ def terminer_quiz(
             continue
 
         if defi.type == "d":
-            periode = _periode_jour(today)
+            periode = periode_quotidien
         elif defi.type == "w":
-            periode = _periode_hebdo(today)
+            periode = periode_hebdo_val
         elif defi.type == "m":
-            periode = _periode_mensuel(today)
+            periode = periode_mensuel_val
         else:
-            periode = _periode_jour(today)
+            periode = periode_quotidien
 
-        row = db.scalar(
-            select(DefiProgres).where(
-                DefiProgres.user_id == current_user.id,
-                DefiProgres.defi_id == defi.id,
-                DefiProgres.periode == periode,
-            )
-        )
+        row = defi_progres_map.get((defi.id, periode))
 
         was_complete = bool(row.complete) if row else False
         if was_complete:

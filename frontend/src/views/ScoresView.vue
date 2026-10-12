@@ -87,7 +87,7 @@
         </div>
 
         <!-- Liste rang 4+ -->
-        <div v-if="classement.length > 3" class="sc-rank-list">
+        <div v-if="classement.length > 3" class="sc-rank-list" v-stagger>
           <div v-for="e in classement.slice(3)" :key="e.rang" class="sc-rank-row">
             <span class="sc-rank-num">#{{ e.rang }}</span>
             <div class="sc-rank-info">

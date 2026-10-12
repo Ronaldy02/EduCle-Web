@@ -18,7 +18,7 @@
       </div>
 
       <!-- Liste des questions -->
-      <div class="rv-liste">
+      <div class="rv-liste" v-stagger>
         <div
           v-for="(q, i) in res.questions"
           :key="q.question_id"
