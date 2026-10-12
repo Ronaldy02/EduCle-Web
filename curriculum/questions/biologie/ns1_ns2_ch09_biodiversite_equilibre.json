@@ -7,7 +7,7 @@
     "NS2"
   ],
   "unite_programme": "1.6 + 2.6",
-  "statut": "validé par l'utilisateur 2026-10-12 (10 questions modifiées à revalider)",
+  "statut": "validé par l'utilisateur 2026-10-12",
   "rejetees": [
     "Q1711",
     "Q1712",
@@ -43,8 +43,7 @@
       "explication": "Exemples : une forêt, une mare, une mangrove, un récif corallien.",
       "niveau_complexite": "Moyen",
       "source": "Larousse : écosystème",
-      "ancien_enonce": "Qu'est-ce qu'un écosystème ?",
-      "statut": "à revalider"
+      "ancien_enonce": "Qu'est-ce qu'un écosystème ?"
     },
     {
       "id": "Q1709",
@@ -73,8 +72,7 @@
       "bonne_reponse": "Le biotope",
       "explication": "Le biotope et sa biocénose forment un écosystème.",
       "niveau_complexite": "Moyen",
-      "source": "Larousse : biotope (abrégé)",
-      "statut": "à revalider"
+      "source": "Larousse : biotope (abrégé)"
     },
     {
       "id": "B9-02",
@@ -173,8 +171,7 @@
       "explication": "Elle s'étudie à trois niveaux : les gènes, les espèces et les écosystèmes.",
       "niveau_complexite": "Moyen",
       "source": "Larousse : biodiversité (« diversité » remplacé par « variété »)",
-      "ancien_enonce": "Qu'est-ce que la biodiversité ?",
-      "statut": "à revalider"
+      "ancien_enonce": "Qu'est-ce que la biodiversité ?"
     },
     {
       "id": "B9-08",
@@ -202,8 +199,7 @@
       "bonne_reponse": "La diversité génétique",
       "explication": "Exemple : les nombreuses variétés de mangues en Haïti.",
       "niveau_complexite": "Moyen",
-      "source": "Programme 1.6 / 2.6",
-      "statut": "à revalider"
+      "source": "Programme 1.6 / 2.6"
     },
     {
       "id": "B9-10",
@@ -217,8 +213,7 @@
       "bonne_reponse": "La diversité spécifique",
       "explication": "Plus un milieu compte d'espèces différentes, plus elle est grande.",
       "niveau_complexite": "Moyen",
-      "source": "Programme 1.6 / 2.6",
-      "statut": "à revalider"
+      "source": "Programme 1.6 / 2.6"
     },
     {
       "id": "B9-11",
@@ -232,8 +227,7 @@
       "bonne_reponse": "La diversité écosystémique",
       "explication": "Haïti possède des milieux très variés, du littoral aux sommets du Pic Macaya.",
       "niveau_complexite": "Moyen",
-      "source": "Programme 1.6 / 2.6",
-      "statut": "à revalider"
+      "source": "Programme 1.6 / 2.6"
     },
     {
       "id": "B9-12",
@@ -304,8 +298,7 @@
       "explication": "Elle va des profondeurs océaniques jusqu'à quelques kilomètres d'altitude.",
       "niveau_complexite": "Moyen",
       "source": "Larousse : biosphère (reformulé)",
-      "ancien_enonce": "Que désigne la biosphère ?",
-      "statut": "à revalider"
+      "ancien_enonce": "Que désigne la biosphère ?"
     },
     {
       "id": "B9-16",
@@ -506,8 +499,7 @@
       "explication": "La chaîne est une suite linéaire ; le réseau représente toutes les relations alimentaires d'un milieu.",
       "niveau_complexite": "Moyen",
       "source": "Programme 1.6 / 2.6",
-      "ancien_enonce": "Qu'est-ce qui distingue un réseau trophique d'une chaîne alimentaire ?",
-      "statut": "à revalider"
+      "ancien_enonce": "Qu'est-ce qui distingue un réseau trophique d'une chaîne alimentaire ?"
     },
     {
       "id": "Q1616",
@@ -537,8 +529,7 @@
       "explication": "Exemple : un sol nu colonisé par des herbes, puis des arbustes, puis la forêt.",
       "niveau_complexite": "Moyen",
       "source": "Programme 1.6 / 2.6",
-      "ancien_enonce": "Qu'est-ce que la succession écologique ?",
-      "statut": "à revalider"
+      "ancien_enonce": "Qu'est-ce que la succession écologique ?"
     },
     {
       "id": "B9-27",
@@ -567,8 +558,7 @@
       "explication": "C'est irréversible : l'espèce ne réapparaît pas.",
       "niveau_complexite": "Facile",
       "source": "Programme 1.6 / 2.6",
-      "ancien_enonce": "Qu'est-ce que l'extinction d'une espèce ?",
-      "statut": "à revalider"
+      "ancien_enonce": "Qu'est-ce que l'extinction d'une espèce ?"
     },
     {
       "id": "Q1715",
