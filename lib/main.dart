@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'controllers/quiz_controller.dart';
-import 'services/database_helper.dart';
 import 'theme/app_theme.dart';
 import 'views/screens/home_screen.dart';
+import 'views/screens/splash_screen.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // Pré-charger le JSON dans un isolate pour ne pas bloquer l'UI au 1er lancement
-  await DatabaseHelper.preloadJsonData();
   runApp(const QuizEducatifApp());
 }
 
@@ -24,7 +22,7 @@ class QuizEducatifApp extends StatelessWidget {
         title: 'EduClé',
         debugShowCheckedModeBanner: false,
         theme: buildEduCleTheme(),
-        home: const HomeScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

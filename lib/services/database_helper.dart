@@ -21,13 +21,8 @@ class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._();
 
   Database? _db;
-  // JSON pré-chargé en amont pour ne pas bloquer l'UI lors du seeding
-  static Map<String, dynamic>? _jsonData;
-
-  static Future<void> preloadJsonData() async {
-    final jsonStr = await rootBundle.loadString('assets/data/questions.json');
-    _jsonData = await Isolate.run(() => _parseJson(jsonStr));
-  }
+  // Callback optionnel appelé lors du seeding pour afficher la progression
+  static void Function(String)? onSeedProgress;
 
   Future<Database> get database async {
     _db ??= await _initDatabase();
@@ -700,14 +695,20 @@ class DatabaseHelper {
   }
 
   Future<void> _seedData(Database db) async {
-    final data = _jsonData ?? await () async {
-      final jsonStr = await rootBundle.loadString('assets/data/questions.json');
-      return await Isolate.run(() => _parseJson(jsonStr));
-    }();
+    onSeedProgress?.call('Lecture des données…');
+    final jsonStr = await rootBundle.loadString('assets/data/questions.json');
+    onSeedProgress?.call('Préparation de la base…');
+    final data = await Isolate.run(() => _parseJson(jsonStr));
+
+    final matieres = data['matieres'] as List<dynamic>;
+    final total = matieres.length;
+    var idx = 0;
 
     await db.transaction((txn) async {
-      for (final m in data['matieres'] as List<dynamic>) {
+      for (final m in matieres) {
         final mat = m as Map<String, dynamic>;
+        idx++;
+        onSeedProgress?.call('${mat['nom']} ($idx/$total)');
         final matiereId = await txn.insert('matieres', {
           'niveau': mat['niveau'],
           'nom': mat['nom'],
