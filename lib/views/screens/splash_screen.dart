@@ -53,7 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset('assets/logo/educle_logo_canva.png', width: 120),
+            Image.asset('assets/logo/educle_cle_or.png', width: 120),
             const SizedBox(height: 32),
             const SizedBox(
               width: 200,
