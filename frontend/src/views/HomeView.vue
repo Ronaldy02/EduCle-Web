@@ -236,7 +236,7 @@
               Retour
             </button>
             <div class="mode-header-logo">
-              <div class="mode-logo-sq"><img class="educle-cle" src="/logo/educle_cle_blanc.png" alt=""></div>
+              <div class="mode-logo-sq"><img class="educle-cle" src="/logo/educle_cle_or.png" alt=""></div>
               <span class="mode-logo-txt">EduClé</span>
             </div>
             <button class="sel-close" @click="fermer">
@@ -321,7 +321,7 @@
         <div class="mode-modal">
           <div class="mode-header">
             <div class="mode-header-logo">
-              <div class="mode-logo-sq"><img class="educle-cle" src="/logo/educle_cle_blanc.png" alt=""></div>
+              <div class="mode-logo-sq"><img class="educle-cle" src="/logo/educle_cle_or.png" alt=""></div>
               <span class="mode-logo-txt">EduClé</span>
             </div>
             <button class="sel-close" @click="showJouerTout = false">
@@ -913,7 +913,7 @@ async function jouerAleatoire() {
 }
 .mode-retour:hover { color: #1a1d24; }
 .mode-header-logo { display: flex; align-items: center; gap: 0.5rem; }
-.mode-logo-sq { width: 34px; height: 34px; border-radius: 9px; background: #06A1F1; color: #fff; font-weight: 800; font-size: 17px; display: flex; align-items: center; justify-content: center; }
+.mode-logo-sq { width: 34px; height: 34px; border-radius: 9px; color: #fff; font-weight: 800; font-size: 17px; display: flex; align-items: center; justify-content: center; }
 .mode-logo-txt { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.01em; }
 
 .mode-body { flex: 1; overflow-y: auto; padding: 1.25rem 1.5rem 1rem; }

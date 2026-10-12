@@ -5,7 +5,7 @@
       <button class="hamburger-btn" @click="sidebarOuvert = !sidebarOuvert" aria-label="Menu">
         <span class="material-symbols-outlined">{{ sidebarOuvert ? 'close' : 'menu' }}</span>
       </button>
-      <span class="logo-text"><span class="logo-mark"><img class="educle-cle" src="/logo/educle_cle_blanc.png" alt=""></span>EduClé</span>
+      <span class="logo-text"><span class="logo-mark"><img class="educle-cle" src="/logo/educle_cle_or.png" alt=""></span>EduClé</span>
     </div>
     <div class="mh-right">
       <div class="stat-pill" v-if="niveau">
@@ -26,7 +26,7 @@
     <!-- Sidebar (desktop always visible, mobile slide-in) -->
     <nav v-if="showNav" :class="['sidebar', { 'sidebar--open': sidebarOuvert }]">
       <div class="sidebar-logo">
-        <span class="logo-text"><span class="logo-mark"><img class="educle-cle" src="/logo/educle_cle_blanc.png" alt=""></span>EduClé</span>
+        <span class="logo-text"><span class="logo-mark"><img class="educle-cle" src="/logo/educle_cle_or.png" alt=""></span>EduClé</span>
         <span class="sidebar-tagline">Apprentissage Académique</span>
       </div>
 
@@ -238,7 +238,7 @@ watch(() => route.name, (n) => {
 
 .sidebar-logo { padding: 1.25rem 1rem 0.75rem; }
 .logo-text { font-size: 1.2rem; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
-.logo-mark { width: 30px; height: 30px; border-radius: 8px; background: #06A1F1; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.logo-mark { width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .sidebar-tagline { font-size: 0.68rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.2rem; display: block; }
 
 .sidebar-links { flex: 1; display: flex; flex-direction: column; gap: 0.15rem; padding: 0.5rem; }

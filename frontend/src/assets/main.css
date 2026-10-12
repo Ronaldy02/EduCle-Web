@@ -114,5 +114,5 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 }
 .pulse { animation: pulse 0.45s ease; }
 
-/* Clé du logo EduClé (blanche, posée sur un carré bleu ciel #06A1F1) */
-.educle-cle { height: 72%; width: auto; display: block; pointer-events: none; }
+/* Clé dorée du logo EduClé */
+.educle-cle { height: 100%; width: auto; display: block; pointer-events: none; }

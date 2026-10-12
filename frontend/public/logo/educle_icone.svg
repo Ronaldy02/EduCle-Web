@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 100 100"><defs><linearGradient id="or" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FFE38A"/><stop offset=".45" stop-color="#FBBF24"/><stop offset="1" stop-color="#D98A06"/>
+  </linearGradient><path id="forme" d="M10 50 a18 18 0 1 1 36 0 a18 18 0 1 1 -36 0 Z
+           M21 50 a7 7 0 1 0 14 0 a7 7 0 1 0 -14 0 Z
+           M44 44.5 H88 a4 4 0 0 1 4 4 V55.5 H88 V68 a2 2 0 0 1 -2 2 H81 a2 2 0 0 1 -2 -2 V55.5 H76 V64 a2 2 0 0 1 -2 2 H69 a2 2 0 0 1 -2 -2 V55.5 H44 Z"/></defs><rect width="100" height="100" rx="24" fill="#2F6FED"/><g transform="translate(50 50) scale(1.03) translate(-49.2 -53.35)"><g transform="rotate(45 50 50)">
+      <use href="#forme" fill="none" stroke="#B26A00" stroke-width="4" stroke-linejoin="round"/>
+      <use href="#forme" fill="url(#or)"/>
+      <path d="M16 42 a14 14 0 0 1 12 -9" fill="none" stroke="#FFF6C9" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+      <rect x="50" y="46.5" width="34" height="2.6" rx="1.3" fill="#FFF6C9" opacity=".75"/>
+    </g></g></svg>
