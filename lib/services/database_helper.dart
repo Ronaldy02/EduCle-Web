@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:isolate';
 
 import 'package:flutter/services.dart';
 import 'package:path/path.dart';
@@ -12,11 +13,21 @@ import '../models/question.dart';
 import '../models/realisation.dart';
 import '../models/reponse_enregistree.dart';
 
+Map<String, dynamic>? _parseJson(String jsonStr) =>
+    jsonDecode(jsonStr) as Map<String, dynamic>;
+
 class DatabaseHelper {
   DatabaseHelper._();
   static final DatabaseHelper instance = DatabaseHelper._();
 
   Database? _db;
+  // JSON pré-chargé en amont pour ne pas bloquer l'UI lors du seeding
+  static Map<String, dynamic>? _jsonData;
+
+  static Future<void> preloadJsonData() async {
+    final jsonStr = await rootBundle.loadString('assets/data/questions.json');
+    _jsonData = await Isolate.run(() => _parseJson(jsonStr));
+  }
 
   Future<Database> get database async {
     _db ??= await _initDatabase();
@@ -689,8 +700,10 @@ class DatabaseHelper {
   }
 
   Future<void> _seedData(Database db) async {
-    final jsonStr = await rootBundle.loadString('assets/data/questions.json');
-    final data = jsonDecode(jsonStr) as Map<String, dynamic>;
+    final data = _jsonData ?? await () async {
+      final jsonStr = await rootBundle.loadString('assets/data/questions.json');
+      return await Isolate.run(() => _parseJson(jsonStr));
+    }();
 
     await db.transaction((txn) async {
       for (final m in data['matieres'] as List<dynamic>) {
