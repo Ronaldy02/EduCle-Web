@@ -7,7 +7,7 @@
     "NS2"
   ],
   "unite_programme": "1.6 + 2.6",
-  "statut": "validé par l'utilisateur 2026-10-12 (B10-28 à revalider)",
+  "statut": "validé par l'utilisateur 2026-10-12",
   "rejetees": [
     "Q1614",
     "B10-26",
@@ -590,8 +590,7 @@
       "bonne_reponse": "Un arbre phylogénétique",
       "explication": "Plus deux espèces sont proches dans l'arbre, plus leur ancêtre commun est récent.",
       "niveau_complexite": "Facile",
-      "source": "Programme 1.6 / 2.6",
-      "statut": "à revalider"
+      "source": "Programme 1.6 / 2.6"
     },
     {
       "id": "B10-29",
