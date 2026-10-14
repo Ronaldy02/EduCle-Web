@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
+import 'package:flutter_web_auth_2/flutter_web_auth_2.dart' show FlutterWebAuth2;
 import 'package:http/http.dart' as http;
 
 import 'database_helper.dart';
@@ -68,7 +68,7 @@ class ApiService {
   /// Ouvre le flux Google OAuth du backend dans SFSafariViewController (iOS)
   /// et capture le token JWT via le custom URL scheme educle://.
   Future<void> connexionGoogle() async {
-    final result = await WebAuthClient.authenticate(
+    final result = await FlutterWebAuth2.authenticate(
       url: '$_baseUrl/auth/google?platform=mobile',
       callbackUrlScheme: 'educle',
     );

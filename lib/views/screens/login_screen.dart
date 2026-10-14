@@ -63,12 +63,16 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
       await _finLogin(pullDuServeur: true);
     } on ApiException catch (e) {
-      if (mounted) setState(() { _erreur = e.message; _chargement = false; });
+      if (mounted) {
+        setState(() { _erreur = e.message; _chargement = false; });
+      }
     } catch (_) {
-      if (mounted) setState(() {
-        _erreur = 'Connexion Google échouée. Vérifie ta connexion.';
-        _chargement = false;
-      });
+      if (mounted) {
+        setState(() {
+          _erreur = 'Connexion Google échouée. Vérifie ta connexion.';
+          _chargement = false;
+        });
+      }
     }
   }
 
@@ -436,9 +440,9 @@ class _StatChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.12),
+        color: Colors.white.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withOpacity(0.18)),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.18)),
       ),
       child: Text(
         label,
