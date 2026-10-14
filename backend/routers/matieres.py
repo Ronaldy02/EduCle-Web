@@ -36,6 +36,24 @@ def lister_niveaux(db: Session = Depends(get_db)):
     return sorted(rows)
 
 
+@router.get("/themes")
+def lister_themes(db: Session = Depends(get_db)):
+    """Chapitres jouables (≥ 10 questions) groupés par matière, pour la recherche de l'accueil."""
+    rows = db.execute(
+        select(Matiere.id, Matiere.nom, Chapitre.id, Chapitre.titre, func.count(Question.id))
+        .join(Chapitre, Chapitre.matiere_id == Matiere.id)
+        .join(Question, Question.chapitre_id == Chapitre.id)
+        .group_by(Matiere.id, Matiere.nom, Chapitre.id, Chapitre.titre)
+        .having(func.count(Question.id) >= _MIN_QUESTIONS)
+        .order_by(Matiere.nom, Chapitre.titre)
+    ).all()
+    par_matiere: dict[int, dict] = {}
+    for m_id, m_nom, c_id, c_titre, nb in rows:
+        m = par_matiere.setdefault(m_id, {"id": m_id, "nom": m_nom, "chapitres": []})
+        m["chapitres"].append({"id": c_id, "titre": c_titre, "nb_questions": nb})
+    return list(par_matiere.values())
+
+
 @router.get("/{matiere_id}", response_model=MatiereDetailSchema)
 def detail_matiere(matiere_id: int, db: Session = Depends(get_db)):
     """Détail d'une matière avec ses chapitres (≥ 10 questions seulement)."""
