@@ -1,0 +1,260 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Adaptation cardiaque et respiratoire à l'effort",
+  "niveaux": [
+    "NS2"
+  ],
+  "unite_programme": "2.1",
+  "statut": "validé par l'utilisateur 2026-10-14",
+  "rejetees": [
+    "B15-10",
+    "B15-11",
+    "B15-12",
+    "B15-14",
+    "B15-15",
+    "B15-32",
+    "B15-33"
+  ],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "B15-01",
+      "enonce": "Nombre de battements du cœur par minute.",
+      "choix": [
+        "La fréquence cardiaque",
+        "Le débit cardiaque",
+        "La tension artérielle",
+        "Le volume courant"
+      ],
+      "bonne_reponse": "La fréquence cardiaque",
+      "explication": "On la mesure en prenant le pouls.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : fréquence (sens 2, appliqué au cœur)"
+    },
+    {
+      "id": "B15-02",
+      "enonce": "Appareil que l'on porte au poignet pour compter les battements du cœur pendant un effort.",
+      "choix": [
+        "Le cardiofréquencemètre",
+        "Le spiromètre",
+        "Le tensiomètre",
+        "Le thermomètre"
+      ],
+      "bonne_reponse": "Le cardiofréquencemètre",
+      "explication": "Il permet de rester dans une zone d'effort adaptée.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : cardiofréquencemètre (reformulé)"
+    },
+    {
+      "id": "B15-03",
+      "enonce": "Volume de sang éjecté par le cœur en une minute.",
+      "choix": [
+        "Le débit cardiaque",
+        "La fréquence cardiaque",
+        "La capacité vitale",
+        "Le volume courant"
+      ],
+      "bonne_reponse": "Le débit cardiaque",
+      "explication": "Il est égal à la fréquence cardiaque multipliée par le volume éjecté à chaque battement.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : débit (sens 5, appliqué au cœur)"
+    },
+    {
+      "id": "B15-04",
+      "enonce": "Quelle est la fréquence cardiaque normale d'un adulte au repos ?",
+      "choix": [
+        "60 à 80 battements par minute",
+        "20 à 30 battements par minute",
+        "120 à 140 battements par minute",
+        "200 battements par minute"
+      ],
+      "bonne_reponse": "60 à 80 battements par minute",
+      "explication": "Elle est plus élevée chez l'enfant.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B15-05",
+      "enonce": "Accélération normale ou pathologique du rythme des battements du cœur.",
+      "choix": [
+        "La tachycardie",
+        "La bradycardie",
+        "L'arythmie",
+        "L'hypertension"
+      ],
+      "bonne_reponse": "La tachycardie",
+      "explication": "Elle est normale pendant l'effort.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : tachycardie (reformulé)"
+    },
+    {
+      "id": "B15-06",
+      "enonce": "Ralentissement des battements du cœur en dessous de 60 par minute.",
+      "choix": [
+        "La bradycardie",
+        "La tachycardie",
+        "L'apnée",
+        "L'hypotension"
+      ],
+      "bonne_reponse": "La bradycardie",
+      "explication": "Elle est fréquente et normale chez les sportifs très entraînés.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : bradycardie"
+    },
+    {
+      "id": "B15-13",
+      "enonce": "Quel gaz les muscles en activité rejettent-ils en plus grande quantité ?",
+      "choix": [
+        "Le dioxyde de carbone",
+        "Le dioxygène",
+        "Le diazote",
+        "Le monoxyde de carbone"
+      ],
+      "bonne_reponse": "Le dioxyde de carbone",
+      "explication": "Il est évacué par les poumons, d'où une respiration plus rapide.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B15-16",
+      "enonce": "Augmentation de la respiration pulmonaire due à l'anxiété, à l'activité physique ou à une maladie.",
+      "choix": [
+        "L'hyperventilation",
+        "L'apnée",
+        "L'hématose",
+        "La bradycardie"
+      ],
+      "bonne_reponse": "L'hyperventilation",
+      "explication": "Pendant l'effort, elle permet d'absorber plus de dioxygène.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hyperventilation (reformulé)"
+    },
+    {
+      "id": "B15-17",
+      "enonce": "Respiration courte et gênée de quelqu'un qui est hors d'haleine.",
+      "choix": [
+        "L'essoufflement",
+        "L'apnée",
+        "La toux",
+        "Le hoquet"
+      ],
+      "bonne_reponse": "L'essoufflement",
+      "explication": "Il apparaît quand l'effort dépasse les capacités du moment.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : essoufflement (sens 1, reformulé)"
+    },
+    {
+      "id": "B15-18",
+      "enonce": "Se dit des réactions chimiques d'un organisme qui se produisent en présence d'oxygène.",
+      "choix": [
+        "Aérobie",
+        "Anaérobie",
+        "Autotrophe",
+        "Hétérotrophe"
+      ],
+      "bonne_reponse": "Aérobie",
+      "explication": "Un effort long et modéré, comme la course lente, est surtout de ce type.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : aérobie (sens 2)"
+    },
+    {
+      "id": "B15-19",
+      "enonce": "Se dit des réactions chimiques d'un organisme qui se produisent en l'absence d'oxygène.",
+      "choix": [
+        "Anaérobie",
+        "Aérobie",
+        "Autotrophe",
+        "Hétérotrophe"
+      ],
+      "bonne_reponse": "Anaérobie",
+      "explication": "Un sprint très court et intense utilise surtout ce type de réactions.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : anaérobie (sens 1)"
+    },
+    {
+      "id": "B15-20",
+      "enonce": "Quel déchet s'accumule dans les muscles lors d'un effort intense, quand le dioxygène manque ?",
+      "choix": [
+        "L'acide lactique",
+        "L'urée",
+        "Le glucose",
+        "L'amidon"
+      ],
+      "bonne_reponse": "L'acide lactique",
+      "explication": "Il est produit par la fermentation dans les cellules musculaires.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B15-21",
+      "enonce": "Douleur et fatigue des muscles après un effort inhabituel.",
+      "choix": [
+        "La courbature",
+        "La crampe",
+        "L'entorse",
+        "La fracture"
+      ],
+      "bonne_reponse": "La courbature",
+      "explication": "Elle disparaît en quelques jours de repos.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : courbature (abrégé)"
+    },
+    {
+      "id": "B15-30",
+      "enonce": "Ensemble d'exercices légers qui préparent les muscles et le cœur avant un effort.",
+      "choix": [
+        "L'échauffement",
+        "La récupération",
+        "La relaxation",
+        "La musculation"
+      ],
+      "bonne_reponse": "L'échauffement",
+      "explication": "Il réduit les risques de blessure.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : échauffement (sens 3, reformulé)"
+    },
+    {
+      "id": "B15-31",
+      "enonce": "Aptitude à résister aux fatigues physiques ou aux épreuves morales.",
+      "choix": [
+        "L'endurance",
+        "La vitesse",
+        "La souplesse",
+        "L'adresse"
+      ],
+      "bonne_reponse": "L'endurance",
+      "explication": "Exemple : l'endurance d'un coureur de fond.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : endurance (sens 1)"
+    },
+    {
+      "id": "B15-34",
+      "enonce": "Mode de vie d'une personne qui bouge peu et reste longtemps assise.",
+      "choix": [
+        "La sédentarité",
+        "L'endurance",
+        "La récupération",
+        "L'obésité"
+      ],
+      "bonne_reponse": "La sédentarité",
+      "explication": "Elle augmente les risques de maladies du cœur.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1 (définition du Larousse circulaire)"
+    },
+    {
+      "id": "B15-35",
+      "enonce": "Combien de minutes d'activité physique modérée par semaine l'OMS recommande-t-elle à un adulte ?",
+      "choix": [
+        "Au moins 150 minutes",
+        "Au moins 15 minutes",
+        "Au moins 1 000 minutes",
+        "Aucune recommandation"
+      ],
+      "bonne_reponse": "Au moins 150 minutes",
+      "explication": "Pour les jeunes de 5 à 17 ans : 60 minutes par jour.",
+      "niveau_complexite": "Moyen",
+      "source": "OMS"
+    }
+  ]
+}
