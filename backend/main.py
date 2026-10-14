@@ -14,6 +14,7 @@ from routers import matieres, quiz, user, realisations, admin, defis
 from routers.auth import router as auth_router
 from routers.admin_auth import router as admin_auth_router
 from routers.proposals import router as proposals_router
+from routers.sync import router as sync_router
 
 app = FastAPI(
     title="EduClé API",
@@ -41,6 +42,7 @@ app.include_router(defis.router)
 app.include_router(admin.router)
 app.include_router(admin_auth_router)
 app.include_router(proposals_router)
+app.include_router(sync_router)
 
 
 @app.get("/", tags=["Santé"])
