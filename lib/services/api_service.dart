@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:http/http.dart' as http;
 
 import 'database_helper.dart';
@@ -62,6 +63,36 @@ class ApiService {
     _user = null;
     await _storage.delete(key: _tokenKey);
     await _storage.delete(key: _userKey);
+  }
+
+  /// Ouvre le flux Google OAuth du backend dans SFSafariViewController (iOS)
+  /// et capture le token JWT via le custom URL scheme educle://.
+  Future<void> connexionGoogle() async {
+    final result = await WebAuthClient.authenticate(
+      url: '$_baseUrl/auth/google?platform=mobile',
+      callbackUrlScheme: 'educle',
+    );
+    final uri = Uri.parse(result);
+    final error = uri.queryParameters['error'];
+    if (error != null) {
+      throw ApiException(_traduireErreurGoogle(error));
+    }
+    final token = uri.queryParameters['token'];
+    if (token == null || token.isEmpty) {
+      throw ApiException('Connexion Google échouée.');
+    }
+    _token = token;
+    await _storage.write(key: _tokenKey, value: token);
+
+    // Récupérer le profil utilisateur
+    final res = await http.get(
+      Uri.parse('$_baseUrl/auth/me'),
+      headers: _headers,
+    );
+    if (res.statusCode == 200) {
+      _user = jsonDecode(res.body) as Map<String, dynamic>;
+      await _storage.write(key: _userKey, value: res.body);
+    }
   }
 
   // ── Sync ──────────────────────────────────────────────────────────────────
@@ -152,6 +183,14 @@ class ApiService {
     await _storage.write(key: _tokenKey, value: _token);
     if (_user != null) {
       await _storage.write(key: _userKey, value: jsonEncode(_user));
+    }
+  }
+
+  String _traduireErreurGoogle(String code) {
+    switch (code) {
+      case 'google_cancelled': return 'Connexion Google annulée.';
+      case 'unauthorized': return 'Accès non autorisé.';
+      default: return 'Erreur Google Sign-In ($code).';
     }
   }
 

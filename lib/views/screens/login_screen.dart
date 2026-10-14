@@ -56,6 +56,22 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  Future<void> _google() async {
+    setState(() { _chargement = true; _erreur = null; });
+    try {
+      await ApiService.instance.connexionGoogle();
+      if (!mounted) return;
+      await _finLogin(pullDuServeur: true);
+    } on ApiException catch (e) {
+      if (mounted) setState(() { _erreur = e.message; _chargement = false; });
+    } catch (_) {
+      if (mounted) setState(() {
+        _erreur = 'Connexion Google échouée. Vérifie ta connexion.';
+        _chargement = false;
+      });
+    }
+  }
+
   Future<void> _continuerSansCompte() async {
     setState(() => _chargement = true);
     final ctrl = context.read<QuizController>();
@@ -201,20 +217,34 @@ class _LoginScreenState extends State<LoginScreen> {
           'Connecte-toi ou crée ton compte pour continuer.',
           style: TextStyle(fontSize: 13, color: Color(0xFF8A8A8A)),
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: 20),
+
+        if (_erreur != null) ...[
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFEEEE),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.error_outline, color: Color(0xFFD32F2F), size: 18),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(_erreur!,
+                      style: const TextStyle(color: Color(0xFFD32F2F), fontSize: 13)),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
 
         // Bouton Google
         SizedBox(
           width: double.infinity,
           child: OutlinedButton.icon(
-            onPressed: _chargement
-                ? null
-                : () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                          content: Text('Google Sign-In bientôt disponible')),
-                    );
-                  },
+            onPressed: _chargement ? null : _google,
             icon: const _GoogleLogo(),
             label: const Text('Continuer avec Google'),
             style: OutlinedButton.styleFrom(
