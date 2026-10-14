@@ -5,6 +5,7 @@ from .score import Score
 from .realisation import Realisation, RealisationStat
 from .defi import Defi, DefiProgres, RealisationProgres
 from .proposal import QuestionProposal
+from .securite import Partie, Tentative
 
 __all__ = [
     "Matiere", "Chapitre", "CarteMentale",
@@ -14,4 +15,5 @@ __all__ = [
     "Realisation", "RealisationStat",
     "Defi", "DefiProgres", "RealisationProgres",
     "QuestionProposal",
+    "Partie", "Tentative",
 ]

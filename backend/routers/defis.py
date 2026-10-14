@@ -121,10 +121,6 @@ class DefiAvecProgresSchema(DefiSchema):
     periode: str = ""
 
 
-class ProgresIn(BaseModel):
-    delta: int = 1
-
-
 # ── Helpers ────────────────────────────────────────────────────────────────────
 
 def _enrichir(defis: list[Defi], progres_rows: list[DefiProgres], periode: str) -> list[dict]:
@@ -225,65 +221,3 @@ def defis_speciaux(
         )
     ).all()
     return _enrichir(defis, list(progres), periode)
-
-
-@router.post("/{defi_id}/progres", response_model=DefiAvecProgresSchema)
-def incrementer_progres(
-    defi_id: str,
-    body: ProgresIn,
-    db: Session = Depends(get_db),
-    user: User = Depends(get_current_user),
-):
-    defi = db.get(Defi, defi_id)
-    if not defi:
-        raise HTTPException(404, "Défi introuvable.")
-
-    today = date.today()
-    if defi.type == "d":
-        periode = _periode_jour(today)
-    elif defi.type == "w":
-        periode = _periode_hebdo(today)
-    elif defi.type == "m":
-        periode = _periode_mensuel(today)
-    else:
-        periode = _periode_jour(today)
-
-    row = db.scalar(
-        select(DefiProgres).where(
-            DefiProgres.user_id == user.id,
-            DefiProgres.defi_id == defi_id,
-            DefiProgres.periode == periode,
-        )
-    )
-    _BONUS_XP    = {1: 20, 2: 50, 3: 100}
-    _BONUS_PIECES = {1: 10, 2: 25, 3: 50}
-
-    if row is None:
-        new_progres = max(0, min(body.delta, defi.cible))
-        newly_complete = new_progres >= defi.cible
-        row = DefiProgres(
-            user_id=user.id, defi_id=defi_id, periode=periode,
-            progres=new_progres, complete=1 if newly_complete else 0,
-        )
-        db.add(row)
-    else:
-        if row.complete:
-            newly_complete = False
-        else:
-            row.progres = min(row.progres + body.delta, defi.cible)
-            newly_complete = row.progres >= defi.cible
-            row.complete = 1 if newly_complete else 0
-
-    if newly_complete:
-        user.xp_total     += _BONUS_XP.get(defi.palier, 20)
-        user.pieces_total += _BONUS_PIECES.get(defi.palier, 10)
-
-    db.commit()
-    db.refresh(row)
-
-    return {
-        "id": defi.id, "type": defi.type, "palier": defi.palier, "nom": defi.nom,
-        "description": defi.description, "metrique": defi.metrique, "cible": defi.cible,
-        "filtres": defi.filtres, "date_spe": defi.date_spe,
-        "progres": row.progres, "complete": bool(row.complete), "periode": periode,
-    }

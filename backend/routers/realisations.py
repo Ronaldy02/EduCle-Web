@@ -31,10 +31,6 @@ class RealisationSchema(BaseModel):
     debloque_le: str | None = None
 
 
-class ProgresIn(BaseModel):
-    delta: int = 1
-
-
 @router.get("/", response_model=list[RealisationSchema])
 def lister_realisations(
     db: Session = Depends(get_db),
@@ -68,58 +64,3 @@ def lister_realisations(
             "debloque_le": p.debloque_le if p else None,
         })
     return result
-
-
-@router.post("/{realisation_id}/progres", response_model=RealisationSchema)
-def incrementer_progres(
-    realisation_id: str,
-    body: ProgresIn,
-    db: Session = Depends(get_db),
-    user: User = Depends(get_current_user),
-):
-    real = db.get(Realisation, realisation_id)
-    if not real:
-        raise HTTPException(404, "Réalisation introuvable.")
-
-    cible = real.cible or real.objectif or 1
-
-    row = db.scalar(
-        select(RealisationProgres).where(
-            RealisationProgres.user_id == user.id,
-            RealisationProgres.realisation_id == realisation_id,
-        )
-    )
-    if row is None:
-        new_progres = max(0, min(body.delta, cible))
-        debloque = new_progres >= cible
-        row = RealisationProgres(
-            user_id=user.id,
-            realisation_id=realisation_id,
-            progres=new_progres,
-            debloquee=1 if debloque else 0,
-            debloque_le=datetime.now(timezone.utc).isoformat() if debloque else None,
-        )
-        db.add(row)
-    else:
-        if row.debloquee:
-            debloque = False
-        else:
-            row.progres = min(row.progres + body.delta, cible)
-            debloque = row.progres >= cible
-            if debloque:
-                row.debloquee = 1
-                row.debloque_le = datetime.now(timezone.utc).isoformat()
-
-    if debloque:
-        user.pieces_total += (real.recompense_pieces or 0)
-
-    db.commit()
-    db.refresh(row)
-
-    return {
-        "id": real.id, "nom": real.nom, "description": real.description,
-        "groupe": real.groupe, "rarete": real.rarete, "metrique": real.metrique,
-        "cible": real.cible, "secret": real.secret, "filtres": real.filtres,
-        "progres": row.progres, "debloquee": bool(row.debloquee),
-        "debloque_le": row.debloque_le,
-    }

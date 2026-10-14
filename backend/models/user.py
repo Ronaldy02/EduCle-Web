@@ -1,5 +1,5 @@
 """Modèles ORM : utilisateurs authentifiés (multi-compte) et legacy."""
-from sqlalchemy import String, Integer
+from sqlalchemy import String, Integer, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
 
 from database import Base
@@ -20,6 +20,10 @@ class User(Base):
     pieces_total: Mapped[int] = mapped_column(Integer, nullable=False, default=100)
     created_at: Mapped[str] = mapped_column(String(30), nullable=False, default="")
     role: Mapped[str] = mapped_column(String(20), nullable=False, default="user")
+    # Incrémenté pour révoquer tous les JWT déjà émis (champ "tv" du token)
+    token_version: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    # Adresse confirmée par Google
+    email_verifie: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
 
 
 class UserPreferences(Base):

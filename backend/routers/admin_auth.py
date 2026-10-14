@@ -1,13 +1,14 @@
 """Endpoints d'administration : login admin, gestion des rôles."""
 from datetime import datetime
-from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
+from fastapi import APIRouter, Depends, HTTPException, Request
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 
 from database import get_db
 from models.user import User
-from services.auth import hash_password, verify_password, create_access_token
+from services.auth import create_access_token
+from routers.auth import verifier_identifiants
 from dependencies.auth import get_current_user
 
 router = APIRouter(prefix="/admin", tags=["Administration"])
@@ -16,8 +17,8 @@ router = APIRouter(prefix="/admin", tags=["Administration"])
 # ─── Schémas ─────────────────────────────────────────────────────────────────
 
 class AdminLoginRequest(BaseModel):
-    email: str
-    password: str
+    email: str = Field(max_length=255)
+    password: str = Field(max_length=128)
 
 
 class UserAdminSchema(BaseModel):
@@ -53,17 +54,13 @@ def require_superadmin(current_user: User = Depends(get_current_user)) -> User:
 # ─── Endpoints ───────────────────────────────────────────────────────────────
 
 @router.post("/login")
-def admin_login(body: AdminLoginRequest, db: Session = Depends(get_db)):
+def admin_login(body: AdminLoginRequest, request: Request, db: Session = Depends(get_db)):
     """Connexion admin — vérifie le rôle avant d'émettre le token."""
-    user = db.scalar(select(User).where(User.email == body.email))
-    if not user or not user.hashed_password:
-        raise HTTPException(401, "Identifiants incorrects.")
-    if not verify_password(body.password, user.hashed_password):
-        raise HTTPException(401, "Identifiants incorrects.")
+    user = verifier_identifiants(db, request, body.email, body.password)
     if user.role not in ("admin", "superadmin"):
         raise HTTPException(403, "Ce compte n'a pas les droits d'administration.")
 
-    token = create_access_token(user.id)
+    token = create_access_token(user.id, user.token_version)
     return {
         "access_token": token,
         "token_type": "bearer",
@@ -107,5 +104,6 @@ def change_role(
         raise HTTPException(400, "Tu ne peux pas modifier ton propre rôle.")
 
     target.role = body.role
+    target.token_version += 1   # les sessions ouvertes avec l'ancien rôle sont fermées
     db.commit()
     return {"id": target.id, "email": target.email, "role": target.role}

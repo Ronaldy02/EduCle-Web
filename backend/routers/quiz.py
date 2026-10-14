@@ -1,19 +1,19 @@
 """Endpoint principal du quiz : démarrer, répondre, terminer.
 
-Flux :
-  POST /quiz/demarrer  → reçoit chapitre_id + mode_nom + nb_questions
-                         → retourne la liste des questions sélectionnées
-  POST /quiz/bonus     → débite le coût d'un bonus utilisé (refusé si solde insuffisant)
-  POST /quiz/terminer  → reçoit les réponses de l'utilisateur
-                         → calcule le score, met à jour XP/pièces/stats
-                         → retourne ResultatQuizSchema
+Flux (la partie est tenue par le serveur, le client ne connaît jamais la réponse d'avance) :
+  POST /quiz/demarrer  → crée une partie, retourne son id et les questions (sans réponses)
+  POST /quiz/repondre  → corrige une réponse de la partie, retourne bonne réponse + explication
+  POST /quiz/bonus     → débite le coût d'un bonus ; élimination / 50-50 calculés ici
+  POST /quiz/terminer  → calcule le score à partir des réponses enregistrées (une seule fois)
+                         → met à jour XP/pièces/stats, retourne ResultatQuizSchema
 """
 import re
 import random
-from datetime import date, datetime
+from datetime import date, datetime, timedelta, timezone
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy import select, update
+from sqlalchemy.orm.attributes import flag_modified
 
 from database import get_db
 from models import Matiere, Chapitre, Question, StatistiqueQuestion
@@ -26,10 +26,12 @@ from routers.defis import (
 )
 from models.user import User
 from models.score import Score
-from schemas.question import QuestionSchema
+from models.securite import Partie
+from schemas.question import QuestionQuizSchema
 from schemas.quiz import (
-    DemarrerQuizRequest, ResultatQuizSchema, QuestionResultatSchema,
+    DemarrerQuizRequest, DemarrerQuizResponse, ResultatQuizSchema, QuestionResultatSchema,
     UtiliserBonusRequest, UtiliserBonusResponse,
+    RepondreRequest, RepondreResponse, TerminerQuizRequest,
 )
 from services.adaptive_selector import selectionner
 from services.niveau import (
@@ -101,7 +103,36 @@ def _questions_du_chapitre(db: Session, chapitre_id: int) -> list[Question]:
     ).all()
 
 
-@router.post("/demarrer", response_model=list[QuestionSchema])
+def _matiere_de(db: Session, chapitre_id: int) -> int | None:
+    """Matière d'une partie, déduite côté serveur (-1 = toutes les matières)."""
+    if chapitre_id == -1:
+        return None
+    if chapitre_id < 0:
+        return abs(chapitre_id)
+    chap = db.get(Chapitre, chapitre_id)
+    return chap.matiere_id if chap else None
+
+
+# Une partie non terminée après ce délai ne rapporte plus rien
+_DUREE_MAX_PARTIE = timedelta(hours=3)
+
+
+def _partie_ouverte(db: Session, partie_id: int, user: User, verrou: bool = True) -> Partie:
+    """Partie de l'utilisateur, encore en cours (verrouillée pour éviter deux réponses simultanées)."""
+    stmt = select(Partie).where(Partie.id == partie_id, Partie.user_id == user.id)
+    if verrou:
+        stmt = stmt.with_for_update()
+    partie = db.scalar(stmt)
+    if partie is None:
+        raise HTTPException(status_code=404, detail="Partie introuvable")
+    if partie.terminee:
+        raise HTTPException(status_code=409, detail="Partie déjà terminée")
+    if datetime.now(timezone.utc) - partie.created_at > _DUREE_MAX_PARTIE:
+        raise HTTPException(status_code=410, detail="Partie expirée")
+    return partie
+
+
+@router.post("/demarrer", response_model=DemarrerQuizResponse)
 def demarrer_quiz(
     body: DemarrerQuizRequest,
     db: Session = Depends(get_db),
@@ -134,7 +165,21 @@ def demarrer_quiz(
         maitrise = stats.get(q["id"], {}).get("nb_correcte", 0.0)
         q["xp"]     = calculer_xp_question(maitrise, body.mode_nom)
         q["pieces"] = calculer_pieces_question(True, body.mode_nom)
-    return [QuestionSchema(**q) for q in selected]
+
+    partie = Partie(
+        user_id=current_user.id,
+        mode_nom=body.mode_nom,
+        chapitre_id=body.chapitre_id,
+        matiere_id=_matiere_de(db, body.chapitre_id),
+        question_ids=[q["id"] for q in selected],
+        reponses=[],
+    )
+    db.add(partie)
+    db.commit()
+    return DemarrerQuizResponse(
+        partie_id=partie.id,
+        questions=[QuestionQuizSchema(**q) for q in selected],
+    )
 
 
 # Coût des bonus en pièces (affiché tel quel dans le quiz)
@@ -148,9 +193,24 @@ def utiliser_bonus(
     current_user: User = Depends(get_current_user),
 ):
     """Débite le coût d'un bonus. Refusé (400) si le solde est insuffisant."""
-    cout = COUT_BONUS.get(body.type)
-    if cout is None:
-        raise HTTPException(status_code=422, detail="Bonus inconnu")
+    cout = COUT_BONUS[body.type]
+    partie = _partie_ouverte(db, body.partie_id, current_user)
+
+    elimines: list[str] = []
+    if body.type in ("elimination", "cinqCinq"):
+        if body.question_id not in partie.question_ids:
+            raise HTTPException(status_code=422, detail="Question hors de la partie")
+        if any(r["question_id"] == body.question_id for r in partie.reponses):
+            raise HTTPException(status_code=409, detail="Question déjà répondue")
+        q = db.get(Question, body.question_id)
+        mauvais_visibles = [c for c in q.choix if c != q.bonne_reponse and c not in body.deja_elimines]
+        if body.type == "elimination" and mauvais_visibles:
+            elimines = [random.choice(mauvais_visibles)]
+        elif body.type == "cinqCinq" and len(mauvais_visibles) > 1:
+            garder = random.choice(mauvais_visibles)
+            elimines = [c for c in mauvais_visibles if c != garder]
+        if not elimines:
+            raise HTTPException(status_code=422, detail="Ce bonus ne changerait rien ici")
 
     # Débit atomique : ne passe que si le solde couvre le coût
     res = db.execute(
@@ -163,26 +223,31 @@ def utiliser_bonus(
         raise HTTPException(status_code=400, detail="Pièces insuffisantes")
     db.commit()
     db.refresh(current_user)
-    return UtiliserBonusResponse(cout=cout, pieces_total=current_user.pieces_total)
+    return UtiliserBonusResponse(cout=cout, pieces_total=current_user.pieces_total, elimines=elimines)
 
 
-class ReponseItem(DemarrerQuizRequest):
-    pass
+@router.post("/repondre", response_model=RepondreResponse)
+def repondre(
+    body: RepondreRequest,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Corrige une réponse. Chaque question de la partie ne peut être répondue qu'une fois."""
+    partie = _partie_ouverte(db, body.partie_id, current_user)
+    if body.question_id not in partie.question_ids:
+        raise HTTPException(status_code=422, detail="Question hors de la partie")
+    if any(r["question_id"] == body.question_id for r in partie.reponses):
+        raise HTTPException(status_code=409, detail="Question déjà répondue")
 
-
-from pydantic import BaseModel
-
-class ReponseUtilisateur(BaseModel):
-    question_id: int
-    reponse: str
-    temps_restant: int = 0
-
-
-class TerminerQuizRequest(BaseModel):
-    chapitre_id: int
-    matiere_id: int | None = None
-    mode_nom: str
-    reponses: list[ReponseUtilisateur]
+    q = db.get(Question, body.question_id)
+    partie.reponses = [*partie.reponses, {"question_id": q.id, "reponse": body.reponse}]
+    flag_modified(partie, "reponses")
+    db.commit()
+    return RepondreResponse(
+        correcte=body.reponse.strip() == q.bonne_reponse.strip(),
+        bonne_reponse=q.bonne_reponse,
+        explication=q.explication,
+    )
 
 
 _PALIERS_SERIE = {5: 5, 10: 10, 15: 18, 20: 25}
@@ -216,8 +281,13 @@ def terminer_quiz(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    """Corrige les réponses, met à jour les stats et retourne le résultat."""
-    question_ids = [r.question_id for r in body.reponses]
+    """Corrige les réponses enregistrées de la partie, met à jour les stats et retourne le résultat."""
+    partie = _partie_ouverte(db, body.partie_id, current_user)
+    partie.terminee = True
+    mode_nom = partie.mode_nom
+    matiere_id = partie.matiere_id
+    reponses = partie.reponses   # une entrée par question, dans l'ordre des réponses
+    question_ids = [r["question_id"] for r in reponses]
     questions_orm = db.scalars(
         select(Question).where(Question.id.in_(question_ids))
     ).all()
@@ -239,17 +309,17 @@ def terminer_quiz(
     pieces_totales_gagnees = 0
     resultats: list[QuestionResultatSchema] = []
 
-    for rep in body.reponses:
-        q = questions_map.get(rep.question_id)
+    for rep in reponses:
+        q = questions_map.get(rep["question_id"])
         if not q:
             continue
 
-        correcte = rep.reponse.strip() == q.bonne_reponse.strip()
+        correcte = rep["reponse"].strip() == q.bonne_reponse.strip()
         stat_orm = stat_rows.get(q.id)
         maitrise = stat_orm.nb_correcte if stat_orm else 0.0
 
-        xp = calculer_xp_question(maitrise, body.mode_nom) if correcte else 0
-        pieces = calculer_pieces_question(correcte, body.mode_nom)
+        xp = calculer_xp_question(maitrise, mode_nom) if correcte else 0
+        pieces = calculer_pieces_question(correcte, mode_nom)
         xp_total_gagne += xp
         pieces_totales_gagnees += pieces
 
@@ -259,7 +329,7 @@ def terminer_quiz(
             choix=q.choix,
             bonne_reponse=q.bonne_reponse,
             explication=q.explication,
-            reponse_donnee=rep.reponse,
+            reponse_donnee=rep["reponse"],
             correcte=correcte,
             xp_gagne=xp,
         ))
@@ -283,7 +353,7 @@ def terminer_quiz(
 
     # ── Bonus de série ────────────────────────────────────────────────────────
     ordre_correctes = [r.correcte for r in resultats]
-    serie_bonus, serie_max = _calculer_bonus_serie(ordre_correctes, body.mode_nom)
+    serie_bonus, serie_max = _calculer_bonus_serie(ordre_correctes, mode_nom)
     pieces_totales_gagnees += serie_bonus
 
     # ── Mise à jour XP / pièces utilisateur ──────────────────────────────────
@@ -296,11 +366,11 @@ def terminer_quiz(
     score_val = sum(1 for r in resultats if r.correcte)
     db.add(Score(
         user_id=current_user.id,
-        matiere_id=body.matiere_id,
+        matiere_id=matiere_id,
         score=score_val,
         nb_correctes=score_val,
         nb_total=len(resultats),
-        mode_nom=body.mode_nom,
+        mode_nom=mode_nom,
         date=now_iso,
     ))
 
@@ -342,7 +412,7 @@ def terminer_quiz(
             continue  # filtre heure dépassée
         if "md" in filtres:
             mode_filtre = filtres["md"]
-            if mode_filtre == "rev" and body.mode_nom != "Révision":
+            if mode_filtre == "rev" and mode_nom != "Révision":
                 continue
 
         m = defi.metrique
@@ -356,8 +426,8 @@ def terminer_quiz(
         elif m == "xp":
             delta = xp_total_gagne
         elif m == "subj":
-            delta = 1 if body.matiere_id else 0
-        elif m == "expl" and body.mode_nom == "Révision":
+            delta = 1 if matiere_id else 0
+        elif m == "expl" and mode_nom == "Révision":
             delta = len(resultats)
         # strk, card, dact, mast, dd, fast — gérés ailleurs
 
@@ -439,8 +509,8 @@ def terminer_quiz(
         elif m == "xp":
             delta = xp_total_gagne
         elif m == "subj":
-            delta = 1 if body.matiere_id else 0
-        elif m == "expl" and body.mode_nom == "Révision":
+            delta = 1 if matiere_id else 0
+        elif m == "expl" and mode_nom == "Révision":
             delta = len(resultats)
         # strk : max glissant, pas addition
         # card, dact, mast, dc, fast, profile, ok — gérés hors quiz
@@ -480,7 +550,7 @@ def terminer_quiz(
     return ResultatQuizSchema(
         score=score_val,
         total=len(resultats),
-        mode_nom=body.mode_nom,
+        mode_nom=mode_nom,
         questions=resultats,
         xp_gagne=xp_total_gagne,
         pieces_gagnees=pieces_totales_gagnees,

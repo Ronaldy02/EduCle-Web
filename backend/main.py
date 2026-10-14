@@ -21,6 +21,9 @@ app = FastAPI(
     description="API du quiz éducatif EduClé — version web. "
                 "Documentation Swagger disponible ici pour explorer tous les endpoints.",
     version="1.0.0",
+    docs_url="/docs" if settings.exposer_docs else None,
+    redoc_url="/redoc" if settings.exposer_docs else None,
+    openapi_url="/openapi.json" if settings.exposer_docs else None,
 )
 
 # ─── CORS (autorise le frontend Vue.js) ───────────────────────────────────────
@@ -47,7 +50,7 @@ app.include_router(sync_router)
 
 @app.get("/", tags=["Santé"])
 def root():
-    return {"message": "EduClé API opérationnelle", "docs": "/docs"}
+    return {"message": "EduClé API opérationnelle"}
 
 
 @app.get("/health", tags=["Santé"])

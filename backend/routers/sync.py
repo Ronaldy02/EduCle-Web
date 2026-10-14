@@ -1,6 +1,6 @@
 """Endpoints de synchronisation mobile → serveur."""
 from fastapi import APIRouter, Depends
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 
@@ -17,11 +17,11 @@ router = APIRouter(prefix="/sync", tags=["Sync mobile"])
 
 class ScoreMobile(BaseModel):
     matiere_id: int | None
-    score: int
-    nb_correctes: int
-    nb_total: int
-    mode_nom: str
-    date: str
+    score: int = Field(ge=0, le=1000)
+    nb_correctes: int = Field(ge=0, le=1000)
+    nb_total: int = Field(ge=0, le=1000)
+    mode_nom: str = Field(max_length=30)
+    date: str = Field(max_length=40)
 
 
 class StatQuestionMobile(BaseModel):
@@ -31,14 +31,14 @@ class StatQuestionMobile(BaseModel):
 
 
 class ProfilMobile(BaseModel):
-    niveau_scolaire: str
-    annee: str
+    niveau_scolaire: str = Field(max_length=50)
+    annee: str = Field(max_length=20)
 
 
 class SyncPushRequest(BaseModel):
     profil: ProfilMobile | None = None
-    scores: list[ScoreMobile] = []
-    stats_questions: list[StatQuestionMobile] = []
+    scores: list[ScoreMobile] = Field(default=[], max_length=500)
+    stats_questions: list[StatQuestionMobile] = Field(default=[], max_length=5000)
 
 
 class SyncPullResponse(BaseModel):

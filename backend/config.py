@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     google_client_id: str = ""
     google_client_secret: str = ""
     frontend_url: str = "http://localhost:5173"
+    # Swagger (/docs, /openapi.json) : désactivé par défaut, à activer en local (EXPOSER_DOCS=true)
+    exposer_docs: bool = False
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 

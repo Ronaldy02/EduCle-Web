@@ -1,37 +1,44 @@
 """Hachage de mots de passe et création/vérification de tokens JWT."""
 from datetime import datetime, timedelta, timezone
 
-from jose import JWTError, jwt
-from passlib.context import CryptContext
+import bcrypt
+import jwt
 
 from config import settings
-
-_pwd = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 ALGORITHM = "HS256"
 TOKEN_EXPIRE_DAYS = 30
 
 
+def _octets(password: str) -> bytes:
+    # bcrypt ne prend en compte que 72 octets (même comportement que passlib)
+    return password.encode("utf-8")[:72]
+
+
 def hash_password(password: str) -> str:
-    return _pwd.hash(password)
+    return bcrypt.hashpw(_octets(password), bcrypt.gensalt()).decode()
 
 
 def verify_password(plain: str, hashed: str) -> bool:
-    return _pwd.verify(plain, hashed)
+    try:
+        return bcrypt.checkpw(_octets(plain), hashed.encode())
+    except ValueError:
+        return False
 
 
-def create_access_token(user_id: int) -> str:
+def create_access_token(user_id: int, token_version: int = 0) -> str:
     expire = datetime.now(timezone.utc) + timedelta(days=TOKEN_EXPIRE_DAYS)
     return jwt.encode(
-        {"sub": str(user_id), "exp": expire},
+        {"sub": str(user_id), "tv": token_version, "exp": expire},
         settings.secret_key,
         algorithm=ALGORITHM,
     )
 
 
-def decode_token(token: str) -> int | None:
+def decode_token(token: str) -> tuple[int, int] | None:
+    """Retourne (user_id, token_version) ou None si le token est invalide ou expiré."""
     try:
         payload = jwt.decode(token, settings.secret_key, algorithms=[ALGORITHM])
-        return int(payload["sub"])
-    except (JWTError, KeyError, ValueError):
+        return int(payload["sub"]), int(payload.get("tv", 0))
+    except (jwt.PyJWTError, KeyError, ValueError, TypeError):
         return None

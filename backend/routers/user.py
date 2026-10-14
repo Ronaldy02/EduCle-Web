@@ -2,7 +2,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import select, func
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from database import get_db
 from models.user import User
@@ -22,10 +22,10 @@ router = APIRouter(prefix="/user", tags=["Utilisateur"])
 # ─── Schémas locaux ───────────────────────────────────────────────────────────
 
 class UserUpdateRequest(BaseModel):
-    pseudo: str | None = None
-    zone: str | None = None
-    niveau_scolaire: str | None = None
-    annee: str | None = None
+    pseudo: str | None = Field(default=None, max_length=50)
+    zone: str | None = Field(default=None, max_length=100)
+    niveau_scolaire: str | None = Field(default=None, max_length=50)
+    annee: str | None = Field(default=None, max_length=20)
 
 
 class UserSchema(BaseModel):

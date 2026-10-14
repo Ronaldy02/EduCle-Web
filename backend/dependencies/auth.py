@@ -21,14 +21,20 @@ def get_current_user(
             detail="Authentification requise.",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    user_id = decode_token(credentials.credentials)
-    if user_id is None:
+    decode = decode_token(credentials.credentials)
+    if decode is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Token invalide ou expiré.",
             headers={"WWW-Authenticate": "Bearer"},
         )
+    user_id, token_version = decode
     user = db.scalar(select(User).where(User.id == user_id))
-    if user is None:
-        raise HTTPException(status_code=404, detail="Utilisateur introuvable.")
+    # Compte supprimé ou token révoqué : même réponse qu'un token invalide
+    if user is None or user.token_version != token_version:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token invalide ou expiré.",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
     return user
