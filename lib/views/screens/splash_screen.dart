@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/quiz_controller.dart';
-import '../../services/database_helper.dart';
 import '../../theme/app_theme.dart';
 import 'home_screen.dart';
 import 'onboarding_screen.dart';
@@ -15,27 +14,15 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  String _message = 'Démarrage…';
-
   @override
   void initState() {
     super.initState();
-    DatabaseHelper.onSeedProgress = (msg) {
-      if (mounted) setState(() => _message = msg);
-    };
     WidgetsBinding.instance.addPostFrameCallback((_) => _init());
-  }
-
-  @override
-  void dispose() {
-    DatabaseHelper.onSeedProgress = null;
-    super.dispose();
   }
 
   Future<void> _init() async {
     final ctrl = context.read<QuizController>();
     await ctrl.initialiser();
-    DatabaseHelper.onSeedProgress = null;
     if (!mounted) return;
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
@@ -53,22 +40,14 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset('assets/logo/educle_cle_or.png', width: 120),
-            const SizedBox(height: 32),
+            Image.asset('assets/logo/educle_cle_or.png', width: 100),
+            const SizedBox(height: 40),
             const SizedBox(
-              width: 200,
-              child: LinearProgressIndicator(
-                backgroundColor: Colors.white24,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              _message,
-              style: const TextStyle(
-                color: Colors.white70,
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
+              width: 32,
+              height: 32,
+              child: CircularProgressIndicator(
+                strokeWidth: 2.5,
+                color: Colors.white54,
               ),
             ),
           ],
