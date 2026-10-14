@@ -10,8 +10,10 @@ from database import get_db
 from models import Matiere, Chapitre, Question, UserPreferences, Score, StatistiqueQuestion
 from models.realisation import Realisation
 from models.proposal import QuestionProposal
+from routers.admin_auth import require_admin
 
-router = APIRouter(prefix="/admin", tags=["Admin"])
+# Toutes les routes de ce router exigent un compte admin ou superadmin
+router = APIRouter(prefix="/admin", tags=["Admin"], dependencies=[Depends(require_admin)])
 
 
 # ── Schémas ────────────────────────────────────────────────────────────────────
