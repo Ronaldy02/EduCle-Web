@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import 'controllers/quiz_controller.dart';
 import 'theme/app_theme.dart';
-import 'views/screens/home_screen.dart';
 import 'views/screens/splash_screen.dart';
 
 void main() {

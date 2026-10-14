@@ -13,7 +13,7 @@ import '../models/question.dart';
 import '../models/realisation.dart';
 import '../models/reponse_enregistree.dart';
 
-Map<String, dynamic>? _parseJson(String jsonStr) =>
+Map<String, dynamic> _parseJson(String jsonStr) =>
     jsonDecode(jsonStr) as Map<String, dynamic>;
 
 class DatabaseHelper {
