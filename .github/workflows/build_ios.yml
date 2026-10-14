@@ -24,6 +24,13 @@ jobs:
       - name: Installer les dépendances
         run: flutter pub get
 
+      # flutter_web_auth_2 déclenche la migration UIScene qui réécrit
+      # project.pbxproj, ce qui efface nos réglages de signature.
+      # On lance un premier build court (timeout 45s) pour déclencher
+      # toutes les migrations, puis on applique le bypass de signature.
+      - name: Déclencher les migrations Flutter
+        run: timeout 45 flutter build ios --release --no-codesign || true
+
       - name: Désactiver la signature dans le projet Xcode
         run: |
           sed -i '' 's/DEVELOPMENT_TEAM = [A-Z0-9]*;/DEVELOPMENT_TEAM = "";/g' ios/Runner.xcodeproj/project.pbxproj
