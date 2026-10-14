@@ -1,0 +1,355 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Tabac et maladies respiratoires",
+  "niveaux": [
+    "NS2"
+  ],
+  "unite_programme": "2.1",
+  "statut": "validé par l'utilisateur 2026-10-14",
+  "rejetees": [
+    "B13-20",
+    "B13-23",
+    "B13-24"
+  ],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "B13-01",
+      "enonce": "Plante herbacée dont les feuilles, riches en nicotine, sont séchées et préparées pour être fumées.",
+      "choix": [
+        "Le tabac",
+        "Le chanvre",
+        "Le thé",
+        "La menthe"
+      ],
+      "bonne_reponse": "Le tabac",
+      "explication": "On l'utilise pour fabriquer cigarettes, cigares et tabac à pipe.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : tabac (sens 1 et 2)"
+    },
+    {
+      "id": "B13-02",
+      "enonce": "Principale substance du tabac, qui excite le système nerveux et rend le fumeur dépendant.",
+      "choix": [
+        "La nicotine",
+        "Le goudron",
+        "La caféine",
+        "Le monoxyde de carbone"
+      ],
+      "bonne_reponse": "La nicotine",
+      "explication": "Elle agit sur le cerveau en quelques secondes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : nicotine (reformulé)"
+    },
+    {
+      "id": "B13-03",
+      "enonce": "Ensemble des particules noires de la fumée de cigarette, qui se déposent dans les poumons.",
+      "choix": [
+        "Les goudrons",
+        "La nicotine",
+        "Les cendres",
+        "La vapeur d'eau"
+      ],
+      "bonne_reponse": "Les goudrons",
+      "explication": "Ils contiennent de nombreuses substances qui provoquent des cancers.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : goudron (sens technique)"
+    },
+    {
+      "id": "B13-04",
+      "enonce": "Quel gaz toxique de la fumée de cigarette prend la place du dioxygène dans les globules rouges ?",
+      "choix": [
+        "Le monoxyde de carbone",
+        "Le dioxyde de carbone",
+        "Le diazote",
+        "La vapeur d'eau"
+      ],
+      "bonne_reponse": "Le monoxyde de carbone",
+      "explication": "Il se fixe sur l'hémoglobine : le sang transporte alors moins de dioxygène.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B13-05",
+      "enonce": "Intoxication chronique due à la consommation régulière de cigarettes, cigares ou pipe.",
+      "choix": [
+        "Le tabagisme",
+        "L'alcoolisme",
+        "L'asthme",
+        "L'anémie"
+      ],
+      "bonne_reponse": "Le tabagisme",
+      "explication": "Synonyme : nicotinisme.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : tabagisme (reformulé)"
+    },
+    {
+      "id": "B13-06",
+      "enonce": "Se dit d'une substance capable de provoquer une tumeur maligne.",
+      "choix": [
+        "Cancérogène",
+        "Contagieuse",
+        "Allergène",
+        "Antibiotique"
+      ],
+      "bonne_reponse": "Cancérogène",
+      "explication": "Synonyme : carcinogène. La fumée de tabac en contient plusieurs dizaines.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : cancérogène (reformulé)"
+    },
+    {
+      "id": "B13-07",
+      "enonce": "Besoin d'une drogue tel que son arrêt provoque des troubles physiques ou psychiques.",
+      "choix": [
+        "La dépendance",
+        "L'allergie",
+        "L'intoxication",
+        "La tolérance"
+      ],
+      "bonne_reponse": "La dépendance",
+      "explication": "Synonyme : addiction. La nicotine en est la cause principale chez le fumeur.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : dépendance (sens 4, reformulé)"
+    },
+    {
+      "id": "B13-08",
+      "enonce": "Ensemble des troubles ressentis par une personne privée de la drogue dont elle est dépendante.",
+      "choix": [
+        "Le sevrage",
+        "L'overdose",
+        "L'allergie",
+        "La rechute"
+      ],
+      "bonne_reponse": "Le sevrage",
+      "explication": "Chez le fumeur qui arrête : nervosité, envie de fumer, troubles du sommeil.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : sevrage (sens 3, reformulé)"
+    },
+    {
+      "id": "B13-21",
+      "enonce": "Quelle est la principale cause du cancer du poumon ?",
+      "choix": [
+        "Le tabagisme",
+        "La pollution sonore",
+        "Le manque de sport",
+        "Une alimentation salée"
+      ],
+      "bonne_reponse": "Le tabagisme",
+      "explication": "Environ 8 cancers du poumon sur 10 sont dus au tabac.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B13-22",
+      "enonce": "Comment appelle-t-on le fait de respirer la fumée des autres fumeurs ?",
+      "choix": [
+        "Le tabagisme passif",
+        "Le tabagisme actif",
+        "La pollution sonore",
+        "L'apnée"
+      ],
+      "bonne_reponse": "Le tabagisme passif",
+      "explication": "Il augmente lui aussi les risques de maladies respiratoires, surtout chez l'enfant.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B13-25",
+      "enonce": "Quel est le meilleur moyen de protéger ses poumons du tabac ?",
+      "choix": [
+        "Ne pas fumer",
+        "Fumer des cigarettes légères",
+        "Fumer seulement le soir",
+        "Fumer avec un filtre"
+      ],
+      "bonne_reponse": "Ne pas fumer",
+      "explication": "Arrêter de fumer améliore la respiration dès les premières semaines.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B13-30",
+      "enonce": "Maladie de cause souvent allergique, caractérisée par des crises de gêne à l'expiration, dues à un spasme des bronches.",
+      "choix": [
+        "L'asthme",
+        "La tuberculose",
+        "La pneumonie",
+        "L'emphysème"
+      ],
+      "bonne_reponse": "L'asthme",
+      "explication": "On la soigne avec des médicaments inhalés qui dilatent les bronches.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : asthme"
+    },
+    {
+      "id": "B13-31",
+      "enonce": "Inflammation des conduits qui relient la trachée aux poumons, avec une toux grasse et des crachats.",
+      "choix": [
+        "La bronchite",
+        "L'asthme",
+        "La pneumonie",
+        "La tuberculose"
+      ],
+      "bonne_reponse": "La bronchite",
+      "explication": "Chez le fumeur, elle devient souvent chronique.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : bronchite (reformulé)"
+    },
+    {
+      "id": "B13-32",
+      "enonce": "Maladie infectieuse et contagieuse, due au bacille de Koch et touchant principalement les poumons.",
+      "choix": [
+        "La tuberculose",
+        "La pneumonie",
+        "L'asthme",
+        "La bronchite"
+      ],
+      "bonne_reponse": "La tuberculose",
+      "explication": "Elle reste fréquente en Haïti ; le vaccin BCG protège les enfants.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : tuberculose"
+    },
+    {
+      "id": "Q1583",
+      "enonce": "Quel type de microbe provoque la tuberculose ?",
+      "choix": [
+        "Une bactérie",
+        "Un virus",
+        "Un champignon",
+        "Un parasite sanguin"
+      ],
+      "bonne_reponse": "Une bactérie",
+      "explication": "C'est le bacille de Koch (Mycobacterium tuberculosis). Elle se transmet par les gouttelettes expirées par un malade.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1583 (modifiée)",
+      "ancien_enonce": "Quelle est la cause de la tuberculose ?"
+    },
+    {
+      "id": "B13-33",
+      "enonce": "Inflammation microbienne aiguë d'un lobe entier du poumon.",
+      "choix": [
+        "La pneumonie",
+        "La bronchite",
+        "L'asthme",
+        "L'emphysème"
+      ],
+      "bonne_reponse": "La pneumonie",
+      "explication": "Sa forme la plus typique est due au pneumocoque.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : pneumonie"
+    },
+    {
+      "id": "B13-34",
+      "enonce": "Maladie dans laquelle les parois des alvéoles sont détruites, ce qui réduit la surface des échanges gazeux.",
+      "choix": [
+        "L'emphysème",
+        "L'asthme",
+        "La bronchite",
+        "La pneumonie"
+      ],
+      "bonne_reponse": "L'emphysème",
+      "explication": "Le tabagisme en est la cause principale ; le malade est vite essoufflé.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme 2.1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B13-35",
+      "enonce": "Expiration brusque et sonore de l'air des poumons, provoquée par une irritation des voies respiratoires.",
+      "choix": [
+        "La toux",
+        "Le hoquet",
+        "L'éternuement",
+        "Le bâillement"
+      ],
+      "bonne_reponse": "La toux",
+      "explication": "C'est un réflexe qui nettoie les voies respiratoires.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : toux"
+    },
+    {
+      "id": "B13-36",
+      "enonce": "Expulsion par la toux de sécrétions provenant de la trachée, des bronches ou des alvéoles.",
+      "choix": [
+        "L'expectoration",
+        "La déglutition",
+        "L'inspiration",
+        "La digestion"
+      ],
+      "bonne_reponse": "L'expectoration",
+      "explication": "Le produit de cette expulsion s'appelle le crachat.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : expectoration (sens 1)"
+    },
+    {
+      "id": "B13-37",
+      "enonce": "Réaction inhabituelle et excessive du système immunitaire à une substance étrangère déjà rencontrée.",
+      "choix": [
+        "L'allergie",
+        "L'infection",
+        "La vaccination",
+        "L'inflammation"
+      ],
+      "bonne_reponse": "L'allergie",
+      "explication": "Pollens, poussières et poils d'animaux peuvent déclencher des crises d'asthme.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : allergie (sens 1, reformulé)"
+    },
+    {
+      "id": "B13-38",
+      "enonce": "Substance qui provoque une réaction excessive du système immunitaire chez certaines personnes.",
+      "choix": [
+        "Un allergène",
+        "Un antibiotique",
+        "Un anticorps",
+        "Un vaccin"
+      ],
+      "bonne_reponse": "Un allergène",
+      "explication": "Exemples : pollen, acariens, poils de chat.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : allergène (reformulé)"
+    },
+    {
+      "id": "B13-39",
+      "enonce": "Transmission d'une maladie d'une personne malade à une personne saine.",
+      "choix": [
+        "La contagion",
+        "La vaccination",
+        "L'immunité",
+        "La mutation"
+      ],
+      "bonne_reponse": "La contagion",
+      "explication": "Elle peut être directe ou passer par un objet contaminé.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : contagion (sens 1)"
+    },
+    {
+      "id": "B13-40",
+      "enonce": "Comment la tuberculose se transmet-elle le plus souvent ?",
+      "choix": [
+        "Par les gouttelettes dans l'air",
+        "Par la nourriture",
+        "Par les piqûres de moustique",
+        "Par le contact avec l'eau"
+      ],
+      "bonne_reponse": "Par les gouttelettes dans l'air",
+      "explication": "Un malade qui tousse projette des microbes que d'autres respirent.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B13-41",
+      "enonce": "Quel vaccin protège les enfants contre la tuberculose ?",
+      "choix": [
+        "Le BCG",
+        "Le ROR",
+        "Le vaccin antitétanique",
+        "Le vaccin antipoliomyélitique"
+      ],
+      "bonne_reponse": "Le BCG",
+      "explication": "Il est donné dès la naissance en Haïti.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    }
+  ]
+}
