@@ -1,0 +1,414 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Le système respiratoire",
+  "niveaux": [
+    "NS2"
+  ],
+  "unite_programme": "2.1",
+  "statut": "validé par l'utilisateur 2026-10-14",
+  "rejetees": [
+    "B12-33",
+    "B12-34",
+    "B12-44",
+    "B12-35",
+    "B12-36",
+    "B12-41"
+  ],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "B12-01",
+      "enonce": "Ensemble des phénomènes permettant l'absorption de l'oxygène et le rejet du gaz carbonique par les êtres vivants.",
+      "choix": [
+        "La respiration",
+        "La digestion",
+        "La circulation",
+        "L'excrétion"
+      ],
+      "bonne_reponse": "La respiration",
+      "explication": "Chez l'humain, elle passe par les poumons.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : respiration (sens 2)"
+    },
+    {
+      "id": "B12-02",
+      "enonce": "Organe pair de la respiration, contenu dans la cavité thoracique.",
+      "choix": [
+        "Le poumon",
+        "Le cœur",
+        "Le foie",
+        "Le rein"
+      ],
+      "bonne_reponse": "Le poumon",
+      "explication": "Le poumon gauche est un peu plus petit, pour laisser la place au cœur.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : poumon (sens 1)"
+    },
+    {
+      "id": "Q1573",
+      "enonce": "Quel est le rôle principal des poumons ?",
+      "choix": [
+        "Les échanges gazeux",
+        "Filtrer le sang",
+        "Produire des hormones",
+        "Digérer les aliments"
+      ],
+      "bonne_reponse": "Les échanges gazeux",
+      "explication": "Dans les alvéoles, le dioxygène passe dans le sang et le dioxyde de carbone en sort.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1573",
+      "ancien_enonce": "Quel est le rôle principal des poumons ?"
+    },
+    {
+      "id": "B12-03",
+      "enonce": "Cavité protégée par des parois osseuses, contenant les principaux organes de la circulation et de la respiration, située au-dessus de l'abdomen.",
+      "choix": [
+        "Le thorax",
+        "L'abdomen",
+        "Le crâne",
+        "Le bassin"
+      ],
+      "bonne_reponse": "Le thorax",
+      "explication": "Il est protégé par les côtes, le sternum et la colonne vertébrale.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : thorax (sens 1)"
+    },
+    {
+      "id": "B12-12",
+      "enonce": "Membrane qui recouvre presque complètement le poumon.",
+      "choix": [
+        "La plèvre",
+        "Le péricarde",
+        "Le diaphragme",
+        "Le péritoine"
+      ],
+      "bonne_reponse": "La plèvre",
+      "explication": "Elle permet au poumon de glisser contre la paroi du thorax.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : plèvre"
+    },
+    {
+      "id": "B12-20",
+      "enonce": "Sécrétion visqueuse, riche en protéines, produite par les cellules qui tapissent les voies respiratoires, et qui joue un rôle de protection.",
+      "choix": [
+        "Le mucus",
+        "La salive",
+        "Le plasma",
+        "La lymphe"
+      ],
+      "bonne_reponse": "Le mucus",
+      "explication": "Il piège les poussières et les microbes ; les cils les remontent vers la gorge.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : mucus (reformulé)"
+    },
+    {
+      "id": "B12-30",
+      "enonce": "Dans quel ordre l'air inspiré traverse-t-il les voies respiratoires ?",
+      "choix": [
+        "Trachée, bronches, bronchioles, alvéoles",
+        "Bronches, trachée, alvéoles, bronchioles",
+        "Alvéoles, bronchioles, bronches, trachée",
+        "Trachée, alvéoles, bronches, bronchioles"
+      ],
+      "bonne_reponse": "Trachée, bronches, bronchioles, alvéoles",
+      "explication": "Avant la trachée, l'air passe par les fosses nasales, le pharynx et le larynx.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B12-43",
+      "enonce": "Quel rôle jouent les poils et le mucus des fosses nasales ?",
+      "choix": [
+        "Filtrer l'air inspiré",
+        "Produire l'oxygène",
+        "Digérer les poussières",
+        "Refroidir le sang"
+      ],
+      "bonne_reponse": "Filtrer l'air inspiré",
+      "explication": "Les fosses nasales réchauffent et humidifient aussi l'air.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B12-05",
+      "enonce": "Organe de la phonation, situé dans le cou, entre le pharynx et la trachée.",
+      "choix": [
+        "Le larynx",
+        "Le pharynx",
+        "La trachée",
+        "L'œsophage"
+      ],
+      "bonne_reponse": "Le larynx",
+      "explication": "Il contient les cordes vocales.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : larynx"
+    },
+    {
+      "id": "B12-07",
+      "enonce": "Partie moyenne de la cavité du larynx, bordée par les deux cordes vocales.",
+      "choix": [
+        "La glotte",
+        "L'épiglotte",
+        "La luette",
+        "La trachée"
+      ],
+      "bonne_reponse": "La glotte",
+      "explication": "L'air qui la traverse fait vibrer les cordes vocales.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : glotte"
+    },
+    {
+      "id": "B12-06",
+      "enonce": "Languette cartilagineuse qui ferme l'orifice supérieur du larynx au moment de la déglutition.",
+      "choix": [
+        "L'épiglotte",
+        "La luette",
+        "La glotte",
+        "Le diaphragme"
+      ],
+      "bonne_reponse": "L'épiglotte",
+      "explication": "Elle empêche les aliments de passer dans la trachée (« avaler de travers »).",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : épiglotte"
+    },
+    {
+      "id": "B12-08",
+      "enonce": "Canal qui fait communiquer le larynx avec les bronches et qui sert au passage de l'air pendant la respiration.",
+      "choix": [
+        "La trachée",
+        "L'œsophage",
+        "Le pharynx",
+        "La bronche"
+      ],
+      "bonne_reponse": "La trachée",
+      "explication": "Elle est renforcée par des anneaux de cartilage.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : trachée (sens 1)"
+    },
+    {
+      "id": "B12-09",
+      "enonce": "Conduit cylindrique qui transporte l'air entre la trachée et les alvéoles pulmonaires.",
+      "choix": [
+        "Une bronche",
+        "La trachée",
+        "Une alvéole",
+        "Un capillaire"
+      ],
+      "bonne_reponse": "Une bronche",
+      "explication": "La trachée se divise en deux bronches, une par poumon.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : bronche"
+    },
+    {
+      "id": "B12-10",
+      "enonce": "Plus fin conduit de l'arbre respiratoire, qui aboutit aux alvéoles pulmonaires.",
+      "choix": [
+        "Une bronchiole",
+        "Une bronche",
+        "La trachée",
+        "Un capillaire"
+      ],
+      "bonne_reponse": "Une bronchiole",
+      "explication": "Les bronches se ramifient en milliers de bronchioles.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : bronchiole (reformulé)"
+    },
+    {
+      "id": "B12-11",
+      "enonce": "Sac microscopique du tissu pulmonaire, situé au bout d'une bronchiole, où s'effectuent les échanges respiratoires.",
+      "choix": [
+        "Une alvéole",
+        "Une bronchiole",
+        "Un capillaire",
+        "La plèvre"
+      ],
+      "bonne_reponse": "Une alvéole",
+      "explication": "Les poumons en contiennent des centaines de millions.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : alvéole (sens 5)"
+    },
+    {
+      "id": "B12-17",
+      "enonce": "Ensemble des échanges gazeux dans les poumons qui transforment le sang rouge sombre, riche en gaz carbonique, en sang rouge vif riche en oxygène.",
+      "choix": [
+        "L'hématose",
+        "La respiration cellulaire",
+        "La coagulation",
+        "La digestion"
+      ],
+      "bonne_reponse": "L'hématose",
+      "explication": "Elle a lieu à travers la paroi des alvéoles et des capillaires.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : hématose"
+    },
+    {
+      "id": "B12-31",
+      "enonce": "Quel gaz passe de l'air des alvéoles vers le sang ?",
+      "choix": [
+        "Le dioxygène",
+        "Le dioxyde de carbone",
+        "L'azote",
+        "La vapeur d'eau"
+      ],
+      "bonne_reponse": "Le dioxygène",
+      "explication": "Il est ensuite transporté par les globules rouges.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B12-32",
+      "enonce": "Quel gaz passe du sang vers l'air des alvéoles ?",
+      "choix": [
+        "Le dioxyde de carbone",
+        "Le dioxygène",
+        "L'azote",
+        "L'hydrogène"
+      ],
+      "bonne_reponse": "Le dioxyde de carbone",
+      "explication": "Il est rejeté lors de l'expiration.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B12-15",
+      "enonce": "Phase de la respiration pendant laquelle l'air atmosphérique, riche en oxygène, pénètre dans les poumons.",
+      "choix": [
+        "L'inspiration",
+        "L'expiration",
+        "L'hématose",
+        "L'apnée"
+      ],
+      "bonne_reponse": "L'inspiration",
+      "explication": "C'est une phase active : des muscles se contractent.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : inspiration (sens 1)"
+    },
+    {
+      "id": "B12-16",
+      "enonce": "Phase de la respiration pendant laquelle l'air est expulsé hors des poumons.",
+      "choix": [
+        "L'expiration",
+        "L'inspiration",
+        "La déglutition",
+        "L'apnée"
+      ],
+      "bonne_reponse": "L'expiration",
+      "explication": "Au repos, c'est une phase passive : les muscles se relâchent.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : expiration (sens 1)"
+    },
+    {
+      "id": "B12-13",
+      "enonce": "Muscle très large et mince qui sépare le thorax de l'abdomen et dont la contraction provoque l'inspiration.",
+      "choix": [
+        "Le diaphragme",
+        "Le muscle cardiaque",
+        "Le grand dorsal",
+        "L'abdominal"
+      ],
+      "bonne_reponse": "Le diaphragme",
+      "explication": "C'est le principal muscle de la respiration.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : diaphragme (sens 1)"
+    },
+    {
+      "id": "B12-18",
+      "enonce": "Arrêt de la respiration, de durée variable, sans arrêt du cœur.",
+      "choix": [
+        "L'apnée",
+        "L'asphyxie",
+        "L'expiration",
+        "La syncope"
+      ],
+      "bonne_reponse": "L'apnée",
+      "explication": "Exemple : la plongée sous-marine en apnée.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : apnée (reformulé)"
+    },
+    {
+      "id": "B12-19",
+      "enonce": "Difficulté ou impossibilité de respirer.",
+      "choix": [
+        "L'asphyxie",
+        "L'apnée",
+        "La toux",
+        "L'éternuement"
+      ],
+      "bonne_reponse": "L'asphyxie",
+      "explication": "Elle peut être causée par un étouffement, une noyade ou un gaz toxique.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : asphyxie (sens 1)"
+    },
+    {
+      "id": "B12-22",
+      "enonce": "Appareil qui mesure la capacité vitale, c'est-à-dire le volume d'air expiré lors d'une expiration forcée après une inspiration forcée.",
+      "choix": [
+        "Le spiromètre",
+        "Le stéthoscope",
+        "Le tensiomètre",
+        "Le thermomètre"
+      ],
+      "bonne_reponse": "Le spiromètre",
+      "explication": "Il sert à évaluer la santé des poumons.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : spiromètre"
+    },
+    {
+      "id": "B12-37",
+      "enonce": "Comment appelle-t-on le volume d'air maximal expiré après une inspiration forcée ?",
+      "choix": [
+        "La capacité vitale",
+        "Le volume courant",
+        "Le volume résiduel",
+        "Le débit cardiaque"
+      ],
+      "bonne_reponse": "La capacité vitale",
+      "explication": "Chez l'adulte, elle est d'environ 3 à 5 litres.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : spiromètre"
+    },
+    {
+      "id": "B12-38",
+      "enonce": "Quel volume d'air un adulte échange-t-il environ à chaque respiration calme ?",
+      "choix": [
+        "Environ 0,5 litre",
+        "Environ 5 litres",
+        "Environ 0,05 litre",
+        "Environ 2 litres"
+      ],
+      "bonne_reponse": "Environ 0,5 litre",
+      "explication": "C'est le volume courant.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B12-39",
+      "enonce": "Quel est le rythme respiratoire normal d'un adulte au repos ?",
+      "choix": [
+        "12 à 20 par minute",
+        "60 à 80 par minute",
+        "2 à 5 par minute",
+        "30 à 40 par minute"
+      ],
+      "bonne_reponse": "12 à 20 par minute",
+      "explication": "Il augmente pendant l'effort.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B12-40",
+      "enonce": "Quelle partie de l'encéphale commande automatiquement la respiration ?",
+      "choix": [
+        "Le bulbe rachidien",
+        "Le cervelet",
+        "Le cortex frontal",
+        "L'hypothalamus"
+      ],
+      "bonne_reponse": "Le bulbe rachidien",
+      "explication": "On peut aussi modifier volontairement sa respiration, pour un temps.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme 2.1"
+    }
+  ]
+}
