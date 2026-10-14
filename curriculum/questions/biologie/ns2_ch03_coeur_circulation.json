@@ -1,0 +1,493 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Le cœur et la circulation sanguine",
+  "niveaux": [
+    "NS2"
+  ],
+  "unite_programme": "2.1",
+  "statut": "validé par l'utilisateur 2026-10-14",
+  "rejetees": [],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "B14-01",
+      "enonce": "Liquide rouge qui circule dans tout l'organisme sous l'impulsion du cœur, apporte aux tissus les nutriments et l'oxygène et recueille leurs déchets.",
+      "choix": [
+        "Le sang",
+        "La lymphe",
+        "La sueur",
+        "L'urine"
+      ],
+      "bonne_reponse": "Le sang",
+      "explication": "Un adulte en possède environ 5 litres.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : sang (sens 1, abrégé)"
+    },
+    {
+      "id": "B14-02",
+      "enonce": "Cellule sanguine qui transporte l'oxygène des poumons vers les tissus.",
+      "choix": [
+        "L'hématie",
+        "Le leucocyte",
+        "La plaquette",
+        "Le neurone"
+      ],
+      "bonne_reponse": "L'hématie",
+      "explication": "On l'appelle aussi globule rouge ; sa couleur vient de l'hémoglobine.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hématie"
+    },
+    {
+      "id": "Q1595",
+      "enonce": "Cellule du sang capable de se déplacer dans les tissus pour participer aux défenses de l'organisme.",
+      "choix": [
+        "Le globule blanc",
+        "Le globule rouge",
+        "La plaquette",
+        "L'hématie"
+      ],
+      "bonne_reponse": "Le globule blanc",
+      "explication": "On l'appelle aussi leucocyte ; les lymphocytes en font partie.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1595 (modifiée) — Larousse : leucocyte",
+      "ancien_enonce": "Quelle est la fonction principale des globules blancs (leucocytes) ?"
+    },
+    {
+      "id": "B14-03",
+      "enonce": "Cellule sanguine sans noyau, qui joue un rôle important dans la coagulation du sang.",
+      "choix": [
+        "La plaquette",
+        "L'hématie",
+        "Le leucocyte",
+        "Le lymphocyte"
+      ],
+      "bonne_reponse": "La plaquette",
+      "explication": "Elle aide à boucher une plaie en formant un caillot.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : plaquette (sens 4)"
+    },
+    {
+      "id": "Q1587",
+      "enonce": "Diminution du taux d'hémoglobine dans le sang.",
+      "choix": [
+        "L'anémie",
+        "L'hypertension",
+        "L'hématurie",
+        "La leucémie"
+      ],
+      "bonne_reponse": "L'anémie",
+      "explication": "Le malade est pâle et vite fatigué ; un manque de fer en est une cause fréquente.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1587 (modifiée) — Larousse : anémie (sens 1)",
+      "ancien_enonce": "Qu'est-ce qui caractérise l'anémie ?"
+    },
+    {
+      "id": "B14-04",
+      "enonce": "Quel volume de sang le corps d'un adulte contient-il environ ?",
+      "choix": [
+        "Environ 5 litres",
+        "Environ 1 litre",
+        "Environ 20 litres",
+        "Environ 50 litres"
+      ],
+      "bonne_reponse": "Environ 5 litres",
+      "explication": "Cela représente environ 7 % de la masse du corps.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "Q1572",
+      "enonce": "Organe musculaire creux, qui constitue l'élément moteur central de la circulation du sang.",
+      "choix": [
+        "Le cœur",
+        "Le poumon",
+        "Le foie",
+        "L'estomac"
+      ],
+      "bonne_reponse": "Le cœur",
+      "explication": "Il bat environ 100 000 fois par jour.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1572 (modifiée) — Larousse : cœur (sens 1)",
+      "ancien_enonce": "Quel organe pompe le sang dans le corps humain ?"
+    },
+    {
+      "id": "B14-05",
+      "enonce": "Muscle du cœur dont les contractions assurent la vidange et le remplissage de ses cavités.",
+      "choix": [
+        "Le myocarde",
+        "Le péricarde",
+        "Le diaphragme",
+        "Le septum"
+      ],
+      "bonne_reponse": "Le myocarde",
+      "explication": "Il se contracte sans jamais se fatiguer, toute la vie.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : myocarde (reformulé)"
+    },
+    {
+      "id": "B14-06",
+      "enonce": "Membrane formée de deux feuillets, qui enveloppe le cœur.",
+      "choix": [
+        "Le péricarde",
+        "Le myocarde",
+        "La plèvre",
+        "Le péritoine"
+      ],
+      "bonne_reponse": "Le péricarde",
+      "explication": "Elle protège le cœur et facilite ses mouvements.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : péricarde"
+    },
+    {
+      "id": "B14-07",
+      "enonce": "Cavité du cœur qui reçoit le sang avant de le faire passer dans le ventricule correspondant.",
+      "choix": [
+        "L'oreillette",
+        "Le ventricule",
+        "L'aorte",
+        "La valvule"
+      ],
+      "bonne_reponse": "L'oreillette",
+      "explication": "Le cœur en possède deux, une droite et une gauche.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : oreillette (sens 1)"
+    },
+    {
+      "id": "B14-08",
+      "enonce": "Cavité du cœur, à paroi épaisse, qui reçoit le sang de l'oreillette et le chasse dans une artère.",
+      "choix": [
+        "Le ventricule",
+        "L'oreillette",
+        "La veine cave",
+        "Le péricarde"
+      ],
+      "bonne_reponse": "Le ventricule",
+      "explication": "Le gauche, qui envoie le sang dans tout le corps, a la paroi la plus épaisse.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : ventricule (complété par le programme)"
+    },
+    {
+      "id": "B14-09",
+      "enonce": "Cloison qui sépare le cœur droit du cœur gauche.",
+      "choix": [
+        "Le septum",
+        "Le péricarde",
+        "La valvule",
+        "Le diaphragme"
+      ],
+      "bonne_reponse": "Le septum",
+      "explication": "Le sang des deux côtés ne se mélange donc jamais.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : septum (sens 1, appliqué au cœur)"
+    },
+    {
+      "id": "B14-10",
+      "enonce": "Repli membraneux qui dirige le sang dans un seul sens et l'empêche de refluer.",
+      "choix": [
+        "La valvule",
+        "Le septum",
+        "Le péricarde",
+        "L'oreillette"
+      ],
+      "bonne_reponse": "La valvule",
+      "explication": "On en trouve dans le cœur et dans les veines des jambes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : valvule (abrégé)"
+    },
+    {
+      "id": "B14-11",
+      "enonce": "Phase du cycle cardiaque correspondant à la contraction des oreillettes puis à celle des ventricules.",
+      "choix": [
+        "La systole",
+        "La diastole",
+        "L'inspiration",
+        "La syncope"
+      ],
+      "bonne_reponse": "La systole",
+      "explication": "Elle chasse le sang dans les artères.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : systole"
+    },
+    {
+      "id": "B14-12",
+      "enonce": "Période qui suit la contraction du cœur, pendant laquelle les oreillettes et les ventricules se remplissent de sang.",
+      "choix": [
+        "La diastole",
+        "La systole",
+        "L'expiration",
+        "L'apnée"
+      ],
+      "bonne_reponse": "La diastole",
+      "explication": "C'est la phase de relâchement du cœur.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : diastole"
+    },
+    {
+      "id": "B14-13",
+      "enonce": "Onde provoquée par la contraction du cœur, que l'on sent sous le doigt posé sur une artère.",
+      "choix": [
+        "Le pouls",
+        "La tension",
+        "La systole",
+        "Le souffle"
+      ],
+      "bonne_reponse": "Le pouls",
+      "explication": "On le prend souvent au poignet ou au cou.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : pouls (abrégé)"
+    },
+    {
+      "id": "B14-14",
+      "enonce": "Combien de cavités le cœur humain possède-t-il ?",
+      "choix": [
+        "Quatre",
+        "Deux",
+        "Trois",
+        "Six"
+      ],
+      "bonne_reponse": "Quatre",
+      "explication": "Deux oreillettes en haut, deux ventricules en bas.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B14-15",
+      "enonce": "Quel côté du cœur contient le sang riche en dioxygène ?",
+      "choix": [
+        "Le côté gauche",
+        "Le côté droit",
+        "Les deux côtés",
+        "Aucun côté"
+      ],
+      "bonne_reponse": "Le côté gauche",
+      "explication": "Il revient des poumons par les veines pulmonaires.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B14-20",
+      "enonce": "Canal dans lequel circule le sang ou la lymphe.",
+      "choix": [
+        "Un vaisseau",
+        "Un nerf",
+        "Un tendon",
+        "Un ligament"
+      ],
+      "bonne_reponse": "Un vaisseau",
+      "explication": "Artères, veines et capillaires en sont les trois types.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : vaisseau (sens 3)"
+    },
+    {
+      "id": "B14-21",
+      "enonce": "Vaisseau qui conduit le sang sous pression du cœur vers les capillaires.",
+      "choix": [
+        "Une artère",
+        "Une veine",
+        "Un capillaire",
+        "Un nerf"
+      ],
+      "bonne_reponse": "Une artère",
+      "explication": "Sa paroi est épaisse et élastique.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : artère (sens 1)"
+    },
+    {
+      "id": "B14-22",
+      "enonce": "Vaisseau sanguin qui ramène le sang des organes vers le cœur.",
+      "choix": [
+        "Une veine",
+        "Une artère",
+        "Un capillaire",
+        "Un nerf"
+      ],
+      "bonne_reponse": "Une veine",
+      "explication": "Sa paroi est mince ; celles des jambes ont des valvules.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : veine (sens 1)"
+    },
+    {
+      "id": "B14-23",
+      "enonce": "Vaisseau très fin, qui relie les dernières ramifications des artères aux plus petites veines.",
+      "choix": [
+        "Un capillaire",
+        "Une artère",
+        "Une veine",
+        "Une bronchiole"
+      ],
+      "bonne_reponse": "Un capillaire",
+      "explication": "C'est à son niveau que le sang échange avec les cellules.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : capillaire (nom, sens 1)"
+    },
+    {
+      "id": "B14-24",
+      "enonce": "Principale artère de l'organisme, partant du ventricule gauche et distribuant le sang oxygéné dans tout le corps.",
+      "choix": [
+        "L'aorte",
+        "La veine cave",
+        "L'artère pulmonaire",
+        "La carotide"
+      ],
+      "bonne_reponse": "L'aorte",
+      "explication": "C'est le plus gros vaisseau du corps.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : aorte"
+    },
+    {
+      "id": "B14-25",
+      "enonce": "À quel niveau se font les échanges entre le sang et les cellules ?",
+      "choix": [
+        "Dans les capillaires",
+        "Dans les artères",
+        "Dans les veines",
+        "Dans le cœur"
+      ],
+      "bonne_reponse": "Dans les capillaires",
+      "explication": "Leur paroi n'a qu'une seule couche de cellules.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B14-26",
+      "enonce": "Quelle est la longueur totale approximative des vaisseaux sanguins d'un adulte ?",
+      "choix": [
+        "Environ 100 000 km",
+        "Environ 100 km",
+        "Environ 1 000 km",
+        "Environ 1 million de km"
+      ],
+      "bonne_reponse": "Environ 100 000 km",
+      "explication": "C'est plus de deux fois le tour de la Terre.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B14-27",
+      "enonce": "Pourquoi dit-on que la circulation sanguine humaine est close ?",
+      "choix": [
+        "Le sang reste dans des vaisseaux",
+        "Le cœur est fermé",
+        "Le sang reste dans le cœur",
+        "Les vaisseaux sont bouchés"
+      ],
+      "bonne_reponse": "Le sang reste dans des vaisseaux",
+      "explication": "Chez certains animaux, le sang baigne directement les organes.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B14-30",
+      "enonce": "Mouvement continu du sang dans les artères et les veines.",
+      "choix": [
+        "La circulation",
+        "La respiration",
+        "La digestion",
+        "La coagulation"
+      ],
+      "bonne_reponse": "La circulation",
+      "explication": "Elle a été décrite par William Harvey en 1628.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : circulation (sens 2)"
+    },
+    {
+      "id": "B14-31",
+      "enonce": "Trajet du sang du ventricule droit vers les poumons, puis retour à l'oreillette gauche.",
+      "choix": [
+        "La petite circulation",
+        "La grande circulation",
+        "La circulation lymphatique",
+        "La circulation portale"
+      ],
+      "bonne_reponse": "La petite circulation",
+      "explication": "On l'appelle aussi circulation pulmonaire ; le sang s'y charge en dioxygène.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B14-32",
+      "enonce": "Trajet du sang du ventricule gauche vers tous les organes, puis retour à l'oreillette droite.",
+      "choix": [
+        "La grande circulation",
+        "La petite circulation",
+        "La circulation pulmonaire",
+        "La circulation lymphatique"
+      ],
+      "bonne_reponse": "La grande circulation",
+      "explication": "On l'appelle aussi circulation générale.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B14-33",
+      "enonce": "Combien de fois le sang passe-t-il par le cœur lors d'un tour complet du corps ?",
+      "choix": [
+        "Deux fois",
+        "Une fois",
+        "Trois fois",
+        "Quatre fois"
+      ],
+      "bonne_reponse": "Deux fois",
+      "explication": "C'est pourquoi on parle de double circulation.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B14-34",
+      "enonce": "Quelle artère transporte du sang pauvre en dioxygène ?",
+      "choix": [
+        "L'artère pulmonaire",
+        "L'aorte",
+        "L'artère rénale",
+        "La carotide"
+      ],
+      "bonne_reponse": "L'artère pulmonaire",
+      "explication": "Elle mène le sang du ventricule droit aux poumons.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B14-35",
+      "enonce": "Par quels vaisseaux le sang revient-il des organes à l'oreillette droite ?",
+      "choix": [
+        "Les veines caves",
+        "Les veines pulmonaires",
+        "L'aorte",
+        "Les artères pulmonaires"
+      ],
+      "bonne_reponse": "Les veines caves",
+      "explication": "Il y en a deux : la supérieure et l'inférieure.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B14-40",
+      "enonce": "Liquide organique translucide qui joue un rôle important dans la défense de l'organisme.",
+      "choix": [
+        "La lymphe",
+        "Le plasma",
+        "La salive",
+        "Le sang"
+      ],
+      "bonne_reponse": "La lymphe",
+      "explication": "Elle provient du liquide qui baigne les cellules et rejoint le sang.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : lymphe"
+    },
+    {
+      "id": "B14-41",
+      "enonce": "Petit renflement arrondi situé sur le trajet des vaisseaux qui transportent la lymphe.",
+      "choix": [
+        "Un ganglion",
+        "Une valvule",
+        "Un capillaire",
+        "Une alvéole"
+      ],
+      "bonne_reponse": "Un ganglion",
+      "explication": "Il grossit quand l'organisme combat une infection.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : ganglion (sens 1)"
+    }
+  ]
+}
