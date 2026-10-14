@@ -23,9 +23,12 @@ const error = ref(false)
 const errorMsg = ref('')
 
 onMounted(async () => {
+  // Le token arrive dans le fragment (#token=…), jamais envoyé au serveur ni journalisé
   const params = new URLSearchParams(window.location.search)
-  const token = params.get('token')
+  const fragment = new URLSearchParams(window.location.hash.slice(1))
+  const token = fragment.get('token')
   const err = params.get('error')
+  history.replaceState(null, '', window.location.pathname)
 
   if (err) {
     error.value = true
@@ -35,7 +38,7 @@ onMounted(async () => {
 
   if (!token) {
     error.value = true
-    errorMsg.value = `Aucun token reçu. URL : ${window.location.href}`
+    errorMsg.value = 'Aucun token reçu.'
     return
   }
 

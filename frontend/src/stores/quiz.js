@@ -2,13 +2,13 @@
  * Store Pinia — état du quiz en cours.
  *
  * Flux :
- *   configurer() → demarrer() → [l'utilisateur répond]
+ *   configurer() → demarrer() → repondre() pour chaque question (corrigée par le serveur)
  *   → terminer() → le résultat est stocké dans `resultat`
  *   → ProfilView lit `resultat` via le router
  */
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { demarrerQuiz, terminerQuiz } from '../api/client.js'
+import { demarrerQuiz, repondreQuiz, terminerQuiz } from '../api/client.js'
 import { niveauDepuisXp } from '../utils/niveau.js'
 
 // Paliers de série (miroir de _PALIERS_SERIE côté serveur)
@@ -43,9 +43,11 @@ export const useQuizStore = defineStore('quiz', () => {
   const chapNom     = ref('')
 
   // Déroulement
+  const partieId   = ref(null)
   const questions  = ref([])
   const indexCourant = ref(0)
-  const reponses   = ref([])   // [{question_id, reponse, temps_restant}]
+  const reponses   = ref([])   // [{question_id, reponse, correcte, bonne_reponse, explication}]
+  let envois = []              // corrections en cours, attendues avant terminer()
   const en_cours   = ref(false)
 
   // Résultat final (rempli après terminer())
@@ -61,16 +63,26 @@ export const useQuizStore = defineStore('quiz', () => {
   }
 
   async function demarrer() {
-    questions.value    = await demarrerQuiz(chapitreId.value, modeNom.value, nbQuestions.value)
+    const partie       = await demarrerQuiz(chapitreId.value, modeNom.value, nbQuestions.value)
+    partieId.value     = partie.partie_id
+    questions.value    = partie.questions
+    envois             = []
     indexCourant.value = 0
     reponses.value     = []
     resultat.value     = null
     en_cours.value     = true
   }
 
-  function enregistrerReponse(questionId, reponse, tempsRestant) {
-    reponses.value.push({ question_id: questionId, reponse, temps_restant: tempsRestant })
-    indexCourant.value++
+  // Envoie la réponse au serveur, qui la corrige → { correcte, bonne_reponse, explication }.
+  // Si l'envoi échoue, la réponse n'est pas comptée (le serveur ne l'a pas reçue).
+  function repondre(questionId, reponse) {
+    const envoi = repondreQuiz(partieId.value, questionId, reponse)
+      .then((c) => {
+        reponses.value.push({ question_id: questionId, reponse, ...c })
+        return c
+      })
+    envois.push(envoi.catch(() => {}))
+    return envoi
   }
 
   // Résultat calculé localement (même règles que /quiz/terminer) pour l'afficher sans attendre
@@ -81,10 +93,10 @@ export const useQuizStore = defineStore('quiz', () => {
       .filter(r => qMap.has(r.question_id))
       .map(r => {
         const q = qMap.get(r.question_id)
-        const correcte = r.reponse.trim() === q.bonne_reponse.trim()
+        const correcte = r.correcte
         return {
           question_id: q.id, enonce: q.enonce, choix: q.choix,
-          bonne_reponse: q.bonne_reponse, explication: q.explication,
+          bonne_reponse: r.bonne_reponse, explication: r.explication,
           reponse_donnee: r.reponse, correcte,
           xp_gagne: correcte ? (q.xp ?? 0) : 0,
           _pieces: correcte ? (q.pieces ?? 0) : 0,
@@ -110,15 +122,12 @@ export const useQuizStore = defineStore('quiz', () => {
 
   // xpAvant connu → résultat provisoire affiché tout de suite, le serveur confirme ensuite.
   // Retourne la promesse de la réponse serveur (à attendre seulement si pas de provisoire).
-  function terminer(xpAvant = null) {
+  async function terminer(xpAvant = null) {
+    // Toutes les réponses doivent être enregistrées côté serveur avant de clôturer la partie
+    await Promise.all(envois)
     const provisoire = xpAvant !== null ? resultatProvisoire(xpAvant) : null
     if (provisoire) resultat.value = provisoire
-    const envoi = terminerQuiz({
-      chapitre_id: chapitreId.value,
-      matiere_id:  matiereId.value,
-      mode_nom:    modeNom.value,
-      reponses:    reponses.value,
-    }).then((r) => {
+    const envoi = terminerQuiz(partieId.value).then((r) => {
       resultat.value = r
       en_cours.value = false
       return r
@@ -131,6 +140,8 @@ export const useQuizStore = defineStore('quiz', () => {
   }
 
   function reset() {
+    partieId.value     = null
+    envois             = []
     questions.value    = []
     reponses.value     = []
     indexCourant.value = 0
@@ -139,7 +150,7 @@ export const useQuizStore = defineStore('quiz', () => {
 
   return {
     chapitreId, matiereId, modeNom, nbQuestions, matNom, chapNom,
-    questions, indexCourant, reponses, en_cours, resultat,
-    configurer, demarrer, enregistrerReponse, terminer, reset,
+    partieId, questions, indexCourant, reponses, en_cours, resultat,
+    configurer, demarrer, repondre, terminer, reset,
   }
 })

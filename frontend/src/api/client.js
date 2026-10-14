@@ -29,16 +29,23 @@ export const getChapitre = (matiereId, chapitreId) =>
   api.get(`/matieres/${matiereId}/chapitres/${chapitreId}`).then(r => r.data)
 
 // ─── Quiz ──────────────────────────────────────────────────────────────────────
+// Le serveur tient la partie : les bonnes réponses ne sont révélées qu'après chaque réponse.
+// → { partie_id, questions: [{ id, enonce, choix, xp, pieces, … }] }
 export const demarrerQuiz = (chapitreId, modeNom, nbQuestions = 10) =>
   api.post('/quiz/demarrer', { chapitre_id: chapitreId, mode_nom: modeNom, nb_questions: nbQuestions })
      .then(r => r.data)
 
-// Débite le coût d'un bonus (400 si pièces insuffisantes)
-export const utiliserBonusApi = (type) =>
-  api.post('/quiz/bonus', { type }).then(r => r.data)
+// → { correcte, bonne_reponse, explication }
+export const repondreQuiz = (partieId, questionId, reponse) =>
+  api.post('/quiz/repondre', { partie_id: partieId, question_id: questionId, reponse }).then(r => r.data)
 
-export const terminerQuiz = (payload) =>
-  api.post('/quiz/terminer', payload).then(r => r.data)
+// Débite le coût d'un bonus (400 si pièces insuffisantes) → { cout, pieces_total, elimines }
+export const utiliserBonusApi = (type, partieId, questionId, dejaElimines = []) =>
+  api.post('/quiz/bonus', { type, partie_id: partieId, question_id: questionId, deja_elimines: dejaElimines })
+     .then(r => r.data)
+
+export const terminerQuiz = (partieId) =>
+  api.post('/quiz/terminer', { partie_id: partieId }).then(r => r.data)
 
 // ─── Utilisateur ──────────────────────────────────────────────────────────────
 export const getProfil = () => api.get('/user/profil').then(r => r.data)
@@ -62,19 +69,15 @@ export const authMe = () => api.get('/auth/me').then(r => r.data)
 
 // ─── Réalisations ─────────────────────────────────────────────────────────────
 export const getRealisations = () => api.get('/realisations/').then(r => r.data)
-export const incrementerRealisationProgres = (id, delta = 1) =>
-  api.post(`/realisations/${id}/progres`, { delta }).then(r => r.data)
 
 // ─── Défis ────────────────────────────────────────────────────────────────────
 export const getDefisQuotidiens = () => api.get('/defis/quotidiens').then(r => r.data)
 export const getDefisHebdo = () => api.get('/defis/hebdo').then(r => r.data)
 export const getDefisMensuels = () => api.get('/defis/mensuels').then(r => r.data)
 export const getDefisSpeciaux = () => api.get('/defis/speciaux').then(r => r.data)
-export const incrementerDefiProgres = (id, delta = 1) =>
-  api.post(`/defis/${id}/progres`, { delta }).then(r => r.data)
 
-// ─── Admin (lecture seule) ────────────────────────────────────────────────────
-export const getMatieresAvecChapitres = () => api.get('/admin/matieres').then(r => r.data)
+// Chapitres jouables groupés par matière (recherche de l'accueil)
+export const getMatieresAvecChapitres = () => api.get('/matieres/themes').then(r => r.data)
 
 // ─── Propositions ─────────────────────────────────────────────────────────────
 export const soumettreProposition = (data) => api.post('/proposals/', data).then(r => r.data)

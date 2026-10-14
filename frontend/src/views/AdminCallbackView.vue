@@ -21,11 +21,14 @@ const router = useRouter()
 const error = ref('')
 
 onMounted(() => {
+  // Token, rôle et pseudo arrivent dans le fragment (#…), jamais envoyés au serveur
   const params = new URLSearchParams(window.location.search)
-  const token = params.get('token')
-  const role = params.get('role')
-  const pseudo = params.get('pseudo')
+  const fragment = new URLSearchParams(window.location.hash.slice(1))
+  const token = fragment.get('token')
+  const role = fragment.get('role')
+  const pseudo = fragment.get('pseudo')
   const err = params.get('error')
+  history.replaceState(null, '', window.location.pathname)
 
   if (err === 'unauthorized') {
     error.value = 'Ce compte Google n\'a pas les droits d\'administration.'

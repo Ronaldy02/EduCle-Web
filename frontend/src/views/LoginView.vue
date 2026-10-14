@@ -223,6 +223,15 @@ const globalErr = ref('')
 
 function clearErr() { fieldErr.value = ''; globalErr.value = ''; nameErr.value = '' }
 
+// Retour d'échec de la connexion Google (?error=…)
+const ERREURS_GOOGLE = {
+  google_cancelled: 'Connexion Google annulée.',
+  google_state: 'La connexion Google a expiré. Réessaie.',
+  google_email_non_verifie: "Ton adresse Google n'est pas vérifiée.",
+}
+const errGoogle = new URLSearchParams(window.location.search).get('error')
+if (errGoogle) globalErr.value = ERREURS_GOOGLE[errGoogle] || 'Erreur lors de la connexion Google.'
+
 function loginGoogle() {
   window.location.href = `${import.meta.env.VITE_API_URL || ''}/auth/google`
 }

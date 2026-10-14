@@ -729,23 +729,30 @@ function exploser() {
   _explosionTimer = setTimeout(finirQuiz, 900)
 }
 
-function repondre(choixIndex) {
+// La correction vient du serveur : le navigateur ne connaît pas la bonne réponse avant d'avoir répondu
+async function repondre(choixIndex) {
   if (repondu.value) return
   clearInterval(timerInterval)
   if (modeNom.value !== 'Bombardement') stopTick()
 
-  const q        = question.value
-  const bonneRep = q.bonne_reponse
-  const bonneIdx = q.choix.indexOf(bonneRep)
+  const q            = question.value
+  const reponseTexte = choixIndex !== null ? q.choix[choixIndex] : ''
 
   repondu.value      = true
   reponduIndex.value = choixIndex
-  bonneIndex.value   = bonneIdx
 
-  const correcte    = choixIndex !== null && q.choix[choixIndex] === bonneRep
-  const reponseTexte = choixIndex !== null ? q.choix[choixIndex] : ''
+  let correction = null
+  try {
+    correction = await quizStore.repondre(q.id, reponseTexte)
+  } catch {
+    toast("Réponse non enregistrée (connexion)", { icon: 'cloud_off', type: 'error', duree: 2500 })
+  }
+  if (explosion.value) return       // le Bombardement a explosé pendant la correction
 
-  quizStore.enregistrerReponse(q.id, reponseTexte, tempsRestant.value)
+  const bonneIdx = correction ? q.choix.indexOf(correction.bonne_reponse) : -1
+  bonneIndex.value = bonneIdx >= 0 ? bonneIdx : null
+  q.explication    = correction?.explication ?? ''
+  const correcte   = !!correction?.correcte
 
   if (correcte) {
     jouerBonneReponse()
@@ -815,7 +822,7 @@ function suivant() {
 async function finirQuiz() {
   clearInterval(timerGlobal)
   stopTick()
-  const { provisoire, envoi: reponseServeur } = quizStore.terminer(xpAvant)
+  const { provisoire, envoi: reponseServeur } = await quizStore.terminer(xpAvant)
   if (provisoire) {
     reponseServeur.catch(() => {})   // l'échec est signalé par la page de résultat
     router.replace('/resultat')
@@ -842,13 +849,12 @@ function etatChoix(i) {
 const COUT_BONUS = { elimination: 50, cinqCinq: 100, remplacer: 75, plusTemps: 150 }
 let bonusEnCours = false
 
-// Un bonus qui ne changerait rien n'est pas facturé
+// Un bonus qui ne changerait rien n'est pas facturé (les choix éliminés sont toujours des mauvais)
 function bonusApplicable(type) {
   const q = question.value
-  const bonneIdx = q.choix.indexOf(q.bonne_reponse)
-  const mauvaisVisibles = [0, 1, 2, 3].filter(i => i !== bonneIdx && !elimines.value.includes(i))
-  if (type === 'elimination') return mauvaisVisibles.length > 0
-  if (type === 'cinqCinq')    return mauvaisVisibles.length > 1
+  const mauvaisVisibles = q.choix.length - 1 - elimines.value.length
+  if (type === 'elimination') return mauvaisVisibles > 0
+  if (type === 'cinqCinq')    return mauvaisVisibles > 1
   if (type === 'remplacer')   return quizStore.questions.length - indexCourant.value - 1 > 0
   if (type === 'plusTemps')   return modeNom.value === 'Bombardement' || tempsRestant.value < tempsMax.value
   return false
@@ -864,8 +870,10 @@ async function utiliserBonus(type, evt) {
   const bouton = evt?.currentTarget   // à lire avant l'await (currentTarget est remis à null ensuite)
 
   bonusEnCours = true
+  let r
   try {
-    const r = await utiliserBonusApi(type)
+    const q = question.value
+    r = await utiliserBonusApi(type, quizStore.partieId, q.id, elimines.value.map(i => q.choix[i]))
     animerDepense(bouton, r.cout)
   } catch (e) {
     refuserBonus(bouton, e)
@@ -874,7 +882,7 @@ async function utiliserBonus(type, evt) {
     bonusEnCours = false
   }
   if (repondu.value) return
-  appliquerBonus(type, bouton)
+  appliquerBonus(type, bouton, r.elimines)
 }
 
 // G5 · les pièces quittent le compteur et rejoignent le bouton ; le compteur descend
@@ -895,9 +903,12 @@ function animerDepense(bouton, cout) {
 }
 
 function refuserBonus(bouton, e) {
-  const manque = e?.response?.status === 400
-  toast(manque ? 'Pas assez de pièces pour ce bonus' : 'Bonus indisponible, réessaie',
-    { icon: manque ? 'savings' : 'error', type: 'error', duree: 2500 })
+  const statut = e?.response?.status
+  const manque = statut === 400
+  const message = manque ? 'Pas assez de pièces pour ce bonus'
+    : statut === 422 ? 'Ce bonus ne changerait rien ici'
+    : 'Bonus indisponible, réessaie'
+  toast(message, { icon: manque ? 'savings' : 'error', type: 'error', duree: 2500 })
   if (bouton?.isConnected && animationsActives()) {
     bouton.animate([
       { transform: 'translateX(0)' }, { transform: 'translateX(-6px)' },
@@ -907,26 +918,16 @@ function refuserBonus(bouton, e) {
   }
 }
 
-function appliquerBonus(type, bouton) {
+// `aEliminer` : choix (textes) désignés par le serveur pour l'élimination et le 50/50
+function appliquerBonus(type, bouton, aEliminer = []) {
   const q = question.value
   if (!q) return
 
-  if (type === 'elimination') {
-    if (bonusUtilises.value.elimination) return
-    bonusUtilises.value.elimination = true
-    const bonneIdx = q.choix.indexOf(q.bonne_reponse)
-    const mauvais  = [0, 1, 2, 3].filter(i => i !== bonneIdx && !elimines.value.includes(i))
-    if (mauvais.length > 0) elimines.value.push(mauvais[Math.floor(Math.random() * mauvais.length)])
-
-  } else if (type === 'cinqCinq') {
-    if (bonusUtilises.value.cinqCinq) return
-    bonusUtilises.value.cinqCinq = true
-    const bonneIdx = q.choix.indexOf(q.bonne_reponse)
-    const mauvais  = [0, 1, 2, 3].filter(i => i !== bonneIdx)
-    // Garder un mauvais encore visible, éliminer les autres (sans faire revenir un choix déjà éliminé)
-    const restants = mauvais.filter(i => !elimines.value.includes(i))
-    const garder = restants[Math.floor(Math.random() * restants.length)]
-    elimines.value = mauvais.filter(i => i !== garder)
+  if (type === 'elimination' || type === 'cinqCinq') {
+    if (bonusUtilises.value[type]) return
+    bonusUtilises.value[type] = true
+    const indices = aEliminer.map(t => q.choix.indexOf(t)).filter(i => i >= 0)
+    elimines.value = [...new Set([...elimines.value, ...indices])]
 
   } else if (type === 'remplacer') {
     if (bonusUtilises.value.remplacer) return

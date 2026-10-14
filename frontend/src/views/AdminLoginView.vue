@@ -41,6 +41,7 @@ onMounted(() => {
   const err = params.get('error')
   if (err === 'unauthorized') errorMsg.value = 'Ce compte Google n\'a pas les droits d\'administration.'
   else if (err === 'google_cancelled') errorMsg.value = 'Connexion annulée.'
+  else if (err === 'google_state') errorMsg.value = 'La connexion Google a expiré. Réessaie.'
   else if (err) errorMsg.value = 'Erreur lors de la connexion Google.'
 })
 
