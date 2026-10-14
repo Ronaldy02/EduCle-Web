@@ -7,7 +7,8 @@ import 'database_helper.dart';
 
 const _supabaseUrl = 'https://uqwrzaehvxgfxglxneax.supabase.co';
 // À remplir : Supabase Dashboard → Settings → API → anon public
-const _supabaseAnonKey = 'REMPLACER_PAR_LA_CLE_ANON';
+const _supabaseAnonKey =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVxd3J6YWVodnhnZnhnbHhuZWF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNzE3MDUsImV4cCI6MjEwNDk0NzcwNX0.ASc_8wCdVfH17d3XvKxZa3kjNisQs25DDtYgpoQEXYo';
 
 class SupabaseService {
   SupabaseService._();
