@@ -119,10 +119,17 @@ def me(current_user: User = Depends(get_current_user)):
 GOOGLE_REDIRECT_URI = "https://educleweb.vercel.app/auth/google/callback"
 
 @router.get("/google")
-def google_login(admin: bool = False):
-    """Redirige vers la page d'autorisation Google."""
+def google_login(admin: bool = False, platform: str = "web"):
+    """Redirige vers la page d'autorisation Google.
+
+    platform="mobile" → encode la plateforme dans le state pour que
+    le callback redirige vers le custom scheme educle:// de l'app.
+    """
     if not settings.google_client_id:
         raise HTTPException(503, "Google OAuth non configuré.")
+    # State format: "admin|mobile", "admin|web", "user|mobile", "user|web"
+    role = "admin" if admin else "user"
+    state = f"{role}|{platform}"
     params = {
         "client_id": settings.google_client_id,
         "redirect_uri": GOOGLE_REDIRECT_URI,
@@ -130,18 +137,30 @@ def google_login(admin: bool = False):
         "scope": "openid email profile",
         "access_type": "offline",
         "prompt": "select_account",
-        "state": "admin" if admin else "user",
+        "state": state,
     }
     return RedirectResponse(f"{GOOGLE_AUTH_URL}?{urlencode(params)}")
 
 
 @router.get("/google/callback")
-def google_callback(code: str = None, error: str = None, state: str = "user", db: Session = Depends(get_db)):
-    """Reçoit le code de Google, crée/connecte l'utilisateur, redirige vers le frontend."""
+def google_callback(code: str = None, error: str = None, state: str = "user|web", db: Session = Depends(get_db)):
+    """Reçoit le code de Google, crée/connecte l'utilisateur, redirige vers le frontend.
+
+    Si state contient "|mobile", redirige vers educle://auth/callback?token=...
+    (custom URL scheme capturé par flutter_web_auth_2 sur iOS/Android).
+    """
+    # Parse state — rétrocompat avec l'ancien format "admin"/"user"
+    parts = state.split("|")
+    role_part = parts[0]
+    platform_part = parts[1] if len(parts) > 1 else "web"
+    is_admin = role_part == "admin"
+    is_mobile = platform_part == "mobile"
+
     frontend = settings.frontend_url.rstrip("/")
-    is_admin = state == "admin"
 
     if error or not code:
+        if is_mobile:
+            return RedirectResponse("educle://auth/callback?error=google_cancelled")
         dest = f"{frontend}/admin/login?error=google_cancelled" if is_admin else f"{frontend}/login?error=google_cancelled"
         return RedirectResponse(dest)
 
@@ -155,12 +174,16 @@ def google_callback(code: str = None, error: str = None, state: str = "user", db
             "grant_type": "authorization_code",
         })
         if token_resp.status_code != 200:
+            if is_mobile:
+                return RedirectResponse("educle://auth/callback?error=google_token")
             return RedirectResponse(f"{frontend}/login?error=google_token")
 
         access_token = token_resp.json().get("access_token")
 
         user_resp = client.get(GOOGLE_USERINFO_URL, headers={"Authorization": f"Bearer {access_token}"})
         if user_resp.status_code != 200:
+            if is_mobile:
+                return RedirectResponse("educle://auth/callback?error=google_userinfo")
             return RedirectResponse(f"{frontend}/login?error=google_userinfo")
 
         info = user_resp.json()
@@ -169,6 +192,8 @@ def google_callback(code: str = None, error: str = None, state: str = "user", db
     name = info.get("name") or info.get("given_name") or email.split("@")[0]
 
     if not email:
+        if is_mobile:
+            return RedirectResponse("educle://auth/callback?error=google_no_email")
         return RedirectResponse(f"{frontend}/login?error=google_no_email")
 
     # Création ou récupération du compte
@@ -190,11 +215,17 @@ def google_callback(code: str = None, error: str = None, state: str = "user", db
     # Flux admin : vérifier le rôle
     if is_admin:
         if user.role not in ("admin", "superadmin"):
+            if is_mobile:
+                return RedirectResponse("educle://auth/callback?error=unauthorized")
             return RedirectResponse(f"{frontend}/admin/login?error=unauthorized")
         jwt = create_access_token(user.id)
+        if is_mobile:
+            return RedirectResponse(f"educle://auth/callback?token={quote(jwt, safe='')}")
         return RedirectResponse(
             f"{frontend}/admin/callback?token={quote(jwt, safe='')}&role={user.role}&pseudo={quote(user.pseudo, safe='')}"
         )
 
     jwt = create_access_token(user.id)
+    if is_mobile:
+        return RedirectResponse(f"educle://auth/callback?token={quote(jwt, safe='')}")
     return RedirectResponse(f"{frontend}/auth/callback?token={quote(jwt, safe='')}")
