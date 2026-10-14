@@ -59,7 +59,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _continuerSansCompte() async {
     setState(() => _chargement = true);
     final ctrl = context.read<QuizController>();
-    await ctrl.marquerProfilConfigure();
+    // profilConfigure = true est déjà positionné en mémoire avant le write DB
+    await ctrl.marquerProfilConfigure()
+        .timeout(const Duration(seconds: 5), onTimeout: () {});
     if (!mounted) return;
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (_) => const HomeScreen()),
@@ -69,9 +71,12 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _finLogin({required bool pullDuServeur}) async {
     final ctrl = context.read<QuizController>();
     if (pullDuServeur) {
-      await ApiService.instance.syncDepuisServeur();
+      await ApiService.instance
+          .syncDepuisServeur()
+          .timeout(const Duration(seconds: 15), onTimeout: () {});
     }
-    await ctrl.marquerProfilConfigure();
+    await ctrl.marquerProfilConfigure()
+        .timeout(const Duration(seconds: 5), onTimeout: () {});
     if (!mounted) return;
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (_) => const HomeScreen()),
