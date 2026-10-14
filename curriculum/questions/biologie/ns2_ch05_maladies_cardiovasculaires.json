@@ -1,0 +1,408 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Les maladies cardiovasculaires",
+  "niveaux": [
+    "NS2"
+  ],
+  "unite_programme": "2.1",
+  "statut": "validé par l'utilisateur 2026-10-14",
+  "rejetees": [],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "B16-01",
+      "enonce": "Relatif à la fois au cœur et aux vaisseaux.",
+      "choix": [
+        "Cardiovasculaire",
+        "Respiratoire",
+        "Digestif",
+        "Lymphatique"
+      ],
+      "bonne_reponse": "Cardiovasculaire",
+      "explication": "Les maladies de ce type touchent le cœur, les artères ou les veines.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : cardio-vasculaire"
+    },
+    {
+      "id": "B16-02",
+      "enonce": "Toute maladie du cœur, quelle qu'en soit l'origine.",
+      "choix": [
+        "Une cardiopathie",
+        "Une néphropathie",
+        "Une pneumonie",
+        "Une hépatite"
+      ],
+      "bonne_reponse": "Une cardiopathie",
+      "explication": "L'infarctus et l'insuffisance cardiaque en sont des exemples.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : cardiopathie"
+    },
+    {
+      "id": "B16-03",
+      "enonce": "Médecin spécialiste des maladies du cœur.",
+      "choix": [
+        "Le cardiologue",
+        "Le pneumologue",
+        "Le néphrologue",
+        "Le dermatologue"
+      ],
+      "bonne_reponse": "Le cardiologue",
+      "explication": "Il utilise notamment l'électrocardiogramme.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : cardiologue"
+    },
+    {
+      "id": "B16-04",
+      "enonce": "Battements du cœur plus rapides qu'à l'état normal, ou irréguliers, ressentis par la personne.",
+      "choix": [
+        "Des palpitations",
+        "Des courbatures",
+        "Des crampes",
+        "Des vertiges"
+      ],
+      "bonne_reponse": "Des palpitations",
+      "explication": "Elles sont souvent sans gravité, mais doivent être signalées si elles se répètent.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : palpitation (sens médical)"
+    },
+    {
+      "id": "B16-10",
+      "enonce": "Dépôt de plaques riches en cholestérol sur la paroi interne des artères.",
+      "choix": [
+        "L'athérome",
+        "L'anévrisme",
+        "La varice",
+        "L'embolie"
+      ],
+      "bonne_reponse": "L'athérome",
+      "explication": "Ces plaques rétrécissent peu à peu le passage du sang.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : athérome"
+    },
+    {
+      "id": "B16-11",
+      "enonce": "Maladie des artères dont la paroi s'épaissit et durcit à cause de dépôts de cholestérol, ce qui gêne la circulation.",
+      "choix": [
+        "L'athérosclérose",
+        "L'hypertension",
+        "La phlébite",
+        "L'anémie"
+      ],
+      "bonne_reponse": "L'athérosclérose",
+      "explication": "Elle est favorisée par le tabac, le diabète, l'excès de cholestérol et la sédentarité.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : athérosclérose (reformulé)"
+    },
+    {
+      "id": "B16-12",
+      "enonce": "Pression artérielle anormalement basse.",
+      "choix": [
+        "L'hypotension",
+        "L'hypertension",
+        "L'hypoglycémie",
+        "La bradycardie"
+      ],
+      "bonne_reponse": "L'hypotension",
+      "explication": "Elle peut provoquer des vertiges, surtout en se levant brusquement.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "Q1592",
+      "enonce": "Quelle est la pression artérielle normale d'un adulte au repos ?",
+      "choix": [
+        "120/80 mmHg",
+        "200/100 mmHg",
+        "80/40 mmHg",
+        "140/90 mmHg"
+      ],
+      "bonne_reponse": "120/80 mmHg",
+      "explication": "120 mmHg pendant la contraction du cœur (systole), 80 mmHg pendant son relâchement (diastole). Au-delà de 140/90, on parle d'hypertension.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1592 (modifiée)",
+      "ancien_enonce": "La pression artérielle normale chez un adulte est approximativement :"
+    },
+    {
+      "id": "Q1580",
+      "enonce": "Quelles complications graves l'hypertension artérielle peut-elle provoquer ?",
+      "choix": [
+        "AVC et infarctus",
+        "Asthme et bronchite",
+        "Anémie et diabète",
+        "Caries et gingivite"
+      ],
+      "bonne_reponse": "AVC et infarctus",
+      "explication": "Elle fatigue le cœur et abîme les artères ; elle peut aussi atteindre les reins.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1580 (modifiée)",
+      "ancien_enonce": "Pourquoi l'hypertension artérielle est-elle dangereuse ?"
+    },
+    {
+      "id": "B16-13",
+      "enonce": "Appareil qui mesure la pression du sang dans les artères.",
+      "choix": [
+        "Le tensiomètre",
+        "Le spiromètre",
+        "Le thermomètre",
+        "Le stéthoscope"
+      ],
+      "bonne_reponse": "Le tensiomètre",
+      "explication": "Son nom savant est sphygmomanomètre.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : tensiomètre (sens 2, reformulé)"
+    },
+    {
+      "id": "B16-14",
+      "enonce": "Poche formée par la dilatation de la paroi d'une artère ou du cœur.",
+      "choix": [
+        "Un anévrisme",
+        "Une varice",
+        "Un athérome",
+        "Un caillot"
+      ],
+      "bonne_reponse": "Un anévrisme",
+      "explication": "Sa rupture provoque une hémorragie grave.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : anévrisme"
+    },
+    {
+      "id": "B16-20",
+      "enonce": "Masse de sang coagulé.",
+      "choix": [
+        "Un caillot",
+        "Un athérome",
+        "Un anévrisme",
+        "Un ganglion"
+      ],
+      "bonne_reponse": "Un caillot",
+      "explication": "Il arrête un saignement, mais devient dangereux s'il bouche un vaisseau.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : caillot (reformulé)"
+    },
+    {
+      "id": "B16-21",
+      "enonce": "Formation d'un caillot de sang dans une artère ou une veine.",
+      "choix": [
+        "La thrombose",
+        "L'embolie",
+        "L'hémorragie",
+        "L'anévrisme"
+      ],
+      "bonne_reponse": "La thrombose",
+      "explication": "Le caillot formé s'appelle un thrombus.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : thrombose (reformulé)"
+    },
+    {
+      "id": "B16-22",
+      "enonce": "Obstruction brutale d'un vaisseau par un corps étranger transporté par le sang.",
+      "choix": [
+        "L'embolie",
+        "La thrombose",
+        "La varice",
+        "L'anévrisme"
+      ],
+      "bonne_reponse": "L'embolie",
+      "explication": "Ce corps étranger, souvent un caillot, s'appelle un embole.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : embolie"
+    },
+    {
+      "id": "B16-23",
+      "enonce": "Diminution ou arrêt de la circulation artérielle dans une partie d'un organe.",
+      "choix": [
+        "L'ischémie",
+        "L'hémorragie",
+        "La varice",
+        "L'anémie"
+      ],
+      "bonne_reponse": "L'ischémie",
+      "explication": "Privées de dioxygène, les cellules peuvent mourir.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : ischémie"
+    },
+    {
+      "id": "B16-24",
+      "enonce": "Mort d'une partie d'un organe causée par l'arrêt brutal de sa circulation artérielle.",
+      "choix": [
+        "Un infarctus",
+        "Une embolie",
+        "Un anévrisme",
+        "Une ischémie"
+      ],
+      "bonne_reponse": "Un infarctus",
+      "explication": "Il peut toucher le cœur, le cerveau, le poumon ou l'intestin.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : infarctus (reformulé)"
+    },
+    {
+      "id": "B16-25",
+      "enonce": "Formation d'un caillot dans une veine, parfois avec une inflammation de sa paroi.",
+      "choix": [
+        "La phlébite",
+        "La varice",
+        "L'athérome",
+        "L'anévrisme"
+      ],
+      "bonne_reponse": "La phlébite",
+      "explication": "Elle touche surtout les jambes, après une longue immobilité.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : phlébite"
+    },
+    {
+      "id": "B16-26",
+      "enonce": "Dilatation permanente d'une veine.",
+      "choix": [
+        "Une varice",
+        "Un anévrisme",
+        "Une phlébite",
+        "Un hématome"
+      ],
+      "bonne_reponse": "Une varice",
+      "explication": "Elle se voit surtout sur les jambes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : varice"
+    },
+    {
+      "id": "B16-30",
+      "enonce": "Mort d'une partie du muscle du cœur, privée de sang par l'obstruction d'une artère coronaire.",
+      "choix": [
+        "L'infarctus du myocarde",
+        "L'insuffisance cardiaque",
+        "L'angine de poitrine",
+        "L'accident vasculaire cérébral"
+      ],
+      "bonne_reponse": "L'infarctus du myocarde",
+      "explication": "Familièrement : la crise cardiaque. Il faut appeler les secours immédiatement.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1 — Larousse : infarctus"
+    },
+    {
+      "id": "B16-31",
+      "enonce": "Douleur qui serre la poitrine, due à un manque passager de sang dans le muscle du cœur.",
+      "choix": [
+        "L'angine de poitrine",
+        "L'infarctus du myocarde",
+        "La pneumonie",
+        "L'asthme"
+      ],
+      "bonne_reponse": "L'angine de poitrine",
+      "explication": "Synonyme : angor. Elle survient souvent à l'effort et cède au repos.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1 — Larousse : angor (synonyme seul)"
+    },
+    {
+      "id": "B16-32",
+      "enonce": "Incapacité du cœur à pomper assez de sang pour les besoins du corps.",
+      "choix": [
+        "L'insuffisance cardiaque",
+        "L'infarctus du myocarde",
+        "La tachycardie",
+        "L'hypertension"
+      ],
+      "bonne_reponse": "L'insuffisance cardiaque",
+      "explication": "Le malade s'essouffle et ses jambes gonflent.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : insuffisance (sens 3, appliqué au cœur)"
+    },
+    {
+      "id": "B16-33",
+      "enonce": "Arrêt brutal de la circulation sanguine dans une partie du cerveau, par obstruction ou rupture d'une artère.",
+      "choix": [
+        "L'accident vasculaire cérébral",
+        "L'infarctus du myocarde",
+        "L'épilepsie",
+        "La migraine"
+      ],
+      "bonne_reponse": "L'accident vasculaire cérébral",
+      "explication": "On l'abrège en AVC ; chaque minute compte pour le soigner.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B16-34",
+      "enonce": "Paralysie de la moitié droite ou gauche du corps.",
+      "choix": [
+        "L'hémiplégie",
+        "La paraplégie",
+        "La tétraplégie",
+        "L'amnésie"
+      ],
+      "bonne_reponse": "L'hémiplégie",
+      "explication": "C'est une séquelle fréquente d'un AVC.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : hémiplégie (reformulé)"
+    },
+    {
+      "id": "B16-40",
+      "enonce": "Appareil qui rétablit un rythme normal du cœur au moyen d'un choc électrique.",
+      "choix": [
+        "Le défibrillateur",
+        "Le tensiomètre",
+        "Le spiromètre",
+        "Le stéthoscope"
+      ],
+      "bonne_reponse": "Le défibrillateur",
+      "explication": "Des modèles automatiques peuvent être utilisés par tout le monde.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : défibrillateur (nom)"
+    },
+    {
+      "id": "B16-41",
+      "enonce": "Opération qui relie deux vaisseaux sanguins pour contourner une artère rétrécie ou bouchée.",
+      "choix": [
+        "Le pontage",
+        "La dialyse",
+        "La transfusion",
+        "La vaccination"
+      ],
+      "bonne_reponse": "Le pontage",
+      "explication": "On utilise un morceau de veine ou d'artère du patient, ou un tube plastique.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : pontage (sens 2, reformulé)"
+    },
+    {
+      "id": "B16-42",
+      "enonce": "Quel aliment faut-il limiter pour prévenir l'hypertension ?",
+      "choix": [
+        "Le sel",
+        "Le poisson",
+        "Les légumes",
+        "L'eau"
+      ],
+      "bonne_reponse": "Le sel",
+      "explication": "L'OMS recommande moins de 5 g de sel par jour.",
+      "niveau_complexite": "Facile",
+      "source": "OMS"
+    },
+    {
+      "id": "B16-43",
+      "enonce": "Lequel de ces comportements protège le cœur et les vaisseaux ?",
+      "choix": [
+        "Une activité physique régulière",
+        "Une alimentation très salée",
+        "Le tabagisme",
+        "La sédentarité"
+      ],
+      "bonne_reponse": "Une activité physique régulière",
+      "explication": "Il faut aussi limiter le sucre, les graisses et ne pas fumer.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.1"
+    },
+    {
+      "id": "B16-44",
+      "enonce": "Quelle est la première cause de décès dans le monde ?",
+      "choix": [
+        "Les maladies cardiovasculaires",
+        "Le cancer du poumon",
+        "La tuberculose",
+        "Le paludisme"
+      ],
+      "bonne_reponse": "Les maladies cardiovasculaires",
+      "explication": "Selon l'OMS, elles causent environ 18 millions de morts par an.",
+      "niveau_complexite": "Moyen",
+      "source": "OMS"
+    }
+  ]
+}
