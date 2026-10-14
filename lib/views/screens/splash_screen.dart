@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/quiz_controller.dart';
-import '../../services/supabase_service.dart';
+import '../../services/api_service.dart';
 import '../../theme/app_theme.dart';
 import 'home_screen.dart';
 import 'login_screen.dart';
@@ -26,9 +26,9 @@ class _SplashScreenState extends State<SplashScreen> {
     await ctrl.initialiser();
     if (!mounted) return;
 
-    // Si session Supabase active → sync en arrière-plan puis accueil
-    if (SupabaseService.instance.estConnecte) {
-      SupabaseService.instance.syncVersServeur(); // fire-and-forget
+    // Session JWT active → sync en arrière-plan puis accueil
+    if (ApiService.instance.estConnecte) {
+      ApiService.instance.syncVersServeur(); // fire-and-forget
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => const HomeScreen()),
       );

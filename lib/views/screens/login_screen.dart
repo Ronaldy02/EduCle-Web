@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../controllers/quiz_controller.dart';
-import '../../services/supabase_service.dart';
+import '../../services/api_service.dart';
 import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -36,14 +35,14 @@ class _LoginScreenState extends State<LoginScreen> {
 
     try {
       if (_inscription) {
-        await SupabaseService.instance.inscription(email, pass);
+        await ApiService.instance.inscription(email, pass);
       } else {
-        await SupabaseService.instance.connexion(email, pass);
+        await ApiService.instance.connexion(email, pass);
       }
       if (!mounted) return;
       await _finLogin(pullDuServeur: !_inscription);
-    } on AuthException catch (e) {
-      setState(() => _erreur = _traduireErreur(e.message));
+    } on ApiException catch (e) {
+      setState(() => _erreur = e.message);
     } catch (_) {
       setState(() => _erreur = 'Erreur de connexion. Vérifie ta connexion internet.');
     } finally {
@@ -64,20 +63,13 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _finLogin({required bool pullDuServeur}) async {
     final ctrl = context.read<QuizController>();
     if (pullDuServeur) {
-      await SupabaseService.instance.syncDepuisServeur();
+      await ApiService.instance.syncDepuisServeur();
     }
     await ctrl.marquerProfilConfigure();
     if (!mounted) return;
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (_) => const HomeScreen()),
     );
-  }
-
-  String _traduireErreur(String msg) {
-    if (msg.contains('Invalid login')) return 'Email ou mot de passe incorrect.';
-    if (msg.contains('already registered')) return 'Cet email est déjà utilisé.';
-    if (msg.contains('password')) return 'Le mot de passe doit contenir au moins 6 caractères.';
-    return msg;
   }
 
   @override
