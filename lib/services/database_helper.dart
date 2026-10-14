@@ -33,7 +33,7 @@ class DatabaseHelper {
     final path = join(await getDatabasesPath(), 'quiz_educatif.db');
     return openDatabase(
       path,
-      version: 14,
+      version: 15,
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );
@@ -108,6 +108,9 @@ class DatabaseHelper {
       await _reseedAll(db);
     }
     if (oldVersion < 14) {
+      await _reseedAll(db);
+    }
+    if (oldVersion < 15) {
       await _reseedAll(db);
     }
   }
@@ -695,51 +698,53 @@ class DatabaseHelper {
   }
 
   Future<void> _seedData(Database db) async {
-    onSeedProgress?.call('Lecture des données…');
     final jsonStr = await rootBundle.loadString('assets/data/questions.json');
-    onSeedProgress?.call('Préparation de la base…');
     final data = await Isolate.run(() => _parseJson(jsonStr));
 
     final matieres = data['matieres'] as List<dynamic>;
-    final total = matieres.length;
-    var idx = 0;
+    var matId = 1;
+    var chapId = 1;
 
-    await db.transaction((txn) async {
-      for (final m in matieres) {
-        final mat = m as Map<String, dynamic>;
-        idx++;
-        onSeedProgress?.call('${mat['nom']} ($idx/$total)');
-        final matiereId = await txn.insert('matieres', {
-          'niveau': mat['niveau'],
-          'nom': mat['nom'],
+    final batch = db.batch();
+
+    for (final m in matieres) {
+      final mat = m as Map<String, dynamic>;
+      final currentMatId = matId++;
+      batch.insert('matieres', {
+        'id': currentMatId,
+        'niveau': mat['niveau'],
+        'nom': mat['nom'],
+      });
+      for (final c in mat['chapitres'] as List<dynamic>) {
+        final chap = c as Map<String, dynamic>;
+        final currentChapId = chapId++;
+        batch.insert('chapitres', {
+          'id': currentChapId,
+          'matiere_id': currentMatId,
+          'titre': chap['titre'],
+          'niveau_v4': chap['niveau_v4'],
         });
-        for (final c in mat['chapitres'] as List<dynamic>) {
-          final chap = c as Map<String, dynamic>;
-          final chapitreId = await txn.insert('chapitres', {
-            'matiere_id': matiereId,
-            'titre': chap['titre'],
-            'niveau_v4': chap['niveau_v4'],
+        for (final carte in (chap['cartes_mentales'] as List<dynamic>? ?? [])) {
+          batch.insert('cartes_mentales', {
+            'chapitre_id': currentChapId,
+            'contenu': carte as String,
+            'image': null,
           });
-          for (final carte in (chap['cartes_mentales'] as List<dynamic>? ?? [])) {
-            await txn.insert('cartes_mentales', {
-              'chapitre_id': chapitreId,
-              'contenu': carte as String,
-              'image': null,
-            });
-          }
-          for (final q in chap['questions'] as List<dynamic>) {
-            final quest = q as Map<String, dynamic>;
-            await txn.insert('questions', {
-              'chapitre_id': chapitreId,
-              'enonce': quest['enonce'],
-              'choix': jsonEncode(quest['choix']),
-              'bonne_reponse': quest['bonne_reponse'],
-              'explication': quest['explication'],
-              'niveau_complexite': quest['niveau_complexite'],
-            });
-          }
+        }
+        for (final q in chap['questions'] as List<dynamic>) {
+          final quest = q as Map<String, dynamic>;
+          batch.insert('questions', {
+            'chapitre_id': currentChapId,
+            'enonce': quest['enonce'],
+            'choix': jsonEncode(quest['choix']),
+            'bonne_reponse': quest['bonne_reponse'],
+            'explication': quest['explication'],
+            'niveau_complexite': quest['niveau_complexite'],
+          });
         }
       }
-    });
+    }
+
+    await batch.commit(noResult: true);
   }
 }
