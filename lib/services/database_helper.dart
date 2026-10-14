@@ -33,7 +33,7 @@ class DatabaseHelper {
     final path = join(await getDatabasesPath(), 'quiz_educatif.db');
     return openDatabase(
       path,
-      version: 15,
+      version: 16,
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );
@@ -112,6 +112,13 @@ class DatabaseHelper {
     }
     if (oldVersion < 15) {
       await _reseedAll(db);
+    }
+    if (oldVersion < 16) {
+      try {
+        await db.execute(
+          'ALTER TABLE scores ADD COLUMN synced INTEGER NOT NULL DEFAULT 0',
+        );
+      } catch (_) {}
     }
   }
 
@@ -253,7 +260,8 @@ class DatabaseHelper {
         nb_correctes INTEGER NOT NULL,
         nb_total INTEGER NOT NULL,
         mode_nom TEXT NOT NULL,
-        date TEXT NOT NULL
+        date TEXT NOT NULL,
+        synced INTEGER NOT NULL DEFAULT 0
       )
     ''');
     await db.execute('''
@@ -679,6 +687,71 @@ class DatabaseHelper {
         whereArgs: [realId],
       );
     }
+  }
+
+  // ── Sync helpers (utilisés par SupabaseService) ───────────────────────────
+
+  Future<List<Map<String, dynamic>>> getAllProgression() async {
+    final db = await database;
+    return db.query('progression');
+  }
+
+  Future<void> upsertProgression({
+    required int chapitreId,
+    required int score,
+    required int total,
+    required String dateMaj,
+  }) async {
+    final db = await database;
+    await db.insert('progression', {
+      'chapitre_id': chapitreId,
+      'score': score,
+      'total': total,
+      'date_maj': dateMaj,
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<List<Map<String, dynamic>>> getAllScoresNonSync() async {
+    final db = await database;
+    return db.query('scores', where: 'synced = 0');
+  }
+
+  Future<void> marquerScoresSynces(List<int> ids) async {
+    if (ids.isEmpty) return;
+    final db = await database;
+    final placeholders = ids.map((_) => '?').join(',');
+    await db.rawUpdate(
+      'UPDATE scores SET synced = 1 WHERE id IN ($placeholders)',
+      ids,
+    );
+  }
+
+  Future<void> remplacerScores(List<Map<String, dynamic>> rows) async {
+    final db = await database;
+    await db.delete('scores');
+    final batch = db.batch();
+    for (final r in rows) {
+      batch.insert('scores', {...r, 'synced': 1});
+    }
+    await batch.commit(noResult: true);
+  }
+
+  Future<List<Map<String, dynamic>>> getAllStatsQuestions() async {
+    final db = await database;
+    return db.query('statistiques_questions');
+  }
+
+  Future<void> upsertStatQuestion({
+    required int questionId,
+    required int nbAffichee,
+    required int nbCorrecte,
+  }) async {
+    final db = await database;
+    await db.insert('statistiques_questions', {
+      'question_id': questionId,
+      'nb_affichee': nbAffichee,
+      'nb_correcte': nbCorrecte,
+    }, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
   Future<void> _ensurePrefsRow(Database db) async {

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../controllers/quiz_controller.dart';
+import '../../services/supabase_service.dart';
 import '../../theme/app_theme.dart';
 import 'home_screen.dart';
-import 'onboarding_screen.dart';
+import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -24,11 +25,27 @@ class _SplashScreenState extends State<SplashScreen> {
     final ctrl = context.read<QuizController>();
     await ctrl.initialiser();
     if (!mounted) return;
+
+    // Si session Supabase active → sync en arrière-plan puis accueil
+    if (SupabaseService.instance.estConnecte) {
+      SupabaseService.instance.syncVersServeur(); // fire-and-forget
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const HomeScreen()),
+      );
+      return;
+    }
+
+    // Profil configuré sans compte → accueil directement
+    if (ctrl.profilConfigure) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const HomeScreen()),
+      );
+      return;
+    }
+
+    // Première ouverture → login
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (_) =>
-            ctrl.profilConfigure ? const HomeScreen() : const OnboardingScreen(),
-      ),
+      MaterialPageRoute(builder: (_) => const LoginScreen()),
     );
   }
 
