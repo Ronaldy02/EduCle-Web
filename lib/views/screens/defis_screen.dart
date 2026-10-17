@@ -58,7 +58,7 @@ class _DefisScreenState extends State<DefisScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('DÃ©fis & RÃ©alisations'),
+        title: const Text('Tâches et Défis'),
         bottom: TabBar(
           controller: _tabs,
           isScrollable: true,
@@ -66,7 +66,7 @@ class _DefisScreenState extends State<DefisScreen>
             Tab(text: 'Quotidiens'),
             Tab(text: 'Hebdo'),
             Tab(text: 'Mensuel'),
-            Tab(text: 'RÃ©alisations'),
+            Tab(text: 'Réalisation'),
           ],
         ),
       ),
@@ -121,7 +121,7 @@ class _DefisList extends StatelessWidget {
     final progresByDefiId = {for (final p in progres) p.defiId: p};
     final tous = [...defis, ...special];
     if (tous.isEmpty) {
-      return const Center(child: Text('Aucun dÃ©fi pour cette pÃ©riode.'));
+      return const Center(child: Text('Aucun défi pour cette période.'));
     }
     return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -378,7 +378,7 @@ class _RealisationCard extends StatelessWidget {
                     ],
                     if (debloquee && progres?.debloqueLe != null)
                       Text(
-                        'DÃ©bloquÃ©e le ${_formatDate(progres!.debloqueLe!)}',
+                        'Débloquée le ${_formatDate(progres!.debloqueLe!)}',
                         style: theme.textTheme.labelSmall
                             ?.copyWith(color: couleur),
                       ),

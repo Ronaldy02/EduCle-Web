@@ -33,7 +33,7 @@ class DatabaseHelper {
     final path = join(await getDatabasesPath(), 'quiz_educatif.db');
     return openDatabase(
       path,
-      version: 16,
+      version: 17,
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );
@@ -117,6 +117,13 @@ class DatabaseHelper {
       try {
         await db.execute(
           'ALTER TABLE scores ADD COLUMN synced INTEGER NOT NULL DEFAULT 0',
+        );
+      } catch (_) {}
+    }
+    if (oldVersion < 17) {
+      try {
+        await db.execute(
+          'ALTER TABLE user_preferences ADD COLUMN nombre_questions INTEGER NOT NULL DEFAULT 10',
         );
       } catch (_) {}
     }
@@ -597,6 +604,19 @@ class DatabaseHelper {
     final db = await database;
     await _ensurePrefsRow(db);
     await db.update('user_preferences', {'profil_configure': 1}, where: 'id = 1');
+  }
+
+  Future<int> getNombreQuestions() async {
+    final db = await database;
+    final rows = await db.query('user_preferences', where: 'id = 1');
+    if (rows.isEmpty) return 10;
+    return (rows.first['nombre_questions'] as int?) ?? 10;
+  }
+
+  Future<void> setNombreQuestions(int nb) async {
+    final db = await database;
+    await _ensurePrefsRow(db);
+    await db.update('user_preferences', {'nombre_questions': nb}, where: 'id = 1');
   }
 
   // ── Défis : progression ───────────────────────────────────────────────────

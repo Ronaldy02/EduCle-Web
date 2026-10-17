@@ -62,6 +62,7 @@ class QuizController extends ChangeNotifier {
         _ville = await _db.getVille();
         _difficulte = await _db.getDifficulte();
         profilConfigure = await _db.getProfilConfigure();
+        nombreQuestions = await _db.getNombreQuestions();
         utilisateur.zone = zone;
         matieres = await _db.getMatieresByCycle(_niveauScolaire);
         final quizSauvegarde = await _db.getQuizEnCours();
@@ -254,8 +255,9 @@ class QuizController extends ChangeNotifier {
     return quiz;
   }
 
-  void changerNombreQuestions(int nb) {
+  Future<void> changerNombreQuestions(int nb) async {
     nombreQuestions = nb;
+    if (!kIsWeb) await _db.setNombreQuestions(nb);
     notifyListeners();
   }
 
