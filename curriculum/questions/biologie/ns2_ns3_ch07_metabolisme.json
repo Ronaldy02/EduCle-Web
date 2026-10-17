@@ -1,0 +1,517 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Métabolisme : photosynthèse et respiration cellulaire",
+  "niveaux": [
+    "NS2",
+    "NS3"
+  ],
+  "unite_programme": "2.4 + 3.4",
+  "statut": "validé par l'utilisateur 2026-10-17",
+  "rejetees": [
+    "Q1676",
+    "Q1535"
+  ],
+  "base_rejetees_a_supprimer": [
+    {
+      "id": "Q1676",
+      "enonce": "Quelle est l'équation globale de la respiration cellulaire aérobie ?"
+    },
+    {
+      "id": "Q1535",
+      "enonce": "Que produit la respiration cellulaire aérobie ?"
+    }
+  ],
+  "questions": [
+    {
+      "id": "B18-01",
+      "niveau": "NS2",
+      "enonce": "Ensemble des transformations de matière et d'énergie réalisées en permanence par la cellule ou l'organisme.",
+      "choix": [
+        "Le métabolisme",
+        "La digestion",
+        "La nutrition",
+        "La circulation"
+      ],
+      "bonne_reponse": "Le métabolisme",
+      "explication": "Il comprend les réactions de construction et celles de dégradation.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : métabolisme (abrégé)"
+    },
+    {
+      "id": "B18-02",
+      "niveau": "NS2",
+      "enonce": "Ensemble des réactions chimiques qui fabriquent les constituants de l'organisme à partir d'éléments simples.",
+      "choix": [
+        "L'anabolisme",
+        "Le catabolisme",
+        "La glycolyse",
+        "La fermentation"
+      ],
+      "bonne_reponse": "L'anabolisme",
+      "explication": "Exemple : la fabrication des protéines à partir des acides aminés.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : anabolisme (reformulé)"
+    },
+    {
+      "id": "B18-03",
+      "niveau": "NS2",
+      "enonce": "Ensemble des réactions de dégradation des substances organiques, qui libèrent de l'énergie et produisent des déchets.",
+      "choix": [
+        "Le catabolisme",
+        "L'anabolisme",
+        "La photosynthèse",
+        "L'assimilation"
+      ],
+      "bonne_reponse": "Le catabolisme",
+      "explication": "La respiration cellulaire en fait partie.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : catabolisme (reformulé)"
+    },
+    {
+      "id": "B18-04",
+      "niveau": "NS2",
+      "enonce": "Suite de réactions chimiques, chacune catalysée par une enzyme, qui transforme une molécule de départ en un produit final.",
+      "choix": [
+        "Une voie métabolique",
+        "Une chaîne alimentaire",
+        "Un cycle cellulaire",
+        "Une liaison peptidique"
+      ],
+      "bonne_reponse": "Une voie métabolique",
+      "explication": "La glycolyse en est un exemple.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.4"
+    },
+    {
+      "id": "B18-05",
+      "niveau": "NS2",
+      "enonce": "Propriété des êtres vivants qui transforment des molécules venues de l'extérieur pour les rendre identiques à leurs propres constituants.",
+      "choix": [
+        "L'assimilation",
+        "L'excrétion",
+        "La digestion",
+        "L'absorption"
+      ],
+      "bonne_reponse": "L'assimilation",
+      "explication": "Exemple : les acides aminés des aliments deviennent nos propres protéines.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : assimilation (sens 2, reformulé)"
+    },
+    {
+      "id": "B18-10",
+      "niveau": "NS2",
+      "enonce": "Dégradation complète du glucose, en présence de dioxygène, qui libère de l'énergie sous forme d'ATP.",
+      "choix": [
+        "La respiration cellulaire",
+        "La fermentation",
+        "La photosynthèse",
+        "La digestion"
+      ],
+      "bonne_reponse": "La respiration cellulaire",
+      "explication": "Elle se déroule en grande partie dans les mitochondries.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.4"
+    },
+    {
+      "id": "Q1677",
+      "niveau": "NS2",
+      "enonce": "Quelles sont les trois étapes de la respiration cellulaire aérobie ?",
+      "choix": [
+        "Glycolyse, Krebs, chaîne respiratoire",
+        "Glycolyse uniquement",
+        "Photosynthèse, glycolyse, fermentation",
+        "Calvin, glycolyse, ATP-synthase"
+      ],
+      "bonne_reponse": "Glycolyse, Krebs, chaîne respiratoire",
+      "explication": "La glycolyse a lieu dans le cytoplasme ; le cycle de Krebs et la chaîne respiratoire, dans la mitochondrie.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1677",
+      "ancien_enonce": "Quelles sont les trois étapes de la respiration cellulaire aérobie ?"
+    },
+    {
+      "id": "B18-11",
+      "niveau": "NS2",
+      "enonce": "Première étape de la dégradation du sucre, qui se déroule dans le cytoplasme sans dioxygène.",
+      "choix": [
+        "La glycolyse",
+        "Le cycle de Krebs",
+        "La photolyse",
+        "La chaîne respiratoire"
+      ],
+      "bonne_reponse": "La glycolyse",
+      "explication": "Elle découpe une molécule de glucose en deux molécules plus petites.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : glycolyse (complété par le programme)"
+    },
+    {
+      "id": "Q1680",
+      "niveau": "NS2",
+      "enonce": "Enzyme de la membrane interne des mitochondries qui fabrique la « monnaie énergétique » de la cellule.",
+      "choix": [
+        "L'ATP synthase",
+        "L'amylase",
+        "L'ADN polymérase",
+        "La RuBisCO"
+      ],
+      "bonne_reponse": "L'ATP synthase",
+      "explication": "Elle utilise un flux de protons à travers la membrane pour assembler l'ATP.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1680 (modifiée) — Programme 2.4",
+      "ancien_enonce": "Quel est le rôle de l'ATP synthase dans la mitochondrie ?"
+    },
+    {
+      "id": "Q1678",
+      "niveau": "NS2",
+      "enonce": "Transformation de matières organiques par les enzymes de micro-organismes, sans dioxygène, comme celle du sucre en alcool par les levures.",
+      "choix": [
+        "La fermentation",
+        "La respiration",
+        "La photosynthèse",
+        "La digestion"
+      ],
+      "bonne_reponse": "La fermentation",
+      "explication": "Elle ne fournit que 2 ATP par glucose, contre 36 à 38 pour la respiration.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1678 (modifiée) — Larousse : fermentation (sens 1)",
+      "ancien_enonce": "Qu'est-ce que la fermentation ?"
+    },
+    {
+      "id": "Q1544",
+      "niveau": "NS2",
+      "enonce": "Quel type de fermentation se produit dans les muscles privés de dioxygène ?",
+      "choix": [
+        "La fermentation lactique",
+        "La fermentation alcoolique",
+        "La fermentation acétique",
+        "La fermentation butyrique"
+      ],
+      "bonne_reponse": "La fermentation lactique",
+      "explication": "Elle produit de l'acide lactique ; les levures, elles, réalisent la fermentation alcoolique.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1544 (modifiée)",
+      "ancien_enonce": "La capacité d'une cellule à produire de l'énergie sans oxygène s'appelle :"
+    },
+    {
+      "id": "B18-12",
+      "niveau": "NS2",
+      "enonce": "Quels produits la fermentation alcoolique des levures fournit-elle ?",
+      "choix": [
+        "De l'alcool et du CO₂",
+        "Du glucose et du dioxygène",
+        "De l'acide lactique seul",
+        "De l'amidon et de l'eau"
+      ],
+      "bonne_reponse": "De l'alcool et du CO₂",
+      "explication": "C'est elle qui fait lever la pâte à pain.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.4"
+    },
+    {
+      "id": "Q1679",
+      "niveau": "NS2",
+      "enonce": "Rapport entre le volume de dioxyde de carbone rejeté et le volume de dioxygène absorbé par un organisme.",
+      "choix": [
+        "Le coefficient respiratoire",
+        "La capacité vitale",
+        "Le débit cardiaque",
+        "Le point de compensation"
+      ],
+      "bonne_reponse": "Le coefficient respiratoire",
+      "explication": "Il vaut 1 quand l'organisme utilise des glucides, environ 0,7 pour des lipides.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1679 (modifiée) — Programme 2.4",
+      "ancien_enonce": "Qu'est-ce que le coefficient respiratoire (CR) ?"
+    },
+    {
+      "id": "B18-13",
+      "niveau": "NS2",
+      "enonce": "Quel gaz une euglène placée à la lumière rejette-t-elle ?",
+      "choix": [
+        "Le dioxygène",
+        "Le dioxyde de carbone",
+        "Le diazote",
+        "La vapeur d'eau"
+      ],
+      "bonne_reponse": "Le dioxygène",
+      "explication": "À la lumière, elle réalise la photosynthèse ; à l'obscurité, elle ne fait que respirer.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.4 (expérience euglènes)"
+    },
+    {
+      "id": "B18-20",
+      "niveau": "NS3",
+      "enonce": "Fabrication de matière organique par les végétaux, à partir de dioxyde de carbone et d'eau, en présence de lumière.",
+      "choix": [
+        "La photosynthèse",
+        "La respiration",
+        "La fermentation",
+        "La chimiosynthèse"
+      ],
+      "bonne_reponse": "La photosynthèse",
+      "explication": "Elle libère du dioxygène.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : photosynthèse (abrégé)"
+    },
+    {
+      "id": "Q1673",
+      "niveau": "NS3",
+      "enonce": "Quels sont les produits de la photosynthèse ?",
+      "choix": [
+        "Le glucose et le dioxygène",
+        "Le CO₂ et l'eau",
+        "L'ATP et l'urée",
+        "L'amidon et l'azote"
+      ],
+      "bonne_reponse": "Le glucose et le dioxygène",
+      "explication": "Bilan : 6 CO₂ + 6 H₂O + lumière → C₆H₁₂O₆ + 6 O₂.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1673 (modifiée)",
+      "ancien_enonce": "Quelle est l'équation globale de la photosynthèse ?"
+    },
+    {
+      "id": "Q1674",
+      "niveau": "NS3",
+      "enonce": "Réseau de membranes du chloroplaste, qui renferme la chlorophylle et où se déroule la phase claire de la photosynthèse.",
+      "choix": [
+        "Le thylakoïde",
+        "Le stroma",
+        "La mitochondrie",
+        "Le noyau"
+      ],
+      "bonne_reponse": "Le thylakoïde",
+      "explication": "On y trouve les photosystèmes ; c'est là que l'eau est décomposée.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1674 (modifiée) — Larousse : thylakoïde",
+      "ancien_enonce": "Où se déroulent les réactions de la phase claire de la photosynthèse ?"
+    },
+    {
+      "id": "B18-21",
+      "niveau": "NS3",
+      "enonce": "Empilement de 50 à 100 disques chargés de chlorophylle, à l'intérieur du chloroplaste.",
+      "choix": [
+        "Un granum",
+        "Un stroma",
+        "Un ribosome",
+        "Un nucléole"
+      ],
+      "bonne_reponse": "Un granum",
+      "explication": "Au pluriel, on dit des grana.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : granum"
+    },
+    {
+      "id": "B18-22",
+      "niveau": "NS3",
+      "enonce": "Liquide qui remplit le chloroplaste, où le dioxyde de carbone est transformé en glucides.",
+      "choix": [
+        "Le stroma",
+        "Le cytoplasme",
+        "Le thylakoïde",
+        "La vacuole"
+      ],
+      "bonne_reponse": "Le stroma",
+      "explication": "C'est le lieu du cycle de Calvin.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme 3.4 (pas de sens botanique au Larousse)"
+    },
+    {
+      "id": "Q1675",
+      "niveau": "NS3",
+      "enonce": "Ensemble de réactions du stroma qui fixent le dioxyde de carbone pour fabriquer des glucides.",
+      "choix": [
+        "Le cycle de Calvin",
+        "Le cycle de Krebs",
+        "La glycolyse",
+        "La photolyse"
+      ],
+      "bonne_reponse": "Le cycle de Calvin",
+      "explication": "Il utilise l'ATP et les composés réduits produits pendant la phase claire.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1675 (modifiée) — Programme 3.4",
+      "ancien_enonce": "Qu'est-ce que le cycle de Calvin (phase sombre) de la photosynthèse ?"
+    },
+    {
+      "id": "B18-23",
+      "niveau": "NS3",
+      "enonce": "Décomposition de la molécule d'eau par l'énergie de la lumière, dans la cellule végétale.",
+      "choix": [
+        "La photolyse",
+        "L'hydrolyse",
+        "La glycolyse",
+        "L'osmose"
+      ],
+      "bonne_reponse": "La photolyse",
+      "explication": "Elle libère du dioxygène, des protons et des électrons.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : photolyse (sens 2)"
+    },
+    {
+      "id": "B18-24",
+      "niveau": "NS3",
+      "enonce": "D'où provient le dioxygène libéré par la photosynthèse ?",
+      "choix": [
+        "De l'eau",
+        "Du dioxyde de carbone",
+        "Du glucose",
+        "De la chlorophylle"
+      ],
+      "bonne_reponse": "De l'eau",
+      "explication": "Démontré en 1941 grâce à de l'eau marquée à l'oxygène 18.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme 3.4"
+    },
+    {
+      "id": "B18-25",
+      "niveau": "NS3",
+      "enonce": "Substance qui donne leur couleur aux animaux ou aux plantes.",
+      "choix": [
+        "Un pigment",
+        "Un sucre",
+        "Une hormone",
+        "Une vitamine"
+      ],
+      "bonne_reponse": "Un pigment",
+      "explication": "La chlorophylle est le pigment vert des plantes.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : pigment (sens 1)"
+    },
+    {
+      "id": "B18-26",
+      "niveau": "NS3",
+      "enonce": "Pigment jaune ou orangé des chloroplastes, qui aide la chlorophylle à capter la lumière.",
+      "choix": [
+        "Un caroténoïde",
+        "Une anthocyane",
+        "Un tanin",
+        "La lignine"
+      ],
+      "bonne_reponse": "Un caroténoïde",
+      "explication": "On les voit à l'automne, quand la chlorophylle disparaît des feuilles.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme 3.4 — Larousse : caroténoïde"
+    },
+    {
+      "id": "Q1682",
+      "niveau": "NS3",
+      "enonce": "Facteur dont la quantité insuffisante freine la photosynthèse, comme la lumière ou le dioxyde de carbone.",
+      "choix": [
+        "Un facteur limitant",
+        "Un catalyseur",
+        "Un pigment",
+        "Un substrat"
+      ],
+      "bonne_reponse": "Un facteur limitant",
+      "explication": "La photosynthèse est réglée par le facteur le plus déficitaire.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1682 (modifiée) — Programme 3.4",
+      "ancien_enonce": "Comment la concentration en CO₂ agit-elle sur la photosynthèse ?"
+    },
+    {
+      "id": "Q1683",
+      "niveau": "NS3",
+      "enonce": "Intensité lumineuse pour laquelle la photosynthèse et la respiration d'une plante s'équilibrent exactement.",
+      "choix": [
+        "Le point de compensation",
+        "Le point de saturation",
+        "L'optimum",
+        "Le facteur limitant"
+      ],
+      "bonne_reponse": "Le point de compensation",
+      "explication": "À ce niveau, la plante n'absorbe ni ne rejette de dioxyde de carbone.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1683 (modifiée) — Programme 3.4",
+      "ancien_enonce": "Qu'est-ce que le point de compensation photosynthétique ?"
+    },
+    {
+      "id": "B18-30",
+      "niveau": "NS3",
+      "enonce": "Liquide nourricier qui circule dans les diverses parties des végétaux.",
+      "choix": [
+        "La sève",
+        "La lymphe",
+        "Le latex",
+        "Le nectar"
+      ],
+      "bonne_reponse": "La sève",
+      "explication": "La sève élaborée transporte les sucres fabriqués dans les feuilles.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : sève (sens 1)"
+    },
+    {
+      "id": "B18-31",
+      "niveau": "NS3",
+      "enonce": "Sous quelle forme les sucres fabriqués dans les feuilles sont-ils transportés dans la plante ?",
+      "choix": [
+        "Le saccharose",
+        "L'amidon",
+        "La cellulose",
+        "Le glycogène"
+      ],
+      "bonne_reponse": "Le saccharose",
+      "explication": "Ils voyagent dans la sève élaborée jusqu'aux organes de réserve.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 3.4"
+    },
+    {
+      "id": "B18-32",
+      "niveau": "NS3",
+      "enonce": "Organite des organes de réserve, comme le tubercule de pomme de terre, qui accumule des grains de réserve glucidique.",
+      "choix": [
+        "Un amyloplaste",
+        "Un chloroplaste",
+        "Une mitochondrie",
+        "Une vacuole"
+      ],
+      "bonne_reponse": "Un amyloplaste",
+      "explication": "Les grains qu'il forme sont des grains d'amidon.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : amyloplaste (reformulé)"
+    },
+    {
+      "id": "B18-33",
+      "niveau": "NS3",
+      "enonce": "Constituant fondamental du bois, qui imprègne les parois de cellulose de certaines cellules végétales.",
+      "choix": [
+        "La lignine",
+        "La cellulose",
+        "L'amidon",
+        "La kératine"
+      ],
+      "bonne_reponse": "La lignine",
+      "explication": "Elle rend les parois rigides et imperméables.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : lignine (abrégé)"
+    },
+    {
+      "id": "B18-34",
+      "niveau": "NS3",
+      "enonce": "Pigment végétal rouge, violet ou bleu des pétales, des feuilles et des fruits, situé dans les vacuoles.",
+      "choix": [
+        "Une anthocyane",
+        "La chlorophylle",
+        "Un caroténoïde",
+        "Un tanin"
+      ],
+      "bonne_reponse": "Une anthocyane",
+      "explication": "Il colore par exemple les pétales d'hibiscus.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : anthocyane"
+    },
+    {
+      "id": "B18-35",
+      "niveau": "NS3",
+      "enonce": "Substance du bois, de l'écorce et des feuilles de nombreux végétaux, capable de transformer la peau en cuir.",
+      "choix": [
+        "Le tanin",
+        "La lignine",
+        "La résine",
+        "Le latex"
+      ],
+      "bonne_reponse": "Le tanin",
+      "explication": "Il protège la plante contre les animaux qui la mangent.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : tanin (sens 1)"
+    }
+  ]
+}
