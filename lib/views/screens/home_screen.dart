@@ -644,7 +644,7 @@ class _CarteDefisJourState extends State<_CarteDefisJour> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Tâches et Défis',
+                    'Défis',
                     style: TextStyle(
                       fontWeight: FontWeight.w800,
                       fontSize: 15,

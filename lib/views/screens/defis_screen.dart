@@ -58,7 +58,7 @@ class _DefisScreenState extends State<DefisScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tâches et Défis'),
+        title: const Text('Défis'),
         bottom: TabBar(
           controller: _tabs,
           isScrollable: true,
