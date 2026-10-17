@@ -31,6 +31,23 @@ Les règles de format sont dans [regles-creation-questions.md](regles-creation-q
 
 On traite **un seul chapitre à la fois**, dans l'ordre du programme. Si un chapitre sert de base à un autre, on le traite d'abord : par exemple « Molécules biologiques » avant « Métabolisme ».
 
+### Étape 0 — Construire le plan des chapitres de la matière
+
+1. Lire le **programme officiel MENFP** de la matière, dans `Projet Quiz Educatif/Donnees/`.
+2. Lire le **plan de manuel** fourni par l'utilisateur, s'il y en a un, dans `OneDrive/Documents/Programm Menfp/`. Ce sont des scans : pdftoppm n'est pas installé, il faut rendre les pages en PNG avec PyMuPDF (`import fitz`), puis lire les images.
+3. **Chercher d'autres manuels scolaires haïtiens de la matière**, pour voir comment les enseignants découpent réellement le programme en chapitres. Trois pistes :
+   - les sommaires des collections F.I.C. / Editha, Hachette-Deschamps, Henri Deschamps, etc. ;
+   - les pages « manuels » des écoles (ex. islghaiti.org) ;
+   - les sujets d'examens officiels (bac haïtien).
+
+   Faire la recherche sur le web et citer les sources consultées dans le fichier du découpage.
+4. Proposer le découpage NS1–NS4 dans `curriculum/<matiere>_ns.md`, sur le modèle de `biologie_geologie_ns.md` et `mathematiques_ns.md` :
+   - prendre l'union du programme 2024 et des manuels ;
+   - en NS3/NS4, prendre l'union des séries ;
+   - faire des chapitres communs pour les notions présentes à plusieurs niveaux.
+5. Afficher ce découpage **dans le chat** pour validation.
+6. Une fois le découpage validé, créer les chapitres en base par une migration (table `chapitres` et liaison `chapitre_niveaux`, sur le modèle de la migration 004).
+
 ### Étape 1 — Inventaire du chapitre
 
 1. Lire la ligne du chapitre dans `curriculum/<matiere>_ns.md`, colonne « Contenu à couvrir ».
@@ -113,6 +130,24 @@ L'utilisateur valide **chaque question**.
    - `ecrire()` vérifie trois choses : 4 choix distincts, pas plus de 6 mots par réponse, « ? » à la fin des questions de connaissance.
 2. Afficher le widget avec `show_widget`, en collant le contenu de `chNN_widget.html`. Chaque carte a trois boutons : Valider, À modifier, Rejeter. Le bouton d'envoi renvoie un message de la forme :
    `Validation <Matière> <niveau> ch.N (<titre>) — Validées (n) : … · Rejetées (n) : … · À modifier (n) : id → consigne ; …`
+   **Comment afficher le widget, pas à pas :**
+   - Appeler d'abord, sans le dire à l'utilisateur, l'outil `read_me` du module visualize (`mcp__visualize__read_me`, modules `["interactive"]`). Il est obligatoire avant le premier `show_widget` de la session.
+   - Lire `chNN_widget.html`, puis appeler `mcp__visualize__show_widget` :
+     - `title` = un identifiant en snake_case, par exemple `validation_physique_ns1_ch1_mesures` ;
+     - `widget_code` = le contenu **complet** du fichier, collé tel quel, sans `<html>`, `<head>` ni `<body>` ;
+     - `loading_messages` = un message court.
+   - Le widget affiche, pour chaque question, son identifiant et les badges suivants :
+     - la difficulté ;
+     - le type (Définition ou Connaissance) ;
+     - « Déjà en base » pour les questions `Q….` ;
+     - la source.
+
+     On y voit ensuite l'énoncé, les 4 choix (la bonne réponse en vert), l'explication et les trois boutons. Le bouton « Valider les non traitées » permet à l'utilisateur de tout accepter d'un coup.
+   - **Ne jamais répéter les questions en texte** sous le widget : il les affiche déjà.
+   - Quand l'utilisateur clique sur « Envoyer », son message arrive dans la conversation sous la forme `Validation … — Validées (n) : … · Rejetées (n) : … · À modifier (n) : …`. C'est ce message qu'on traite ensuite (étape 5).
+   - **Tout ce qui demande une décision de l'utilisateur s'affiche dans le chat** : le découpage en chapitres, les questions, les points à trancher. Ne jamais le laisser seulement dans un fichier. Pour le **découpage en chapitres**, un tableau Markdown dans la réponse suffit, ou un widget du même style avec Valider / À modifier / Rejeter par chapitre.
+   - **Revalidation** : pour les questions « À modifier », réafficher un petit widget avec ces seules questions réécrites. Utiliser le même gabarit, avec un préfixe de message « Revalidation … ».
+
 3. En dessous du widget, résumer en quelques lignes :
    - les questions de base reprises ou modifiées ;
    - les termes écartés comme doublons ;
