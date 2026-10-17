@@ -1,0 +1,418 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Structure et fonction des molécules biologiques",
+  "niveaux": [
+    "NS2"
+  ],
+  "unite_programme": "2.4 (appui), rappel 1.1",
+  "statut": "validé par l'utilisateur 2026-10-17",
+  "rejetees": [],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "B17-01",
+      "enonce": "Très grande particule chimique pouvant contenir des milliers, voire des centaines de milliers d'atomes.",
+      "choix": [
+        "Une macromolécule",
+        "Un ion",
+        "Un atome",
+        "Un cristal"
+      ],
+      "bonne_reponse": "Une macromolécule",
+      "explication": "Protéines, polysaccharides et acides nucléiques en sont des exemples.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : macromolécule (reformulé)"
+    },
+    {
+      "id": "B17-02",
+      "enonce": "Substance formée par la répétition, un grand nombre de fois, d'un même groupe d'atomes.",
+      "choix": [
+        "Un polymère",
+        "Un monomère",
+        "Un isomère",
+        "Un élément"
+      ],
+      "bonne_reponse": "Un polymère",
+      "explication": "L'amidon est formé de milliers de glucoses enchaînés.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : polymère (reformulé)"
+    },
+    {
+      "id": "B17-03",
+      "enonce": "Petite molécule qui, en s'enchaînant à d'autres, forme une macromolécule.",
+      "choix": [
+        "Un monomère",
+        "Un polymère",
+        "Un isomère",
+        "Un ion"
+      ],
+      "bonne_reponse": "Un monomère",
+      "explication": "Exemples : le glucose pour l'amidon, l'acide aminé pour la protéine.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : monomère (sens 2, reformulé)"
+    },
+    {
+      "id": "B17-04",
+      "enonce": "Quelles sont les quatre grandes familles de molécules du vivant ?",
+      "choix": [
+        "Glucides, lipides, protéines, acides nucléiques",
+        "Eau, sels, vitamines, fibres",
+        "Glucose, amidon, cellulose, glycogène",
+        "Fer, calcium, sodium, potassium"
+      ],
+      "bonne_reponse": "Glucides, lipides, protéines, acides nucléiques",
+      "explication": "Toutes sont des molécules organiques, construites autour du carbone.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.4"
+    },
+    {
+      "id": "B17-10",
+      "enonce": "Composé formé par l'union de deux sucres simples, comme le saccharose.",
+      "choix": [
+        "Un diholoside",
+        "Un polysaccharide",
+        "Un acide aminé",
+        "Un nucléotide"
+      ],
+      "bonne_reponse": "Un diholoside",
+      "explication": "On l'appelle aussi disaccharide.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : diholoside"
+    },
+    {
+      "id": "Q1667",
+      "enonce": "Glucide formé de l'union de nombreux oses, comme l'amidon, le glycogène ou la cellulose.",
+      "choix": [
+        "Un polysaccharide",
+        "Un diholoside",
+        "Un ose",
+        "Un acide gras"
+      ],
+      "bonne_reponse": "Un polysaccharide",
+      "explication": "On l'appelle aussi polyoside. Son hydrolyse libère des oses.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1667 (modifiée) — Larousse : polyoside",
+      "ancien_enonce": "Qu'est-ce qui distingue un polysaccharide d'un monosaccharide ?"
+    },
+    {
+      "id": "B17-11",
+      "enonce": "Sucre simple très présent dans les fruits et le miel.",
+      "choix": [
+        "Le fructose",
+        "Le lactose",
+        "L'amidon",
+        "Le maltose"
+      ],
+      "bonne_reponse": "Le fructose",
+      "explication": "Avec le glucose, il forme le saccharose.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : fructose (complété par le programme)"
+    },
+    {
+      "id": "B17-12",
+      "enonce": "Alcool de l'organisme, qui entre dans la composition des lipides et sert de source d'énergie.",
+      "choix": [
+        "Le glycérol",
+        "L'éthanol",
+        "Le cholestérol",
+        "Le glucose"
+      ],
+      "bonne_reponse": "Le glycérol",
+      "explication": "Un triglycéride est formé d'un glycérol et de trois acides gras.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : glycérol (sens 2)"
+    },
+    {
+      "id": "Q1665",
+      "enonce": "Comment appelle-t-on un acide gras dont la chaîne possède au moins une double liaison ?",
+      "choix": [
+        "Un acide gras insaturé",
+        "Un acide gras saturé",
+        "Un triglycéride",
+        "Un phospholipide"
+      ],
+      "bonne_reponse": "Un acide gras insaturé",
+      "explication": "On en trouve surtout dans les huiles végétales et le poisson ; ils sont liquides à température ambiante.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1665 (modifiée)",
+      "ancien_enonce": "Qu'est-ce qui distingue un acide gras insaturé d'un acide gras saturé ?"
+    },
+    {
+      "id": "B17-13",
+      "enonce": "Qui évite l'eau.",
+      "choix": [
+        "Hydrophobe",
+        "Hydrophile",
+        "Soluble",
+        "Aqueux"
+      ],
+      "bonne_reponse": "Hydrophobe",
+      "explication": "Les lipides sont hydrophobes : ils ne se mélangent pas à l'eau.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hydrophobe (sens 1)"
+    },
+    {
+      "id": "B17-20",
+      "enonce": "Macromolécule constituée d'acides aminés unis entre eux par des liaisons peptidiques.",
+      "choix": [
+        "Une protéine",
+        "Un glucide",
+        "Un lipide",
+        "Un acide nucléique"
+      ],
+      "bonne_reponse": "Une protéine",
+      "explication": "Enzymes, anticorps, hémoglobine et kératine en sont des exemples.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : protéine"
+    },
+    {
+      "id": "Q1661",
+      "enonce": "Quels groupes chimiques caractérisent un acide aminé ?",
+      "choix": [
+        "Les groupes NH₂ et COOH",
+        "Un groupe phosphate seulement",
+        "Une base azotée et un sucre",
+        "Trois acides gras"
+      ],
+      "bonne_reponse": "Les groupes NH₂ et COOH",
+      "explication": "Ils sont portés par un même carbone, avec un radical R qui varie d'un acide aminé à l'autre.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1661 (modifiée)",
+      "ancien_enonce": "Quelle est la structure de base d'un acide aminé ?"
+    },
+    {
+      "id": "Q1662",
+      "enonce": "Liaison chimique qui unit deux acides aminés dans une protéine.",
+      "choix": [
+        "La liaison peptidique",
+        "La liaison hydrogène",
+        "La liaison ionique",
+        "La liaison phosphodiester"
+      ],
+      "bonne_reponse": "La liaison peptidique",
+      "explication": "Elle se forme entre le COOH d'un acide aminé et le NH₂ du suivant, avec libération d'eau.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1662 (modifiée) — Programme 2.4",
+      "ancien_enonce": "Qu'est-ce qu'une liaison peptidique ?"
+    },
+    {
+      "id": "B17-21",
+      "enonce": "Combien d'acides aminés différents entrent dans la composition des protéines ?",
+      "choix": [
+        "20",
+        "4",
+        "100",
+        "1 000"
+      ],
+      "bonne_reponse": "20",
+      "explication": "Leur ordre dans la chaîne détermine la protéine.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.4"
+    },
+    {
+      "id": "B17-22",
+      "enonce": "Ordre dans lequel les acides aminés s'enchaînent dans une protéine.",
+      "choix": [
+        "La structure primaire",
+        "La structure secondaire",
+        "La structure tertiaire",
+        "La structure quaternaire"
+      ],
+      "bonne_reponse": "La structure primaire",
+      "explication": "Il est fixé par l'information génétique.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.4"
+    },
+    {
+      "id": "Q1663",
+      "enonce": "Repliement local de la chaîne d'acides aminés en hélice α ou en feuillet β.",
+      "choix": [
+        "La structure secondaire",
+        "La structure primaire",
+        "La structure tertiaire",
+        "La structure quaternaire"
+      ],
+      "bonne_reponse": "La structure secondaire",
+      "explication": "La structure tertiaire est le repliement de toute la chaîne dans l'espace.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1663 (modifiée) — Programme 2.4",
+      "ancien_enonce": "Qu'est-ce que la structure secondaire d'une protéine ?"
+    },
+    {
+      "id": "Q1664",
+      "enonce": "Perte de la forme dans l'espace d'une protéine, sous l'effet de la chaleur ou d'un pH extrême, qui lui fait perdre sa fonction.",
+      "choix": [
+        "La dénaturation",
+        "L'hydrolyse",
+        "La mutation",
+        "La digestion"
+      ],
+      "bonne_reponse": "La dénaturation",
+      "explication": "Exemple : le blanc d'œuf qui blanchit à la cuisson.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1664 (modifiée) — Programme 2.4 (pas de sens biologique au Larousse)",
+      "ancien_enonce": "Qu'est-ce que la dénaturation d'une protéine ?"
+    },
+    {
+      "id": "B17-30",
+      "enonce": "Macromolécule qui porte ou transmet l'information génétique, comme l'ADN ou l'ARN.",
+      "choix": [
+        "Un acide nucléique",
+        "Une protéine",
+        "Un polysaccharide",
+        "Un lipide"
+      ],
+      "bonne_reponse": "Un acide nucléique",
+      "explication": "Elle est formée d'un enchaînement de nucléotides.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.4 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "Q1668",
+      "enonce": "Molécule formée d'un sucre, d'un groupe phosphate et d'une base azotée, unité de base de l'ADN et de l'ARN.",
+      "choix": [
+        "Un nucléotide",
+        "Un acide aminé",
+        "Un ose",
+        "Un acide gras"
+      ],
+      "bonne_reponse": "Un nucléotide",
+      "explication": "L'ADN en contient quatre sortes : A, T, G et C.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1668 (modifiée) — Larousse : nucléotide",
+      "ancien_enonce": "De quoi un nucléotide est-il composé ?"
+    },
+    {
+      "id": "Q1669",
+      "enonce": "Quelle est la différence de structure entre l'ADN et l'ARN ?",
+      "choix": [
+        "ADN double brin, ARN simple brin",
+        "Ils sont identiques",
+        "L'ARN est double brin",
+        "L'ADN contient de l'uracile"
+      ],
+      "bonne_reponse": "ADN double brin, ARN simple brin",
+      "explication": "L'ADN contient le désoxyribose et la thymine ; l'ARN, le ribose et l'uracile.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1669",
+      "ancien_enonce": "Quelle est la différence de structure entre l'ADN et l'ARN ?"
+    },
+    {
+      "id": "Q1666",
+      "enonce": "Quelle molécule fournit directement l'énergie nécessaire aux activités de la cellule ?",
+      "choix": [
+        "L'ATP",
+        "L'ADN",
+        "Le glycogène",
+        "Le glycérol"
+      ],
+      "bonne_reponse": "L'ATP",
+      "explication": "Son hydrolyse libère de l'énergie : on l'appelle la « monnaie énergétique » de la cellule.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1666 (modifiée)",
+      "ancien_enonce": "Pourquoi l'ATP est-elle appelée la « monnaie énergétique » de la cellule ?"
+    },
+    {
+      "id": "B17-40",
+      "enonce": "Substance qui augmente la vitesse d'une réaction chimique sans être consommée par celle-ci.",
+      "choix": [
+        "Un catalyseur",
+        "Un substrat",
+        "Un produit",
+        "Un solvant"
+      ],
+      "bonne_reponse": "Un catalyseur",
+      "explication": "Les enzymes sont des catalyseurs biologiques.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : catalyseur (sens 1)"
+    },
+    {
+      "id": "B17-41",
+      "enonce": "De quelle nature chimique sont la plupart des enzymes ?",
+      "choix": [
+        "Des protéines",
+        "Des lipides",
+        "Des glucides",
+        "Des vitamines"
+      ],
+      "bonne_reponse": "Des protéines",
+      "explication": "Leur forme dans l'espace est essentielle à leur action.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.4"
+    },
+    {
+      "id": "B17-42",
+      "enonce": "Molécule sur laquelle agit une enzyme et qu'elle transforme.",
+      "choix": [
+        "Le substrat",
+        "Le produit",
+        "Le catalyseur",
+        "Le coenzyme"
+      ],
+      "bonne_reponse": "Le substrat",
+      "explication": "Exemple : l'amidon est celui de l'amylase.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : substrat (sens 3, appliqué aux enzymes)"
+    },
+    {
+      "id": "Q1671",
+      "enonce": "Région d'une enzyme où se fixe le substrat et où a lieu la réaction.",
+      "choix": [
+        "Le site actif",
+        "Le substrat",
+        "Le coenzyme",
+        "Le noyau"
+      ],
+      "bonne_reponse": "Le site actif",
+      "explication": "Sa forme ne convient qu'à un substrat précis : c'est la spécificité de l'enzyme.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1671 (modifiée) — Programme 2.4",
+      "ancien_enonce": "Comment s'explique la spécificité d'une enzyme ?"
+    },
+    {
+      "id": "Q1670",
+      "enonce": "Comment une enzyme catalyse-t-elle une réaction ?",
+      "choix": [
+        "Elle abaisse l'énergie d'activation",
+        "Elle est consommée par la réaction",
+        "Elle fournit de l'énergie",
+        "Elle change le produit final"
+      ],
+      "bonne_reponse": "Elle abaisse l'énergie d'activation",
+      "explication": "Elle accélère la réaction sans être consommée, grâce à son site actif.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1670",
+      "ancien_enonce": "Comment une enzyme catalyse-t-elle une réaction ?"
+    },
+    {
+      "id": "Q1672",
+      "enonce": "Comment appelle-t-on la température ou le pH pour lesquels une enzyme est la plus active ?",
+      "choix": [
+        "L'optimum",
+        "Le seuil",
+        "Le minimum",
+        "La saturation"
+      ],
+      "bonne_reponse": "L'optimum",
+      "explication": "Pour la plupart des enzymes humaines : environ 37 °C.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1672 (modifiée)",
+      "ancien_enonce": "Comment le pH et la température agissent-ils sur une enzyme ?"
+    },
+    {
+      "id": "B17-43",
+      "enonce": "Petite molécule non protéique dont certains catalyseurs biologiques ont besoin pour agir.",
+      "choix": [
+        "Un coenzyme",
+        "Un substrat",
+        "Un acide aminé",
+        "Un anticorps"
+      ],
+      "bonne_reponse": "Un coenzyme",
+      "explication": "Plusieurs vitamines du groupe B servent à en fabriquer.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : coenzyme (reformulé)"
+    }
+  ]
+}
