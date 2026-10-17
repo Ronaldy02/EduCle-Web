@@ -2,9 +2,24 @@
   publish = "dist"
   command = "npm install && npm run build"
 
+[build.environment]
+  # Vite 7 exige Node 20.19+
+  NODE_VERSION = "22"
+
 # Nécessaire pour que Vue Router (mode history) fonctionne
 # Sans ça, un refresh sur /quiz donne une 404
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# En-têtes de sécurité. Le JWT est en localStorage : la CSP limite ce qu'un éventuel XSS pourrait faire.
+# connect-src : à mettre à jour si l'URL de l'API (VITE_API_URL) change.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://educleweb.vercel.app; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
