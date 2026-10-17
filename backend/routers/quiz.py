@@ -88,8 +88,8 @@ def _dedup_pool(pool: list[dict]) -> list[dict]:
 
 
 def _questions_du_chapitre(db: Session, chapitre_id: int) -> list[Question]:
-    if chapitre_id == -1:
-        return db.scalars(select(Question)).all()
+    # Pas de cas spécial pour -1 : il désignait aussi « toutes les matières »,
+    # ce qui rendait la matière n°1 injouable en « Tous les chapitres ».
     if chapitre_id < 0:
         # ID négatif = toutes les questions de la matière abs(chapitre_id)
         matiere_id = abs(chapitre_id)
@@ -104,9 +104,7 @@ def _questions_du_chapitre(db: Session, chapitre_id: int) -> list[Question]:
 
 
 def _matiere_de(db: Session, chapitre_id: int) -> int | None:
-    """Matière d'une partie, déduite côté serveur (-1 = toutes les matières)."""
-    if chapitre_id == -1:
-        return None
+    """Matière d'une partie, déduite côté serveur (-N = toute la matière N)."""
     if chapitre_id < 0:
         return abs(chapitre_id)
     chap = db.get(Chapitre, chapitre_id)

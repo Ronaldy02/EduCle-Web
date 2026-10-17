@@ -8,7 +8,7 @@ ModeNom = Literal["Révision", "Rush", "Génie", "Bombardement"]
 
 
 class DemarrerQuizRequest(BaseModel):
-    chapitre_id: int       # -1 = toutes les matières, -N = toute la matière N
+    chapitre_id: int       # > 0 = un chapitre, -N = toute la matière N
     mode_nom: ModeNom
     nb_questions: int = Field(default=10, ge=1, le=50)
 
