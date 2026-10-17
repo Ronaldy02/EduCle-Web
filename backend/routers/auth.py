@@ -13,7 +13,7 @@ import httpx
 from config import settings
 from database import get_db
 from models.user import User
-from services.auth import hash_password, verify_password, create_access_token
+from services.auth import hash_password, verify_password, create_access_token, ADMIN_TOKEN_DUREE
 from services import limiteur
 from dependencies.auth import get_current_user
 
@@ -277,7 +277,8 @@ def google_callback(
     if is_admin and user.role not in ("admin", "superadmin"):
         return echec("unauthorized")
 
-    jwt = quote(create_access_token(user.id, user.token_version), safe="")
+    duree = ADMIN_TOKEN_DUREE if is_admin else None
+    jwt = quote(create_access_token(user.id, user.token_version, duree), safe="")
     if is_mobile:
         resp = RedirectResponse(f"educle://auth/callback?token={jwt}")
     elif is_admin:

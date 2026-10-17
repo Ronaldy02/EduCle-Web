@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field, StringConstraints
 
 from database import get_db
 from models.proposal import QuestionProposal
-from models import Question, Chapitre
+from models import Question, Chapitre, Matiere
 from services import limiteur
 
 router = APIRouter(prefix="/proposals", tags=["Propositions"])
@@ -62,6 +62,10 @@ def soumettre_proposition(body: ProposalIn, request: Request, db: Session = Depe
         raise HTTPException(status_code=422, detail="Au moins 2 choix sont requis.")
     if body.bonne_reponse.strip() not in body.choix:
         raise HTTPException(status_code=422, detail="La bonne réponse doit figurer dans les choix.")
+    if body.chapitre_id is not None and db.get(Chapitre, body.chapitre_id) is None:
+        raise HTTPException(status_code=422, detail="Chapitre inconnu.")
+    if body.matiere_id is not None and db.get(Matiere, body.matiere_id) is None:
+        raise HTTPException(status_code=422, detail="Matière inconnue.")
     limiteur.limiter(db, f"proposal:ip:{limiteur.ip_client(request)}", 10, timedelta(hours=1))
 
     p = QuestionProposal(

@@ -8,6 +8,7 @@ from config import settings
 
 ALGORITHM = "HS256"
 TOKEN_EXPIRE_DAYS = 30
+ADMIN_TOKEN_DUREE = timedelta(hours=12)
 
 
 def _octets(password: str) -> bytes:
@@ -26,8 +27,8 @@ def verify_password(plain: str, hashed: str) -> bool:
         return False
 
 
-def create_access_token(user_id: int, token_version: int = 0) -> str:
-    expire = datetime.now(timezone.utc) + timedelta(days=TOKEN_EXPIRE_DAYS)
+def create_access_token(user_id: int, token_version: int = 0, duree: timedelta | None = None) -> str:
+    expire = datetime.now(timezone.utc) + (duree or timedelta(days=TOKEN_EXPIRE_DAYS))
     return jwt.encode(
         {"sub": str(user_id), "tv": token_version, "exp": expire},
         settings.secret_key,

@@ -12,7 +12,7 @@ import random
 from datetime import date, datetime, timedelta, timezone
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from sqlalchemy import select, update
+from sqlalchemy import select, update, delete
 from sqlalchemy.orm.attributes import flag_modified
 
 from database import get_db
@@ -34,6 +34,7 @@ from schemas.quiz import (
     RepondreRequest, RepondreResponse, TerminerQuizRequest,
 )
 from services.adaptive_selector import selectionner
+from services import limiteur
 from services.niveau import (
     calculer_xp_question,
     calculer_pieces_question,
@@ -137,6 +138,10 @@ def demarrer_quiz(
     current_user: User = Depends(get_current_user),
 ):
     """Sélectionne les questions du quiz de façon adaptative."""
+    limiteur.limiter(db, f"quiz:user:{current_user.id}", 120, timedelta(hours=1))
+    if random.random() < 0.02:
+        # Les parties ne servent plus une fois terminées ou expirées
+        db.execute(delete(Partie).where(Partie.created_at < datetime.now(timezone.utc) - timedelta(days=2)))
     questions_orm = _questions_du_chapitre(db, body.chapitre_id)
     if not questions_orm:
         raise HTTPException(status_code=404, detail="Aucune question pour ce chapitre")

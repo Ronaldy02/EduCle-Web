@@ -1,4 +1,5 @@
 """Limitation de débit stockée en base (Vercel lance plusieurs instances, la mémoire ne suffit pas)."""
+import random
 from datetime import datetime, timedelta, timezone
 
 from fastapi import HTTPException, Request
@@ -27,12 +28,12 @@ def verifier(db: Session, cle: str, maximum: int, fenetre: timedelta) -> None:
 
 
 def enregistrer(db: Session, cle: str) -> None:
-    """Compte une tentative et purge celles de plus d'un jour pour cette clé."""
+    """Compte une tentative ; de temps en temps, purge toutes les tentatives de plus d'un jour."""
     cle = cle[:300]
-    db.execute(delete(Tentative).where(
-        Tentative.cle == cle,
-        Tentative.created_at < datetime.now(timezone.utc) - timedelta(days=1),
-    ))
+    if random.random() < 0.02:
+        db.execute(delete(Tentative).where(
+            Tentative.created_at < datetime.now(timezone.utc) - timedelta(days=1),
+        ))
     db.add(Tentative(cle=cle))
     db.commit()
 

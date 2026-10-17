@@ -7,7 +7,7 @@ from sqlalchemy import select
 
 from database import get_db
 from models.user import User
-from services.auth import create_access_token
+from services.auth import create_access_token, ADMIN_TOKEN_DUREE
 from routers.auth import verifier_identifiants
 from dependencies.auth import get_current_user
 
@@ -60,7 +60,7 @@ def admin_login(body: AdminLoginRequest, request: Request, db: Session = Depends
     if user.role not in ("admin", "superadmin"):
         raise HTTPException(403, "Ce compte n'a pas les droits d'administration.")
 
-    token = create_access_token(user.id, user.token_version)
+    token = create_access_token(user.id, user.token_version, ADMIN_TOKEN_DUREE)
     return {
         "access_token": token,
         "token_type": "bearer",

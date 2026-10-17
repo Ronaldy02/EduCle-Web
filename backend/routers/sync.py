@@ -8,7 +8,8 @@ from database import get_db
 from dependencies.auth import get_current_user
 from models.user import User
 from models.score import Score
-from models.question import StatistiqueQuestion
+from models.question import Question, StatistiqueQuestion
+from models.matiere import Matiere
 
 router = APIRouter(prefix="/sync", tags=["Sync mobile"])
 
@@ -63,8 +64,15 @@ def push(
         current_user.niveau_scolaire = body.profil.niveau_scolaire
         current_user.annee = body.profil.annee
 
+    # Identifiants inconnus ignorés (sinon violation de clé étrangère → erreur 500)
+    matieres_ok = set(db.scalars(select(Matiere.id)).all())
+    ids_questions = {sq.question_id for sq in body.stats_questions}
+    questions_ok = set(db.scalars(select(Question.id).where(Question.id.in_(ids_questions))).all()) if ids_questions else set()
+
     # Scores
     for s in body.scores:
+        if s.matiere_id is not None and s.matiere_id not in matieres_ok:
+            continue
         db.add(Score(
             user_id=current_user.id,
             matiere_id=s.matiere_id,
@@ -77,6 +85,8 @@ def push(
 
     # Stats questions (upsert)
     for sq in body.stats_questions:
+        if sq.question_id not in questions_ok:
+            continue
         existing = db.scalar(
             select(StatistiqueQuestion).where(
                 StatistiqueQuestion.user_id == current_user.id,

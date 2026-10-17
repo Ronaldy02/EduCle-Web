@@ -35,6 +35,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# ─── En-têtes de sécurité (réponses JSON : pas d'affichage en cadre, pas de devinette de type) ──
+@app.middleware("http")
+async def entetes_securite(request, call_next):
+    response = await call_next(request)
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Referrer-Policy"] = "no-referrer"
+    response.headers.setdefault("Cache-Control", "no-store")
+    return response
+
+
 # ─── Routers ──────────────────────────────────────────────────────────────────
 app.include_router(auth_router)
 app.include_router(matieres.router)
