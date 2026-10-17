@@ -1,4 +1,17 @@
 {
-  "builds": [{ "src": "main.py", "use": "@vercel/python" }],
-  "routes": [{ "src": "/(.*)", "dest": "main.py" }]
+  "regions": [
+    "pdx1"
+  ],
+  "builds": [
+    {
+      "src": "main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "main.py"
+    }
+  ]
 }

@@ -362,6 +362,7 @@ const showExplication = ref(false)
 const animShake  = ref(false)
 const animPulse  = ref(false)
 const touchePressee = ref(null)      // E9 · choix activé au clavier
+const correctionEnCours = ref(false) // réponse envoyée, correction du serveur pas encore reçue
 const tempsEcoule   = ref(false)     // F3
 const explosion     = ref(false)     // F5
 let _explosionTimer = null
@@ -741,11 +742,15 @@ async function repondre(choixIndex) {
   repondu.value      = true
   reponduIndex.value = choixIndex
 
+  // Le serveur corrige : en attendant, le choix est seulement mis en surbrillance (ni ✗ ni rouge)
+  correctionEnCours.value = true
   let correction = null
   try {
     correction = await quizStore.repondre(q.id, reponseTexte)
   } catch {
     toast("Réponse non enregistrée (connexion)", { icon: 'cloud_off', type: 'error', duree: 2500 })
+  } finally {
+    correctionEnCours.value = false
   }
   if (explosion.value) return       // le Bombardement a explosé pendant la correction
 
@@ -840,6 +845,7 @@ async function finirQuiz() {
 
 function etatChoix(i) {
   if (!repondu.value) return ''
+  if (correctionEnCours.value) return i === reponduIndex.value ? 'attente' : ''
   if (i === bonneIndex.value)     return 'correct'
   if (i === reponduIndex.value)   return 'incorrect'
   return 'neutre'
@@ -1430,6 +1436,16 @@ function palierParticleStyle(i, n) {
 .qz-choix-btn:disabled { opacity: 1; cursor: default; }
 .qz-choix-btn.correct  { border-color: #006c49; background: #6ffbbe33; }
 .qz-choix-btn.incorrect{ border-color: #ba1a1a; background: #ffdad6; }
+/* Choix sélectionné, en attente de la correction du serveur : surbrillance, jamais de rouge */
+.qz-choix-btn.attente {
+  border-color: #0058be; background: #d8e2ff;
+  animation: qz-attente 0.9s ease-in-out infinite;
+}
+.qz-lettre.attente { background: #0058be; color: #fff; }
+@keyframes qz-attente {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 88, 190, 0.35); }
+  50%      { box-shadow: 0 0 0 6px rgba(0, 88, 190, 0.12); }
+}
 /* E6 · les choix non concernés pâlissent */
 .qz-choix-btn.neutre   { opacity: 0.4; }
 .qz-choix-btn.qz-choix-elimine { opacity: 0.25; cursor: not-allowed; }
@@ -1838,6 +1854,8 @@ function palierParticleStyle(i, n) {
   .qz-choix-btn:hover:not(:disabled) .qz-lettre { background: rgba(47,111,237,0.12); }
   .qz-lettre.correct   { background: rgba(26,138,74,0.12); color: #146436; }
   .qz-lettre.incorrect { background: rgba(194,58,58,0.12); color: #c23a3a; }
+  .qz-choix-btn.attente  { border-color: #2f6fed; background: #e9f0fe; color: #2f6fed; }
+  .qz-lettre.attente     { background: #2f6fed; color: #fff; }
   .qz-choix-btn.correct  { border-color: #1a8a4a; background: #e9f8ef; color: #146436; }
   .qz-choix-btn.incorrect{ border-color: #c23a3a; background: #fdecec; color: #8f2b2b; }
   .qz-choix-texte { font-size: 10.5px; font-weight: 700; padding-top: 0; }

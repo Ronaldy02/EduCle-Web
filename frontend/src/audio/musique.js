@@ -3,7 +3,7 @@
 //
 //   musique.demarrer()        à appeler sur un geste de l'utilisateur (clic, touche)
 //   musique.setScene(s)       'calme' (pages) · 'quiz' · 'off'
-//   musique.setTension(bool)  zone critique : plus rapide, plus serrée
+//   musique.setTension(bool)  zone critique : son plus serré (même tempo)
 //   musique.setBombe(n)       palier du Bombardement 0 (aucun) → 4
 //   musique.setSerie(bool)    couche de percussions en plus pendant une série
 //   musique.duck(niveau, ms)  baisse temporaire (palier, explosion…)
@@ -26,7 +26,7 @@ const RYTHMES = [                                 // positions (sur 16) des note
   [2, 5, 8, 11, 12, 14],
   [0, 4, 6, 7, 10, 13],
 ]
-const TEMPO_BOMBE = { 1: 116, 2: 124, 3: 136, 4: 150 }
+const TEMPO = 90   // tempo unique : la musique garde le même rythme partout (pages, quiz, tension)
 
 const midi = (n) => 440 * Math.pow(2, (n - 69) / 12)
 
@@ -91,10 +91,7 @@ watch([musiqueOn, musiqueVolume], appliquerVolume)
 
 // ── Tempo ───────────────────────────────────────────────────────────────────
 function bpm() {
-  let t = scene === 'quiz' ? 110 : 90
-  if (bombe) t = TEMPO_BOMBE[bombe]
-  if (tension) t *= 1.12
-  return t
+  return TEMPO
 }
 const dureePas = () => 60 / bpm() / 4
 
@@ -207,7 +204,7 @@ function planifier(p, t) {
   if (quiz) {
     if (p === 0 || p === 6 || p === 8) grosseCaisse(t)
     if (p === 4 || p === 12) clap(t)
-    if (p % 2 === 0 || tension || bombe >= 3) charleston(t, p % 4 === 2 ? 0.07 : 0.04)
+    if (p % 2 === 0) charleston(t, p % 4 === 2 ? 0.07 : 0.04)
   } else if (p % 4 === 2) {
     charleston(t, 0.025)
   }
