@@ -1,6 +1,6 @@
 # Physique (matiere_id 9) — Secondaire NS1 à NS4
 
-**Statut : proposition, en attente de validation par l'utilisateur (2026-10-18).**
+**Statut : validé par l'utilisateur le 2026-10-18 ; chapitres créés en base (migration 031).**
 
 ## Sources
 
