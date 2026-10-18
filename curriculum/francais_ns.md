@@ -1,6 +1,6 @@
 # Français / Communication française (matiere_id 25) — Secondaire NS1 à NS4
 
-**Statut : proposition, en attente de validation par l'utilisateur (2026-10-18).** La Littérature a ses propres sessions : elle n'est pas couverte ici.
+**Statut : découpage validé par l'utilisateur le 2026-10-18 (38 chapitres créés en base, migration 029).** La Littérature a ses propres sessions : elle n'est pas couverte ici.
 
 ## Sources
 

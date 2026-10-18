@@ -1,0 +1,394 @@
+{
+  "matiere_id": 25,
+  "matiere": "Français",
+  "chapitre": "Nature des mots et classes grammaticales",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "S1",
+  "statut": "validé par l'utilisateur 2026-10-18",
+  "rejetees": [],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "F01-01",
+      "enonce": "Catégorie grammaticale à laquelle appartient un mot, quel que soit son emploi dans la phrase ?",
+      "choix": [
+        "La nature",
+        "La fonction",
+        "Le registre",
+        "Le sens"
+      ],
+      "bonne_reponse": "La nature",
+      "explication": "On l'appelle aussi classe grammaticale. Elle ne change pas : « difficile » reste un adjectif dans toutes les phrases.",
+      "niveau_complexite": "Facile",
+      "source": "Module D I (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F01-02",
+      "enonce": "Rôle joué par un mot ou un groupe de mots par rapport aux autres éléments de la phrase ?",
+      "choix": [
+        "La fonction",
+        "La nature",
+        "La conjugaison",
+        "L'accord"
+      ],
+      "bonne_reponse": "La fonction",
+      "explication": "Un même mot garde sa nature mais change de fonction : « travail » est sujet dans « Le travail avance » et COD dans « J'aime le travail ».",
+      "niveau_complexite": "Facile",
+      "source": "Module D I (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F01-03",
+      "enonce": "Entre « un travail difficile » et « ce travail est difficile », qu'est-ce qui change pour le mot « difficile » ?",
+      "choix": [
+        "Sa fonction",
+        "Sa nature",
+        "Son genre",
+        "Son sens"
+      ],
+      "bonne_reponse": "Sa fonction",
+      "explication": "Dans les deux phrases, « difficile » est un adjectif ; il est épithète dans la première et attribut du sujet dans la seconde.",
+      "niveau_complexite": "Moyen",
+      "source": "Module D I (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F01-11",
+      "enonce": "Catégorie de mots qui désignent soit une espèce d'êtres ou de choses, soit un individu particulier, et qui peuvent être sujets ou compléments ?",
+      "choix": [
+        "Le nom",
+        "Le verbe",
+        "L'adjectif",
+        "L'adverbe"
+      ],
+      "bonne_reponse": "Le nom",
+      "explication": "En grammaire, le nom se subdivise en noms communs et en noms propres.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : nom (sens 10, linguistique)"
+    },
+    {
+      "id": "F01-12",
+      "enonce": "Quel autre terme grammatical désigne le nom ?",
+      "choix": [
+        "Le substantif",
+        "Le déterminant",
+        "L'attribut",
+        "Le complément"
+      ],
+      "bonne_reponse": "Le substantif",
+      "explication": "« Substantif » est le synonyme savant de « nom » dans les grammaires.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : nom (sens 10, linguistique)"
+    },
+    {
+      "id": "F01-13",
+      "enonce": "Mot qui désigne une espèce, une catégorie d'êtres ou de choses, sans en distinguer un en particulier ?",
+      "choix": [
+        "Un nom commun",
+        "Un nom propre",
+        "Un nom collectif",
+        "Un nom abstrait"
+      ],
+      "bonne_reponse": "Un nom commun",
+      "explication": "Exemples : « école », « élève », « montagne ». Il s'écrit sans majuscule, sauf en début de phrase.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : nom (sens 10, linguistique)"
+    },
+    {
+      "id": "F01-14",
+      "enonce": "Mot qui désigne un individu particulier (personne, lieu, pays…) et prend une majuscule ?",
+      "choix": [
+        "Un nom propre",
+        "Un nom commun",
+        "Un nom collectif",
+        "Un nom concret"
+      ],
+      "bonne_reponse": "Un nom propre",
+      "explication": "Exemples : « Dessalines », « Jacmel », « Haïti ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : nom (sens 10, linguistique)"
+    },
+    {
+      "id": "F01-15",
+      "enonce": "Se dit d'un nom qui désigne ce que l'on peut percevoir par les sens ?",
+      "choix": [
+        "Concret",
+        "Abstrait",
+        "Collectif",
+        "Propre"
+      ],
+      "bonne_reponse": "Concret",
+      "explication": "Exemples : « table », « arbre », « mangue ». Son contraire est « abstrait ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : concret (sens 1)"
+    },
+    {
+      "id": "F01-16",
+      "enonce": "Se dit d'un nom qui désigne une notion que l'on ne peut ni voir ni toucher, comme la liberté ou la joie ?",
+      "choix": [
+        "Abstrait",
+        "Concret",
+        "Commun",
+        "Propre"
+      ],
+      "bonne_reponse": "Abstrait",
+      "explication": "Exemples : « courage », « amitié », « justice ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : abstrait (sens 1, adapté au nom)"
+    },
+    {
+      "id": "F01-17",
+      "enonce": "Nom qui, au singulier, désigne un ensemble d'êtres ou de choses de même espèce, comme « foule » ou « troupeau » ?",
+      "choix": [
+        "Un nom collectif",
+        "Un nom concret",
+        "Un nom propre",
+        "Un nom abstrait"
+      ],
+      "bonne_reponse": "Un nom collectif",
+      "explication": "Il est singulier par la forme, mais il évoque plusieurs êtres : « une foule ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : collectif (linguistique)"
+    },
+    {
+      "id": "F01-21",
+      "enonce": "Mot qui se place devant le nom pour l'introduire dans le discours et le préciser ?",
+      "choix": [
+        "Le déterminant",
+        "Le pronom",
+        "L'adjectif qualificatif",
+        "La préposition"
+      ],
+      "bonne_reponse": "Le déterminant",
+      "explication": "Les déterminants sont les articles et les adjectifs possessifs, démonstratifs, indéfinis et numéraux.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : déterminant (sens 2)"
+    },
+    {
+      "id": "F01-22",
+      "enonce": "Dans « la maison », quelle est la nature de « la » ?",
+      "choix": [
+        "Un article",
+        "Un pronom",
+        "Une préposition",
+        "Un adverbe"
+      ],
+      "bonne_reponse": "Un article",
+      "explication": "« La » introduit le nom « maison » : c'est un article défini, donc un déterminant.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : déterminant (sens 2)"
+    },
+    {
+      "id": "F01-23",
+      "enonce": "Dans « mes livres », quelle est la nature de « mes » ?",
+      "choix": [
+        "Un déterminant",
+        "Un pronom",
+        "Un adverbe",
+        "Un nom"
+      ],
+      "bonne_reponse": "Un déterminant",
+      "explication": "« Mes » est un déterminant possessif : il accompagne le nom « livres » et en indique le possesseur.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : déterminant (sens 2)"
+    },
+    {
+      "id": "F01-24",
+      "enonce": "Mot qui accompagne un nom et précise comment est l'être ou l'objet désigné ?",
+      "choix": [
+        "L'adjectif qualificatif",
+        "Le déterminant",
+        "L'adverbe",
+        "Le pronom"
+      ],
+      "bonne_reponse": "L'adjectif qualificatif",
+      "explication": "Dans « une mangue mûre », « mûre » précise la mangue : c'est un adjectif qualificatif.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : adjectif"
+    },
+    {
+      "id": "Q0287",
+      "enonce": "Mot qui remplace un terme déjà exprimé et occupe les mêmes fonctions que lui dans la phrase ?",
+      "choix": [
+        "Le pronom",
+        "Le déterminant",
+        "L'adverbe",
+        "L'adjectif"
+      ],
+      "bonne_reponse": "Le pronom",
+      "explication": "Dans « Marie dort, elle est fatiguée », « elle » remplace « Marie » et évite de la répéter.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q0287 (modifiée) — Larousse : pronom",
+      "ancien_enonce": "Quelle classe grammaticale désigne les mots qui remplacent un nom ou un groupe nominal ?"
+    },
+    {
+      "id": "F01-26",
+      "enonce": "Mot qui exprime une action, un état ou un changement, et qui se conjugue ?",
+      "choix": [
+        "Le verbe",
+        "Le nom",
+        "L'adverbe",
+        "L'adjectif"
+      ],
+      "bonne_reponse": "Le verbe",
+      "explication": "Le verbe varie en personne, en nombre, en temps et en mode : « je chante », « nous chanterons ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : verbe"
+    },
+    {
+      "id": "F01-31",
+      "enonce": "Se dit d'un mot qui ne change ni de genre, ni de nombre, ni de personne ?",
+      "choix": [
+        "Invariable",
+        "Variable",
+        "Composé",
+        "Dérivé"
+      ],
+      "bonne_reponse": "Invariable",
+      "explication": "Sont invariables les adverbes, les prépositions, les conjonctions et les interjections.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : invariable (sens 3)"
+    },
+    {
+      "id": "F01-32",
+      "enonce": "Mot invariable qui précise le sens d'un verbe ou d'un adjectif, par exemple pour dire comment, quand ou où ?",
+      "choix": [
+        "L'adverbe",
+        "L'adjectif",
+        "La préposition",
+        "La conjonction"
+      ],
+      "bonne_reponse": "L'adverbe",
+      "explication": "Dans « Il parle doucement », « doucement » dit comment il parle.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : adverbe"
+    },
+    {
+      "id": "Q0288",
+      "enonce": "Dans la phrase \"Il travaille sérieusement\", à quelle classe grammaticale appartient \"sérieusement\" ?",
+      "choix": [
+        "Adverbe",
+        "Adjectif qualificatif",
+        "Nom commun",
+        "Préposition"
+      ],
+      "bonne_reponse": "Adverbe",
+      "explication": "« Sérieusement » est un adverbe de manière : il précise comment il travaille et ne varie jamais.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q0288 (modifiée) — Larousse : adverbe",
+      "ancien_enonce": "Dans la phrase \"Il travaille sérieusement\", à quelle classe grammaticale appartient \"sérieusement\" ?"
+    },
+    {
+      "id": "F01-33",
+      "enonce": "Mot invariable qui introduit un complément et le relie à un autre mot de la phrase ?",
+      "choix": [
+        "La préposition",
+        "La conjonction",
+        "L'adverbe",
+        "L'interjection"
+      ],
+      "bonne_reponse": "La préposition",
+      "explication": "Exemples : « à », « de », « dans », « sur », « avec », « pour ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : préposition"
+    },
+    {
+      "id": "F01-34",
+      "enonce": "Lequel de ces mots est une préposition ?",
+      "choix": [
+        "« dans »",
+        "« mais »",
+        "« très »",
+        "« hélas »"
+      ],
+      "bonne_reponse": "« dans »",
+      "explication": "« Dans » relie un complément à un autre mot : « dans la cour ». « Mais » est une conjonction, « très » un adverbe, « hélas » une interjection.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : préposition"
+    },
+    {
+      "id": "F01-35",
+      "enonce": "Mot invariable qui relie deux mots ou deux propositions ?",
+      "choix": [
+        "La conjonction",
+        "La préposition",
+        "L'adverbe",
+        "L'interjection"
+      ],
+      "bonne_reponse": "La conjonction",
+      "explication": "On distingue la conjonction de coordination et la conjonction de subordination.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : conjonction (sens 3)"
+    },
+    {
+      "id": "F01-36",
+      "enonce": "Mot invariable qui relie des éléments de même fonction ou de même niveau ?",
+      "choix": [
+        "Une conjonction de coordination",
+        "Une conjonction de subordination",
+        "Une préposition",
+        "Une interjection"
+      ],
+      "bonne_reponse": "Une conjonction de coordination",
+      "explication": "Exemples : « mais », « ou », « et », « donc », « or », « ni », « car ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : conjonction (sens 3)"
+    },
+    {
+      "id": "F01-37",
+      "enonce": "Mot invariable qui rattache une proposition subordonnée à la proposition dont elle dépend ?",
+      "choix": [
+        "Une conjonction de subordination",
+        "Une conjonction de coordination",
+        "Une préposition",
+        "Une interjection"
+      ],
+      "bonne_reponse": "Une conjonction de subordination",
+      "explication": "Exemples : « que », « quand », « parce que », « si », « lorsque ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : conjonction (sens 3)"
+    },
+    {
+      "id": "F01-38",
+      "enonce": "Laquelle de ces conjonctions est une conjonction de coordination ?",
+      "choix": [
+        "« donc »",
+        "« parce que »",
+        "« quand »",
+        "« lorsque »"
+      ],
+      "bonne_reponse": "« donc »",
+      "explication": "Les conjonctions de coordination sont « mais, ou, et, donc, or, ni, car ». Les trois autres introduisent une subordonnée.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : conjonction (sens 3)"
+    },
+    {
+      "id": "F01-39",
+      "enonce": "Mot invariable, isolé, qui forme une phrase à lui seul et exprime le plus souvent une réaction affective vive ?",
+      "choix": [
+        "L'interjection",
+        "L'adverbe",
+        "La conjonction",
+        "La préposition"
+      ],
+      "bonne_reponse": "L'interjection",
+      "explication": "Exemples : « Aïe ! », « Bravo ! », « Hélas ! », « Zut ! ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : interjection"
+    },
+    {
+      "id": "F01-40",
+      "enonce": "Lequel de ces mots est une interjection ?",
+      "choix": [
+        "« Bravo ! »",
+        "« Parfois »",
+        "« Depuis »",
+        "« Quand »"
+      ],
+      "bonne_reponse": "« Bravo ! »",
+      "explication": "« Bravo ! » exprime un sentiment à lui seul. « Parfois » est un adverbe, « depuis » une préposition, « quand » une conjonction.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : interjection"
+    }
+  ]
+}
