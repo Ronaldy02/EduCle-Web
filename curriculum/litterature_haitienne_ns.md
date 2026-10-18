@@ -1,6 +1,6 @@
 # Littérature haïtienne (matière 23, composante de M06) — Secondaire NS1 à NS3
 
-> **Statut : proposition du 2026-10-18, en attente de validation par l'utilisateur.**
+> **Statut : plan validé par l'utilisateur le 2026-10-18** (points à trancher : Coicou en NS1, théâtre commun NS1+NS2, Laleau/Roumer/Brierre en NS3, chapitre Prix gardé ; **œuvres en créole incluses ici**). Prévoir un grand nombre de questions pour certains chapitres (couverture complète, sans cible fixe).
 > Pas de NS4 (la Littérature est remplacée par la Philosophie). La Littérature universelle (matière 20) a sa propre session.
 
 ## Sources
@@ -21,7 +21,7 @@
 - Progression validée : NS1 = débuts → École de 1836 → romantisme patriotique ; NS2 = La Ronde ; NS3 = indigénisme → XXe siècle → contemporain. **Jacques Roumain = NS3 ; Etzer Vilaire = NS2.**
 - Les 4 blocs (A notions, B périodes et mouvements, C auteurs, D œuvres) sont répartis : chaque chapitre « période » contient auteurs et œuvres ; les chapitres « auteur majeur » approfondissent ; les chapitres de notions et de prix regroupent le transversal.
 - Format « résumé → œuvre » : surtout pour les romans et pièces majeurs (*Stella*, *Mimola*, *Gouverneurs de la rosée*, *Compère Général Soleil*…).
-- **Littérature créole et patrimoine oral : dans le Kreyòl** (décision canonique). Ici, les œuvres écrites en créole (*Choucoune*, *Cric ? Crac !*, *Dézafi*, *Antigòn*, lodyans de Sixto…) ne sont questionnées **qu'une fois, dans le Kreyòl** (chapitres 18-19, 24-25) ; en Littérature haïtienne on pose seulement les questions sur l'auteur et ses œuvres en français.
+- **Œuvres en créole** (*Choucoune*, *Cric ? Crac !*, *Dézafi*, *Antigòn*, lodyans de Maurice Sixto…) : **incluses dans la Littérature haïtienne** (décision du 2026-10-18), du point de vue de l'histoire littéraire (auteur, date, genre, place dans le mouvement). Le Kreyòl les traite sous l'angle de la langue ; éviter seulement les doublons exacts d'énoncé.
 - 🔁 = chapitre commun à plusieurs niveaux (table `chapitre_niveaux`).
 - Dates et titres sont à vérifier un par un à la rédaction (les sources divergent, ex. fondation de *La Ronde* : 1895 selon Wikipédia, 1898 selon Larousse/Universalis).
 
@@ -68,10 +68,6 @@
 
 ---
 
-## Points à trancher
+## Décisions de l'utilisateur (2026-10-18)
 
-1. **Massillon Coicou** : placé en NS1 (romantisme patriotique, selon Wikipédia et Mostaganem) ou en NS2 (La Ronde, activité 1890-1908) ?
-2. **Œuvres en créole** (*Choucoune*, *Cric ? Crac !*, *Dézafi*, *Antigòn*…) : questionnées une seule fois, dans le Kreyòl (proposition) ; en Littérature, on garde l'auteur et ses œuvres en français.
-3. **Chapitre commun théâtre NS1 + NS2** (ch. 7) : à garder, ou à éclater dans les chapitres de période ?
-4. **NS2** : 5 chapitres (La Ronde est une période courte) ; faut-il ajouter les écrivains de l'entre-deux-guerres (Laleau, Roumer, Brierre) en NS2 plutôt qu'en NS3 ? (Proposition : NS3, comme l'indigénisme.)
-5. **Chapitre « Prix et distinctions »** (NS3 ch. 11) : à garder (bloc C du questionnaire) ?
+1. Massillon Coicou : **NS1**. 2. Œuvres en créole : **incluses en Littérature haïtienne** (réponse « non » à l'exclusion). 3. Théâtre commun NS1+NS2 : **gardé**. 4. Laleau, Roumer, Brierre : **NS3**. 5. Chapitre Prix et distinctions : **gardé**.
