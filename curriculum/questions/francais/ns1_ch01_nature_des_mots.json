@@ -389,6 +389,328 @@
       "explication": "« Bravo ! » exprime un sentiment à lui seul. « Parfois » est un adverbe, « depuis » une préposition, « quand » une conjonction.",
       "niveau_complexite": "Facile",
       "source": "Larousse : interjection"
+    },
+    {
+      "id": "F01-41",
+      "enonce": "Ensemble des règles qui président à la correction de la langue écrite ou parlée ?",
+      "choix": [
+        "La grammaire",
+        "Le lexique",
+        "La rhétorique",
+        "La versification"
+      ],
+      "bonne_reponse": "La grammaire",
+      "explication": "Elle comprend la morphologie (forme des mots) et la syntaxe (combinaison des mots en phrases).",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : grammaire (sens 1)"
+    },
+    {
+      "id": "F01-42",
+      "enonce": "Partie de la grammaire qui étudie la formation des mots et les variations de leurs terminaisons ?",
+      "choix": [
+        "La morphologie",
+        "La syntaxe",
+        "L'orthographe",
+        "La phonétique"
+      ],
+      "bonne_reponse": "La morphologie",
+      "explication": "Elle explique par exemple pourquoi « chanteur » devient « chanteuse » ou « chanter » devient « chantons ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : morphologie (sens 3)"
+    },
+    {
+      "id": "F01-43",
+      "enonce": "Partie de la grammaire qui décrit les règles de combinaison des mots en phrases ?",
+      "choix": [
+        "La syntaxe",
+        "La morphologie",
+        "La conjugaison",
+        "La ponctuation"
+      ],
+      "bonne_reponse": "La syntaxe",
+      "explication": "C'est elle qui étudie la fonction des mots : sujet, complément, attribut…",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : syntaxe (sens 1)"
+    },
+    {
+      "id": "F01-44",
+      "enonce": "Élément de la langue formé d'un ou de plusieurs sons, qui peut s'écrire isolément ?",
+      "choix": [
+        "Un mot",
+        "Une phrase",
+        "Une syllabe",
+        "Une lettre"
+      ],
+      "bonne_reponse": "Un mot",
+      "explication": "Chaque mot appartient à une classe grammaticale (sa nature).",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : mot (sens 1)"
+    },
+    {
+      "id": "F01-45",
+      "enonce": "Groupe de mots figé qui a la valeur grammaticale d'un mot unique ?",
+      "choix": [
+        "Une locution",
+        "Une proposition",
+        "Un groupe nominal",
+        "Une phrase"
+      ],
+      "bonne_reponse": "Une locution",
+      "explication": "On distingue les locutions verbales, nominales, adverbiales, prépositives et conjonctives.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : locution (sens 2)"
+    },
+    {
+      "id": "F01-46",
+      "enonce": "Quelle est la nature de la locution « tout de suite » ?",
+      "choix": [
+        "Locution adverbiale",
+        "Locution prépositive",
+        "Locution conjonctive",
+        "Locution verbale"
+      ],
+      "bonne_reponse": "Locution adverbiale",
+      "explication": "« Tout de suite » équivaut à l'adverbe « immédiatement ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : locution (sens 2)"
+    },
+    {
+      "id": "F01-47",
+      "enonce": "Quelle est la nature de la locution « au-dessus de » ?",
+      "choix": [
+        "Locution prépositive",
+        "Locution adverbiale",
+        "Locution conjonctive",
+        "Locution verbale"
+      ],
+      "bonne_reponse": "Locution prépositive",
+      "explication": "Elle joue le rôle d'une préposition : « au-dessus de la table ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : locution (sens 2)"
+    },
+    {
+      "id": "F01-48",
+      "enonce": "Quelle est la nature de la locution « pour que » ?",
+      "choix": [
+        "Locution conjonctive",
+        "Locution prépositive",
+        "Locution adverbiale",
+        "Locution verbale"
+      ],
+      "bonne_reponse": "Locution conjonctive",
+      "explication": "Elle joue le rôle d'une conjonction de subordination et introduit une subordonnée.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : locution (sens 2)"
+    },
+    {
+      "id": "F01-49",
+      "enonce": "Quelle est la nature de la locution « faire grâce » ?",
+      "choix": [
+        "Locution verbale",
+        "Locution adverbiale",
+        "Locution prépositive",
+        "Locution conjonctive"
+      ],
+      "bonne_reponse": "Locution verbale",
+      "explication": "Elle équivaut à un seul verbe : « gracier ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : locution (sens 2)"
+    },
+    {
+      "id": "F01-50",
+      "enonce": "Quelles classes de mots sont toutes variables ?",
+      "choix": [
+        "Nom, adjectif, verbe",
+        "Nom, adverbe, verbe",
+        "Nom, préposition, adjectif",
+        "Verbe, conjonction, adjectif"
+      ],
+      "bonne_reponse": "Nom, adjectif, verbe",
+      "explication": "Sont variables le nom, le déterminant, l'adjectif, le pronom et le verbe.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : variable (sens 7)"
+    },
+    {
+      "id": "F01-51",
+      "enonce": "Quelles classes de mots sont toutes invariables ?",
+      "choix": [
+        "Adverbe, préposition, conjonction, interjection",
+        "Adverbe, pronom, préposition, interjection",
+        "Nom, préposition, conjonction, interjection",
+        "Adverbe, préposition, déterminant, interjection"
+      ],
+      "bonne_reponse": "Adverbe, préposition, conjonction, interjection",
+      "explication": "Ces quatre classes ne varient ni en genre, ni en nombre, ni en personne.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : invariable (sens 3)"
+    },
+    {
+      "id": "F01-52",
+      "enonce": "Emploi comme nom d'un mot qui n'est pas un nom à l'origine, comme « bleu » dans « le bleu du ciel » ?",
+      "choix": [
+        "La substantivation",
+        "La dérivation",
+        "La conjugaison",
+        "L'élision"
+      ],
+      "bonne_reponse": "La substantivation",
+      "explication": "Un adjectif, un verbe ou un adverbe peut devenir nom quand un déterminant le précède.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : substantivation"
+    },
+    {
+      "id": "F01-53",
+      "enonce": "Dans « le bleu du ciel », quelle est la nature de « bleu » ?",
+      "choix": [
+        "Un nom",
+        "Un adjectif",
+        "Un adverbe",
+        "Un verbe"
+      ],
+      "bonne_reponse": "Un nom",
+      "explication": "Précédé de l'article « le », « bleu » est substantivé : c'est un nom, alors qu'il est adjectif dans « un ciel bleu ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : substantivation"
+    },
+    {
+      "id": "F01-54",
+      "enonce": "Dans « Il parle fort », quelle est la nature de « fort » ?",
+      "choix": [
+        "Un adverbe",
+        "Un adjectif",
+        "Un nom",
+        "Un verbe"
+      ],
+      "bonne_reponse": "Un adverbe",
+      "explication": "« Fort » modifie le verbe « parle » : c'est un adverbe invariable. Il est adjectif dans « un homme fort ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : adverbe"
+    },
+    {
+      "id": "F01-55",
+      "enonce": "Dans « Elle livre le colis », quelle est la nature de « livre » ?",
+      "choix": [
+        "Un verbe",
+        "Un nom",
+        "Un adjectif",
+        "Un pronom"
+      ],
+      "bonne_reponse": "Un verbe",
+      "explication": "« Livre » est ici le verbe livrer. C'est un nom dans « un livre ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : verbe"
+    },
+    {
+      "id": "F01-56",
+      "enonce": "Dans « Je le vois », quelle est la nature de « le » ?",
+      "choix": [
+        "Un pronom",
+        "Un article",
+        "Une préposition",
+        "Un adverbe"
+      ],
+      "bonne_reponse": "Un pronom",
+      "explication": "Placé devant le verbe, « le » remplace un nom : c'est un pronom. Devant un nom (« le livre »), c'est un article.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : pronom"
+    },
+    {
+      "id": "F01-57",
+      "enonce": "Quel test permet de reconnaître un nom ?",
+      "choix": [
+        "Il peut être précédé d'un déterminant",
+        "Il se conjugue",
+        "Il reste toujours invariable",
+        "Il introduit un complément"
+      ],
+      "bonne_reponse": "Il peut être précédé d'un déterminant",
+      "explication": "On peut dire « un livre », « la liberté », « mon ami » : un déterminant précède le nom.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : nom (sens 10, linguistique)"
+    },
+    {
+      "id": "F01-58",
+      "enonce": "Quel test permet de reconnaître un adjectif qualificatif ?",
+      "choix": [
+        "Il s'accorde avec le nom",
+        "Il se conjugue",
+        "Il reste toujours invariable",
+        "Il introduit un complément"
+      ],
+      "bonne_reponse": "Il s'accorde avec le nom",
+      "explication": "On dit « une fille grande », « des filles grandes » : l'adjectif change avec le nom qu'il accompagne.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : adjectif"
+    },
+    {
+      "id": "F01-59",
+      "enonce": "Quel type d'adverbe indique le moment où se passe l'action ?",
+      "choix": [
+        "Adverbe de temps",
+        "Adverbe de lieu",
+        "Adverbe de manière",
+        "Adverbe de quantité"
+      ],
+      "bonne_reponse": "Adverbe de temps",
+      "explication": "Exemples : « hier », « demain », « souvent », « aujourd'hui ».",
+      "niveau_complexite": "Moyen",
+      "source": "Classification traditionnelle des adverbes (programme ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F01-60",
+      "enonce": "Quel type d'adverbe indique l'endroit où se passe l'action ?",
+      "choix": [
+        "Adverbe de lieu",
+        "Adverbe de temps",
+        "Adverbe de manière",
+        "Adverbe de quantité"
+      ],
+      "bonne_reponse": "Adverbe de lieu",
+      "explication": "Exemples : « ici », « là », « partout », « dehors ».",
+      "niveau_complexite": "Moyen",
+      "source": "Classification traditionnelle des adverbes (programme ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F01-61",
+      "enonce": "Quel type d'adverbe indique comment se fait l'action ?",
+      "choix": [
+        "Adverbe de manière",
+        "Adverbe de lieu",
+        "Adverbe de temps",
+        "Adverbe de quantité"
+      ],
+      "bonne_reponse": "Adverbe de manière",
+      "explication": "Beaucoup se terminent en -ment : « lentement », « doucement ». Autres : « bien », « mal ».",
+      "niveau_complexite": "Moyen",
+      "source": "Classification traditionnelle des adverbes (programme ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F01-62",
+      "enonce": "Quel type d'adverbe indique la quantité ou l'intensité ?",
+      "choix": [
+        "Adverbe de quantité",
+        "Adverbe de manière",
+        "Adverbe de temps",
+        "Adverbe de lieu"
+      ],
+      "bonne_reponse": "Adverbe de quantité",
+      "explication": "Exemples : « très », « beaucoup », « trop », « peu », « assez ».",
+      "niveau_complexite": "Moyen",
+      "source": "Classification traditionnelle des adverbes (programme ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F01-63",
+      "enonce": "Quel type d'adverbe sert à nier ce qu'exprime le verbe, comme « ne… pas » ?",
+      "choix": [
+        "Adverbe de négation",
+        "Adverbe d'affirmation",
+        "Adverbe de doute",
+        "Adverbe de lieu"
+      ],
+      "bonne_reponse": "Adverbe de négation",
+      "explication": "Exemples : « ne… pas », « ne… jamais », « ne… plus ». L'adverbe d'affirmation, lui, dit oui : « oui », « certes ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : adverbe (affirmer, nier, interroger)"
     }
   ]
 }
