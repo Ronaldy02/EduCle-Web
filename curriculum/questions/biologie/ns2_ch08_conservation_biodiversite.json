@@ -1,0 +1,648 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Conservation de la biodiversité",
+  "niveaux": [
+    "NS2"
+  ],
+  "unite_programme": "2.6",
+  "statut": "validé par l'utilisateur 2026-10-18",
+  "rejetees": [
+    "B19-07"
+  ],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "B19-01",
+      "enonce": "Action de maintenir quelque chose intact, dans le même état, à l'abri de la destruction.",
+      "choix": [
+        "La conservation",
+        "La restauration",
+        "L'exploitation",
+        "L'adaptation"
+      ],
+      "bonne_reponse": "La conservation",
+      "explication": "En biologie, on parle de conservation de la biodiversité : protéger les espèces et leurs milieux.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : conservation (sens 1)"
+    },
+    {
+      "id": "Q1720",
+      "enonce": "Science qui étudie la biodiversité et cherche à la protéger de la disparition.",
+      "choix": [
+        "La biologie de la conservation",
+        "La biologie moléculaire",
+        "La biologie marine",
+        "La génétique des populations"
+      ],
+      "bonne_reponse": "La biologie de la conservation",
+      "explication": "Elle combine écologie, génétique, sociologie et politique. Ses outils : aires protégées, corridors écologiques, élevages ex situ, banques de gènes.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1720 (modifiée) — Programme 2.6 (pas de définition au Larousse en ligne)",
+      "ancien_enonce": "Quel est le but de la biologie de la conservation ?"
+    },
+    {
+      "id": "B19-03",
+      "enonce": "Espèce dont les effectifs diminuent au point qu'elle risque de disparaître.",
+      "choix": [
+        "Une espèce menacée",
+        "Une espèce endémique",
+        "Une espèce invasive",
+        "Une espèce domestique"
+      ],
+      "bonne_reponse": "Une espèce menacée",
+      "explication": "On dit aussi espèce en danger. Une espèce peut être à la fois endémique et menacée.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.6 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B19-04",
+      "enonce": "Inventaire mondial qui classe les espèces selon leur risque de disparition.",
+      "choix": [
+        "La Liste rouge",
+        "La Liste blanche",
+        "La Liste noire",
+        "La Liste grise"
+      ],
+      "bonne_reponse": "La Liste rouge",
+      "explication": "C'est la Liste rouge des espèces menacées, mise à jour régulièrement.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.6 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B19-05",
+      "enonce": "Quelle organisation internationale publie la Liste rouge des espèces menacées ?",
+      "choix": [
+        "L'UICN",
+        "L'OMS",
+        "La FAO",
+        "L'UNESCO"
+      ],
+      "bonne_reponse": "L'UICN",
+      "explication": "L'Union internationale pour la conservation de la nature a été fondée en 1948. Son siège est à Gland, en Suisse.",
+      "niveau_complexite": "Moyen",
+      "source": "UICN (Liste rouge)"
+    },
+    {
+      "id": "B19-06",
+      "enonce": "Parmi les espèces menacées de la Liste rouge, quelle catégorie est la plus proche de l'extinction ?",
+      "choix": [
+        "En danger critique",
+        "Vulnérable",
+        "En danger",
+        "Quasi menacée"
+      ],
+      "bonne_reponse": "En danger critique",
+      "explication": "Les trois catégories « menacées » sont, par ordre croissant de gravité : vulnérable, en danger, en danger critique.",
+      "niveau_complexite": "Difficile",
+      "source": "UICN (catégories de la Liste rouge)"
+    },
+    {
+      "id": "B19-08",
+      "enonce": "Quel mammifère insectivore nocturne à long museau, rare et menacé, ne vit qu'en Hispaniola ?",
+      "choix": [
+        "Le solénodon",
+        "Le lamantin",
+        "La mangouste",
+        "Le hutia"
+      ],
+      "bonne_reponse": "Le solénodon",
+      "explication": "Sa salive est venimeuse. Les chiens, les chats et les mangoustes introduits le menacent, avec la perte de ses forêts.",
+      "niveau_complexite": "Moyen",
+      "source": "Espèces menacées d'Haïti (UICN)"
+    },
+    {
+      "id": "B19-09",
+      "enonce": "Mammifère aquatique strictement herbivore des rivages de l'Atlantique tropical, chassé pour sa chair.",
+      "choix": [
+        "Le lamantin",
+        "Le dauphin",
+        "Le phoque",
+        "Le morse"
+      ],
+      "bonne_reponse": "Le lamantin",
+      "explication": "Le lamantin est menacé par la chasse, les filets de pêche et les collisions avec les bateaux.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : lamantin"
+    },
+    {
+      "id": "B19-11",
+      "enonce": "Action de supprimer les arbres d'un terrain (défrichement, exploitation abusive, incendie).",
+      "choix": [
+        "Le déboisement",
+        "Le reboisement",
+        "Le drainage",
+        "Le labour"
+      ],
+      "bonne_reponse": "Le déboisement",
+      "explication": "Synonyme : déforestation. Il prive de nombreuses espèces de leur habitat.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : déboisement"
+    },
+    {
+      "id": "B19-12",
+      "enonce": "Quelle source d'énergie domestique accélère le déboisement en Haïti ?",
+      "choix": [
+        "Le charbon de bois",
+        "Le gaz propane",
+        "L'énergie solaire",
+        "Le kérosène"
+      ],
+      "bonne_reponse": "Le charbon de bois",
+      "explication": "La majorité des ménages cuisinent au charbon de bois, produit en coupant des arbres.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.6 (déboisement en Haïti)"
+    },
+    {
+      "id": "B19-13",
+      "enonce": "Creusement de profondes rigoles par les eaux de pluie sur des pentes dénudées.",
+      "choix": [
+        "Le ravinement",
+        "La sédimentation",
+        "La salinisation",
+        "Le tassement"
+      ],
+      "bonne_reponse": "Le ravinement",
+      "explication": "Sur les pentes déboisées, il emporte la terre fertile et accélère l'érosion.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : ravinement"
+    },
+    {
+      "id": "B19-14",
+      "enonce": "Évolution d'une zone semi-aride vers l'aridité complète d'un désert.",
+      "choix": [
+        "La désertification",
+        "La salinisation",
+        "L'acidification",
+        "La sédimentation"
+      ],
+      "bonne_reponse": "La désertification",
+      "explication": "Elle résulte du climat sec, du surpâturage et du déboisement.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : désertification (sens 1)"
+    },
+    {
+      "id": "B19-15",
+      "enonce": "Prélèvement de ressources naturelles plus rapide que leur renouvellement.",
+      "choix": [
+        "La surexploitation",
+        "La surproduction",
+        "La surpopulation",
+        "La suradaptation"
+      ],
+      "bonne_reponse": "La surexploitation",
+      "explication": "La pêche excessive de poissons ou de lambis en est un exemple.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : surexploitation (exploitation excessive), reformulé"
+    },
+    {
+      "id": "B19-16",
+      "enonce": "Consommation excessive de la végétation d'un terrain par le bétail.",
+      "choix": [
+        "Le surpâturage",
+        "Le défrichement",
+        "Le brûlis",
+        "L'assolement"
+      ],
+      "bonne_reponse": "Le surpâturage",
+      "explication": "Il dégrade les sols et favorise l'érosion et la désertification.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : surpâturage"
+    },
+    {
+      "id": "B19-17",
+      "enonce": "Fait de chasser ou de pêcher en violation des lois et règlements.",
+      "choix": [
+        "Le braconnage",
+        "Le pillage",
+        "Le piégeage",
+        "La cueillette"
+      ],
+      "bonne_reponse": "Le braconnage",
+      "explication": "Il touche surtout les espèces rares et protégées.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : braconner"
+    },
+    {
+      "id": "B19-18",
+      "enonce": "Matière rejetée parce qu'elle n'a plus de valeur immédiate.",
+      "choix": [
+        "Un déchet",
+        "Un intrant",
+        "Un polluant",
+        "Un nutriment"
+      ],
+      "bonne_reponse": "Un déchet",
+      "explication": "Les déchets mal gérés polluent les sols, les rivières et la mer.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : déchet (sens 2)"
+    },
+    {
+      "id": "B19-21",
+      "enonce": "Protection des espèces directement dans leur milieu naturel.",
+      "choix": [
+        "La conservation in situ",
+        "La conservation ex situ",
+        "La reproduction assistée",
+        "La domestication"
+      ],
+      "bonne_reponse": "La conservation in situ",
+      "explication": "Les parcs nationaux et les réserves en sont des exemples.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : in situ (« dans le lieu précis où se trouve… »)"
+    },
+    {
+      "id": "B19-22",
+      "enonce": "Protection des espèces en dehors de leur milieu naturel.",
+      "choix": [
+        "La conservation ex situ",
+        "La conservation in situ",
+        "La réintroduction",
+        "La mise en jachère"
+      ],
+      "bonne_reponse": "La conservation ex situ",
+      "explication": "Elle passe par les zoos, les jardins botaniques et les banques de graines.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : ex situ"
+    },
+    {
+      "id": "B19-23",
+      "enonce": "Zone délimitée, reconnue et gérée par la loi pour protéger la nature.",
+      "choix": [
+        "Une aire protégée",
+        "Une zone franche",
+        "Une zone portuaire",
+        "Un périmètre irrigué"
+      ],
+      "bonne_reponse": "Une aire protégée",
+      "explication": "Parcs nationaux et réserves naturelles sont des aires protégées.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.6 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B19-24",
+      "enonce": "Vaste espace naturel protégé par l'État, dont l'accès du public est contrôlé.",
+      "choix": [
+        "Un parc national",
+        "Un jardin public",
+        "Un champ de culture",
+        "Un verger"
+      ],
+      "bonne_reponse": "Un parc national",
+      "explication": "En Haïti, La Visite et Macaya sont deux parcs nationaux de montagne.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.6 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B19-25",
+      "enonce": "Dans quel massif haïtien se trouve le parc national Macaya ?",
+      "choix": [
+        "Le massif de la Hotte",
+        "Le massif de la Selle",
+        "Le massif du Nord",
+        "Les Montagnes Noires"
+      ],
+      "bonne_reponse": "Le massif de la Hotte",
+      "explication": "Sa forêt humide abrite de nombreuses espèces qu'on ne trouve nulle part ailleurs.",
+      "niveau_complexite": "Moyen",
+      "source": "Aires protégées d'Haïti"
+    },
+    {
+      "id": "B19-26",
+      "enonce": "Quel parc naturel protège les mangroves et les récifs côtiers du nord-est, près de Fort-Liberté ?",
+      "choix": [
+        "Le parc des Trois Baies",
+        "Le parc La Visite",
+        "Le parc Macaya",
+        "Le parc Forêt-des-Pins"
+      ],
+      "bonne_reponse": "Le parc des Trois Baies",
+      "explication": "C'est une aire protégée côtière et marine, à la différence des parcs de forêt de montagne.",
+      "niveau_complexite": "Moyen",
+      "source": "Aires protégées d'Haïti"
+    },
+    {
+      "id": "B19-27",
+      "enonce": "Passage naturel qui relie des habitats isolés et permet aux animaux de se déplacer entre eux.",
+      "choix": [
+        "Un corridor écologique",
+        "Une zone tampon",
+        "Un couloir aérien",
+        "Un réseau trophique"
+      ],
+      "bonne_reponse": "Un corridor écologique",
+      "explication": "Les corridors évitent l'isolement des populations et limitent la perte de diversité génétique.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.6 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B19-28",
+      "enonce": "Établissement qui stocke des graines pour préserver les variétés de plantes.",
+      "choix": [
+        "Une banque de graines",
+        "Un jardin potager",
+        "Une serre",
+        "Un herbier"
+      ],
+      "bonne_reponse": "Une banque de graines",
+      "explication": "C'est une forme de conservation ex situ, utile en cas de disparition des plantes dans la nature.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.6 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B19-29",
+      "enonce": "Établissement qui cultive et étudie des plantes variées, souvent rares ou menacées.",
+      "choix": [
+        "Un jardin botanique",
+        "Un verger",
+        "Un parc public",
+        "Une pépinière"
+      ],
+      "bonne_reponse": "Un jardin botanique",
+      "explication": "Il joue un rôle dans la conservation ex situ, l'éducation et la recherche.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : jardin ; Programme 2.6 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B19-30",
+      "enonce": "Établissement où des animaux sauvages sont élevés et présentés au public.",
+      "choix": [
+        "Un jardin zoologique",
+        "Une réserve naturelle",
+        "Une ferme d'élevage",
+        "Un aquarium"
+      ],
+      "bonne_reponse": "Un jardin zoologique",
+      "explication": "Certains jardins zoologiques élèvent des espèces menacées pour les relâcher ensuite dans la nature.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : zoo (abréviation de jardin zoologique)"
+    },
+    {
+      "id": "B19-31",
+      "enonce": "Fait de relâcher dans une zone où elle a disparu une espèce élevée en captivité.",
+      "choix": [
+        "La réintroduction",
+        "La domestication",
+        "La migration",
+        "La pollinisation"
+      ],
+      "bonne_reponse": "La réintroduction",
+      "explication": "Elle ne réussit que si les causes de la disparition ont été supprimées.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : réintroduction, précisé"
+    },
+    {
+      "id": "B19-32",
+      "enonce": "Ensemble des actions qui aident un écosystème dégradé à retrouver son état d'origine.",
+      "choix": [
+        "La restauration écologique",
+        "La colonisation",
+        "La domestication",
+        "La fragmentation"
+      ],
+      "bonne_reponse": "La restauration écologique",
+      "explication": "Exemples : replanter des arbres, rétablir des mangroves, nettoyer des rivières.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.6 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "Q1719",
+      "enonce": "Technique qui utilise des êtres vivants (plantes, bactéries, champignons) pour dépolluer un milieu abîmé.",
+      "choix": [
+        "La biorestauration",
+        "L'incinération des déchets",
+        "La stérilisation",
+        "La désalinisation"
+      ],
+      "bonne_reponse": "La biorestauration",
+      "explication": "Elle comprend la phytoremédiation (plantes) et la remédiation bactérienne. C'est une alternative économique aux méthodes physico-chimiques.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1719 (modifiée) — Programme 2.6 (pas de définition au Larousse en ligne)",
+      "ancien_enonce": "Qu'est-ce que la biorestauration ?"
+    },
+    {
+      "id": "B19-34",
+      "enonce": "Plantation d'arbres sur un terrain nu ou sur un sol anciennement boisé.",
+      "choix": [
+        "Le reboisement",
+        "Le défrichement",
+        "Le labour",
+        "Le drainage"
+      ],
+      "bonne_reponse": "Le reboisement",
+      "explication": "Synonyme : reforestation. Il protège les sols de l'érosion et rétablit des habitats.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : reboisement"
+    },
+    {
+      "id": "B19-35",
+      "enonce": "Terrain où l'on élève de jeunes arbres destinés à être replantés.",
+      "choix": [
+        "Une pépinière",
+        "Un verger",
+        "Un herbier",
+        "Une jachère"
+      ],
+      "bonne_reponse": "Une pépinière",
+      "explication": "Les projets de reboisement s'appuient sur des pépinières d'arbres forestiers et fruitiers.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : pépinière"
+    },
+    {
+      "id": "B19-41",
+      "enonce": "Façon de vivre et de produire qui répond aux besoins du présent sans compromettre ceux des générations futures.",
+      "choix": [
+        "Le développement durable",
+        "Le progrès économique",
+        "Le progrès technique",
+        "L'économie circulaire"
+      ],
+      "bonne_reponse": "Le développement durable",
+      "explication": "Cette définition vient du rapport Brundtland (1987).",
+      "niveau_complexite": "Moyen",
+      "source": "Rapport Brundtland (1987) ; Larousse : durable (sens 2)"
+    },
+    {
+      "id": "B19-42",
+      "enonce": "Énergie issue du soleil, du vent, des marées ou de la biomasse.",
+      "choix": [
+        "Une énergie renouvelable",
+        "Une énergie fossile",
+        "Une énergie nucléaire",
+        "Une énergie chimique"
+      ],
+      "bonne_reponse": "Une énergie renouvelable",
+      "explication": "Elle ne s'épuise pas à l'échelle humaine et pollue peu.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : renouvelable (sens 3)"
+    },
+    {
+      "id": "B19-43",
+      "enonce": "Ensemble des techniques qui permettent de créer et d'exploiter rationnellement les forêts en assurant leur renouvellement.",
+      "choix": [
+        "La sylviculture",
+        "L'horticulture",
+        "L'arboriculture fruitière",
+        "La viticulture"
+      ],
+      "bonne_reponse": "La sylviculture",
+      "explication": "Elle repose sur des coupes limitées et des replantations.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : sylviculture"
+    },
+    {
+      "id": "B19-44",
+      "enonce": "Production d'organismes aquatiques (poissons, crustacés, algues) dans des conditions contrôlées par l'homme.",
+      "choix": [
+        "L'aquaculture",
+        "La pêche artisanale",
+        "La chasse sous-marine",
+        "Le dragage"
+      ],
+      "bonne_reponse": "L'aquaculture",
+      "explication": "Elle réduit la pression de la pêche sur les populations sauvages.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : aquaculture"
+    },
+    {
+      "id": "B19-45",
+      "enonce": "Élevage de poissons.",
+      "choix": [
+        "La pisciculture",
+        "L'apiculture",
+        "L'aviculture",
+        "L'ostréiculture"
+      ],
+      "bonne_reponse": "La pisciculture",
+      "explication": "En Haïti, on élève par exemple le tilapia dans des bassins.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : pisciculture"
+    },
+    {
+      "id": "B19-46",
+      "enonce": "Nombre maximal de prises autorisé pour une espèce pêchée ou chassée.",
+      "choix": [
+        "Un quota",
+        "Une cotisation",
+        "Un permis",
+        "Un moratoire"
+      ],
+      "bonne_reponse": "Un quota",
+      "explication": "Fixer des quotas évite la surexploitation d'une espèce.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : quota (sens 1), précisé"
+    },
+    {
+      "id": "B19-47",
+      "enonce": "Forme de voyage axée sur la découverte de la nature, dans le respect du milieu et des habitants.",
+      "choix": [
+        "L'écotourisme",
+        "Le tourisme balnéaire",
+        "Le tourisme d'affaires",
+        "Le tourisme de masse"
+      ],
+      "bonne_reponse": "L'écotourisme",
+      "explication": "Synonyme : tourisme vert. Il finance parfois la protection des aires naturelles.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : écotourisme"
+    },
+    {
+      "id": "B19-48",
+      "enonce": "Ensemble des opérations qui permettent de réutiliser des déchets en les réintroduisant dans le cycle de production.",
+      "choix": [
+        "Le recyclage",
+        "L'incinération",
+        "L'enfouissement",
+        "Le compostage"
+      ],
+      "bonne_reponse": "Le recyclage",
+      "explication": "Il économise des matières premières et réduit les déchets.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : recyclage (sens 2)"
+    },
+    {
+      "id": "B19-49",
+      "enonce": "Se dit d'un produit que des bactéries décomposent rapidement et font disparaître de l'environnement.",
+      "choix": [
+        "Biodégradable",
+        "Recyclable",
+        "Renouvelable",
+        "Réutilisable"
+      ],
+      "bonne_reponse": "Biodégradable",
+      "explication": "Les épluchures sont biodégradables ; la plupart des plastiques ne le sont pas.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : biodégradable"
+    },
+    {
+      "id": "B19-50",
+      "enonce": "Matière riche en humus obtenue par fermentation de déchets organiques, utilisée pour enrichir le sol.",
+      "choix": [
+        "Le compost",
+        "Le lisier",
+        "Le goudron",
+        "Le sable"
+      ],
+      "bonne_reponse": "Le compost",
+      "explication": "Faire du compost avec les déchets de cuisine et de jardin réduit les ordures et fertilise le sol.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : compost / compostage"
+    },
+    {
+      "id": "B19-51",
+      "enonce": "Quels sont les trois gestes de la gestion durable des déchets (règle des 3 R) ?",
+      "choix": [
+        "Réduire, réutiliser, recycler",
+        "Récolter, recycler, rejeter",
+        "Réduire, récupérer, rejeter",
+        "Recycler, réparer, remplacer"
+      ],
+      "bonne_reponse": "Réduire, réutiliser, recycler",
+      "explication": "L'ordre compte : on réduit d'abord les déchets, puis on réutilise, enfin on recycle.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 2.6 (gestion des déchets)"
+    },
+    {
+      "id": "B19-61",
+      "enonce": "Quel sommet mondial de 1992 a ouvert à la signature la Convention sur la diversité biologique ?",
+      "choix": [
+        "Le Sommet de Rio",
+        "Le Sommet de Kyoto",
+        "La conférence de Paris",
+        "Le Sommet de Stockholm"
+      ],
+      "bonne_reponse": "Le Sommet de Rio",
+      "explication": "Aussi appelé Sommet de la Terre, il s'est tenu à Rio de Janeiro, au Brésil.",
+      "niveau_complexite": "Moyen",
+      "source": "Convention sur la diversité biologique (1992)"
+    },
+    {
+      "id": "B19-62",
+      "enonce": "Quel accord international encadre le commerce des espèces sauvages menacées ?",
+      "choix": [
+        "La CITES",
+        "Le protocole de Kyoto",
+        "La convention de Ramsar",
+        "L'accord de Paris"
+      ],
+      "bonne_reponse": "La CITES",
+      "explication": "Signée à Washington en 1973, elle limite le commerce d'animaux et de plantes rares.",
+      "niveau_complexite": "Moyen",
+      "source": "CITES (Convention de Washington, 1973)"
+    },
+    {
+      "id": "B19-63",
+      "enonce": "Quelle convention internationale, signée en 1971, protège les zones humides ?",
+      "choix": [
+        "La convention de Ramsar",
+        "La CITES",
+        "Le protocole de Montréal",
+        "L'accord de Paris"
+      ],
+      "bonne_reponse": "La convention de Ramsar",
+      "explication": "Elle porte le nom de la ville iranienne où elle a été adoptée.",
+      "niveau_complexite": "Moyen",
+      "source": "Convention de Ramsar (1971)"
+    }
+  ]
+}
