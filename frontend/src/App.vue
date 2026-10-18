@@ -47,7 +47,7 @@
           <span class="material-symbols-outlined">task_alt</span> Tâches
         </router-link>
         <router-link to="/defis" class="nav-link" :class="{ active: ['defis','realisations'].includes($route.name) }" @click="sidebarOuvert = false">
-          <span class="material-symbols-outlined">military_tech</span> Défis &amp; Réalisations
+          <span class="material-symbols-outlined">military_tech</span> Défis
         </router-link>
         <router-link to="/proposer" class="nav-link" :class="{ active: $route.name === 'proposer' }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">add_circle</span> Proposer

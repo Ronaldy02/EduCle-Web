@@ -4,7 +4,7 @@
 
       <!-- En-tête -->
       <div class="defis-header">
-        <h1 class="defis-titre">🎯 Défis &amp; Réalisations</h1>
+        <h1 class="defis-titre">🎯 Défis</h1>
         <p class="defis-sous">Relève des défis quotidiens, hebdomadaires et mensuels, et débloque des réalisations.</p>
       </div>
 
@@ -92,7 +92,7 @@ const TABS = [
   { key: 'quotidiens', emoji: '🌅', label: 'Quotidiens' },
   { key: 'hebdo',      emoji: '📅', label: 'Hebdo' },
   { key: 'mensuel',    emoji: '📆', label: 'Mensuel' },
-  { key: 'realisations', emoji: '🏆', label: 'Réalisations' },
+  { key: 'realisations', emoji: '🏆', label: 'Réalisation' },
 ]
 
 const GROUPES = [
