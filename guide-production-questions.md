@@ -239,3 +239,23 @@ Puis passer au chapitre suivant.
 **Questions de base pas encore placées :**
 - Une quarantaine sur la cellule et la division cellulaire : Q1522–Q1546 et Q1621–Q1648. Il reste à vérifier si elles avaient été écartées volontairement en NS1 ch.5–7.
 - Q1606 et Q1705, sur la classification.
+
+---
+
+## 6. Travailler quand l'utilisateur est absent (économie de crédits)
+
+**Consigne du 2026-10-18 :** seules 4 matières sont actives (Biologie, Littérature haïtienne, Physique, Français), et jamais plus de 4 sessions en même temps. Les autres matières sont en suspens.
+
+Le widget de validation exige l'utilisateur, mais la préparation n'en a pas besoin. En son absence, une session **prépare plusieurs chapitres à l'avance** au lieu d'attendre :
+1. Elle construit les chapitres suivants avec `chapitre.py` et laisse dans le dossier de travail `chNN_Q.json` et `chNN_widget.html`.
+2. Elle écrit un fichier `curriculum/questions/<matiere>/A_VALIDER.md`, qui liste les chapitres prêts, avec leur nombre de questions et les points à signaler.
+3. **Elle n'importe jamais rien en base avant la validation** : pas de migration, pas de `statut: validé`.
+4. Elle s'arrête quand 3 chapitres sont en attente. Elle ne devance pas davantage : si l'utilisateur rejette beaucoup de questions, tout le travail d'avance serait perdu.
+5. À son retour, l'utilisateur voit les widgets l'un après l'autre. Après chaque validation, la session enregistre, simule et applique la migration, puis passe au chapitre suivant déjà préparé.
+
+**Pour ne pas gaspiller les crédits :**
+- Ne pas relire en entier les gros fichiers déjà lus ; chercher avec grep ou lire des extraits.
+- Ne pas ré-afficher un widget déjà affiché.
+- Pas de recherche web inutile : une fois le plan des chapitres validé, la recherche de manuels n'est plus nécessaire.
+- Une session sans rien à faire (en attente de validation, travail d'avance terminé) **s'arrête** au lieu de boucler ou d'interroger les autres sessions.
+- Pas de messages entre sessions pour de simples accusés de réception.
