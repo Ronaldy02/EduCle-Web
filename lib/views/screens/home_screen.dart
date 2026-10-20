@@ -15,6 +15,7 @@ import 'quiz_screen.dart';
 import 'reglages_screen.dart';
 import '../../services/defis_service.dart';
 import 'defis_screen.dart';
+import 'realisation_screen.dart';
 import 'stats_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -92,6 +93,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTap: () => Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (_) => const DefisScreen(),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          _CarteRealisation(
+                            onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const RealisationScreen(),
                               ),
                             ),
                           ),
@@ -721,6 +730,58 @@ class _PilleReprendre extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _CarteRealisation extends StatelessWidget {
+  final VoidCallback onTap;
+  const _CarteRealisation({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF59E0B).withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+              color: const Color(0xFFF59E0B).withValues(alpha: 0.28)),
+        ),
+        child: Row(
+          children: [
+            const Text('🏆', style: TextStyle(fontSize: 28)),
+            const SizedBox(width: 12),
+            const Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Réalisation',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 15,
+                      color: Color(0xFFB45309),
+                    ),
+                  ),
+                  SizedBox(height: 2),
+                  Text(
+                    'Tes récompenses débloquées',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Color(0xFFB45309),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right_rounded,
+                color: Color(0xFFB45309), size: 22),
+          ],
         ),
       ),
     );

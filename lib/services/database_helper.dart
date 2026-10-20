@@ -501,6 +501,24 @@ class DatabaseHelper {
     ''');
   }
 
+  Future<List<Map<String, dynamic>>> getAvancementParMatiere() async {
+    final db = await database;
+    return db.rawQuery('''
+      SELECT
+        m.nom,
+        m.id,
+        COUNT(DISTINCT q.id)           AS nb_questions,
+        COALESCE(SUM(s.nb_correctes),0) AS nb_correctes,
+        COALESCE(SUM(s.nb_total),0)     AS nb_quizzees
+      FROM matieres m
+      LEFT JOIN chapitres c ON c.matiere_id = m.id
+      LEFT JOIN questions  q ON q.chapitre_id = c.id
+      LEFT JOIN scores     s ON s.matiere_id  = m.id
+      GROUP BY m.id, m.nom
+      ORDER BY m.nom
+    ''');
+  }
+
   Future<List<Map<String, dynamic>>> getScores({int? matiereId}) async {
     final db = await database;
     if (matiereId != null) {
