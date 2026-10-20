@@ -1,0 +1,265 @@
+{
+  "matiere_id": 23,
+  "matiere": "Littérature haïtienne",
+  "chapitre": "Introduction à la littérature haïtienne",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "",
+  "statut": "validé par l'utilisateur 2026-10-20",
+  "rejetees": [
+    "LH1-11",
+    "LH1-12",
+    "LH1-13",
+    "LH1-14",
+    "LH1-15",
+    "LH1-16",
+    "LH1-17",
+    "LH1-18",
+    "LH1-19",
+    "LH1-20",
+    "LH1-26",
+    "LH1-29"
+  ],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "LH1-01",
+      "enonce": "Ensemble des œuvres écrites auxquelles on reconnaît une valeur esthétique ?",
+      "choix": [
+        "La littérature",
+        "La rhétorique",
+        "La grammaire",
+        "La philologie"
+      ],
+      "bonne_reponse": "La littérature",
+      "explication": "Le mot désigne aussi ces œuvres vues par pays ou par époque : on parle ainsi de littérature haïtienne.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : littérature (sens 1)"
+    },
+    {
+      "id": "LH1-02",
+      "enonce": "Caractère d'un discours ou d'un fait littéraire transmis par la parole plutôt que par l'écrit ?",
+      "choix": [
+        "L'oralité",
+        "La notoriété",
+        "La modernité",
+        "La spontanéité"
+      ],
+      "bonne_reponse": "L'oralité",
+      "explication": "En Haïti, contes, proverbes et chansons ont longtemps circulé par la voix avant d'être écrits.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : oralité (sens 1)"
+    },
+    {
+      "id": "LH1-03",
+      "enonce": "Récit généralement court, de faits imaginaires ?",
+      "choix": [
+        "Un conte",
+        "Une chronique",
+        "Un traité",
+        "Une épopée"
+      ],
+      "bonne_reponse": "Un conte",
+      "explication": "Les contes haïtiens s'ouvrent par le dialogue « Cric ? Crac ! » entre le conteur et son public.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : conte"
+    },
+    {
+      "id": "LH1-04",
+      "enonce": "Attachement sentimental à son pays, qui pousse à le défendre et à le promouvoir ?",
+      "choix": [
+        "Le patriotisme",
+        "Le cosmopolitisme",
+        "L'individualisme",
+        "Le pacifisme"
+      ],
+      "bonne_reponse": "Le patriotisme",
+      "explication": "Après l'indépendance, il inspire une grande partie de la littérature haïtienne du XIXe siècle.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : patriotisme"
+    },
+    {
+      "id": "LH1-05",
+      "enonce": "Petit écrit en prose, au ton polémique, violent et agressif ?",
+      "choix": [
+        "Un pamphlet",
+        "Un éloge",
+        "Une préface",
+        "Un sermon"
+      ],
+      "bonne_reponse": "Un pamphlet",
+      "explication": "Le Baron de Vastey a publié des pamphlets contre le système colonial.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : pamphlet"
+    },
+    {
+      "id": "LH1-06",
+      "enonce": "Chant ou poème lyrique à la gloire d'un personnage ou d'une grande idée ?",
+      "choix": [
+        "Un hymne",
+        "Une élégie",
+        "Une épigramme",
+        "Une complainte"
+      ],
+      "bonne_reponse": "Un hymne",
+      "explication": "L'hymne national d'Haïti, La Dessalinienne, célèbre l'indépendance et son fondateur.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hymne (sens 2)"
+    },
+    {
+      "id": "LH1-07",
+      "enonce": "Écrit ou œuvre par lesquels on raille vivement quelqu'un ou quelque chose ?",
+      "choix": [
+        "Une satire",
+        "Une apologie",
+        "Un panégyrique",
+        "Une confession"
+      ],
+      "bonne_reponse": "Une satire",
+      "explication": "Plusieurs romanciers haïtiens de 1900 à 1910 ont pratiqué la satire des mœurs.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : satire (sens 3)"
+    },
+    {
+      "id": "LH1-08",
+      "enonce": "Ouvrage de réflexions diverses sur un sujet qu'il ne prétend pas épuiser ?",
+      "choix": [
+        "Un essai",
+        "Un roman",
+        "Un recueil",
+        "Un manuel"
+      ],
+      "bonne_reponse": "Un essai",
+      "explication": "Genre très pratiqué en Haïti, de Firmin et Janvier à Jean Price-Mars.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : essai (sens 4)"
+    },
+    {
+      "id": "LH1-09",
+      "enonce": "Situation de quelqu'un qui est obligé de vivre hors de son pays ?",
+      "choix": [
+        "L'exil",
+        "L'asile",
+        "L'oubli",
+        "L'évasion"
+      ],
+      "bonne_reponse": "L'exil",
+      "explication": "Sous la dictature des Duvalier, de nombreux écrivains haïtiens ont connu l'exil.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : exil (sens 1)"
+    },
+    {
+      "id": "LH1-10",
+      "enonce": "Dispersion d'un peuple à travers le monde ?",
+      "choix": [
+        "La diaspora",
+        "La migration",
+        "La colonie",
+        "L'exode"
+      ],
+      "bonne_reponse": "La diaspora",
+      "explication": "On parle de littérature de la diaspora pour les écrivains haïtiens installés à l'étranger.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : diaspora (sens 2)"
+    },
+    {
+      "id": "LH1-21",
+      "enonce": "Comment appelle-t-on les écrivains haïtiens de 1804 à 1836 ?",
+      "choix": [
+        "Les pionniers",
+        "Les romantiques",
+        "Les indigénistes",
+        "Les spiralistes"
+      ],
+      "bonne_reponse": "Les pionniers",
+      "explication": "On les dit aussi pseudo-classiques, car ils imitent les modèles français du XVIIIe siècle.",
+      "niveau_complexite": "Facile",
+      "source": "Mostaganem, mémoire sur Passages (chap. I) ; Wikipédia"
+    },
+    {
+      "id": "LH1-22",
+      "enonce": "Quel courant français imitent surtout les écrivains haïtiens de 1804 à 1836 ?",
+      "choix": [
+        "Le classicisme",
+        "Le romantisme",
+        "Le symbolisme",
+        "Le surréalisme"
+      ],
+      "bonne_reponse": "Le classicisme",
+      "explication": "Le romantisme n'arrive en Haïti qu'avec l'École de 1836.",
+      "niveau_complexite": "Moyen",
+      "source": "Mostaganem, mémoire sur Passages (chap. I)"
+    },
+    {
+      "id": "LH1-23",
+      "enonce": "Quel mouvement naît en Haïti avec l'École de 1836 ?",
+      "choix": [
+        "Le romantisme",
+        "Le réalisme",
+        "Le naturalisme",
+        "L'indigénisme"
+      ],
+      "bonne_reponse": "Le romantisme",
+      "explication": "Ce groupe se forme autour des journaux Le Républicain et L'Union.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : Haïti (littérature) ; Universalis : Poètes haïtiens"
+    },
+    {
+      "id": "LH1-24",
+      "enonce": "Comment nomme-t-on la période littéraire haïtienne de 1860 à 1898 ?",
+      "choix": [
+        "L'école patriotique",
+        "La Ronde",
+        "L'indigénisme",
+        "Le spiralisme"
+      ],
+      "bonne_reponse": "L'école patriotique",
+      "explication": "On parle aussi de romantisme patriotique : les écrivains défendent la patrie et la race noire.",
+      "niveau_complexite": "Moyen",
+      "source": "Mostaganem, mémoire sur Passages (chap. I) ; Wikipédia"
+    },
+    {
+      "id": "LH1-25",
+      "enonce": "Quelle revue donne son nom à la génération littéraire de 1898 à 1915 ?",
+      "choix": [
+        "La Ronde",
+        "La Ruche",
+        "Les Griots",
+        "La Revue indigène"
+      ],
+      "bonne_reponse": "La Ronde",
+      "explication": "Selon les sources, la revue est fondée en 1895 ou en 1898 ; la génération couvre 1898-1915.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse ; Universalis ; Wikipédia"
+    },
+    {
+      "id": "LH1-27",
+      "enonce": "Quel événement de 1915 est à l'origine du mouvement indigéniste ?",
+      "choix": [
+        "L'occupation américaine",
+        "La chute de Boyer",
+        "L'abolition de l'esclavage",
+        "Le coup d'État de Duvalier"
+      ],
+      "bonne_reponse": "L'occupation américaine",
+      "explication": "En réaction, les écrivains valorisent la culture populaire et les racines africaines d'Haïti.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Littérature haïtienne ; Universalis"
+    },
+    {
+      "id": "LH1-28",
+      "enonce": "Quel mouvement littéraire haïtien né après 1915 valorise les racines africaines et populaires ?",
+      "choix": [
+        "L'indigénisme",
+        "Le parnasse",
+        "Le naturalisme",
+        "Le symbolisme"
+      ],
+      "bonne_reponse": "L'indigénisme",
+      "explication": "Il est lancé en particulier par Jean Price-Mars et la Revue indigène (1927).",
+      "niveau_complexite": "Facile",
+      "source": "Wikipédia : Littérature haïtienne"
+    }
+  ]
+}
