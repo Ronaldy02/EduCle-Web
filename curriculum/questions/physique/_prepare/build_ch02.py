@@ -1,0 +1,65 @@
+import sys, os
+REPO = r"C:/Users/frona/OneDrive/Documents/Coding Club/Projet Quiz Educatif/Mobile/.claude/worktrees/stoic-noether-12a8aa"
+S = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, REPO + "/scripts/questions")
+from chapitre import Chapitre
+
+c = Chapitre("PN1_02", "Physique", "NS1 ch.2 (Big Bang, système solaire et exploration de l'espace)", base_dart=S + "/dh_old.dart")
+PR = "Programme A1"
+AL = "Alt. ch.1"
+
+c.groupe("L'Univers et le Big Bang")
+c.new(1, "F", "Ensemble de tout ce qui existe : matière, énergie, espace et temps", ["L'Univers", "La galaxie", "Le système solaire", "L'atmosphère"], "Il contient des milliards de galaxies, elles-mêmes formées de milliards d'étoiles.", "Larousse : univers (sens 1)", "D")
+c.new(2, "M", "Modèle selon lequel l'Univers est né d'un état extrêmement chaud et dense, puis s'est dilaté", ["Le Big Bang", "La nucléosynthèse", "L'effondrement gravitationnel", "La fission nucléaire"], "Ce n'est pas une explosion dans l'espace : c'est l'espace lui-même qui s'est mis à se dilater.", "Larousse : big bang (sens 1, reformulé)", "D")
+c.new(3, "M", "Il y a environ combien de temps l'Univers est-il né, selon le Big Bang ?", ["13,8 milliards d'années", "4,6 milliards d'années", "138 millions d'années", "13 800 ans"], "Le système solaire, lui, n'est apparu qu'il y a 4,6 milliards d'années.", "Larousse : big bang (sens 1)", "C")
+c.new(4, "M", "Quel phénomène explique que les galaxies lointaines s'éloignent de nous ?", ["L'expansion de l'Univers", "La rotation de la Terre", "L'attraction du Soleil", "La chute des étoiles"], "Plus une galaxie est lointaine, plus elle s'éloigne vite : c'est l'observation faite par Edwin Hubble en 1929.", PR + " (pas de définition au Larousse en ligne)", "C")
+c.new(5, "M", "Ensemble des processus qui conduisent à l'apparition des éléments chimiques de l'Univers", ["La nucléosynthèse", "La photosynthèse", "La fission nucléaire", "La condensation"], "Elle a lieu dans les premières minutes de l'Univers, puis au cœur des étoiles et lors des supernovas.", "Larousse : nucléosynthèse", "D")
+c.new(6, "M", "Quels sont les deux premiers éléments formés après le Big Bang ?", ["Hydrogène et hélium", "Carbone et oxygène", "Fer et nickel", "Azote et soufre"], "Ils forment encore presque toute la matière visible : environ trois quarts d'hydrogène et un quart d'hélium.", PR, "C")
+c.new(7, "M", "Où se forment les éléments plus lourds que l'hélium ?", ["Au cœur des étoiles", "Dans les planètes", "Dans les comètes", "Dans les satellites"], "Les étoiles fusionnent les noyaux légers en noyaux plus lourds ; les supernovas fabriquent les plus lourds.", PR, "C")
+
+c.groupe("Étoiles et galaxies")
+c.new(11, "F", "Astre qui brille de sa propre lumière grâce aux réactions nucléaires qui s'y produisent", ["Une étoile", "Une planète", "Une comète", "Un satellite"], "Le Soleil est l'étoile la plus proche de la Terre.", "Larousse : étoile (sens 1, adapté)", "D")
+c.new(12, "M", "Explosion d'une étoile massive en fin de vie, qui la rend très brillante pendant un temps", ["Une supernova", "Une nébuleuse", "Un trou noir", "Une comète"], "Elle disperse dans l'espace les éléments fabriqués par l'étoile, qui serviront à former de nouveaux astres.", "Larousse : supernova (sens 1)", "D")
+c.new(13, "F", "Nuage de gaz et de poussières interstellaires", ["Une nébuleuse", "Une galaxie", "Une comète", "Une orbite"], "Les étoiles et leurs planètes naissent de l'effondrement de nuages de ce type.", "Larousse : nébuleuse (sens 1)", "D")
+c.new(14, "M", "Vaste ensemble d'étoiles et de matière dont la cohésion est assurée par la gravitation", ["Une galaxie", "Une nébuleuse", "Un système planétaire", "Un amas de météorites"], "Une galaxie compte des centaines de milliards d'étoiles.", "Larousse : galaxie (sens 1)", "D")
+c.new(15, "M", "Comment s'appelle la galaxie qui contient le système solaire ?", ["La Voie lactée", "Andromède", "Le Grand Nuage", "Le Triangle"], "Vue de la Terre, elle forme une bande blanchâtre dans le ciel nocturne ; Andromède est la grande galaxie la plus proche.", AL + ".1 (pas de définition au Larousse en ligne)", "C")
+
+c.groupe("Le système solaire")
+c.new(21, "F", "Quel astre se trouve au centre du système solaire ?", ["Le Soleil", "La Terre", "Jupiter", "La Lune"], "Il rassemble plus de 99 % de la masse du système solaire.", AL + ".1.1", "C")
+c.new(22, "M", "Quel est l'âge approximatif du système solaire ?", ["4,6 milliards d'années", "13,8 milliards d'années", "460 millions d'années", "46 millions d'années"], "Il s'est formé à partir d'un nuage de gaz et de poussières, bien après le Big Bang.", PR, "C")
+c.new(23, "F", "Corps céleste non lumineux par lui-même, qui gravite autour du Soleil", ["Une planète", "Une étoile", "Un satellite", "Une comète"], "La Terre est la troisième planète à partir du Soleil.", "Larousse : planète (sens 1)", "D")
+c.new(24, "F", "Combien de planètes compte le système solaire ?", ["Huit", "Neuf", "Sept", "Dix"], "Mercure, Vénus, la Terre, Mars, Jupiter, Saturne, Uranus et Neptune.", AL + ".1.3", "C")
+c.new(25, "F", "Quelle est la planète la plus proche du Soleil ?", ["Mercure", "Vénus", "Mars", "La Terre"], "Elle est aussi la plus petite des huit planètes.", AL + ".1.3", "C")
+c.new(26, "F", "Quelle planète est surnommée la planète rouge ?", ["Mars", "Vénus", "Mercure", "Jupiter"], "Sa couleur vient de l'oxyde de fer qui recouvre son sol.", AL + ".1.3", "C")
+c.new(27, "F", "Quelle est la plus grande planète du système solaire ?", ["Jupiter", "Saturne", "Neptune", "Uranus"], "C'est une planète géante gazeuse, plus de mille fois plus volumineuse que la Terre.", AL + ".1.3", "C")
+c.new(28, "M", "Quelles planètes sont dites telluriques ?", ["Mercure, Vénus, la Terre, Mars", "Jupiter, Saturne, Uranus, Neptune", "Mercure, Jupiter, la Terre, Saturne", "Vénus, Mars, Uranus, Neptune"], "Elles sont petites, rocheuses et proches du Soleil ; les quatre autres sont des planètes géantes, gazeuses ou glacées.", PR + " ; " + AL + ".1.3", "C")
+c.new(29, "F", "Corps qui gravite autour d'un astre de masse prépondérante, en particulier autour d'une planète", ["Un satellite", "Une comète", "Un astéroïde", "Une étoile"], "La Lune est le satellite naturel de la Terre ; les engins lancés par l'homme sont des satellites artificiels.", "Larousse : satellite (sens 1)", "D")
+c.new(30, "M", "Courbe décrite par une planète autour du Soleil ou par un satellite autour de sa planète", ["Une orbite", "Une éclipse", "Une parallaxe", "Une trajectoire droite"], "L'orbite de la Terre est une ellipse presque circulaire, parcourue en une année.", "Larousse : orbite (sens 3)", "D")
+c.new(31, "M", "Petit corps rocheux ou métallique, de forme irrégulière, qui gravite autour du Soleil", ["Un astéroïde", "Une comète", "Une planète", "Une étoile"], "La plupart se trouvent dans la ceinture située entre Mars et Jupiter.", "Larousse : astéroïde", "D")
+c.new(32, "M", "Où se situe la ceinture d'astéroïdes ?", ["Entre Mars et Jupiter", "Entre la Terre et Mars", "Au-delà de Neptune", "Entre Mercure et Vénus"], "Cérès, le plus gros objet de cette ceinture, est classé planète naine.", "Larousse : astéroïde ; " + AL + ".1.6", "C")
+c.new(33, "M", "Petit astre de glace et de poussières qui développe une chevelure et une queue près du Soleil", ["Une comète", "Un astéroïde", "Une planète", "Un météore"], "La comète de Halley repasse près de la Terre environ tous les 76 ans.", "Larousse : comète (sens 1, reformulé)", "D")
+c.new(34, "M", "Dans quelle catégorie Pluton est-elle classée depuis 2006 ?", ["Planète naine", "Satellite", "Astéroïde", "Comète"], "L'Union astronomique internationale a précisé en 2006 les conditions pour être une planète ; Pluton n'en remplit pas toutes.", AL + ".1.3", "C")
+c.new(35, "D", "Planète qui tourne autour d'une autre étoile que le Soleil", ["Une exoplanète", "Un satellite", "Une planète naine", "Une comète"], "Plus de cinq mille exoplanètes ont été découvertes depuis 1995.", "Larousse : exoplanète", "D")
+
+c.groupe("Météoroïdes, météores et météorites")
+c.new(41, "M", "Petit corps solide qui circule dans l'espace interplanétaire", ["Un météoroïde", "Une météorite", "Un météore", "Un astéroïde"], "Il devient un météore s'il traverse l'atmosphère de la Terre.", "Larousse : météoroïde", "D")
+c.new(42, "M", "Phénomène lumineux dû à la chute dans l'atmosphère d'un corps venu de l'espace", ["Un météore", "Une météorite", "Une comète", "Une aurore"], "On l'appelle aussi étoile filante : un grain de matière brûle en traversant l'atmosphère.", "Larousse : météore (sens 2)", "D")
+c.new(43, "M", "Fragment de corps venu de l'espace, retrouvé à la surface d'un astre après sa chute", ["Une météorite", "Un météore", "Un météoroïde", "Un satellite"], "Les grosses météorites laissent des cratères d'impact, comme le Meteor Crater en Arizona.", "Larousse : météorite (sens 1)", "D")
+
+c.groupe("Échelles de grandeur et exploration de l'espace")
+c.base(1288, en="Quelle est la vitesse de la lumière dans le vide ?", ch=["Environ 300 000 km/s", "Environ 300 km/s", "Environ 150 000 km/s", "Environ 3 000 km/s"], ex="Elle vaut 3 × 10⁸ m/s ; aucune matière ne peut aller plus vite.", src="Base Q1288 (modifiée) — " + AL + ".1.3", typ="C")
+c.new(52, "M", "Unité de longueur astronomique correspondant à environ 9 461 milliards de kilomètres", ["L'année-lumière", "L'unité astronomique", "Le parsec", "Le mille marin"], "Proxima du Centaure, l'étoile la plus proche du Soleil, est à 4,2 années-lumière.", "Larousse : année-lumière (sens 1, reformulé)", "D")
+c.new(53, "M", "Combien de temps la lumière du Soleil met-elle pour atteindre la Terre ?", ["Environ 8 minutes", "Environ 8 secondes", "Environ 8 heures", "Environ 8 jours"], "La Terre est à 150 millions de km du Soleil : 150 000 000 km ÷ 300 000 km/s = 500 s.", AL + ".1.3", "C")
+c.new(54, "M", "Quelle méthode permet de mesurer la distance des étoiles proches ?", ["La parallaxe", "La réflexion", "La réfraction", "La dilatation"], "On observe l'étoile à six mois d'intervalle : l'angle de son décalage apparent sur le fond du ciel donne la distance.", PR + " ; " + AL + ".1.3.2 (pas de définition astronomique au Larousse en ligne)", "C")
+c.new(55, "M", "Que représente l'unité astronomique ?", ["La distance Terre-Soleil", "La distance Terre-Lune", "Une année de lumière", "Le rayon du Soleil"], "Elle vaut environ 150 millions de kilomètres et sert à mesurer les distances dans le système solaire.", AL + ".1.3 (pas de définition au Larousse en ligne)", "C")
+c.new(56, "M", "Quel est l'ordre de grandeur du rayon de la Terre ?", ["Environ 6 400 km", "Environ 640 km", "Environ 64 000 km", "Environ 640 000 km"], "Son rayon est de 6 371 km environ ; sa circonférence dépasse 40 000 km.", AL + ".1.3.6", "C")
+c.new(57, "M", "Quel ordre de grandeur correspond à la taille d'un atome ?", ["10⁻¹⁰ m", "10⁻⁶ m", "10⁻³ m", "10⁻¹⁵ m"], "Un atome est environ un million de fois plus petit que l'épaisseur d'un cheveu.", AL + ".1.3.4", "C")
+c.new(58, "M", "Instrument d'observation astronomique dont l'objectif est un miroir", ["Un télescope", "Un microscope", "Un périscope", "Un baromètre"], "Le télescope spatial Hubble, lancé en 1990, observe sans être gêné par l'atmosphère.", "Larousse : télescope", "D")
+c.new(59, "M", "Quel engin non habité est envoyé explorer les planètes ou les comètes ?", ["Une sonde spatiale", "Un ballon météo", "Une navette habitée", "Un satellite géostationnaire"], "Voyager 1, lancée en 1977, a quitté le système solaire ; d'autres sondes se sont posées sur Mars.", PR + " (pas de sens spatial au Larousse en ligne)", "C")
+c.new(60, "M", "Quel est le premier satellite artificiel de la Terre, lancé en 1957 ?", ["Spoutnik 1", "Apollo 11", "Hubble", "Voyager 1"], "Lancé par l'Union soviétique le 4 octobre 1957, il a ouvert l'ère spatiale.", PR + " (exploration de l'espace)", "C")
+c.new(61, "M", "Qui a été le premier homme dans l'espace, en 1961 ?", ["Youri Gagarine", "Neil Armstrong", "Alan Shepard", "Buzz Aldrin"], "Il a fait un tour complet de la Terre à bord de Vostok 1, le 12 avril 1961.", PR + " (exploration de l'espace)", "C")
+c.new(62, "M", "En quelle année l'être humain a-t-il marché sur la Lune pour la première fois ?", ["1969", "1957", "1961", "1981"], "Neil Armstrong a posé le pied sur la Lune le 20 juillet 1969, lors de la mission Apollo 11.", PR + " (exploration de l'espace)", "C")
+
+os.makedirs(S + "/out", exist_ok=True)
+os.chdir(S + "/out")
+c.ecrire("ns1_ch02")
