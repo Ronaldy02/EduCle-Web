@@ -6,10 +6,8 @@
     "NS2"
   ],
   "unite_programme": "2.6",
-  "statut": "validé par l'utilisateur 2026-10-18",
-  "rejetees": [
-    "B19-07"
-  ],
+  "statut": "validé par l'utilisateur 2026-10-20",
+  "rejetees": [],
   "base_rejetees_a_supprimer": [],
   "questions": [
     {
@@ -96,6 +94,20 @@
       "explication": "Les trois catégories « menacées » sont, par ordre croissant de gravité : vulnérable, en danger, en danger critique.",
       "niveau_complexite": "Difficile",
       "source": "UICN (catégories de la Liste rouge)"
+    },
+    {
+      "id": "B19-07",
+      "enonce": "Région du monde très riche en espèces endémiques et gravement menacée par les activités humaines.",
+      "choix": [
+        "Un point chaud de biodiversité",
+        "Un puits de carbone",
+        "Une zone tampon",
+        "Un écotone"
+      ],
+      "bonne_reponse": "Un point chaud de biodiversité",
+      "explication": "Les Antilles forment un point chaud de biodiversité ; l'île d'Hispaniola en fait partie.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 2.6 — concept de « hotspot » (Myers)"
     },
     {
       "id": "B19-08",
