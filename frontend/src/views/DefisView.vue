@@ -58,23 +58,6 @@
             </template>
           </template>
 
-          <!-- Réalisations -->
-          <template v-else-if="ongletActif === 'realisations'">
-            <SkeletonBlock v-if="chargement.realisations" :lignes="3" hauteur="88px" />
-            <template v-else>
-              <div class="groupes-row">
-                <button v-for="g in GROUPES" :key="g.key"
-                  class="groupe-btn" :class="{ active: groupeActif === g.key }"
-                  @click="groupeActif = g.key">
-                  {{ g.emoji }} {{ g.label }}
-                </button>
-              </div>
-              <div class="realisations-grid">
-                <RealisationCard v-for="(r, i) in realisationsFiltrees" :key="r.id" :realisation="r" :index="i" />
-              </div>
-            </template>
-          </template>
-
         </div>
       </Transition>
 
@@ -84,33 +67,20 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import { getDefisQuotidiens, getDefisHebdo, getDefisMensuels, getRealisations } from '../api/client.js'
+import { getDefisQuotidiens, getDefisHebdo, getDefisMensuels } from '../api/client.js'
 import DefiCard from '../components/DefiCard.vue'
-import RealisationCard from '../components/RealisationCard.vue'
 
 const TABS = [
   { key: 'quotidiens', emoji: '🌅', label: 'Quotidiens' },
   { key: 'hebdo',      emoji: '📅', label: 'Hebdo' },
   { key: 'mensuel',    emoji: '📆', label: 'Mensuel' },
-  { key: 'realisations', emoji: '🏆', label: 'Réalisation' },
-]
-
-const GROUPES = [
-  { key: null, emoji: '🔍', label: 'Tout' },
-  { key: 'A',  emoji: '🌱', label: 'Premiers pas' },
-  { key: 'B',  emoji: '📅', label: 'Régularité' },
-  { key: 'C',  emoji: '💯', label: 'Performance' },
-  { key: 'D',  emoji: '📦', label: 'Volume' },
-  { key: 'E',  emoji: '🌟', label: 'Secrets' },
 ]
 
 const ongletActif = ref('quotidiens')
-const groupeActif = ref(null)
 const defisQuotidiens = ref([])
 const defisHebdo = ref([])
 const defisMensuels = ref([])
-const realisations = ref([])
-const chargement = ref({ quotidiens: false, hebdo: false, mensuel: false, realisations: false })
+const chargement = ref({ quotidiens: false, hebdo: false, mensuel: false })
 
 const periodeJour = new Date().toISOString().slice(0, 10)
 const moisCourant = new Date().toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
@@ -120,11 +90,6 @@ const badges = computed(() => ({
   hebdo: defisHebdo.value.filter(d => !d.complete).length || null,
   mensuel: defisMensuels.value.filter(d => !d.complete).length || null,
 }))
-
-const realisationsFiltrees = computed(() => {
-  if (!groupeActif.value) return realisations.value
-  return realisations.value.filter(r => r.groupe === groupeActif.value)
-})
 
 async function rechargerQuotidiens() {
   chargement.value.quotidiens = true
@@ -141,17 +106,10 @@ async function rechargerMensuel() {
   try { defisMensuels.value = await getDefisMensuels() } catch {}
   chargement.value.mensuel = false
 }
-async function rechargerRealisations() {
-  chargement.value.realisations = true
-  try { realisations.value = await getRealisations() } catch {}
-  chargement.value.realisations = false
-}
-
 watch(ongletActif, (val) => {
   if (val === 'quotidiens' && !defisQuotidiens.value.length) rechargerQuotidiens()
   if (val === 'hebdo'      && !defisHebdo.value.length)      rechargerHebdo()
   if (val === 'mensuel'    && !defisMensuels.value.length)    rechargerMensuel()
-  if (val === 'realisations' && !realisations.value.length)   rechargerRealisations()
 })
 
 onMounted(rechargerQuotidiens)

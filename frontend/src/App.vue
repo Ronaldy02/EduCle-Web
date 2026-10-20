@@ -44,7 +44,7 @@
           <span class="material-symbols-outlined">person</span> Profil
         </router-link>
         <router-link to="/taches" class="nav-link" :class="{ active: $route.name === 'taches' }" @click="sidebarOuvert = false">
-          <span class="material-symbols-outlined">task_alt</span> Tâches
+          <span class="material-symbols-outlined">military_tech</span> Réalisation
         </router-link>
         <router-link to="/defis" class="nav-link" :class="{ active: ['defis','realisations'].includes($route.name) }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">military_tech</span> Défis

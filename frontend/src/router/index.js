@@ -17,6 +17,7 @@ import AdminLoginView from '../views/AdminLoginView.vue'
 import AdminCallbackView from '../views/AdminCallbackView.vue'
 import ProposerView from '../views/ProposerView.vue'
 import DefisView from '../views/DefisView.vue'
+import RealisationView from '../views/RealisationView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -37,9 +38,9 @@ const router = createRouter({
     { path: '/reglages',  name: 'reglages',    component: ReglagesView },
     { path: '/revision',  name: 'revision',    component: RevisionView },
     { path: '/admin',     name: 'admin',        component: AdminView, meta: { public: true } },
-    { path: '/taches',       name: 'taches',       component: { template: '<div style="padding:2rem"><h2>Tâches</h2><p>À venir…</p></div>' } },
-    { path: '/defis',        name: 'defis',        component: DefisView },
-    { path: '/realisations', name: 'realisations', component: DefisView },
+    { path: '/taches',        name: 'taches',        component: RealisationView },
+    { path: '/defis',         name: 'defis',         component: DefisView },
+    { path: '/realisations',  name: 'realisations',  component: RealisationView },
     { path: '/proposer', name: 'proposer', component: ProposerView },
     { path: '/cartes/:matiereId/:chapitreId', name: 'cartes', component: CartesMentalesView },
   ],
