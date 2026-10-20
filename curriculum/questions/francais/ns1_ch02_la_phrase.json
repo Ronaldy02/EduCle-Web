@@ -1,0 +1,563 @@
+{
+  "matiere_id": 25,
+  "matiere": "Français",
+  "chapitre": "La phrase : types, formes et ponctuation",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "S1",
+  "statut": "validé par l'utilisateur 2026-10-20",
+  "rejetees": [],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "F02-01",
+      "enonce": "Unité grammaticale formée de mots ordonnés, qui exprime un énoncé complet ?",
+      "choix": [
+        "La phrase",
+        "Le mot",
+        "Le groupe nominal",
+        "Le paragraphe"
+      ],
+      "bonne_reponse": "La phrase",
+      "explication": "À l'écrit, elle commence par une majuscule et se termine par un point (ou un signe équivalent).",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : phrase (sens 1)"
+    },
+    {
+      "id": "F02-02",
+      "enonce": "Unité syntaxique élémentaire construite autour d'un verbe ?",
+      "choix": [
+        "Une proposition",
+        "Un groupe nominal",
+        "Une locution",
+        "Un paragraphe"
+      ],
+      "bonne_reponse": "Une proposition",
+      "explication": "La réunion de propositions, par coordination ou subordination, forme la phrase.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : proposition (sens 2)"
+    },
+    {
+      "id": "F02-03",
+      "enonce": "Combien de propositions contient une phrase simple ?",
+      "choix": [
+        "Une seule",
+        "Deux",
+        "Trois",
+        "Aucune"
+      ],
+      "bonne_reponse": "Une seule",
+      "explication": "Une phrase simple se confond avec une proposition indépendante : « Le chien aboie ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : proposition (sens 2)"
+    },
+    {
+      "id": "F02-04",
+      "enonce": "Quelles sont les deux parties essentielles d'une phrase simple ?",
+      "choix": [
+        "Groupe sujet et groupe verbal",
+        "Nom et adjectif",
+        "Article et nom",
+        "Verbe et adverbe"
+      ],
+      "bonne_reponse": "Groupe sujet et groupe verbal",
+      "explication": "Dans « Le chien aboie », « Le chien » est le groupe sujet et « aboie » le groupe verbal.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : prédicat (sens 1)"
+    },
+    {
+      "id": "Q0199",
+      "enonce": "Dans « Marie lit un roman passionnant », quel est le groupe verbal ?",
+      "choix": [
+        "« lit un roman passionnant »",
+        "« Marie lit »",
+        "« un roman passionnant »",
+        "« lit »"
+      ],
+      "bonne_reponse": "« lit un roman passionnant »",
+      "explication": "Le groupe verbal comprend le verbe et ses compléments. « Marie » est le groupe sujet ; « lit un roman passionnant » est le groupe verbal.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q0199 (modifiée)",
+      "ancien_enonce": "Dans « Marie lit un roman passionnant », quel est le groupe verbal ?"
+    },
+    {
+      "id": "F02-06",
+      "enonce": "Quel est l'ordre habituel des éléments dans une phrase déclarative ?",
+      "choix": [
+        "Sujet, verbe, complément",
+        "Verbe, sujet, complément",
+        "Complément, sujet, verbe",
+        "Sujet, complément, verbe"
+      ],
+      "bonne_reponse": "Sujet, verbe, complément",
+      "explication": "Exemple : « Les élèves (sujet) lisent (verbe) un roman (complément) ».",
+      "niveau_complexite": "Moyen",
+      "source": "Programme S1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F02-11",
+      "enonce": "Quels sont les quatre types de phrases ?",
+      "choix": [
+        "Déclaratif, interrogatif, impératif, exclamatif",
+        "Déclaratif, descriptif, impératif, exclamatif",
+        "Affirmatif, négatif, interrogatif, impératif",
+        "Simple, complexe, nominal, verbal"
+      ],
+      "bonne_reponse": "Déclaratif, interrogatif, impératif, exclamatif",
+      "explication": "Le type dépend de l'intention de celui qui parle : informer, questionner, ordonner ou exprimer une émotion.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : assertion, interrogation, impératif, exclamation"
+    },
+    {
+      "id": "F02-12",
+      "enonce": "Type de phrase qui énonce un fait ou une vérité ?",
+      "choix": [
+        "La phrase déclarative",
+        "La phrase interrogative",
+        "La phrase exclamative",
+        "La phrase impérative"
+      ],
+      "bonne_reponse": "La phrase déclarative",
+      "explication": "On l'appelle aussi phrase assertive. Elle se termine en général par un point.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : assertion (sens 3)"
+    },
+    {
+      "id": "F02-13",
+      "enonce": "Type de phrase qui pose une question ?",
+      "choix": [
+        "La phrase interrogative",
+        "La phrase déclarative",
+        "La phrase impérative",
+        "La phrase exclamative"
+      ],
+      "bonne_reponse": "La phrase interrogative",
+      "explication": "Elle se termine par un point d'interrogation à l'écrit.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : interrogation (sens 5)"
+    },
+    {
+      "id": "F02-14",
+      "enonce": "Type de phrase qui énonce un ordre ou une défense ?",
+      "choix": [
+        "La phrase impérative",
+        "La phrase interrogative",
+        "La phrase exclamative",
+        "La phrase déclarative"
+      ],
+      "bonne_reponse": "La phrase impérative",
+      "explication": "Exemples : « Sors. », « Ne touchez pas ! ». On dit aussi phrase injonctive.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : impératif (sens 4)"
+    },
+    {
+      "id": "F02-15",
+      "enonce": "Type de phrase qui exprime une émotion vive ou un jugement affectif ?",
+      "choix": [
+        "La phrase exclamative",
+        "La phrase déclarative",
+        "La phrase impérative",
+        "La phrase interrogative"
+      ],
+      "bonne_reponse": "La phrase exclamative",
+      "explication": "Elle se termine par un point d'exclamation : « Quel beau match ! ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : exclamation (sens 2)"
+    },
+    {
+      "id": "Q0198",
+      "enonce": "Quel est le type de la phrase « Les enfants jouent dans la cour » ?",
+      "choix": [
+        "Déclarative affirmative",
+        "Interrogative",
+        "Exclamative",
+        "Impérative"
+      ],
+      "bonne_reponse": "Déclarative affirmative",
+      "explication": "La phrase « Les enfants jouent dans la cour » énonce un fait et ne contient pas de négation : elle est déclarative et affirmative.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q0198 (modifiée)",
+      "ancien_enonce": "La phrase \"Les enfants jouent dans la cour\" est de type :"
+    },
+    {
+      "id": "F02-17",
+      "enonce": "Quel type de phrase est « Ferme la porte. » ?",
+      "choix": [
+        "Impérative",
+        "Déclarative",
+        "Interrogative",
+        "Exclamative"
+      ],
+      "bonne_reponse": "Impérative",
+      "explication": "Le verbe est à l'impératif, sans pronom sujet, et exprime un ordre.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : impératif (sens 4)"
+    },
+    {
+      "id": "F02-18",
+      "enonce": "Quelle particularité présente le verbe d'une phrase impérative ?",
+      "choix": [
+        "Il s'emploie sans pronom sujet",
+        "Il s'emploie toujours au pluriel",
+        "Il se met à l'infinitif",
+        "Il s'emploie sans complément"
+      ],
+      "bonne_reponse": "Il s'emploie sans pronom sujet",
+      "explication": "On dit « Viens ! » et non « Tu viens ! » : le sujet n'est pas exprimé.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : impératif (sens 2)"
+    },
+    {
+      "id": "F02-19",
+      "enonce": "Par quels procédés peut-on marquer l'interrogation ?",
+      "choix": [
+        "L'intonation, l'inversion, « est-ce que »",
+        "La majuscule, le tiret, les guillemets",
+        "Le futur, le passé, le subjonctif",
+        "L'adverbe, le nom, le pronom"
+      ],
+      "bonne_reponse": "L'intonation, l'inversion, « est-ce que »",
+      "explication": "Exemples : « Tu viens ? » ; « Viens-tu ? » ; « Est-ce que tu viens ? ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : interrogation (sens 5)"
+    },
+    {
+      "id": "F02-20",
+      "enonce": "Lequel de ces mots est un mot interrogatif ?",
+      "choix": [
+        "« pourquoi »",
+        "« parce que »",
+        "« puisque »",
+        "« pourtant »"
+      ],
+      "bonne_reponse": "« pourquoi »",
+      "explication": "« Pourquoi » introduit une question ; « parce que » introduit la réponse.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : interrogatif"
+    },
+    {
+      "id": "F02-21",
+      "enonce": "Comment appelle-t-on la question à laquelle on répond par « oui » ou par « non » ?",
+      "choix": [
+        "L'interrogation totale",
+        "L'interrogation partielle",
+        "L'interrogation oratoire",
+        "L'interrogation indirecte"
+      ],
+      "bonne_reponse": "L'interrogation totale",
+      "explication": "Exemple : « Viens-tu demain ? ». L'interrogation partielle porte sur un élément et commence par un mot interrogatif : « Quand viens-tu ? ».",
+      "niveau_complexite": "Moyen",
+      "source": "Programme S1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F02-22",
+      "enonce": "Comment appelle-t-on la question qui porte sur un seul élément et commence par un mot interrogatif ?",
+      "choix": [
+        "L'interrogation partielle",
+        "L'interrogation totale",
+        "L'interrogation oratoire",
+        "L'interrogation indirecte"
+      ],
+      "bonne_reponse": "L'interrogation partielle",
+      "explication": "Exemples : « Où habites-tu ? », « Pourquoi pleures-tu ? ». On n'y répond pas par « oui » ou « non ».",
+      "niveau_complexite": "Moyen",
+      "source": "Programme S1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F02-31",
+      "enonce": "Forme de phrase qui présente un fait comme vrai ou possible ?",
+      "choix": [
+        "La forme affirmative",
+        "La forme négative",
+        "La forme emphatique",
+        "La forme passive"
+      ],
+      "bonne_reponse": "La forme affirmative",
+      "explication": "Exemple : « Il mange ». Sa forme contraire est la forme négative.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : affirmation (sens 3)"
+    },
+    {
+      "id": "F02-32",
+      "enonce": "Forme de phrase qui exprime qu'un fait n'est pas vrai ?",
+      "choix": [
+        "La forme négative",
+        "La forme affirmative",
+        "La forme emphatique",
+        "La forme passive"
+      ],
+      "bonne_reponse": "La forme négative",
+      "explication": "Exemple : « Il ne mange pas ». Elle s'oppose à la forme affirmative.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : négation (sens 3)"
+    },
+    {
+      "id": "F02-33",
+      "enonce": "Dans « Il ne mange pas », quels mots marquent la négation ?",
+      "choix": [
+        "ne et pas",
+        "Il et mange",
+        "ne et mange",
+        "Il et pas"
+      ],
+      "bonne_reponse": "ne et pas",
+      "explication": "La négation encadre le verbe : « ne » devant, « pas » derrière. À l'oral, « ne » disparaît souvent.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : négation (sens 3)"
+    },
+    {
+      "id": "F02-34",
+      "enonce": "Mise en relief d'un élément de la phrase par l'intonation ou l'ordre des mots ?",
+      "choix": [
+        "L'emphase",
+        "L'ellipse",
+        "L'inversion",
+        "La négation"
+      ],
+      "bonne_reponse": "L'emphase",
+      "explication": "Elle donne plus de force à une idée : « C'est Marie qui a gagné ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : emphase (sens 2)"
+    },
+    {
+      "id": "F02-35",
+      "enonce": "Laquelle de ces phrases est à la forme emphatique ?",
+      "choix": [
+        "« C'est lui qui gagne. »",
+        "« Il gagne. »",
+        "« Gagne-t-il ? »",
+        "« Il ne gagne pas. »"
+      ],
+      "bonne_reponse": "« C'est lui qui gagne. »",
+      "explication": "La construction « c'est… qui » met « lui » en relief.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : emphase (sens 2)"
+    },
+    {
+      "id": "F02-41",
+      "enonce": "Comment appelle-t-on une phrase organisée autour d'un verbe conjugué ?",
+      "choix": [
+        "Une phrase verbale",
+        "Une phrase nominale",
+        "Une phrase interrogative",
+        "Une phrase impérative"
+      ],
+      "bonne_reponse": "Une phrase verbale",
+      "explication": "Exemple : « Le soleil brille ». La majorité des phrases sont verbales.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme S1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F02-42",
+      "enonce": "Comment appelle-t-on une phrase sans verbe conjugué, comme « Quel beau temps ! » ?",
+      "choix": [
+        "Une phrase nominale",
+        "Une phrase verbale",
+        "Une phrase complexe",
+        "Une phrase passive"
+      ],
+      "bonne_reponse": "Une phrase nominale",
+      "explication": "Elle est construite autour d'un nom : « Silence dans la salle ! », « Beau temps aujourd'hui ».",
+      "niveau_complexite": "Moyen",
+      "source": "Programme S1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F02-43",
+      "enonce": "Laquelle de ces phrases est une phrase nominale ?",
+      "choix": [
+        "« Quel beau paysage ! »",
+        "« Il pleut ce matin. »",
+        "« Le soleil brille. »",
+        "« Elle chante bien. »"
+      ],
+      "bonne_reponse": "« Quel beau paysage ! »",
+      "explication": "Les trois autres contiennent un verbe conjugué : pleut, brille, chante.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme S1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F02-51",
+      "enonce": "Système de signes graphiques qui marque les pauses entre les phrases ou les éléments de phrase ?",
+      "choix": [
+        "La ponctuation",
+        "La grammaire",
+        "L'orthographe",
+        "La conjugaison"
+      ],
+      "bonne_reponse": "La ponctuation",
+      "explication": "Elle traduit aussi certains rapports entre les idées et des nuances affectives.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : ponctuation (sens 2)"
+    },
+    {
+      "id": "F02-52",
+      "enonce": "Signe de ponctuation qui marque la fin d'une phrase déclarative ?",
+      "choix": [
+        "Le point",
+        "La virgule",
+        "Le point-virgule",
+        "Les deux-points"
+      ],
+      "bonne_reponse": "Le point",
+      "explication": "À l'oral, il correspond à une pause assez forte.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : point (sens 23)"
+    },
+    {
+      "id": "F02-53",
+      "enonce": "Signe de ponctuation qui sépare, à l'intérieur de la phrase, des mots, des groupes de mots ou des propositions ?",
+      "choix": [
+        "La virgule",
+        "Le point",
+        "Les guillemets",
+        "Le tiret"
+      ],
+      "bonne_reponse": "La virgule",
+      "explication": "Elle sépare aussi les éléments d'une énumération : « du riz, des haricots, du poisson ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : virgule (sens 1)"
+    },
+    {
+      "id": "F02-54",
+      "enonce": "Signe qui sépare deux membres de phrase indépendants mais liés par le sens ?",
+      "choix": [
+        "Le point-virgule",
+        "Les deux-points",
+        "Le point",
+        "La virgule"
+      ],
+      "bonne_reponse": "Le point-virgule",
+      "explication": "Il marque une pause plus forte que la virgule et plus faible que le point.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : point-virgule"
+    },
+    {
+      "id": "F02-55",
+      "enonce": "Signe qui introduit une explication, une énumération ou une citation ?",
+      "choix": [
+        "Les deux-points",
+        "Le point-virgule",
+        "Les guillemets",
+        "Le tiret"
+      ],
+      "bonne_reponse": "Les deux-points",
+      "explication": "Exemple : « Il y a trois couleurs : rouge, bleu, jaune ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : deux-points"
+    },
+    {
+      "id": "F02-56",
+      "enonce": "Quel signe termine une phrase interrogative ?",
+      "choix": [
+        "Le point d'interrogation",
+        "Le point d'exclamation",
+        "Les points de suspension",
+        "Le point-virgule"
+      ],
+      "bonne_reponse": "Le point d'interrogation",
+      "explication": "Exemple : « Où vas-tu ? ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : point (sens 24)"
+    },
+    {
+      "id": "F02-57",
+      "enonce": "Quel signe termine souvent une phrase exclamative ou impérative marquée ?",
+      "choix": [
+        "Le point d'exclamation",
+        "Le point d'interrogation",
+        "Le point-virgule",
+        "Les deux-points"
+      ],
+      "bonne_reponse": "Le point d'exclamation",
+      "explication": "Exemples : « Quel beau jour ! », « Sortez ! ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : point (sens 24)"
+    },
+    {
+      "id": "F02-58",
+      "enonce": "Quels signes indiquent qu'une phrase reste en suspens ou inachevée ?",
+      "choix": [
+        "Les points de suspension",
+        "Les deux-points",
+        "Le point-virgule",
+        "Les guillemets"
+      ],
+      "bonne_reponse": "Les points de suspension",
+      "explication": "Ils marquent aussi une hésitation ou une énumération qui continue.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme S1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F02-59",
+      "enonce": "Signes doubles entre lesquels on place un élément inséré dans la phrase pour en préciser le sens ?",
+      "choix": [
+        "Les parenthèses",
+        "Les guillemets",
+        "Les deux-points",
+        "Les points de suspension"
+      ],
+      "bonne_reponse": "Les parenthèses",
+      "explication": "L'élément placé entre parenthèses n'est pas indispensable à la phrase.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : parenthèse (sens 1-2)"
+    },
+    {
+      "id": "F02-60",
+      "enonce": "Signes doubles qui isolent un mot ou un groupe de mots, ou encadrent des paroles rapportées ?",
+      "choix": [
+        "Les guillemets",
+        "Les parenthèses",
+        "Les virgules",
+        "Les tirets"
+      ],
+      "bonne_reponse": "Les guillemets",
+      "explication": "Ils ouvrent (« ) et ferment (» ) une citation ou un dialogue.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : guillemet"
+    },
+    {
+      "id": "F02-61",
+      "enonce": "Trait qui, dans un dialogue, indique un changement d'interlocuteur ?",
+      "choix": [
+        "Le tiret",
+        "Le trait d'union",
+        "Les guillemets",
+        "La virgule"
+      ],
+      "bonne_reponse": "Le tiret",
+      "explication": "Il commence aussi une réplique à la ligne. Ne pas le confondre avec le trait d'union, plus court.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : tiret (sens 1)"
+    },
+    {
+      "id": "F02-62",
+      "enonce": "Lettre de plus grande taille placée au début d'une phrase ou d'un nom propre ?",
+      "choix": [
+        "La majuscule",
+        "La minuscule",
+        "L'italique",
+        "Le gras"
+      ],
+      "bonne_reponse": "La majuscule",
+      "explication": "Exemples : « Haïti », « Port-au-Prince ». Elle commence aussi chaque phrase.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : majuscule"
+    },
+    {
+      "id": "Q0203",
+      "enonce": "Où ne place-t-on normalement pas de virgule ?",
+      "choix": [
+        "Entre le sujet et le verbe",
+        "Entre les éléments d'une liste",
+        "Avant « mais »",
+        "Autour d'une apposition"
+      ],
+      "bonne_reponse": "Entre le sujet et le verbe",
+      "explication": "On ne sépare pas le sujet de son verbe : « Les élèves arrivent », sans virgule. On en met dans une liste, avant « mais » et autour d'une apposition.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q0203 (modifiée)",
+      "ancien_enonce": "Où ne met-on jamais de virgule ?"
+    }
+  ]
+}
