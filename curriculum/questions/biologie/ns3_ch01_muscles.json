@@ -1,0 +1,618 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Les muscles : types, structure et propriétés",
+  "niveaux": [
+    "NS3"
+  ],
+  "unite_programme": "3.1",
+  "statut": "validé par l'utilisateur 2026-10-20",
+  "rejetees": [
+    "B20-58"
+  ],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "B20-01",
+      "enonce": "Organe capable de se contracter et d'assurer le mouvement.",
+      "choix": [
+        "Un muscle",
+        "Un tendon",
+        "Un ligament",
+        "Un nerf"
+      ],
+      "bonne_reponse": "Un muscle",
+      "explication": "Le corps humain compte plus de 600 muscles. On les classe en trois types : lisse, strié squelettique et cardiaque.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : muscle (sens 1)"
+    },
+    {
+      "id": "B20-02",
+      "enonce": "Tissu contractile dont les cellules montrent, au microscope, des bandes claires et sombres alternées.",
+      "choix": [
+        "Le muscle strié",
+        "Le muscle lisse",
+        "Le muscle plat",
+        "Le muscle court"
+      ],
+      "bonne_reponse": "Le muscle strié",
+      "explication": "Il comprend le muscle squelettique et le muscle cardiaque.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : strié (sens 2)"
+    },
+    {
+      "id": "B20-03",
+      "enonce": "Tissu contractile dont les cellules sont sans bandes visibles, à contraction lente et involontaire.",
+      "choix": [
+        "Le muscle lisse",
+        "Le muscle strié",
+        "Le muscle squelettique",
+        "Le muscle annulaire"
+      ],
+      "bonne_reponse": "Le muscle lisse",
+      "explication": "Ses cellules ont la forme d'un fuseau et un seul noyau central.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 3.1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B20-04",
+      "enonce": "Tissu contractile strié fixé aux os par des tendons, à contraction volontaire.",
+      "choix": [
+        "Le muscle squelettique",
+        "Le muscle cardiaque",
+        "Le muscle lisse",
+        "Le muscle annulaire"
+      ],
+      "bonne_reponse": "Le muscle squelettique",
+      "explication": "C'est le type le plus abondant : il assure les mouvements du corps et le maintien de la posture.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 3.1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B20-05",
+      "enonce": "Où trouve-t-on du muscle lisse ?",
+      "choix": [
+        "Dans la paroi des organes creux",
+        "Fixé aux os par des tendons",
+        "Dans la paroi du cœur",
+        "Sous la peau du visage"
+      ],
+      "bonne_reponse": "Dans la paroi des organes creux",
+      "explication": "On le trouve dans l'estomac, l'intestin, la vessie et les vaisseaux sanguins.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 3.1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B20-06",
+      "enonce": "Comment est la contraction d'un muscle lisse ?",
+      "choix": [
+        "Lente et involontaire",
+        "Rapide et volontaire",
+        "Rapide et involontaire",
+        "Lente et volontaire"
+      ],
+      "bonne_reponse": "Lente et involontaire",
+      "explication": "Elle est commandée par le système nerveux autonome, sans décision consciente.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 3.1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B20-11",
+      "enonce": "Muscle du bras dont une extrémité est rattachée à l'os par deux tendons séparés.",
+      "choix": [
+        "Le biceps",
+        "Le triceps",
+        "Le deltoïde",
+        "Le trapèze"
+      ],
+      "bonne_reponse": "Le biceps",
+      "explication": "Le biceps brachial fléchit l'avant-bras sur le bras.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : biceps (sens 1)"
+    },
+    {
+      "id": "B20-12",
+      "enonce": "Muscle de l'arrière du bras qui étend l'avant-bras.",
+      "choix": [
+        "Le triceps",
+        "Le biceps",
+        "Le deltoïde",
+        "Le quadriceps"
+      ],
+      "bonne_reponse": "Le triceps",
+      "explication": "Son nom vient de ses trois chefs, c'est-à-dire ses trois faisceaux d'attache.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : triceps ; extenseur"
+    },
+    {
+      "id": "B20-13",
+      "enonce": "Muscle de la région supérieure de l'épaule, qui permet de lever le bras sur le côté.",
+      "choix": [
+        "Le deltoïde",
+        "Le biceps",
+        "Le pectoral",
+        "Le fessier"
+      ],
+      "bonne_reponse": "Le deltoïde",
+      "explication": "Il a la forme d'un triangle, comme la lettre grecque delta.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : deltoïde"
+    },
+    {
+      "id": "B20-14",
+      "enonce": "Saillie formée par les muscles de la partie postérieure de la jambe, entre la cheville et le genou.",
+      "choix": [
+        "Le mollet",
+        "La cuisse",
+        "Le talon",
+        "Le tibia"
+      ],
+      "bonne_reponse": "Le mollet",
+      "explication": "Ses muscles relèvent le talon par le tendon d'Achille.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : mollet (sens 1)"
+    },
+    {
+      "id": "B20-21",
+      "enonce": "Du plus grand au plus petit, quelle suite décrit l'organisation d'un muscle strié ?",
+      "choix": [
+        "Muscle, faisceau, fibre, myofibrille",
+        "Muscle, fibre, faisceau, myofibrille",
+        "Faisceau, muscle, myofibrille, fibre",
+        "Muscle, myofibrille, fibre, faisceau"
+      ],
+      "bonne_reponse": "Muscle, faisceau, fibre, myofibrille",
+      "explication": "On passe de l'observation à l'œil nu (muscle, faisceau) à l'observation au microscope (fibre, myofibrille).",
+      "niveau_complexite": "Difficile",
+      "source": "Programme 3.1 (observation macroscopique et microscopique)"
+    },
+    {
+      "id": "B20-22",
+      "enonce": "Longue cellule à plusieurs noyaux, unité de base des tissus capables de se contracter.",
+      "choix": [
+        "Une fibre musculaire",
+        "Une fibre nerveuse",
+        "Une fibre conjonctive",
+        "Une fibre élastique"
+      ],
+      "bonne_reponse": "Une fibre musculaire",
+      "explication": "On l'appelle aussi myone. Elle peut atteindre plusieurs centimètres de long.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : fibre (sens 1)"
+    },
+    {
+      "id": "B20-23",
+      "enonce": "Masse de cytoplasme limitée par une membrane, qui contient plusieurs noyaux et provient de la fusion de plusieurs cellules.",
+      "choix": [
+        "Un syncytium",
+        "Un cytosquelette",
+        "Un chromosome",
+        "Un sarcomère"
+      ],
+      "bonne_reponse": "Un syncytium",
+      "explication": "Les fibres du muscle squelettique sont des syncytiums.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : syncytium"
+    },
+    {
+      "id": "B20-24",
+      "enonce": "Où se situent les noyaux d'une fibre de muscle squelettique ?",
+      "choix": [
+        "À la périphérie de la fibre",
+        "Au centre de la fibre",
+        "À une seule extrémité",
+        "Dans chaque sarcomère"
+      ],
+      "bonne_reponse": "À la périphérie de la fibre",
+      "explication": "Les noyaux sont repoussés sous la membrane par les myofibrilles. C'est le contraire du muscle lisse, au noyau central.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme 3.1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B20-25",
+      "enonce": "Structure en filament contractile qui remplit le cytoplasme des cellules striées.",
+      "choix": [
+        "Une myofibrille",
+        "Un sarcomère",
+        "Un ribosome",
+        "Un tendon"
+      ],
+      "bonne_reponse": "Une myofibrille",
+      "explication": "Une fibre en contient des centaines, alignées dans sa longueur.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : myofibrille"
+    },
+    {
+      "id": "B20-26",
+      "enonce": "Unité répétée de la myofibrille, comprise entre deux stries Z.",
+      "choix": [
+        "Un sarcomère",
+        "Une myofibrille",
+        "Un fascia",
+        "Un faisceau"
+      ],
+      "bonne_reponse": "Un sarcomère",
+      "explication": "C'est l'unité de base de la contraction. Elle se raccourcit quand le muscle se contracte.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : sarcomère"
+    },
+    {
+      "id": "B20-27",
+      "enonce": "Protéine contractile qui forme les filaments fins du sarcomère.",
+      "choix": [
+        "L'actine",
+        "La myosine",
+        "La kératine",
+        "Le collagène"
+      ],
+      "bonne_reponse": "L'actine",
+      "explication": "Elle se lie à la myosine pendant la contraction.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : actine"
+    },
+    {
+      "id": "B20-28",
+      "enonce": "Protéine qui forme les filaments épais du sarcomère et libère l'énergie nécessaire à la contraction.",
+      "choix": [
+        "La myosine",
+        "L'actine",
+        "L'hémoglobine",
+        "La myoglobine"
+      ],
+      "bonne_reponse": "La myosine",
+      "explication": "Ses têtes s'accrochent à l'actine puis pivotent pour la faire glisser.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : myosine"
+    },
+    {
+      "id": "B20-29",
+      "enonce": "Protéine rouge qui fixe l'oxygène et le met en réserve dans les cellules striées.",
+      "choix": [
+        "La myoglobine",
+        "L'hémoglobine",
+        "La myosine",
+        "La mélanine"
+      ],
+      "bonne_reponse": "La myoglobine",
+      "explication": "Elle donne leur couleur rouge aux muscles. Elle diffère de l'hémoglobine, qui circule dans les globules rouges.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : myoglobine"
+    },
+    {
+      "id": "B20-30",
+      "enonce": "Qu'observe-t-on au microscope sur une coupe longitudinale de muscle squelettique ?",
+      "choix": [
+        "Des stries transversales",
+        "Un seul noyau central",
+        "Des cils vibratiles",
+        "Des parois en cellulose"
+      ],
+      "bonne_reponse": "Des stries transversales",
+      "explication": "Ces stries correspondent à l'alternance des filaments d'actine et de myosine.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 3.1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B20-31",
+      "enonce": "Quelles fibres, riches en myoglobine et résistantes à la fatigue, conviennent à l'endurance ?",
+      "choix": [
+        "Les fibres lentes",
+        "Les fibres rapides",
+        "Les fibres lisses",
+        "Les fibres nerveuses"
+      ],
+      "bonne_reponse": "Les fibres lentes",
+      "explication": "Elles dominent chez un marathonien. Les fibres rapides, plus puissantes, se fatiguent vite et dominent chez un sprinteur.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 3.1 (types de fibres)"
+    },
+    {
+      "id": "B20-41",
+      "enonce": "Tissu fibreux par lequel un muscle s'attache à un os.",
+      "choix": [
+        "Un tendon",
+        "Un ligament",
+        "Un cartilage",
+        "Un nerf"
+      ],
+      "bonne_reponse": "Un tendon",
+      "explication": "Les tendons transmettent la force du muscle à l'os pour produire le mouvement.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : tendon"
+    },
+    {
+      "id": "B20-42",
+      "enonce": "Quel tendon relie les muscles du mollet au talon ?",
+      "choix": [
+        "Le tendon d'Achille",
+        "Le tendon rotulien",
+        "Le tendon du biceps",
+        "Le ligament croisé"
+      ],
+      "bonne_reponse": "Le tendon d'Achille",
+      "explication": "C'est le plus épais et le plus résistant du corps ; il peut se rompre lors d'un effort violent.",
+      "niveau_complexite": "Moyen",
+      "source": "Anatomie humaine"
+    },
+    {
+      "id": "B20-43",
+      "enonce": "Membrane conjonctive qui enveloppe les muscles ou les fixe aux os.",
+      "choix": [
+        "Une aponévrose",
+        "Un cartilage",
+        "Un nerf",
+        "Un vaisseau"
+      ],
+      "bonne_reponse": "Une aponévrose",
+      "explication": "Elle ressemble à un tendon aplati, en forme de lame.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : aponévrose"
+    },
+    {
+      "id": "B20-44",
+      "enonce": "Membrane fibreuse qui recouvre des muscles ou une région du corps.",
+      "choix": [
+        "Un fascia",
+        "Un cartilage",
+        "Un nerf",
+        "Un tendon"
+      ],
+      "bonne_reponse": "Un fascia",
+      "explication": "Les fascias séparent les muscles entre eux et leur permettent de glisser les uns sur les autres.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : fascia"
+    },
+    {
+      "id": "B20-45",
+      "enonce": "Ensemble de fibres conjonctives serrées qui unissent deux os au niveau d'une articulation.",
+      "choix": [
+        "Un ligament",
+        "Un tendon",
+        "Un cartilage",
+        "Une aponévrose"
+      ],
+      "bonne_reponse": "Un ligament",
+      "explication": "Il stabilise l'articulation ; une entorse est une lésion des ligaments.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : ligament (sens 1)"
+    },
+    {
+      "id": "B20-46",
+      "enonce": "Jointure entre deux os.",
+      "choix": [
+        "Une articulation",
+        "Une vertèbre",
+        "Un cartilage",
+        "Un tendon"
+      ],
+      "bonne_reponse": "Une articulation",
+      "explication": "Le genou, le coude et l'épaule sont des articulations mobiles.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : articulation (sens 1)"
+    },
+    {
+      "id": "B20-47",
+      "enonce": "Charpente osseuse du corps de l'homme et des animaux.",
+      "choix": [
+        "Le squelette",
+        "L'exosquelette",
+        "Le cytosquelette",
+        "Le crâne"
+      ],
+      "bonne_reponse": "Le squelette",
+      "explication": "Il soutient le corps et sert de point d'appui aux muscles.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : squelette (sens 1)"
+    },
+    {
+      "id": "B20-51",
+      "enonce": "Propriété d'une cellule nerveuse ou musculaire de réagir à une stimulation.",
+      "choix": [
+        "L'excitabilité",
+        "La contractilité",
+        "L'élasticité",
+        "L'extensibilité"
+      ],
+      "bonne_reponse": "L'excitabilité",
+      "explication": "Synonyme : réactivité. Un muscle est excité par un influx nerveux.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : excitabilité (sens 1)"
+    },
+    {
+      "id": "B20-52",
+      "enonce": "Capacité d'un muscle de se raccourcir en développant une force.",
+      "choix": [
+        "La contractilité",
+        "L'excitabilité",
+        "L'élasticité",
+        "La motricité"
+      ],
+      "bonne_reponse": "La contractilité",
+      "explication": "C'est la propriété principale du muscle.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : contractilité"
+    },
+    {
+      "id": "B20-53",
+      "enonce": "Capacité d'un muscle de s'allonger quand on tire dessus.",
+      "choix": [
+        "L'extensibilité",
+        "L'excitabilité",
+        "La contractilité",
+        "La tonicité"
+      ],
+      "bonne_reponse": "L'extensibilité",
+      "explication": "Les étirements après le sport l'entretiennent.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : extensibilité (muscles)"
+    },
+    {
+      "id": "B20-54",
+      "enonce": "Capacité d'un muscle étiré de reprendre sa forme et sa longueur initiales.",
+      "choix": [
+        "L'élasticité",
+        "L'extensibilité",
+        "L'excitabilité",
+        "La motricité"
+      ],
+      "bonne_reponse": "L'élasticité",
+      "explication": "Un muscle étiré puis lâché revient à sa longueur de repos.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : élasticité (sens 2)"
+    },
+    {
+      "id": "B20-55",
+      "enonce": "État de légère tension permanente des muscles du squelette au repos.",
+      "choix": [
+        "Le tonus",
+        "Le spasme",
+        "La crampe",
+        "La fatigue"
+      ],
+      "bonne_reponse": "Le tonus",
+      "explication": "Il maintient la posture, même sans mouvement. Il disparaît pendant le sommeil profond.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : tonus (sens 1)"
+    },
+    {
+      "id": "B20-56",
+      "enonce": "Raccourcissement d'un muscle sous l'effet d'un ordre nerveux.",
+      "choix": [
+        "La contraction",
+        "Le relâchement",
+        "L'extension",
+        "La flexion"
+      ],
+      "bonne_reponse": "La contraction",
+      "explication": "Elle consomme de l'énergie fournie par l'ATP.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : contraction ; programme 3.1"
+    },
+    {
+      "id": "B20-57",
+      "enonce": "Retour d'un muscle à l'état de repos, avec diminution de sa tension.",
+      "choix": [
+        "Le relâchement",
+        "La contraction",
+        "La flexion",
+        "L'extension"
+      ],
+      "bonne_reponse": "Le relâchement",
+      "explication": "Contraction et relâchement alternent à chaque mouvement.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : relâchement (sens 1)"
+    },
+    {
+      "id": "B20-59",
+      "enonce": "Ensemble des fonctions nerveuses et musculaires qui permettent les mouvements du corps.",
+      "choix": [
+        "La motricité",
+        "La sensibilité",
+        "L'excitabilité",
+        "La coordination"
+      ],
+      "bonne_reponse": "La motricité",
+      "explication": "Elle comprend les mouvements volontaires et automatiques.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : motricité"
+    },
+    {
+      "id": "B20-61",
+      "enonce": "Action de plier un membre en rapprochant ses deux segments.",
+      "choix": [
+        "La flexion",
+        "L'extension",
+        "La torsion",
+        "La rotation"
+      ],
+      "bonne_reponse": "La flexion",
+      "explication": "Exemple : plier le coude ou le genou.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : flexion (sens 2)"
+    },
+    {
+      "id": "B20-62",
+      "enonce": "Action d'allonger un membre en écartant ses deux segments.",
+      "choix": [
+        "L'extension",
+        "La flexion",
+        "La torsion",
+        "La rotation"
+      ],
+      "bonne_reponse": "L'extension",
+      "explication": "Exemple : tendre le bras ou la jambe.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : extension (sens 1)"
+    },
+    {
+      "id": "B20-63",
+      "enonce": "Muscle dont la contraction plie un membre.",
+      "choix": [
+        "Un muscle fléchisseur",
+        "Un muscle extenseur",
+        "Un muscle sphincter",
+        "Un muscle lisse"
+      ],
+      "bonne_reponse": "Un muscle fléchisseur",
+      "explication": "Le biceps est le fléchisseur du bras.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : fléchisseur"
+    },
+    {
+      "id": "B20-64",
+      "enonce": "Muscle dont la contraction allonge un segment de membre.",
+      "choix": [
+        "Un muscle extenseur",
+        "Un muscle fléchisseur",
+        "Un muscle sphincter",
+        "Un muscle lisse"
+      ],
+      "bonne_reponse": "Un muscle extenseur",
+      "explication": "Le triceps est l'extenseur du bras.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : extenseur"
+    },
+    {
+      "id": "B20-65",
+      "enonce": "Muscle dont l'action produit le mouvement souhaité.",
+      "choix": [
+        "Un muscle agoniste",
+        "Un muscle antagoniste",
+        "Un muscle synergique",
+        "Un muscle sphincter"
+      ],
+      "bonne_reponse": "Un muscle agoniste",
+      "explication": "Quand on plie le bras, le biceps est l'agoniste.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : agoniste (sens 1)"
+    },
+    {
+      "id": "B20-66",
+      "enonce": "Muscle dont l'action s'oppose à celle d'un autre muscle.",
+      "choix": [
+        "Un muscle antagoniste",
+        "Un muscle agoniste",
+        "Un muscle synergique",
+        "Un muscle sphincter"
+      ],
+      "bonne_reponse": "Un muscle antagoniste",
+      "explication": "Les muscles fonctionnent par paires antagonistes : l'un se contracte pendant que l'autre se relâche.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 3.1 (muscles antagonistes)"
+    },
+    {
+      "id": "B20-67",
+      "enonce": "Quel muscle est l'antagoniste du biceps ?",
+      "choix": [
+        "Le triceps",
+        "Le deltoïde",
+        "Le trapèze",
+        "Le pectoral"
+      ],
+      "bonne_reponse": "Le triceps",
+      "explication": "Quand le biceps se contracte, le triceps se relâche, et inversement.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 3.1 (muscles antagonistes)"
+    }
+  ]
+}
