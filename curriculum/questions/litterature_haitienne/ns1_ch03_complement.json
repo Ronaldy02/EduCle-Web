@@ -1,0 +1,406 @@
+{
+  "matiere_id": 23,
+  "matiere": "Littérature haïtienne",
+  "chapitre": "L'École de 1836 : contexte et poètes",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "",
+  "statut": "validé par l'utilisateur 2026-10-20",
+  "rejetees": [],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "LH3-34",
+      "enonce": "Comment nomme-t-on le groupe romantique formé en 1836 autour des frères Nau ?",
+      "choix": [
+        "Le Cénacle",
+        "La Ronde",
+        "Les Griots",
+        "L'école patriotique"
+      ],
+      "bonne_reponse": "Le Cénacle",
+      "explication": "On l'appelle aussi l'École de 1836 ; il se forme autour du journal Le Républicain, puis de L'Union.",
+      "niveau_complexite": "Moyen",
+      "source": "Universalis : Poètes haïtiens ; Wikipédia : École de 1836"
+    },
+    {
+      "id": "LH3-35",
+      "enonce": "Entre quelles dates se situe l'École de 1836 ?",
+      "choix": [
+        "De 1836 à 1860",
+        "De 1804 à 1836",
+        "De 1860 à 1898",
+        "De 1898 à 1915"
+      ],
+      "bonne_reponse": "De 1836 à 1860",
+      "explication": "C'est la deuxième période de la littérature haïtienne, de type romantique.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : École de 1836"
+    },
+    {
+      "id": "LH3-36",
+      "enonce": "Quel président fait fermer le journal Le Républicain ?",
+      "choix": [
+        "Jean-Pierre Boyer",
+        "Alexandre Pétion",
+        "Faustin Soulouque",
+        "Fabre Geffrard"
+      ],
+      "bonne_reponse": "Jean-Pierre Boyer",
+      "explication": "Le journal, fondé en août 1836, est d'abord censuré puis fermé.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : École de 1836"
+    },
+    {
+      "id": "LH3-37",
+      "enonce": "Pour quelle raison Le Républicain est-il interdit ?",
+      "choix": [
+        "Un article hostile au gouvernement",
+        "Un poème jugé obscène",
+        "Une attaque contre l'Église",
+        "Un litige avec l'imprimeur"
+      ],
+      "bonne_reponse": "Un article hostile au gouvernement",
+      "explication": "L'Union paraît la même année, avec les mêmes collaborateurs, pour contourner la censure.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : École de 1836"
+    },
+    {
+      "id": "LH3-38",
+      "enonce": "Quel autre frère Nau appartient au Cénacle, avec Ignace et Émile ?",
+      "choix": [
+        "Eugène Nau",
+        "Dumaï Lespinasse",
+        "Céligny Ardouin",
+        "Thomas Madiou"
+      ],
+      "bonne_reponse": "Eugène Nau",
+      "explication": "Eugène Nau écrit dans L'Union, en 1837 : « ce n'est pas la poésie qui manque, ce sont les poètes ».",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : École de 1836 ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-39",
+      "enonce": "Quels frères de Coriolan Ardouin, historiens et hommes politiques, appartiennent au Cénacle ?",
+      "choix": [
+        "Beaubrun et Céligny",
+        "Émile et Ignace",
+        "Dumaï et Beauvais",
+        "Thomas et Hérard"
+      ],
+      "bonne_reponse": "Beaubrun et Céligny",
+      "explication": "Beaubrun Ardouin est l'auteur des Études sur l'histoire d'Haïti.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : École de 1836 ; Wikipédia : Coriolan Ardouin"
+    },
+    {
+      "id": "LH3-40",
+      "enonce": "Quels frères Lespinasse sont membres du Cénacle ?",
+      "choix": [
+        "Beauvais et Dumaï",
+        "Beaubrun et Céligny",
+        "Ignace et Émile",
+        "Eugène et Charles"
+      ],
+      "bonne_reponse": "Beauvais et Dumaï",
+      "explication": "La plupart des membres du Cénacle étaient proches parents et issus de la haute bourgeoisie.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : École de 1836"
+    },
+    {
+      "id": "LH3-41",
+      "enonce": "Quel historien rejoint plus tard le Cénacle, avec Ogé Longuefosse et Alibée Fleury ?",
+      "choix": [
+        "Thomas Madiou",
+        "Baron de Vastey",
+        "Julien Prévost",
+        "Hérard Dumesle"
+      ],
+      "bonne_reponse": "Thomas Madiou",
+      "explication": "Madiou est l'auteur de l'Histoire d'Haïti.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : École de 1836"
+    },
+    {
+      "id": "LH3-42",
+      "enonce": "Contre quoi le Cénacle s'élève-t-il en littérature ?",
+      "choix": [
+        "La mythologie et les imitations",
+        "Le romantisme français",
+        "La poésie lyrique",
+        "Le roman historique"
+      ],
+      "bonne_reponse": "La mythologie et les imitations",
+      "explication": "Le groupe veut une littérature originale, qui se distingue de celle des pionniers.",
+      "niveau_complexite": "Moyen",
+      "source": "Universalis : Poètes haïtiens"
+    },
+    {
+      "id": "LH3-43",
+      "enonce": "Que reprochent les membres de l'École de 1836 aux pionniers ?",
+      "choix": [
+        "Leur imitation des pseudo-classiques français",
+        "Leur écriture en créole",
+        "Leur goût du romantisme",
+        "Leur refus de publier"
+      ],
+      "bonne_reponse": "Leur imitation des pseudo-classiques français",
+      "explication": "Ils les trouvent trop attachés aux modèles pseudo-classiques de la France.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : École de 1836"
+    },
+    {
+      "id": "LH3-44",
+      "enonce": "Quels poètes illustrent le romantisme haïtien à partir de 1836, selon Larousse ?",
+      "choix": [
+        "Ignace Nau et Coriolan Ardouin",
+        "Oswald Durand et Massillon Coicou",
+        "Etzer Vilaire et Georges Sylvain",
+        "Jacques Roumain et Carl Brouard"
+      ],
+      "bonne_reponse": "Ignace Nau et Coriolan Ardouin",
+      "explication": "Larousse ajoute le romancier Émeric Bergeaud et les historiens Madiou, Beaubrun Ardouin et Saint-Rémy.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : Haïti (littérature)"
+    },
+    {
+      "id": "LH3-45",
+      "enonce": "Quels thèmes accompagnent le sentiment religieux dans le romantisme du Cénacle ?",
+      "choix": [
+        "L'exil et l'amour du terroir",
+        "La guerre et l'héroïsme",
+        "Le commerce et l'argent",
+        "La science et le progrès"
+      ],
+      "bonne_reponse": "L'exil et l'amour du terroir",
+      "explication": "Universalis parle d'un romantisme « qui s'enfante dans la douleur ».",
+      "niveau_complexite": "Difficile",
+      "source": "Universalis : Poètes haïtiens"
+    },
+    {
+      "id": "LH3-46",
+      "enonce": "Quel est l'unique recueil de Coriolan Ardouin ?",
+      "choix": [
+        "Reliques d'un poète haïtien",
+        "Poésies fugitives",
+        "Poèmes mélancoliques",
+        "Rires et pleurs"
+      ],
+      "bonne_reponse": "Reliques d'un poète haïtien",
+      "explication": "Il est publié après sa mort, en 1837.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Coriolan Ardouin"
+    },
+    {
+      "id": "LH3-47",
+      "enonce": "Qui publie à titre posthume Reliques d'un poète haïtien ?",
+      "choix": [
+        "Émile Nau",
+        "Ignace Nau",
+        "Beaubrun Ardouin",
+        "Thomas Madiou"
+      ],
+      "bonne_reponse": "Émile Nau",
+      "explication": "Coriolan Ardouin est mort très jeune ; il avait onze frères et sœurs.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Coriolan Ardouin"
+    },
+    {
+      "id": "LH3-48",
+      "enonce": "Quels poètes français influencent surtout Coriolan Ardouin ?",
+      "choix": [
+        "Lamartine et Casimir Delavigne",
+        "Hugo et Rimbaud",
+        "Villon et Ronsard",
+        "Verlaine et Mallarmé"
+      ],
+      "bonne_reponse": "Lamartine et Casimir Delavigne",
+      "explication": "Sa poésie est marquée par la mélancolie, la sincérité et de nombreuses exclamations.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Coriolan Ardouin"
+    },
+    {
+      "id": "LH3-49",
+      "enonce": "En quelle année est né Coriolan Ardouin ?",
+      "choix": [
+        "1812",
+        "1808",
+        "1806",
+        "1815"
+      ],
+      "bonne_reponse": "1812",
+      "explication": "Les sources divergent sur la date de sa mort, entre 1835 et 1838.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Coriolan Ardouin ; Universalis : Poètes haïtiens"
+    },
+    {
+      "id": "LH3-50",
+      "enonce": "Dans quelle localité est né Coriolan Ardouin ?",
+      "choix": [
+        "Petit-Trou-de-Nippes",
+        "Jacmel",
+        "Les Cayes",
+        "Port-de-Paix"
+      ],
+      "bonne_reponse": "Petit-Trou-de-Nippes",
+      "explication": "Ses frères Beaubrun et Céligny sont devenus historiens et hommes politiques.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Coriolan Ardouin"
+    },
+    {
+      "id": "LH3-51",
+      "enonce": "En quelle année est né Ignace Nau ?",
+      "choix": [
+        "1808",
+        "1812",
+        "1806",
+        "1815"
+      ],
+      "bonne_reponse": "1808",
+      "explication": "Né à Port-au-Prince, il est l'initiateur du Cénacle.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Ignace Nau ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-52",
+      "enonce": "Quelle fonction Ignace Nau occupe-t-il auprès du président Boyer ?",
+      "choix": [
+        "Secrétaire particulier",
+        "Ministre de la Guerre",
+        "Ambassadeur à Paris",
+        "Directeur du lycée"
+      ],
+      "bonne_reponse": "Secrétaire particulier",
+      "explication": "Son père, Jean-Pierre Nau, fut trésorier général sous Pétion et Boyer.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Ignace Nau"
+    },
+    {
+      "id": "LH3-53",
+      "enonce": "Quel poème d'Ignace Nau est un hommage à l'empereur fondateur de la nation haïtienne ?",
+      "choix": [
+        "Dessalines",
+        "Le Lac",
+        "À ma patrie",
+        "Isalina"
+      ],
+      "bonne_reponse": "Dessalines",
+      "explication": "Ignace Nau a aussi laissé des Poésies, rééditées au XXIe siècle.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Ignace Nau"
+    },
+    {
+      "id": "LH3-54",
+      "enonce": "En quelle année est né Émile Nau ?",
+      "choix": [
+        "1812",
+        "1808",
+        "1806",
+        "1818"
+      ],
+      "bonne_reponse": "1812",
+      "explication": "Il est né à Port-au-Prince et meurt en 1860.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Émile Nau ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-55",
+      "enonce": "Quelle fonction politique Émile Nau exerce-t-il à partir de 1842 ?",
+      "choix": [
+        "Député",
+        "Sénateur",
+        "Ministre des Finances",
+        "Président du Sénat"
+      ],
+      "bonne_reponse": "Député",
+      "explication": "Il est aussi délégué (préfet) de Port-au-Prince sous Boyer.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Émile Nau"
+    },
+    {
+      "id": "LH3-56",
+      "enonce": "Dans quelle ville est né Pierre Faubert ?",
+      "choix": [
+        "Les Cayes",
+        "Jacmel",
+        "Le Cap",
+        "Jérémie"
+      ],
+      "bonne_reponse": "Les Cayes",
+      "explication": "Poète, dramaturge, diplomate et homme politique, il est né en 1806.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Pierre Faubert"
+    },
+    {
+      "id": "LH3-57",
+      "enonce": "Quel lycée Pierre Faubert dirige-t-il ?",
+      "choix": [
+        "Le lycée Pétion",
+        "Le lycée Toussaint-Louverture",
+        "Le lycée Dessalines",
+        "Le lycée Boyer"
+      ],
+      "bonne_reponse": "Le lycée Pétion",
+      "explication": "Il a aussi été conseiller du président Boyer.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Pierre Faubert ; Hoffmann, chap. 6"
+    },
+    {
+      "id": "LH3-58",
+      "enonce": "Quel drame historique de Pierre Faubert met en scène le chef de la révolte de 1790 ?",
+      "choix": [
+        "Ogé ou le préjugé de couleur",
+        "La Mort du général Lamarre",
+        "L'Haïtien expatrié",
+        "L'Entrée du roi en sa capitale"
+      ],
+      "bonne_reponse": "Ogé ou le préjugé de couleur",
+      "explication": "La pièce, écrite en 1841, dénonce les préjugés liés à la couleur de la peau.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Pierre Faubert ; Hoffmann, chap. 6"
+    },
+    {
+      "id": "LH3-59",
+      "enonce": "Quel recueil poétique de Pierre Faubert est cité par Wikipédia ?",
+      "choix": [
+        "Poésies fugitives",
+        "Poésies nationales",
+        "Rires et pleurs",
+        "Primevères"
+      ],
+      "bonne_reponse": "Poésies fugitives",
+      "explication": "Hoffmann cite aussi son poème « Le Souvenir » (1856).",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Pierre Faubert"
+    },
+    {
+      "id": "LH3-60",
+      "enonce": "Dans quel pays Pierre Faubert s'exile-t-il après la chute de Boyer ?",
+      "choix": [
+        "La Jamaïque",
+        "Cuba",
+        "Le Canada",
+        "Le Venezuela"
+      ],
+      "bonne_reponse": "La Jamaïque",
+      "explication": "Il s'installe ensuite à Paris et meurt à Issy-les-Moulineaux en 1868.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Pierre Faubert"
+    },
+    {
+      "id": "LH3-61",
+      "enonce": "Quel poète haïtien négocie un concordat avec le Vatican sous la présidence de Geffrard ?",
+      "choix": [
+        "Pierre Faubert",
+        "Émile Nau",
+        "Coriolan Ardouin",
+        "Ignace Nau"
+      ],
+      "bonne_reponse": "Pierre Faubert",
+      "explication": "Il est alors désigné émissaire d'Haïti auprès de la papauté.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Pierre Faubert"
+    }
+  ]
+}
