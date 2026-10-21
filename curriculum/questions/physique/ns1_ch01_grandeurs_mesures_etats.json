@@ -1,0 +1,647 @@
+{
+  "matiere_id": 9,
+  "matiere": "Physique",
+  "chapitre": "Grandeurs, mesures et états de la matière",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "A1",
+  "statut": "validé par l'utilisateur 2026-10-20",
+  "rejetees": [
+    "Q1315",
+    "Q1317"
+  ],
+  "base_rejetees_a_supprimer": [
+    {
+      "id": "Q1315",
+      "enonce": "Comment s'écrit un nombre en notation scientifique ?"
+    },
+    {
+      "id": "Q1317",
+      "enonce": "Qu'est-ce que l'ordre de grandeur d'une valeur ?"
+    }
+  ],
+  "questions": [
+    {
+      "id": "PN1_01-01",
+      "enonce": "Propriété d'un objet ou d'un phénomène que l'on peut exprimer par un nombre et une unité",
+      "choix": [
+        "Une grandeur physique",
+        "Une loi physique",
+        "Une constante universelle",
+        "Un instrument de mesure"
+      ],
+      "bonne_reponse": "Une grandeur physique",
+      "explication": "La longueur, la masse, la durée et la température sont des grandeurs physiques ; la couleur ou la beauté n'en sont pas.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1 (savoir-faire : mesurer) — pas de définition physique au Larousse en ligne"
+    },
+    {
+      "id": "PN1_01-02",
+      "enonce": "Comparaison d'une grandeur à une référence de même nature, prise comme étalon",
+      "choix": [
+        "La mesure",
+        "L'estimation",
+        "L'hypothèse",
+        "La conversion"
+      ],
+      "bonne_reponse": "La mesure",
+      "explication": "Mesurer une longueur, c'est compter combien de fois l'étalon, par exemple le mètre, y est contenu.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : mesure (sens 1)"
+    },
+    {
+      "id": "PN1_01-03",
+      "enonce": "Grandeur de référence servant à exprimer le résultat d'une mesure",
+      "choix": [
+        "Une unité",
+        "Un symbole",
+        "Une formule",
+        "Un repère"
+      ],
+      "bonne_reponse": "Une unité",
+      "explication": "Un résultat sans unité n'a pas de sens : « 5 » ne dit pas s'il s'agit de 5 mètres ou de 5 secondes.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1 (pas de sens physique au Larousse en ligne)"
+    },
+    {
+      "id": "PN1_01-04",
+      "enonce": "Ensemble cohérent d'unités adopté par la communauté scientifique mondiale",
+      "choix": [
+        "Le Système international",
+        "Le système impérial",
+        "Le système CGS",
+        "Le système décimal"
+      ],
+      "bonne_reponse": "Le Système international",
+      "explication": "Adopté en 1960, il est utilisé dans le monde entier en science ; certains pays gardent d'autres unités pour l'usage courant.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "Q1312",
+      "enonce": "Combien d'unités de base compte le Système international (SI) ?",
+      "choix": [
+        "7",
+        "5",
+        "10",
+        "12"
+      ],
+      "bonne_reponse": "7",
+      "explication": "Mètre, kilogramme, seconde, ampère, kelvin, mole et candela ; toutes les autres unités s'en déduisent.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1312 (explication reprise) — Larousse : kelvin, kilogramme",
+      "ancien_enonce": "Combien d'unités de base compte le Système international (SI) ?"
+    },
+    {
+      "id": "PN1_01-06",
+      "enonce": "Quelle est l'unité de longueur du Système international ?",
+      "choix": [
+        "Le mètre",
+        "Le pied",
+        "Le pouce",
+        "Le mille"
+      ],
+      "bonne_reponse": "Le mètre",
+      "explication": "Le mètre (m) est défini à partir de la distance parcourue par la lumière dans le vide pendant un très court instant.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_01-07",
+      "enonce": "Quelle est l'unité de masse du Système international ?",
+      "choix": [
+        "Le kilogramme",
+        "Le gramme",
+        "La tonne",
+        "Le newton"
+      ],
+      "bonne_reponse": "Le kilogramme",
+      "explication": "Le gramme et la tonne sont des sous-multiples ou multiples usuels, mais l'unité de base est le kilogramme (kg) ; le newton mesure une force.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : kilogramme"
+    },
+    {
+      "id": "PN1_01-08",
+      "enonce": "Quelle est l'unité de temps du Système international ?",
+      "choix": [
+        "La seconde",
+        "La minute",
+        "L'heure",
+        "Le jour"
+      ],
+      "bonne_reponse": "La seconde",
+      "explication": "La minute et l'heure sont tolérées avec le SI, mais l'unité de base est la seconde (s).",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_01-09",
+      "enonce": "Quelle est l'unité de température du Système international ?",
+      "choix": [
+        "Le kelvin",
+        "Le degré Celsius",
+        "Le degré Fahrenheit",
+        "Le joule"
+      ],
+      "bonne_reponse": "Le kelvin",
+      "explication": "0 K correspond à − 273,15 °C ; une variation de 1 K vaut une variation de 1 °C.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : kelvin"
+    },
+    {
+      "id": "PN1_01-10",
+      "enonce": "Quelle est l'unité de volume du Système international ?",
+      "choix": [
+        "Le mètre cube",
+        "Le litre",
+        "Le centimètre cube",
+        "Le gramme"
+      ],
+      "bonne_reponse": "Le mètre cube",
+      "explication": "Le litre (1 dm³) est très employé mais n'est pas une unité du SI ; 1 m³ = 1 000 L.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_01-11",
+      "enonce": "Combien de kilogrammes représentent 3 000 grammes ?",
+      "choix": [
+        "3 kg",
+        "30 kg",
+        "0,3 kg",
+        "300 kg"
+      ],
+      "bonne_reponse": "3 kg",
+      "explication": "1 kg = 1 000 g, donc 3 000 g = 3 kg.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1 (conversions)"
+    },
+    {
+      "id": "Q1318",
+      "enonce": "Comment convertit-on 5 km en mètres ?",
+      "choix": [
+        "5 000 m",
+        "0,005 m",
+        "500 m",
+        "50 m"
+      ],
+      "bonne_reponse": "5 000 m",
+      "explication": "1 km = 1 000 m, donc 5 km = 5 × 1 000 m = 5 000 m.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1318 (explication reprise)",
+      "ancien_enonce": "Comment convertit-on 5 km en mètres ?"
+    },
+    {
+      "id": "PN1_01-13",
+      "enonce": "Un volume de 1 litre est égal à combien de centimètres cubes ?",
+      "choix": [
+        "1 000 cm³",
+        "10 cm³",
+        "100 cm³",
+        "10 000 cm³"
+      ],
+      "bonne_reponse": "1 000 cm³",
+      "explication": "1 L = 1 dm³ = 1 000 cm³ ; en pratique, 1 mL = 1 cm³.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 (conversions)"
+    },
+    {
+      "id": "PN1_01-21",
+      "enonce": "Quel instrument simple sert à mesurer une longueur ?",
+      "choix": [
+        "Une règle graduée",
+        "Un chronomètre",
+        "Une balance",
+        "Une éprouvette"
+      ],
+      "bonne_reponse": "Une règle graduée",
+      "explication": "Pour de grandes longueurs, on utilise un mètre ruban ; pour de très petites, un pied à coulisse.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_01-22",
+      "enonce": "Quel instrument de laboratoire sert à mesurer le volume d'un liquide ?",
+      "choix": [
+        "Une éprouvette graduée",
+        "Un chronomètre",
+        "Un thermomètre",
+        "Une balance"
+      ],
+      "bonne_reponse": "Une éprouvette graduée",
+      "explication": "On lit le volume au bas de la surface incurvée du liquide, l'œil à son niveau.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : éprouvette (sens 2)"
+    },
+    {
+      "id": "PN1_01-23",
+      "enonce": "Appareil à plateaux ou à affichage numérique servant à peser",
+      "choix": [
+        "Une balance",
+        "Un baromètre",
+        "Un chronomètre",
+        "Un voltmètre"
+      ],
+      "bonne_reponse": "Une balance",
+      "explication": "Elle compare ou mesure des masses ; en laboratoire, on utilise surtout la balance électronique.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : balance (sens 1, adapté)"
+    },
+    {
+      "id": "PN1_01-24",
+      "enonce": "Appareil destiné à la mesure des températures",
+      "choix": [
+        "Un thermomètre",
+        "Un baromètre",
+        "Un hygromètre",
+        "Un voltmètre"
+      ],
+      "bonne_reponse": "Un thermomètre",
+      "explication": "Le thermomètre à alcool repose sur la dilatation d'un liquide ; il en existe aussi à affichage électronique.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : thermomètre (sens 1)"
+    },
+    {
+      "id": "PN1_01-25",
+      "enonce": "Quel instrument sert à mesurer une durée ?",
+      "choix": [
+        "Un chronomètre",
+        "Un baromètre",
+        "Un dynamomètre",
+        "Un ampèremètre"
+      ],
+      "bonne_reponse": "Un chronomètre",
+      "explication": "Il donne souvent le dixième ou le centième de seconde ; dans le SI, la durée s'exprime en secondes.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : chronomètre"
+    },
+    {
+      "id": "Q1313",
+      "enonce": "Marge d'erreur possible autour du résultat d'une mesure",
+      "choix": [
+        "L'incertitude",
+        "L'étalon",
+        "L'unité",
+        "L'ordre de grandeur"
+      ],
+      "bonne_reponse": "L'incertitude",
+      "explication": "On l'écrit sous la forme valeur ± incertitude, par exemple 9,81 ± 0,02 m/s².",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1313 (modifiée) — Larousse : incertitude (sens math. 3, simplifié)",
+      "ancien_enonce": "Comment exprime-t-on une incertitude de mesure ?"
+    },
+    {
+      "id": "PN1_01-32",
+      "enonce": "Qualité d'une mesure qui donne presque le même résultat quand on la répète",
+      "choix": [
+        "La précision",
+        "L'exactitude",
+        "L'incertitude",
+        "La sensibilité"
+      ],
+      "bonne_reponse": "La précision",
+      "explication": "Un instrument précis donne des résultats très rapprochés d'une mesure à l'autre.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : précision (sens 4)"
+    },
+    {
+      "id": "Q1320",
+      "enonce": "Qualité d'une mesure proche de la valeur vraie de la grandeur",
+      "choix": [
+        "L'exactitude",
+        "La précision",
+        "L'incertitude",
+        "La sensibilité"
+      ],
+      "bonne_reponse": "L'exactitude",
+      "explication": "Image de la cible : des tirs groupés mais loin du centre sont précis sans être exacts.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1320 (modifiée) — Larousse : exactitude (sens 6)",
+      "ancien_enonce": "Qu'est-ce que l'exactitude d'une mesure ?"
+    },
+    {
+      "id": "Q1316",
+      "enonce": "Grandeur définie par une valeur, une direction et un sens",
+      "choix": [
+        "Une grandeur vectorielle",
+        "Une grandeur scalaire",
+        "Une grandeur dérivée",
+        "Une grandeur de base"
+      ],
+      "bonne_reponse": "Une grandeur vectorielle",
+      "explication": "Elle se représente par une flèche : la longueur indique la valeur, l'orientation donne la direction et le sens.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1316 (modifiée) — Programme B1 (pas de définition au Larousse en ligne)",
+      "ancien_enonce": "Qu'a de plus une grandeur vectorielle qu'une grandeur scalaire ?"
+    },
+    {
+      "id": "PN1_01-35",
+      "enonce": "Grandeur entièrement définie par un nombre et son unité",
+      "choix": [
+        "Une grandeur scalaire",
+        "Une grandeur vectorielle",
+        "Une grandeur nulle",
+        "Une grandeur variable"
+      ],
+      "bonne_reponse": "Une grandeur scalaire",
+      "explication": "La masse, la température et le volume sont des grandeurs scalaires : aucune direction n'est nécessaire.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : scalaire"
+    },
+    {
+      "id": "PN1_01-36",
+      "enonce": "Laquelle de ces grandeurs est vectorielle ?",
+      "choix": [
+        "La force",
+        "La masse",
+        "La température",
+        "Le volume"
+      ],
+      "bonne_reponse": "La force",
+      "explication": "Une force se décrit par son point d'application, sa direction, son sens et sa valeur.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1 / B1"
+    },
+    {
+      "id": "PN1_01-41",
+      "enonce": "Substance qui constitue les corps et possède des propriétés physiques",
+      "choix": [
+        "La matière",
+        "L'énergie",
+        "La lumière",
+        "L'espace"
+      ],
+      "bonne_reponse": "La matière",
+      "explication": "Tout ce qui a une masse et occupe un volume est de la matière : l'air, l'eau, le bois. La lumière n'en est pas.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : matière (sens 1)"
+    },
+    {
+      "id": "PN1_01-42",
+      "enonce": "Corps qui garde sa forme propre et son volume propre",
+      "choix": [
+        "Un solide",
+        "Un liquide",
+        "Un gaz",
+        "Un plasma"
+      ],
+      "bonne_reponse": "Un solide",
+      "explication": "Les particules d'un solide sont serrées et ne bougent presque pas ; exemples : le fer, le bois, la glace.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : solide (sens 1, adapté) — Programme A1"
+    },
+    {
+      "id": "PN1_01-43",
+      "enonce": "Corps qui prend la forme du récipient qui le contient mais dont le volume est déterminé",
+      "choix": [
+        "Un liquide",
+        "Un solide",
+        "Un gaz",
+        "Un plasma"
+      ],
+      "bonne_reponse": "Un liquide",
+      "explication": "Ses particules sont proches mais glissent les unes sur les autres : eau, huile, alcool.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : liquide (sens 3)"
+    },
+    {
+      "id": "PN1_01-44",
+      "enonce": "Corps qui occupe la totalité du volume du récipient dans lequel il est enfermé",
+      "choix": [
+        "Un gaz",
+        "Un liquide",
+        "Un solide",
+        "Un plasma"
+      ],
+      "bonne_reponse": "Un gaz",
+      "explication": "Ses particules sont très espacées et très agitées ; l'air est un mélange de gaz.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : gaz (sens 1)"
+    },
+    {
+      "id": "PN1_01-45",
+      "enonce": "Fluide composé de molécules gazeuses neutres, d'ions positifs et d'électrons",
+      "choix": [
+        "Le plasma",
+        "Le gaz",
+        "La vapeur",
+        "Le gel"
+      ],
+      "bonne_reponse": "Le plasma",
+      "explication": "On le trouve dans le Soleil et les étoiles ; c'est le quatrième état de la matière. À ne pas confondre avec le plasma du sang.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : plasma (sens 2)"
+    },
+    {
+      "id": "PN1_01-46",
+      "enonce": "Parmi ces exemples, lequel est un état intermédiaire entre solide et liquide ?",
+      "choix": [
+        "Une pâte",
+        "La glace",
+        "La vapeur d'eau",
+        "Un fil de fer"
+      ],
+      "bonne_reponse": "Une pâte",
+      "explication": "Les pâtes et les gels se comportent à la fois comme des solides et comme des liquides.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme A1 (états intermédiaires) — exemples à valider"
+    },
+    {
+      "id": "PN1_01-47",
+      "enonce": "Dans quel état de la matière les particules sont-elles les plus éloignées les unes des autres ?",
+      "choix": [
+        "L'état gazeux",
+        "L'état solide",
+        "L'état liquide",
+        "L'état pâteux"
+      ],
+      "bonne_reponse": "L'état gazeux",
+      "explication": "Les particules d'un gaz se déplacent librement dans tout le volume disponible, d'où sa grande facilité à être comprimé.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_01-48",
+      "enonce": "Constituant fondamental de la matière, formé d'un noyau et d'électrons",
+      "choix": [
+        "L'atome",
+        "La molécule",
+        "La cellule",
+        "L'ion"
+      ],
+      "bonne_reponse": "L'atome",
+      "explication": "Le diamètre d'un atome est de l'ordre de 10⁻¹⁰ m.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : atome (sens 1) — Programme A1"
+    },
+    {
+      "id": "PN1_01-49",
+      "enonce": "Particule formée d'atomes, plus petite quantité d'un corps pur pouvant exister à l'état libre",
+      "choix": [
+        "Une molécule",
+        "Un atome",
+        "Un ion",
+        "Un cristal"
+      ],
+      "bonne_reponse": "Une molécule",
+      "explication": "La molécule d'eau est formée de deux atomes d'hydrogène et d'un atome d'oxygène.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : molécule"
+    },
+    {
+      "id": "PN1_01-51",
+      "enonce": "Grandeur qui exprime la quantité de matière que contient un corps",
+      "choix": [
+        "La masse",
+        "Le volume",
+        "Le poids",
+        "La densité"
+      ],
+      "bonne_reponse": "La masse",
+      "explication": "Elle s'exprime en kilogrammes et ne change pas d'un lieu à un autre, contrairement au poids.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1 (A1 et B1 ; pas de définition physique au Larousse en ligne)"
+    },
+    {
+      "id": "PN1_01-52",
+      "enonce": "Espace occupé par un corps",
+      "choix": [
+        "Le volume",
+        "La masse",
+        "La surface",
+        "La longueur"
+      ],
+      "bonne_reponse": "Le volume",
+      "explication": "Pour un solide irrégulier, on le mesure par déplacement d'eau dans une éprouvette graduée.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : volume (sens 2)"
+    },
+    {
+      "id": "PN1_01-53",
+      "enonce": "Rapport de la masse d'un corps à son volume",
+      "choix": [
+        "La masse volumique",
+        "La densité",
+        "La pression",
+        "La concentration"
+      ],
+      "bonne_reponse": "La masse volumique",
+      "explication": "Elle dépend de la substance : environ 7 800 kg/m³ pour l'acier, 2 700 kg/m³ pour l'aluminium.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "PN1_01-54",
+      "enonce": "Quelle est l'unité de la masse volumique dans le Système international ?",
+      "choix": [
+        "Le kg/m³",
+        "Le m³/kg",
+        "Le N/m²",
+        "Le kg·m"
+      ],
+      "bonne_reponse": "Le kg/m³",
+      "explication": "En pratique, on emploie aussi le g/cm³ : 1 g/cm³ = 1 000 kg/m³.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_01-55",
+      "enonce": "Quelle est la formule de la masse volumique ρ ?",
+      "choix": [
+        "ρ = m / V",
+        "ρ = V / m",
+        "ρ = m × V",
+        "ρ = m + V"
+      ],
+      "bonne_reponse": "ρ = m / V",
+      "explication": "m est la masse du corps et V son volume ; on en déduit m = ρ × V.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_01-56",
+      "enonce": "Rapport de la masse d'un corps à celle d'un même volume d'eau",
+      "choix": [
+        "La densité",
+        "La masse volumique",
+        "La concentration",
+        "La viscosité"
+      ],
+      "bonne_reponse": "La densité",
+      "explication": "Elle n'a pas d'unité : un corps de densité 7,8 est 7,8 fois plus massif que l'eau pour le même volume. La densité de l'eau vaut 1.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : densité (sens 5)"
+    },
+    {
+      "id": "PN1_01-57",
+      "enonce": "Quelle est la masse volumique de l'eau pure ?",
+      "choix": [
+        "1 000 kg/m³",
+        "100 kg/m³",
+        "10 kg/m³",
+        "1 kg/m³"
+      ],
+      "bonne_reponse": "1 000 kg/m³",
+      "explication": "Cela revient à 1 g/cm³, soit 1 kg par litre.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_01-58",
+      "enonce": "Un objet de 200 g occupe un volume de 100 cm³. Quelle est sa masse volumique ?",
+      "choix": [
+        "2 g/cm³",
+        "0,5 g/cm³",
+        "20 g/cm³",
+        "300 g/cm³"
+      ],
+      "bonne_reponse": "2 g/cm³",
+      "explication": "ρ = m / V = 200 g / 100 cm³ = 2 g/cm³.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 (calcul court)"
+    },
+    {
+      "id": "PN1_01-61",
+      "enonce": "Quel métal est attiré par un aimant ?",
+      "choix": [
+        "Le fer",
+        "L'aluminium",
+        "Le cuivre",
+        "L'or"
+      ],
+      "bonne_reponse": "Le fer",
+      "explication": "Le nickel et le cobalt le sont aussi ; l'aimant permet de distinguer le fer de l'aluminium.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1 (distinguer les métaux)"
+    },
+    {
+      "id": "PN1_01-62",
+      "enonce": "Quel métal est liquide à la température ambiante ?",
+      "choix": [
+        "Le mercure",
+        "Le plomb",
+        "Le zinc",
+        "L'étain"
+      ],
+      "bonne_reponse": "Le mercure",
+      "explication": "Le mercure fond à − 39 °C, alors que l'étain fond à 232 °C et le plomb à 327 °C.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1 (distinguer les métaux)"
+    },
+    {
+      "id": "PN1_01-63",
+      "enonce": "Quel métal sert surtout à fabriquer les fils électriques ?",
+      "choix": [
+        "Le cuivre",
+        "Le plomb",
+        "Le fer",
+        "Le mercure"
+      ],
+      "bonne_reponse": "Le cuivre",
+      "explication": "Excellent conducteur d'électricité, le cuivre se tire facilement en fils ; l'argent conduit mieux mais coûte plus cher.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1 (distinguer les métaux)"
+    }
+  ]
+}

@@ -1,0 +1,327 @@
+{
+  "matiere_id": 25,
+  "matiere": "Français",
+  "chapitre": "Les pronoms",
+  "niveaux": [
+    "NS1",
+    "NS2"
+  ],
+  "unite_programme": "S1U3, U7",
+  "statut": "validé par l'utilisateur 2026-10-20",
+  "rejetees": [
+    "F04-06",
+    "F04-11",
+    "F04-13"
+  ],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "F04-01",
+      "enonce": "Élément qui précède un pronom relatif et auquel ce pronom se rapporte ?",
+      "choix": [
+        "L'antécédent",
+        "Le complément",
+        "L'attribut",
+        "Le sujet"
+      ],
+      "bonne_reponse": "L'antécédent",
+      "explication": "Dans « l'homme dont je parle », l'antécédent du pronom « dont » est « homme ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : antécédent (sens 2)"
+    },
+    {
+      "id": "F04-02",
+      "enonce": "Dans « l'homme dont je parle », quel est l'antécédent de « dont » ?",
+      "choix": [
+        "« homme »",
+        "« je »",
+        "« parle »",
+        "« l' »"
+      ],
+      "bonne_reponse": "« homme »",
+      "explication": "L'antécédent est le mot que le pronom relatif reprend : ici « homme ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : antécédent (sens 2)"
+    },
+    {
+      "id": "F04-03",
+      "enonce": "Catégorie grammaticale qui distingue celui qui parle, celui à qui l'on parle et celui dont on parle ?",
+      "choix": [
+        "La personne",
+        "Le nombre",
+        "Le genre",
+        "Le mode"
+      ],
+      "bonne_reponse": "La personne",
+      "explication": "Elle se marque par les pronoms personnels (je, tu, il…) et par les terminaisons du verbe.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : personne (sens 5, linguistique)"
+    },
+    {
+      "id": "F04-04",
+      "enonce": "Quelle personne grammaticale désigne celui à qui l'on parle ?",
+      "choix": [
+        "La deuxième personne",
+        "La première personne",
+        "La troisième personne",
+        "La quatrième personne"
+      ],
+      "bonne_reponse": "La deuxième personne",
+      "explication": "Pronoms : « tu » au singulier, « vous » au pluriel.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : personne (sens 5, linguistique)"
+    },
+    {
+      "id": "F04-05",
+      "enonce": "Quelle personne grammaticale désigne celui ou ce dont on parle ?",
+      "choix": [
+        "La troisième personne",
+        "La première personne",
+        "La deuxième personne",
+        "La quatrième personne"
+      ],
+      "bonne_reponse": "La troisième personne",
+      "explication": "Pronoms : « il », « elle », « on », « ils », « elles ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : personne (sens 5, linguistique)"
+    },
+    {
+      "id": "F04-12",
+      "enonce": "Lequel de ces pronoms est une forme tonique ?",
+      "choix": [
+        "« moi »",
+        "« me »",
+        "« te »",
+        "« se »"
+      ],
+      "bonne_reponse": "« moi »",
+      "explication": "Les formes atones (me, te, se, le) s'opposent aux formes toniques (moi, toi, soi, lui).",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : atone (sens 2)"
+    },
+    {
+      "id": "F04-14",
+      "enonce": "Quel pronom remplace un complément de personne au pluriel introduit par « à » ?",
+      "choix": [
+        "« leur »",
+        "« les »",
+        "« eux »",
+        "« lui »"
+      ],
+      "bonne_reponse": "« leur »",
+      "explication": "« Je parle à mes amis » → « Je leur parle ». Placé devant le verbe, le pronom « leur » ne prend jamais de « s ».",
+      "niveau_complexite": "Difficile",
+      "source": "Grammaire (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F04-15",
+      "enonce": "Dans « Nous nous lavons », quelle est la nature du second « nous » ?",
+      "choix": [
+        "Un pronom réfléchi",
+        "Un pronom sujet",
+        "Un pronom relatif",
+        "Un déterminant"
+      ],
+      "bonne_reponse": "Un pronom réfléchi",
+      "explication": "Le pronom réfléchi renvoie au même être que le sujet : l'action porte sur ceux qui la font.",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F04-16",
+      "enonce": "Quel pronom convient dans « Je compte sur ___ » si l'on parle de Paul ?",
+      "choix": [
+        "« lui »",
+        "« le »",
+        "« il »",
+        "« se »"
+      ],
+      "bonne_reponse": "« lui »",
+      "explication": "Après une préposition, on emploie la forme tonique : « sur lui », « avec elle », « chez moi ».",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F04-17",
+      "enonce": "Dans « J'y vais », que remplace le pronom « y » ?",
+      "choix": [
+        "Un lieu",
+        "Une personne",
+        "Un sujet",
+        "Une quantité"
+      ],
+      "bonne_reponse": "Un lieu",
+      "explication": "« Y » reprend un lieu (« à Jacmel ») ou un complément introduit par « à ».",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F04-18",
+      "enonce": "Dans « Il en parle », que remplace le pronom « en » ?",
+      "choix": [
+        "Un complément en « de »",
+        "Un complément en « à »",
+        "Un sujet",
+        "Un attribut"
+      ],
+      "bonne_reponse": "Un complément en « de »",
+      "explication": "« Il parle de son voyage » → « Il en parle ».",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F04-21",
+      "enonce": "Pronom qui indique à qui appartient une chose et qui remplace un nom précédé d'un déterminant ?",
+      "choix": [
+        "Un pronom possessif",
+        "Un pronom démonstratif",
+        "Un pronom personnel",
+        "Un pronom indéfini"
+      ],
+      "bonne_reponse": "Un pronom possessif",
+      "explication": "Formes : le mien, la tienne, les siens, le nôtre, les vôtres, les leurs.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : possessif"
+    },
+    {
+      "id": "F04-22",
+      "enonce": "Lequel de ces mots est un pronom possessif ?",
+      "choix": [
+        "« le mien »",
+        "« mon »",
+        "« mes »",
+        "« moi »"
+      ],
+      "bonne_reponse": "« le mien »",
+      "explication": "« Mon » et « mes » sont des déterminants possessifs, « moi » est un pronom personnel.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : possessif"
+    },
+    {
+      "id": "F04-23",
+      "enonce": "Lequel de ces mots est un pronom démonstratif ?",
+      "choix": [
+        "« celui-ci »",
+        "« cet »",
+        "« cette »",
+        "« ces »"
+      ],
+      "bonne_reponse": "« celui-ci »",
+      "explication": "Les trois autres sont des déterminants démonstratifs. « Celui-ci » remplace un nom : « Prends celui-ci ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : démonstratif"
+    },
+    {
+      "id": "F04-24",
+      "enonce": "Lequel de ces mots est un pronom indéfini ?",
+      "choix": [
+        "« quelqu'un »",
+        "« celui-ci »",
+        "« le mien »",
+        "« lequel »"
+      ],
+      "bonne_reponse": "« quelqu'un »",
+      "explication": "Les pronoms indéfinis expriment une idée vague : quelqu'un, personne, rien, chacun, plusieurs.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : indéfini (sens 3)"
+    },
+    {
+      "id": "F04-25",
+      "enonce": "Quel pronom interrogatif sert à demander qui a fait l'action ?",
+      "choix": [
+        "« qui »",
+        "« que »",
+        "« quoi »",
+        "« où »"
+      ],
+      "bonne_reponse": "« qui »",
+      "explication": "« Qui » interroge sur une personne sujet ; « que » interroge sur une chose objet : « Que veux-tu ? ».",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : interrogatif"
+    },
+    {
+      "id": "F04-31",
+      "enonce": "Mot qui rattache un nom ou un pronom à une proposition qui le précise ?",
+      "choix": [
+        "Le pronom relatif",
+        "Le pronom personnel",
+        "Le pronom démonstratif",
+        "Le pronom interrogatif"
+      ],
+      "bonne_reponse": "Le pronom relatif",
+      "explication": "Dans « l'élève qui chante », « qui » rattache « élève » à la proposition « qui chante ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : relatif (sens 5, linguistique)"
+    },
+    {
+      "id": "F04-32",
+      "enonce": "Lequel de ces mots est un pronom relatif ?",
+      "choix": [
+        "« dont »",
+        "« donc »",
+        "« dans »",
+        "« dès »"
+      ],
+      "bonne_reponse": "« dont »",
+      "explication": "Les pronoms relatifs sont qui, que, quoi, dont, où, lequel (et ses formes).",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : relatif (sens 5, linguistique)"
+    },
+    {
+      "id": "F04-33",
+      "enonce": "Quel pronom relatif remplace un complément introduit par « de » ?",
+      "choix": [
+        "« dont »",
+        "« que »",
+        "« qui »",
+        "« où »"
+      ],
+      "bonne_reponse": "« dont »",
+      "explication": "« Le livre dont je parle » : « je parle de ce livre ».",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F04-34",
+      "enonce": "Quel pronom relatif exprime le lieu ou le temps ?",
+      "choix": [
+        "« où »",
+        "« dont »",
+        "« que »",
+        "« qui »"
+      ],
+      "bonne_reponse": "« où »",
+      "explication": "« La ville où j'habite », « le jour où il est venu ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : relatif (sens 5, linguistique)"
+    },
+    {
+      "id": "F04-35",
+      "enonce": "Dans « Je pense que tu viens », quelle est la nature de « que » ?",
+      "choix": [
+        "Une conjonction",
+        "Un pronom relatif",
+        "Un pronom personnel",
+        "Un adverbe"
+      ],
+      "bonne_reponse": "Une conjonction",
+      "explication": "« Que » introduit une proposition complétive et ne reprend aucun antécédent : c'est une conjonction de subordination.",
+      "niveau_complexite": "Difficile",
+      "source": "Grammaire (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F04-36",
+      "enonce": "Dans « le livre que tu lis », quelle est la nature de « que » ?",
+      "choix": [
+        "Un pronom relatif",
+        "Une conjonction",
+        "Un pronom personnel",
+        "Un adverbe"
+      ],
+      "bonne_reponse": "Un pronom relatif",
+      "explication": "« Que » reprend l'antécédent « livre » : c'est un pronom relatif.",
+      "niveau_complexite": "Difficile",
+      "source": "Grammaire (pas de définition au Larousse en ligne)"
+    }
+  ]
+}

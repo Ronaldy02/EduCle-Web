@@ -1,0 +1,502 @@
+{
+  "matiere_id": 25,
+  "matiere": "Français",
+  "chapitre": "Le groupe nominal : déterminants, genre, nombre et accord de l'adjectif",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "S1",
+  "statut": "validé par l'utilisateur 2026-10-20",
+  "rejetees": [
+    "Q0210",
+    "F03-42",
+    "F03-43",
+    "F03-44",
+    "F03-45",
+    "F03-46",
+    "F03-47",
+    "F03-48",
+    "F03-49",
+    "F03-50",
+    "F03-51",
+    "F03-52",
+    "F03-63",
+    "F03-64",
+    "F03-65",
+    "F03-66",
+    "F03-67"
+  ],
+  "base_rejetees_a_supprimer": [
+    {
+      "id": "Q0210",
+      "enonce": "Comment connaît-on le genre d'un nom en français ?"
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q0193",
+      "enonce": "De quoi un groupe nominal est-il composé au minimum ?",
+      "choix": [
+        "Un déterminant et un nom",
+        "Un verbe et un sujet",
+        "Un adjectif et un nom",
+        "Un sujet et un prédicat"
+      ],
+      "bonne_reponse": "Un déterminant et un nom",
+      "explication": "Exemples : « la maison », « un élève ». On peut y ajouter des expansions : « la grande maison blanche ».",
+      "niveau_complexite": "Facile",
+      "source": "Base Q0193 (modifiée)",
+      "ancien_enonce": "De quoi un groupe nominal est-il composé au minimum ?"
+    },
+    {
+      "id": "F03-02",
+      "enonce": "Dans « la belle maison blanche », quel est le mot principal du groupe nominal ?",
+      "choix": [
+        "« maison »",
+        "« belle »",
+        "« blanche »",
+        "« la »"
+      ],
+      "bonne_reponse": "« maison »",
+      "explication": "Le nom est le noyau du groupe nominal ; le déterminant et les adjectifs l'accompagnent.",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-11",
+      "enonce": "Mot qui précède le nom et le détermine de façon plus ou moins précise, en indiquant son genre et son nombre ?",
+      "choix": [
+        "L'article",
+        "Le pronom",
+        "L'adjectif",
+        "La préposition"
+      ],
+      "bonne_reponse": "L'article",
+      "explication": "On distingue l'article défini, l'article indéfini et l'article partitif.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : article (sens 10, linguistique)"
+    },
+    {
+      "id": "F03-12",
+      "enonce": "Quelles sont les trois sortes d'articles ?",
+      "choix": [
+        "Défini, indéfini, partitif",
+        "Défini, possessif, partitif",
+        "Simple, double, contracté",
+        "Défini, indéfini, démonstratif"
+      ],
+      "bonne_reponse": "Défini, indéfini, partitif",
+      "explication": "L'article contracté (au, aux, du, des) est un article défini réuni à une préposition.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : article (sens 10, linguistique)"
+    },
+    {
+      "id": "F03-13",
+      "enonce": "Quel article désigne une chose précise, connue de celui qui parle ?",
+      "choix": [
+        "L'article défini",
+        "L'article indéfini",
+        "L'article partitif",
+        "L'article contracté"
+      ],
+      "bonne_reponse": "L'article défini",
+      "explication": "Formes : le, la, l', les. Exemple : « le livre que tu m'as prêté ».",
+      "niveau_complexite": "Facile",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-14",
+      "enonce": "Quel article désigne une chose non précisée, parmi d'autres de même espèce ?",
+      "choix": [
+        "L'article indéfini",
+        "L'article défini",
+        "L'article partitif",
+        "L'article contracté"
+      ],
+      "bonne_reponse": "L'article indéfini",
+      "explication": "Formes : un, une, des. Exemple : « un livre ».",
+      "niveau_complexite": "Facile",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-15",
+      "enonce": "Quel article désigne une partie d'un tout que l'on ne peut pas compter ?",
+      "choix": [
+        "L'article partitif",
+        "L'article défini",
+        "L'article indéfini",
+        "L'article contracté"
+      ],
+      "bonne_reponse": "L'article partitif",
+      "explication": "Formes : du, de la, de l'. Exemples : « du riz », « de la farine ».",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-16",
+      "enonce": "Lequel de ces mots est un article défini ?",
+      "choix": [
+        "« les »",
+        "« un »",
+        "« mon »",
+        "« ce »"
+      ],
+      "bonne_reponse": "« les »",
+      "explication": "« Un » est indéfini, « mon » possessif et « ce » démonstratif.",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-17",
+      "enonce": "Lequel de ces groupes contient un article partitif ?",
+      "choix": [
+        "« de la farine »",
+        "« à la maison »",
+        "« sur la table »",
+        "« dans la cour »"
+      ],
+      "bonne_reponse": "« de la farine »",
+      "explication": "Dans les trois autres, « la » est un article défini précédé d'une préposition.",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-18",
+      "enonce": "Quel article contracté est formé de « à » et de « le » ?",
+      "choix": [
+        "« au »",
+        "« du »",
+        "« aux »",
+        "« à la »"
+      ],
+      "bonne_reponse": "« au »",
+      "explication": "Contractions : à + le = au ; à + les = aux ; de + le = du ; de + les = des.",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-21",
+      "enonce": "Se dit d'un déterminant qui exprime la possession ou l'appartenance ?",
+      "choix": [
+        "Possessif",
+        "Démonstratif",
+        "Indéfini",
+        "Numéral"
+      ],
+      "bonne_reponse": "Possessif",
+      "explication": "Exemples : mon, ton, son, notre, votre, leur.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : possessif"
+    },
+    {
+      "id": "F03-22",
+      "enonce": "Se dit d'un déterminant qui présente un être ou un objet déterminé par la situation ou le contexte ?",
+      "choix": [
+        "Démonstratif",
+        "Possessif",
+        "Indéfini",
+        "Numéral"
+      ],
+      "bonne_reponse": "Démonstratif",
+      "explication": "Exemples : ce, cet, cette, ces. « Cette fille » désigne une fille que l'on montre ou dont on vient de parler.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : démonstratif"
+    },
+    {
+      "id": "F03-23",
+      "enonce": "Se dit d'un déterminant qui exprime une idée vague de quantité, de qualité ou d'identité ?",
+      "choix": [
+        "Indéfini",
+        "Démonstratif",
+        "Possessif",
+        "Numéral"
+      ],
+      "bonne_reponse": "Indéfini",
+      "explication": "Exemples : plusieurs, chaque, quelques, certains, aucun, tout.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : indéfini (sens 3)"
+    },
+    {
+      "id": "F03-24",
+      "enonce": "Se dit d'un terme qui exprime un nombre ou un rang ?",
+      "choix": [
+        "Numéral",
+        "Indéfini",
+        "Possessif",
+        "Démonstratif"
+      ],
+      "bonne_reponse": "Numéral",
+      "explication": "Exemples : « trois élèves » (nombre), « le troisième élève » (rang).",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : numéral (sens 1)"
+    },
+    {
+      "id": "F03-25",
+      "enonce": "Se dit d'un adjectif numéral qui exprime l'ordre ou le rang ?",
+      "choix": [
+        "Ordinal",
+        "Cardinal",
+        "Indéfini",
+        "Possessif"
+      ],
+      "bonne_reponse": "Ordinal",
+      "explication": "Exemples : premier, deuxième, dernier. Les adjectifs cardinaux expriment le nombre : un, deux, trois.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : ordinal (sens 1)"
+    },
+    {
+      "id": "F03-26",
+      "enonce": "Lequel de ces mots est un déterminant démonstratif ?",
+      "choix": [
+        "« cette »",
+        "« notre »",
+        "« plusieurs »",
+        "« trois »"
+      ],
+      "bonne_reponse": "« cette »",
+      "explication": "« Cette » désigne un être précis ; « notre » est possessif, « plusieurs » indéfini, « trois » numéral.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : démonstratif"
+    },
+    {
+      "id": "F03-27",
+      "enonce": "Quelle forme du possessif emploie-t-on devant « amie » ?",
+      "choix": [
+        "« mon »",
+        "« ma »",
+        "« mes »",
+        "« moi »"
+      ],
+      "bonne_reponse": "« mon »",
+      "explication": "Devant un nom féminin commençant par une voyelle, on dit « mon amie » pour éviter le hiatus, comme « ton école », « son idée ».",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-28",
+      "enonce": "Quelle forme du démonstratif emploie-t-on devant « arbre » ?",
+      "choix": [
+        "« cet »",
+        "« ce »",
+        "« cette »",
+        "« ces »"
+      ],
+      "bonne_reponse": "« cet »",
+      "explication": "Devant un nom masculin commençant par une voyelle ou un h muet, « ce » devient « cet » : « cet arbre », « cet homme ».",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-31",
+      "enonce": "Catégorie grammaticale qui répartit les noms en masculin et en féminin ?",
+      "choix": [
+        "Le genre",
+        "Le nombre",
+        "Le temps",
+        "Le mode"
+      ],
+      "bonne_reponse": "Le genre",
+      "explication": "Le genre grammatical ne correspond pas toujours au sexe : « une table » est féminin.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : masculin, féminin (genre grammatical)"
+    },
+    {
+      "id": "F03-32",
+      "enonce": "Combien de genres le français distingue-t-il ?",
+      "choix": [
+        "Deux",
+        "Trois",
+        "Quatre",
+        "Un"
+      ],
+      "bonne_reponse": "Deux",
+      "explication": "Le masculin et le féminin. Le neutre existe dans d'autres langues, comme l'allemand ou le latin.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : masculin (genre grammatical)"
+    },
+    {
+      "id": "F03-33",
+      "enonce": "Quelle est la marque habituelle du féminin à l'écrit ?",
+      "choix": [
+        "Un « e » final",
+        "Un « s » final",
+        "Un « x » final",
+        "Un « t » final"
+      ],
+      "bonne_reponse": "Un « e » final",
+      "explication": "On forme souvent le féminin en ajoutant un « e » : ami → amie, étudiant → étudiante.",
+      "niveau_complexite": "Facile",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-34",
+      "enonce": "Quel est le féminin de « acteur » ?",
+      "choix": [
+        "Actrice",
+        "Acteuse",
+        "Actrisse",
+        "Actère"
+      ],
+      "bonne_reponse": "Actrice",
+      "explication": "Les noms en -teur forment souvent leur féminin en -trice : acteur → actrice, directeur → directrice.",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-35",
+      "enonce": "Quel est le féminin de « héros » ?",
+      "choix": [
+        "Héroïne",
+        "Héroesse",
+        "Héroe",
+        "Héros"
+      ],
+      "bonne_reponse": "Héroïne",
+      "explication": "Le féminin de héros est héroïne ; le « h » de héros est aspiré mais pas celui de héroïne.",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-36",
+      "enonce": "Quel est le féminin de « compagnon » ?",
+      "choix": [
+        "Compagne",
+        "Compagnonne",
+        "Compagnone",
+        "Compagnonie"
+      ],
+      "bonne_reponse": "Compagne",
+      "explication": "Ce féminin ne double pas le « n » comme « lion/lionne » : compagnon → compagne.",
+      "niveau_complexite": "Difficile",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-37",
+      "enonce": "Se dit d'un nom qui a la même forme au masculin et au féminin ?",
+      "choix": [
+        "Épicène",
+        "Collectif",
+        "Abstrait",
+        "Invariable"
+      ],
+      "bonne_reponse": "Épicène",
+      "explication": "Exemples : un élève / une élève, un enfant / une enfant, un artiste / une artiste. Seul le déterminant change.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : épicène (sens 1)"
+    },
+    {
+      "id": "F03-38",
+      "enonce": "Quel mot change de sens selon qu'il est masculin ou féminin ?",
+      "choix": [
+        "« tour »",
+        "« table »",
+        "« maison »",
+        "« arbre »"
+      ],
+      "bonne_reponse": "« tour »",
+      "explication": "« Le tour du monde » ≠ « la tour Eiffel ». Autres exemples : le livre / la livre, le mode / la mode, le voile / la voile.",
+      "niveau_complexite": "Difficile",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-39",
+      "enonce": "Quel est le genre du nom « énigme » ?",
+      "choix": [
+        "Féminin",
+        "Masculin",
+        "Neutre",
+        "Les deux"
+      ],
+      "bonne_reponse": "Féminin",
+      "explication": "On dit « une énigme ». Le genre de certains mots est source d'erreur : un emblème, un insigne, une atmosphère.",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-41",
+      "enonce": "Catégorie grammaticale qui oppose le singulier et le pluriel ?",
+      "choix": [
+        "Le nombre",
+        "Le genre",
+        "La personne",
+        "Le mode"
+      ],
+      "bonne_reponse": "Le nombre",
+      "explication": "Elle concerne le nom, le déterminant, l'adjectif, le pronom et le verbe.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : nombre (sens 7, linguistique)"
+    },
+    {
+      "id": "Q0200",
+      "enonce": "Comment s'accorde l'adjectif qualificatif ?",
+      "choix": [
+        "En genre et en nombre",
+        "En genre seulement",
+        "En nombre seulement",
+        "Jamais"
+      ],
+      "bonne_reponse": "En genre et en nombre",
+      "explication": "L'adjectif prend le genre et le nombre du nom qu'il accompagne : « une grande maison », « des enfants joyeux ».",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q0200 (modifiée)",
+      "ancien_enonce": "Comment s'accorde l'adjectif qualificatif ?"
+    },
+    {
+      "id": "Q0295",
+      "enonce": "Avec quoi l'adjectif qualificatif s'accorde-t-il ?",
+      "choix": [
+        "Le nom ou pronom qu'il qualifie",
+        "Le verbe qui le précède",
+        "Le mot placé juste avant",
+        "Le déterminant du nom"
+      ],
+      "bonne_reponse": "Le nom ou pronom qu'il qualifie",
+      "explication": "Exemple : « Elles sont heureuses » : l'adjectif s'accorde avec le pronom « elles », même s'il est séparé de lui par le verbe.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q0295 (modifiée)",
+      "ancien_enonce": "Avec quoi l'adjectif qualificatif s'accorde-t-il ?"
+    },
+    {
+      "id": "F03-68",
+      "enonce": "Lequel de ces adjectifs de couleur reste toujours invariable ?",
+      "choix": [
+        "« marron »",
+        "« rouge »",
+        "« blanc »",
+        "« vert »"
+      ],
+      "bonne_reponse": "« marron »",
+      "explication": "Les adjectifs de couleur qui sont des noms (marron, orange, cerise, citron) ne s'accordent pas : des chaussures marron.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : couleur (sens 9)"
+    },
+    {
+      "id": "F03-69",
+      "enonce": "Que devient un adjectif de couleur composé, comme « bleu clair » ?",
+      "choix": [
+        "Il reste invariable",
+        "Il s'accorde en genre",
+        "Il prend un « s »",
+        "Les deux mots s'accordent"
+      ],
+      "bonne_reponse": "Il reste invariable",
+      "explication": "On écrit « des robes bleu clair », « des yeux vert foncé » : les deux mots restent au singulier.",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F03-70",
+      "enonce": "Comment s'accorde un adjectif qui qualifie un nom masculin et un nom féminin ?",
+      "choix": [
+        "Au masculin pluriel",
+        "Au féminin pluriel",
+        "Au masculin singulier",
+        "Il reste invariable"
+      ],
+      "bonne_reponse": "Au masculin pluriel",
+      "explication": "Le masculin l'emporte : « un garçon et une fille sérieux ».",
+      "niveau_complexite": "Moyen",
+      "source": "Grammaire (règle d'usage ; pas de définition au Larousse en ligne)"
+    }
+  ]
+}
