@@ -1,0 +1,532 @@
+{
+  "matiere_id": 11,
+  "matiere": "Biologie",
+  "chapitre": "Le sang et l'approvisionnement des muscles",
+  "niveaux": [
+    "NS3"
+  ],
+  "unite_programme": "3.1",
+  "statut": "validé par l'utilisateur 2026-10-21",
+  "rejetees": [],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "B21-01",
+      "enonce": "Quel constituant forme l'essentiel du plasma ?",
+      "choix": [
+        "L'eau",
+        "Les protéines",
+        "Le glucose",
+        "Les sels minéraux"
+      ],
+      "bonne_reponse": "L'eau",
+      "explication": "Le plasma contient environ 90 % d'eau, où sont dissous protéines, sels minéraux, nutriments et déchets.",
+      "niveau_complexite": "Facile",
+      "source": "Programme 3.1 (composition du sang)"
+    },
+    {
+      "id": "B21-02",
+      "enonce": "Substance organique protéique, soluble dans l'eau, coagulable par la chaleur, contenue dans le blanc d'œuf, le plasma sanguin, le lait, etc.",
+      "choix": [
+        "L'albumine",
+        "L'urée",
+        "Le glucose",
+        "L'amidon"
+      ],
+      "bonne_reponse": "L'albumine",
+      "explication": "Dans le plasma, c'est la protéine la plus abondante : elle transporte de nombreuses substances.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : albumine"
+    },
+    {
+      "id": "B21-03",
+      "enonce": "Protéine de poids moléculaire élevé, telle que les anticorps.",
+      "choix": [
+        "Une globuline",
+        "Une albumine",
+        "Une hormone",
+        "Une vitamine"
+      ],
+      "bonne_reponse": "Une globuline",
+      "explication": "Les globulines du plasma comprennent les anticorps, qui défendent l'organisme.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : globuline"
+    },
+    {
+      "id": "B21-04",
+      "enonce": "Protéine du plasma sanguin, qui se transforme en fibrine lors de la coagulation.",
+      "choix": [
+        "Le fibrinogène",
+        "L'albumine",
+        "L'hémoglobine",
+        "La myoglobine"
+      ],
+      "bonne_reponse": "Le fibrinogène",
+      "explication": "La fibrine forme le réseau du caillot qui arrête le saignement.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : fibrinogène"
+    },
+    {
+      "id": "B21-05",
+      "enonce": "Liquide qui exsude d'un caillot de sang total coagulé ou liquide qui se sépare des globules d'un sang défibriné centrifugé.",
+      "choix": [
+        "Le sérum",
+        "Le plasma",
+        "La lymphe",
+        "L'urine"
+      ],
+      "bonne_reponse": "Le sérum",
+      "explication": "Le sérum est du plasma privé de fibrinogène.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : sérum"
+    },
+    {
+      "id": "B21-11",
+      "enonce": "Quelle forme ont les hématies ?",
+      "choix": [
+        "Un disque biconcave",
+        "Une sphère pleine",
+        "Un cube aplati",
+        "Un bâtonnet"
+      ],
+      "bonne_reponse": "Un disque biconcave",
+      "explication": "Cette forme leur donne une grande surface d'échange avec l'oxygène et les rend souples dans les capillaires.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 3.1 (hématies) ; Larousse : biconcave"
+    },
+    {
+      "id": "B21-12",
+      "enonce": "Que perdent les hématies humaines en arrivant à maturité ?",
+      "choix": [
+        "Leur noyau",
+        "Leur membrane",
+        "Leur hémoglobine",
+        "Leur cytoplasme"
+      ],
+      "bonne_reponse": "Leur noyau",
+      "explication": "Elles ont ainsi plus de place pour l'hémoglobine. Elles vivent environ 120 jours.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 3.1 (hématies)"
+    },
+    {
+      "id": "B21-13",
+      "enonce": "Pourcentage du volume occupé par les globules rouges par rapport au volume total du sang, égal normalement à environ 40 %.",
+      "choix": [
+        "L'hématocrite",
+        "L'hémoglobine",
+        "La glycémie",
+        "La volémie"
+      ],
+      "bonne_reponse": "L'hématocrite",
+      "explication": "Il est mesuré par une prise de sang ; il baisse en cas d'anémie.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hématocrite"
+    },
+    {
+      "id": "B21-14",
+      "enonce": "Globule blanc du sang caractérisé par des granulations neutrophiles, éosinophiles ou basophiles, et par un noyau polylobé.",
+      "choix": [
+        "Un granulocyte",
+        "Un monocyte",
+        "Un lymphocyte",
+        "Une plaquette"
+      ],
+      "bonne_reponse": "Un granulocyte",
+      "explication": "On l'appelle aussi polynucléaire.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : granulocyte"
+    },
+    {
+      "id": "B21-15",
+      "enonce": "Quels sont les trois types de granulocytes ?",
+      "choix": [
+        "Neutrophiles, éosinophiles, basophiles",
+        "Neutrophiles, monocytes, basophiles",
+        "Éosinophiles, lymphocytes, basophiles",
+        "Neutrophiles, éosinophiles, plaquettes"
+      ],
+      "bonne_reponse": "Neutrophiles, éosinophiles, basophiles",
+      "explication": "Les neutrophiles sont les plus nombreux : ils détruisent les bactéries.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : granulocyte"
+    },
+    {
+      "id": "B21-16",
+      "enonce": "Leucocyte mononucléé, la plus grande des cellules circulantes, qui assure essentiellement la phagocytose.",
+      "choix": [
+        "Un monocyte",
+        "Un granulocyte",
+        "Un lymphocyte",
+        "Une hématie"
+      ],
+      "bonne_reponse": "Un monocyte",
+      "explication": "Dans les tissus, il se transforme en macrophage.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : monocyte"
+    },
+    {
+      "id": "B21-17",
+      "enonce": "Cellule du système immunitaire, responsable des réactions de défense de l'organisme contre les substances qu'il considère comme étrangères.",
+      "choix": [
+        "Un lymphocyte",
+        "Un monocyte",
+        "Un granulocyte",
+        "Une hématie"
+      ],
+      "bonne_reponse": "Un lymphocyte",
+      "explication": "On distingue les lymphocytes B, qui fabriquent les anticorps, et les lymphocytes T.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : lymphocyte"
+    },
+    {
+      "id": "B21-18",
+      "enonce": "Substance molle, graisseuse, qui remplit le canal médullaire et les alvéoles de la substance spongieuse des différents os, responsable de la production de tous les éléments figurés du sang.",
+      "choix": [
+        "La moelle osseuse",
+        "La moelle épinière",
+        "Le cartilage",
+        "Le périoste"
+      ],
+      "bonne_reponse": "La moelle osseuse",
+      "explication": "Le terme « éléments figurés » désigne les hématies, les leucocytes et les plaquettes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : moelle (sens 1)"
+    },
+    {
+      "id": "B21-19",
+      "enonce": "Formation des cellules du sang dans la moelle rouge des os et dans le tissu lymphoïde.",
+      "choix": [
+        "L'hématopoïèse",
+        "L'hémolyse",
+        "La coagulation",
+        "La phagocytose"
+      ],
+      "bonne_reponse": "L'hématopoïèse",
+      "explication": "Toutes les cellules du sang dérivent de cellules souches de la moelle osseuse.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hématopoïèse"
+    },
+    {
+      "id": "B21-21",
+      "enonce": "Oligoélément indispensable à l'organisme, qui intervient dans de nombreuses réactions chimiques et permet notamment le transport de l'oxygène par l'hémoglobine des globules rouges.",
+      "choix": [
+        "Le fer",
+        "Le calcium",
+        "Le sodium",
+        "Le zinc"
+      ],
+      "bonne_reponse": "Le fer",
+      "explication": "Un manque de fer provoque une anémie. Le foie, les haricots et les épinards en sont riches.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : fer (sens 2)"
+    },
+    {
+      "id": "B21-22",
+      "enonce": "Comment appelle-t-on l'hémoglobine combinée à l'oxygène ?",
+      "choix": [
+        "L'oxyhémoglobine",
+        "La carboxyhémoglobine",
+        "La myoglobine",
+        "La globuline"
+      ],
+      "bonne_reponse": "L'oxyhémoglobine",
+      "explication": "Elle se forme dans les capillaires des poumons et libère l'oxygène dans les tissus.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 3.1 (transport de l'O₂)"
+    },
+    {
+      "id": "B21-23",
+      "enonce": "Combinaison réversible de l'oxyde de carbone avec l'hémoglobine.",
+      "choix": [
+        "La carboxyhémoglobine",
+        "L'oxyhémoglobine",
+        "La myoglobine",
+        "La globuline"
+      ],
+      "bonne_reponse": "La carboxyhémoglobine",
+      "explication": "L'oxyde de carbone se fixe sur l'hémoglobine bien plus facilement que l'oxygène : les fumées de charbon dans une pièce fermée peuvent asphyxier.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : carboxyhémoglobine"
+    },
+    {
+      "id": "B21-24",
+      "enonce": "Sous quelle forme le dioxyde de carbone est-il surtout transporté dans le sang ?",
+      "choix": [
+        "Ions bicarbonate",
+        "Gaz libre dans le plasma",
+        "Fixé sur le fer",
+        "Lié à la myoglobine"
+      ],
+      "bonne_reponse": "Ions bicarbonate",
+      "explication": "Le CO₂ est transporté vers les poumons, où il est rejeté dans l'air expiré.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme 3.1 (transport du CO₂)"
+    },
+    {
+      "id": "B21-25",
+      "enonce": "Insuffisance d'apport en oxygène aux organes et aux tissus vivants.",
+      "choix": [
+        "L'anoxie",
+        "L'anémie",
+        "La polyglobulie",
+        "L'hémolyse"
+      ],
+      "bonne_reponse": "L'anoxie",
+      "explication": "Un muscle privé d'oxygène produit de l'énergie sans oxygène et fabrique de l'acide lactique.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : anoxie"
+    },
+    {
+      "id": "B21-26",
+      "enonce": "Diminution de la concentration d'oxygène dans le sang.",
+      "choix": [
+        "L'hypoxie",
+        "L'hyperglycémie",
+        "La polyglobulie",
+        "L'hémolyse"
+      ],
+      "bonne_reponse": "L'hypoxie",
+      "explication": "Elle se produit par exemple en haute altitude.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hypoxie"
+    },
+    {
+      "id": "B21-31",
+      "enonce": "Ensemble des vaisseaux sanguins irriguant une région du corps, un organe ou un tissu.",
+      "choix": [
+        "La vascularisation",
+        "La coagulation",
+        "La ventilation",
+        "L'oxygénation"
+      ],
+      "bonne_reponse": "La vascularisation",
+      "explication": "Les muscles, très consommateurs, sont richement vascularisés.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : vascularisation"
+    },
+    {
+      "id": "B21-32",
+      "enonce": "Vaisseau sanguin de faible diamètre qui assure la liaison entre une artère et un capillaire.",
+      "choix": [
+        "Une artériole",
+        "Une veinule",
+        "Une artère",
+        "Une veine"
+      ],
+      "bonne_reponse": "Une artériole",
+      "explication": "Ses parois musculaires règlent le débit sanguin vers les capillaires.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : artériole"
+    },
+    {
+      "id": "B21-33",
+      "enonce": "Veine de petite dimension.",
+      "choix": [
+        "Une veinule",
+        "Une artériole",
+        "Un capillaire",
+        "Une valvule"
+      ],
+      "bonne_reponse": "Une veinule",
+      "explication": "Elle recueille le sang des capillaires et le conduit vers les veines.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : veinule"
+    },
+    {
+      "id": "B21-34",
+      "enonce": "Diminution du calibre des vaisseaux sanguins par contraction de leurs cellules musculaires.",
+      "choix": [
+        "La vasoconstriction",
+        "La vasodilatation",
+        "L'hémostase",
+        "L'hémolyse"
+      ],
+      "bonne_reponse": "La vasoconstriction",
+      "explication": "Elle réduit le débit de sang dans la région concernée.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : vasoconstriction"
+    },
+    {
+      "id": "B21-35",
+      "enonce": "Augmentation du calibre des vaisseaux sanguins par relâchement de leurs cellules musculaires.",
+      "choix": [
+        "La vasodilatation",
+        "La vasoconstriction",
+        "L'hémostase",
+        "L'hémolyse"
+      ],
+      "bonne_reponse": "La vasodilatation",
+      "explication": "À l'effort, elle augmente l'apport de sang aux muscles actifs.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : vasodilatation"
+    },
+    {
+      "id": "B21-36",
+      "enonce": "Quel nutriment sucré le sang apporte-t-il aux muscles pour produire de l'énergie ?",
+      "choix": [
+        "Le glucose",
+        "L'amidon",
+        "Le cholestérol",
+        "L'urée"
+      ],
+      "bonne_reponse": "Le glucose",
+      "explication": "Les muscles utilisent aussi des acides gras. Ils emmagasinent du glucose sous forme de glycogène.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme 3.1 (apport de nutriments)"
+    },
+    {
+      "id": "B21-41",
+      "enonce": "Arrêt de l'écoulement du sang, spontané (coagulation du sang) ou provoqué par différents moyens médicaux ou chirurgicaux.",
+      "choix": [
+        "L'hémostase",
+        "L'hémolyse",
+        "La transfusion",
+        "L'hémorragie"
+      ],
+      "bonne_reponse": "L'hémostase",
+      "explication": "Elle comporte l'arrêt du vaisseau, le bouchon de plaquettes puis le caillot.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hémostase"
+    },
+    {
+      "id": "B21-42",
+      "enonce": "Substance médicamenteuse ou naturelle s'opposant à la coagulation du sang.",
+      "choix": [
+        "Un anticoagulant",
+        "Un antibiotique",
+        "Un anticorps",
+        "Un antalgique"
+      ],
+      "bonne_reponse": "Un anticoagulant",
+      "explication": "Les anticoagulants préviennent la formation de caillots dangereux.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : anticoagulant"
+    },
+    {
+      "id": "B21-43",
+      "enonce": "Écoulement de sang hors des vaisseaux sanguins.",
+      "choix": [
+        "Une hémorragie",
+        "Un hématome",
+        "Un caillot",
+        "Un œdème"
+      ],
+      "bonne_reponse": "Une hémorragie",
+      "explication": "Elle peut être externe (plaie) ou interne.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : hémorragie (sens 1)"
+    },
+    {
+      "id": "B21-44",
+      "enonce": "Collection de sang dans une cavité naturelle ou dans un tissu, consécutive à une hémorragie.",
+      "choix": [
+        "Un hématome",
+        "Un œdème",
+        "Un abcès",
+        "Une plaie"
+      ],
+      "bonne_reponse": "Un hématome",
+      "explication": "Familièrement, on parle d'un bleu.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hématome"
+    },
+    {
+      "id": "B21-45",
+      "enonce": "Destruction des globules rouges du sang.",
+      "choix": [
+        "L'hémolyse",
+        "L'hémostase",
+        "La coagulation",
+        "La phagocytose"
+      ],
+      "bonne_reponse": "L'hémolyse",
+      "explication": "Elle libère l'hémoglobine dans le plasma.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hémolyse"
+    },
+    {
+      "id": "B21-46",
+      "enonce": "Injection, dans une veine d'un malade, de sang ou d'un produit dérivé préalablement prélevé sur un ou plusieurs donneurs ou sur le malade lui-même.",
+      "choix": [
+        "Une transfusion",
+        "Une dialyse",
+        "Une greffe",
+        "Une perfusion"
+      ],
+      "bonne_reponse": "Une transfusion",
+      "explication": "Elle est indiquée après une hémorragie importante ou en cas d'anémie sévère.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : transfusion"
+    },
+    {
+      "id": "B21-47",
+      "enonce": "Augmentation de la masse totale des globules rouges de l'organisme.",
+      "choix": [
+        "La polyglobulie",
+        "L'anémie",
+        "La leucémie",
+        "L'hémophilie"
+      ],
+      "bonne_reponse": "La polyglobulie",
+      "explication": "Elle s'observe notamment chez les personnes vivant en altitude.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : polyglobulie"
+    },
+    {
+      "id": "B21-48",
+      "enonce": "Maladie maligne caractérisée par la prolifération dans la moelle osseuse de globules blancs ou de leurs précurseurs, qui peuvent se répandre dans le sang.",
+      "choix": [
+        "La leucémie",
+        "L'anémie",
+        "L'hémophilie",
+        "La polyglobulie"
+      ],
+      "bonne_reponse": "La leucémie",
+      "explication": "On parle aussi de cancer du sang.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : leucémie"
+    },
+    {
+      "id": "B21-49",
+      "enonce": "Maladie héréditaire caractérisée par une tendance plus ou moins grave aux hémorragies, du fait de l'insuffisance d'un facteur de coagulation dans le plasma.",
+      "choix": [
+        "L'hémophilie",
+        "La leucémie",
+        "L'anémie",
+        "La drépanocytose"
+      ],
+      "bonne_reponse": "L'hémophilie",
+      "explication": "Elle touche presque uniquement les garçons.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hémophilie"
+    },
+    {
+      "id": "B21-50",
+      "enonce": "Spécialité médicale qui étudie le sang, les organes hématopoïétiques et leurs affections.",
+      "choix": [
+        "L'hématologie",
+        "La cardiologie",
+        "La néphrologie",
+        "L'immunologie"
+      ],
+      "bonne_reponse": "L'hématologie",
+      "explication": "Les analyses de sang, comme la numération formule sanguine, relèvent de cette spécialité.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hématologie"
+    },
+    {
+      "id": "B21-51",
+      "enonce": "Spécialiste d'hématologie.",
+      "choix": [
+        "Un hématologue",
+        "Un cardiologue",
+        "Un néphrologue",
+        "Un urologue"
+      ],
+      "bonne_reponse": "Un hématologue",
+      "explication": "Il soigne par exemple les leucémies et l'hémophilie.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : hématologue"
+    }
+  ]
+}
