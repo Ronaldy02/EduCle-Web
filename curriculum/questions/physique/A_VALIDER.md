@@ -5,7 +5,7 @@ Fichiers dans `_prepare/` : `ns1_chNN_Q.json` (questions), `ns1_chNN_widget.html
 
 | # | Chapitre (titre exact en base) | Niveaux | Questions | Dont base |
 |---|---|---|---|---|
-| 1 | Grandeurs, mesures et états de la matière | NS1 | 46 | 7 (Q1312, Q1313, Q1315, Q1316, Q1317, Q1318, Q1320) |
+| 1 | Grandeurs, mesures et états de la matière | NS1 | **validé et importé (migration 041, 44 questions ; Q1315 et Q1317 rejetées)** | |
 | 2 | Big Bang, système solaire et exploration de l'espace | NS1 + NS2 | 42 | 1 (Q1288) |
 | 3 | Gravitation universelle, poids et masse | NS1 + NS2 | 23 | 4 (Q1214, Q1218, Q1226, Q1235) |
 
