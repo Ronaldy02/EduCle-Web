@@ -1,0 +1,388 @@
+{
+  "matiere_id": 23,
+  "matiere": "Littérature haïtienne",
+  "chapitre": "Le romantisme patriotique (1860-1898) : poésie",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "",
+  "statut": "validé par l'utilisateur 2026-10-21",
+  "rejetees": [
+    "LH5-08",
+    "LH5-14",
+    "LH5-19",
+    "LH5-20",
+    "LH5-25",
+    "LH5-28",
+    "LH5-29",
+    "LH5-33"
+  ],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "LH5-01",
+      "enonce": "Genre littéraire caractérisé par l'expression exaltée des sentiments, des passions ?",
+      "choix": [
+        "Le lyrisme",
+        "Le réalisme",
+        "Le didactisme",
+        "L'épopée"
+      ],
+      "bonne_reponse": "Le lyrisme",
+      "explication": "Hoffmann note que le lyrisme des poètes haïtiens est teinté de patriotisme.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : lyrisme (sens 1) ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-02",
+      "enonce": "Chanson populaire racontant les malheurs d'un personnage ?",
+      "choix": [
+        "Une complainte",
+        "Une marche",
+        "Une berceuse",
+        "Une ritournelle"
+      ],
+      "bonne_reponse": "Une complainte",
+      "explication": "Choucoune, d'Oswald Durand, est la complainte d'un Haïtien abandonné par sa belle.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : complainte (sens 1) ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-03",
+      "enonce": "Disposition favorable à l'égard de la France et des Français ?",
+      "choix": [
+        "La francophilie",
+        "La francophonie",
+        "La xénophobie",
+        "Le chauvinisme"
+      ],
+      "bonne_reponse": "La francophilie",
+      "explication": "Hoffmann la dit sincère chez les élites haïtiennes du XIXe siècle, mais aussi politique.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : francophilie ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-04",
+      "enonce": "Danse d'Haïti et de Saint-Domingue à deux temps, et musique qui l'accompagne ?",
+      "choix": [
+        "La méringue",
+        "Le compas",
+        "Le kadans",
+        "Le rara"
+      ],
+      "bonne_reponse": "La méringue",
+      "explication": "Le poème Choucoune a été mis en musique en méringue lente.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : méringue ; Wikipédia : Choucoune"
+    },
+    {
+      "id": "LH5-05",
+      "enonce": "Quel thème est devenu presque obligatoire dans la poésie haïtienne de l'époque ?",
+      "choix": [
+        "L'épopée de la guerre d'Indépendance",
+        "La vie des paysans",
+        "Les voyages en Europe",
+        "Les saisons du Nord"
+      ],
+      "bonne_reponse": "L'épopée de la guerre d'Indépendance",
+      "explication": "Les poètes glorifient aussi les Pères de la patrie.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-06",
+      "enonce": "Quel poète publie à Paris, en 1892, un recueil intitulé Poésies nationales ?",
+      "choix": [
+        "Massillon Coicou",
+        "Oswald Durand",
+        "Etzer Vilaire",
+        "Georges Sylvain"
+      ],
+      "bonne_reponse": "Massillon Coicou",
+      "explication": "Le recueil est publié à Paris et lui vaut le surnom de « barde national ».",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Massillon Coicou ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-07",
+      "enonce": "Quelle revue fondée en 1895 par Seymour Pradel et Justin Lhérisson précède La Ronde ?",
+      "choix": [
+        "Jeune Haïti",
+        "L'Union",
+        "La Ruche",
+        "Le Petit Haïtien"
+      ],
+      "bonne_reponse": "Jeune Haïti",
+      "explication": "Elle paraît à Port-au-Prince de 1895 à 1898.",
+      "niveau_complexite": "Moyen",
+      "source": "SISMO (INHA) : Jeune Haïti"
+    },
+    {
+      "id": "LH5-09",
+      "enonce": "Quel oiseau tropical remplace le rossignol dans la poésie haïtienne qui s'enracine ?",
+      "choix": [
+        "Le pipirit",
+        "Le colibri",
+        "Le perroquet",
+        "Le flamant"
+      ],
+      "bonne_reponse": "Le pipirit",
+      "explication": "On y parle aussi de mornes plutôt que de montagnes et de champs de canne plutôt que de blé.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-10",
+      "enonce": "Quel poète est considéré comme le poète national d'Haïti ?",
+      "choix": [
+        "Oswald Durand",
+        "Massillon Coicou",
+        "Etzer Vilaire",
+        "Tertullien Guilbaud"
+      ],
+      "bonne_reponse": "Oswald Durand",
+      "explication": "Né au Cap-Haïtien en 1840, il meurt à Port-au-Prince en 1906.",
+      "niveau_complexite": "Facile",
+      "source": "Wikipédia : Oswald Durand ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-11",
+      "enonce": "Quel poème créole d'Oswald Durand est le plus célèbre ?",
+      "choix": [
+        "Choucoune",
+        "Ces Allemands",
+        "Idalina",
+        "Contraste"
+      ],
+      "bonne_reponse": "Choucoune",
+      "explication": "Il raconte l'abandon d'un Haïtien par sa belle marabout, partie avec un petit Blanc.",
+      "niveau_complexite": "Facile",
+      "source": "Hoffmann, chap. 7 ; Wikipédia : Oswald Durand"
+    },
+    {
+      "id": "LH5-12",
+      "enonce": "Dans quel recueil figure le poème Choucoune ?",
+      "choix": [
+        "Rires et pleurs",
+        "Quatre Nouveaux poèmes",
+        "Poésies nationales",
+        "Sous les bambous"
+      ],
+      "bonne_reponse": "Rires et pleurs",
+      "explication": "Rires et pleurs rassemble en deux volumes des poèmes publiés dans les journaux ; il paraît en 1896.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Oswald Durand"
+    },
+    {
+      "id": "LH5-13",
+      "enonce": "En quelle année Rires et pleurs est-il publié en deux volumes ?",
+      "choix": [
+        "1896",
+        "1883",
+        "1901",
+        "1869"
+      ],
+      "bonne_reponse": "1896",
+      "explication": "Il rassemble les poèmes donnés à la presse pendant une vingtaine d'années.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Oswald Durand"
+    },
+    {
+      "id": "LH5-15",
+      "enonce": "Sous quel titre anglais Choucoune est-elle devenue célèbre ?",
+      "choix": [
+        "Yellow Bird",
+        "Blue Moon",
+        "Black Bird",
+        "Green Island"
+      ],
+      "bonne_reponse": "Yellow Bird",
+      "explication": "Elle reste au répertoire des orchestres de danse antillais.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-16",
+      "enonce": "En quelle année Oswald Durand compose-t-il le poème Choucoune ?",
+      "choix": [
+        "1883",
+        "1869",
+        "1896",
+        "1901"
+      ],
+      "bonne_reponse": "1883",
+      "explication": "La tradition dit qu'il l'a écrit en prison ; le poème figure dans Rires et pleurs (1896).",
+      "niveau_complexite": "Moyen",
+      "source": "Édition de Rires et pleurs ; BnF / sources à confirmer",
+      "statut": "à revalider"
+    },
+    {
+      "id": "LH5-17",
+      "enonce": "Quelle est la ville natale d'Oswald Durand ?",
+      "choix": [
+        "Le Cap-Haïtien",
+        "Port-au-Prince",
+        "Les Cayes",
+        "Jacmel"
+      ],
+      "bonne_reponse": "Le Cap-Haïtien",
+      "explication": "Il y naît le 17 septembre 1840.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Oswald Durand"
+    },
+    {
+      "id": "LH5-18",
+      "enonce": "Quel poème de Durand exhorte à oublier le préjugé de couleur pour suivre les Pères de la patrie ?",
+      "choix": [
+        "Chant national",
+        "Les Forts",
+        "L'Arbre de la vallée",
+        "Ode à la France"
+      ],
+      "bonne_reponse": "Chant national",
+      "explication": "Il s'adresse aux « descendants de l'Afrique, jaunes et noirs ».",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-21",
+      "enonce": "Quel poème de Durand décrit une femme comparée aux sapotes et aux raisins noirs ?",
+      "choix": [
+        "Idalina",
+        "Choucoune",
+        "Contraste",
+        "Les Forts"
+      ],
+      "bonne_reponse": "Idalina",
+      "explication": "Les fruits du terroir servent souvent à évoquer la femme dans la poésie haïtienne.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-22",
+      "enonce": "Quel surnom Massillon Coicou reçoit-il après son premier recueil ?",
+      "choix": [
+        "Le barde national",
+        "Le poète des pauvres",
+        "Le chantre du Nord",
+        "Le prince des poètes"
+      ],
+      "bonne_reponse": "Le barde national",
+      "explication": "Ses poèmes célèbrent les héros nationaux.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia (en) : Massillon Coicou"
+    },
+    {
+      "id": "LH5-23",
+      "enonce": "Quel recueil de Coicou, publié en 1903, contient « La Voix mauvaise » ?",
+      "choix": [
+        "Impressions",
+        "Passions",
+        "Poésies nationales",
+        "Complaintes d'esclave"
+      ],
+      "bonne_reponse": "Impressions",
+      "explication": "Hoffmann cite ce poème grinçant comme exemple de découragement des poètes.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, chap. 7 ; Wikipédia : Massillon Coicou"
+    },
+    {
+      "id": "LH5-24",
+      "enonce": "Quelle bataille Coicou chante-t-il dans ses Poésies nationales ?",
+      "choix": [
+        "Vertières",
+        "Crête-à-Pierrot",
+        "La Ravine-à-Couleuvres",
+        "Savannah"
+      ],
+      "bonne_reponse": "Vertières",
+      "explication": "Il consacre aussi des poèmes à Dessalines, Toussaint Louverture, Pétion et Christophe.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-26",
+      "enonce": "Quel poème grinçant de Coicou, de 1903, exprime son découragement ?",
+      "choix": [
+        "La Voix mauvaise",
+        "Une voix sur le Pont Rouge",
+        "À un Français",
+        "Vertières"
+      ],
+      "bonne_reponse": "La Voix mauvaise",
+      "explication": "Il se moque des tribuns et des poètes.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-27",
+      "enonce": "En quelle année est né Massillon Coicou ?",
+      "choix": [
+        "1867",
+        "1840",
+        "1872",
+        "1856"
+      ],
+      "bonne_reponse": "1867",
+      "explication": "Il naît à Port-au-Prince le 9 octobre.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Massillon Coicou"
+    },
+    {
+      "id": "LH5-30",
+      "enonce": "Quel poète publie en 1885 le recueil Patrie, espérance et souvenirs ?",
+      "choix": [
+        "Tertullien Guilbaud",
+        "Alcibiade Fleury-Battier",
+        "Oswald Durand",
+        "Massillon Coicou"
+      ],
+      "bonne_reponse": "Tertullien Guilbaud",
+      "explication": "Le poème « Le Premier Janvier » y célèbre la naissance de la République noire.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-31",
+      "enonce": "Quel poème de Guilbaud évoque la naissance de la République noire ?",
+      "choix": [
+        "Le Premier Janvier",
+        "Le Drapeau national",
+        "Au peuple",
+        "À un Montagnard"
+      ],
+      "bonne_reponse": "Le Premier Janvier",
+      "explication": "Il rappelle les esclaves marqués d'un « R » pour s'être révoltés.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-32",
+      "enonce": "Quel refus Guilbaud exprime-t-il dans « Les Hommes de l'Indépendance » ?",
+      "choix": [
+        "Toute critique des fondateurs",
+        "Toute alliance avec la France",
+        "Tout poème en créole",
+        "Tout vote populaire"
+      ],
+      "bonne_reponse": "Toute critique des fondateurs",
+      "explication": "Pour lui, blâmer ces grandes figures est une impiété.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH5-34",
+      "enonce": "Quel recueil d'Alcibiade Fleury-Battier contient « Mon Pays » (1881) ?",
+      "choix": [
+        "Sous les bambous",
+        "Feuilles au vent",
+        "Chants du soir",
+        "Fleurs et pleurs"
+      ],
+      "bonne_reponse": "Sous les bambous",
+      "explication": "Il y chante ses guerriers, ses paysages et la diversité de ses femmes.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    }
+  ]
+}
