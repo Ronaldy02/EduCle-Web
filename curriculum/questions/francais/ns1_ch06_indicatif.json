@@ -1,0 +1,504 @@
+{
+  "matiere_id": 25,
+  "matiere": "Français",
+  "chapitre": "L'indicatif : temps simples et composés",
+  "niveaux": [
+    "NS1",
+    "NS2",
+    "NS3",
+    "NS4"
+  ],
+  "unite_programme": "Module C",
+  "statut": "validé par l'utilisateur 2026-10-21",
+  "rejetees": [
+    "F06-05",
+    "F06-07",
+    "F06-33",
+    "F06-34",
+    "F06-35"
+  ],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "F06-01",
+      "enonce": "Temps qui indique que l'action se passe au moment où l'on parle, ou qu'elle est non datée ?",
+      "choix": [
+        "Le présent",
+        "Le futur simple",
+        "L'imparfait",
+        "Le passé composé"
+      ],
+      "bonne_reponse": "Le présent",
+      "explication": "Il exprime aussi une vérité générale ou une habitude.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : présent (sens 2)"
+    },
+    {
+      "id": "F06-02",
+      "enonce": "Quelle valeur a le présent dans « La Terre tourne autour du Soleil » ?",
+      "choix": [
+        "Une vérité générale",
+        "Une action en cours",
+        "Une habitude",
+        "Un futur proche"
+      ],
+      "bonne_reponse": "Une vérité générale",
+      "explication": "Le présent de vérité générale énonce un fait vrai en tout temps, sans date précise.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)",
+      "statut": "à revalider"
+    },
+    {
+      "id": "F06-03",
+      "enonce": "Quelle valeur a le présent dans « Il prend le bus tous les matins » ?",
+      "choix": [
+        "Une habitude",
+        "Une vérité générale",
+        "Une action en cours",
+        "Un fait passé"
+      ],
+      "bonne_reponse": "Une habitude",
+      "explication": "L'expression « tous les matins » marque la répétition.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-04",
+      "enonce": "Quelle est la terminaison de la troisième personne du pluriel au présent des verbes du premier groupe ?",
+      "choix": [
+        "« -ent »",
+        "« -ont »",
+        "« -ant »",
+        "« -ents »"
+      ],
+      "bonne_reponse": "« -ent »",
+      "explication": "Ils chantent, elles parlent. Le « -ont » est celui du futur : ils chanteront.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-06",
+      "enonce": "Quelle est la forme de « faire » à la deuxième personne du pluriel du présent ?",
+      "choix": [
+        "Vous faites",
+        "Vous faisez",
+        "Vous faisiez",
+        "Vous ferez"
+      ],
+      "bonne_reponse": "Vous faites",
+      "explication": "Comme « dire » (vous dites) et « être » (vous êtes), « faire » fait « -tes » à cette personne.",
+      "niveau_complexite": "Difficile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-11",
+      "enonce": "Temps du passé qui exprime une action non achevée, une habitude passée ou une description ?",
+      "choix": [
+        "L'imparfait",
+        "Le passé simple",
+        "Le passé composé",
+        "Le plus-que-parfait"
+      ],
+      "bonne_reponse": "L'imparfait",
+      "explication": "Exemple : « Je parlais souvent avec lui ».",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "Q0195",
+      "enonce": "À quoi sert l'imparfait de l'indicatif ?",
+      "choix": [
+        "Habitude ou description passée",
+        "Action passée ponctuelle",
+        "Action future",
+        "Action possible"
+      ],
+      "bonne_reponse": "Habitude ou description passée",
+      "explication": "« Elle habitait à Cap-Haïtien » décrit une situation passée. « Ils jouaient dans la cour » exprime une habitude passée.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q0195 (modifiée)",
+      "ancien_enonce": "À quoi sert l'imparfait de l'indicatif ?"
+    },
+    {
+      "id": "F06-13",
+      "enonce": "Quelle valeur a l'imparfait dans « Il pleuvait ce jour-là » ?",
+      "choix": [
+        "Une description du cadre",
+        "Une action ponctuelle",
+        "Une vérité générale",
+        "Un ordre"
+      ],
+      "bonne_reponse": "Une description du cadre",
+      "explication": "L'imparfait plante le décor : il décrit la situation dans laquelle se déroule l'action.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-14",
+      "enonce": "Quelle valeur a l'imparfait dans « Ils jouaient dans la cour chaque après-midi » ?",
+      "choix": [
+        "Une habitude passée",
+        "Une action ponctuelle",
+        "Une vérité générale",
+        "Un fait achevé"
+      ],
+      "bonne_reponse": "Une habitude passée",
+      "explication": "« Chaque après-midi » marque la répétition dans le passé.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-15",
+      "enonce": "Quelle série de terminaisons est celle de l'imparfait ?",
+      "choix": [
+        "-ais, -ais, -ait, -ions, -iez, -aient",
+        "-ai, -as, -a, -ons, -ez, -ont",
+        "-ai, -as, -a, -âmes, -âtes, -èrent",
+        "-e, -es, -e, -ons, -ez, -ent"
+      ],
+      "bonne_reponse": "-ais, -ais, -ait, -ions, -iez, -aient",
+      "explication": "Les autres séries sont celles du futur simple, du passé simple (premier groupe) et du présent (premier groupe).",
+      "niveau_complexite": "Difficile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-21",
+      "enonce": "Temps littéraire qui exprime une action passée, ponctuelle et achevée, employé dans le récit écrit ?",
+      "choix": [
+        "Le passé simple",
+        "L'imparfait",
+        "Le passé composé",
+        "Le plus-que-parfait"
+      ],
+      "bonne_reponse": "Le passé simple",
+      "explication": "Exemple : « Il parla longuement à la foule ».",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-22",
+      "enonce": "Dans quel type de texte emploie-t-on surtout le passé simple ?",
+      "choix": [
+        "Le récit écrit",
+        "La conversation courante",
+        "Le dialogue oral",
+        "La lettre amicale"
+      ],
+      "bonne_reponse": "Le récit écrit",
+      "explication": "À l'oral, on lui préfère le passé composé.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-23",
+      "enonce": "Quel temps remplace le passé simple à l'oral ?",
+      "choix": [
+        "Le passé composé",
+        "L'imparfait",
+        "Le plus-que-parfait",
+        "Le futur antérieur"
+      ],
+      "bonne_reponse": "Le passé composé",
+      "explication": "On écrit « Il partit à l'aube » mais on dit « Il est parti à l'aube ».",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-24",
+      "enonce": "À quel temps est « ils partirent » ?",
+      "choix": [
+        "Au passé simple",
+        "Au présent",
+        "À l'imparfait",
+        "Au futur simple"
+      ],
+      "bonne_reponse": "Au passé simple",
+      "explication": "La terminaison « -irent » est celle du passé simple à la troisième personne du pluriel.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-25",
+      "enonce": "Dans un récit au passé, quel temps exprime les actions principales, qui font avancer l'histoire ?",
+      "choix": [
+        "Le passé simple",
+        "L'imparfait",
+        "Le plus-que-parfait",
+        "Le présent"
+      ],
+      "bonne_reponse": "Le passé simple",
+      "explication": "L'imparfait décrit le décor et les habitudes ; le passé simple raconte les événements : « Il pleuvait quand elle sortit ».",
+      "niveau_complexite": "Difficile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-26",
+      "enonce": "Quelle série de terminaisons est celle du passé simple au premier groupe ?",
+      "choix": [
+        "-ai, -as, -a, -âmes, -âtes, -èrent",
+        "-ais, -ais, -ait, -ions, -iez, -aient",
+        "-ai, -as, -a, -ons, -ez, -ont",
+        "-e, -es, -e, -ons, -ez, -ent"
+      ],
+      "bonne_reponse": "-ai, -as, -a, -âmes, -âtes, -èrent",
+      "explication": "Exemple : je parlai, tu parlas, il parla, nous parlâmes, vous parlâtes, ils parlèrent.",
+      "niveau_complexite": "Difficile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-31",
+      "enonce": "Forme verbale qui exprime qu'une action ou un état sont situés dans l'avenir ?",
+      "choix": [
+        "Le futur",
+        "Le présent",
+        "Le passé simple",
+        "Le conditionnel"
+      ],
+      "bonne_reponse": "Le futur",
+      "explication": "Exemple : « Je parlerai demain à la réunion ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : futur (sens 2)"
+    },
+    {
+      "id": "Q0207",
+      "enonce": "Comment forme-t-on le futur simple des verbes réguliers ?",
+      "choix": [
+        "Infinitif + -ai, -as, -a",
+        "Présent + terminaison",
+        "Imparfait + -rai",
+        "Avoir + participe présent"
+      ],
+      "bonne_reponse": "Infinitif + -ai, -as, -a",
+      "explication": "On ajoute à l'infinitif les terminaisons de l'auxiliaire « avoir » au présent : parler + ai = je parlerai, finir + as = tu finiras.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q0207 (modifiée)",
+      "ancien_enonce": "Comment se forme le futur simple des verbes réguliers ?"
+    },
+    {
+      "id": "F06-41",
+      "enonce": "Temps qui exprime une action passée et achevée, considérée dans son lien avec le présent ?",
+      "choix": [
+        "Le passé composé",
+        "Le passé simple",
+        "L'imparfait",
+        "Le plus-que-parfait"
+      ],
+      "bonne_reponse": "Le passé composé",
+      "explication": "Exemple : « J'ai parlé à mon professeur ».",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "Q0196",
+      "enonce": "À quoi sert le passé composé ?",
+      "choix": [
+        "Une action passée achevée",
+        "Une habitude passée",
+        "Une description passée",
+        "Une action future"
+      ],
+      "bonne_reponse": "Une action passée achevée",
+      "explication": "Il rapporte un fait terminé dont les effets touchent encore le présent : « Il a réussi l'examen ».",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q0196 (modifiée)",
+      "ancien_enonce": "À quoi sert le passé composé ?"
+    },
+    {
+      "id": "F06-43",
+      "enonce": "Comment se forme le passé composé ?",
+      "choix": [
+        "Auxiliaire au présent + participe passé",
+        "Auxiliaire à l'imparfait + participe passé",
+        "Auxiliaire au futur + participe passé",
+        "Auxiliaire au conditionnel + participe passé"
+      ],
+      "bonne_reponse": "Auxiliaire au présent + participe passé",
+      "explication": "J'ai chanté = ai (avoir au présent) + chanté. Je suis parti = suis (être au présent) + parti.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-44",
+      "enonce": "À quel temps est « elles sont arrivées » ?",
+      "choix": [
+        "Au passé composé",
+        "Au plus-que-parfait",
+        "Au futur antérieur",
+        "Au passé antérieur"
+      ],
+      "bonne_reponse": "Au passé composé",
+      "explication": "« Sont » est l'auxiliaire être au présent : le temps est le passé composé.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-51",
+      "enonce": "Temps qui exprime une action passée, antérieure à une autre action passée ?",
+      "choix": [
+        "Le plus-que-parfait",
+        "Le passé composé",
+        "Le passé antérieur",
+        "Le passé simple"
+      ],
+      "bonne_reponse": "Le plus-que-parfait",
+      "explication": "Exemple : « J'avais parlé avant qu'il n'arrive ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : plus-que-parfait"
+    },
+    {
+      "id": "F06-52",
+      "enonce": "Comment se forme le plus-que-parfait ?",
+      "choix": [
+        "Auxiliaire à l'imparfait + participe passé",
+        "Auxiliaire au présent + participe passé",
+        "Auxiliaire au futur + participe passé",
+        "Auxiliaire au passé simple + participe"
+      ],
+      "bonne_reponse": "Auxiliaire à l'imparfait + participe passé",
+      "explication": "J'avais chanté = avais (avoir à l'imparfait) + chanté. Il était parti = était (être à l'imparfait) + parti.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : plus-que-parfait"
+    },
+    {
+      "id": "F06-53",
+      "enonce": "À quel temps est « nous avions mangé » ?",
+      "choix": [
+        "Au plus-que-parfait",
+        "Au passé composé",
+        "À l'imparfait",
+        "Au futur antérieur"
+      ],
+      "bonne_reponse": "Au plus-que-parfait",
+      "explication": "« Avions » est l'auxiliaire avoir à l'imparfait.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-54",
+      "enonce": "Dans « Tu avais fini quand je suis arrivé », quelle action s'est produite en premier ?",
+      "choix": [
+        "Tu avais fini",
+        "Je suis arrivé",
+        "Les deux en même temps",
+        "On ne peut pas le savoir"
+      ],
+      "bonne_reponse": "Tu avais fini",
+      "explication": "Le plus-que-parfait marque l'antériorité par rapport à une autre action passée.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-61",
+      "enonce": "Temps littéraire qui exprime une action passée immédiatement antérieure à une autre exprimée au passé simple ?",
+      "choix": [
+        "Le passé antérieur",
+        "Le plus-que-parfait",
+        "Le futur antérieur",
+        "Le passé composé"
+      ],
+      "bonne_reponse": "Le passé antérieur",
+      "explication": "Exemple : « Quand il eut parlé, l'assemblée se tut ».",
+      "niveau_complexite": "Difficile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-62",
+      "enonce": "Avec quel temps le passé antérieur s'emploie-t-il dans « Quand il eut parlé, l'assemblée se tut » ?",
+      "choix": [
+        "Le passé simple",
+        "L'imparfait",
+        "Le passé composé",
+        "Le présent"
+      ],
+      "bonne_reponse": "Le passé simple",
+      "explication": "« Eut parlé » est antérieur à « se tut », qui est au passé simple.",
+      "niveau_complexite": "Difficile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-63",
+      "enonce": "À quel temps est « il fut parti » ?",
+      "choix": [
+        "Au passé antérieur",
+        "Au plus-que-parfait",
+        "Au passé simple",
+        "Au futur antérieur"
+      ],
+      "bonne_reponse": "Au passé antérieur",
+      "explication": "« Fut » est l'auxiliaire être au passé simple + le participe passé « parti ».",
+      "niveau_complexite": "Difficile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-64",
+      "enonce": "Temps qui exprime une action future mais achevée avant une autre action future ?",
+      "choix": [
+        "Le futur antérieur",
+        "Le futur simple",
+        "Le plus-que-parfait",
+        "Le conditionnel passé"
+      ],
+      "bonne_reponse": "Le futur antérieur",
+      "explication": "Exemple : « J'aurai parlé avant ton arrivée ».",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-65",
+      "enonce": "Comment se forme le futur antérieur ?",
+      "choix": [
+        "Auxiliaire au futur + participe passé",
+        "Auxiliaire au conditionnel + participe passé",
+        "Auxiliaire au présent + participe passé",
+        "Auxiliaire à l'imparfait + participe passé"
+      ],
+      "bonne_reponse": "Auxiliaire au futur + participe passé",
+      "explication": "J'aurai chanté = aurai (avoir au futur simple) + chanté.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F06-66",
+      "enonce": "À quel temps est « elles seront arrivées » ?",
+      "choix": [
+        "Au futur antérieur",
+        "Au futur simple",
+        "Au passé composé",
+        "Au conditionnel passé"
+      ],
+      "bonne_reponse": "Au futur antérieur",
+      "explication": "« Seront » est l'auxiliaire être au futur simple.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "Q0211",
+      "enonce": "Que signifie la concordance des temps ?",
+      "choix": [
+        "L'accord des temps entre propositions",
+        "L'accord du verbe avec le sujet",
+        "L'accord du participe passé",
+        "L'emploi d'un seul temps par phrase"
+      ],
+      "bonne_reponse": "L'accord des temps entre propositions",
+      "explication": "Si le verbe principal est au passé, les verbes subordonnés se mettent à un temps cohérent avec lui : « Il pensait qu'elle viendrait ».",
+      "niveau_complexite": "Difficile",
+      "source": "Base Q0211 (modifiée)",
+      "ancien_enonce": "Que signifie la concordance des temps ?"
+    },
+    {
+      "id": "F06-72",
+      "enonce": "Dans un récit au passé, quel temps exprime ce qui s'est passé avant une action à l'imparfait ?",
+      "choix": [
+        "Le plus-que-parfait",
+        "Le passé composé",
+        "Le futur antérieur",
+        "Le passé simple"
+      ],
+      "bonne_reponse": "Le plus-que-parfait",
+      "explication": "Exemple : « Il pleuvait parce que le ciel s'était couvert ».",
+      "niveau_complexite": "Difficile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    }
+  ]
+}
