@@ -1,0 +1,547 @@
+{
+  "matiere_id": 23,
+  "matiere": "Littérature haïtienne",
+  "chapitre": "Les débuts de la littérature haïtienne (1804-1836)",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "",
+  "statut": "validé par l'utilisateur 2026-10-20",
+  "rejetees": [],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "LH2-01",
+      "enonce": "Personne qui, par son action, a préparé les voies à un mouvement ?",
+      "choix": [
+        "Un précurseur",
+        "Un disciple",
+        "Un mécène",
+        "Un censeur"
+      ],
+      "bonne_reponse": "Un précurseur",
+      "explication": "Hoffmann intitule « Les précurseurs » le chapitre sur les écrivains de 1804 à 1830.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : précurseur (sens 1) ; Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-02",
+      "enonce": "Débat vif, agressif, le plus souvent par écrit ?",
+      "choix": [
+        "Une polémique",
+        "Une dédicace",
+        "Une préface",
+        "Une anthologie"
+      ],
+      "bonne_reponse": "Une polémique",
+      "explication": "Au lendemain de l'indépendance, les premiers écrits haïtiens sont surtout des textes politiques ou polémiques.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : polémique ; Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-03",
+      "enonce": "Critique amère et violente, qui prend la forme d'un pamphlet ?",
+      "choix": [
+        "Une diatribe",
+        "Une apologie",
+        "Une épître",
+        "Une élégie"
+      ],
+      "bonne_reponse": "Une diatribe",
+      "explication": "On trouve dans les premiers périodiques haïtiens des diatribes contre Bonaparte, puis contre les anciens colons.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : diatribe ; Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-04",
+      "enonce": "Très élogieux, d'un enthousiasme emphatique et outré ?",
+      "choix": [
+        "Dithyrambique",
+        "Laconique",
+        "Lugubre",
+        "Pathétique"
+      ],
+      "bonne_reponse": "Dithyrambique",
+      "explication": "Hoffmann parle d'éloges dithyrambiques des héros tombés et des chefs d'État.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : dithyrambique (sens 2) ; Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-05",
+      "enonce": "Poème lyrique en strophes semblables, destiné à célébrer de grands événements ou de hauts personnages ?",
+      "choix": [
+        "Une ode",
+        "Une fable",
+        "Une épigramme",
+        "Une élégie"
+      ],
+      "bonne_reponse": "Une ode",
+      "explication": "Une Ode à l'Indépendance (1824), d'Eugène Séguy Villevaleix, célèbre aussi le président Boyer.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : ode (sens 2) ; Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-06",
+      "enonce": "Composition à une ou plusieurs voix, avec accompagnement ?",
+      "choix": [
+        "Une cantate",
+        "Une ballade",
+        "Une sonate",
+        "Une ode"
+      ],
+      "bonne_reponse": "Une cantate",
+      "explication": "Liautaud Ethéart cite une Cantate pour le jour de la Saint-Pierre parmi les vers de circonstance.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : cantate ; Hoffmann, chap. 6"
+    },
+    {
+      "id": "LH2-07",
+      "enonce": "Petite pièce en vers exprimant une pensée fine, tendre ou galante ?",
+      "choix": [
+        "Un madrigal",
+        "Un sonnet",
+        "Un hymne",
+        "Une épitaphe"
+      ],
+      "bonne_reponse": "Un madrigal",
+      "explication": "Milscent publie un Madrigal à Céleste dans L'Abeille haytienne en septembre 1817.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : madrigal (sens 1) ; Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-08",
+      "enonce": "Petit poème chantant l'amour dans un décor pastoral ?",
+      "choix": [
+        "Une idylle",
+        "Une épopée",
+        "Une ode",
+        "Une satire"
+      ],
+      "bonne_reponse": "Une idylle",
+      "explication": "François Romain Lhérisson écrit une Épître en 1819 où il évoque l'idylle des poètes français à la mode.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : idylle (sens 1) ; Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-09",
+      "enonce": "Récit allégorique d'où l'on tire une moralité ?",
+      "choix": [
+        "Une fable",
+        "Une chronique",
+        "Une épopée",
+        "Une légende"
+      ],
+      "bonne_reponse": "Une fable",
+      "explication": "Milscent a publié dans L'Abeille haytienne des fables comme Le Rossignol et l'hirondelle.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : fable (sens 1) ; Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-10",
+      "enonce": "Brève formule qui caractérise la valeur symbolique d'une chose ?",
+      "choix": [
+        "Une devise",
+        "Une légende",
+        "Une épigraphe",
+        "Une citation"
+      ],
+      "bonne_reponse": "Une devise",
+      "explication": "La première revue littéraire du pays avait pour devise : « L'épée et les talents doivent n'avoir qu'un but ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : devise (sens 1) ; Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-11",
+      "enonce": "Pièce de théâtre destinée à faire rire par la peinture satirique des mœurs ?",
+      "choix": [
+        "Une comédie",
+        "Une tragédie",
+        "Un drame",
+        "Une cantate"
+      ],
+      "bonne_reponse": "Une comédie",
+      "explication": "L'Haïtien expatrié (1804) est une comédie en trois actes.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : comédie (sens 2) ; Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-12",
+      "enonce": "Quel type de textes domine les premiers écrits haïtiens après l'indépendance ?",
+      "choix": [
+        "Des textes politiques et polémiques",
+        "Des romans d'amour",
+        "Des traités de médecine",
+        "Des recueils de contes"
+      ],
+      "bonne_reponse": "Des textes politiques et polémiques",
+      "explication": "Odes à la liberté, discours à la gloire des chefs, diatribes contre Bonaparte : la plume est l'auxiliaire de l'épée.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-13",
+      "enonce": "Quelle est la première revue littéraire d'Haïti ?",
+      "choix": [
+        "L'Abeille haytienne",
+        "Le Républicain",
+        "La Ronde",
+        "L'Union"
+      ],
+      "bonne_reponse": "L'Abeille haytienne",
+      "explication": "Elle est fondée en 1817 ; Jules Solime Milscent en est le rédacteur en chef.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6",
+      "statut": "à revalider"
+    },
+    {
+      "id": "LH2-14",
+      "enonce": "Qui est le rédacteur en chef de L'Abeille haytienne ?",
+      "choix": [
+        "Jules Solime Milscent",
+        "Juste Chanlatte",
+        "Hérard Dumesle",
+        "Julien Prévost"
+      ],
+      "bonne_reponse": "Jules Solime Milscent",
+      "explication": "Il y publie aussi des fables, des madrigaux et des couplets patriotiques.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-15",
+      "enonce": "Quel secrétaire de Dessalines a rédigé la proclamation de 1804 sur les Français restés dans l'île ?",
+      "choix": [
+        "Boisrond-Tonnerre",
+        "Baron de Vastey",
+        "Juste Chanlatte",
+        "Antoine Dupré"
+      ],
+      "bonne_reponse": "Boisrond-Tonnerre",
+      "explication": "On lui attribue aussi la rédaction de l'Acte de l'indépendance.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6 ; Wikipédia : Louis Boisrond-Tonnerre"
+    },
+    {
+      "id": "LH2-16",
+      "enonce": "Qui a écrit en 1816 la Réfutation d'un écrit de Charrault, ex-colon ?",
+      "choix": [
+        "Philémon Charlemagne",
+        "Baron de Vastey",
+        "Julien Prévost",
+        "Hérard Dumesle"
+      ],
+      "bonne_reponse": "Philémon Charlemagne",
+      "explication": "Sur le mode sarcastique, il décrit comment les Haïtiens anéantiraient une nouvelle expédition française.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-17",
+      "enonce": "Qui a écrit la Relation des glorieux événements qui ont porté leurs majestés royales sur le trône d'Hayti (1814) ?",
+      "choix": [
+        "Julien Prévost",
+        "Juste Chanlatte",
+        "Boisrond-Tonnerre",
+        "Milscent"
+      ],
+      "bonne_reponse": "Julien Prévost",
+      "explication": "Ce texte louangeur célèbre le roi Henry Christophe, comme les classiques français encensaient le Roi Soleil.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-18",
+      "enonce": "Qui a écrit l'Ode sur la prise du Môle Saint-Nicolas ?",
+      "choix": [
+        "Julien Prévost",
+        "Antoine Dupré",
+        "Hérard Dumesle",
+        "Isaac Louverture"
+      ],
+      "bonne_reponse": "Julien Prévost",
+      "explication": "L'ode célèbre une victoire des troupes du roi Henry sur un régiment révolté.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-19",
+      "enonce": "Quelle œuvre de Chanlatte (1810) répond aux esclavagistes qui voyaient la déportation comme un bienfait ?",
+      "choix": [
+        "Le Cri de la nature",
+        "Le Système colonial dévoilé",
+        "L'Haïtien expatrié",
+        "Le Passager"
+      ],
+      "bonne_reponse": "Le Cri de la nature",
+      "explication": "On y sent l'influence de Jean-Jacques Rousseau.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-20",
+      "enonce": "Quel titre le roi Henry accorde-t-il à Juste Chanlatte ?",
+      "choix": [
+        "Comte de Rosiers",
+        "Baron de Vastey",
+        "Duc de Marmelade",
+        "Comte de Limonade"
+      ],
+      "bonne_reponse": "Comte de Rosiers",
+      "explication": "Chanlatte servit Dessalines, le roi Henry puis Boyer, ce qui lui vaut une réputation de courtisan.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-21",
+      "enonce": "Quelle pièce de circonstance de Chanlatte, jouée en 1818, contient un dialogue en créole ?",
+      "choix": [
+        "L'Entrée du roi en sa capitale",
+        "Le Prix de la vertu",
+        "La Jeune Fille",
+        "Le Philosophe physicien"
+      ],
+      "bonne_reponse": "L'Entrée du roi en sa capitale",
+      "explication": "C'est l'un des rares textes en créole de l'époque qui nous soient parvenus.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-22",
+      "enonce": "Quel poème Chanlatte compose-t-il en 1814 pour le couronnement du roi Henry ?",
+      "choix": [
+        "Chant inaugural",
+        "Chant du départ",
+        "Chant patriotique",
+        "Chant royal"
+      ],
+      "bonne_reponse": "Chant inaugural",
+      "explication": "Il y affirme que les Haïtiens ont éclipsé la gloire des héros grecs et romains.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-23",
+      "enonce": "Qui est le plus prolixe et le plus intéressant des premiers écrivains politiques haïtiens ?",
+      "choix": [
+        "Baron de Vastey",
+        "Boisrond-Tonnerre",
+        "Antoine Dupré",
+        "Hérard Dumesle"
+      ],
+      "bonne_reponse": "Baron de Vastey",
+      "explication": "Né au Cap-Français, il sert Dessalines puis Henry Christophe, et disparaît en 1820.",
+      "niveau_complexite": "Facile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-24",
+      "enonce": "Quel ouvrage de 1814 de Vastey dénonce le système colonial ?",
+      "choix": [
+        "Le Système colonial dévoilé",
+        "Le Cri de la nature",
+        "Notes à Malouet",
+        "Ainsi parla l'Oncle"
+      ],
+      "bonne_reponse": "Le Système colonial dévoilé",
+      "explication": "Il est publié au Cap-Henry, à l'Imprimerie du roi.",
+      "niveau_complexite": "Facile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-25",
+      "enonce": "Quelle fonction Vastey occupe-t-il auprès des enfants d'Henry Christophe ?",
+      "choix": [
+        "Tuteur",
+        "Médecin",
+        "Imprimeur",
+        "Précepteur militaire"
+      ],
+      "bonne_reponse": "Tuteur",
+      "explication": "Il est aussi secrétaire particulier du roi et fait baron lorsque son maître monte sur le trône.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-26",
+      "enonce": "Quel ouvrage de Vastey ridiculise les préjugés des Blancs et revendique la beauté noire ?",
+      "choix": [
+        "Réflexions sur une lettre de Mazères",
+        "Le Système colonial dévoilé",
+        "Le Cri de la nature",
+        "Essai sur les causes"
+      ],
+      "bonne_reponse": "Réflexions sur une lettre de Mazères",
+      "explication": "Il y écrit que les Haïtiens peignent les anges en noir et les diables en blanc.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-27",
+      "enonce": "Qui a écrit en 1819 l'Essai sur les causes de la révolution et des guerres civiles d'Hayti ?",
+      "choix": [
+        "Baron de Vastey",
+        "Hérard Dumesle",
+        "Juste Chanlatte",
+        "Thomas Madiou"
+      ],
+      "bonne_reponse": "Baron de Vastey",
+      "explication": "Il veut innocenter Christophe et en rejeter la responsabilité sur Pétion et Boyer.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-28",
+      "enonce": "Quelle comédie imprimée aux Cayes en 1804 raconte l'exil de deux Haïtiens à Saint-Thomas ?",
+      "choix": [
+        "L'Haïtien expatrié",
+        "La Jeune Fille",
+        "Le Philosophe physicien",
+        "Le Prix de la vertu"
+      ],
+      "bonne_reponse": "L'Haïtien expatrié",
+      "explication": "Alix et Lindor, persécutés par les Blancs, rentrent au pays après la paix : seul leur pays les protège.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-29",
+      "enonce": "Qui est l'auteur de L'Haïtien expatrié (1804) ?",
+      "choix": [
+        "Pierre Flignaud",
+        "Antoine Dupré",
+        "Juste Chanlatte",
+        "Hérard Dumesle"
+      ],
+      "bonne_reponse": "Pierre Flignaud",
+      "explication": "C'est l'une des rares pièces haïtiennes de l'époque à avoir été publiées. Larousse écrit « Fligneau ».",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-30",
+      "enonce": "Quelle comédie de mœurs de Dupré satirise les mères haïtiennes qui cherchent des beaux-fils blancs ?",
+      "choix": [
+        "La Jeune Fille",
+        "La Mort du général Lamarre",
+        "L'Haïtien expatrié",
+        "Le Prix de la vertu"
+      ],
+      "bonne_reponse": "La Jeune Fille",
+      "explication": "Aucune pièce de Dupré n'a été imprimée ; on les connaît par l'article de Saint-Rémy (1837).",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-31",
+      "enonce": "Quel drame historique est attribué à Antoine Dupré ?",
+      "choix": [
+        "La Mort du général Lamarre",
+        "La Jeune Fille",
+        "Ogé ou le préjugé de couleur",
+        "Le Philosophe physicien"
+      ],
+      "bonne_reponse": "La Mort du général Lamarre",
+      "explication": "Ogé ou le préjugé de couleur est de Pierre Faubert (représenté en 1844).",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-32",
+      "enonce": "Où le théâtre haïtien des origines puise-t-il son inspiration pour le drame ?",
+      "choix": [
+        "Dans l'histoire nationale",
+        "Dans la mythologie grecque",
+        "Dans la Bible",
+        "Dans les contes africains"
+      ],
+      "bonne_reponse": "Dans l'histoire nationale",
+      "explication": "Pour la comédie, il puise dans les mœurs locales.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-33",
+      "enonce": "Selon Edgar La Selve, à quelle école les premiers poètes haïtiens se rattachent-ils ?",
+      "choix": [
+        "L'école pseudo-classique",
+        "L'école romantique",
+        "L'école parnassienne",
+        "L'école symboliste"
+      ],
+      "bonne_reponse": "L'école pseudo-classique",
+      "explication": "Ils imitent les modèles du Directoire et de l'Empire, jusqu'à la prosodie.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6 (Edgar La Selve, 1875)"
+    },
+    {
+      "id": "LH2-34",
+      "enonce": "Selon Liautaud Ethéart (1855), quelle forme les Haïtiens jugent-ils seule digne de la pensée ?",
+      "choix": [
+        "Les vers",
+        "La prose",
+        "Le dialogue",
+        "La chanson"
+      ],
+      "bonne_reponse": "Les vers",
+      "explication": "Il écrit : « tout n'est que vers » dans les Miscellanées.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-35",
+      "enonce": "Que dit Antoine Métral, en 1819, de l'éloquence des Haïtiens ?",
+      "choix": [
+        "Elle est mâle et originale",
+        "Elle est pâle et lente",
+        "Elle est froide et savante",
+        "Elle est molle et vague"
+      ],
+      "bonne_reponse": "Elle est mâle et originale",
+      "explication": "Il juge au contraire leur poésie comme une pâle imitation de la poésie française.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-36",
+      "enonce": "Quel poète ose placer un gouyavier dans un poème de 1819 ?",
+      "choix": [
+        "Hérard Dumesle",
+        "Milscent",
+        "Juste Chanlatte",
+        "Isaac Louverture"
+      ],
+      "bonne_reponse": "Hérard Dumesle",
+      "explication": "C'est peut-être la première apparition de la réalité tropicale dans la poésie haïtienne (« Fête champêtre »).",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-37",
+      "enonce": "Qui a écrit Voyage dans le nord d'Hayti (1824) ?",
+      "choix": [
+        "Hérard Dumesle",
+        "Thomas Madiou",
+        "Juste Chanlatte",
+        "Baron de Vastey"
+      ],
+      "bonne_reponse": "Hérard Dumesle",
+      "explication": "Récit de voyage entrecoupé d'alexandrins, publié aux Cayes ; il fonde aussi le journal L'Observateur.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    },
+    {
+      "id": "LH2-38",
+      "enonce": "Quel fils de Toussaint Louverture est l'auteur du poème Le Passager ?",
+      "choix": [
+        "Isaac Louverture",
+        "Hérard Dumesle",
+        "Julien Prévost",
+        "Jules Solime Milscent"
+      ],
+      "bonne_reponse": "Isaac Louverture",
+      "explication": "Le poème chante la nostalgie du pays natal, dans une grande abstraction.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, Littérature d'Haïti (1995), chap. 5-6"
+    }
+  ]
+}
