@@ -1,0 +1,545 @@
+{
+  "matiere_id": 23,
+  "matiere": "Littérature haïtienne",
+  "chapitre": "L'École de 1836 : histoire et roman",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "",
+  "statut": "validé par l'utilisateur 2026-10-21",
+  "rejetees": [
+    "LH4-11",
+    "LH4-16",
+    "LH4-28",
+    "LH4-30",
+    "LH4-33",
+    "LH4-36",
+    "LH4-43",
+    "LH4-44",
+    "LH4-46",
+    "LH4-47",
+    "LH4-48",
+    "LH4-49"
+  ],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "LH4-01",
+      "enonce": "Expression d'une idée par une métaphore animée et continuée par un développement ?",
+      "choix": [
+        "Une allégorie",
+        "Une paraphrase",
+        "Une hyperbole",
+        "Une antithèse"
+      ],
+      "bonne_reponse": "Une allégorie",
+      "explication": "Dans Stella, le personnage qui donne son titre au roman est une allégorie de la Liberté.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : allégorie (sens 1) ; Wikipédia : Stella (roman)"
+    },
+    {
+      "id": "LH4-02",
+      "enonce": "Long récit poétique d'aventures héroïques où intervient le merveilleux ?",
+      "choix": [
+        "Une épopée",
+        "Une ballade",
+        "Une élégie",
+        "Une fable"
+      ],
+      "bonne_reponse": "Une épopée",
+      "explication": "Christiane Ndiaye lit Stella comme un roman épique qui réinvente les conventions de l'épopée.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : épopée (sens 1) ; Wikipédia : Stella (roman)"
+    },
+    {
+      "id": "LH4-03",
+      "enonce": "Dont la divulgation a lieu après la mort de son auteur ?",
+      "choix": [
+        "Posthume",
+        "Anonyme",
+        "Apocryphe",
+        "Clandestin"
+      ],
+      "bonne_reponse": "Posthume",
+      "explication": "Stella est publié à titre posthume, en 1859, par le cousin de Bergeaud.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : posthume (sens 2) ; Wikipédia : Émeric Bergeaud"
+    },
+    {
+      "id": "LH4-04",
+      "enonce": "Ensemble des documents concernant l'histoire d'une collectivité, d'une famille ou d'un individu ?",
+      "choix": [
+        "Les archives",
+        "Les annales",
+        "Les mémoires",
+        "Les almanachs"
+      ],
+      "bonne_reponse": "Les archives",
+      "explication": "La destruction de la plupart des archives rendait difficile le travail des premiers historiens haïtiens.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : archives (sens 1) ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH4-05",
+      "enonce": "Régime politique où l'autorité est entre les mains de quelques personnes ou familles puissantes ?",
+      "choix": [
+        "Une oligarchie",
+        "Une démocratie",
+        "Une théocratie",
+        "Une anarchie"
+      ],
+      "bonne_reponse": "Une oligarchie",
+      "explication": "Hoffmann estime que le système défendu par les historiens mulâtres était en fait une oligarchie.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : oligarchie ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH4-06",
+      "enonce": "Opinion adoptée sans examen, souvent imposée par le milieu ou l'éducation ?",
+      "choix": [
+        "Un préjugé",
+        "Un pronostic",
+        "Un postulat",
+        "Un paradoxe"
+      ],
+      "bonne_reponse": "Un préjugé",
+      "explication": "Le préjugé de couleur est un thème majeur de la littérature haïtienne, de Pierre Faubert à Bergeaud.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : préjugé (sens 2) ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH4-07",
+      "enonce": "Quel écrivain est l'auteur du roman Stella ?",
+      "choix": [
+        "Émeric Bergeaud",
+        "Thomas Madiou",
+        "Demesvar Delorme",
+        "Ignace Nau"
+      ],
+      "bonne_reponse": "Émeric Bergeaud",
+      "explication": "Né aux Cayes en 1818, il meurt à Saint-Thomas en 1858.",
+      "niveau_complexite": "Facile",
+      "source": "Wikipédia : Émeric Bergeaud ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH4-08",
+      "enonce": "Quel roman est considéré comme le premier roman haïtien ?",
+      "choix": [
+        "Stella",
+        "Mimola",
+        "Le Damné",
+        "Gouverneurs de la rosée"
+      ],
+      "bonne_reponse": "Stella",
+      "explication": "Hoffmann le qualifie de premier roman composé par un Haïtien.",
+      "niveau_complexite": "Facile",
+      "source": "Hoffmann, chap. 7 ; Wikipédia : Stella (roman)"
+    },
+    {
+      "id": "LH4-09",
+      "enonce": "En quelle année Stella est-il publié ?",
+      "choix": [
+        "1859",
+        "1847",
+        "1884",
+        "1901"
+      ],
+      "bonne_reponse": "1859",
+      "explication": "Il paraît après la mort de l'auteur, survenue en 1858.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7 ; Wikipédia : Stella (roman)"
+    },
+    {
+      "id": "LH4-10",
+      "enonce": "Dans quelle ville Stella est-il publié, à titre posthume ?",
+      "choix": [
+        "Paris",
+        "Port-au-Prince",
+        "Les Cayes",
+        "Saint-Thomas"
+      ],
+      "bonne_reponse": "Paris",
+      "explication": "Le livre est publié chez l'éditeur Édouard Dentu.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Stella (roman)"
+    },
+    {
+      "id": "LH4-12",
+      "enonce": "Qui fait publier Stella après la mort de Bergeaud ?",
+      "choix": [
+        "Beaubrun Ardouin",
+        "Émile Nau",
+        "Thomas Madiou",
+        "Joseph Saint-Rémy"
+      ],
+      "bonne_reponse": "Beaubrun Ardouin",
+      "explication": "Bergeaud lui avait confié son manuscrit à Paris en 1857 ; ils étaient cousins.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Émeric Bergeaud ; Wikipédia : Stella (roman)"
+    },
+    {
+      "id": "LH4-13",
+      "enonce": "Dans quelles circonstances Bergeaud écrit-il Stella ?",
+      "choix": [
+        "Pendant son exil à Saint-Thomas",
+        "Pendant ses études à Paris",
+        "Pendant la guerre d'Indépendance",
+        "Pendant son service militaire"
+      ],
+      "bonne_reponse": "Pendant son exil à Saint-Thomas",
+      "explication": "Il s'exile en 1848, à cause de sa proximité avec un soulèvement contre Soulouque.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Émeric Bergeaud"
+    },
+    {
+      "id": "LH4-14",
+      "enonce": "Contre quel dirigeant s'est élevé le soulèvement qui pousse Bergeaud à l'exil en 1848 ?",
+      "choix": [
+        "Faustin Soulouque",
+        "Jean-Pierre Boyer",
+        "Fabre Geffrard",
+        "Alexandre Pétion"
+      ],
+      "bonne_reponse": "Faustin Soulouque",
+      "explication": "Soulouque voulait se faire proclamer empereur.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Émeric Bergeaud"
+    },
+    {
+      "id": "LH4-15",
+      "enonce": "Dans quelle ville est né Émeric Bergeaud ?",
+      "choix": [
+        "Les Cayes",
+        "Port-au-Prince",
+        "Le Cap",
+        "Jérémie"
+      ],
+      "bonne_reponse": "Les Cayes",
+      "explication": "Il fut le secrétaire de son oncle, le général Borgella.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Émeric Bergeaud"
+    },
+    {
+      "id": "LH4-17",
+      "enonce": "Quel roman raconte les aventures de deux frères, Romulus et Rémus, jusqu'à l'indépendance de 1804 ?",
+      "choix": [
+        "Stella",
+        "Mimola",
+        "Deux amours",
+        "Le Vieux Piquet"
+      ],
+      "bonne_reponse": "Stella",
+      "explication": "Ils sont les fils de Marie, une esclave africaine ; Romulus est noir et Rémus mulâtre.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Stella (roman)"
+    },
+    {
+      "id": "LH4-18",
+      "enonce": "Quels personnages historiques les héros Romulus et Rémus évoquent-ils ?",
+      "choix": [
+        "Toussaint Louverture et André Rigaud",
+        "Dessalines et Christophe",
+        "Pétion et Boyer",
+        "Capois et Vernet"
+      ],
+      "bonne_reponse": "Toussaint Louverture et André Rigaud",
+      "explication": "Hoffmann souligne qu'ils sont calqués sur le Noir Toussaint et son ennemi mulâtre Rigaud.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH4-19",
+      "enonce": "Contre quel préjugé Bergeaud prêche-t-il à travers Romulus et Rémus ?",
+      "choix": [
+        "Le préjugé de couleur",
+        "Le préjugé de classe",
+        "Le préjugé religieux",
+        "Le préjugé de sexe"
+      ],
+      "bonne_reponse": "Le préjugé de couleur",
+      "explication": "Le roman est une version à peine romancée des événements de la guerre d'Indépendance.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH4-20",
+      "enonce": "Qui est Stella, dans le roman de Bergeaud ?",
+      "choix": [
+        "L'allégorie de la Liberté",
+        "La mère de Romulus",
+        "Une esclave révoltée",
+        "La fille de Toussaint"
+      ],
+      "bonne_reponse": "L'allégorie de la Liberté",
+      "explication": "Jeune guerrière qui guide les héros, elle révèle à la fin son identité : elle est la Liberté.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Stella (roman)"
+    },
+    {
+      "id": "LH4-21",
+      "enonce": "Quel événement clôt le récit de Stella ?",
+      "choix": [
+        "L'indépendance de 1804",
+        "La mort de Dessalines",
+        "Le couronnement de Christophe",
+        "La chute de Boyer"
+      ],
+      "bonne_reponse": "L'indépendance de 1804",
+      "explication": "Les héros luttent pour la liberté et l'indépendance de Saint-Domingue, proclamée le 1er janvier 1804.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Stella (roman)"
+    },
+    {
+      "id": "LH4-22",
+      "enonce": "Quel genre Christiane Ndiaye reconnaît-elle dans Stella ?",
+      "choix": [
+        "Un roman épique",
+        "Un roman policier",
+        "Un roman d'apprentissage",
+        "Un roman épistolaire"
+      ],
+      "bonne_reponse": "Un roman épique",
+      "explication": "Elle parle d'un texte « hybride », mêlant poétique épique et polyphonie.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Stella (roman)"
+    },
+    {
+      "id": "LH4-23",
+      "enonce": "Avec quels pays Bergeaud compare-t-il les paysages haïtiens dans Stella ?",
+      "choix": [
+        "La Suisse, l'Italie et l'Espagne",
+        "La Norvège, la Russie et l'Écosse",
+        "Le Canada, l'Alaska et le Groenland",
+        "L'Égypte, l'Inde et la Chine"
+      ],
+      "bonne_reponse": "La Suisse, l'Italie et l'Espagne",
+      "explication": "Hoffmann y voit la note donnée dès 1859 : une nature de convention, qui pourrait être celle de l'Europe.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH4-24",
+      "enonce": "Qui est l'auteur de l'Histoire d'Haïti, publiée en 1847-1848 ?",
+      "choix": [
+        "Thomas Madiou",
+        "Beaubrun Ardouin",
+        "Joseph Saint-Rémy",
+        "Émile Nau"
+      ],
+      "bonne_reponse": "Thomas Madiou",
+      "explication": "C'est le premier grand historien haïtien.",
+      "niveau_complexite": "Facile",
+      "source": "Hoffmann, chap. 7 ; Wikipédia : Thomas Madiou"
+    },
+    {
+      "id": "LH4-25",
+      "enonce": "Combien de tomes de l'Histoire d'Haïti Madiou publie-t-il en 1847 et 1848 ?",
+      "choix": [
+        "Trois",
+        "Un",
+        "Cinq",
+        "Onze"
+      ],
+      "bonne_reponse": "Trois",
+      "explication": "Deux tomes paraissent en 1847 et un en 1848 ; un tome posthume sort en 1904.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Thomas Madiou"
+    },
+    {
+      "id": "LH4-26",
+      "enonce": "En quelle année est né Thomas Madiou ?",
+      "choix": [
+        "1814",
+        "1796",
+        "1816",
+        "1812"
+      ],
+      "bonne_reponse": "1814",
+      "explication": "Il est né à Port-au-Prince et y meurt en 1884.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Thomas Madiou"
+    },
+    {
+      "id": "LH4-27",
+      "enonce": "Quel journal officiel Madiou dirige-t-il en 1849 ?",
+      "choix": [
+        "Le Moniteur",
+        "Le Télégraphe",
+        "L'Union",
+        "Le Républicain"
+      ],
+      "bonne_reponse": "Le Moniteur",
+      "explication": "Il a étudié en France, à Angers puis à Rennes, avant de rentrer en Haïti en 1835.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Thomas Madiou"
+    },
+    {
+      "id": "LH4-29",
+      "enonce": "Qui a écrit les Études sur l'histoire d'Haïti ?",
+      "choix": [
+        "Beaubrun Ardouin",
+        "Thomas Madiou",
+        "Émile Nau",
+        "Hannibal Price"
+      ],
+      "bonne_reponse": "Beaubrun Ardouin",
+      "explication": "Il y affirme que les Haïtiens doivent eux-mêmes découvrir la filiation des événements de leur patrie.",
+      "niveau_complexite": "Facile",
+      "source": "Hoffmann, chap. 7 ; Wikipédia : Beaubrun Ardouin"
+    },
+    {
+      "id": "LH4-31",
+      "enonce": "En quelle année est né Beaubrun Ardouin ?",
+      "choix": [
+        "1796",
+        "1814",
+        "1816",
+        "1808"
+      ],
+      "bonne_reponse": "1796",
+      "explication": "Il est né à Petit-Trou-de-Nippes, comme son frère le poète Coriolan.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Beaubrun Ardouin"
+    },
+    {
+      "id": "LH4-32",
+      "enonce": "Quelle fonction Beaubrun Ardouin reçoit-il en 1832, sous Boyer ?",
+      "choix": [
+        "Sénateur",
+        "Ministre de la Guerre",
+        "Directeur du lycée",
+        "Président de la Cour"
+      ],
+      "bonne_reponse": "Sénateur",
+      "explication": "Après la chute de Boyer en 1843, il est emprisonné.",
+      "niveau_complexite": "Moyen",
+      "source": "Wikipédia : Beaubrun Ardouin"
+    },
+    {
+      "id": "LH4-34",
+      "enonce": "Quel ouvrage Beaubrun Ardouin publie-t-il à Port-au-Prince en 1832 ?",
+      "choix": [
+        "Géographie de l'île d'Haïti",
+        "Pétion et Haïti",
+        "Histoire d'Haïti",
+        "Stella"
+      ],
+      "bonne_reponse": "Géographie de l'île d'Haïti",
+      "explication": "Il fut d'abord typographe et avocat.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Beaubrun Ardouin"
+    },
+    {
+      "id": "LH4-35",
+      "enonce": "Quel ouvrage de son frère Céligny, Beaubrun Ardouin publie-t-il en 1865 ?",
+      "choix": [
+        "Essais sur l'histoire d'Haïti",
+        "Études sur l'histoire d'Haïti",
+        "Histoire des caciques d'Haïti",
+        "Géographie de l'île d'Haïti"
+      ],
+      "bonne_reponse": "Essais sur l'histoire d'Haïti",
+      "explication": "Les frères avaient commencé à recueillir des récits oraux dès 1837.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Céligny Ardouin ; Wikipédia : Beaubrun Ardouin"
+    },
+    {
+      "id": "LH4-37",
+      "enonce": "Qui est l'auteur de Pétion et Haïti, en cinq volumes ?",
+      "choix": [
+        "Joseph Saint-Rémy",
+        "Thomas Madiou",
+        "Beaubrun Ardouin",
+        "Hannibal Price"
+      ],
+      "bonne_reponse": "Joseph Saint-Rémy",
+      "explication": "Il meurt en 1858 sans avoir terminé l'ouvrage.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7 ; Wikipédia : Joseph Saint-Rémy"
+    },
+    {
+      "id": "LH4-38",
+      "enonce": "Dans quelle île est né Joseph Saint-Rémy ?",
+      "choix": [
+        "La Guadeloupe",
+        "La Martinique",
+        "Cuba",
+        "La Jamaïque"
+      ],
+      "bonne_reponse": "La Guadeloupe",
+      "explication": "Ses parents, de descendance africaine, viennent s'établir en Haïti.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7 ; Wikipédia : Joseph Saint-Rémy"
+    },
+    {
+      "id": "LH4-39",
+      "enonce": "Quel ouvrage de Saint-Rémy (1851) publie les mémoires de Boisrond-Tonnerre ?",
+      "choix": [
+        "Mémoires pour servir à l'histoire d'Haïti",
+        "Vie de Toussaint-L'Ouverture",
+        "Essai sur Henri-Christophe",
+        "Pétion et Haïti"
+      ],
+      "bonne_reponse": "Mémoires pour servir à l'histoire d'Haïti",
+      "explication": "Saint-Rémy y ajoute une préface et une étude critique.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Joseph Saint-Rémy"
+    },
+    {
+      "id": "LH4-40",
+      "enonce": "Quel héros Saint-Rémy critique-t-il dans son premier livre, publié en 1839 ?",
+      "choix": [
+        "Henri Christophe",
+        "Jean-Jacques Dessalines",
+        "Alexandre Pétion",
+        "Jean-Pierre Boyer"
+      ],
+      "bonne_reponse": "Henri Christophe",
+      "explication": "L'Essai sur Henri-Christophe, général haïtien, paraît à Paris.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Joseph Saint-Rémy"
+    },
+    {
+      "id": "LH4-41",
+      "enonce": "Quel ouvrage de Saint-Rémy, publié en 1850, retrace la vie d'un héros de la Révolution ?",
+      "choix": [
+        "Vie de Toussaint-L'Ouverture",
+        "Essai sur Henri-Christophe",
+        "Pétion et Haïti",
+        "Études sur l'histoire d'Haïti"
+      ],
+      "bonne_reponse": "Vie de Toussaint-L'Ouverture",
+      "explication": "Il publie aussi en 1853 les Mémoires du général Toussaint-Louverture.",
+      "niveau_complexite": "Difficile",
+      "source": "Wikipédia : Joseph Saint-Rémy"
+    },
+    {
+      "id": "LH4-42",
+      "enonce": "De quelle origine sont les premiers historiens haïtiens, selon Hoffmann ?",
+      "choix": [
+        "Descendants de gens de couleur",
+        "Anciens esclaves",
+        "Colons français",
+        "Immigrés africains"
+      ],
+      "bonne_reponse": "Descendants de gens de couleur",
+      "explication": "Ils expriment et influencent l'idéologie de la classe dirigeante mulâtre.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH4-45",
+      "enonce": "Quel historien noir juge sévèrement les idoles de Madiou, d'Ardouin et de Saint-Rémy dans Les Constitutions d'Haïti (1886) ?",
+      "choix": [
+        "Louis-Joseph Janvier",
+        "Hannibal Price",
+        "Frédéric Marcelin",
+        "Duraciné Vaval"
+      ],
+      "bonne_reponse": "Louis-Joseph Janvier",
+      "explication": "Il défend Toussaint Louverture, Dessalines et Christophe.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, chap. 7"
+    }
+  ]
+}
