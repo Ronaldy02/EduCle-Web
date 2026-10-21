@@ -1,0 +1,437 @@
+{
+  "matiere_id": 25,
+  "matiere": "Français",
+  "chapitre": "Notions de conjugaison : groupes, modes, temps, auxiliaires",
+  "niveaux": [
+    "NS1",
+    "NS2",
+    "NS3",
+    "NS4"
+  ],
+  "unite_programme": "Module C",
+  "statut": "validé par l'utilisateur 2026-10-20",
+  "rejetees": [],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "F05-01",
+      "enonce": "Présenter successivement toutes les formes d'un verbe, selon la personne, le nombre, le mode et le temps ?",
+      "choix": [
+        "Conjuguer",
+        "Accorder",
+        "Décliner",
+        "Analyser"
+      ],
+      "bonne_reponse": "Conjuguer",
+      "explication": "On conjugue « parler » : je parle, tu parles, il parle…",
+      "niveau_complexite": "Facile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-02",
+      "enonce": "Partie du verbe qui porte le sens et qui reste en général stable d'une forme à l'autre ?",
+      "choix": [
+        "Le radical",
+        "La terminaison",
+        "Le préfixe",
+        "L'auxiliaire"
+      ],
+      "bonne_reponse": "Le radical",
+      "explication": "Pour « parler », le radical est « parl- ».",
+      "niveau_complexite": "Facile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-03",
+      "enonce": "Partie variable ajoutée au radical d'un verbe, qui indique la personne, le nombre, le temps et le mode ?",
+      "choix": [
+        "La terminaison",
+        "Le radical",
+        "L'auxiliaire",
+        "Le participe"
+      ],
+      "bonne_reponse": "La terminaison",
+      "explication": "On dit aussi désinence. Pour « parler » au présent : -e, -es, -e, -ons, -ez, -ent.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : désinence (sens 1)"
+    },
+    {
+      "id": "F05-04",
+      "enonce": "Dans « parlons », quel est le radical ?",
+      "choix": [
+        "« parl- »",
+        "« parlon- »",
+        "« par- »",
+        "« -ons »"
+      ],
+      "bonne_reponse": "« parl- »",
+      "explication": "Le radical « parl- » est suivi de la terminaison « -ons ».",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-05",
+      "enonce": "Dans « nous chantions », quelle est la terminaison ?",
+      "choix": [
+        "« -ions »",
+        "« -ons »",
+        "« -ais »",
+        "« -ant »"
+      ],
+      "bonne_reponse": "« -ions »",
+      "explication": "Le radical est « chant- » ; « -ions » marque l'imparfait à la première personne du pluriel.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-06",
+      "enonce": "Manière dont le verbe présente l'action ou l'état : comme un fait certain, une possibilité, une condition, un ordre ?",
+      "choix": [
+        "Le mode",
+        "Le temps",
+        "La voix",
+        "Le groupe"
+      ],
+      "bonne_reponse": "Le mode",
+      "explication": "Les modes sont l'indicatif, le subjonctif, le conditionnel, l'impératif, l'infinitif, le participe et le gérondif.",
+      "niveau_complexite": "Facile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-07",
+      "enonce": "Forme verbale qui situe l'action dans le présent, le passé ou l'avenir ?",
+      "choix": [
+        "Le temps",
+        "Le mode",
+        "La voix",
+        "Le groupe"
+      ],
+      "bonne_reponse": "Le temps",
+      "explication": "Un temps est simple (un seul mot : je parle) ou composé (auxiliaire + participe passé : j'ai parlé).",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-08",
+      "enonce": "Comment forme-t-on un temps composé ?",
+      "choix": [
+        "Auxiliaire + participe passé",
+        "Radical + terminaison",
+        "Infinitif + auxiliaire",
+        "Participe présent + auxiliaire"
+      ],
+      "bonne_reponse": "Auxiliaire + participe passé",
+      "explication": "Exemples : « j'ai parlé », « nous étions partis », « elle sera arrivée ».",
+      "niveau_complexite": "Facile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-09",
+      "enonce": "Lequel de ces temps est un temps composé ?",
+      "choix": [
+        "Le plus-que-parfait",
+        "L'imparfait",
+        "Le futur simple",
+        "Le passé simple"
+      ],
+      "bonne_reponse": "Le plus-que-parfait",
+      "explication": "Le plus-que-parfait se forme avec l'auxiliaire à l'imparfait + le participe passé : « j'avais parlé ».",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-11",
+      "enonce": "Lequel de ces verbes appartient au premier groupe ?",
+      "choix": [
+        "« chanter »",
+        "« aller »",
+        "« finir »",
+        "« prendre »"
+      ],
+      "bonne_reponse": "« chanter »",
+      "explication": "Le premier groupe réunit les verbes en -er, sauf « aller ».",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-12",
+      "enonce": "Quelle caractéristique distingue les verbes du deuxième groupe ?",
+      "choix": [
+        "Infinitif en -ir, participe en -issant",
+        "Infinitif en -er, participe en -ant",
+        "Infinitif en -re, participe en -ant",
+        "Infinitif en -oir, participe en -ant"
+      ],
+      "bonne_reponse": "Infinitif en -ir, participe en -issant",
+      "explication": "Exemple : finir → finissant ; choisir → choisissant.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-13",
+      "enonce": "Lequel de ces verbes appartient au deuxième groupe ?",
+      "choix": [
+        "« grandir »",
+        "« partir »",
+        "« courir »",
+        "« venir »"
+      ],
+      "bonne_reponse": "« grandir »",
+      "explication": "« Grandir » fait « grandissant ». « Partir », « courir » et « venir » (partant, courant, venant) sont du troisième groupe.",
+      "niveau_complexite": "Difficile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-14",
+      "enonce": "À quel groupe appartient le verbe « aller » ?",
+      "choix": [
+        "Au troisième groupe",
+        "Au premier groupe",
+        "Au deuxième groupe",
+        "À aucun groupe"
+      ],
+      "bonne_reponse": "Au troisième groupe",
+      "explication": "Malgré son infinitif en -er, « aller » est irrégulier : je vais, nous allons, j'irai.",
+      "niveau_complexite": "Difficile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-15",
+      "enonce": "Groupe qui rassemble tous les autres verbes et qui est le plus irrégulier ?",
+      "choix": [
+        "Le troisième groupe",
+        "Le premier groupe",
+        "Le deuxième groupe",
+        "Le groupe des auxiliaires"
+      ],
+      "bonne_reponse": "Le troisième groupe",
+      "explication": "Il comprend aller, venir, prendre, voir, pouvoir, vouloir, faire, dire…",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-21",
+      "enonce": "Quels sont les modes personnels ?",
+      "choix": [
+        "Indicatif, subjonctif, conditionnel, impératif",
+        "Indicatif, subjonctif, infinitif, impératif",
+        "Indicatif, conditionnel, participe, gérondif",
+        "Subjonctif, impératif, infinitif, participe"
+      ],
+      "bonne_reponse": "Indicatif, subjonctif, conditionnel, impératif",
+      "explication": "Leurs formes varient selon la personne. Les autres modes sont impersonnels.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : personnel (sens 8, linguistique)"
+    },
+    {
+      "id": "F05-22",
+      "enonce": "Quels sont les modes impersonnels ?",
+      "choix": [
+        "Infinitif, participe, gérondif",
+        "Infinitif, participe, conditionnel",
+        "Participe, impératif, gérondif",
+        "Infinitif, indicatif, gérondif"
+      ],
+      "bonne_reponse": "Infinitif, participe, gérondif",
+      "explication": "Leurs formes ne varient pas selon la personne grammaticale.",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-23",
+      "enonce": "Mode qui présente l'action ou l'état comme un fait réel, certain ou objectif ?",
+      "choix": [
+        "L'indicatif",
+        "Le subjonctif",
+        "Le conditionnel",
+        "L'impératif"
+      ],
+      "bonne_reponse": "L'indicatif",
+      "explication": "C'est le mode le plus employé : il compte le plus grand nombre de temps.",
+      "niveau_complexite": "Facile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-24",
+      "enonce": "Mode qui présente l'action comme une éventualité ou comme la conséquence d'un fait supposé ?",
+      "choix": [
+        "Le conditionnel",
+        "Le subjonctif",
+        "L'indicatif",
+        "L'impératif"
+      ],
+      "bonne_reponse": "Le conditionnel",
+      "explication": "Exemple : « J'aimerais voyager si j'avais le temps ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : conditionnel (sens 1)"
+    },
+    {
+      "id": "F05-25",
+      "enonce": "Mode employé surtout dans les subordonnées pour exprimer la subjectivité ou l'affectivité ?",
+      "choix": [
+        "Le subjonctif",
+        "Le conditionnel",
+        "L'indicatif",
+        "L'impératif"
+      ],
+      "bonne_reponse": "Le subjonctif",
+      "explication": "Exemple : « Il faut que tu viennes ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : subjonctif"
+    },
+    {
+      "id": "F05-26",
+      "enonce": "Mode caractérisé par l'absence de pronom sujet et qui exprime un ordre ou une défense ?",
+      "choix": [
+        "L'impératif",
+        "Le subjonctif",
+        "Le conditionnel",
+        "L'infinitif"
+      ],
+      "bonne_reponse": "L'impératif",
+      "explication": "Exemples : « Viens ! », « Ne pars pas ! ».",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : impératif (sens 2)"
+    },
+    {
+      "id": "F05-27",
+      "enonce": "Forme nominale du verbe, qui ne porte aucune marque de nombre ni de personne ?",
+      "choix": [
+        "L'infinitif",
+        "Le participe",
+        "Le gérondif",
+        "L'impératif"
+      ],
+      "bonne_reponse": "L'infinitif",
+      "explication": "Exemples : parler, finir, prendre. C'est la forme sous laquelle le verbe figure au dictionnaire.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : infinitif"
+    },
+    {
+      "id": "F05-28",
+      "enonce": "Forme verbale impersonnelle qui tient à la fois du verbe et de l'adjectif ?",
+      "choix": [
+        "Le participe",
+        "L'infinitif",
+        "Le gérondif",
+        "L'impératif"
+      ],
+      "bonne_reponse": "Le participe",
+      "explication": "Comme l'adjectif, il peut varier en genre et en nombre : « des fenêtres ouvertes ».",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : participe"
+    },
+    {
+      "id": "F05-29",
+      "enonce": "Forme verbale en -ant précédée de la préposition « en » ?",
+      "choix": [
+        "Le gérondif",
+        "Le participe présent",
+        "L'infinitif",
+        "L'adjectif verbal"
+      ],
+      "bonne_reponse": "Le gérondif",
+      "explication": "Exemple : « En sortant, j'ai vu qu'il pleuvait ». Il joue le rôle d'un complément circonstanciel.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : gérondif (sens 2)"
+    },
+    {
+      "id": "F05-31",
+      "enonce": "Verbe qui perd son sens plein et se combine avec un participe pour former un temps composé ?",
+      "choix": [
+        "Un auxiliaire",
+        "Un verbe d'état",
+        "Un verbe pronominal",
+        "Un verbe défectif"
+      ],
+      "bonne_reponse": "Un auxiliaire",
+      "explication": "Il n'y a que deux auxiliaires pour former les temps composés : être et avoir.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : auxiliaire (sens 3)"
+    },
+    {
+      "id": "F05-32",
+      "enonce": "Quels sont les deux auxiliaires qui forment les temps composés ?",
+      "choix": [
+        "être et avoir",
+        "être et faire",
+        "avoir et aller",
+        "pouvoir et devoir"
+      ],
+      "bonne_reponse": "être et avoir",
+      "explication": "« Pouvoir » et « devoir » sont des verbes modaux, pas des auxiliaires de temps composés.",
+      "niveau_complexite": "Facile",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-33",
+      "enonce": "Dans « Il a mangé », quelle est la nature de « a » ?",
+      "choix": [
+        "Un auxiliaire",
+        "Une préposition",
+        "Un verbe d'état",
+        "Un pronom"
+      ],
+      "bonne_reponse": "Un auxiliaire",
+      "explication": "« A » forme le passé composé avec le participe « mangé ». Sans accent, il ne s'écrit pas « à ».",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-34",
+      "enonce": "Avec quel auxiliaire se conjuguent tous les verbes pronominaux aux temps composés ?",
+      "choix": [
+        "Être",
+        "Avoir",
+        "Aller",
+        "Avoir ou être"
+      ],
+      "bonne_reponse": "Être",
+      "explication": "Exemples : « elle s'est levée », « ils se sont parlé ».",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-35",
+      "enonce": "Avec quel auxiliaire se conjugue « partir » aux temps composés ?",
+      "choix": [
+        "Être",
+        "Avoir",
+        "Aller",
+        "Faire"
+      ],
+      "bonne_reponse": "Être",
+      "explication": "Les verbes de mouvement ou de changement d'état (aller, venir, arriver, naître, mourir, tomber) se conjuguent avec être : « il est parti ».",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-36",
+      "enonce": "Dans « Elle se lève », quel type de verbe est « se lever » ?",
+      "choix": [
+        "Un verbe pronominal",
+        "Un verbe auxiliaire",
+        "Un verbe défectif",
+        "Un verbe impersonnel"
+      ],
+      "bonne_reponse": "Un verbe pronominal",
+      "explication": "Un verbe pronominal se conjugue avec un pronom réfléchi (me, te, se, nous, vous).",
+      "niveau_complexite": "Moyen",
+      "source": "Module C (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "F05-37",
+      "enonce": "Verbe qui ne possède pas certaines formes que les verbes du même type ont normalement ?",
+      "choix": [
+        "Un verbe défectif",
+        "Un verbe irrégulier",
+        "Un verbe auxiliaire",
+        "Un verbe pronominal"
+      ],
+      "bonne_reponse": "Un verbe défectif",
+      "explication": "Exemple : « gésir » n'existe qu'au présent, à l'imparfait et au participe présent « gisant ».",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : défectif"
+    }
+  ]
+}
