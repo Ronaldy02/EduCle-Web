@@ -14,7 +14,7 @@
   "questions": [
     {
       "id": "B20-01",
-      "enonce": "Organe capable de se contracter et d'assurer le mouvement.",
+      "enonce": "Organe capable de se contracter et d'assurer le mouvement ou la résistance aux forces extérieures.",
       "choix": [
         "Un muscle",
         "Un tendon",
@@ -38,7 +38,7 @@
       "bonne_reponse": "Le muscle strié",
       "explication": "Il comprend le muscle squelettique et le muscle cardiaque.",
       "niveau_complexite": "Moyen",
-      "source": "Larousse : strié (sens 2)"
+      "source": "Programme 3.1 ; Larousse : strié (sens 2, présenter une striation)"
     },
     {
       "id": "B20-03",
@@ -98,7 +98,7 @@
     },
     {
       "id": "B20-11",
-      "enonce": "Muscle du bras dont une extrémité est rattachée à l'os par deux tendons séparés.",
+      "enonce": "Muscle des membres supérieurs et inférieurs dont l'une des extrémités est rattachée à l'os par deux tendons séparés.",
       "choix": [
         "Le biceps",
         "Le triceps",
@@ -106,13 +106,13 @@
         "Le trapèze"
       ],
       "bonne_reponse": "Le biceps",
-      "explication": "Le biceps brachial fléchit l'avant-bras sur le bras.",
+      "explication": "Dans le langage courant, le mot désigne surtout le biceps du bras, qui fléchit l'avant-bras.",
       "niveau_complexite": "Facile",
       "source": "Larousse : biceps (sens 1)"
     },
     {
       "id": "B20-12",
-      "enonce": "Muscle de l'arrière du bras qui étend l'avant-bras.",
+      "enonce": "Se dit d'un muscle dont l'une des insertions se fait par trois faisceaux, ou chefs.",
       "choix": [
         "Le triceps",
         "Le biceps",
@@ -120,13 +120,13 @@
         "Le quadriceps"
       ],
       "bonne_reponse": "Le triceps",
-      "explication": "Son nom vient de ses trois chefs, c'est-à-dire ses trois faisceaux d'attache.",
+      "explication": "Le triceps brachial, à l'arrière du bras, étend l'avant-bras.",
       "niveau_complexite": "Moyen",
       "source": "Larousse : triceps ; extenseur"
     },
     {
       "id": "B20-13",
-      "enonce": "Muscle de la région supérieure de l'épaule, qui permet de lever le bras sur le côté.",
+      "enonce": "Muscle situé dans la région supérieure de l'épaule, qui assure l'abduction du bras.",
       "choix": [
         "Le deltoïde",
         "Le biceps",
@@ -134,13 +134,13 @@
         "Le fessier"
       ],
       "bonne_reponse": "Le deltoïde",
-      "explication": "Il a la forme d'un triangle, comme la lettre grecque delta.",
+      "explication": "L'abduction est le mouvement qui écarte le bras du corps, vers le côté. Le muscle a la forme d'un triangle, comme la lettre grecque delta.",
       "niveau_complexite": "Moyen",
       "source": "Larousse : deltoïde"
     },
     {
       "id": "B20-14",
-      "enonce": "Saillie formée par les muscles de la partie postérieure de la jambe, entre la cheville et le genou.",
+      "enonce": "Saillie que font les muscles de la partie postérieure de la jambe, entre la cheville et le pli du genou.",
       "choix": [
         "Le mollet",
         "La cuisse",
@@ -178,11 +178,11 @@
       "bonne_reponse": "Une fibre musculaire",
       "explication": "On l'appelle aussi myone. Elle peut atteindre plusieurs centimètres de long.",
       "niveau_complexite": "Moyen",
-      "source": "Larousse : fibre (sens 1)"
+      "source": "Programme 3.1 ; Larousse : fibre (sens 1)"
     },
     {
       "id": "B20-23",
-      "enonce": "Masse de cytoplasme limitée par une membrane, qui contient plusieurs noyaux et provient de la fusion de plusieurs cellules.",
+      "enonce": "Masse de cytoplasme limitée par une membrane, comportant plusieurs noyaux, et obtenue par fusion de plusieurs cellules.",
       "choix": [
         "Un syncytium",
         "Un cytosquelette",
@@ -210,7 +210,7 @@
     },
     {
       "id": "B20-25",
-      "enonce": "Structure en filament contractile qui remplit le cytoplasme des cellules striées.",
+      "enonce": "Constituant cytoplasmique de la cellule musculaire striée.",
       "choix": [
         "Une myofibrille",
         "Un sarcomère",
@@ -218,13 +218,13 @@
         "Un tendon"
       ],
       "bonne_reponse": "Une myofibrille",
-      "explication": "Une fibre en contient des centaines, alignées dans sa longueur.",
+      "explication": "Synonyme : fibrille striée. Une fibre en contient des centaines, alignées dans sa longueur.",
       "niveau_complexite": "Moyen",
       "source": "Larousse : myofibrille"
     },
     {
       "id": "B20-26",
-      "enonce": "Unité répétée de la myofibrille, comprise entre deux stries Z.",
+      "enonce": "Segment de fibre musculaire délimité par deux stries Z et qui en représente l'unité morphologique et fonctionnelle.",
       "choix": [
         "Un sarcomère",
         "Une myofibrille",
@@ -232,13 +232,13 @@
         "Un faisceau"
       ],
       "bonne_reponse": "Un sarcomère",
-      "explication": "C'est l'unité de base de la contraction. Elle se raccourcit quand le muscle se contracte.",
+      "explication": "C'est l'unité de base de la contraction. Il se raccourcit quand le muscle se contracte.",
       "niveau_complexite": "Difficile",
       "source": "Larousse : sarcomère"
     },
     {
       "id": "B20-27",
-      "enonce": "Protéine contractile qui forme les filaments fins du sarcomère.",
+      "enonce": "Protéine contractile des structures filamenteuses de la cellule, qui, dans le muscle, se lie à la myosine pour donner l'actomyosine.",
       "choix": [
         "L'actine",
         "La myosine",
@@ -246,13 +246,13 @@
         "Le collagène"
       ],
       "bonne_reponse": "L'actine",
-      "explication": "Elle se lie à la myosine pendant la contraction.",
+      "explication": "Elle forme les filaments fins du sarcomère.",
       "niveau_complexite": "Moyen",
       "source": "Larousse : actine"
     },
     {
       "id": "B20-28",
-      "enonce": "Protéine qui forme les filaments épais du sarcomère et libère l'énergie nécessaire à la contraction.",
+      "enonce": "Protéine musculaire dont l'activité enzymatique fournit l'énergie nécessaire à la contraction musculaire.",
       "choix": [
         "La myosine",
         "L'actine",
@@ -260,13 +260,13 @@
         "La myoglobine"
       ],
       "bonne_reponse": "La myosine",
-      "explication": "Ses têtes s'accrochent à l'actine puis pivotent pour la faire glisser.",
+      "explication": "Elle forme les filaments épais du sarcomère. Ses têtes s'accrochent à l'actine puis pivotent pour la faire glisser.",
       "niveau_complexite": "Moyen",
       "source": "Larousse : myosine"
     },
     {
       "id": "B20-29",
-      "enonce": "Protéine rouge qui fixe l'oxygène et le met en réserve dans les cellules striées.",
+      "enonce": "Protéine présente dans les cellules des muscles striés, jouant un rôle essentiel dans le transport de l'oxygène vers ces muscles.",
       "choix": [
         "La myoglobine",
         "L'hémoglobine",
@@ -364,7 +364,7 @@
     },
     {
       "id": "B20-45",
-      "enonce": "Ensemble de fibres conjonctives serrées qui unissent deux os au niveau d'une articulation.",
+      "enonce": "Ensemble de fibres conjonctives serrées qui unissent deux os au niveau d'une articulation ou qui maintiennent un organe en place.",
       "choix": [
         "Un ligament",
         "Un tendon",
@@ -406,7 +406,7 @@
     },
     {
       "id": "B20-51",
-      "enonce": "Propriété d'une cellule nerveuse ou musculaire de réagir à une stimulation.",
+      "enonce": "Propriété d'une cellule, en particulier nerveuse ou musculaire, de réagir à une stimulation.",
       "choix": [
         "L'excitabilité",
         "La contractilité",
@@ -420,7 +420,7 @@
     },
     {
       "id": "B20-52",
-      "enonce": "Capacité d'un muscle de se raccourcir en développant une force.",
+      "enonce": "Propriété caractéristique des organes contractiles.",
       "choix": [
         "La contractilité",
         "L'excitabilité",
@@ -428,7 +428,7 @@
         "La motricité"
       ],
       "bonne_reponse": "La contractilité",
-      "explication": "C'est la propriété principale du muscle.",
+      "explication": "C'est la propriété principale du muscle : il se raccourcit en développant une force.",
       "niveau_complexite": "Moyen",
       "source": "Larousse : contractilité"
     },
@@ -444,11 +444,11 @@
       "bonne_reponse": "L'extensibilité",
       "explication": "Les étirements après le sport l'entretiennent.",
       "niveau_complexite": "Moyen",
-      "source": "Larousse : extensibilité (muscles)"
+      "source": "Programme 3.1 ; Larousse : extensibilité (propriété de ce qui est extensible)"
     },
     {
       "id": "B20-54",
-      "enonce": "Capacité d'un muscle étiré de reprendre sa forme et sa longueur initiales.",
+      "enonce": "Propriété que possèdent certains tissus (muscles, artères, poumons, etc.) de se laisser distendre puis de revenir à leur forme et à leur volume primitifs lorsque la cause qui les a déformés a cessé d'agir.",
       "choix": [
         "L'élasticité",
         "L'extensibilité",
@@ -462,7 +462,7 @@
     },
     {
       "id": "B20-55",
-      "enonce": "État de légère tension permanente des muscles du squelette au repos.",
+      "enonce": "État de tension permanente dans lequel se trouvent normalement les muscles du squelette.",
       "choix": [
         "Le tonus",
         "Le spasme",
@@ -486,11 +486,11 @@
       "bonne_reponse": "La contraction",
       "explication": "Elle consomme de l'énergie fournie par l'ATP.",
       "niveau_complexite": "Facile",
-      "source": "Larousse : contraction ; programme 3.1"
+      "source": "Programme 3.1 (contraction musculaire)"
     },
     {
       "id": "B20-57",
-      "enonce": "Retour d'un muscle à l'état de repos, avec diminution de sa tension.",
+      "enonce": "État de quelque chose qui est devenu plus lâche, dont la tension a diminué.",
       "choix": [
         "Le relâchement",
         "La contraction",
@@ -498,13 +498,13 @@
         "L'extension"
       ],
       "bonne_reponse": "Le relâchement",
-      "explication": "Contraction et relâchement alternent à chaque mouvement.",
+      "explication": "Pour un muscle, c'est le retour au repos après la contraction. Contraction et relâchement alternent à chaque mouvement.",
       "niveau_complexite": "Facile",
       "source": "Larousse : relâchement (sens 1)"
     },
     {
       "id": "B20-59",
-      "enonce": "Ensemble des fonctions nerveuses et musculaires qui permettent les mouvements du corps.",
+      "enonce": "Ensemble des fonctions nerveuses et musculaires permettant les mouvements volontaires ou automatiques du corps.",
       "choix": [
         "La motricité",
         "La sensibilité",
@@ -518,7 +518,7 @@
     },
     {
       "id": "B20-61",
-      "enonce": "Action de plier un membre en rapprochant ses deux segments.",
+      "enonce": "Action de fléchir un membre ; position fléchie.",
       "choix": [
         "La flexion",
         "L'extension",
@@ -532,7 +532,7 @@
     },
     {
       "id": "B20-62",
-      "enonce": "Action d'allonger un membre en écartant ses deux segments.",
+      "enonce": "Action d'étendre un objet, un muscle, le corps ; allongement.",
       "choix": [
         "L'extension",
         "La flexion",
@@ -546,7 +546,7 @@
     },
     {
       "id": "B20-63",
-      "enonce": "Muscle dont la contraction plie un membre.",
+      "enonce": "Muscle ou groupe de muscles dont l'action provoque la flexion.",
       "choix": [
         "Un muscle fléchisseur",
         "Un muscle extenseur",
@@ -560,7 +560,7 @@
     },
     {
       "id": "B20-64",
-      "enonce": "Muscle dont la contraction allonge un segment de membre.",
+      "enonce": "Se dit d'un muscle ou d'un groupe de muscles dont l'action provoque l'extension d'un segment de membre.",
       "choix": [
         "Un muscle extenseur",
         "Un muscle fléchisseur",
@@ -574,7 +574,7 @@
     },
     {
       "id": "B20-65",
-      "enonce": "Muscle dont l'action produit le mouvement souhaité.",
+      "enonce": "Se dit d'un muscle dont l'action produit le mouvement désiré.",
       "choix": [
         "Un muscle agoniste",
         "Un muscle antagoniste",
@@ -613,6 +613,328 @@
       "explication": "Quand le biceps se contracte, le triceps se relâche, et inversement.",
       "niveau_complexite": "Moyen",
       "source": "Programme 3.1 (muscles antagonistes)"
+    },
+    {
+      "id": "B20-71",
+      "enonce": "Partie de l'anatomie qui traite des muscles.",
+      "choix": [
+        "La myologie",
+        "L'ostéologie",
+        "La cytologie",
+        "La neurologie"
+      ],
+      "bonne_reponse": "La myologie",
+      "explication": "L'ostéologie étudie les os, la myologie étudie les muscles.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : myologie"
+    },
+    {
+      "id": "B20-72",
+      "enonce": "Ensemble des muscles du corps humain.",
+      "choix": [
+        "La musculature",
+        "L'ossature",
+        "La carrure",
+        "La charpente"
+      ],
+      "bonne_reponse": "La musculature",
+      "explication": "On dit d'un sportif qu'il a une musculature développée.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : musculature"
+    },
+    {
+      "id": "B20-73",
+      "enonce": "Muscle pair des joues appartenant au groupe des muscles masticateurs, dont le rôle est d'élever la mâchoire inférieure.",
+      "choix": [
+        "Le masséter",
+        "Le deltoïde",
+        "Le pectoral",
+        "Le triceps"
+      ],
+      "bonne_reponse": "Le masséter",
+      "explication": "C'est un muscle de la mastication, très puissant.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : masséter"
+    },
+    {
+      "id": "B20-74",
+      "enonce": "Muscles constituant les parois antérieures et latérales de l'abdomen.",
+      "choix": [
+        "Les abdominaux",
+        "Les pectoraux",
+        "Les fessiers",
+        "Les lombaires"
+      ],
+      "bonne_reponse": "Les abdominaux",
+      "explication": "On les renforce par des exercices de gainage.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : abdominaux (sens 1)"
+    },
+    {
+      "id": "B20-75",
+      "enonce": "Muscle pair situé dans le bassin, qui fléchit la cuisse sur le bassin.",
+      "choix": [
+        "Le psoas",
+        "Le masséter",
+        "Le deltoïde",
+        "Le soléaire"
+      ],
+      "bonne_reponse": "Le psoas",
+      "explication": "Uni au muscle iliaque, il forme le psoas iliaque.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : psoas"
+    },
+    {
+      "id": "B20-76",
+      "enonce": "Volumineuse masse musculaire située à la face postérieure de la jambe.",
+      "choix": [
+        "Le soléaire",
+        "Le psoas",
+        "Le masséter",
+        "Le deltoïde"
+      ],
+      "bonne_reponse": "Le soléaire",
+      "explication": "Elle s'unit aux jumeaux pour former le triceps sural, qui se termine par le tendon d'Achille.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : soléaire"
+    },
+    {
+      "id": "B20-77",
+      "enonce": "Quel muscle large de la poitrine rapproche le bras du corps ?",
+      "choix": [
+        "Le grand pectoral",
+        "Le grand dorsal",
+        "Le deltoïde",
+        "Le trapèze"
+      ],
+      "bonne_reponse": "Le grand pectoral",
+      "explication": "Il sert à pousser, par exemple dans les pompes.",
+      "niveau_complexite": "Moyen",
+      "source": "Anatomie humaine"
+    },
+    {
+      "id": "B20-78",
+      "enonce": "Quel muscle triangulaire du dos et de la nuque permet de hausser les épaules ?",
+      "choix": [
+        "Le trapèze",
+        "Le deltoïde",
+        "Le grand pectoral",
+        "Le psoas"
+      ],
+      "bonne_reponse": "Le trapèze",
+      "explication": "Il tient son nom de sa forme de trapèze.",
+      "niveau_complexite": "Moyen",
+      "source": "Anatomie humaine"
+    },
+    {
+      "id": "B20-79",
+      "enonce": "Quel est le muscle le plus volumineux du corps humain ?",
+      "choix": [
+        "Le grand fessier",
+        "Le quadriceps",
+        "Le grand dorsal",
+        "Le mollet"
+      ],
+      "bonne_reponse": "Le grand fessier",
+      "explication": "Il permet de se redresser, de monter les escaliers et de courir.",
+      "niveau_complexite": "Moyen",
+      "source": "Anatomie humaine"
+    },
+    {
+      "id": "B20-80",
+      "enonce": "Quel est le muscle le plus long du corps humain ?",
+      "choix": [
+        "Le sartorius",
+        "Le quadriceps",
+        "Le biceps",
+        "Le soléaire"
+      ],
+      "bonne_reponse": "Le sartorius",
+      "explication": "Il traverse la cuisse en diagonale ; on l'appelle aussi muscle couturier.",
+      "niveau_complexite": "Difficile",
+      "source": "Anatomie humaine"
+    },
+    {
+      "id": "B20-81",
+      "enonce": "Quel muscle de la face avant de la cuisse étend la jambe ?",
+      "choix": [
+        "Le quadriceps",
+        "Les ischio-jambiers",
+        "Le soléaire",
+        "Le psoas"
+      ],
+      "bonne_reponse": "Le quadriceps",
+      "explication": "Il compte quatre chefs, d'où son nom.",
+      "niveau_complexite": "Moyen",
+      "source": "Anatomie humaine"
+    },
+    {
+      "id": "B20-82",
+      "enonce": "Quel groupe de muscles de l'arrière de la cuisse est l'antagoniste du quadriceps ?",
+      "choix": [
+        "Les ischio-jambiers",
+        "Les abdominaux",
+        "Les fessiers",
+        "Les deltoïdes"
+      ],
+      "bonne_reponse": "Les ischio-jambiers",
+      "explication": "Ils fléchissent la jambe sur la cuisse.",
+      "niveau_complexite": "Difficile",
+      "source": "Anatomie humaine"
+    },
+    {
+      "id": "B20-83",
+      "enonce": "Membrane plasmique qui entoure une cellule striée.",
+      "choix": [
+        "Le sarcolemme",
+        "Le sarcomère",
+        "Le cytoplasme",
+        "L'aponévrose"
+      ],
+      "bonne_reponse": "Le sarcolemme",
+      "explication": "Elle transmet l'excitation nerveuse à l'intérieur de la cellule.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme 3.1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "B20-84",
+      "enonce": "Diminution acquise de poids et de volume d'une cellule, d'un tissu ou d'un organe.",
+      "choix": [
+        "L'atrophie",
+        "L'hypertrophie",
+        "La nécrose",
+        "La dystrophie"
+      ],
+      "bonne_reponse": "L'atrophie",
+      "explication": "Elle survient après une longue immobilisation (plâtre) ou par manque d'activité.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : atrophie (sens 1)"
+    },
+    {
+      "id": "B20-85",
+      "enonce": "Augmentation de volume d'un tissu, d'un organe, due à une augmentation de volume de ses cellules.",
+      "choix": [
+        "L'hypertrophie",
+        "L'atrophie",
+        "L'œdème",
+        "La prolifération"
+      ],
+      "bonne_reponse": "L'hypertrophie",
+      "explication": "Un entraînement de force provoque l'hypertrophie des fibres musculaires.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : hypertrophie (sens 1)"
+    },
+    {
+      "id": "B20-86",
+      "enonce": "Toute affection des fibres musculaires.",
+      "choix": [
+        "Une myopathie",
+        "Une neuropathie",
+        "Une arthrite",
+        "Une tendinite"
+      ],
+      "bonne_reponse": "Une myopathie",
+      "explication": "La myopathie de Duchenne est une maladie génétique.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : myopathie ; reformulé"
+    },
+    {
+      "id": "B20-87",
+      "enonce": "Anomalie musculaire caractérisée par une décontraction anormalement lente.",
+      "choix": [
+        "La myotonie",
+        "La myopathie",
+        "L'hypotonie",
+        "L'atrophie"
+      ],
+      "bonne_reponse": "La myotonie",
+      "explication": "La relaxation est retardée après chaque contraction.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : myotonie, reformulé"
+    },
+    {
+      "id": "B20-88",
+      "enonce": "Contraction d'un muscle du squelette, spontanée, durable et douloureuse, survenant en l'absence de toute lésion anatomique.",
+      "choix": [
+        "La contracture",
+        "La crampe",
+        "Le claquage",
+        "L'élongation"
+      ],
+      "bonne_reponse": "La contracture",
+      "explication": "Elle disparaît avec le repos, la chaleur et les étirements doux.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : contracture (sens 1), reformulé"
+    },
+    {
+      "id": "B20-89",
+      "enonce": "Contraction pathologique des muscles et spécialement des muscles lisses.",
+      "choix": [
+        "Un spasme",
+        "Une contracture",
+        "Un claquage",
+        "Une élongation"
+      ],
+      "bonne_reponse": "Un spasme",
+      "explication": "Les coliques sont des spasmes de l'intestin.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : spasme"
+    },
+    {
+      "id": "B20-90",
+      "enonce": "Rupture partielle, accidentelle d'un muscle.",
+      "choix": [
+        "Un claquage",
+        "Une entorse",
+        "Une luxation",
+        "Une tendinite"
+      ],
+      "bonne_reponse": "Un claquage",
+      "explication": "Il survient souvent lors d'un effort brusque sans échauffement.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : claquage (sens 1)"
+    },
+    {
+      "id": "B20-91",
+      "enonce": "Allongement accidentel ou thérapeutique d'un muscle, d'un nerf, d'un tendon, etc.",
+      "choix": [
+        "Une élongation",
+        "Un claquage",
+        "Une entorse",
+        "Une luxation"
+      ],
+      "bonne_reponse": "Une élongation",
+      "explication": "C'est la lésion musculaire la plus légère, sans rupture.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : élongation (sens 1), reformulé"
+    },
+    {
+      "id": "B20-92",
+      "enonce": "Inflammation d'un tendon.",
+      "choix": [
+        "Une tendinite",
+        "Une entorse",
+        "Une arthrose",
+        "Une fracture"
+      ],
+      "bonne_reponse": "Une tendinite",
+      "explication": "Elle est fréquente chez les sportifs, au tendon d'Achille ou à l'épaule.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : tendinite, reformulé"
+    },
+    {
+      "id": "B20-93",
+      "enonce": "Lésion traumatique d'une articulation résultant de sa distorsion brutale, avec étirement ou rupture des ligaments.",
+      "choix": [
+        "Une entorse",
+        "Une luxation",
+        "Une fracture",
+        "Une tendinite"
+      ],
+      "bonne_reponse": "Une entorse",
+      "explication": "La cheville est l'articulation la plus souvent touchée.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : entorse (sens 1)"
     }
   ]
 }
