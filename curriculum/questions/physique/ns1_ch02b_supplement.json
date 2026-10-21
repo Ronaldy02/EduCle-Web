@@ -1,0 +1,533 @@
+{
+  "matiere_id": 9,
+  "matiere": "Physique",
+  "chapitre": "Big Bang, système solaire et exploration de l'espace",
+  "niveaux": [
+    "NS1",
+    "NS2"
+  ],
+  "unite_programme": "A1",
+  "statut": "validé par l'utilisateur 2026-10-20",
+  "rejetees": [],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "PN1_02-71",
+      "enonce": "Quelle science étudie les astres et l'Univers ?",
+      "choix": [
+        "L'astronomie",
+        "L'astrologie",
+        "La géologie",
+        "La météorologie"
+      ],
+      "bonne_reponse": "L'astronomie",
+      "explication": "L'astrologie, elle, prétend lire l'avenir dans le ciel : ce n'est pas une science.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-72",
+      "enonce": "Quelle théorie plaçait la Terre au centre de l'Univers ?",
+      "choix": [
+        "Le géocentrisme",
+        "L'héliocentrisme",
+        "Le Big Bang",
+        "La nucléosynthèse"
+      ],
+      "bonne_reponse": "Le géocentrisme",
+      "explication": "Elle remonte à Ptolémée, au IIᵉ siècle, et a dominé jusqu'à la Renaissance.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-73",
+      "enonce": "Quel savant polonais a placé le Soleil au centre du système planétaire, en 1543 ?",
+      "choix": [
+        "Nicolas Copernic",
+        "Galilée",
+        "Johannes Kepler",
+        "Ptolémée"
+      ],
+      "bonne_reponse": "Nicolas Copernic",
+      "explication": "Son modèle, l'héliocentrisme, fait tourner la Terre et les autres planètes autour du Soleil.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-74",
+      "enonce": "Qui a observé les quatre grands satellites de Jupiter avec une lunette, en 1610 ?",
+      "choix": [
+        "Galilée",
+        "Copernic",
+        "Isaac Newton",
+        "Johannes Kepler"
+      ],
+      "bonne_reponse": "Galilée",
+      "explication": "Cette découverte a montré que tous les astres ne tournent pas autour de la Terre.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-75",
+      "enonce": "Quel instrument capte les ondes radio venues de l'espace ?",
+      "choix": [
+        "Un radiotélescope",
+        "Un microscope",
+        "Un sismographe",
+        "Un baromètre"
+      ],
+      "bonne_reponse": "Un radiotélescope",
+      "explication": "Sa grande antenne parabolique collecte les ondes émises par les étoiles et les galaxies.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-81",
+      "enonce": "Comment appelle-t-on le plus ancien rayonnement observable de l'Univers, émis environ 380 000 ans après le Big Bang ?",
+      "choix": [
+        "Le fond diffus cosmologique",
+        "Le rayonnement solaire",
+        "Le vent stellaire",
+        "Le fond sonore céleste"
+      ],
+      "bonne_reponse": "Le fond diffus cosmologique",
+      "explication": "Découvert en 1964, c'est une preuve majeure du Big Bang.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme A1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "PN1_02-82",
+      "enonce": "Quel gaz constitue l'essentiel de la matière du Soleil ?",
+      "choix": [
+        "L'hydrogène",
+        "L'oxygène",
+        "Le carbone",
+        "L'azote"
+      ],
+      "bonne_reponse": "L'hydrogène",
+      "explication": "Le Soleil contient environ 73 % d'hydrogène et 25 % d'hélium.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-83",
+      "enonce": "Quelle réaction produit l'énergie du Soleil ?",
+      "choix": [
+        "La fusion de l'hydrogène",
+        "La fission de l'uranium",
+        "La combustion de l'oxygène",
+        "La décomposition de l'eau"
+      ],
+      "bonne_reponse": "La fusion de l'hydrogène",
+      "explication": "Au cœur, à 15 millions de degrés, les noyaux d'hydrogène fusionnent en noyaux d'hélium.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-84",
+      "enonce": "Quelle est la température approximative de la surface du Soleil ?",
+      "choix": [
+        "Environ 5 500 °C",
+        "Environ 500 °C",
+        "Environ 55 000 °C",
+        "Environ 1 000 000 °C"
+      ],
+      "bonne_reponse": "Environ 5 500 °C",
+      "explication": "Le cœur du Soleil est bien plus chaud que sa surface.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-85",
+      "enonce": "Quelle est la couleur d'une étoile très chaude ?",
+      "choix": [
+        "Bleue",
+        "Rouge",
+        "Verte",
+        "Jaune"
+      ],
+      "bonne_reponse": "Bleue",
+      "explication": "Le Soleil, d'une température moyenne, est jaune ; les étoiles les plus froides sont rouges.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-86",
+      "enonce": "Comment appelle-t-on un groupe d'étoiles qui dessine une figure dans le ciel ?",
+      "choix": [
+        "Une constellation",
+        "Une galaxie",
+        "Une nébuleuse",
+        "Une orbite"
+      ],
+      "bonne_reponse": "Une constellation",
+      "explication": "La Grande Ourse et Orion sont des constellations connues ; les étoiles d'une constellation ne sont pas forcément proches.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-87",
+      "enonce": "Quelle étoile indique à peu près le nord dans l'hémisphère nord ?",
+      "choix": [
+        "L'étoile Polaire",
+        "Sirius",
+        "Proxima du Centaure",
+        "Bételgeuse"
+      ],
+      "bonne_reponse": "L'étoile Polaire",
+      "explication": "Elle est presque alignée avec l'axe de rotation de la Terre : elle ne bouge presque pas dans le ciel de la nuit.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-88",
+      "enonce": "Quelle est l'étoile la plus brillante du ciel nocturne ?",
+      "choix": [
+        "Sirius",
+        "L'étoile Polaire",
+        "Proxima du Centaure",
+        "Antarès"
+      ],
+      "bonne_reponse": "Sirius",
+      "explication": "Elle se trouve à 8,6 années-lumière de la Terre.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-89",
+      "enonce": "Comment appelle-t-on un astre dont la gravité est si forte que la lumière ne peut pas s'en échapper ?",
+      "choix": [
+        "Un trou noir",
+        "Une supernova",
+        "Une nébuleuse",
+        "Une naine blanche"
+      ],
+      "bonne_reponse": "Un trou noir",
+      "explication": "Il peut se former quand une étoile très massive s'effondre à la fin de sa vie.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 (pas de sens astronomique au Larousse en ligne)"
+    },
+    {
+      "id": "PN1_02-90",
+      "enonce": "Quelle forme a la Voie lactée vue de loin ?",
+      "choix": [
+        "Une spirale",
+        "Une sphère",
+        "Un cube",
+        "Un cône"
+      ],
+      "bonne_reponse": "Une spirale",
+      "explication": "Notre système solaire se trouve sur l'un des bras de cette spirale, loin du centre.",
+      "niveau_complexite": "Facile",
+      "source": "Alt. ch.1.1.8"
+    },
+    {
+      "id": "PN1_02-101",
+      "enonce": "Quelle planète vient juste après la Terre, en s'éloignant du Soleil ?",
+      "choix": [
+        "Mars",
+        "Vénus",
+        "Jupiter",
+        "Mercure"
+      ],
+      "bonne_reponse": "Mars",
+      "explication": "Mars est la planète la plus proche de la Terre au-delà de son orbite.",
+      "niveau_complexite": "Facile",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-102",
+      "enonce": "Quelle est la planète la plus éloignée du Soleil ?",
+      "choix": [
+        "Neptune",
+        "Uranus",
+        "Saturne",
+        "Pluton"
+      ],
+      "bonne_reponse": "Neptune",
+      "explication": "Pluton, aujourd'hui planète naine, orbite en moyenne plus loin que Neptune.",
+      "niveau_complexite": "Facile",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-103",
+      "enonce": "Quelle est la planète la plus chaude du système solaire ?",
+      "choix": [
+        "Vénus",
+        "Mercure",
+        "Mars",
+        "Jupiter"
+      ],
+      "bonne_reponse": "Vénus",
+      "explication": "Son atmosphère épaisse de gaz carbonique provoque un énorme effet de serre : plus de 450 °C à sa surface.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-104",
+      "enonce": "Quelle planète est surnommée l'étoile du Berger ?",
+      "choix": [
+        "Vénus",
+        "Mars",
+        "Jupiter",
+        "Mercure"
+      ],
+      "bonne_reponse": "Vénus",
+      "explication": "Très brillante au lever ou au coucher du Soleil, elle est facilement prise pour une étoile.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-105",
+      "enonce": "Quelle planète est la plus connue pour ses anneaux ?",
+      "choix": [
+        "Saturne",
+        "Mars",
+        "Mercure",
+        "Vénus"
+      ],
+      "bonne_reponse": "Saturne",
+      "explication": "Ses anneaux, faits de glace et de roches, sont visibles avec un petit télescope.",
+      "niveau_complexite": "Facile",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-106",
+      "enonce": "Quelle planète porte la Grande Tache rouge, une immense tempête ?",
+      "choix": [
+        "Jupiter",
+        "Saturne",
+        "Mars",
+        "Neptune"
+      ],
+      "bonne_reponse": "Jupiter",
+      "explication": "Cette tempête dure depuis plusieurs siècles et est plus large que la Terre.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-107",
+      "enonce": "Quelle planète tourne couchée sur le côté, son axe étant presque dans le plan de son orbite ?",
+      "choix": [
+        "Uranus",
+        "Neptune",
+        "Mars",
+        "Vénus"
+      ],
+      "bonne_reponse": "Uranus",
+      "explication": "Son axe est incliné d'environ 98°, si bien qu'elle roule presque comme une bille autour du Soleil.",
+      "niveau_complexite": "Difficile",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-108",
+      "enonce": "Quelle planète est surnommée la planète bleue ?",
+      "choix": [
+        "La Terre",
+        "Mars",
+        "Mercure",
+        "Vénus"
+      ],
+      "bonne_reponse": "La Terre",
+      "explication": "Les océans, qui couvrent environ 70 % de sa surface, lui donnent cette couleur vue de l'espace.",
+      "niveau_complexite": "Facile",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-109",
+      "enonce": "Quelle sorte de planètes sont Jupiter et Saturne ?",
+      "choix": [
+        "Des planètes géantes gazeuses",
+        "Des planètes telluriques",
+        "Des planètes naines",
+        "Des exoplanètes"
+      ],
+      "bonne_reponse": "Des planètes géantes gazeuses",
+      "explication": "Uranus et Neptune sont aussi des planètes géantes, riches en glaces.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 ; Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-110",
+      "enonce": "Comment s'appelle la région de petits corps glacés située au-delà de Neptune ?",
+      "choix": [
+        "La ceinture de Kuiper",
+        "La ceinture d'astéroïdes",
+        "La Voie lactée",
+        "La zone habitable"
+      ],
+      "bonne_reponse": "La ceinture de Kuiper",
+      "explication": "Pluton en est le plus célèbre habitant.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-121",
+      "enonce": "Combien de satellites naturels la Terre possède-t-elle ?",
+      "choix": [
+        "Un",
+        "Deux",
+        "Aucun",
+        "Trois"
+      ],
+      "bonne_reponse": "Un",
+      "explication": "Il s'agit de la Lune, située à environ 384 000 km de la Terre.",
+      "niveau_complexite": "Facile",
+      "source": "Alt. ch.1.1.1.4"
+    },
+    {
+      "id": "PN1_02-122",
+      "enonce": "À quelle distance moyenne la Lune se trouve-t-elle de la Terre ?",
+      "choix": [
+        "Environ 384 000 km",
+        "Environ 38 400 km",
+        "Environ 3 840 000 km",
+        "Environ 150 millions de km"
+      ],
+      "bonne_reponse": "Environ 384 000 km",
+      "explication": "La distance Terre-Soleil, 150 millions de km, est environ 400 fois plus grande.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.1.1.4"
+    },
+    {
+      "id": "PN1_02-123",
+      "enonce": "Quel est le plus grand satellite naturel du système solaire ?",
+      "choix": [
+        "Ganymède",
+        "Titan",
+        "La Lune",
+        "Europe"
+      ],
+      "bonne_reponse": "Ganymède",
+      "explication": "Ganymède, satellite de Jupiter, est plus gros que la planète Mercure.",
+      "niveau_complexite": "Difficile",
+      "source": "Alt. ch.1.1.1.4"
+    },
+    {
+      "id": "PN1_02-124",
+      "enonce": "Quels sont les deux satellites naturels de Mars ?",
+      "choix": [
+        "Phobos et Déimos",
+        "Titan et Encelade",
+        "Io et Europe",
+        "Triton et Charon"
+      ],
+      "bonne_reponse": "Phobos et Déimos",
+      "explication": "Ce sont deux petits corps de forme irrégulière.",
+      "niveau_complexite": "Difficile",
+      "source": "Alt. ch.1.1.1.4"
+    },
+    {
+      "id": "PN1_02-125",
+      "enonce": "Quel satellite naturel de Saturne possède une épaisse atmosphère ?",
+      "choix": [
+        "Titan",
+        "Europe",
+        "Io",
+        "Triton"
+      ],
+      "bonne_reponse": "Titan",
+      "explication": "Il est plus gros que la planète Mercure et présente des lacs de méthane liquide.",
+      "niveau_complexite": "Difficile",
+      "source": "Alt. ch.1.1.1.4"
+    },
+    {
+      "id": "PN1_02-131",
+      "enonce": "Comment appelle-t-on un engin construit par l'homme et placé en orbite autour de la Terre ?",
+      "choix": [
+        "Un satellite artificiel",
+        "Une sonde spatiale",
+        "Un météore",
+        "Une comète"
+      ],
+      "bonne_reponse": "Un satellite artificiel",
+      "explication": "Ils servent aux télécommunications, à la météorologie et à la navigation (GPS).",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 (pas de sens spatial au Larousse en ligne)"
+    },
+    {
+      "id": "PN1_02-132",
+      "enonce": "Quelle station spatiale est habitée en permanence en orbite autour de la Terre ?",
+      "choix": [
+        "La Station spatiale internationale",
+        "Hubble",
+        "Spoutnik",
+        "Apollo"
+      ],
+      "bonne_reponse": "La Station spatiale internationale",
+      "explication": "Elle orbite à environ 400 km d'altitude et fait le tour de la Terre en 90 minutes environ.",
+      "niveau_complexite": "Facile",
+      "source": "Programme A1 (exploration de l'espace)"
+    },
+    {
+      "id": "PN1_02-133",
+      "enonce": "Quel télescope spatial, lancé en 2021, observe l'Univers dans l'infrarouge ?",
+      "choix": [
+        "James Webb",
+        "Hubble",
+        "Spoutnik",
+        "Kepler"
+      ],
+      "bonne_reponse": "James Webb",
+      "explication": "Il observe les premières galaxies formées après le Big Bang.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 (exploration de l'espace)"
+    },
+    {
+      "id": "PN1_02-134",
+      "enonce": "Quel animal a été le premier être vivant en orbite autour de la Terre, en 1957 ?",
+      "choix": [
+        "La chienne Laïka",
+        "Le singe Ham",
+        "Un chimpanzé",
+        "Une souris"
+      ],
+      "bonne_reponse": "La chienne Laïka",
+      "explication": "Elle a voyagé à bord de Spoutnik 2, un mois après Spoutnik 1.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 (exploration de l'espace)"
+    },
+    {
+      "id": "PN1_02-135",
+      "enonce": "Qui a été la première femme dans l'espace, en 1963 ?",
+      "choix": [
+        "Valentina Terechkova",
+        "Sally Ride",
+        "Mae Jemison",
+        "Svetlana Savitskaïa"
+      ],
+      "bonne_reponse": "Valentina Terechkova",
+      "explication": "Elle a fait 48 tours de la Terre à bord de Vostok 6.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme A1 (exploration de l'espace)"
+    },
+    {
+      "id": "PN1_02-136",
+      "enonce": "Quel robot mobile de la NASA s'est posé sur Mars en 2012 ?",
+      "choix": [
+        "Curiosity",
+        "Voyager",
+        "Hubble",
+        "Spoutnik"
+      ],
+      "bonne_reponse": "Curiosity",
+      "explication": "Il étudie le sol de Mars pour savoir si la planète a pu abriter de la vie.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme A1 (exploration de l'espace)"
+    },
+    {
+      "id": "PN1_02-137",
+      "enonce": "Quelle sonde a survolé Pluton en 2015 ?",
+      "choix": [
+        "New Horizons",
+        "Voyager 2",
+        "Cassini",
+        "Curiosity"
+      ],
+      "bonne_reponse": "New Horizons",
+      "explication": "Lancée en 2006, elle a envoyé les premières images détaillées de Pluton.",
+      "niveau_complexite": "Difficile",
+      "source": "Programme A1 (exploration de l'espace)"
+    }
+  ]
+}
