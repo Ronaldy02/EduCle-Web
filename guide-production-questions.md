@@ -33,6 +33,9 @@ On traite **un seul chapitre à la fois**, dans l'ordre du programme. Si un chap
 
 ### Étape 0 — Construire le plan des chapitres de la matière
 
+**Avant tout : lire `curriculum/REGROUPEMENTS.md`**, qui liste les fusions de chapitres décidées par l'utilisateur pour éviter les découpages trop longs. Si ta matière y figure, applique d'abord ce regroupement.
+
+
 1. Lire le **programme officiel MENFP** de la matière, dans `Projet Quiz Educatif/Donnees/`.
 2. Lire le **plan de manuel** fourni par l'utilisateur, s'il y en a un, dans `OneDrive/Documents/Programm Menfp/`. Ce sont des scans : pdftoppm n'est pas installé, il faut rendre les pages en PNG avec PyMuPDF (`import fitz`), puis lire les images.
 3. **Chercher d'autres manuels scolaires haïtiens de la matière**, pour voir comment les enseignants découpent réellement le programme en chapitres. Trois pistes :
