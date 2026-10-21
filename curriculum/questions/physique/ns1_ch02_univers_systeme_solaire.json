@@ -1,0 +1,604 @@
+{
+  "matiere_id": 9,
+  "matiere": "Physique",
+  "chapitre": "Big Bang, système solaire et exploration de l'espace",
+  "niveaux": [
+    "NS1",
+    "NS2"
+  ],
+  "unite_programme": "A1",
+  "statut": "validé par l'utilisateur 2026-10-20",
+  "rejetees": [],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "PN1_02-01",
+      "enonce": "Ensemble de tout ce qui existe : matière, énergie, espace et temps",
+      "choix": [
+        "L'Univers",
+        "La galaxie",
+        "Le système solaire",
+        "L'atmosphère"
+      ],
+      "bonne_reponse": "L'Univers",
+      "explication": "Il contient des milliards de galaxies, elles-mêmes formées de milliards d'étoiles.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : univers (sens 1)"
+    },
+    {
+      "id": "PN1_02-02",
+      "enonce": "Modèle selon lequel l'Univers est né d'un état extrêmement chaud et dense, puis s'est dilaté",
+      "choix": [
+        "Le Big Bang",
+        "La nucléosynthèse",
+        "L'effondrement gravitationnel",
+        "La fission nucléaire"
+      ],
+      "bonne_reponse": "Le Big Bang",
+      "explication": "Ce n'est pas une explosion dans l'espace : c'est l'espace lui-même qui s'est mis à se dilater.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : big bang (sens 1, reformulé)"
+    },
+    {
+      "id": "PN1_02-03",
+      "enonce": "Il y a environ combien de temps l'Univers est-il né, selon le Big Bang ?",
+      "choix": [
+        "13,8 milliards d'années",
+        "4,6 milliards d'années",
+        "138 millions d'années",
+        "13 800 ans"
+      ],
+      "bonne_reponse": "13,8 milliards d'années",
+      "explication": "Le système solaire, lui, n'est apparu qu'il y a 4,6 milliards d'années.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : big bang (sens 1)"
+    },
+    {
+      "id": "PN1_02-04",
+      "enonce": "Quel phénomène explique que les galaxies lointaines s'éloignent de nous ?",
+      "choix": [
+        "L'expansion de l'Univers",
+        "La rotation de la Terre",
+        "L'attraction du Soleil",
+        "La chute des étoiles"
+      ],
+      "bonne_reponse": "L'expansion de l'Univers",
+      "explication": "Plus une galaxie est lointaine, plus elle s'éloigne vite : c'est l'observation faite par Edwin Hubble en 1929.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "PN1_02-05",
+      "enonce": "Ensemble des processus qui conduisent à l'apparition des éléments chimiques de l'Univers",
+      "choix": [
+        "La nucléosynthèse",
+        "La photosynthèse",
+        "La fission nucléaire",
+        "La condensation"
+      ],
+      "bonne_reponse": "La nucléosynthèse",
+      "explication": "Elle a lieu dans les premières minutes de l'Univers, puis au cœur des étoiles et lors des supernovas.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : nucléosynthèse"
+    },
+    {
+      "id": "PN1_02-06",
+      "enonce": "Quels sont les deux premiers éléments formés après le Big Bang ?",
+      "choix": [
+        "Hydrogène et hélium",
+        "Carbone et oxygène",
+        "Fer et nickel",
+        "Azote et soufre"
+      ],
+      "bonne_reponse": "Hydrogène et hélium",
+      "explication": "Ils forment encore presque toute la matière visible : environ trois quarts d'hydrogène et un quart d'hélium.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-07",
+      "enonce": "Où se forment les éléments plus lourds que l'hélium ?",
+      "choix": [
+        "Au cœur des étoiles",
+        "Dans les planètes",
+        "Dans les comètes",
+        "Dans les satellites"
+      ],
+      "bonne_reponse": "Au cœur des étoiles",
+      "explication": "Les étoiles fusionnent les noyaux légers en noyaux plus lourds ; les supernovas fabriquent les plus lourds.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-11",
+      "enonce": "Astre qui brille de sa propre lumière grâce aux réactions nucléaires qui s'y produisent",
+      "choix": [
+        "Une étoile",
+        "Une planète",
+        "Une comète",
+        "Un satellite"
+      ],
+      "bonne_reponse": "Une étoile",
+      "explication": "Le Soleil est l'étoile la plus proche de la Terre.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : étoile (sens 1, adapté)"
+    },
+    {
+      "id": "PN1_02-12",
+      "enonce": "Explosion d'une étoile massive en fin de vie, qui la rend très brillante pendant un temps",
+      "choix": [
+        "Une supernova",
+        "Une nébuleuse",
+        "Un trou noir",
+        "Une comète"
+      ],
+      "bonne_reponse": "Une supernova",
+      "explication": "Elle disperse dans l'espace les éléments fabriqués par l'étoile, qui serviront à former de nouveaux astres.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : supernova (sens 1)"
+    },
+    {
+      "id": "PN1_02-13",
+      "enonce": "Nuage de gaz et de poussières interstellaires",
+      "choix": [
+        "Une nébuleuse",
+        "Une galaxie",
+        "Une comète",
+        "Une orbite"
+      ],
+      "bonne_reponse": "Une nébuleuse",
+      "explication": "Les étoiles et leurs planètes naissent de l'effondrement de nuages de ce type.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : nébuleuse (sens 1)"
+    },
+    {
+      "id": "PN1_02-14",
+      "enonce": "Vaste ensemble d'étoiles et de matière dont la cohésion est assurée par la gravitation",
+      "choix": [
+        "Une galaxie",
+        "Une nébuleuse",
+        "Un système planétaire",
+        "Un amas de météorites"
+      ],
+      "bonne_reponse": "Une galaxie",
+      "explication": "Une galaxie compte des centaines de milliards d'étoiles.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : galaxie (sens 1)"
+    },
+    {
+      "id": "PN1_02-15",
+      "enonce": "Comment s'appelle la galaxie qui contient le système solaire ?",
+      "choix": [
+        "La Voie lactée",
+        "Andromède",
+        "Le Grand Nuage",
+        "Le Triangle"
+      ],
+      "bonne_reponse": "La Voie lactée",
+      "explication": "Vue de la Terre, elle forme une bande blanchâtre dans le ciel nocturne ; Andromède est la grande galaxie la plus proche.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.1 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "PN1_02-21",
+      "enonce": "Quel astre se trouve au centre du système solaire ?",
+      "choix": [
+        "Le Soleil",
+        "La Terre",
+        "Jupiter",
+        "La Lune"
+      ],
+      "bonne_reponse": "Le Soleil",
+      "explication": "Il rassemble plus de 99 % de la masse du système solaire.",
+      "niveau_complexite": "Facile",
+      "source": "Alt. ch.1.1.1"
+    },
+    {
+      "id": "PN1_02-22",
+      "enonce": "Quel est l'âge approximatif du système solaire ?",
+      "choix": [
+        "4,6 milliards d'années",
+        "13,8 milliards d'années",
+        "460 millions d'années",
+        "46 millions d'années"
+      ],
+      "bonne_reponse": "4,6 milliards d'années",
+      "explication": "Il s'est formé à partir d'un nuage de gaz et de poussières, bien après le Big Bang.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1"
+    },
+    {
+      "id": "PN1_02-23",
+      "enonce": "Corps céleste non lumineux par lui-même, qui gravite autour du Soleil",
+      "choix": [
+        "Une planète",
+        "Une étoile",
+        "Un satellite",
+        "Une comète"
+      ],
+      "bonne_reponse": "Une planète",
+      "explication": "La Terre est la troisième planète à partir du Soleil.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : planète (sens 1)"
+    },
+    {
+      "id": "PN1_02-24",
+      "enonce": "Combien de planètes compte le système solaire ?",
+      "choix": [
+        "Huit",
+        "Neuf",
+        "Sept",
+        "Dix"
+      ],
+      "bonne_reponse": "Huit",
+      "explication": "Mercure, Vénus, la Terre, Mars, Jupiter, Saturne, Uranus et Neptune.",
+      "niveau_complexite": "Facile",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-25",
+      "enonce": "Quelle est la planète la plus proche du Soleil ?",
+      "choix": [
+        "Mercure",
+        "Vénus",
+        "Mars",
+        "La Terre"
+      ],
+      "bonne_reponse": "Mercure",
+      "explication": "Elle est aussi la plus petite des huit planètes.",
+      "niveau_complexite": "Facile",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-26",
+      "enonce": "Quelle planète est surnommée la planète rouge ?",
+      "choix": [
+        "Mars",
+        "Vénus",
+        "Mercure",
+        "Jupiter"
+      ],
+      "bonne_reponse": "Mars",
+      "explication": "Sa couleur vient de l'oxyde de fer qui recouvre son sol.",
+      "niveau_complexite": "Facile",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-27",
+      "enonce": "Quelle est la plus grande planète du système solaire ?",
+      "choix": [
+        "Jupiter",
+        "Saturne",
+        "Neptune",
+        "Uranus"
+      ],
+      "bonne_reponse": "Jupiter",
+      "explication": "C'est une planète géante gazeuse, plus de mille fois plus volumineuse que la Terre.",
+      "niveau_complexite": "Facile",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-28",
+      "enonce": "Quelles planètes sont dites telluriques ?",
+      "choix": [
+        "Mercure, Vénus, la Terre, Mars",
+        "Jupiter, Saturne, Uranus, Neptune",
+        "Mercure, Jupiter, la Terre, Saturne",
+        "Vénus, Mars, Uranus, Neptune"
+      ],
+      "bonne_reponse": "Mercure, Vénus, la Terre, Mars",
+      "explication": "Elles sont petites, rocheuses et proches du Soleil ; les quatre autres sont des planètes géantes, gazeuses ou glacées.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 ; Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-29",
+      "enonce": "Corps qui gravite autour d'un astre de masse prépondérante, en particulier autour d'une planète",
+      "choix": [
+        "Un satellite",
+        "Une comète",
+        "Un astéroïde",
+        "Une étoile"
+      ],
+      "bonne_reponse": "Un satellite",
+      "explication": "La Lune est le satellite naturel de la Terre ; les engins lancés par l'homme sont des satellites artificiels.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : satellite (sens 1)"
+    },
+    {
+      "id": "PN1_02-30",
+      "enonce": "Courbe décrite par une planète autour du Soleil ou par un satellite autour de sa planète",
+      "choix": [
+        "Une orbite",
+        "Une éclipse",
+        "Une parallaxe",
+        "Une trajectoire droite"
+      ],
+      "bonne_reponse": "Une orbite",
+      "explication": "L'orbite de la Terre est une ellipse presque circulaire, parcourue en une année.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : orbite (sens 3)"
+    },
+    {
+      "id": "PN1_02-31",
+      "enonce": "Petit corps rocheux ou métallique, de forme irrégulière, qui gravite autour du Soleil",
+      "choix": [
+        "Un astéroïde",
+        "Une comète",
+        "Une planète",
+        "Une étoile"
+      ],
+      "bonne_reponse": "Un astéroïde",
+      "explication": "La plupart se trouvent dans la ceinture située entre Mars et Jupiter.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : astéroïde"
+    },
+    {
+      "id": "PN1_02-32",
+      "enonce": "Où se situe la ceinture d'astéroïdes ?",
+      "choix": [
+        "Entre Mars et Jupiter",
+        "Entre la Terre et Mars",
+        "Au-delà de Neptune",
+        "Entre Mercure et Vénus"
+      ],
+      "bonne_reponse": "Entre Mars et Jupiter",
+      "explication": "Cérès, le plus gros objet de cette ceinture, est classé planète naine.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : astéroïde ; Alt. ch.1.1.6"
+    },
+    {
+      "id": "PN1_02-33",
+      "enonce": "Petit astre de glace et de poussières qui développe une chevelure et une queue près du Soleil",
+      "choix": [
+        "Une comète",
+        "Un astéroïde",
+        "Une planète",
+        "Un météore"
+      ],
+      "bonne_reponse": "Une comète",
+      "explication": "La comète de Halley repasse près de la Terre environ tous les 76 ans.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : comète (sens 1, reformulé)"
+    },
+    {
+      "id": "PN1_02-34",
+      "enonce": "Dans quelle catégorie Pluton est-elle classée depuis 2006 ?",
+      "choix": [
+        "Planète naine",
+        "Satellite",
+        "Astéroïde",
+        "Comète"
+      ],
+      "bonne_reponse": "Planète naine",
+      "explication": "L'Union astronomique internationale a précisé en 2006 les conditions pour être une planète ; Pluton n'en remplit pas toutes.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-35",
+      "enonce": "Planète qui tourne autour d'une autre étoile que le Soleil",
+      "choix": [
+        "Une exoplanète",
+        "Un satellite",
+        "Une planète naine",
+        "Une comète"
+      ],
+      "bonne_reponse": "Une exoplanète",
+      "explication": "Plus de cinq mille exoplanètes ont été découvertes depuis 1995.",
+      "niveau_complexite": "Difficile",
+      "source": "Larousse : exoplanète"
+    },
+    {
+      "id": "PN1_02-41",
+      "enonce": "Petit corps solide qui circule dans l'espace interplanétaire",
+      "choix": [
+        "Un météoroïde",
+        "Une météorite",
+        "Un météore",
+        "Un astéroïde"
+      ],
+      "bonne_reponse": "Un météoroïde",
+      "explication": "Il devient un météore s'il traverse l'atmosphère de la Terre.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : météoroïde"
+    },
+    {
+      "id": "PN1_02-42",
+      "enonce": "Phénomène lumineux dû à la chute dans l'atmosphère d'un corps venu de l'espace",
+      "choix": [
+        "Un météore",
+        "Une météorite",
+        "Une comète",
+        "Une aurore"
+      ],
+      "bonne_reponse": "Un météore",
+      "explication": "On l'appelle aussi étoile filante : un grain de matière brûle en traversant l'atmosphère.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : météore (sens 2)"
+    },
+    {
+      "id": "PN1_02-43",
+      "enonce": "Fragment de corps venu de l'espace, retrouvé à la surface d'un astre après sa chute",
+      "choix": [
+        "Une météorite",
+        "Un météore",
+        "Un météoroïde",
+        "Un satellite"
+      ],
+      "bonne_reponse": "Une météorite",
+      "explication": "Les grosses météorites laissent des cratères d'impact, comme le Meteor Crater en Arizona.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : météorite (sens 1)"
+    },
+    {
+      "id": "Q1288",
+      "enonce": "Quelle est la vitesse de la lumière dans le vide ?",
+      "choix": [
+        "Environ 300 000 km/s",
+        "Environ 300 km/s",
+        "Environ 150 000 km/s",
+        "Environ 3 000 km/s"
+      ],
+      "bonne_reponse": "Environ 300 000 km/s",
+      "explication": "Elle vaut 3 × 10⁸ m/s ; aucune matière ne peut aller plus vite.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1288 (modifiée) — Alt. ch.1.1.3",
+      "ancien_enonce": "La vitesse de la lumière dans le vide est approximativement :"
+    },
+    {
+      "id": "PN1_02-52",
+      "enonce": "Unité de longueur astronomique correspondant à environ 9 461 milliards de kilomètres",
+      "choix": [
+        "L'année-lumière",
+        "L'unité astronomique",
+        "Le parsec",
+        "Le mille marin"
+      ],
+      "bonne_reponse": "L'année-lumière",
+      "explication": "Proxima du Centaure, l'étoile la plus proche du Soleil, est à 4,2 années-lumière.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : année-lumière (sens 1, reformulé)"
+    },
+    {
+      "id": "PN1_02-53",
+      "enonce": "Combien de temps la lumière du Soleil met-elle pour atteindre la Terre ?",
+      "choix": [
+        "Environ 8 minutes",
+        "Environ 8 secondes",
+        "Environ 8 heures",
+        "Environ 8 jours"
+      ],
+      "bonne_reponse": "Environ 8 minutes",
+      "explication": "La Terre est à 150 millions de km du Soleil : 150 000 000 km ÷ 300 000 km/s = 500 s.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.1.3"
+    },
+    {
+      "id": "PN1_02-54",
+      "enonce": "Quelle méthode permet de mesurer la distance des étoiles proches ?",
+      "choix": [
+        "La parallaxe",
+        "La réflexion",
+        "La réfraction",
+        "La dilatation"
+      ],
+      "bonne_reponse": "La parallaxe",
+      "explication": "On observe l'étoile à six mois d'intervalle : l'angle de son décalage apparent sur le fond du ciel donne la distance.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 ; Alt. ch.1.1.3.2 (pas de définition astronomique au Larousse en ligne)"
+    },
+    {
+      "id": "PN1_02-55",
+      "enonce": "Que représente l'unité astronomique ?",
+      "choix": [
+        "La distance Terre-Soleil",
+        "La distance Terre-Lune",
+        "Une année de lumière",
+        "Le rayon du Soleil"
+      ],
+      "bonne_reponse": "La distance Terre-Soleil",
+      "explication": "Elle vaut environ 150 millions de kilomètres et sert à mesurer les distances dans le système solaire.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.1.3 (pas de définition au Larousse en ligne)"
+    },
+    {
+      "id": "PN1_02-56",
+      "enonce": "Quel est l'ordre de grandeur du rayon de la Terre ?",
+      "choix": [
+        "Environ 6 400 km",
+        "Environ 640 km",
+        "Environ 64 000 km",
+        "Environ 640 000 km"
+      ],
+      "bonne_reponse": "Environ 6 400 km",
+      "explication": "Son rayon est de 6 371 km environ ; sa circonférence dépasse 40 000 km.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.1.3.6"
+    },
+    {
+      "id": "PN1_02-57",
+      "enonce": "Quel ordre de grandeur correspond à la taille d'un atome ?",
+      "choix": [
+        "10⁻¹⁰ m",
+        "10⁻⁶ m",
+        "10⁻³ m",
+        "10⁻¹⁵ m"
+      ],
+      "bonne_reponse": "10⁻¹⁰ m",
+      "explication": "Un atome est environ un million de fois plus petit que l'épaisseur d'un cheveu.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.1.3.4"
+    },
+    {
+      "id": "PN1_02-58",
+      "enonce": "Instrument d'observation astronomique dont l'objectif est un miroir",
+      "choix": [
+        "Un télescope",
+        "Un microscope",
+        "Un périscope",
+        "Un baromètre"
+      ],
+      "bonne_reponse": "Un télescope",
+      "explication": "Le télescope spatial Hubble, lancé en 1990, observe sans être gêné par l'atmosphère.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : télescope"
+    },
+    {
+      "id": "PN1_02-59",
+      "enonce": "Quel engin non habité est envoyé explorer les planètes ou les comètes ?",
+      "choix": [
+        "Une sonde spatiale",
+        "Un ballon météo",
+        "Une navette habitée",
+        "Un satellite géostationnaire"
+      ],
+      "bonne_reponse": "Une sonde spatiale",
+      "explication": "Voyager 1, lancée en 1977, a quitté le système solaire ; d'autres sondes se sont posées sur Mars.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 (pas de sens spatial au Larousse en ligne)"
+    },
+    {
+      "id": "PN1_02-60",
+      "enonce": "Quel est le premier satellite artificiel de la Terre, lancé en 1957 ?",
+      "choix": [
+        "Spoutnik 1",
+        "Apollo 11",
+        "Hubble",
+        "Voyager 1"
+      ],
+      "bonne_reponse": "Spoutnik 1",
+      "explication": "Lancé par l'Union soviétique le 4 octobre 1957, il a ouvert l'ère spatiale.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 (exploration de l'espace)"
+    },
+    {
+      "id": "PN1_02-61",
+      "enonce": "Qui a été le premier homme dans l'espace, en 1961 ?",
+      "choix": [
+        "Youri Gagarine",
+        "Neil Armstrong",
+        "Alan Shepard",
+        "Buzz Aldrin"
+      ],
+      "bonne_reponse": "Youri Gagarine",
+      "explication": "Il a fait un tour complet de la Terre à bord de Vostok 1, le 12 avril 1961.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 (exploration de l'espace)"
+    },
+    {
+      "id": "PN1_02-62",
+      "enonce": "En quelle année l'être humain a-t-il marché sur la Lune pour la première fois ?",
+      "choix": [
+        "1969",
+        "1957",
+        "1961",
+        "1981"
+      ],
+      "bonne_reponse": "1969",
+      "explication": "Neil Armstrong a posé le pied sur la Lune le 20 juillet 1969, lors de la mission Apollo 11.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme A1 (exploration de l'espace)"
+    }
+  ]
+}
