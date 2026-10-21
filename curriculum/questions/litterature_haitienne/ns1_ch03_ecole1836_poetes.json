@@ -1,0 +1,476 @@
+{
+  "matiere_id": 23,
+  "matiere": "Littérature haïtienne",
+  "chapitre": "L'École de 1836 : contexte et poètes",
+  "niveaux": [
+    "NS1"
+  ],
+  "unite_programme": "",
+  "statut": "validé par l'utilisateur 2026-10-20",
+  "rejetees": [],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "LH3-01",
+      "enonce": "Ensemble des mouvements nés à la fin du XVIIIe siècle, qui font prévaloir le sentiment sur la raison et l'imagination sur l'analyse critique ?",
+      "choix": [
+        "Le romantisme",
+        "Le classicisme",
+        "Le réalisme",
+        "Le symbolisme"
+      ],
+      "bonne_reponse": "Le romantisme",
+      "explication": "Hoffmann distingue en Haïti un romantisme sentimental (Lamartine) et un romantisme frénétique (Edmond Laforest).",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : romantisme (sens 1) ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-02",
+      "enonce": "Successeur d'un écrivain, disciple sans originalité ?",
+      "choix": [
+        "Un épigone",
+        "Un précurseur",
+        "Un mécène",
+        "Un exégète"
+      ],
+      "bonne_reponse": "Un épigone",
+      "explication": "Hoffmann juge que les poèmes d'Ignace Nau ne se distinguent guère de ceux des autres épigones de Lamartine.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : épigone ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-03",
+      "enonce": "Attitude qui impose à la langue une norme idéale, interdisant toute évolution et tout emprunt ?",
+      "choix": [
+        "Le purisme",
+        "Le réalisme",
+        "Le lyrisme",
+        "L'humanisme"
+      ],
+      "bonne_reponse": "Le purisme",
+      "explication": "Le purisme des écrivains haïtiens du XIXe siècle les poussait à écarter toute trace de créole et de régionalisme.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : purisme (sens 1) ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-04",
+      "enonce": "Mot ou tournure propres à une région ?",
+      "choix": [
+        "Un régionalisme",
+        "Un néologisme",
+        "Un archaïsme",
+        "Un barbarisme"
+      ],
+      "bonne_reponse": "Un régionalisme",
+      "explication": "Émile Nau recommande d'adapter le français aux besoins et aux localités haïtiennes.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : régionalisme (sens 2) ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-05",
+      "enonce": "Petit poème lyrique sur un sujet tendre et triste ?",
+      "choix": [
+        "Une élégie",
+        "Une épopée",
+        "Une ode",
+        "Une satire"
+      ],
+      "bonne_reponse": "Une élégie",
+      "explication": "Le Lac, d'Ignace Nau, imite l'élégie de Lamartine qui porte le même titre.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : élégie (sens 2) ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-06",
+      "enonce": "Pièce de poésie de quatorze vers, composée de deux quatrains et de deux tercets ?",
+      "choix": [
+        "Un sonnet",
+        "Un madrigal",
+        "Un rondeau",
+        "Un distique"
+      ],
+      "bonne_reponse": "Un sonnet",
+      "explication": "Charles Séguy Villevaleix ouvre ses Primevères (1866) par un « Sonnet-Préface » où il se compare à Hugo et à Lamartine.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : sonnet ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-07",
+      "enonce": "Être malfaisant qui, selon certaines croyances, se métamorphosait en loup la nuit ?",
+      "choix": [
+        "Un loup-garou",
+        "Un houngan",
+        "Un zombi",
+        "Un revenant"
+      ],
+      "bonne_reponse": "Un loup-garou",
+      "explication": "Un loup-garou menace l'enfant de l'héroïne dans Un épisode de la Révolution, nouvelle d'Ignace Nau.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : loup-garou (sens 1) ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-08",
+      "enonce": "Qui est capable d'anticipation, qui a l'intuition de l'avenir ?",
+      "choix": [
+        "Visionnaire",
+        "Utopique",
+        "Éclectique",
+        "Subversif"
+      ],
+      "bonne_reponse": "Visionnaire",
+      "explication": "Hoffmann juge qu'Ignace Nau était un visionnaire : il a appliqué des principes proclamés près d'un siècle plus tard.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : visionnaire (sens 2) ; Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-09",
+      "enonce": "Quel journal dirigé par Ignace Nau est devenu plus tard L'Union ?",
+      "choix": [
+        "Le Républicain",
+        "L'Abeille haytienne",
+        "La Ronde",
+        "Le Télégraphe"
+      ],
+      "bonne_reponse": "Le Républicain",
+      "explication": "Émile Nau y publie en 1836-1837 une série d'articles sur la littérature.",
+      "niveau_complexite": "Facile",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-10",
+      "enonce": "Quel frère d'Ignace Nau, journaliste et historien, appelle à une révolution dans les lettres haïtiennes ?",
+      "choix": [
+        "Émile Nau",
+        "Beaubrun Ardouin",
+        "Thomas Madiou",
+        "Hérard Dumesle"
+      ],
+      "bonne_reponse": "Émile Nau",
+      "explication": "Il est le premier à mettre en question le désir d'assimilation des hommes de lettres haïtiens à ceux de France.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-11",
+      "enonce": "Quelle ambition Émile Nau assigne-t-il à la littérature haïtienne en 1836 ?",
+      "choix": [
+        "Devenir une littérature nationale",
+        "Imiter les classiques français",
+        "Se limiter à la poésie",
+        "Écrire uniquement en latin"
+      ],
+      "bonne_reponse": "Devenir une littérature nationale",
+      "explication": "Il veut que les poèmes expriment les croyances et les sentiments de l'époque et du pays des poètes.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-12",
+      "enonce": "Quel ouvrage d'Émile Nau (1855) a inspiré toute une littérature à la gloire des premiers habitants de l'île ?",
+      "choix": [
+        "Histoire des caciques d'Haïti",
+        "Histoire d'Haïti",
+        "Études sur l'histoire d'Haïti",
+        "Haïti et ses problèmes"
+      ],
+      "bonne_reponse": "Histoire des caciques d'Haïti",
+      "explication": "Les premiers habitants de Saint-Domingue sont les Taïnos, dirigés par des caciques.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-13",
+      "enonce": "Quel titre l'empereur Faustin Ier accorde-t-il à Émile Nau ?",
+      "choix": [
+        "Baron",
+        "Comte",
+        "Duc",
+        "Marquis"
+      ],
+      "bonne_reponse": "Baron",
+      "explication": "Émile Nau (1812-1860) fonde aussi, deux ans avant sa mort, le journal La République.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-14",
+      "enonce": "Quelle revue française des anti-esclavagistes publie des poèmes d'Ignace Nau ?",
+      "choix": [
+        "La Revue des colonies",
+        "La Revue indigène",
+        "La Revue de Paris",
+        "La Revue des Deux Mondes"
+      ],
+      "bonne_reponse": "La Revue des colonies",
+      "explication": "Ignace Nau s'y rend après la mort de sa femme ; il y publie « À ma patrie » et « Le Lac ».",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-15",
+      "enonce": "Selon Hoffmann, quel écrivain est le premier Haïtien à avoir publié des œuvres d'imagination en prose ?",
+      "choix": [
+        "Ignace Nau",
+        "Émeric Bergeaud",
+        "Demesvar Delorme",
+        "Coriolan Ardouin"
+      ],
+      "bonne_reponse": "Ignace Nau",
+      "explication": "Ses trois nouvelles datent de 1836 ; elles ne seront jamais publiées en volume.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-16",
+      "enonce": "Quelle nouvelle d'Ignace Nau met en scène le sorcier africain Halaou ?",
+      "choix": [
+        "Le Lambi",
+        "Isalina",
+        "Un épisode de la Révolution",
+        "Le Lac"
+      ],
+      "bonne_reponse": "Le Lambi",
+      "explication": "Halaou fut un redoutable chef de bande pendant la lutte pour l'Indépendance.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-17",
+      "enonce": "Quelle nouvelle d'Ignace Nau raconte comment deux hommes font appel à des houngans pour gagner un amour ?",
+      "choix": [
+        "Isalina, ou une scène créole",
+        "Le Lambi",
+        "Un épisode de la Révolution",
+        "À ma patrie"
+      ],
+      "bonne_reponse": "Isalina, ou une scène créole",
+      "explication": "Le préféré de la jeune fille, aidé par un bon houngan, triomphe du prétendant envieux.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-18",
+      "enonce": "Quelle nouvelle d'Ignace Nau est à la fois un court roman historique et un conte fantastique ?",
+      "choix": [
+        "Un épisode de la Révolution",
+        "Isalina",
+        "Le Lambi",
+        "Le Lac"
+      ],
+      "bonne_reponse": "Un épisode de la Révolution",
+      "explication": "Un loup-garou y menace l'enfant d'une femme de lieutenant de l'armée indigène.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-19",
+      "enonce": "Quel poème d'Ignace Nau, daté des Basses-Pyrénées en 1836, chante la nostalgie du pays natal ?",
+      "choix": [
+        "À ma patrie",
+        "À un ami",
+        "Moi-même",
+        "Le Passager"
+      ],
+      "bonne_reponse": "À ma patrie",
+      "explication": "Le poème ne mentionne jamais le nom de la patrie ; seule la dernière strophe laisse deviner les tropiques.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-20",
+      "enonce": "Quel poème d'Ignace Nau imite une célèbre méditation de Lamartine ?",
+      "choix": [
+        "Le Lac",
+        "Isalina",
+        "À ma patrie",
+        "Moi-même"
+      ],
+      "bonne_reponse": "Le Lac",
+      "explication": "La bien-aimée y apparaît, comme Elvire, accoudée à un rocher.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-21",
+      "enonce": "Quel recueil de Lamartine (1820) compte parmi les premiers livres français arrivés dans l'Haïti indépendante ?",
+      "choix": [
+        "Les Méditations",
+        "Les Contemplations",
+        "Les Orientales",
+        "Les Châtiments"
+      ],
+      "bonne_reponse": "Les Méditations",
+      "explication": "Il obtient en Haïti autant sinon plus de succès qu'en France lors de sa parution.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-22",
+      "enonce": "Quel critique haïtien souligne dès 1855 l'originalité d'Ignace Nau dans ses Miscellanées ?",
+      "choix": [
+        "Liautaud Ethéart",
+        "Edgar La Selve",
+        "Duraciné Vaval",
+        "Ghislain Gouraige"
+      ],
+      "bonne_reponse": "Liautaud Ethéart",
+      "explication": "Il note que, pour comprendre ses contes, le lecteur français doit recourir à un « dictionnaire d'Ignace Nau ».",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-23",
+      "enonce": "Quels mots du terroir Ignace Nau emploie-t-il pour désigner un magicien et une misérable petite maison ?",
+      "choix": [
+        "Caplata et counouque",
+        "Houngan et ajoupa",
+        "Bòkò et kay",
+        "Zombi et lakou"
+      ],
+      "bonne_reponse": "Caplata et counouque",
+      "explication": "Liautaud Ethéart relève qu'il « appelle chaque chose par son nom ».",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-24",
+      "enonce": "Quel principe Ignace Nau applique-t-il en situant l'action de ses nouvelles ?",
+      "choix": [
+        "La campagne et ses paysans",
+        "Les salons de Paris",
+        "La cour du roi",
+        "Les ports de commerce"
+      ],
+      "bonne_reponse": "La campagne et ses paysans",
+      "explication": "Il puise aussi dans l'histoire d'Haïti et se penche sur le vaudou, présenté comme croyance populaire.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-25",
+      "enonce": "Quel poète haïtien est l'auteur du poème « Moi-même », publié par la Revue des colonies en juillet 1836 ?",
+      "choix": [
+        "Coriolan Ardouin",
+        "Ignace Nau",
+        "Pierre Faubert",
+        "Charles Séguy Villevaleix"
+      ],
+      "bonne_reponse": "Coriolan Ardouin",
+      "explication": "Il se dit « déjà trop vieux » à vingt et un ans à peine.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-26",
+      "enonce": "Quel poème posthume de Coriolan Ardouin montre l'influence de Lamartine ?",
+      "choix": [
+        "À un ami",
+        "Moi-même",
+        "Le Lac",
+        "À ma patrie"
+      ],
+      "bonne_reponse": "À un ami",
+      "explication": "Hoffmann note que cette influence se manifeste pratiquement jusqu'à nos jours.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-27",
+      "enonce": "Quels thèmes universels dominent le poème « Moi-même » de Coriolan Ardouin ?",
+      "choix": [
+        "La mort et l'existence humaine",
+        "La guerre d'Indépendance",
+        "Les paysages haïtiens",
+        "Le vaudou"
+      ],
+      "bonne_reponse": "La mort et l'existence humaine",
+      "explication": "Hoffmann cite Ardouin parmi les poètes qui évitent toute référence à Haïti.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-28",
+      "enonce": "Quel poète français est le modèle de nombreux poètes haïtiens avec Hugo, Musset et Béranger ?",
+      "choix": [
+        "Lamartine",
+        "Rimbaud",
+        "Apollinaire",
+        "Ronsard"
+      ],
+      "bonne_reponse": "Lamartine",
+      "explication": "Lamartine, Hugo, Musset et Béranger sont les poètes contemporains français les plus admirés en Haïti.",
+      "niveau_complexite": "Facile",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-29",
+      "enonce": "Quel poète haïtien déclare en 1846 que Lamartine et Hugo sont des « dieux immortels » ?",
+      "choix": [
+        "Jean-Baptiste Chenêt",
+        "Pierre Faubert",
+        "Liautaud Ethéart",
+        "Charles Séguy Villevaleix"
+      ],
+      "bonne_reponse": "Jean-Baptiste Chenêt",
+      "explication": "Il publie ses Études poétiques ; il affirme aussi que Dieu parlerait français.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-30",
+      "enonce": "Quel recueil de Charles Séguy Villevaleix (1866) s'ouvre par un « Sonnet-Préface » ?",
+      "choix": [
+        "Primevères",
+        "Feuilles au vent",
+        "Fleurs et pleurs",
+        "Les Bluettes"
+      ],
+      "bonne_reponse": "Primevères",
+      "explication": "Il s'y compare modestement à Hugo, « sombre torrent », et à Lamartine, « doux lac ».",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-31",
+      "enonce": "Quel poète haïtien chante en 1856 le teint de neige de Céline dans « Le Souvenir » ?",
+      "choix": [
+        "Pierre Faubert",
+        "Ignace Nau",
+        "Coriolan Ardouin",
+        "Tertullien Guilbaud"
+      ],
+      "bonne_reponse": "Pierre Faubert",
+      "explication": "Hoffmann y voit l'exemple de la « muse nordique » : la femme aimée est déguisée en beauté blanche.",
+      "niveau_complexite": "Difficile",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-32",
+      "enonce": "Que représente la « muse nordique » chez certains poètes haïtiens ?",
+      "choix": [
+        "Une femme aimée déguisée en blanche",
+        "Une paysanne du Nord",
+        "La muse du roi Henry",
+        "Une déesse africaine"
+      ],
+      "bonne_reponse": "Une femme aimée déguisée en blanche",
+      "explication": "Mulâtresse ou noire, la femme ne correspondait pas au canon esthétique européen.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    },
+    {
+      "id": "LH3-33",
+      "enonce": "Que visent surtout les poètes haïtiens du XIXe siècle quant à la langue française ?",
+      "choix": [
+        "La pureté de la langue",
+        "Le mélange avec le créole",
+        "L'invention de mots",
+        "La simplicité populaire"
+      ],
+      "bonne_reponse": "La pureté de la langue",
+      "explication": "Leur attitude envers la langue officielle frôle parfois le fétichisme.",
+      "niveau_complexite": "Moyen",
+      "source": "Hoffmann, chap. 7"
+    }
+  ]
+}
