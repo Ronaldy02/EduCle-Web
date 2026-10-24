@@ -262,3 +262,25 @@ Le widget de validation exige l'utilisateur, mais la préparation n'en a pas bes
 - Pas de recherche web inutile : une fois le plan des chapitres validé, la recherche de manuels n'est plus nécessaire.
 - Une session sans rien à faire (en attente de validation, travail d'avance terminé) **s'arrête** au lieu de boucler ou d'interroger les autres sessions.
 - Pas de messages entre sessions pour de simples accusés de réception.
+
+---
+
+## 7. NOUVEAU FLUX (2026-10-24) : le Studio remplace le widget de chat
+
+**Décision de l'utilisateur :** la validation consommait trop de crédits (chaque chapitre était écrit deux fois, plus les allers-retours « À modifier »). Elle se fait désormais **hors de Claude**, dans le Studio.
+
+**Ce que fait Claude (seule étape qui utilise le modèle fort) :**
+1. Inventaire, définitions Larousse, rédaction des questions (étapes 1 à 3 inchangées).
+2. Construire le chapitre avec `chapitre.py` puis `c.ecrire("chNN")` : cela écrit seulement `chNN_Q.json`. **Ne plus appeler `show_widget`, ne plus générer de widget, ne plus recopier les questions dans le chat.**
+3. Ranger le brouillon dans `curriculum/questions/<matiere>/brouillons/chNN_Q.json`, le lister dans `curriculum/questions/<matiere>/A_VALIDER.md`, commiter, pousser.
+4. Dire à l'utilisateur en 3 lignes : chapitre prêt, nombre de questions, points à signaler. Rien d'autre.
+
+**Ce que fait l'utilisateur :** il ouvre `scripts/questions/studio/index.html` dans son navigateur (double-clic), charge le brouillon, valide ou rejette chaque question, **corrige les textes directement dans la page** (donc plus de boucle « À modifier »), puis clique sur « Exporter le chapitre ». Le Studio contrôle le format tout seul (4 choix distincts, 6 mots maximum, « ? », mot de la même famille…) et sauvegarde dans le navigateur.
+
+**Ensuite :** quand l'utilisateur dit qu'un chapitre est exporté, Claude lit le fichier exporté (placé dans `curriculum/questions/<matiere>/`), lance `gen_chap.py`, simule, applique, commite. Ne pas relire les questions une par une : le fichier a déjà été validé.
+
+**Pour économiser les crédits :**
+- Une seule session de rédaction à la fois ; ne pas ouvrir de sessions « de gestion » ou de contrôle en plus.
+- Pas de message entre sessions sauf nécessité.
+- Le modèle le plus capable est réservé à la **rédaction des questions**. Tout le reste (import, migration, fusion de branches, point d'avancement) doit se faire avec un modèle léger.
+- Les sections « Comment afficher le widget » (étape 4) et les mentions de `show_widget` plus haut sont **obsolètes** : le Studio les remplace.

@@ -57,9 +57,13 @@ class Chapitre:
                 assert x[2].rstrip().endswith("?"), x[0] + " : une question de connaissance finit par « ? »"
         return n
 
-    def ecrire(self, base_nom):
+    def ecrire(self, base_nom, widget=False):
+        """Écrit base_nom_Q.json (brouillon à ouvrir dans le Studio). widget=True produit en plus l'ancien widget de chat (coûteux : à éviter)."""
         n = self.verifier()
         json.dump(self.G, open(base_nom + "_Q.json", "w", encoding="utf-8"), ensure_ascii=False)
+        if not widget:
+            print(len(n), "questions dont", sum(1 for x in n if x[0].startswith("Q")), "déjà en base ->", base_nom + "_Q.json (à ouvrir dans scripts/questions/studio/index.html)")
+            return
         t = open(os.path.join(ICI, "widget_template.html"), encoding="utf-8").read()
         q = "[\n" + ",\n".join(json.dumps(x[:7], ensure_ascii=False) for x in self.G) + "\n]"
         t = t.replace("const Q=__Q__;", "const Q=" + q + ";")

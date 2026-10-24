@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Studio de questions EduClé</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--text:#1d2433;--muted:#667085;--line:#dfe3ec;--accent:#2f6fed;--ok:#157f3b;--okbg:#e6f5ec;--ko:#b42318;--kobg:#fdecea;--warn:#a15c07;--warnbg:#fff4e0;--chip:#eef1f8}
+@media (prefers-color-scheme:dark){:root{--bg:#12151c;--card:#1b2030;--text:#e8ebf3;--muted:#98a2b8;--line:#2c3348;--accent:#6c9bff;--ok:#5fd18a;--okbg:#14301f;--ko:#ff8a80;--kobg:#3a1c1a;--warn:#f5b85c;--warnbg:#38290f;--chip:#262d42}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line);padding:10px 16px}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+h1{font-size:17px;margin:0 0 8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+button,select,input,textarea{font:inherit;color:inherit}
+button{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:6px 12px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+button.p{background:var(--accent);border-color:var(--accent);color:#fff}
+button.v.on{background:var(--okbg);border-color:var(--ok);color:var(--ok);font-weight:600}
+button.r.on{background:var(--kobg);border-color:var(--ko);color:var(--ko);font-weight:600}
+input,textarea,select{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:6px 8px}
+textarea{resize:vertical;min-height:60px}
+.bar{height:6px;background:var(--chip);border-radius:3px;overflow:hidden;margin-top:8px}
+.bar>i{display:block;height:100%;background:var(--ok);width:0}
+.stats{color:var(--muted);font-size:13px}
+.meta{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:12px 0}
+.meta label{font-size:12px;color:var(--muted);display:block;margin-bottom:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.grp{margin:18px 0 6px;color:var(--muted);font-size:13px;font-weight:600}
+.q{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:10px;padding:12px 14px;margin:0 0 10px}
+.q.valide{border-left-color:var(--ok)}.q.rejete{border-left-color:var(--ko);opacity:.75}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:var(--muted)}
+.tag{background:var(--chip);border-radius:6px;padding:1px 7px}
+.en{font-weight:600;margin:2px 0 6px}
+.ch{padding:1px 0;color:var(--muted)}.ch.ok{color:var(--ok);font-weight:600}
+.ex{font-size:13px;color:var(--muted);margin:6px 0}
+.w{background:var(--warnbg);color:var(--warn);border-radius:6px;padding:3px 8px;font-size:12.5px;margin:3px 0}
+.e{background:var(--kobg);color:var(--ko)}
+.act{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.edit label{font-size:12px;color:var(--muted);display:block;margin:6px 0 2px}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+.hint{font-size:13px;color:var(--muted)}
+code{background:var(--chip);padding:1px 5px;border-radius:5px;font-size:13px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Studio de questions EduClé <span class="stats" id="chap"></span></h1>
+  <div class="row">
+    <button class="p" id="load">Ouvrir un brouillon (.json)</button>
+    <input type="file" id="file" accept=".json,application/json" hidden>
+    <select id="filter" style="width:auto"><option value="all">Toutes</option><option value="todo">À traiter</option><option value="valide">Validées</option><option value="rejete">Rejetées</option><option value="warn">Avec avertissement</option></select>
+    <button id="allv">Valider les non traitées</button>
+    <button class="p" id="export">Exporter le chapitre</button>
+    <span class="stats" id="stats"></span>
+  </div>
+  <div class="bar"><i id="prog"></i></div>
+</div></header>
+
+<main class="wrap">
+  <div class="meta" id="meta" hidden>
+    <div class="grid">
+      <div><label>Matière (nom)</label><input id="m_nom" placeholder="Biologie"></div>
+      <div><label>matiere_id</label><input id="m_id" type="number" placeholder="11"></div>
+      <div><label>Titre exact du chapitre (table chapitres)</label><input id="m_chap" placeholder="Le système respiratoire"></div>
+      <div><label>Niveaux (séparés par des espaces)</label><input id="m_niv" placeholder="NS2"></div>
+      <div><label>Unité du programme</label><input id="m_unite" placeholder="2.1"></div>
+      <div><label>Nom du fichier</label><input id="m_fich" placeholder="ns2_ch01_systeme_respiratoire"></div>
+    </div>
+    <label class="hint" style="margin-top:8px;display:block"><input type="checkbox" id="m_grp" style="width:auto"> Chapitre multi-niveaux : le niveau de chaque question est le premier mot de son groupe (« NS3 — … »)</label>
+  </div>
+  <div id="list"><div class="empty">Ouvre un brouillon <code>chNN_Q.json</code> ou un chapitre déjà enregistré pour commencer.<br><br>Tout est sauvegardé automatiquement dans ce navigateur.</div></div>
+  <div id="after" class="meta" hidden></div>
+</main>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+const LBL={F:"Facile",M:"Moyen",D:"Difficile"},REV={Facile:"F",Moyen:"M",Difficile:"D"};
+let S={items:[],rejetees:[],file:"",meta:{},open:null};
+const esc=t=>String(t==null?"":t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm=t=>String(t).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+const words=t=>norm(t).split(/[^a-z0-9]+/).filter(Boolean);
+const STOP=new Set("avec dans pour sans sous entre cette leurs leur plus moins comme chez dont ainsi quel quelle quels quelles elle elles elles tout tous toute toutes etre avoir fait fait".split(" "));
+
+function key(){return "studio:"+(S.file||"sans-nom")}
+function save(){try{localStorage.setItem(key(),JSON.stringify({items:S.items,rejetees:S.rejetees,meta:meta()}));localStorage.setItem("studio:last",S.file)}catch(e){}}
+function meta(){return{nom:$("#m_nom").value,id:$("#m_id").value,chap:$("#m_chap").value,niv:$("#m_niv").value,unite:$("#m_unite").value,fich:$("#m_fich").value,grp:$("#m_grp").checked}}
+function setMeta(m){m=m||{};$("#m_nom").value=m.nom||"";$("#m_id").value=m.id||"";$("#m_chap").value=m.chap||"";$("#m_niv").value=m.niv||"";$("#m_unite").value=m.unite||"";$("#m_fich").value=m.fich||"";$("#m_grp").checked=!!m.grp}
+
+function parse(data){
+  if(data&&data.G)data=data.G;
+  const items=[];let m={};
+  if(Array.isArray(data)){
+    let g="";
+    for(const x of data){
+      if(x[0]==="g"){g=x[1];continue}
+      items.push({id:x[0],groupe:g,diff:x[1],enonce:x[2],choix:x[3].slice(),explication:x[4]||"",source:x[5]||"",type:x[6]||"C",ancien:x[7]||null,statut:"todo"});
+    }
+  }else if(data&&data.questions){
+    m={nom:data.matiere,id:data.matiere_id,chap:data.chapitre,niv:(data.niveaux||[]).join(" "),unite:data.unite_programme};
+    for(const q of data.questions){
+      items.push({id:q.id,groupe:q.niveau||"",diff:REV[q.niveau_complexite]||"M",enonce:q.enonce,choix:q.choix.slice(),explication:q.explication||"",source:q.source||"",
+        type:/\?\s*$/.test(q.enonce)?"C":"D",ancien:q.ancien_enonce||null,statut:q.statut?"todo":"valide"});
+    }
+  }else throw new Error("Format non reconnu");
+  return{items,meta:m,rejetees:(data&&data.rejetees)||[]};
+}
+
+function load(data,name){
+  const p=parse(data);
+  S.file=name;S.items=p.items;S.rejetees=[];
+  let saved=null;try{saved=JSON.parse(localStorage.getItem(key()))}catch(e){}
+  if(saved&&saved.items&&saved.items.length&&confirm("Un travail sauvegardé existe pour ce fichier ("+saved.items.length+" questions). Le reprendre ?")){S.items=saved.items;setMeta(saved.meta)}
+  else setMeta(Object.assign({},p.meta,{fich:name.replace(/\.json$/,"").replace(/_Q$/,"")}));
+  $("#meta").hidden=false;render();save();
+}
+
+function checks(q){
+  const out=[];const c=q.choix.map(x=>String(x||"").trim());
+  if(c.some(x=>!x))out.push(["e","Un choix est vide."]);
+  if(new Set(c.map(norm)).size<4)out.push(["e","Les 4 choix doivent être différents."]);
+  if(c.length!==4)out.push(["e","Il faut exactement 4 choix."]);
+  c.forEach((x,i)=>{const n=x.split(/\s+/).filter(Boolean).length;if(n>6)out.push(["w",(i?"Choix "+(i+1):"Bonne réponse")+" : "+n+" mots (6 maximum)."])});
+  const e=q.enonce.trim();
+  if(!e)out.push(["e","Énoncé vide."]);
+  if(/:\s*$/.test(e))out.push(["e","L'énoncé finit par « : » : il faut une vraie question."]);
+  if(q.type==="C"&&!/\?\s*$/.test(e))out.push(["w","Question de connaissance : l'énoncé doit finir par « ? »."]);
+  if(q.type==="D"&&/\?\s*$/.test(e))out.push(["w","Question de définition : l'énoncé ne devrait pas finir par « ? »."]);
+  if(q.type==="D"&&c[0]){
+    const aw=words(c[0]).filter(w=>w.length>=5&&!STOP.has(w)),ew=words(e).filter(w=>w.length>=5&&!STOP.has(w));
+    const hit=[];for(const a of aw)for(const w of ew){const k=Math.min(5,a.length,w.length);if(a.slice(0,k)===w.slice(0,k)&&!hit.includes(w))hit.push(w)}
+    if(hit.length)out.push(["w","Même famille que la réponse ? « "+hit.join(", ")+" »"]);
+  }
+  if(c[0]){const L=c[0].length;c.slice(1).forEach((x,i)=>{if(x&&(x.length>2.6*L+6||x.length*2.6+6<L))out.push(["w","Choix "+(i+2)+" : longueur très différente de la bonne réponse."])})}
+  if(!q.explication.trim())out.push(["w","Explication vide."]);
+  if(!q.source.trim())out.push(["w","Source vide (Larousse : mot / Programme …)."]);
+  return out;
+}
+
+function cardHTML(q,i){
+  const ck=checks(q),st=q.statut;
+  let h=`<div class="q ${st==="valide"?"valide":st==="rejete"?"rejete":""}" id="q${i}">`;
+  h+=`<div class="tags"><span class="tag">${esc(q.id)}</span><span class="tag">${LBL[q.diff]||q.diff}</span><span class="tag">${q.type==="D"?"Définition":"Connaissance"}</span>${/^Q\d/.test(q.id)?'<span class="tag">Déjà en base</span>':""}<span class="tag">${esc(q.source)}</span></div>`;
+  if(S.open===i){
+    h+=`<div class="edit"><label>Énoncé</label><textarea data-f="enonce">${esc(q.enonce)}</textarea>`;
+    q.choix.forEach((c,k)=>{h+=`<label>${k?"Choix faux "+k:"Bonne réponse"}</label><input data-c="${k}" value="${esc(c)}">`});
+    h+=`<label>Explication</label><textarea data-f="explication">${esc(q.explication)}</textarea>
+    <div class="grid"><div><label>Source</label><input data-f="source" value="${esc(q.source)}"></div>
+    <div><label>Difficulté</label><select data-f="diff">${["F","M","D"].map(d=>`<option value="${d}" ${q.diff===d?"selected":""}>${LBL[d]}</option>`).join("")}</select></div>
+    <div><label>Type</label><select data-f="type"><option value="D" ${q.type==="D"?"selected":""}>Définition</option><option value="C" ${q.type==="C"?"selected":""}>Connaissance</option></select></div></div>
+    <div class="act"><button class="p" data-a="saveok">Enregistrer et valider</button><button data-a="save">Enregistrer</button><button data-a="cancel">Annuler</button></div></div>`;
+  }else{
+    h+=`<div class="en">${esc(q.enonce)}</div>`;
+    q.choix.forEach((c,k)=>{h+=`<div class="ch ${k?"":"ok"}">${k?"&nbsp;&nbsp;&nbsp;&nbsp;":"✓ "}${esc(c)}</div>`});
+    h+=`<div class="ex">${esc(q.explication)}</div>`;
+    ck.forEach(([t,m])=>{h+=`<div class="w ${t==="e"?"e":""}">${esc(m)}</div>`});
+    h+=`<div class="act"><button class="v ${st==="valide"?"on":""}" data-a="v">Valider</button><button data-a="edit">Modifier</button><button class="r ${st==="rejete"?"on":""}" data-a="r">Rejeter</button></div>`;
+  }
+  return h+"</div>";
+}
+
+function matches(q){
+  const f=$("#filter").value;
+  return f==="all"||(f==="todo"&&q.statut==="todo")||(f==="valide"&&q.statut==="valide")||(f==="rejete"&&q.statut==="rejete")||(f==="warn"&&checks(q).length>0);
+}
+function render(){
+  const L=$("#list");
+  if(!S.items.length){return}
+  let h="",g=null;
+  S.items.forEach((q,i)=>{if(!matches(q))return;if(q.groupe!==g){g=q.groupe;if(g)h+=`<div class="grp">${esc(g)}</div>`}h+=cardHTML(q,i)});
+  L.innerHTML=h||'<div class="empty">Aucune question pour ce filtre.</div>';
+  stats();
+}
+function renderOne(i){
+  const el=$("#q"+i);if(!el)return render();
+  if(!matches(S.items[i])&&S.open!==i)return render();
+  const t=document.createElement("div");t.innerHTML=cardHTML(S.items[i],i);el.replaceWith(t.firstChild);stats();
+}
+function stats(){
+  const n=S.items.length,v=S.items.filter(q=>q.statut==="valide").length,r=S.items.filter(q=>q.statut==="rejete").length;
+  $("#stats").textContent=`${v} validées · ${r} rejetées · ${n-v-r} à traiter / ${n}`;
+  $("#prog").style.width=n?Math.round((v+r)*100/n)+"%":"0";
+  $("#chap").textContent=S.file?"— "+S.file:"";
+}
+
+$("#load").onclick=()=>$("#file").click();
+$("#file").onchange=e=>{
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{try{load(JSON.parse(r.result),f.name)}catch(err){alert("Fichier illisible : "+err.message)}};
+  r.readAsText(f,"utf-8");e.target.value="";
+};
+$("#filter").onchange=render;
+$("#allv").onclick=()=>{S.items.forEach(q=>{if(q.statut==="todo"&&!checks(q).some(c=>c[0]==="e"))q.statut="valide"});save();render()};
+$("#meta").addEventListener("input",save);
+$("#list").addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  const card=b.closest(".q");const i=+card.id.slice(1);const q=S.items[i];const a=b.dataset.a;
+  if(a==="v")q.statut=q.statut==="valide"?"todo":"valide";
+  else if(a==="r")q.statut=q.statut==="rejete"?"todo":"rejete";
+  else if(a==="edit"){const prev=S.open;S.open=i;if(prev!==null&&prev!==i)renderOne(prev)}
+  else if(a==="cancel")S.open=null;
+  else if(a==="save"||a==="saveok"){
+    card.querySelectorAll("[data-f]").forEach(el=>{q[el.dataset.f]=el.value});
+    card.querySelectorAll("[data-c]").forEach(el=>{q.choix[+el.dataset.c]=el.value.trim()});
+    q.enonce=q.enonce.trim();S.open=null;
+    if(a==="saveok"&&!checks(q).some(c=>c[0]==="e"))q.statut="valide";
+  }
+  save();renderOne(i);
+});
+
+$("#export").onclick=()=>{
+  const m=meta(),V=S.items.filter(q=>q.statut==="valide"),R=S.items.filter(q=>q.statut==="rejete"),T=S.items.filter(q=>q.statut==="todo");
+  if(!V.length)return alert("Aucune question validée.");
+  if(!m.nom||!m.id||!m.chap||!m.niv.trim())return alert("Remplis la matière, matiere_id, le titre exact du chapitre et les niveaux.");
+  const bad=V.filter(q=>checks(q).some(c=>c[0]==="e"));
+  if(bad.length)return alert("Erreurs à corriger avant l'export : "+bad.map(q=>q.id).join(", "));
+  if(T.length&&!confirm(T.length+" question(s) non traitée(s) ne seront PAS exportées. Continuer ?"))return;
+  const niveaux=m.niv.trim().split(/\s+/);
+  const qs=V.map(q=>{
+    const o={id:q.id};
+    if(m.grp){const w=(q.groupe||"").split(/[\s—-]+/)[0];if(niveaux.includes(w))o.niveau=w}
+    Object.assign(o,{enonce:q.enonce,choix:q.choix,bonne_reponse:q.choix[0],explication:q.explication,niveau_complexite:LBL[q.diff],source:q.source});
+    if(q.ancien)o.ancien_enonce=q.ancien;
+    return o;
+  });
+  const rej=R.map(q=>q.id);
+  const doc={matiere_id:+m.id,matiere:m.nom,chapitre:m.chap,niveaux,unite_programme:m.unite,
+    statut:"validé par l'utilisateur "+new Date().toISOString().slice(0,10),rejetees:rej,
+    base_rejetees_a_supprimer:R.filter(q=>q.ancien).map(q=>({id:q.id,enonce:q.ancien})),questions:qs};
+  const name=(m.fich||"chapitre")+".json";
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(doc,null,2)],{type:"application/json"}));a.download=name;a.click();
+  const A=$("#after");A.hidden=false;
+  A.innerHTML=`<b>${qs.length} questions exportées</b> dans <code>${esc(name)}</code> (${rej.length} rejetées, ${T.length} non traitées).<br>
+  Étape suivante : place ce fichier dans <code>curriculum/&lt;matière&gt;/</code> du dépôt Mobile, puis demande l'import (migration) — ou lance :<br>
+  <code>python scripts/questions/gen_chap.py ${esc(name)} NNN_import.sql</code> puis <code>bash scripts/questions/run_sql.sh NNN_import.sql simulation "message"</code>`;
+};
+
+try{const last=localStorage.getItem("studio:last");if(last){const s=JSON.parse(localStorage.getItem("studio:"+last));if(s&&s.items&&s.items.length){S.file=last;S.items=s.items;setMeta(s.meta);$("#meta").hidden=false;render()}}}catch(e){}
+</script>
+</body>
+</html>
