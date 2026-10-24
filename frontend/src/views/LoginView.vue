@@ -12,9 +12,9 @@
           <h1 class="lv-headline">La clé de ta réussite scolaire.</h1>
           <p class="lv-sub">Quiz adaptatifs, suivi de progression et défis par matière — calibrés pour ton niveau et ton programme.</p>
           <div class="lv-chips">
-            <span class="lv-chip">12 matières</span>
-            <span class="lv-chip">500+ questions</span>
-            <span class="lv-chip">8 modes de jeu</span>
+            <span v-if="apercu" class="lv-chip">{{ apercu.matieres }} matières</span>
+            <span v-if="apercu" class="lv-chip">{{ questionsAffichees }} questions</span>
+            <span class="lv-chip">{{ NB_MODES }} modes de jeu</span>
             <span class="lv-chip"><CoinIcon /> Récompenses</span>
           </div>
         </div>
@@ -163,9 +163,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth.js'
+import { getApercu } from '../api/client.js'
+import { NB_MODES } from '../utils/modes.js'
 
 // ── Icônes inline ─────────────────────────────────────────────────────────────
 const GoogleIcon = {
@@ -298,6 +300,17 @@ async function doForgot() {
   loading.value = false
   state.value = 'forgot-sent'
 }
+
+// ── Chiffres affichés (matières / questions) ─────────────────────────────────
+// Chargés après l'affichage : la page ne les attend pas. En cas d'échec, les pastilles restent masquées.
+const apercu = ref(null)
+const questionsAffichees = computed(() => {
+  const n = apercu.value?.questions ?? 0
+  return n < 100 ? String(n) : Math.floor(n / 100) * 100 + '+'
+})
+onMounted(async () => {
+  try { apercu.value = await getApercu() } catch { /* pastilles masquées */ }
+})
 
 // ── Constellation canvas ──────────────────────────────────────────────────────
 const canvasRef = ref(null)

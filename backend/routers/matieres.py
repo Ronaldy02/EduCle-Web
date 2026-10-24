@@ -1,5 +1,7 @@
 """Endpoints : matières, chapitres, cartes mentales."""
-from fastapi import APIRouter, Depends, HTTPException
+import time
+
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy.orm import Session, selectinload
 from sqlalchemy import select, func
 
@@ -52,6 +54,31 @@ def lister_themes(db: Session = Depends(get_db)):
         m = par_matiere.setdefault(m_id, {"id": m_id, "nom": m_nom, "chapitres": []})
         m["chapitres"].append({"id": c_id, "titre": c_titre, "nb_questions": nb})
     return list(par_matiere.values())
+
+
+_apercu_cache: dict = {"t": 0.0, "data": None}
+_APERCU_TTL = 600  # secondes
+
+
+@router.get("/apercu")
+def apercu_public(response: Response, db: Session = Depends(get_db)):
+    """Chiffres de la page de connexion (public). Mis en cache 10 min : une seule requête SQL légère."""
+    maintenant = time.monotonic()
+    if _apercu_cache["data"] is None or maintenant - _apercu_cache["t"] > _APERCU_TTL:
+        rows = db.execute(
+            select(Matiere.nom, func.count(Question.id))
+            .join(Chapitre, Chapitre.matiere_id == Matiere.id)
+            .join(Question, Question.chapitre_id == Chapitre.id)
+            .group_by(Chapitre.id, Matiere.nom)
+            .having(func.count(Question.id) >= _MIN_QUESTIONS)
+        ).all()
+        _apercu_cache["data"] = {
+            "matieres": len({nom.strip().casefold() for nom, _ in rows}),
+            "questions": sum(nb for _, nb in rows),
+        }
+        _apercu_cache["t"] = maintenant
+    response.headers["Cache-Control"] = "public, max-age=300"
+    return _apercu_cache["data"]
 
 
 @router.get("/{matiere_id}", response_model=MatiereDetailSchema)
