@@ -12,6 +12,11 @@ class Settings(BaseSettings):
     frontend_url: str = "http://localhost:5173"
     # Swagger (/docs, /openapi.json) : désactivé par défaut, à activer en local (EXPOSER_DOCS=true)
     exposer_docs: bool = False
+    # Web Push VAPID — générer avec : python -c "from py_vapid import Vapid; v=Vapid(); v.generate_keys(); print('PRIV:', v.private_key_urlsafe); print('PUB:', v.public_key_urlsafe)"
+    vapid_private_key: str = ""
+    vapid_subject: str = "mailto:contact@educle.app"
+    # Secret partagé entre GitHub Actions et le backend pour les crons push
+    cron_secret: str = ""
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 

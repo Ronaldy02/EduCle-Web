@@ -81,3 +81,9 @@ export const getMatieresAvecChapitres = () => api.get('/matieres/themes').then(r
 
 // ─── Propositions ─────────────────────────────────────────────────────────────
 export const soumettreProposition = (data) => api.post('/proposals/', data).then(r => r.data)
+
+// ─── Notifications Web Push ───────────────────────────────────────────────────
+export const notifAbonner    = (sub) => api.post('/notifications/abonner',    sub).then(r => r.data)
+export const notifDesabonner = (sub) => api.post('/notifications/desabonner', sub).then(r => r.data)
+export const notifGetPrefs   = ()    => api.get('/notifications/preferences').then(r => r.data)
+export const notifSetPrefs   = (p)   => api.patch('/notifications/preferences', p).then(r => r.data)

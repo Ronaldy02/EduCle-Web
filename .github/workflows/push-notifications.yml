@@ -1,0 +1,38 @@
+name: Notifications push défis
+
+on:
+  schedule:
+    - cron: '0 12 * * *'   # ~7h heure de Port-au-Prince (UTC-5)
+    - cron: '0 23 * * *'   # ~18h heure de Port-au-Prince (UTC-5)
+  workflow_dispatch:
+    inputs:
+      type:
+        description: "Type de notification : debut ou fin"
+        required: true
+        type: choice
+        options: [debut, fin]
+
+jobs:
+  notifier:
+    name: Envoyer rappel (${{ github.event.schedule || inputs.type }})
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Déterminer le type selon l'heure
+        id: type
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "type=${{ inputs.type }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.schedule }}" = "0 12 * * *" ]; then
+            echo "type=debut" >> $GITHUB_OUTPUT
+          else
+            echo "type=fin" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Appeler le backend
+        run: |
+          curl -s -f -X POST \
+            "https://educleweb.vercel.app/notifications/cron/${{ steps.type.outputs.type }}" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json" \
+            --max-time 30

@@ -142,6 +142,41 @@
         </div>
       </div>
 
+      <!-- ── Rappels de défis ──────────────────────────────── -->
+      <div class="rg-section-label">Rappels de défis</div>
+      <div class="rg-card">
+        <template v-if="!notifSupport">
+          <p class="rg-desc" style="padding:0.25rem 0">Les notifications push ne sont pas supportées par ce navigateur.</p>
+          <p class="rg-desc" style="margin-top:0.25rem;font-size:0.78rem;color:var(--text-muted)">Sur iPhone, ajoute EduClé à l'écran d'accueil (iOS 16.4+) pour activer les notifications.</p>
+        </template>
+        <template v-else-if="notifBloque">
+          <p class="rg-desc" style="padding:0.25rem 0">Tu as bloqué les notifications pour ce site. Pour les activer, modifie les paramètres de ton navigateur.</p>
+        </template>
+        <template v-else>
+          <div class="rg-switch-row">
+            <div>
+              <p class="rg-switch-titre">Rappel du matin</p>
+              <p class="rg-desc">« Tes défis du jour sont prêts. » vers 7h.</p>
+            </div>
+            <button class="rg-switch" :class="{ on: notifAbonne && prefDebut }" role="switch"
+              :aria-checked="notifAbonne && prefDebut" @click="basculerNotif('debut')" :disabled="notifChargement">
+              <span class="rg-switch-knob"></span>
+            </button>
+          </div>
+          <div class="rg-divider"></div>
+          <div class="rg-switch-row">
+            <div>
+              <p class="rg-switch-titre">Rappel du soir</p>
+              <p class="rg-desc">« Il te reste N défi(s) aujourd'hui. » vers 18h, si des défis restent.</p>
+            </div>
+            <button class="rg-switch" :class="{ on: notifAbonne && prefFin }" role="switch"
+              :aria-checked="notifAbonne && prefFin" @click="basculerNotif('fin')" :disabled="notifChargement">
+              <span class="rg-switch-knob"></span>
+            </button>
+          </div>
+        </template>
+      </div>
+
       <!-- ── À propos ───────────────────────────────────────── -->
       <div class="rg-section-label">À propos</div>
       <div class="rg-card">
@@ -167,7 +202,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { getProfil, updateProfil } from '../api/client.js'
+import { getProfil, updateProfil, notifAbonner, notifDesabonner, notifGetPrefs, notifSetPrefs } from '../api/client.js'
 import { animationsOn } from '../animations/motion.js'
 import { musiqueOn, musiqueVolume, effetsOn, effetsVolume, volumeEffets } from '../audio/reglages.js'
 import { toast, fermerToast } from '../animations/toast.js'
@@ -181,6 +216,77 @@ const REGIONS = {
   'Canada': ['Alberta', 'Colombie-Britannique', 'Manitoba', 'Nouveau-Brunswick', 'Terre-Neuve-et-Labrador', 'Nouvelle-Écosse', 'Ontario', 'Île-du-Prince-Édouard', 'Québec', 'Saskatchewan', 'Territoires du Nord-Ouest', 'Nunavut', 'Yukon'],
   'France': ["Auvergne-Rhône-Alpes", 'Bourgogne-Franche-Comté', 'Bretagne', 'Centre-Val de Loire', 'Corse', 'Grand Est', 'Hauts-de-France', 'Île-de-France', 'Normandie', 'Nouvelle-Aquitaine', 'Occitanie', 'Pays de la Loire', "Provence-Alpes-Côte d'Azur", 'Guadeloupe', 'Martinique', 'Guyane', 'La Réunion', 'Mayotte'],
   'Belgique': ['Anvers', 'Brabant flamand', 'Brabant wallon', 'Bruxelles-Capitale', 'Flandre occidentale', 'Flandre orientale', 'Hainaut', 'Liège', 'Limbourg', 'Luxembourg', 'Namur'],
+}
+
+// ── Notifications Web Push ────────────────────────────────────
+const notifSupport    = ref('Notification' in window && 'serviceWorker' in navigator && 'PushManager' in window)
+const notifBloque     = ref(notifSupport.value && Notification.permission === 'denied')
+const notifAbonne     = ref(false)
+const notifChargement = ref(false)
+const prefDebut       = ref(true)
+const prefFin         = ref(true)
+let _swReg            = null
+
+async function _getSwReg() {
+  if (!notifSupport.value) return null
+  if (_swReg) return _swReg
+  try { _swReg = await navigator.serviceWorker.ready } catch { return null }
+  return _swReg
+}
+
+async function _subActuelle() {
+  const reg = await _getSwReg()
+  if (!reg) return null
+  return reg.pushManager.getSubscription()
+}
+
+function _subVersPayload(sub) {
+  const json = sub.toJSON()
+  return { endpoint: json.endpoint, cle_p256dh: json.keys.p256dh, cle_auth: json.keys.auth }
+}
+
+async function basculerNotif(type) {
+  if (notifChargement.value) return
+  notifChargement.value = true
+  try {
+    const sub = await _subActuelle()
+    if (!notifAbonne.value || !sub) {
+      // Activer
+      if (Notification.permission === 'denied') { notifBloque.value = true; return }
+      const perm = await Notification.requestPermission()
+      if (perm !== 'granted') { notifBloque.value = perm === 'denied'; return }
+      const reg = await _getSwReg()
+      const vapidKey = import.meta.env.VITE_VAPID_PUBLIC_KEY
+      if (!vapidKey) { console.warn('VITE_VAPID_PUBLIC_KEY absent'); return }
+      const newSub = await reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: vapidKey,
+      })
+      await notifAbonner(_subVersPayload(newSub))
+      await notifSetPrefs({ rappel_debut: type === 'debut' ? true : prefDebut.value, rappel_fin: type === 'fin' ? true : prefFin.value })
+      notifAbonne.value = true
+      const prefs = await notifGetPrefs()
+      prefDebut.value = prefs.rappel_debut
+      prefFin.value   = prefs.rappel_fin
+    } else {
+      // Mettre à jour préférence ou désabonner si les deux sont à false
+      const prochainDebut = type === 'debut' ? !prefDebut.value : prefDebut.value
+      const prochaineFin  = type === 'fin'   ? !prefFin.value   : prefFin.value
+      if (!prochainDebut && !prochaineFin) {
+        await notifDesabonner(_subVersPayload(sub))
+        await sub.unsubscribe()
+        notifAbonne.value = false
+      } else {
+        await notifSetPrefs({ rappel_debut: prochainDebut, rappel_fin: prochaineFin })
+        prefDebut.value = prochainDebut
+        prefFin.value   = prochaineFin
+      }
+    }
+  } catch (e) {
+    console.error('Notif erreur', e)
+  } finally {
+    notifChargement.value = false
+  }
 }
 
 // ── État local ────────────────────────────────────────────────
@@ -221,6 +327,19 @@ onMounted(async () => {
     if (profil.annee)           annee.value          = profil.annee
     if (profil.zone)            zone.value           = profil.zone
   } catch {}
+
+  // État notifications
+  if (notifSupport.value && Notification.permission !== 'denied') {
+    try {
+      const sub = await _subActuelle()
+      if (sub) {
+        notifAbonne.value = true
+        const prefs = await notifGetPrefs()
+        prefDebut.value = prefs.rappel_debut
+        prefFin.value   = prefs.rappel_fin
+      }
+    } catch {}
+  }
 })
 
 // ── Setters avec sauvegarde ───────────────────────────────────
