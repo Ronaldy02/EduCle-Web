@@ -284,3 +284,16 @@ Le widget de validation exige l'utilisateur, mais la préparation n'en a pas bes
 - Pas de message entre sessions sauf nécessité.
 - Le modèle le plus capable est réservé à la **rédaction des questions**. Tout le reste (import, migration, fusion de branches, point d'avancement) doit se faire avec un modèle léger.
 - Les sections « Comment afficher le widget » (étape 4) et les mentions de `show_widget` plus haut sont **obsolètes** : le Studio les remplace.
+
+---
+
+## 8. Travail par lots (2026-10-24)
+
+Décision de l'utilisateur : enchaîner plusieurs chapitres **dans la même session** coûte moins cher qu'ouvrir une session par chapitre (le coût de démarrage — guide, règles, chapitres déjà validés — n'est payé qu'une fois). Le parallèle entre sessions n'économise rien : il ne fait qu'aller plus vite.
+
+Règles :
+1. **Un lot = 3 chapitres maximum**, dans une seule session. Après le 3e, la session s'arrête ; l'utilisateur en lance une neuve pour le lot suivant (un contexte trop long coûte plus cher à chaque message).
+2. **Le premier chapitre du lot est écrit seul**, déposé en brouillon, puis la session attend que l'utilisateur l'ait validé dans le Studio et exporté. Elle lit alors les rejets et corrections pour comprendre ce qu'il refuse (relire le fichier exporté, comparer au brouillon), puis écrit les deux chapitres suivants en tenant compte de ces leçons.
+3. Au début de chaque session, lire les consignes d'erreurs à éviter de la matière (mémoire : rejets Français, rejets Littérature haïtienne, couverture Physique, et la liste de la section 2, étape 3) avant d'écrire.
+4. Une session par matière à la fois, 4 sessions au maximum en même temps (consigne du 2026-10-18).
+5. Remplace la règle « jusqu'à 3 chapitres d'avance » de la section 6 : les chapitres 2 et 3 du lot ne sont écrits qu'après le retour sur le chapitre 1.
