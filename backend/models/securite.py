@@ -30,3 +30,16 @@ class Tentative(Base):
     id:         Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     cle:        Mapped[str] = mapped_column(String(300), nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False, server_default=func.now())
+
+
+class CodeReinitialisation(Base):
+    """Code à 6 chiffres (haché) pour réinitialiser un mot de passe oublié."""
+    __tablename__ = "codes_reinitialisation"
+
+    id:         Mapped[int]  = mapped_column(BigInteger, primary_key=True, autoincrement=True)
+    user_id:    Mapped[int]  = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    code_hash:  Mapped[str]  = mapped_column(String(128), nullable=False)
+    expire_le:  Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    tentatives: Mapped[int]  = mapped_column(Integer, nullable=False, default=0)
+    utilise:    Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False, server_default=func.now())

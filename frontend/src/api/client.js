@@ -66,6 +66,10 @@ export const authRegister = (email, password, pseudo) =>
 export const authLogin = (email, password) =>
   api.post('/auth/login', { email, password }).then(r => r.data)
 export const authMe = () => api.get('/auth/me').then(r => r.data)
+export const authMotDePasseOublie = (email) =>
+  api.post('/auth/mot-de-passe-oublie', { email }).then(r => r.data)
+export const authReinitialiser = (email, code, nouveau_mot_de_passe) =>
+  api.post('/auth/reinitialiser', { email, code, nouveau_mot_de_passe }).then(r => r.data)
 
 // ─── Réalisations ─────────────────────────────────────────────────────────────
 export const getRealisations = () => api.get('/realisations/').then(r => r.data)

@@ -1,20 +1,23 @@
 """Endpoints d'authentification : inscription, connexion, profil courant, Google OAuth."""
 import hmac
+import hashlib
 import secrets
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from urllib.parse import urlencode, quote
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel, EmailStr, Field
 from sqlalchemy.orm import Session
-from sqlalchemy import select, func
+from sqlalchemy import select, func, update, delete
 import httpx
 
 from config import settings
 from database import get_db
 from models.user import User
+from models.securite import CodeReinitialisation
 from services.auth import hash_password, verify_password, create_access_token, ADMIN_TOKEN_DUREE
 from services import limiteur
+from services.email import envoyer_code_reinitialisation
 from dependencies.auth import get_current_user
 
 GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth"
@@ -146,6 +149,109 @@ def logout_all(current_user: User = Depends(get_current_user), db: Session = Dep
     """Révoque tous les tokens du compte (tous les appareils)."""
     current_user.token_version += 1
     db.commit()
+
+
+# ─── Mot de passe oublié ──────────────────────────────────────────────────────
+
+_FENETRE_OUBLI  = timedelta(hours=1)
+_MAX_OUBLI_EMAIL = 5
+_MAX_OUBLI_IP    = 15
+_EXPIRATION_CODE = timedelta(minutes=15)
+_MAX_TENTATIVES_CODE = 5
+
+
+def _hacher_code(code: str) -> str:
+    return hmac.new(
+        settings.secret_key.encode(),
+        code.encode(),
+        hashlib.sha256,
+    ).hexdigest()
+
+
+class OubliRequest(BaseModel):
+    email: EmailStr
+
+
+class ReinitialiserRequest(BaseModel):
+    email: EmailStr
+    code: str = Field(max_length=6)
+    nouveau_mot_de_passe: str = Field(max_length=128)
+
+
+@router.post("/mot-de-passe-oublie", status_code=200)
+def mot_de_passe_oublie(body: OubliRequest, request: Request, db: Session = Depends(get_db)):
+    """Envoie un code à 6 chiffres si l'adresse existe. Répond toujours 200 (ne révèle rien)."""
+    cle_email = f"oubli:email:{body.email.lower()}"
+    cle_ip    = f"oubli:ip:{limiteur.ip_client(request)}"
+    limiteur.verifier(db, cle_email, _MAX_OUBLI_EMAIL, _FENETRE_OUBLI)
+    limiteur.verifier(db, cle_ip,    _MAX_OUBLI_IP,    _FENETRE_OUBLI)
+    limiteur.enregistrer(db, cle_email)
+    limiteur.enregistrer(db, cle_ip)
+
+    user = trouver_par_email(db, body.email)
+    if user:
+        # Invalider les codes précédents
+        db.execute(
+            update(CodeReinitialisation)
+            .where(CodeReinitialisation.user_id == user.id, CodeReinitialisation.utilise == False)
+            .values(utilise=True)
+        )
+        code = f"{secrets.randbelow(1_000_000):06d}"
+        db.add(CodeReinitialisation(
+            user_id=user.id,
+            code_hash=_hacher_code(code),
+            expire_le=datetime.now(timezone.utc) + _EXPIRATION_CODE,
+        ))
+        db.commit()
+        try:
+            envoyer_code_reinitialisation(user.email, code)
+        except Exception:
+            pass  # Erreur déjà journalisée dans le service
+
+    return {"message": "Si cette adresse est enregistrée, un code a été envoyé."}
+
+
+@router.post("/reinitialiser", status_code=200)
+def reinitialiser(body: ReinitialiserRequest, db: Session = Depends(get_db)):
+    """Vérifie le code et change le mot de passe. Invalide toutes les sessions existantes."""
+    if len(body.nouveau_mot_de_passe) < 8:
+        raise HTTPException(400, "Le mot de passe doit contenir au moins 8 caractères.")
+
+    user = trouver_par_email(db, body.email)
+    if not user:
+        raise HTTPException(400, "Code invalide ou expiré.")
+
+    maintenant = datetime.now(timezone.utc)
+    entree = db.scalar(
+        select(CodeReinitialisation)
+        .where(
+            CodeReinitialisation.user_id == user.id,
+            CodeReinitialisation.utilise == False,
+            CodeReinitialisation.expire_le > maintenant,
+            CodeReinitialisation.tentatives < _MAX_TENTATIVES_CODE,
+        )
+        .order_by(CodeReinitialisation.created_at.desc())
+    )
+    if not entree:
+        raise HTTPException(400, "Code invalide ou expiré.")
+
+    # Incrémenter les tentatives avant la comparaison (brute-force protection)
+    entree.tentatives += 1
+    db.commit()
+
+    hash_attendu = _hacher_code(body.code.strip())
+    if not hmac.compare_digest(entree.code_hash, hash_attendu):
+        if entree.tentatives >= _MAX_TENTATIVES_CODE:
+            entree.utilise = True
+            db.commit()
+        raise HTTPException(400, "Code invalide ou expiré.")
+
+    # Code correct : changer le mot de passe et révoquer toutes les sessions
+    user.hashed_password = hash_password(body.nouveau_mot_de_passe)
+    user.token_version += 1
+    entree.utilise = True
+    db.commit()
+    return {"message": "Mot de passe mis à jour. Tu peux maintenant te connecter."}
 
 
 # ─── Google OAuth ─────────────────────────────────────────────────────────────

@@ -137,24 +137,66 @@
         <template v-else-if="state === 'forgot'">
           <button class="lv-back" @click="state = 'login'"><ChevronIcon /> Retour</button>
           <h2 class="lv-title">Mot de passe oublié</h2>
-          <p class="lv-sub-auth">Entre ton adresse e-mail pour recevoir un lien de réinitialisation.</p>
+          <p class="lv-sub-auth">Entre ton adresse e-mail pour recevoir un code de réinitialisation.</p>
           <div class="lv-field">
             <label>E-mail</label>
-            <input v-model="email" type="email" placeholder="prenom@exemple.com" :class="{ 'is-err': fieldErr }">
+            <input v-model="email" type="email" placeholder="prenom@exemple.com" autocomplete="email" :class="{ 'is-err': fieldErr }">
             <span v-if="fieldErr" class="lv-err">{{ fieldErr }}</span>
           </div>
           <button class="lv-btn-primary" :disabled="loading" @click="doForgot">
             <span v-if="loading" class="lv-spinner"></span>
-            <span v-else>Envoyer le lien</span>
+            <span v-else>Envoyer le code</span>
           </button>
         </template>
 
-        <!-- État : lien envoyé -->
-        <template v-else-if="state === 'forgot-sent'">
-          <span class="lv-big-icon">📬</span>
-          <h2 class="lv-title">Vérifie ta boîte mail</h2>
-          <p class="lv-sub-auth" style="margin-bottom:24px">Lien envoyé à <strong>{{ email }}</strong>. Il expire dans 15 minutes.</p>
-          <button class="lv-btn-ghost" @click="state = 'login'">Retour à la connexion</button>
+        <!-- État : saisie du code + nouveau mot de passe -->
+        <template v-else-if="state === 'forgot-code'">
+          <button class="lv-back" @click="state = 'forgot'"><ChevronIcon /> Retour</button>
+          <h2 class="lv-title">Entre ton code</h2>
+          <p class="lv-sub-auth">Code envoyé à <strong>{{ email }}</strong>. Valable 15 min.</p>
+          <div v-if="globalErr" class="lv-notice err">{{ globalErr }}</div>
+          <div class="lv-field">
+            <label>Code à 6 chiffres</label>
+            <input
+              v-model="codeReinit"
+              type="text"
+              inputmode="numeric"
+              maxlength="6"
+              placeholder="000000"
+              autocomplete="one-time-code"
+              :class="{ 'is-err': fieldErr }"
+            >
+            <span v-if="fieldErr" class="lv-err">{{ fieldErr }}</span>
+          </div>
+          <div class="lv-field">
+            <label>Nouveau mot de passe <span style="color:var(--lv-muted);font-weight:400">(8 car. min.)</span></label>
+            <div class="lv-input-wrap">
+              <input
+                v-model="password"
+                :type="showPwd ? 'text' : 'password'"
+                placeholder="••••••••"
+                autocomplete="new-password"
+                @keydown.enter="doReinitialiser"
+                :class="{ 'is-err': fieldErr }"
+              >
+              <button class="lv-eye" @click="showPwd = !showPwd" type="button">
+                <EyeIcon :open="!showPwd" />
+              </button>
+            </div>
+          </div>
+          <button class="lv-btn-primary" :disabled="loading" @click="doReinitialiser">
+            <span v-if="loading" class="lv-spinner"></span>
+            <span v-else>Changer le mot de passe</span>
+          </button>
+          <p class="lv-legal" style="margin-top:12px">
+            <button
+              class="lv-link-plain"
+              :disabled="renvoiDelay > 0"
+              @click="doForgot"
+            >
+              Renvoyer le code{{ renvoiDelay > 0 ? ` (${renvoiDelay}s)` : '' }}
+            </button>
+          </p>
         </template>
 
       </div>
@@ -166,6 +208,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth.js'
+import { authMotDePasseOublie, authReinitialiser } from '../api/client.js'
 
 // ── Icônes inline ─────────────────────────────────────────────────────────────
 const GoogleIcon = {
@@ -220,6 +263,9 @@ const loading  = ref(false)
 const fieldErr = ref('')
 const nameErr  = ref('')
 const globalErr = ref('')
+const codeReinit  = ref('')
+const renvoiDelay = ref(0)
+let _renvoiTimer = null
 
 function clearErr() { fieldErr.value = ''; globalErr.value = ''; nameErr.value = '' }
 
@@ -287,6 +333,15 @@ async function doRegister() {
   }
 }
 
+function _demarrerRenvoiTimer() {
+  renvoiDelay.value = 60
+  clearInterval(_renvoiTimer)
+  _renvoiTimer = setInterval(() => {
+    renvoiDelay.value--
+    if (renvoiDelay.value <= 0) clearInterval(_renvoiTimer)
+  }, 1000)
+}
+
 async function doForgot() {
   clearErr()
   if (!email.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
@@ -294,10 +349,52 @@ async function doForgot() {
     return
   }
   loading.value = true
-  await new Promise(r => setTimeout(r, 800)) // TODO: vrai endpoint reset
-  loading.value = false
-  state.value = 'forgot-sent'
+  try {
+    await authMotDePasseOublie(email.value)
+    codeReinit.value = ''
+    password.value = ''
+    showPwd.value = false
+    _demarrerRenvoiTimer()
+    state.value = 'forgot-code'
+  } catch (e) {
+    const status = e?.response?.status
+    if (status === 429) {
+      fieldErr.value = 'Trop de tentatives. Réessaie dans quelques minutes.'
+    } else {
+      fieldErr.value = 'Erreur réseau. Réessaie.'
+    }
+  } finally {
+    loading.value = false
+  }
 }
+
+async function doReinitialiser() {
+  clearErr()
+  if (!codeReinit.value || codeReinit.value.length !== 6) {
+    fieldErr.value = 'Entre le code à 6 chiffres.'
+    return
+  }
+  if (password.value.length < 8) {
+    fieldErr.value = 'Le mot de passe doit contenir au moins 8 caractères.'
+    return
+  }
+  loading.value = true
+  try {
+    await authReinitialiser(email.value, codeReinit.value, password.value)
+    clearInterval(_renvoiTimer)
+    password.value = ''
+    codeReinit.value = ''
+    globalErr.value = ''
+    state.value = 'login'
+  } catch (e) {
+    const msg = e?.response?.data?.detail || 'Code invalide ou expiré.'
+    globalErr.value = msg
+  } finally {
+    loading.value = false
+  }
+}
+
+onUnmounted(() => clearInterval(_renvoiTimer))
 
 // ── Constellation canvas ──────────────────────────────────────────────────────
 const canvasRef = ref(null)

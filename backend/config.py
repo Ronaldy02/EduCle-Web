@@ -12,6 +12,10 @@ class Settings(BaseSettings):
     frontend_url: str = "http://localhost:5173"
     # Swagger (/docs, /openapi.json) : désactivé par défaut, à activer en local (EXPOSER_DOCS=true)
     exposer_docs: bool = False
+    # Brevo — envoi d'e-mails transactionnels (mot de passe oublié)
+    email_api_key: str = ""
+    email_expediteur: str = ""
+    email_expediteur_nom: str = "EduClé"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
