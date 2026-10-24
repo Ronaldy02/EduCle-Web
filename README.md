@@ -119,6 +119,20 @@ version-web-personnel/
         └── utils/niveau.js  # XP/niveau/rang (miroir JS)
 ```
 
+## Modes de jeu
+
+| Mode | Chrono | Correction | XP | Particularités |
+|---|---|---|---|---|
+| **Révision** | 30 s / question | Immédiate | ×1.0 | Mode d'apprentissage, feedback après chaque réponse |
+| **Rush** | 20 s / question | À la fin | ×1.5 | Rythme soutenu, score révélé en bloc |
+| **Génie** | 10 s / question | À la fin | ×1.5 | Vitesse maximale |
+| **Bombardement** | 60 s au total | À la fin | ×1.5 | 30 questions fixes, pas de séries de bonus |
+| **Cartes mentales** | Aucun | — | — | Visible si chapitre sélectionné ou matière < 31 questions |
+
+Nombre de questions : **10 ou 20** (hors Bombardement qui est fixe à 30).
+
+---
+
 ## Flux principal
 
 ```
