@@ -43,11 +43,11 @@
         <router-link to="/profil" class="nav-link" :class="{ active: $route.name === 'profil' }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">person</span> Profil
         </router-link>
-        <router-link to="/taches" class="nav-link" :class="{ active: $route.name === 'taches' }" @click="sidebarOuvert = false">
-          <span class="material-symbols-outlined">military_tech</span> Réalisation
+        <router-link to="/defis" class="nav-link" :class="{ active: $route.name === 'defis' }" @click="sidebarOuvert = false">
+          <span class="material-symbols-outlined">emoji_events</span> Défis
         </router-link>
-        <router-link to="/defis" class="nav-link" :class="{ active: ['defis','realisations'].includes($route.name) }" @click="sidebarOuvert = false">
-          <span class="material-symbols-outlined">military_tech</span> Défis
+        <router-link to="/realisations" class="nav-link" :class="{ active: $route.name === 'realisations' }" @click="sidebarOuvert = false">
+          <span class="material-symbols-outlined">military_tech</span> Réalisations
         </router-link>
         <router-link to="/proposer" class="nav-link" :class="{ active: $route.name === 'proposer' }" @click="sidebarOuvert = false">
           <span class="material-symbols-outlined">add_circle</span> Proposer
@@ -87,11 +87,6 @@
           <!-- Séries : icône seule -->
           <div class="icon-pill" title="Séries">
             <span class="material-symbols-outlined" style="color:#EF4444">local_fire_department</span>
-            <span>0</span>
-          </div>
-          <!-- Tâches : icône seule -->
-          <div class="icon-pill" title="Tâches">
-            <span class="material-symbols-outlined" style="color:#6366F1">task_alt</span>
             <span>0</span>
           </div>
           <div class="stat-pill">

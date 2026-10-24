@@ -38,7 +38,6 @@ const router = createRouter({
     { path: '/reglages',  name: 'reglages',    component: ReglagesView },
     { path: '/revision',  name: 'revision',    component: RevisionView },
     { path: '/admin',     name: 'admin',        component: AdminView, meta: { public: true } },
-    { path: '/taches',        name: 'taches',        component: RealisationView },
     { path: '/defis',         name: 'defis',         component: DefisView },
     { path: '/realisations',  name: 'realisations',  component: RealisationView },
     { path: '/proposer', name: 'proposer', component: ProposerView },
