@@ -55,7 +55,7 @@ RANGS: dict[str, dict] = {
     "avance":      {"nom": "Avancé",      "emoji": "🎓", "couleur": "#F59E0B", "niveau_min": 30},
     "expert":      {"nom": "Expert",      "emoji": "🏆", "couleur": "#EF4444", "niveau_min": 50},
     "maitre":      {"nom": "Maître",      "emoji": "💎", "couleur": "#06B6D4", "niveau_min": 75},
-    "grand_maitre":{"nom": "Grand Maître","emoji": "👑", "couleur": "#F59E0B", "niveau_min": 100},
+    "grand_maitre":{"nom": "Grand Maître","emoji": "👑", "couleur": "#F0A000", "niveau_min": 100},
 }
 
 
