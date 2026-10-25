@@ -13,3 +13,7 @@ CREATE TABLE IF NOT EXISTS codes_reinitialisation (
 
 CREATE INDEX IF NOT EXISTS idx_codes_reinit_user
     ON codes_reinitialisation (user_id);
+
+-- Table réservée au backend : sans RLS, la clé anon Supabase pourrait remettre
+-- le compteur de tentatives à zéro et deviner le code par force brute.
+ALTER TABLE codes_reinitialisation ENABLE ROW LEVEL SECURITY;

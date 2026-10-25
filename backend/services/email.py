@@ -1,5 +1,6 @@
 """Service d'envoi d'e-mails via l'API Brevo (transactionnel)."""
 import logging
+import os
 from config import settings
 
 logger = logging.getLogger(__name__)
@@ -10,10 +11,13 @@ _BREVO_URL = "https://api.brevo.com/v3/smtp/email"
 def envoyer_code_reinitialisation(destinataire: str, code: str) -> None:
     """Envoie le code à 6 chiffres par e-mail.
 
-    Si EMAIL_API_KEY n'est pas configurée, écrit le code dans les logs
-    (niveau WARNING, affiché en développement uniquement).
+    Si EMAIL_API_KEY n'est pas configurée : en local, écrit le code dans les logs ;
+    sur Vercel (variable VERCEL présente), lève une erreur sans jamais journaliser le code.
     """
     if not settings.email_api_key or not settings.email_expediteur:
+        if os.environ.get("VERCEL"):
+            logger.error("Envoi du code impossible : EMAIL_API_KEY / EMAIL_EXPEDITEUR non configurés.")
+            raise RuntimeError("Service e-mail non configuré")
         logger.warning(
             "[DEV] Code de réinitialisation pour %s : %s (aucune clé Brevo configurée)",
             destinataire, code,

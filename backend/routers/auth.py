@@ -212,10 +212,12 @@ def mot_de_passe_oublie(body: OubliRequest, request: Request, db: Session = Depe
 
 
 @router.post("/reinitialiser", status_code=200)
-def reinitialiser(body: ReinitialiserRequest, db: Session = Depends(get_db)):
+def reinitialiser(body: ReinitialiserRequest, request: Request, db: Session = Depends(get_db)):
     """Vérifie le code et change le mot de passe. Invalide toutes les sessions existantes."""
     if len(body.nouveau_mot_de_passe) < 8:
         raise HTTPException(400, "Le mot de passe doit contenir au moins 8 caractères.")
+    # En plus des 5 essais par code : une IP ne peut pas tester des codes en masse sur plusieurs comptes
+    limiteur.limiter(db, f"reinit:ip:{limiteur.ip_client(request)}", 30, _FENETRE_OUBLI)
 
     user = trouver_par_email(db, body.email)
     if not user:
