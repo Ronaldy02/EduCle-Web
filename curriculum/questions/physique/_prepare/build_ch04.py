@@ -1,0 +1,58 @@
+import sys, os
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.abspath(os.path.join(HERE, "..", "..", "..", ".."))
+sys.path.insert(0, REPO + "/scripts/questions")
+from chapitre import Chapitre
+
+# l'ancien seed est lu depuis le dossier de travail (git show c2b421e:lib/services/database_helper.dart > dh_old.dart)
+SEED = os.environ.get("DH_OLD", HERE + "/dh_old.dart")
+c = Chapitre("PN1_04", "Physique", "NS1 ch.4 (Mouvement, trajectoire, vitesse et accélération)", base_dart=SEED)
+B1 = "Programme B1"
+
+c.groupe("Mouvement, repos et trajectoire")
+c.new(1, "F", "Déplacement d'un corps, changement de sa position dans l'espace", ["Le mouvement", "Le repos", "L'équilibre", "La vitesse"], "Un corps est en mouvement quand sa position change au cours du temps par rapport à un autre corps.", "Larousse : mouvement (sens 1)", "D")
+c.new(2, "F", "Absence de mouvement, immobilité", ["Le repos", "L'équilibre", "L'inertie", "La pesanteur"], "Le repos et le mouvement sont relatifs : un passager assis est au repos par rapport au bus, mais en mouvement par rapport à la route.", "Larousse : repos (sens 1)", "D")
+c.new(3, "F", "Ligne décrite par un point en mouvement", ["La trajectoire", "La vitesse", "La durée", "La distance"], "La trajectoire d'une balle lancée est une courbe, celle d'une pierre qui tombe verticalement est une droite.", "Larousse : trajectoire (sens 2)", "D")
+c.new(4, "F", "Mouvement dont la trajectoire est une ligne droite", ["Un mouvement rectiligne", "Un mouvement curviligne", "Un mouvement circulaire", "Un mouvement oscillatoire"], "La chute verticale d'un caillou ou un train sur une voie droite en sont des exemples.", "Larousse : rectiligne (sens 1)", "D")
+c.new(5, "F", "Mouvement dont la trajectoire est un cercle ou un arc de cercle", ["Un mouvement circulaire", "Un mouvement rectiligne", "Un mouvement alterné", "Un mouvement uniforme"], "La pointe d'une aiguille d'horloge ou le bord d'une roue qui tourne décrivent un cercle.", "Larousse : circulaire (sens 2)", "D")
+c.new(6, "F", "Mouvement dont la trajectoire est une ligne courbe", ["Un mouvement curviligne", "Un mouvement rectiligne", "Un mouvement immobile", "Un mouvement sinusoïdal"], "Un ballon lancé dans les airs décrit une trajectoire de ce type.", "Larousse : curviligne", "D")
+c.new(7, "F", "Quel est le mouvement de l'extrémité de l'aiguille des secondes d'une horloge ?", ["Circulaire", "Rectiligne", "Parabolique", "Oscillatoire"], "Elle fait un tour complet en soixante secondes.", B1, "C")
+c.new(8, "M", "Quel est le mouvement d'un pendule qui va et vient autour de sa position d'équilibre ?", ["Oscillatoire", "Circulaire", "Rectiligne uniforme", "Parabolique"], "Il repasse régulièrement par les mêmes positions.", "Larousse : mouvement (sens 1, exemple du pendule)", "C")
+
+c.groupe("Mouvement uniforme, accéléré et ralenti")
+c.new(11, "M", "Mouvement dont la vitesse reste constante", ["Un mouvement uniforme", "Un mouvement accéléré", "Un mouvement ralenti", "Un mouvement varié"], "Un véhicule qui roule en ligne droite à 50 km/h sans jamais changer de vitesse a un mouvement rectiligne uniforme.", "Larousse : uniforme (sens 2)", "D")
+c.new(12, "F", "Mouvement dont la vitesse augmente au cours du temps", ["Un mouvement accéléré", "Un mouvement ralenti", "Un mouvement uniforme", "Un mouvement rectiligne"], "Une voiture qui démarre ou une pierre en chute libre ont un mouvement accéléré.", B1, "D")
+c.new(13, "F", "Mouvement dont la vitesse diminue au cours du temps", ["Un mouvement ralenti", "Un mouvement accéléré", "Un mouvement uniforme", "Un mouvement curviligne"], "Un cycliste qui freine, un ballon qui roule jusqu'à s'arrêter ont un mouvement ralenti.", B1, "D")
+c.base(1219, en="Mouvement qui s'effectue en ligne droite à vitesse constante", ch=["Le mouvement rectiligne uniforme", "Le mouvement rectiligne accéléré", "Le mouvement circulaire uniforme", "Le mouvement rectiligne ralenti"], ex="Dans ce mouvement, la vitesse ne change ni de valeur ni de direction ; on le note MRU.", src="Base Q1219 (modifiée) — Larousse : rectiligne, uniforme", typ="D")
+c.new(15, "M", "Quel est le mouvement d'une pierre lâchée sans vitesse initiale ?", ["Rectiligne accéléré", "Rectiligne uniforme", "Circulaire uniforme", "Curviligne ralenti"], "Sa vitesse augmente d'environ 10 m/s à chaque seconde de chute.", B1, "C")
+c.new(16, "M", "Quel est le mouvement d'un véhicule qui freine sur une route droite ?", ["Rectiligne ralenti", "Rectiligne accéléré", "Circulaire uniforme", "Rectiligne uniforme"], "Sa vitesse diminue jusqu'à l'arrêt.", B1, "C")
+
+c.groupe("La vitesse")
+c.new(21, "F", "Rapport de la distance parcourue par un mobile à la durée du parcours", ["La vitesse moyenne", "L'accélération", "La trajectoire", "La durée"], "Un trajet de 120 km fait en 2 h correspond à une vitesse moyenne de 60 km/h, même si la voiture a parfois ralenti ou accéléré.", "Larousse : vitesse (sens 1)", "D")
+c.base(1213, ex="v est la vitesse, d la distance parcourue et t la durée du parcours.", src="Base Q1213 (explication reprise)", typ="C")
+c.new(23, "M", "Quelle est l'unité de vitesse du Système international ?", ["Le mètre par seconde", "Le kilomètre par heure", "Le nœud", "Le mille par heure"], "Le kilomètre par heure est très utilisé mais n'est pas une unité du SI : 1 m/s = 3,6 km/h.", B1, "C")
+c.new(24, "M", "Combien vaut 36 km/h en mètres par seconde ?", ["10 m/s", "36 m/s", "129,6 m/s", "3,6 m/s"], "Pour passer de km/h à m/s, on divise par 3,6 : 36 / 3,6 = 10.", B1 + " (conversion)", "C")
+c.new(25, "F", "Quelle est la vitesse moyenne d'une voiture qui parcourt 150 km en 2 heures ?", ["75 km/h", "300 km/h", "150 km/h", "52 km/h"], "v = d / t = 150 km / 2 h = 75 km/h.", B1 + " (calcul court)", "C")
+c.new(26, "M", "Quelle distance un cycliste parcourt-il en roulant à 15 km/h pendant 2 heures ?", ["30 km", "7,5 km", "17 km", "60 km"], "d = v × t = 15 km/h × 2 h = 30 km.", B1 + " (calcul court)", "C")
+c.new(27, "M", "Un tap-tap roule à 40 km/h pendant 30 minutes. Quelle distance parcourt-il ?", ["20 km", "40 km", "80 km", "10 km"], "30 minutes = 0,5 h, donc d = 40 × 0,5 = 20 km.", B1 + " (calcul court)", "C")
+c.new(28, "F", "Un coureur parcourt 100 m en 10 secondes. Quelle est sa vitesse moyenne ?", ["10 m/s", "100 m/s", "1 m/s", "0,1 m/s"], "v = 100 m / 10 s = 10 m/s, soit 36 km/h.", B1 + " (calcul court)", "C")
+c.new(29, "M", "Quelle vitesse le compteur d'un véhicule indique-t-il ?", ["La vitesse instantanée", "La vitesse moyenne", "L'accélération", "La distance parcourue"], "C'est la vitesse à l'instant précis où l'on regarde le compteur ; la vitesse moyenne concerne tout le trajet.", B1 + " (pas de définition au Larousse en ligne)", "C")
+c.new(30, "F", "Quelle est la vitesse approximative d'un piéton qui marche normalement ?", ["5 km/h", "50 km/h", "0,5 km/h", "500 km/h"], "Un cycliste roule en général entre 15 et 25 km/h et une voiture en ville entre 30 et 50 km/h.", B1, "C")
+c.new(31, "M", "Quels instruments permettent de mesurer une vitesse moyenne en travaux pratiques ?", ["Une règle et un chronomètre", "Une balance et un thermomètre", "Un voltmètre et une règle", "Une éprouvette et un baromètre"], "La règle donne la distance parcourue, le chronomètre la durée.", B1, "C")
+
+c.groupe("Graphiques du mouvement")
+c.base(1328, ex="Dans un mouvement rectiligne uniforme, la vitesse est constante : son graphique en fonction du temps est une droite parallèle à l'axe du temps.", src="Base Q1328 (explication reprise)", typ="C")
+c.new(34, "M", "Sur un graphique distance-temps, que représente une droite passant par l'origine ?", ["Un mouvement uniforme", "Un mouvement accéléré", "Un corps au repos", "Un mouvement ralenti"], "La distance est proportionnelle à la durée : la vitesse est constante, égale à la pente de la droite.", B1, "C")
+c.new(35, "M", "Sur un graphique distance-temps, que signifie une droite horizontale ?", ["Le corps est au repos", "La vitesse est constante", "Le corps accélère", "Le corps revient en arrière"], "La distance ne change plus au cours du temps : le corps est immobile.", B1, "C")
+
+c.groupe("L'accélération")
+c.new(41, "F", "Grandeur qui exprime la variation de la vitesse par unité de temps", ["L'accélération", "La vitesse moyenne", "La force", "La puissance"], "Elle est positive quand la vitesse augmente et négative quand elle diminue.", "Larousse : accélération (sens 3, simplifié)", "D")
+c.base(1323, ex="Une accélération de 1 m/s² signifie que la vitesse augmente de 1 m/s à chaque seconde.", src="Base Q1323 (explication reprise)", typ="C")
+c.new(43, "M", "Quelle est la formule de l'accélération moyenne ?", ["a = Δv / Δt", "a = Δt / Δv", "a = Δv × Δt", "a = v × t"], "Δv est la variation de vitesse et Δt la durée pendant laquelle elle se produit.", B1, "C")
+c.base(1225, ex="a = Δv / Δt = (20 − 0) / 4 = 5 m/s².", src="Base Q1225 (explication reprise)", typ="C")
+c.new(45, "M", "Un cycliste passe de 2 m/s à 8 m/s en 3 secondes. Quelle est son accélération moyenne ?", ["2 m/s²", "6 m/s²", "3 m/s²", "0,5 m/s²"], "a = (8 − 2) / 3 = 2 m/s².", B1 + " (calcul court)", "C")
+c.new(46, "D", "Un train roulant à 20 m/s freine et s'arrête en 10 secondes. Quelle est son accélération ?", ["− 2 m/s²", "2 m/s²", "− 20 m/s²", "0 m/s²"], "a = (0 − 20) / 10 = − 2 m/s² : elle est négative car la vitesse diminue.", B1 + " (calcul court)", "C")
+c.new(47, "F", "Que vaut l'accélération d'un corps en mouvement rectiligne uniforme ?", ["Zéro", "Un", "Dix", "Moins un"], "La vitesse ne change pas : la variation de vitesse est nulle, donc l'accélération aussi.", B1, "C")
+
+os.chdir(HERE)
+c.ecrire("ns1_ch04")

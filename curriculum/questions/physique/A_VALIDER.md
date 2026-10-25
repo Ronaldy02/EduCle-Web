@@ -3,11 +3,12 @@
 Préparés le 2026-10-20. Rien n'est importé en base : ni migration, ni `statut: validé`.
 Fichiers dans `_prepare/` : `ns1_chNN_Q.json` (questions), `ns1_chNN_widget.html` (widget de validation), `build_chNN.py` (script de construction ; il lit l'ancien seed `git show c2b421e:lib/services/database_helper.dart` copié dans `dh_old.dart`, non versionné).
 
-| # | Chapitre (titre exact en base) | Niveaux | Questions | Dont base |
-|---|---|---|---|---|
-| 1 | Grandeurs, mesures et états de la matière | NS1 | **validé et importé (migration 041, 44 questions ; Q1315 et Q1317 rejetées)** | |
-| 2 | Big Bang, système solaire et exploration de l'espace | NS1 + NS2 | 42 | 1 (Q1288) |
-| 3 | Gravitation universelle, poids et masse | NS1 + NS2 | 23 | 4 (Q1214, Q1218, Q1226, Q1235) |
+| # | Chapitre (titre exact en base) | Niveaux | État |
+|---|---|---|---|
+| 1 | Grandeurs, mesures et états de la matière | NS1 | validé et importé (migration 041, 44 questions) |
+| 2 | Big Bang, système solaire et exploration de l'espace | NS1 + NS2 | validé et importé (42 + 37 de supplément = 79 questions) |
+| 3 | Gravitation universelle, poids et masse | NS1 + NS2 | **prêt, widget affiché : 35 questions (dont base Q1214, Q1218, Q1226, Q1235, Q1238), en attente de validation** |
+| 4 | Mouvement, trajectoire, vitesse et accélération | NS1 | **prêt : 35 questions (dont base Q1213, Q1219, Q1225, Q1323, Q1328), pas encore affiché** |
 
 ## Points à signaler
 
@@ -29,4 +30,4 @@ Fichiers dans `_prepare/` : `ns1_chNN_Q.json` (questions), `ns1_chNN_widget.html
 - Pas de question sur la chute libre ni sur la force en général : réservées aux chapitres NS2 (inertie, chute libre) et NS1 ch.5 (force).
 
 ## Pas encore commencé
-NS1 ch.4 à ch.14, puis NS2, NS3, NS4. Trois chapitres d'avance suffisent : on s'arrête ici.
+NS1 ch.5 à ch.14, puis NS2, NS3, NS4. Trois chapitres d'avance suffisent : on s'arrête ici.

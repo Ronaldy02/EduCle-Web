@@ -38,6 +38,22 @@ c.new(34, "F", "Quel mouvement de la Terre produit l'alternance du jour et de la
 c.new(35, "M", "Combien de temps la Lune met-elle pour faire le tour de la Terre ?", ["Environ 27 jours", "Environ 7 jours", "Environ 365 jours", "Environ 24 heures"], "Les phases de la Lune reviennent tous les 29,5 jours, car la Terre a elle aussi avancé autour du Soleil.", "Alt. ch.1.2.3", "C")
 c.new(36, "M", "Que fait un satellite géostationnaire, vu depuis la Terre ?", ["Il reste au-dessus du même point", "Il se déplace très vite", "Il tombe vers la Terre", "Il tourne autour de la Lune"], "Situé à environ 36 000 km d'altitude, il tourne avec la Terre en 24 heures ; il sert aux télécommunications et à la météorologie.", "Alt. ch.1.2.3", "C")
 
+c.groupe("Gravitation : compléments")
+c.new(41, "F", "Quel fruit, selon la légende, a fait réfléchir Newton à la gravitation ?", ["La pomme", "La mangue", "La banane", "L'orange"], "Voir tomber un fruit l'aurait conduit à relier la chute des corps sur Terre au mouvement de la Lune.", "Larousse : gravitation ; " + B1, "C")
+c.new(42, "F", "La gravitation agit-elle à distance ou au contact ?", ["À distance", "Au contact seulement", "Seulement dans l'air", "Seulement sur Terre"], "Elle agit même à travers le vide de l'espace : c'est une action à distance, comme la force magnétique.", B1 + " (action à distance)", "C")
+c.new(43, "D", "Si la masse d'un des deux corps double, que devient la force de gravitation entre eux ?", ["Elle double", "Elle est divisée par deux", "Elle reste la même", "Elle est multipliée par quatre"], "La force est proportionnelle à chacune des masses : F = G·m·m′/d².", B1, "C")
+c.new(44, "M", "Quel phénomène sur Terre est provoqué surtout par l'attraction de la Lune ?", ["Les marées", "Les séismes", "Les cyclones", "Les éclipses"], "L'attraction de la Lune, et dans une moindre mesure du Soleil, soulève les océans deux fois par jour.", "Alt. ch.1.2.3", "C")
+c.new(45, "M", "Quel savant du XVIIᵉ siècle a établi les lois du mouvement des planètes autour du Soleil ?", ["Johannes Kepler", "Nicolas Copernic", "Galilée", "Isaac Newton"], "Ses trois lois décrivent des orbites en ellipse ; Newton les a expliquées ensuite par la gravitation.", "Alt. ch.1.2.2", "C")
+
+c.groupe("Poids et masse : compléments")
+c.new(51, "M", "Comment appelle-t-on la grandeur g, exprimée en N/kg ?", ["L'intensité de la pesanteur", "La constante de gravitation", "La masse volumique", "L'accélération électrique"], "Elle indique le poids d'un kilogramme : 9,8 N/kg sur Terre.", B1, "C")
+c.new(52, "M", "Comment appelle-t-on le point d'application du poids d'un corps ?", ["Son centre de gravité", "Son sommet", "Sa base", "Sa surface"], "Pour un objet homogène et symétrique, il se confond avec son centre géométrique.", B1, "C")
+c.base(1238, en="Où se trouve le centre de gravité d'une sphère homogène ?", ch=["En son centre", "À sa surface", "À sa base", "Au sommet"], ex="Pour un objet homogène et symétrique (sphère, cube), le centre de gravité coïncide avec le centre géométrique.", src="Base Q1238 (modifiée)", typ="C")
+c.new(54, "F", "Quel est à peu près le poids d'une masse de 100 g sur Terre ?", ["Environ 1 N", "Environ 10 N", "Environ 0,1 N", "Environ 100 N"], "P = 0,1 kg × 10 N/kg = 1 N ; c'est pourquoi 1 N correspond à peu près au poids d'une tablette de chocolat.", B1, "C")
+c.new(55, "M", "Quelle est la masse d'un objet dont le poids est de 300 N (g = 10 N/kg) ?", ["30 kg", "3 kg", "300 kg", "3 000 kg"], "m = P / g = 300 / 10 = 30 kg.", B1 + " (calcul court)", "C")
+c.new(56, "M", "Sur lequel de ces astres un même objet pèse-t-il le plus ?", ["Jupiter", "La Terre", "La Lune", "Mars"], "La pesanteur à la surface de Jupiter vaut environ 25 N/kg, contre 9,8 sur Terre, 3,7 sur Mars et 1,6 sur la Lune.", B1, "C")
+c.new(57, "M", "Quelle fraction de son poids terrestre un objet pèse-t-il sur la Lune ?", ["Environ un sixième", "Environ un tiers", "Environ la moitié", "Le double"], "Sa masse n'a pas changé, mais la pesanteur lunaire est environ six fois plus faible.", B1, "C")
+
 os.makedirs(S + "/out", exist_ok=True)
 os.chdir(S + "/out")
 c.ecrire("ns1_ch03")

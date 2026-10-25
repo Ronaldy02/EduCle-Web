@@ -1,0 +1,86 @@
+<h2 class="sr-only">Validation une à une des questions du chapitre Biologie Physique NS1 ch.4 (Mouvement, trajectoire, vitesse et accélération).</h2>
+<style>
+.qc{border:0.5px solid var(--border);border-radius:12px;padding:12px 16px;margin:0 0 10px;background:var(--surface-2)}
+.qc.v{border-color:var(--border-success)}.qc.r{border-color:var(--border-danger)}.qc.m{border-color:var(--border-warning)}
+.ch{font-size:14px;padding:2px 0;color:var(--text-secondary)}.ch.ok{color:var(--text-success);font-weight:500}
+.bt{font-size:13px;padding:4px 10px}.bt.on.v{background:var(--bg-success);color:var(--text-success)}.bt.on.r{background:var(--bg-danger);color:var(--text-danger)}.bt.on.m{background:var(--bg-warning);color:var(--text-warning)}
+.bd{font-size:11px;padding:2px 8px;border-radius:var(--radius);background:var(--surface-1);color:var(--text-secondary)}
+.sr{font-size:11px;padding:2px 8px;border-radius:var(--radius);background:var(--bg-accent);color:var(--text-accent)}
+.gh{font-size:13px;color:var(--text-secondary);margin:1rem 0 8px}
+</style>
+<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:0.5rem 0 0.5rem">
+<span style="font-size:14px;color:var(--text-secondary)">Traitées : <b id="cnt" style="font-weight:500;color:var(--text-primary)">0</b> / <span id="tot"></span></span>
+<button class="bt" id="allv"><i class="ti ti-checks" aria-hidden="true"></i> Valider les non traitées</button>
+</div>
+<div id="list"></div>
+<div style="padding:0.5rem 0 1rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+<button id="send">Envoyer mes validations ↗</button>
+<span id="err" style="font-size:13px;color:var(--text-danger)"></span>
+</div>
+<script>
+const Q=[
+["g", "Mouvement, repos et trajectoire"],
+["PN1_04-01", "F", "Déplacement d'un corps, changement de sa position dans l'espace", ["Le mouvement", "Le repos", "L'équilibre", "La vitesse"], "Un corps est en mouvement quand sa position change au cours du temps par rapport à un autre corps.", "Larousse : mouvement (sens 1)", "D"],
+["PN1_04-02", "F", "Absence de mouvement, immobilité", ["Le repos", "L'équilibre", "L'inertie", "La pesanteur"], "Le repos et le mouvement sont relatifs : un passager assis est au repos par rapport au bus, mais en mouvement par rapport à la route.", "Larousse : repos (sens 1)", "D"],
+["PN1_04-03", "F", "Ligne décrite par un point en mouvement", ["La trajectoire", "La vitesse", "La durée", "La distance"], "La trajectoire d'une balle lancée est une courbe, celle d'une pierre qui tombe verticalement est une droite.", "Larousse : trajectoire (sens 2)", "D"],
+["PN1_04-04", "F", "Mouvement dont la trajectoire est une ligne droite", ["Un mouvement rectiligne", "Un mouvement curviligne", "Un mouvement circulaire", "Un mouvement oscillatoire"], "La chute verticale d'un caillou ou un train sur une voie droite en sont des exemples.", "Larousse : rectiligne (sens 1)", "D"],
+["PN1_04-05", "F", "Mouvement dont la trajectoire est un cercle ou un arc de cercle", ["Un mouvement circulaire", "Un mouvement rectiligne", "Un mouvement alterné", "Un mouvement uniforme"], "La pointe d'une aiguille d'horloge ou le bord d'une roue qui tourne décrivent un cercle.", "Larousse : circulaire (sens 2)", "D"],
+["PN1_04-06", "F", "Mouvement dont la trajectoire est une ligne courbe", ["Un mouvement curviligne", "Un mouvement rectiligne", "Un mouvement immobile", "Un mouvement sinusoïdal"], "Un ballon lancé dans les airs décrit une trajectoire de ce type.", "Larousse : curviligne", "D"],
+["PN1_04-07", "F", "Quel est le mouvement de l'extrémité de l'aiguille des secondes d'une horloge ?", ["Circulaire", "Rectiligne", "Parabolique", "Oscillatoire"], "Elle fait un tour complet en soixante secondes.", "Programme B1", "C"],
+["PN1_04-08", "M", "Quel est le mouvement d'un pendule qui va et vient autour de sa position d'équilibre ?", ["Oscillatoire", "Circulaire", "Rectiligne uniforme", "Parabolique"], "Il repasse régulièrement par les mêmes positions.", "Larousse : mouvement (sens 1, exemple du pendule)", "C"],
+["g", "Mouvement uniforme, accéléré et ralenti"],
+["PN1_04-11", "M", "Mouvement dont la vitesse reste constante", ["Un mouvement uniforme", "Un mouvement accéléré", "Un mouvement ralenti", "Un mouvement varié"], "Un véhicule qui roule en ligne droite à 50 km/h sans jamais changer de vitesse a un mouvement rectiligne uniforme.", "Larousse : uniforme (sens 2)", "D"],
+["PN1_04-12", "F", "Mouvement dont la vitesse augmente au cours du temps", ["Un mouvement accéléré", "Un mouvement ralenti", "Un mouvement uniforme", "Un mouvement rectiligne"], "Une voiture qui démarre ou une pierre en chute libre ont un mouvement accéléré.", "Programme B1", "D"],
+["PN1_04-13", "F", "Mouvement dont la vitesse diminue au cours du temps", ["Un mouvement ralenti", "Un mouvement accéléré", "Un mouvement uniforme", "Un mouvement curviligne"], "Un cycliste qui freine, un ballon qui roule jusqu'à s'arrêter ont un mouvement ralenti.", "Programme B1", "D"],
+["Q1219", "M", "Mouvement qui s'effectue en ligne droite à vitesse constante", ["Le mouvement rectiligne uniforme", "Le mouvement rectiligne accéléré", "Le mouvement circulaire uniforme", "Le mouvement rectiligne ralenti"], "Dans ce mouvement, la vitesse ne change ni de valeur ni de direction ; on le note MRU.", "Base Q1219 (modifiée) — Larousse : rectiligne, uniforme", "D"],
+["PN1_04-15", "M", "Quel est le mouvement d'une pierre lâchée sans vitesse initiale ?", ["Rectiligne accéléré", "Rectiligne uniforme", "Circulaire uniforme", "Curviligne ralenti"], "Sa vitesse augmente d'environ 10 m/s à chaque seconde de chute.", "Programme B1", "C"],
+["PN1_04-16", "M", "Quel est le mouvement d'un véhicule qui freine sur une route droite ?", ["Rectiligne ralenti", "Rectiligne accéléré", "Circulaire uniforme", "Rectiligne uniforme"], "Sa vitesse diminue jusqu'à l'arrêt.", "Programme B1", "C"],
+["g", "La vitesse"],
+["PN1_04-21", "F", "Rapport de la distance parcourue par un mobile à la durée du parcours", ["La vitesse moyenne", "L'accélération", "La trajectoire", "La durée"], "Un trajet de 120 km fait en 2 h correspond à une vitesse moyenne de 60 km/h, même si la voiture a parfois ralenti ou accéléré.", "Larousse : vitesse (sens 1)", "D"],
+["Q1213", "F", "Quelle est la formule de la vitesse moyenne ?", ["v = d/t", "v = t/d", "v = d × t", "v = m × a"], "v est la vitesse, d la distance parcourue et t la durée du parcours.", "Base Q1213 (explication reprise)", "C"],
+["PN1_04-23", "M", "Quelle est l'unité de vitesse du Système international ?", ["Le mètre par seconde", "Le kilomètre par heure", "Le nœud", "Le mille par heure"], "Le kilomètre par heure est très utilisé mais n'est pas une unité du SI : 1 m/s = 3,6 km/h.", "Programme B1", "C"],
+["PN1_04-24", "M", "Combien vaut 36 km/h en mètres par seconde ?", ["10 m/s", "36 m/s", "129,6 m/s", "3,6 m/s"], "Pour passer de km/h à m/s, on divise par 3,6 : 36 / 3,6 = 10.", "Programme B1 (conversion)", "C"],
+["PN1_04-25", "F", "Quelle est la vitesse moyenne d'une voiture qui parcourt 150 km en 2 heures ?", ["75 km/h", "300 km/h", "150 km/h", "52 km/h"], "v = d / t = 150 km / 2 h = 75 km/h.", "Programme B1 (calcul court)", "C"],
+["PN1_04-26", "M", "Quelle distance un cycliste parcourt-il en roulant à 15 km/h pendant 2 heures ?", ["30 km", "7,5 km", "17 km", "60 km"], "d = v × t = 15 km/h × 2 h = 30 km.", "Programme B1 (calcul court)", "C"],
+["PN1_04-27", "M", "Un tap-tap roule à 40 km/h pendant 30 minutes. Quelle distance parcourt-il ?", ["20 km", "40 km", "80 km", "10 km"], "30 minutes = 0,5 h, donc d = 40 × 0,5 = 20 km.", "Programme B1 (calcul court)", "C"],
+["PN1_04-28", "F", "Un coureur parcourt 100 m en 10 secondes. Quelle est sa vitesse moyenne ?", ["10 m/s", "100 m/s", "1 m/s", "0,1 m/s"], "v = 100 m / 10 s = 10 m/s, soit 36 km/h.", "Programme B1 (calcul court)", "C"],
+["PN1_04-29", "M", "Quelle vitesse le compteur d'un véhicule indique-t-il ?", ["La vitesse instantanée", "La vitesse moyenne", "L'accélération", "La distance parcourue"], "C'est la vitesse à l'instant précis où l'on regarde le compteur ; la vitesse moyenne concerne tout le trajet.", "Programme B1 (pas de définition au Larousse en ligne)", "C"],
+["PN1_04-30", "F", "Quelle est la vitesse approximative d'un piéton qui marche normalement ?", ["5 km/h", "50 km/h", "0,5 km/h", "500 km/h"], "Un cycliste roule en général entre 15 et 25 km/h et une voiture en ville entre 30 et 50 km/h.", "Programme B1", "C"],
+["PN1_04-31", "M", "Quels instruments permettent de mesurer une vitesse moyenne en travaux pratiques ?", ["Une règle et un chronomètre", "Une balance et un thermomètre", "Un voltmètre et une règle", "Une éprouvette et un baromètre"], "La règle donne la distance parcourue, le chronomètre la durée.", "Programme B1", "C"],
+["g", "Graphiques du mouvement"],
+["Q1328", "M", "Comment se représente un mouvement rectiligne uniforme sur un graphique vitesse-temps ?", ["Une droite horizontale", "Une parabole", "Une droite montante", "Une exponentielle"], "Dans un mouvement rectiligne uniforme, la vitesse est constante : son graphique en fonction du temps est une droite parallèle à l'axe du temps.", "Base Q1328 (explication reprise)", "C"],
+["PN1_04-34", "M", "Sur un graphique distance-temps, que représente une droite passant par l'origine ?", ["Un mouvement uniforme", "Un mouvement accéléré", "Un corps au repos", "Un mouvement ralenti"], "La distance est proportionnelle à la durée : la vitesse est constante, égale à la pente de la droite.", "Programme B1", "C"],
+["PN1_04-35", "M", "Sur un graphique distance-temps, que signifie une droite horizontale ?", ["Le corps est au repos", "La vitesse est constante", "Le corps accélère", "Le corps revient en arrière"], "La distance ne change plus au cours du temps : le corps est immobile.", "Programme B1", "C"],
+["g", "L'accélération"],
+["PN1_04-41", "F", "Grandeur qui exprime la variation de la vitesse par unité de temps", ["L'accélération", "La vitesse moyenne", "La force", "La puissance"], "Elle est positive quand la vitesse augmente et négative quand elle diminue.", "Larousse : accélération (sens 3, simplifié)", "D"],
+["Q1323", "F", "Quelle est l'unité SI de l'accélération ?", ["Le m/s²", "Le m/s", "Le N", "Le J"], "Une accélération de 1 m/s² signifie que la vitesse augmente de 1 m/s à chaque seconde.", "Base Q1323 (explication reprise)", "C"],
+["PN1_04-43", "M", "Quelle est la formule de l'accélération moyenne ?", ["a = Δv / Δt", "a = Δt / Δv", "a = Δv × Δt", "a = v × t"], "Δv est la variation de vitesse et Δt la durée pendant laquelle elle se produit.", "Programme B1", "C"],
+["Q1225", "M", "La vitesse d'une voiture passe de 0 à 20 m/s en 4 secondes. Quelle est son accélération ?", ["5 m/s²", "80 m/s²", "0,2 m/s²", "24 m/s²"], "a = Δv / Δt = (20 − 0) / 4 = 5 m/s².", "Base Q1225 (explication reprise)", "C"],
+["PN1_04-45", "M", "Un cycliste passe de 2 m/s à 8 m/s en 3 secondes. Quelle est son accélération moyenne ?", ["2 m/s²", "6 m/s²", "3 m/s²", "0,5 m/s²"], "a = (8 − 2) / 3 = 2 m/s².", "Programme B1 (calcul court)", "C"],
+["PN1_04-46", "D", "Un train roulant à 20 m/s freine et s'arrête en 10 secondes. Quelle est son accélération ?", ["− 2 m/s²", "2 m/s²", "− 20 m/s²", "0 m/s²"], "a = (0 − 20) / 10 = − 2 m/s² : elle est négative car la vitesse diminue.", "Programme B1 (calcul court)", "C"],
+["PN1_04-47", "F", "Que vaut l'accélération d'un corps en mouvement rectiligne uniforme ?", ["Zéro", "Un", "Dix", "Moins un"], "La vitesse ne change pas : la variation de vitesse est nulle, donc l'accélération aussi.", "Programme B1", "C"]
+];
+const QQ=Q.filter(q=>q[0]!=='g');document.getElementById('tot').textContent=QQ.length;
+const st={},cm={},L=document.getElementById('list');
+const lbl={F:'Facile',M:'Moyen',D:'Difficile'};
+Q.forEach(q=>{if(q[0]==='g'){const h=document.createElement('div');h.className='gh';h.textContent=q[1];L.appendChild(h);return}
+const d=document.createElement('div');d.className='qc';d.id='c'+q[0];
+d.innerHTML=`<div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;flex-wrap:wrap"><span style="font-size:12px;color:var(--text-muted)">${q[0]}</span><span class="bd">${lbl[q[1]]}</span><span class="bd">${(q[0].startsWith('Q')?'Déjà en base · ':'')+(q[6]==='D'?'Définition':'Connaissance')}</span><span class="sr">${q[5]}</span></div>
+<div style="font-size:15px;font-weight:500;margin-bottom:6px">${q[2]}</div>
+${q[3].map((c,i)=>`<div class="ch ${i===0?'ok':''}">${i===0?'<i class="ti ti-check" aria-hidden="true"></i> ':'<span style="display:inline-block;width:18px"></span>'}${c}</div>`).join('')}
+<div style="font-size:13px;color:var(--text-muted);margin:6px 0 8px">${q[4]}</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap"><button class="bt v" data-a="v">Valider</button><button class="bt m" data-a="m">À modifier</button><button class="bt r" data-a="r">Rejeter</button></div>
+<input type="text" placeholder="Que faut-il changer ?" style="display:none;width:100%;margin-top:8px">`;
+const inp=d.querySelector('input');inp.oninput=()=>{cm[q[0]]=inp.value;document.getElementById('err').textContent=''};
+d.querySelectorAll('button').forEach(b=>b.onclick=()=>set(q[0],b.dataset.a));L.appendChild(d)});
+function set(id,a){st[id]=a;const d=document.getElementById('c'+id);d.className='qc '+a;
+d.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.a===a));
+d.querySelector('input').style.display=a==='m'?'block':'none';
+document.getElementById('cnt').textContent=Object.keys(st).length;document.getElementById('err').textContent=''}
+document.getElementById('allv').onclick=()=>QQ.forEach(q=>{if(!st[q[0]])set(q[0],'v')});
+document.getElementById('send').onclick=()=>{const e=document.getElementById('err');
+const n=QQ.filter(q=>!st[q[0]]).map(q=>q[0]);if(n.length){e.textContent=n.length+' question(s) non traitée(s) : '+n.slice(0,6).join(', ')+(n.length>6?'…':'');return}
+const m=QQ.filter(q=>st[q[0]]==='m');const bad=m.filter(q=>!(cm[q[0]]||'').trim());if(bad.length){e.textContent='Précise la modification pour '+bad.map(q=>q[0]).join(', ');return}
+const v=QQ.filter(q=>st[q[0]]==='v').map(q=>q[0]),r=QQ.filter(q=>st[q[0]]==='r').map(q=>q[0]);
+sendPrompt(`Validation Physique NS1 ch.4 (Mouvement, trajectoire, vitesse et accélération) — Validées (${v.length}) : ${v.join(', ')||'aucune'} · Rejetées (${r.length}) : ${r.join(', ')||'aucune'} · À modifier (${m.length}) : ${m.map(q=>q[0]+' → '+cm[q[0]]).join(' ; ')||'aucune'}`)};
+</script>
