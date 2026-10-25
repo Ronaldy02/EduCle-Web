@@ -1,0 +1,27 @@
+name: Vérification RLS des migrations
+
+# Toute table créée doit activer Row Level Security dans la même migration :
+# sinon elle est lisible et modifiable avec la clé anon Supabase.
+on:
+  push:
+    paths:
+      - "scripts/**.sql"
+      - "backend/alembic/versions/**.sql"
+      - "scripts/verif_rls.py"
+  pull_request:
+    paths:
+      - "scripts/**.sql"
+      - "backend/alembic/versions/**.sql"
+      - "scripts/verif_rls.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tables sans RLS
+        run: python3 scripts/verif_rls.py
