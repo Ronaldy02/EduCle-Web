@@ -1,10 +1,11 @@
 """Endpoints : abonnements Web Push et préférences de rappels."""
 import hmac
+from urllib.parse import urlsplit
 from datetime import date, timezone, datetime
 from zoneinfo import ZoneInfo
 
 from fastapi import APIRouter, Depends, HTTPException, Header
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
 from sqlalchemy.orm import Session
 from sqlalchemy import select, delete
 
@@ -13,7 +14,7 @@ from database import get_db
 from dependencies.auth import get_current_user
 from models.user import User
 from models.abonnement import AbonnementPush
-from models.defis import Defi, DefiProgres
+from models.defi import Defi, DefiProgres
 from services.push import envoyer
 from routers.defis import (
     _ids_quotidiens_pour, _periode_jour, _enrichir,
@@ -21,15 +22,33 @@ from routers.defis import (
 
 router = APIRouter(prefix="/notifications", tags=["Notifications"])
 
-_TZ_HAP = ZoneInfo("America/Port_au_Prince")
+_TZ_HAP = ZoneInfo("America/Port-au-Prince")
 
 
 # ─── Schémas ──────────────────────────────────────────────────────────────────
 
+# Hôtes des services Web Push des navigateurs (Chrome/Edge Android, Firefox, Safari, Edge Windows)
+_HOTES_PUSH = ("fcm.googleapis.com", "android.googleapis.com", "updates.push.services.mozilla.com",
+               "web.push.apple.com")
+_SUFFIXES_PUSH = (".push.services.mozilla.com", ".notify.windows.com", ".push.apple.com")
+_MAX_ABONNEMENTS = 10
+
+
 class AbonnerRequest(BaseModel):
-    endpoint: str
-    cle_p256dh: str
-    cle_auth: str
+    endpoint: str = Field(max_length=1000)
+    cle_p256dh: str = Field(max_length=200)
+    cle_auth: str = Field(max_length=100)
+
+    @field_validator("endpoint")
+    @classmethod
+    def _endpoint_push(cls, v: str) -> str:
+        url = urlsplit(v)
+        hote = (url.hostname or "").lower()
+        if url.scheme != "https" or url.port not in (None, 443) or not (
+            hote in _HOTES_PUSH or hote.endswith(_SUFFIXES_PUSH)
+        ):
+            raise ValueError("Adresse d'abonnement push non reconnue.")
+        return v
 
 
 class PreferencesSchema(BaseModel):
@@ -54,6 +73,16 @@ def abonner(body: AbonnerRequest, current_user: User = Depends(get_current_user)
             cle_p256dh=body.cle_p256dh,
             cle_auth=body.cle_auth,
         ))
+    db.flush()
+    # Au plus 10 appareils par compte : les plus anciens abonnements sont retirés
+    anciens = db.scalars(
+        select(AbonnementPush.id)
+        .where(AbonnementPush.user_id == current_user.id)
+        .order_by(AbonnementPush.created_at.desc(), AbonnementPush.id.desc())
+        .offset(_MAX_ABONNEMENTS)
+    ).all()
+    if anciens:
+        db.execute(delete(AbonnementPush).where(AbonnementPush.id.in_(anciens)))
     db.commit()
     return {"ok": True}
 
@@ -144,7 +173,7 @@ def _envoyer_a_tous(db: Session, rappel: str) -> None:
                 )
             ).all()
             enrichis = _enrichir(defis, list(progres_rows), periode)
-            restants = sum(1 for d in enrichis if d["progres"] < d["objectif"])
+            restants = sum(1 for d in enrichis if not d["complete"])
             if restants == 0:
                 continue
             corps = f"Il te reste {restants} défi(s) aujourd'hui."

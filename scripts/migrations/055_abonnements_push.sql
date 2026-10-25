@@ -15,3 +15,6 @@ CREATE TABLE IF NOT EXISTS abonnements_push (
 
 CREATE INDEX IF NOT EXISTS idx_abonnements_push_user
     ON abonnements_push (user_id);
+
+-- Table réservée au backend : aucun accès via la clé anon Supabase
+ALTER TABLE abonnements_push ENABLE ROW LEVEL SECURITY;

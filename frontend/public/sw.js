@@ -17,7 +17,9 @@ self.addEventListener('push', (event) => {
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close()
-  const url = (event.notification.data && event.notification.data.url) || '/defis'
+  const demande = (event.notification.data && event.notification.data.url) || '/defis'
+  // Uniquement un chemin du site (pas d'URL externe ni « //autre-site »)
+  const url = demande.startsWith('/') && !demande.startsWith('//') ? demande : '/defis'
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
       for (const c of list) {
