@@ -16,6 +16,11 @@ class Settings(BaseSettings):
     email_api_key: str = ""
     email_expediteur: str = ""
     email_expediteur_nom: str = "EduClé"
+    # Web Push VAPID
+    vapid_private_key: str = ""
+    vapid_subject: str = "mailto:contact@educle.app"
+    # Secret partagé entre GitHub Actions et le backend pour les crons push
+    cron_secret: str = ""
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 

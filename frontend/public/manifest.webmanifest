@@ -1,0 +1,13 @@
+{
+  "name": "EduClé",
+  "short_name": "EduClé",
+  "description": "Quiz éducatif adaptatif pour élèves haïtiens",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2F6FED",
+  "icons": [
+    { "src": "/logo/educle_cle_or.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/logo/educle_cle_or.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
