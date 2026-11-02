@@ -19,6 +19,10 @@ api.interceptors.request.use(config => {
 export const getMatieres = (niveau) =>
   api.get('/matieres/', { params: niveau ? { niveau } : {} }).then(r => r.data)
 
+// Chiffres publics de la page de connexion → { matieres, questions }
+export const getApercu = () =>
+  api.get('/matieres/apercu').then(r => r.data)
+
 export const getNiveaux = () =>
   api.get('/matieres/niveaux').then(r => r.data)
 
