@@ -4,7 +4,8 @@ from sqlalchemy.orm import Session, selectinload
 from sqlalchemy import select, func
 
 from database import get_db
-from models import Matiere, Chapitre, CarteMentale, Question
+from dependencies.auth import get_current_user
+from models import Matiere, Chapitre, CarteMentale, Question, User
 from schemas.matiere import MatiereSchema, MatiereDetailSchema, ChapitreDetailSchema
 
 router = APIRouter(prefix="/matieres", tags=["Matières"])
@@ -13,7 +14,7 @@ _MIN_QUESTIONS = 10
 
 
 @router.get("/", response_model=list[MatiereSchema])
-def lister_matieres(niveau: str | None = None, db: Session = Depends(get_db)):
+def lister_matieres(niveau: str | None = None, db: Session = Depends(get_db), _: User = Depends(get_current_user)):
     """Liste les matières ayant au moins un chapitre avec ≥ 10 questions."""
     viable_chap_ids = (
         select(Question.chapitre_id)
@@ -30,7 +31,7 @@ def lister_matieres(niveau: str | None = None, db: Session = Depends(get_db)):
 
 
 @router.get("/niveaux", response_model=list[str])
-def lister_niveaux(db: Session = Depends(get_db)):
+def lister_niveaux(db: Session = Depends(get_db), _: User = Depends(get_current_user)):
     """Retourne les niveaux scolaires distincts présents dans la base."""
     rows = db.execute(select(Matiere.niveau).distinct()).scalars().all()
     return sorted(rows)
@@ -55,7 +56,7 @@ def lister_themes(db: Session = Depends(get_db)):
 
 
 @router.get("/{matiere_id}", response_model=MatiereDetailSchema)
-def detail_matiere(matiere_id: int, db: Session = Depends(get_db)):
+def detail_matiere(matiere_id: int, db: Session = Depends(get_db), _: User = Depends(get_current_user)):
     """Détail d'une matière avec ses chapitres (≥ 10 questions seulement)."""
     matiere = db.scalar(
         select(Matiere)
@@ -91,7 +92,7 @@ def detail_matiere(matiere_id: int, db: Session = Depends(get_db)):
 
 
 @router.get("/{matiere_id}/chapitres/{chapitre_id}", response_model=ChapitreDetailSchema)
-def detail_chapitre(matiere_id: int, chapitre_id: int, db: Session = Depends(get_db)):
+def detail_chapitre(matiere_id: int, chapitre_id: int, db: Session = Depends(get_db), _: User = Depends(get_current_user)):
     """Détail d'un chapitre avec ses cartes mentales."""
     chapitre = db.scalar(
         select(Chapitre)
