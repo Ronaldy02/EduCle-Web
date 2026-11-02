@@ -525,10 +525,10 @@ const seuilCritique = computed(() => {
 })
 
 const MODES_META = {
-  'Rush':         { color: '#f2705a', badge: 'Rush Mode',    multi: 1.0 },
-  'Révision':     { color: '#2f6fed', badge: 'Révision',     multi: 0.5 },
+  'Rush':         { color: '#f2705a', badge: 'Rush Mode',    multi: 1.5 },
+  'Révision':     { color: '#2f6fed', badge: 'Révision',     multi: 1.0 },
   'Génie':        { color: '#7c3aed', badge: 'Génie',        multi: 1.5 },
-  'Bombardement': { color: '#1e2a52', badge: 'Bombardement', multi: 2.0 },
+  'Bombardement': { color: '#1e2a52', badge: 'Bombardement', multi: 1.5 },
 }
 const modeCouleur   = computed(() => MODES_META[modeNom.value]?.color ?? '#2f6fed')
 const modeBadgeStyle = computed(() => ({
