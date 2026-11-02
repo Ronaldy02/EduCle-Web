@@ -2,7 +2,7 @@
 from schemas.question import QuestionQuizSchema
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 ModeNom = Literal["Révision", "Rush", "Génie", "Bombardement"]
 
@@ -11,6 +11,14 @@ class DemarrerQuizRequest(BaseModel):
     chapitre_id: int       # > 0 = un chapitre, -N = toute la matière N
     mode_nom: ModeNom
     nb_questions: int = Field(default=10, ge=1, le=50)
+
+    @model_validator(mode="after")
+    def valider_nb_questions(self) -> "DemarrerQuizRequest":
+        if self.mode_nom == "Bombardement":
+            self.nb_questions = 30
+        elif self.nb_questions not in (10, 20):
+            raise ValueError("nb_questions doit être 10 ou 20")
+        return self
 
 
 class DemarrerQuizResponse(BaseModel):

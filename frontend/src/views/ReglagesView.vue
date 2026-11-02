@@ -8,7 +8,7 @@
       <div class="rg-section-label">Nombre de questions</div>
       <div class="rg-card">
         <div class="rg-chips">
-          <button v-for="n in [5, 10, 15, 20]" :key="n"
+          <button v-for="n in [10, 20]" :key="n"
             class="rg-chip" :class="{ active: nbQuestions === n }"
             @click="setNbQuestions(n)">
             {{ n }}
@@ -210,7 +210,8 @@ const labelRegion = computed(() => {
 // ── Chargement ────────────────────────────────────────────────
 onMounted(async () => {
   // localStorage (préférences locales)
-  nbQuestions.value  = Number(localStorage.getItem('educle_nb_questions') ?? 10)
+  const _nb = Number(localStorage.getItem('educle_nb_questions') ?? 10)
+  nbQuestions.value  = [10, 20].includes(_nb) ? _nb : (_nb <= 10 ? 10 : 20)
   difficulte.value   = localStorage.getItem('educle_difficulte') ?? 'Toutes'
   pays.value         = localStorage.getItem('educle_pays') ?? 'Haïti'
 

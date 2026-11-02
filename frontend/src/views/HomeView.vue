@@ -285,7 +285,7 @@
               <template v-if="modeNom !== 'Bombardement'">
                 <div class="mode-nb-title">Nombre de questions</div>
                 <div class="mode-nb-options">
-                  <button v-for="n in [5, 10, 15, 20]" :key="n"
+                  <button v-for="n in [10, 20]" :key="n"
                     class="mode-nb-btn" :class="{ active: nbQuestions === n }"
                     @click="nbQuestions = n">{{ n }}</button>
                 </div>
@@ -353,7 +353,7 @@
               <template v-if="modeNom !== 'Bombardement'">
                 <div class="mode-nb-title">Nombre de questions</div>
                 <div class="mode-nb-options">
-                  <button v-for="n in [5, 10, 15, 20]" :key="n"
+                  <button v-for="n in [10, 20]" :key="n"
                     class="mode-nb-btn" :class="{ active: nbQuestions === n }"
                     @click="nbQuestions = n">{{ n }}</button>
                 </div>

@@ -26,7 +26,7 @@ export const RANGS = {
   avance:      { nom: 'Avancé',      emoji: '🎓', couleur: '#F59E0B' },
   expert:      { nom: 'Expert',      emoji: '🏆', couleur: '#EF4444' },
   maitre:      { nom: 'Maître',      emoji: '💎', couleur: '#06B6D4' },
-  grand_maitre:{ nom: 'Grand Maître',emoji: '👑', couleur: '#F59E0B' },
+  grand_maitre:{ nom: 'Grand Maître',emoji: '👑', couleur: '#F0A000' },
 }
 
 export function rangDepuisNiveau(niveau) {
