@@ -1,0 +1,446 @@
+{
+  "matiere_id": 9,
+  "matiere": "Physique",
+  "chapitre": "Gravitation universelle, poids et masse",
+  "niveaux": [
+    "NS1",
+    "NS2"
+  ],
+  "unite_programme": "B1",
+  "statut": "validé par l'utilisateur 2026-11-04",
+  "rejetees": [
+    "PN1_03-04",
+    "PN1_03-36",
+    "PN1_03-42",
+    "PN1_03-43",
+    "PN1_03-57"
+  ],
+  "base_rejetees_a_supprimer": [],
+  "questions": [
+    {
+      "id": "PN1_03-01",
+      "enonce": "Force attractive qui s'exerce entre tous les corps qui ont une masse",
+      "choix": [
+        "La gravitation",
+        "La pesanteur",
+        "La flottaison",
+        "Le magnétisme"
+      ],
+      "bonne_reponse": "La gravitation",
+      "explication": "Elle maintient la Lune autour de la Terre et les planètes autour du Soleil.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : gravitation"
+    },
+    {
+      "id": "PN1_03-02",
+      "enonce": "Qui a énoncé la loi de la gravitation universelle ?",
+      "choix": [
+        "Isaac Newton",
+        "Galilée",
+        "Albert Einstein",
+        "Johannes Kepler"
+      ],
+      "bonne_reponse": "Isaac Newton",
+      "explication": "Il l'a publiée en 1687 dans son ouvrage Principia.",
+      "niveau_complexite": "Facile",
+      "source": "Programme B1 ; Larousse : gravitation"
+    },
+    {
+      "id": "PN1_03-03",
+      "enonce": "De quoi dépend la force de gravitation entre deux corps ?",
+      "choix": [
+        "Leurs masses et leur distance",
+        "Leur volume seulement",
+        "Leur couleur et leur forme",
+        "Leur température et leur vitesse"
+      ],
+      "bonne_reponse": "Leurs masses et leur distance",
+      "explication": "Elle augmente avec les masses et diminue quand la distance augmente.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme B1 ; Larousse : gravitation"
+    },
+    {
+      "id": "PN1_03-05",
+      "enonce": "Quelle est l'expression de la loi de la gravitation universelle ?",
+      "choix": [
+        "F = G·m·m′/d²",
+        "F = G·m·m′·d²",
+        "F = G·(m+m′)/d",
+        "F = m·g"
+      ],
+      "bonne_reponse": "F = G·m·m′/d²",
+      "explication": "G est la constante de gravitation, égale à 6,67 × 10⁻¹¹ N·m²/kg².",
+      "niveau_complexite": "Moyen",
+      "source": "Programme B1 ; Larousse : gravitation"
+    },
+    {
+      "id": "PN1_03-06",
+      "enonce": "La force de gravitation entre deux corps est-elle attractive ou répulsive ?",
+      "choix": [
+        "Toujours attractive",
+        "Toujours répulsive",
+        "Parfois répulsive",
+        "Nulle dans le vide"
+      ],
+      "bonne_reponse": "Toujours attractive",
+      "explication": "Deux corps s'attirent mutuellement avec des forces de même valeur, même si l'un est bien plus massif que l'autre.",
+      "niveau_complexite": "Facile",
+      "source": "Programme B1"
+    },
+    {
+      "id": "PN1_03-11",
+      "enonce": "Force d'attraction exercée par la Terre, ou un autre astre, sur un corps proche de sa surface",
+      "choix": [
+        "Le poids",
+        "La masse",
+        "La pression",
+        "La densité"
+      ],
+      "bonne_reponse": "Le poids",
+      "explication": "Il se mesure avec un dynamomètre et s'exprime en newtons.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : poids (sens 2, précisé en physique) ; Programme B1"
+    },
+    {
+      "id": "PN1_03-12",
+      "enonce": "Appareil destiné à la mesure d'une force",
+      "choix": [
+        "Un dynamomètre",
+        "Un baromètre",
+        "Un ampèremètre",
+        "Un thermomètre"
+      ],
+      "bonne_reponse": "Un dynamomètre",
+      "explication": "À l'intérieur, un ressort s'allonge proportionnellement à la force appliquée.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : dynamomètre"
+    },
+    {
+      "id": "PN1_03-13",
+      "enonce": "Quelle est la nature du poids d'un corps ?",
+      "choix": [
+        "Une force",
+        "Une quantité de matière",
+        "Une énergie",
+        "Une vitesse"
+      ],
+      "bonne_reponse": "Une force",
+      "explication": "C'est pourquoi le poids s'exprime en newtons et se représente par une flèche, un vecteur.",
+      "niveau_complexite": "Facile",
+      "source": "Programme B1"
+    },
+    {
+      "id": "PN1_03-14",
+      "enonce": "Dans quelle unité exprime-t-on le poids d'un corps ?",
+      "choix": [
+        "Le newton",
+        "Le kilogramme",
+        "Le gramme",
+        "Le joule"
+      ],
+      "bonne_reponse": "Le newton",
+      "explication": "Le newton (N) est l'unité SI de force : 1 N est le poids d'une masse d'environ 100 g sur Terre.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : newton"
+    },
+    {
+      "id": "PN1_03-15",
+      "enonce": "Quelle est la direction du poids d'un corps ?",
+      "choix": [
+        "La verticale, vers le bas",
+        "L'horizontale, vers l'avant",
+        "La verticale, vers le haut",
+        "La direction du Soleil"
+      ],
+      "bonne_reponse": "La verticale, vers le bas",
+      "explication": "Il s'applique au centre de gravité du corps et pointe vers le centre de la Terre.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme B1"
+    },
+    {
+      "id": "PN1_03-16",
+      "enonce": "Quelle est la formule du poids d'un corps ?",
+      "choix": [
+        "P = m × g",
+        "P = m / g",
+        "P = m + g",
+        "P = g / m"
+      ],
+      "bonne_reponse": "P = m × g",
+      "explication": "P est en newtons, m en kilogrammes et g en newtons par kilogramme.",
+      "niveau_complexite": "Facile",
+      "source": "Programme B1"
+    },
+    {
+      "id": "Q1214",
+      "enonce": "Quel est le poids d'un objet de masse 5 kg sur Terre (g = 10 N/kg) ?",
+      "choix": [
+        "50 N",
+        "5 N",
+        "500 N",
+        "0,5 N"
+      ],
+      "bonne_reponse": "50 N",
+      "explication": "P = m × g = 5 × 10 = 50 N.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1214 (modifiée)",
+      "ancien_enonce": "Un objet de masse 5 kg a un poids sur Terre de (g = 10 m/s²) :"
+    },
+    {
+      "id": "Q1235",
+      "enonce": "Quelle est la valeur de g à la surface de la Terre ?",
+      "choix": [
+        "Environ 9,8 N/kg",
+        "Environ 1,6 N/kg",
+        "Environ 98 N/kg",
+        "Environ 0,98 N/kg"
+      ],
+      "bonne_reponse": "Environ 9,8 N/kg",
+      "explication": "En calcul scolaire, on prend souvent g = 10 N/kg.",
+      "niveau_complexite": "Facile",
+      "source": "Base Q1235 (modifiée)",
+      "ancien_enonce": "Combien vaut g approximativement sur Terre ?"
+    },
+    {
+      "id": "PN1_03-19",
+      "enonce": "État dans lequel les effets de la pesanteur sont annulés, comme à bord d'une station spatiale en orbite",
+      "choix": [
+        "L'apesanteur",
+        "L'inertie",
+        "La gravitation",
+        "La flottaison"
+      ],
+      "bonne_reponse": "L'apesanteur",
+      "explication": "Les astronautes flottent parce qu'ils tombent en permanence avec la station, pas parce que la gravité y est nulle.",
+      "niveau_complexite": "Moyen",
+      "source": "Larousse : apesanteur"
+    },
+    {
+      "id": "Q1218",
+      "enonce": "Laquelle de ces propriétés distingue la masse du poids ?",
+      "choix": [
+        "Masse fixe, poids variable",
+        "Masse variable, poids fixe",
+        "Les deux varient avec le lieu",
+        "Les deux restent fixes"
+      ],
+      "bonne_reponse": "Masse fixe, poids variable",
+      "explication": "La masse, en kilogrammes, ne change pas ; le poids, en newtons, dépend de la gravité du lieu : un objet est plus léger sur la Lune.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1218 (modifiée)",
+      "ancien_enonce": "Quelle est la différence entre la masse et le poids ?"
+    },
+    {
+      "id": "Q1226",
+      "enonce": "Un astronaute pèse 80 N sur Terre. Quel est son poids sur la Lune (g = 1,6 N/kg) ?",
+      "choix": [
+        "Environ 13 N",
+        "80 N",
+        "0 N",
+        "160 N"
+      ],
+      "bonne_reponse": "Environ 13 N",
+      "explication": "Sa masse est m = 80 / 10 = 8 kg ; sur la Lune, P = 8 × 1,6 ≈ 13 N.",
+      "niveau_complexite": "Difficile",
+      "source": "Base Q1226 (modifiée)",
+      "ancien_enonce": "Un astronaute sur la Lune (g = 1,6 m/s²) pesant 80 N sur Terre aura un poids lunaire de :"
+    },
+    {
+      "id": "PN1_03-31",
+      "enonce": "Quelle force fait tomber une pomme et retient la Lune en orbite ?",
+      "choix": [
+        "La gravitation terrestre",
+        "La force magnétique",
+        "La poussée d'Archimède",
+        "La force de frottement"
+      ],
+      "bonne_reponse": "La gravitation terrestre",
+      "explication": "C'est la même force : la Lune « tombe » sans cesse vers la Terre sans jamais l'atteindre, car elle avance aussi sur le côté.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme B1 ; Alt. ch.1.2"
+    },
+    {
+      "id": "PN1_03-32",
+      "enonce": "Quelle est la forme de l'orbite d'une planète autour du Soleil ?",
+      "choix": [
+        "Une ellipse",
+        "Une parabole",
+        "Une droite",
+        "Un carré"
+      ],
+      "bonne_reponse": "Une ellipse",
+      "explication": "C'est la première loi de Kepler ; l'orbite de la Terre est presque un cercle.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.2.2"
+    },
+    {
+      "id": "PN1_03-33",
+      "enonce": "En combien de temps la Terre fait-elle un tour complet autour du Soleil ?",
+      "choix": [
+        "365 jours environ",
+        "24 heures",
+        "30 jours",
+        "12 ans"
+      ],
+      "bonne_reponse": "365 jours environ",
+      "explication": "C'est sa période de révolution : une année.",
+      "niveau_complexite": "Facile",
+      "source": "Alt. ch.1.2.2"
+    },
+    {
+      "id": "PN1_03-34",
+      "enonce": "Quel mouvement de la Terre produit l'alternance du jour et de la nuit ?",
+      "choix": [
+        "Sa rotation sur elle-même",
+        "Sa révolution autour du Soleil",
+        "Sa translation vers la Lune",
+        "L'inclinaison de la Lune"
+      ],
+      "bonne_reponse": "Sa rotation sur elle-même",
+      "explication": "Un tour complet sur elle-même dure environ 24 heures.",
+      "niveau_complexite": "Facile",
+      "source": "Alt. ch.1.2.2"
+    },
+    {
+      "id": "PN1_03-35",
+      "enonce": "Combien de temps la Lune met-elle pour faire le tour de la Terre ?",
+      "choix": [
+        "Environ 27 jours",
+        "Environ 7 jours",
+        "Environ 365 jours",
+        "Environ 24 heures"
+      ],
+      "bonne_reponse": "Environ 27 jours",
+      "explication": "Les phases de la Lune reviennent tous les 29,5 jours, car la Terre a elle aussi avancé autour du Soleil.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.2.3"
+    },
+    {
+      "id": "PN1_03-41",
+      "enonce": "Quel fruit, selon la légende, a fait réfléchir Newton à la gravitation ?",
+      "choix": [
+        "La pomme",
+        "La mangue",
+        "La banane",
+        "L'orange"
+      ],
+      "bonne_reponse": "La pomme",
+      "explication": "Voir tomber un fruit l'aurait conduit à relier la chute des corps sur Terre au mouvement de la Lune.",
+      "niveau_complexite": "Facile",
+      "source": "Larousse : gravitation ; Programme B1"
+    },
+    {
+      "id": "PN1_03-44",
+      "enonce": "Quel phénomène sur Terre est provoqué surtout par l'attraction de la Lune ?",
+      "choix": [
+        "Les marées",
+        "Les séismes",
+        "Les cyclones",
+        "Les éclipses"
+      ],
+      "bonne_reponse": "Les marées",
+      "explication": "L'attraction de la Lune, et dans une moindre mesure du Soleil, soulève les océans deux fois par jour.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.2.3"
+    },
+    {
+      "id": "PN1_03-45",
+      "enonce": "Quel savant du XVIIᵉ siècle a établi les lois du mouvement des planètes autour du Soleil ?",
+      "choix": [
+        "Johannes Kepler",
+        "Nicolas Copernic",
+        "Galilée",
+        "Isaac Newton"
+      ],
+      "bonne_reponse": "Johannes Kepler",
+      "explication": "Ses trois lois décrivent des orbites en ellipse ; Newton les a expliquées ensuite par la gravitation.",
+      "niveau_complexite": "Moyen",
+      "source": "Alt. ch.1.2.2"
+    },
+    {
+      "id": "PN1_03-51",
+      "enonce": "Comment appelle-t-on la grandeur g, exprimée en N/kg ?",
+      "choix": [
+        "L'intensité de la pesanteur",
+        "La constante de gravitation",
+        "La masse volumique",
+        "L'accélération électrique"
+      ],
+      "bonne_reponse": "L'intensité de la pesanteur",
+      "explication": "Elle indique le poids d'un kilogramme : 9,8 N/kg sur Terre.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme B1"
+    },
+    {
+      "id": "PN1_03-52",
+      "enonce": "Comment appelle-t-on le point d'application du poids d'un corps ?",
+      "choix": [
+        "Son centre de gravité",
+        "Son sommet",
+        "Sa base",
+        "Sa surface"
+      ],
+      "bonne_reponse": "Son centre de gravité",
+      "explication": "Pour un objet homogène et symétrique, il se confond avec son centre géométrique.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme B1"
+    },
+    {
+      "id": "Q1238",
+      "enonce": "Où se trouve le centre de gravité d'une sphère homogène ?",
+      "choix": [
+        "En son centre",
+        "À sa surface",
+        "À sa base",
+        "Au sommet"
+      ],
+      "bonne_reponse": "En son centre",
+      "explication": "Pour un objet homogène et symétrique (sphère, cube), le centre de gravité coïncide avec le centre géométrique.",
+      "niveau_complexite": "Moyen",
+      "source": "Base Q1238 (modifiée)",
+      "ancien_enonce": "Le centre de gravité d'un objet symétrique et uniforme se trouve :"
+    },
+    {
+      "id": "PN1_03-54",
+      "enonce": "Quel est à peu près le poids d'une masse de 100 g sur Terre ?",
+      "choix": [
+        "Environ 1 N",
+        "Environ 10 N",
+        "Environ 0,1 N",
+        "Environ 100 N"
+      ],
+      "bonne_reponse": "Environ 1 N",
+      "explication": "P = 0,1 kg × 10 N/kg = 1 N ; c'est pourquoi 1 N correspond à peu près au poids d'une tablette de chocolat.",
+      "niveau_complexite": "Facile",
+      "source": "Programme B1"
+    },
+    {
+      "id": "PN1_03-55",
+      "enonce": "Quelle est la masse d'un objet dont le poids est de 300 N (g = 10 N/kg) ?",
+      "choix": [
+        "30 kg",
+        "3 kg",
+        "300 kg",
+        "3 000 kg"
+      ],
+      "bonne_reponse": "30 kg",
+      "explication": "m = P / g = 300 / 10 = 30 kg.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme B1 (calcul court)"
+    },
+    {
+      "id": "PN1_03-56",
+      "enonce": "Sur lequel de ces astres un même objet pèse-t-il le plus ?",
+      "choix": [
+        "Jupiter",
+        "La Terre",
+        "La Lune",
+        "Mars"
+      ],
+      "bonne_reponse": "Jupiter",
+      "explication": "La pesanteur à la surface de Jupiter vaut environ 25 N/kg, contre 9,8 sur Terre, 3,7 sur Mars et 1,6 sur la Lune.",
+      "niveau_complexite": "Moyen",
+      "source": "Programme B1"
+    }
+  ]
+}

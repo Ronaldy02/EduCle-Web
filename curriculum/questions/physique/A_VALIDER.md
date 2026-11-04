@@ -7,7 +7,7 @@ Fichiers dans `_prepare/` : `ns1_chNN_Q.json` (questions), `ns1_chNN_widget.html
 |---|---|---|---|
 | 1 | Grandeurs, mesures et états de la matière | NS1 | validé et importé (migration 041, 44 questions) |
 | 2 | Big Bang, système solaire et exploration de l'espace | NS1 + NS2 | validé et importé (42 + 37 de supplément = 79 questions) |
-| 3 | Gravitation universelle, poids et masse | NS1 + NS2 | **prêt, widget affiché : 35 questions (dont base Q1214, Q1218, Q1226, Q1235, Q1238), en attente de validation** |
+| 3 | Gravitation universelle, poids et masse | NS1 + NS2 | validé et importé (migration 057, 30 questions ; 5 rejetées) |
 | 4 | Mouvement, trajectoire, vitesse et accélération | NS1 | **prêt : 35 questions (dont base Q1213, Q1219, Q1225, Q1323, Q1328), pas encore affiché** |
 
 ## Points à signaler
