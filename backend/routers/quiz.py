@@ -33,7 +33,7 @@ from schemas.quiz import (
     UtiliserBonusRequest, UtiliserBonusResponse,
     RepondreRequest, RepondreResponse, TerminerQuizRequest,
 )
-from services.adaptive_selector import selectionner
+from services.adaptive_selector import selectionner, selectionner_toutes_matieres
 from services import limiteur
 from services.niveau import (
     calculer_xp_question,
@@ -91,6 +91,9 @@ def _dedup_pool(pool: list[dict]) -> list[dict]:
 def _questions_du_chapitre(db: Session, chapitre_id: int) -> list[Question]:
     # Pas de cas spécial pour -1 : il désignait aussi « toutes les matières »,
     # ce qui rendait la matière n°1 injouable en « Tous les chapitres ».
+    if chapitre_id == 0:
+        # 0 = toutes les questions, toutes matières confondues
+        return db.scalars(select(Question)).all()
     if chapitre_id < 0:
         # ID négatif = toutes les questions de la matière abs(chapitre_id)
         matiere_id = abs(chapitre_id)
@@ -105,7 +108,9 @@ def _questions_du_chapitre(db: Session, chapitre_id: int) -> list[Question]:
 
 
 def _matiere_de(db: Session, chapitre_id: int) -> int | None:
-    """Matière d'une partie, déduite côté serveur (-N = toute la matière N)."""
+    """Matière d'une partie, déduite côté serveur (-N = toute la matière N, 0 = toutes)."""
+    if chapitre_id == 0:
+        return None
     if chapitre_id < 0:
         return abs(chapitre_id)
     chap = db.get(Chapitre, chapitre_id)
@@ -150,7 +155,7 @@ def demarrer_quiz(
     for q in questions_orm:
         choix = list(q.choix)
         random.shuffle(choix)
-        pool.append({
+        item: dict = {
             "id": q.id,
             "chapitre_id": q.chapitre_id,
             "enonce": q.enonce,
@@ -158,11 +163,17 @@ def demarrer_quiz(
             "bonne_reponse": q.bonne_reponse,
             "explication": q.explication,
             "niveau_complexite": q.niveau_complexite,
-        })
+        }
+        if body.chapitre_id == 0:
+            item["matiere_id"] = q.chapitre.matiere_id
+        pool.append(item)
 
     pool = _dedup_pool(pool)
     stats = _get_stats(db, [q["id"] for q in pool], current_user.id)
-    selected = selectionner(pool=pool, stats=stats, nb_voulu=body.nb_questions)
+    if body.chapitre_id == 0:
+        selected = selectionner_toutes_matieres(pool=pool, stats=stats, nb_voulu=body.nb_questions)
+    else:
+        selected = selectionner(pool=pool, stats=stats, nb_voulu=body.nb_questions)
     # Même calcul que /terminer : le front peut afficher le vrai gain de chaque question
     for q in selected:
         maitrise = stats.get(q["id"], {}).get("nb_correcte", 0.0)

@@ -379,10 +379,10 @@ const piecesTotal   = ref(0)
 const serieBounce   = ref(false)
 const palierVisible = ref(false)
 const palierValue   = ref(0)
-const _PALIERS      = [5, 10, 15, 20]
-const PALIER_BONUS    = { 5: 5, 10: 10, 15: 18, 20: 25 }
-const PALIER_DURATION = { 5: 1500, 10: 1800, 15: 2100, 20: 2600 }
-const PALIER_PARTICULES = { 5: 6, 10: 10, 15: 14, 20: 20 }   // H4 · plus le palier est haut, plus ça éclate
+const _PALIERS      = [5, 10, 15]
+const PALIER_BONUS    = { 5: 5, 10: 10, 15: 18 }
+const PALIER_DURATION = { 5: 1500, 10: 1800, 15: 2100 }
+const PALIER_PARTICULES = { 5: 6, 10: 10, 15: 14 }   // H4 · plus le palier est haut, plus ça éclate
 
 // H1/H2 · gains affichés en direct (valeurs réelles envoyées par /quiz/demarrer)
 const xpGagne         = ref(0)

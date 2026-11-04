@@ -380,6 +380,12 @@
       </div>
     </transition>
 
+    <!-- FAB défis -->
+    <button v-if="defisRestants > 0" class="fab-defis" @click="$router.push('/defis')" :aria-label="`${defisRestants} défi(s) en attente`">
+      <span class="material-symbols-outlined filled">emoji_events</span>
+      <span class="fab-badge">{{ defisRestants }}</span>
+    </button>
+
   </div>
 </template>
 
@@ -573,7 +579,8 @@ const chapitresFiltrés = computed(() =>
 
 // ── Défis du jour ────────────────────────────────────────────────
 const defisQuotidiens = ref([])
-const defisCompletes = computed(() => defisQuotidiens.value.filter(d => d.complete).length)
+const defisCompletes  = computed(() => defisQuotidiens.value.filter(d => d.complete).length)
+const defisRestants   = computed(() => defisQuotidiens.value.filter(d => !d.complete).length)
 
 async function chargerDefisJour() {
   try { defisQuotidiens.value = await getDefisQuotidiens() } catch {}
@@ -688,8 +695,7 @@ function ouvrirJouerTout() { showJouerTout.value = true }
 
 function lancerJouerTout() {
   if (!matieres.value.length) return
-  const m = matieres.value[Math.floor(Math.random() * matieres.value.length)]
-  quiz.configurer({ chapitreId: m.id * -1, matiereId: m.id, modeNom: modeNom.value, nbQuestions: nbQuestions.value, matNom: m.nom, chapNom: 'Tous les chapitres' })
+  quiz.configurer({ chapitreId: 0, matiereId: null, modeNom: modeNom.value, nbQuestions: nbQuestions.value, matNom: 'Toutes les matières', chapNom: 'Tous les chapitres' })
   showJouerTout.value = false
   router.push('/quiz')
 }
@@ -709,6 +715,44 @@ async function jouerAleatoire() {
 <style scoped>
 .home-wrap { min-height: calc(100dvh - 64px); background: var(--bg); }
 .home-inner { max-width: 1024px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+
+/* FAB défis */
+.fab-defis {
+  position: fixed;
+  bottom: 5.5rem;
+  right: 1.25rem;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,.18);
+  z-index: 90;
+  transition: transform .15s;
+}
+.fab-defis:hover { transform: scale(1.08); }
+.fab-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  line-height: 1;
+}
 
 /* ── Bento hero ─────────────────────────────────────────────── */
 .bento-grid { display: grid; grid-template-columns: 1fr; gap: 0.85rem; margin-bottom: 2rem; }

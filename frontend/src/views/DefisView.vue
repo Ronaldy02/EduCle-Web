@@ -58,6 +58,17 @@
             </template>
           </template>
 
+          <!-- Spéciaux -->
+          <template v-else-if="ongletActif === 'speciaux'">
+            <SkeletonBlock v-if="chargement.speciaux" :lignes="2" hauteur="88px" />
+            <template v-else>
+              <div v-if="!defisSpeciaux.length" class="vide-msg">Aucun défi spécial aujourd'hui.</div>
+              <div v-else class="defis-grid">
+                <DefiCard v-for="(d, i) in defisSpeciaux" :key="d.id" :defi="d" :index="i" :periode="d.periode" @done="rechargerSpeciaux" />
+              </div>
+            </template>
+          </template>
+
         </div>
       </Transition>
 
@@ -67,28 +78,37 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import { getDefisQuotidiens, getDefisHebdo, getDefisMensuels } from '../api/client.js'
+import { getDefisQuotidiens, getDefisHebdo, getDefisMensuels, getDefisSpeciaux } from '../api/client.js'
 import DefiCard from '../components/DefiCard.vue'
 
-const TABS = [
+const TABS_BASE = [
   { key: 'quotidiens', emoji: '🌅', label: 'Quotidiens' },
   { key: 'hebdo',      emoji: '📅', label: 'Hebdo' },
   { key: 'mensuel',    emoji: '📆', label: 'Mensuel' },
 ]
 
+const defisSpeciaux = ref([])
+const hasSpe = computed(() => defisSpeciaux.value.length > 0)
+const TABS = computed(() =>
+  hasSpe.value
+    ? [...TABS_BASE, { key: 'speciaux', emoji: '⭐', label: 'Spéciaux' }]
+    : TABS_BASE
+)
+
 const ongletActif = ref('quotidiens')
 const defisQuotidiens = ref([])
 const defisHebdo = ref([])
 const defisMensuels = ref([])
-const chargement = ref({ quotidiens: false, hebdo: false, mensuel: false })
+const chargement = ref({ quotidiens: false, hebdo: false, mensuel: false, speciaux: false })
 
 const periodeJour = new Date().toISOString().slice(0, 10)
 const moisCourant = new Date().toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
 
 const badges = computed(() => ({
   quotidiens: defisQuotidiens.value.filter(d => !d.complete).length || null,
-  hebdo: defisHebdo.value.filter(d => !d.complete).length || null,
-  mensuel: defisMensuels.value.filter(d => !d.complete).length || null,
+  hebdo:      defisHebdo.value.filter(d => !d.complete).length || null,
+  mensuel:    defisMensuels.value.filter(d => !d.complete).length || null,
+  speciaux:   defisSpeciaux.value.filter(d => !d.complete).length || null,
 }))
 
 async function rechargerQuotidiens() {
@@ -106,13 +126,22 @@ async function rechargerMensuel() {
   try { defisMensuels.value = await getDefisMensuels() } catch {}
   chargement.value.mensuel = false
 }
+async function rechargerSpeciaux() {
+  chargement.value.speciaux = true
+  try { defisSpeciaux.value = await getDefisSpeciaux() } catch {}
+  chargement.value.speciaux = false
+}
 watch(ongletActif, (val) => {
   if (val === 'quotidiens' && !defisQuotidiens.value.length) rechargerQuotidiens()
   if (val === 'hebdo'      && !defisHebdo.value.length)      rechargerHebdo()
   if (val === 'mensuel'    && !defisMensuels.value.length)    rechargerMensuel()
+  if (val === 'speciaux'   && !defisSpeciaux.value.length)    rechargerSpeciaux()
 })
 
-onMounted(rechargerQuotidiens)
+onMounted(async () => {
+  await rechargerQuotidiens()
+  rechargerSpeciaux()
+})
 </script>
 
 <style scoped>
