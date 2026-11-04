@@ -287,9 +287,9 @@ function celebrer(r) {
   const hasDefis = r?.defis_completes?.length > 0
   const hasReal  = r?.realisations_debloquees?.length > 0
 
+  if (hasReal)   overlayQueue.value.push('realisations')
   if (levelUp)   overlayQueue.value.push('levelup')
   if (hasDefis)  overlayQueue.value.push('defis')
-  if (hasReal)   overlayQueue.value.push('realisations')
 
   if (overlayQueue.value.length) nextOverlay()
 

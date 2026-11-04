@@ -90,3 +90,39 @@ def selectionner(
                 break
 
     return selected
+
+
+def selectionner_toutes_matieres(
+    pool: list[dict],
+    stats: dict[int, dict],
+    nb_voulu: int,
+    session_ids: set[int] | None = None,
+) -> list[dict]:
+    """Sélectionne `nb_voulu` questions en distribuant équitablement par matière_id.
+
+    Chaque matière reçoit un quota = nb_voulu // nb_matieres (+ 1 pour les premières
+    matières si nb_voulu n'est pas divisible). La sélection interne à chaque groupe
+    reste adaptative via `selectionner`.
+    """
+    if not pool:
+        return []
+
+    groupes: dict[int, list[dict]] = {}
+    for q in pool:
+        mid = q.get("matiere_id", 0)
+        groupes.setdefault(mid, []).append(q)
+
+    nb_matieres = len(groupes)
+    if nb_matieres == 0:
+        return selectionner(pool, stats, nb_voulu, session_ids)
+
+    base = nb_voulu // nb_matieres
+    reste = nb_voulu % nb_matieres
+
+    selected: list[dict] = []
+    for i, (_, grp) in enumerate(sorted(groupes.items())):
+        quota = base + (1 if i < reste else 0)
+        selected.extend(selectionner(grp, stats, quota, session_ids))
+
+    random.shuffle(selected)
+    return selected
