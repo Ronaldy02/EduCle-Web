@@ -107,7 +107,7 @@ INSERT INTO defis (id, type, palier, nom, description, metrique, cible, filtres)
 -- Palier 2
 ('M09','m',2,'Cent parties',     'Joue 100 parties ce mois.',                         'game', 100, NULL),
 ('M10','m',2,'Mille réponses',   'Réponds correctement à 1 000 questions ce mois.',    'ans', 1000, NULL),
-('M11','m',2,'Réviseur d'élite', 'Réponds correctement à 700 questions en Révision.',  'ans',  700, '{"md":"rev"}'),
+('M11','m',2,'Réviseur d''élite', 'Réponds correctement à 700 questions en Révision.',  'ans',  700, '{"md":"rev"}'),
 ('M12','m',2,'Trente perfections','Réalise 30 parties parfaites ce mois.',             'perf',  30, NULL),
 ('M13','m',2,'Cent cinquante parties','Joue 150 parties ce mois.',                    'game', 150, NULL),
 ('M14','m',2,'Quinze cents réponses','Réponds correctement à 1 500 questions ce mois.','ans', 1500, NULL),
