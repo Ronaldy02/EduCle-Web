@@ -8,7 +8,9 @@ on:
       - 'lib/**'
       - 'assets/**'
       - 'pubspec.yaml'
+      - 'pubspec.lock'
       - 'ios/**'
+      - '.github/workflows/build_ios.yml'
 
 concurrency:
   group: ios-build-${{ github.ref }}
