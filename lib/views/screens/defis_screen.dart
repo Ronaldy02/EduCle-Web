@@ -36,9 +36,9 @@ class _DefisScreenState extends State<DefisScreen>
     ]);
     if (mounted) {
       setState(() {
-        _progresJour = results[0] as List<DefiProgres>;
-        _progresHebdo = results[1] as List<DefiProgres>;
-        _progresMensuel = results[2] as List<DefiProgres>;
+        _progresJour = results[0];
+        _progresHebdo = results[1];
+        _progresMensuel = results[2];
         _loading = false;
       });
     }

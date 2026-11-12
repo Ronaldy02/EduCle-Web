@@ -17,7 +17,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   List<Map<String, dynamic>> _avancements = [];
-  bool _pret = false;
 
   @override
   void initState() {
